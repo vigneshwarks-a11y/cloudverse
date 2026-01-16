@@ -191,7 +191,7 @@ export default function Home() {
                 <span className="text-xs font-semibold uppercase tracking-widest text-cv-muted">ISO 27001</span>
               </div>
               <div className="flex flex-col items-center gap-2">
-                <img src="/assets/security/soc2.jpg" alt="SOC 2 Type II" className="h-16 w-auto grayscale opacity-80" />
+                <img src="/assets/security/soc2.png" alt="SOC 2 Type II" className="h-16 w-auto grayscale opacity-80" />
                 <span className="text-xs font-semibold uppercase tracking-widest text-cv-muted">SOC 2 Type II</span>
               </div>
             </div>
