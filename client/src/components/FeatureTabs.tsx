@@ -1,5 +1,6 @@
 import { useState } from "react";
 import platformDashboardPreview from "@/assets/platform-dashboard-preview.png";
+import automationDashboardPreview from "@/assets/automation-dashboard-preview.png";
 
 const featureTabs = [
   {
@@ -48,7 +49,7 @@ const featureTabs = [
       "Predicted anomalies using ML models",
       "Clear paths to investigate and fix",
     ],
-    image: "/assets/anomaly-dashboard.png",
+    image: null,
   },
   {
     id: "automation",
@@ -61,7 +62,7 @@ const featureTabs = [
       "Track savings as realized, not estimated",
       "GPU and model inference optimization paths",
     ],
-    image: "/assets/automation-dashboard.png",
+    image: automationDashboardPreview,
   },
 ];
 
