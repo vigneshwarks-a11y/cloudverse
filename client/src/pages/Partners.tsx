@@ -5,6 +5,7 @@ import { Link } from "wouter";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Layers, TrendingUp, Users, CheckCircle2 } from "lucide-react";
+import { FinalCTA } from "@/components/FinalCTA";
 
 type PartnerType = "msp" | "gsi" | "reseller";
 
@@ -240,45 +241,33 @@ export default function Partners() {
       {/* Partner Workflow */}
       <section className="py-14 sm:py-16 lg:py-20 border-b border-cv-line">
         <div className="max-w-[1400px] mx-auto px-5 sm:px-6 lg:px-20">
-          <h2 className="text-2xl sm:text-3xl font-bold text-cv-ink mb-10 text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold text-cv-ink mb-12 text-center">
             Partner workflow
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
-            {partnerWorkflow.map((item, idx) => (
-              <div key={idx} className="text-center">
-                <div className="w-12 h-12 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center mx-auto mb-4">
-                  <span className="text-sm font-bold text-blue-400">{item.step}</span>
+          <div className="relative">
+            {/* Connection Line (Desktop) */}
+            <div className="hidden md:block absolute top-6 left-[12.5%] right-[12.5%] h-px bg-cv-line z-0" />
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4 lg:gap-6 relative z-10">
+              {partnerWorkflow.map((item, idx) => (
+                <div key={idx} className="text-center group">
+                  <div className="w-12 h-12 rounded-full bg-cv-surface border border-cv-line group-hover:border-blue-500/50 flex items-center justify-center mx-auto mb-4 transition-colors relative bg-cv-surface">
+                    <span className="text-sm font-bold text-blue-500">{item.step}</span>
+                  </div>
+                  <h4 className="text-base font-semibold text-cv-ink mb-1">{item.title}</h4>
+                  <p className="text-xs text-cv-muted max-w-[160px] mx-auto">{item.desc}</p>
                 </div>
-                <h4 className="text-base font-semibold text-cv-ink mb-1">{item.title}</h4>
-                <p className="text-xs text-cv-muted">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      {/* CTA */}
-      <section className="py-14 sm:py-16 lg:py-20">
-        <div className="max-w-[1400px] mx-auto px-5 sm:px-6 lg:px-20 text-center">
-          <div className="max-w-xl mx-auto space-y-6">
-            <h2 className="text-3xl sm:text-4xl font-bold text-cv-ink">Talk to our partner team</h2>
-            <p className="text-cv-muted">
-              Learn how CloudVerse can help you grow services revenue and deliver measurable value.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a href="mailto:partners@cloudverse.ai" onClick={() => track("cta_partner_apply", { location: "partners_bottom" })} data-testid="link-partner-apply-bottom">
-                <Button size="lg" className="w-full sm:w-auto" data-testid="button-partner-apply-bottom">
-                  Apply now
-                </Button>
-              </a>
-              <Link href="/contact" onClick={() => track("cta_partner_contact", { location: "partners_bottom" })} data-testid="link-partner-contact">
-                <Button variant="secondary" size="lg" className="w-full sm:w-auto" data-testid="button-partner-contact">
-                  Contact us
-                </Button>
-              </Link>
+              ))}
             </div>
           </div>
         </div>
       </section>
+      {/* CTA */}
+      <FinalCTA 
+        title="Talk to our partner team"
+        description="Learn how CloudVerse can help you grow services revenue and deliver measurable value."
+        location="partners_bottom"
+      />
     </BaseLayout>
   );
 }
