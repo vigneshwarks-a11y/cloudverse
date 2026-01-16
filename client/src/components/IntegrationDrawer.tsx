@@ -2,6 +2,7 @@ import { Integration } from "@/data/integrationsData";
 import { Button } from "@/components/Button";
 import { IntegrationLogo } from "./IntegrationLogo";
 import { X } from "lucide-react";
+import { useLocation } from "wouter";
 
 interface IntegrationDrawerProps {
   integration: Integration | null;
@@ -9,6 +10,7 @@ interface IntegrationDrawerProps {
 }
 
 export function IntegrationDrawer({ integration, onClose }: IntegrationDrawerProps) {
+  const [, setLocation] = useLocation();
   if (!integration) return null;
 
   const statusColor = {
@@ -133,10 +135,11 @@ export function IntegrationDrawer({ integration, onClose }: IntegrationDrawerPro
                 size="lg" 
                 className="flex-1"
                 onClick={() => {
+                  onClose();
                   if (integration.setup.docsUrl) {
-                    window.open(integration.setup.docsUrl, "_blank");
+                    setLocation(integration.setup.docsUrl);
                   } else {
-                    window.open("https://docs.cloudverse.ai/integrations", "_blank");
+                    setLocation("/resources");
                   }
                 }}
               >

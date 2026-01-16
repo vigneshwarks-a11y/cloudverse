@@ -45,7 +45,7 @@ export const integrationsData: Integration[] = [
       method: "Read-only API + CUR export",
       timeToValue: "15–30 minutes",
       permissions: "Read-only, scoped to billing, usage, and tags",
-      docsUrl: "https://docs.cloudverse.ai/integrations/aws"
+      docsUrl: "/resources/guides/aws-setup"
     }
   },
   {
@@ -72,7 +72,7 @@ export const integrationsData: Integration[] = [
       method: "Read-only API + billing export support",
       timeToValue: "20–40 minutes",
       permissions: "Read-only, scoped to Cost Management and Resource Graph",
-      docsUrl: "https://docs.cloudverse.ai/integrations/azure"
+      docsUrl: "/resources/guides/azure-setup"
     }
   },
   {
@@ -99,7 +99,7 @@ export const integrationsData: Integration[] = [
       method: "Read-only API + BigQuery billing export",
       timeToValue: "15–30 minutes",
       permissions: "Read-only, scoped to billing project and BigQuery",
-      docsUrl: "https://docs.cloudverse.ai/integrations/gcp"
+      docsUrl: "/resources/guides/gcp-setup"
     }
   },
   {
