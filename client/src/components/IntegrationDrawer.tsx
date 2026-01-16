@@ -128,7 +128,18 @@ export function IntegrationDrawer({ integration, onClose }: IntegrationDrawerPro
               <Button variant="secondary" size="lg" className="flex-1">
                 Request access
               </Button>
-              <Button variant="tertiary" size="lg" className="flex-1">
+              <Button 
+                variant="tertiary" 
+                size="lg" 
+                className="flex-1"
+                onClick={() => {
+                  if (integration.setup.docsUrl) {
+                    window.open(integration.setup.docsUrl, "_blank");
+                  } else {
+                    window.open("https://docs.cloudverse.ai/integrations", "_blank");
+                  }
+                }}
+              >
                 Setup docs
               </Button>
             </div>
