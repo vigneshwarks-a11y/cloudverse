@@ -6,6 +6,7 @@ import { FeatureTabs } from "@/components/FeatureTabs";
 import { track } from "@/lib/track";
 import { Link } from "wouter";
 import { useEffect } from "react";
+import { FinalCTA } from "@/components/FinalCTA";
 
 const platformOutcomesSet1 = [
   { title: "Unified Cost Visibility", desc: "Real-time view across all clouds and services" },
@@ -153,28 +154,11 @@ export default function Platform() {
           </div>
         </div>
       </section>
-      <section className="py-14 sm:py-16 lg:py-20">
-        <div className="cv-container text-center">
-          <div className="max-w-2xl mx-auto space-y-4 sm:space-y-5">
-            <h2 className="cv-h2">Get a platform view of your cloud economics</h2>
-            <p className="cv-body text-cv-muted">
-              We'll map your structure and automation opportunities.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-2">
-              <Link href="/demo" onClick={() => track("cta_demo", { location: "platform_bottom" })}>
-                <Button size="lg" className="w-full sm:w-auto">
-                  Book a demo
-                </Button>
-              </Link>
-              <Link href="/contact" onClick={() => track("cta_contact", { location: "platform_bottom" })}>
-                <Button variant="secondary" size="lg" className="w-full sm:w-auto">
-                  Contact sales
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <FinalCTA 
+        title="Get a platform view of your cloud economics"
+        description="We'll map your structure and automation opportunities."
+        location="platform_bottom"
+      />
     </BaseLayout>
   );
 }

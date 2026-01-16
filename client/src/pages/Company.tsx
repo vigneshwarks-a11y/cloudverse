@@ -3,6 +3,7 @@ import { Button } from "@/components/Button";
 import { track } from "@/lib/track";
 import { Link } from "wouter";
 import { useEffect } from "react";
+import { FinalCTA } from "@/components/FinalCTA";
 
 export default function Company() {
   useEffect(() => {
@@ -174,32 +175,10 @@ export default function Company() {
       </section>
 
       {/* Final CTA Band */}
-      <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-cv-line bg-gradient-to-b from-cv-surface2/60 to-cv-surface2/30 dark:from-white/[0.06] dark:to-white/[0.03] p-8 sm:p-10">
-            <div className="max-w-3xl">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-cv-ink mb-3 sm:mb-4">
-                See CloudVerse™ on your data.
-              </h2>
-              <p className="text-base sm:text-lg text-cv-muted mb-6 sm:mb-8">
-                We'll map your spend structure and the fastest path to measurable savings.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <Link href="/demo" onClick={() => track("cta_demo", { location: "company_cta" })}>
-                  <Button size="lg" className="w-full sm:w-auto">
-                    Book a demo
-                  </Button>
-                </Link>
-                <Link href="/contact" onClick={() => track("cta_contact_sales", { location: "company_cta" })}>
-                  <Button variant="secondary" size="lg" className="w-full sm:w-auto">
-                    Contact sales
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <FinalCTA 
+        title="See CloudVerse™ on your data."
+        location="company_cta"
+      />
     </BaseLayout>
   );
 }

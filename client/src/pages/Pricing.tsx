@@ -3,6 +3,7 @@ import { Button } from "@/components/Button";
 import { track } from "@/lib/track";
 import { Link } from "wouter";
 import { useEffect } from "react";
+import { FinalCTA } from "@/components/FinalCTA";
 
 export default function Pricing() {
   useEffect(() => {
@@ -219,26 +220,10 @@ export default function Pricing() {
         </div>
       </section>
       {/* Final CTA */}
-      <section className="py-14 sm:py-16 lg:py-20 border-t border-cv-line">
-        <div className="cv-container max-w-[720px] text-center">
-          <h2 className="cv-h2 mb-3">See CloudVerse on your data.</h2>
-          <p className="text-sm text-cv-muted mb-6">
-            We'll walk through your environment and recommend the right plan.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-            <Link href="/demo" onClick={() => track("cta_demo", { location: "pricing_bottom" })}>
-              <Button size="lg" className="w-full sm:w-auto">
-                Book a demo
-              </Button>
-            </Link>
-            <Link href="/contact" onClick={() => track("cta_contact_sales", { location: "pricing_bottom" })}>
-              <Button variant="secondary" size="lg" className="w-full sm:w-auto">
-                Contact sales
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <FinalCTA 
+        description="We'll walk through your environment and recommend the right plan."
+        location="pricing_bottom"
+      />
     </BaseLayout>
   );
 }

@@ -12,6 +12,7 @@ import { DeploymentOptions } from "@/components/home/DeploymentOptions";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { InvoiceEfficiencySection } from "@/components/home/InvoiceEfficiencySection";
 import { Globe, Receipt, Tag, Code2, Cpu, Activity } from "lucide-react";
+import { FinalCTA } from "@/components/FinalCTA";
 
 const customerLogos = [
   { name: "Dr. Reddy's", src: "/logos/dr-reddys.svg", srcDark: "/logos/dr-reddys.svg", className: "brightness-110" },
@@ -199,32 +200,7 @@ export default function Home() {
         </div>
       </section>
       {/* Final CTA Section */}
-      <section className="py-8 sm:py-10 lg:py-12">
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
-          <div className="rounded-2xl border border-cv-line bg-cv-surface2/50 dark:bg-gradient-to-b dark:from-white/[0.06] dark:to-white/[0.03] p-10 sm:p-12 lg:p-16 flex flex-col items-center text-center">
-            <div className="max-w-2xl flex flex-col items-center">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink mb-4">
-                See CloudVerse on your data.
-              </h2>
-              <p className="text-lg sm:text-xl text-cv-muted mb-8">
-                We'll map your spend structure and the fastest path to measurable savings.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/demo" onClick={() => track("cta_demo", { location: "final" })}>
-                  <Button size="lg" className="w-full sm:w-auto">
-                    Book a demo
-                  </Button>
-                </Link>
-                <Link href="/contact" onClick={() => track("cta_contact_sales", { location: "final" })}>
-                  <Button variant="secondary" size="lg" className="w-full sm:w-auto">
-                    Contact sales
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <FinalCTA location="home_final" />
     </BaseLayout>
   );
 }

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { DollarSign, Code2, Briefcase, Server, Cpu } from "lucide-react";
 import financePreview from "@/assets/finance-preview.png";
+import { FinalCTA } from "@/components/FinalCTA";
 
 type Role = "finance" | "engineering" | "business" | "it" | "ai";
 
@@ -257,27 +258,7 @@ export default function Solutions() {
         </div>
       </section>
       {/* CTA Section */}
-      <section className="py-14 sm:py-16 lg:py-20 border-t border-cv-line">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 text-center">
-          <div className="max-w-xl mx-auto space-y-6">
-            <h2 className="text-3xl sm:text-4xl font-bold text-cv-ink">
-              See CloudVerse on your data.
-            </h2>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link href="/demo" onClick={() => track("cta_demo", { location: "solutions_bottom" })}>
-                <Button size="lg" className="w-full sm:w-auto">
-                  Book a demo
-                </Button>
-              </Link>
-              <Link href="/contact" onClick={() => track("cta_contact", { location: "solutions_bottom" })}>
-                <Button variant="secondary" size="lg" className="w-full sm:w-auto">
-                  Contact sales
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <FinalCTA location="solutions_bottom" />
     </BaseLayout>
   );
 }

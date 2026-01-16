@@ -4,6 +4,7 @@ import { Link } from "wouter";
 import { useEffect } from "react";
 import { track } from "@/lib/track";
 import { featuredGuides, categories } from "@/data/resourcesData";
+import { FinalCTA } from "@/components/FinalCTA";
 
 export default function Resources() {
   useEffect(() => {
@@ -124,23 +125,10 @@ export default function Resources() {
         </div>
       </section>
       {/* Bottom CTA */}
-      <section className="py-cv-sec-lg border-t border-cv-line">
-        <div className="max-w-[760px] mx-auto px-6 lg:px-12 text-center">
-          <h2 className="cv-h2 mb-3">Want help applying this to your environment?</h2>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-4">
-            <Link href="/demo" onClick={() => track("cta_demo", { location: "resources_bottom" })}>
-              <Button size="lg" className="w-full sm:w-auto">
-                Book a demo
-              </Button>
-            </Link>
-            <Link href="/contact" onClick={() => track("cta_contact", { location: "resources_bottom" })}>
-              <Button variant="secondary" size="lg" className="w-full sm:w-auto">
-                Contact sales
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <FinalCTA 
+        title="Want help applying this to your environment?"
+        location="resources_bottom"
+      />
     </BaseLayout>
   );
 }
