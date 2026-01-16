@@ -4,6 +4,7 @@ import { track } from "@/lib/track";
 import { Link } from "wouter";
 import { useEffect } from "react";
 import { FinalCTA } from "@/components/FinalCTA";
+import { Check } from "lucide-react";
 
 export default function Pricing() {
   useEffect(() => {
@@ -18,7 +19,8 @@ export default function Pricing() {
       billingUnit: "per month (billed annually)",
       cta: "Purchase now",
       ctaVariant: "primary" as const,
-      limits: ["Maximum $100,000 annual spend", "Access to all features", "Unlimited users", "1 year data retention"]
+      limits: ["Maximum $100,000 annual spend", "Access to all features", "Unlimited users", "1 year data retention"],
+      dark: false
     },
     {
       name: "Professional",
@@ -27,7 +29,8 @@ export default function Pricing() {
       billingUnit: "per month (billed annually)",
       cta: "Purchase now",
       ctaVariant: "primary" as const,
-      limits: ["Maximum $1M annual spend", "Access to all features", "Unlimited users", "1 year data retention"]
+      limits: ["Maximum $1M annual spend", "Access to all features", "Unlimited users", "1 year data retention"],
+      dark: false
     },
     {
       name: "Enterprise",
@@ -35,8 +38,9 @@ export default function Pricing() {
       price: "Custom",
       billingUnit: "",
       cta: "Contact Us",
-      ctaVariant: "secondary" as const,
-      limits: ["Unlimited cloud spend", "Access to all features", "Unlimited users", "5 years data retention", "SOC2 Report", "Dedicated account manager"]
+      ctaVariant: "primary" as const,
+      limits: ["Unlimited cloud spend", "Access to all features", "Unlimited users", "5 years data retention", "SOC2 Report", "Dedicated account manager"],
+      dark: true
     }
   ];
 
@@ -65,39 +69,56 @@ export default function Pricing() {
           </p>
         </div>
       </section>
+
       {/* Pricing Plans */}
       <section className="py-14 sm:py-16 lg:py-20 border-t border-cv-line">
         <div className="cv-container-full">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-[1240px] mx-auto">
             {plans.map((plan, idx) => (
-              <div key={idx} className="p-8 rounded-2xl border border-cv-line bg-cv-surface2 flex flex-col">
-                <h3 className="text-xl font-semibold text-cv-ink mb-2">
+              <div 
+                key={idx} 
+                className={`p-10 rounded-3xl border ${plan.dark ? 'bg-black text-white border-white/10' : 'bg-white dark:bg-cv-surface2 border-cv-line'} flex flex-col shadow-sm`}
+              >
+                <h3 className={`text-xl font-medium mb-8 ${plan.dark ? 'text-white/60' : 'text-cv-muted'}`}>
                   {plan.name}
                 </h3>
-                <p className="text-sm text-cv-muted mb-6">
-                  {plan.description}
-                </p>
-                <div className="mb-8">
-                  <div className="text-3xl font-semibold text-cv-ink">
-                    {plan.price}
+                
+                <div className={`mb-10 p-6 rounded-2xl ${plan.dark ? 'bg-white/[0.08]' : 'bg-cv-surface2/50 dark:bg-white/5'}`}>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-4xl font-bold tracking-tight">
+                      {plan.price}
+                    </span>
+                    <span className="text-xl font-bold">
+                      {plan.billingUnit ? '/Month' : ''}
+                    </span>
+                    {plan.billingUnit && (
+                      <span className={`text-sm ml-1 ${plan.dark ? 'text-white/40' : 'text-cv-muted'}`}>
+                        (billed annually)
+                      </span>
+                    )}
                   </div>
-                  {plan.billingUnit && (
-                    <div className="text-xs text-cv-muted mt-1">
-                      {plan.billingUnit}
-                    </div>
-                  )}
                 </div>
-                <div className="flex-1 mb-8">
-                  <ul className="space-y-2">
+
+                <div className="flex-1 mb-10">
+                  <ul className="space-y-5">
                     {plan.limits.map((limit, limitIdx) => (
-                      <li key={limitIdx} className="text-sm text-cv-muted">
-                        • {limit}
+                      <li key={limitIdx} className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center">
+                          <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                        </div>
+                        <span className={`text-[15px] font-medium leading-tight ${plan.dark ? 'text-white/80' : 'text-cv-muted'}`}>
+                          {limit}
+                        </span>
                       </li>
                     ))}
                   </ul>
                 </div>
+
                 <Link href="/demo" onClick={() => track("pricing_cta", { plan: plan.name, location: "pricing_plans" })}>
-                  <Button size="lg" className="w-full">
+                  <Button 
+                    size="lg" 
+                    className={`w-full py-6 text-base font-semibold rounded-xl transition-all ${plan.dark ? 'bg-blue-600 hover:bg-blue-700' : 'bg-blue-600 hover:bg-blue-700'}`}
+                  >
                     {plan.cta}
                   </Button>
                 </Link>
