@@ -153,19 +153,6 @@ export default function Platform() {
           </div>
         </div>
       </section>
-      <section className="py-10 sm:py-12 lg:py-14">
-        <div className="cv-container text-center">
-          <div className="max-w-2xl mx-auto space-y-3">
-            <h2 className="cv-h2">Security and compliance, built in</h2>
-            <p className="cv-body text-cv-muted">
-              Designed for enterprise environments, from access control to auditability.
-            </p>
-            <p className="cv-cap font-semibold text-cv-muted pt-2">
-              ISO 27001 • SOC 2 Type II
-            </p>
-          </div>
-        </div>
-      </section>
       <section className="py-14 sm:py-16 lg:py-20">
         <div className="cv-container text-center">
           <div className="max-w-2xl mx-auto space-y-4 sm:space-y-5">
