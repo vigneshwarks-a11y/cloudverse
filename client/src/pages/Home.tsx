@@ -187,7 +187,7 @@ export default function Home() {
             </p>
             <div className="flex items-center justify-center gap-8 pt-4">
               <div className="flex flex-col items-center gap-2">
-                <img src="/assets/security/iso27001.jpg" alt="ISO 27001" className="h-16 w-auto grayscale opacity-80" />
+                <img src="/assets/security/iso27001.png" alt="ISO 27001" className="h-16 w-auto grayscale opacity-80" />
                 <span className="text-xs font-semibold uppercase tracking-widest text-cv-muted">ISO 27001</span>
               </div>
               <div className="flex flex-col items-center gap-2">
