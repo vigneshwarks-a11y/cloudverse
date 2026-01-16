@@ -28,39 +28,6 @@ export default function Resources() {
                   Browse guides
                 </Button>
               </Link>
-              <Link href="/resources/docs" data-track="resources_docs_open">
-                <Button variant="secondary" size="lg" className="w-full sm:w-auto">
-                  View documentation
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Two Primary Cards */}
-      <section className="py-14 sm:py-16 lg:py-20 border-t border-cv-line">
-        <div className="cv-container max-w-[1000px]">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Guides Card */}
-            <div className="rounded-2xl border border-cv-line bg-cv-surface2 p-6 md:p-8">
-              <h3 className="text-lg font-semibold text-cv-ink mb-3">Guides</h3>
-              <p className="text-sm text-cv-muted mb-6">
-                Playbooks and best practices for Finance, Engineering, and platform teams.
-              </p>
-              <Link href="/resources/guides" className="text-sm font-medium text-primary hover:underline">
-                Browse Guides →
-              </Link>
-            </div>
-
-            {/* Documentation Card */}
-            <div className="rounded-2xl border border-cv-line bg-cv-surface2 p-6 md:p-8">
-              <h3 className="text-lg font-semibold text-cv-ink mb-3">Documentation</h3>
-              <p className="text-sm text-cv-muted mb-6">
-                Setup, integrations, security, RBAC, and platform reference.
-              </p>
-              <Link href="/resources/docs" className="text-sm font-medium text-primary hover:underline">
-                View Documentation →
-              </Link>
             </div>
           </div>
         </div>
