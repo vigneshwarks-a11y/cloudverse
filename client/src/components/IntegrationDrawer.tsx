@@ -130,21 +130,6 @@ export function IntegrationDrawer({ integration, onClose }: IntegrationDrawerPro
               <Button variant="secondary" size="lg" className="flex-1">
                 Request access
               </Button>
-              <Button 
-                variant="tertiary" 
-                size="lg" 
-                className="flex-1"
-                onClick={() => {
-                  onClose();
-                  if (integration.setup.docsUrl) {
-                    setLocation(integration.setup.docsUrl);
-                  } else {
-                    setLocation("/resources");
-                  }
-                }}
-              >
-                Setup docs
-              </Button>
             </div>
           </div>
         </div>
