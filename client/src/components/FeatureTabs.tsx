@@ -1,4 +1,5 @@
 import { useState } from "react";
+import platformDashboardPreview from "@/assets/platform-dashboard-preview.png";
 
 const featureTabs = [
   {
@@ -11,7 +12,7 @@ const featureTabs = [
       "Recommendations engineers can act on",
       "Fewer surprises, less rework",
     ],
-    image: "/assets/developer-finops-dashboard.png",
+    image: platformDashboardPreview,
   },
   {
     id: "visibility",
