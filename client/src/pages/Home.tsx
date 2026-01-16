@@ -175,6 +175,29 @@ export default function Home() {
       <div className="border-t border-cv-line dark:border-white/10">
         <HowItWorks />
       </div>
+      {/* Security & Compliance Section */}
+      <section className="py-10 sm:py-12 lg:py-14 border-t border-cv-line dark:border-white/10">
+        <div className="cv-container text-center px-5 sm:px-6 lg:px-20">
+          <div className="max-w-2xl mx-auto space-y-6">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink">
+              Security and compliance, built in
+            </h2>
+            <p className="text-lg sm:text-xl text-cv-muted">
+              Designed for enterprise environments, from access control to auditability.
+            </p>
+            <div className="flex items-center justify-center gap-8 pt-4">
+              <div className="flex flex-col items-center gap-2">
+                <img src="/assets/security/iso27001.jpg" alt="ISO 27001" className="h-16 w-auto grayscale opacity-80" />
+                <span className="text-xs font-semibold uppercase tracking-widest text-cv-muted">ISO 27001</span>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <img src="/assets/security/soc2.jpg" alt="SOC 2 Type II" className="h-16 w-auto grayscale opacity-80" />
+                <span className="text-xs font-semibold uppercase tracking-widest text-cv-muted">SOC 2 Type II</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* Final CTA Section */}
       <section className="py-8 sm:py-10 lg:py-12">
         <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
