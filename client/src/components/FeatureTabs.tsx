@@ -127,19 +127,17 @@ export function FeatureTabs() {
           </div>
 
           <div className="hidden lg:flex items-center justify-center">
-            <div className="w-full rounded-xl bg-cv-surface border border-cv-line overflow-hidden">
-              {activeTabContent.image ? (
-                <img
-                  src={activeTabContent.image}
-                  alt={activeTabContent.title}
-                  className="w-full h-auto object-contain"
-                />
-              ) : (
-                <div className="w-full aspect-[4/3] flex items-center justify-center">
-                  <span className="text-cv-muted text-sm">Preview coming soon</span>
-                </div>
-              )}
-            </div>
+            {activeTabContent.image ? (
+              <img
+                src={activeTabContent.image}
+                alt={activeTabContent.title}
+                className="w-full h-auto object-contain"
+              />
+            ) : (
+              <div className="w-full aspect-[4/3] flex items-center justify-center rounded-xl bg-cv-surface border border-cv-line overflow-hidden">
+                <span className="text-cv-muted text-sm">Preview coming soon</span>
+              </div>
+            )}
           </div>
         </div>
       )}
