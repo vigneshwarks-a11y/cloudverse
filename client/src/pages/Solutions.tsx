@@ -5,6 +5,7 @@ import { Link } from "wouter";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { DollarSign, Code2, Briefcase, Server, Cpu } from "lucide-react";
+import financePreview from "@/assets/finance-preview.png";
 
 type Role = "finance" | "engineering" | "business" | "it" | "ai";
 
@@ -197,31 +198,41 @@ export default function Solutions() {
             {/* Right: Preview Card + Workflow */}
             <div className="space-y-8">
               {/* Preview Card */}
-              <div className="rounded-2xl border border-cv-line bg-cv-surface2/30 dark:bg-white/[0.03] overflow-hidden">
-                <div className="bg-cv-surface2/50 dark:bg-white/5 px-6 py-4 border-b border-cv-line flex items-center gap-2">
-                  <div className="flex gap-1.5">
-                    <div className="w-2.5 h-2.5 rounded-full bg-red-400/70"></div>
-                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/70"></div>
-                    <div className="w-2.5 h-2.5 rounded-full bg-green-400/70"></div>
-                  </div>
-                  <span className="text-[10px] font-semibold tracking-widest text-cv-muted uppercase ml-auto">
-                    Dashboard Preview
-                  </span>
+              {activeRole === "finance" ? (
+                <div className="rounded-2xl border border-cv-line bg-cv-surface2/30 dark:bg-white/[0.03] overflow-hidden">
+                  <img 
+                    src={financePreview} 
+                    alt="Typical Finance view: spend variance, allocations, and savings realization"
+                    className="w-full h-auto block"
+                  />
                 </div>
-                <div className="p-6 sm:p-8">
-                  <div className="space-y-4">
-                    <div className="h-3 w-3/4 bg-cv-surface2/50 dark:bg-white/10 rounded"></div>
-                    <div className="h-3 w-1/2 bg-cv-surface2/50 dark:bg-white/10 rounded"></div>
-                    <div className="grid grid-cols-3 gap-3 mt-6">
-                      <div className="h-20 bg-blue-500/10 rounded-lg border border-blue-500/20"></div>
-                      <div className="h-20 bg-purple-500/10 rounded-lg border border-purple-500/20"></div>
-                      <div className="h-20 bg-cyan-500/10 rounded-lg border border-cyan-500/20"></div>
+              ) : (
+                <div className="rounded-2xl border border-cv-line bg-cv-surface2/30 dark:bg-white/[0.03] overflow-hidden">
+                  <div className="bg-cv-surface2/50 dark:bg-white/5 px-6 py-4 border-b border-cv-line flex items-center gap-2">
+                    <div className="flex gap-1.5">
+                      <div className="w-2.5 h-2.5 rounded-full bg-red-400/70"></div>
+                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/70"></div>
+                      <div className="w-2.5 h-2.5 rounded-full bg-green-400/70"></div>
                     </div>
-                    <div className="h-32 bg-cv-surface2/50 dark:bg-white/5 rounded-lg border border-cv-line mt-4"></div>
+                    <span className="text-[10px] font-semibold tracking-widest text-cv-muted uppercase ml-auto">
+                      Dashboard Preview
+                    </span>
                   </div>
-                  <p className="text-sm text-cv-muted mt-6 italic">{content.preview}</p>
+                  <div className="p-6 sm:p-8">
+                    <div className="space-y-4">
+                      <div className="h-3 w-3/4 bg-cv-surface2/50 dark:bg-white/10 rounded"></div>
+                      <div className="h-3 w-1/2 bg-cv-surface2/50 dark:bg-white/10 rounded"></div>
+                      <div className="grid grid-cols-3 gap-3 mt-6">
+                        <div className="h-20 bg-blue-500/10 rounded-lg border border-blue-500/20"></div>
+                        <div className="h-20 bg-purple-500/10 rounded-lg border border-purple-500/20"></div>
+                        <div className="h-20 bg-cyan-500/10 rounded-lg border border-cyan-500/20"></div>
+                      </div>
+                      <div className="h-32 bg-cv-surface2/50 dark:bg-white/5 rounded-lg border border-cv-line mt-4"></div>
+                    </div>
+                    <p className="text-sm text-cv-muted mt-6 italic">{content.preview}</p>
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Workflow Strip */}
               <div>
