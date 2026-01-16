@@ -199,7 +199,7 @@ export default function Solutions() {
             <div className="space-y-8">
               {/* Preview Card */}
               {activeRole === "finance" ? (
-                <div className="rounded-2xl border border-cv-line bg-cv-surface2/30 dark:bg-white/[0.03] overflow-hidden">
+                <div className="rounded-2xl overflow-hidden">
                   <img 
                     src={financePreview} 
                     alt="Typical Finance view: spend variance, allocations, and savings realization"
