@@ -119,12 +119,12 @@ export default function Solutions() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/demo" onClick={() => track("cta_demo", { location: "solutions_hero" })}>
-                <Button size="lg" className="w-full sm:w-auto" data-testid="button-solutions-demo">
+                <Button size="lg" className="w-full sm:w-auto">
                   Book a demo
                 </Button>
               </Link>
               <Link href="/integrations" onClick={() => track("cta_integrations", { location: "solutions_hero" })}>
-                <Button variant="secondary" size="lg" className="w-full sm:w-auto" data-testid="button-solutions-integrations">
+                <Button variant="secondary" size="lg" className="w-full sm:w-auto">
                   View integrations
                 </Button>
               </Link>
@@ -265,12 +265,12 @@ export default function Solutions() {
             </h2>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link href="/demo" onClick={() => track("cta_demo", { location: "solutions_bottom" })}>
-                <Button size="lg" className="w-full sm:w-auto" data-testid="button-solutions-demo-bottom">
+                <Button size="lg" className="w-full sm:w-auto">
                   Book a demo
                 </Button>
               </Link>
               <Link href="/contact" onClick={() => track("cta_contact", { location: "solutions_bottom" })}>
-                <Button variant="secondary" size="lg" className="w-full sm:w-auto" data-testid="button-solutions-contact">
+                <Button variant="secondary" size="lg" className="w-full sm:w-auto">
                   Contact sales
                 </Button>
               </Link>

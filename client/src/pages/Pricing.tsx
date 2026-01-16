@@ -96,7 +96,7 @@ export default function Pricing() {
                   </ul>
                 </div>
                 <Link href="/demo" onClick={() => track("pricing_cta", { plan: plan.name, location: "pricing_plans" })}>
-                  <Button variant={plan.ctaVariant} size="lg" className="w-full">
+                  <Button size="lg" className="w-full">
                     {plan.cta}
                   </Button>
                 </Link>
