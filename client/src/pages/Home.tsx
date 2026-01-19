@@ -66,22 +66,22 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-14 lg:pb-16 overflow-hidden">
         <MotionHeroBackground />
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20 relative z-10 pl-[32px] pr-[32px]">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-start">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left: Copy Block */}
-            <div className="text-left space-y-6 flex flex-col justify-start">
+            <div className="text-left space-y-4 sm:space-y-6 max-w-[44rem]">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-cv-ink leading-tight">
                 Cloud financial management for modern enterprises.
               </h1>
-              <p className="text-lg sm:text-xl text-cv-ink/80 leading-relaxed">
+              <p className="text-lg sm:text-xl text-cv-ink/80 leading-relaxed max-w-[40rem]">
                 Unified visibility, allocation, anomalies, and automated optimization across cloud, data, and AI platforms.
               </p>
-              <p className="text-base sm:text-lg text-cv-muted pb-8 border-b border-cv-line leading-relaxed">
+              <p className="text-base sm:text-lg text-cv-muted pb-8 border-b border-cv-line leading-relaxed max-w-[40rem]">
                 Private deployment and air-gapped options available for regulated environments.
               </p>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 pt-4">
                 <Link href="/demo" onClick={() => track("cta_demo", { location: "hero" })}>
                   <Button size="lg" className="w-full sm:w-auto">
                     Book a demo
@@ -100,7 +100,7 @@ export default function Home() {
             </div>
 
             {/* Right: Hero Card with Outcomes */}
-            <div className="w-full">
+            <div className="w-full max-w-[640px] mx-auto lg:mx-0">
               <HeroCard />
             </div>
           </div>
