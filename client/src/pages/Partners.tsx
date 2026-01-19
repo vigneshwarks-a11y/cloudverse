@@ -180,11 +180,6 @@ export default function Partners() {
               >
                 Become a partner
               </Button>
-              <Link href="/demo" onClick={() => track("cta_partner_demo", { location: "partners_hero" })} data-testid="link-partner-demo">
-                <Button variant="secondary" size="lg" className="w-full sm:w-auto" data-testid="button-partner-demo">
-                  Book a partner demo
-                </Button>
-              </Link>
             </div>
           </div>
         </div>
