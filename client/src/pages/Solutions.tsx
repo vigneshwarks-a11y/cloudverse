@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { DollarSign, Code2, Briefcase, Server, Cpu } from "lucide-react";
 import financePreview from "@/assets/finance-preview.png";
+import developerFinopsPreview from "@/assets/developer-finops-preview.png";
 import { FinalCTA } from "@/components/FinalCTA";
 
 type Role = "finance" | "engineering" | "business" | "it" | "ai";
@@ -204,6 +205,14 @@ export default function Solutions() {
                   <img 
                     src={financePreview} 
                     alt="Typical Finance view: spend variance, allocations, and savings realization"
+                    className="w-full h-auto block"
+                  />
+                </div>
+              ) : activeRole === "engineering" ? (
+                <div className="rounded-2xl overflow-hidden">
+                  <img 
+                    src={developerFinopsPreview} 
+                    alt="Engineering context: service-level cost, environment split, recommended actions"
                     className="w-full h-auto block"
                   />
                 </div>
