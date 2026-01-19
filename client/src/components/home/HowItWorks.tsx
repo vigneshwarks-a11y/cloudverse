@@ -84,10 +84,7 @@ export function HowItWorks() {
         {/* Timeline Section */}
         <div
           ref={containerRef}
-          className="rounded-3xl border border-cv-line dark:border-white/10 bg-cv-surface2/50 dark:bg-white/[0.03] backdrop-blur-sm overflow-hidden p-6 sm:p-8 lg:p-12"
-          style={{
-            boxShadow: "0 0 0 1px rgba(255, 255, 255, 0.06), 0 30px 80px rgba(0, 0, 0, 0.55)"
-          }}
+          className="rounded-3xl border border-cv-line dark:border-white/10 bg-cv-surface2/50 dark:bg-white/[0.03] backdrop-blur-sm overflow-hidden p-6 sm:p-8 lg:p-12 shadow-sm dark:shadow-[0_30px_80px_rgba(0,0,0,0.55)]"
         >
           {/* Desktop Timeline Line */}
           <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cv-line dark:via-white/20 to-transparent" />
