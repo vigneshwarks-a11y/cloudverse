@@ -3,6 +3,7 @@ import platformDashboardPreview from "@/assets/platform-dashboard-preview.png";
 import automationDashboardPreview from "@/assets/automation-dashboard-preview.png";
 import anomalyDashboardPreview from "@/assets/anomaly-dashboard-preview.png";
 import visibilityDashboardPreview from "@/assets/visibility-dashboard-preview.png";
+import tagEngineDashboardPreview from "@/assets/tag-engine-dashboard-preview.png";
 
 const featureTabs = [
   {
@@ -39,7 +40,7 @@ const featureTabs = [
       "Ownership mapping using rules + ML",
       "Allocation that holds up under scrutiny",
     ],
-    image: null,
+    image: tagEngineDashboardPreview,
   },
   {
     id: "anomalies",
