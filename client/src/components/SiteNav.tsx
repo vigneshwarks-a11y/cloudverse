@@ -51,7 +51,6 @@ export function SiteNav() {
               alt="CloudVerse" 
               className="h-7 lg:h-8 w-auto"
             />
-            <span className="text-lg font-semibold text-cv-ink hidden sm:inline">CloudVerse.ai</span>
           </Link>
 
           {/* Desktop Menu */}
