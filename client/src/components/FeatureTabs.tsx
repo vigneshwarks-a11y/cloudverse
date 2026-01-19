@@ -2,6 +2,7 @@ import { useState } from "react";
 import platformDashboardPreview from "@/assets/platform-dashboard-preview.png";
 import automationDashboardPreview from "@/assets/automation-dashboard-preview.png";
 import anomalyDashboardPreview from "@/assets/anomaly-dashboard-preview.png";
+import visibilityDashboardPreview from "@/assets/visibility-dashboard-preview.png";
 
 const featureTabs = [
   {
@@ -26,7 +27,7 @@ const featureTabs = [
       "Drill-down without rebuilding dashboards",
       "Export-ready views for reporting",
     ],
-    image: null,
+    image: visibilityDashboardPreview,
   },
   {
     id: "tag-engine",
