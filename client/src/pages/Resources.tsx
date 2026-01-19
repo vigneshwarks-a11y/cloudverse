@@ -77,20 +77,6 @@ export default function Resources() {
           </div>
         </div>
       </section>
-      {/* Product Updates CTA */}
-      <section className="py-14 sm:py-16 lg:py-20 border-t border-cv-line">
-        <div className="cv-container max-w-[800px] text-center">
-          <h3 className="text-lg font-semibold text-cv-ink mb-2">Product updates</h3>
-          <p className="text-sm text-cv-muted mb-4">
-            New connectors, automation paths, and playbooks.
-          </p>
-          <Link href="/contact">
-            <Button variant="secondary" size="lg">
-              Contact sales
-            </Button>
-          </Link>
-        </div>
-      </section>
       {/* Bottom CTA */}
       <FinalCTA 
         title="Want help applying this to your environment?"
