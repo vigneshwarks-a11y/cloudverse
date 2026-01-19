@@ -77,10 +77,10 @@ export function FeatureTabs() {
     <div className="border border-cv-line rounded-2xl bg-cv-surface2 overflow-hidden">
       {/* Tab buttons */}
       <div
-        className="flex overflow-x-auto no-scrollbar border-b border-cv-line p-2 sm:p-4 md:p-6"
+        className="flex lg:justify-center overflow-x-auto no-scrollbar border-b border-cv-line p-2 sm:p-4 md:p-6"
         role="tablist"
       >
-        <div className="flex gap-2 sm:gap-4 min-w-max">
+        <div className="flex gap-2 sm:gap-4 lg:w-full lg:justify-between max-w-5xl">
           {featureTabs.map((tab) => (
             <button
               key={tab.id}
