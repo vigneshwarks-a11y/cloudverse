@@ -114,7 +114,7 @@ export default function Pricing() {
                   </ul>
                 </div>
 
-                <Link href="/demo" onClick={() => track("pricing_cta", { plan: plan.name, location: "pricing_plans" })}>
+                <Link href="https://meetings-na2.hubspot.com/cloudverse" onClick={() => track("pricing_cta", { plan: plan.name, location: "pricing_plans" })}>
                   <Button 
                     size="lg" 
                     className={`w-full py-6 text-base font-semibold rounded-xl transition-all ${plan.dark ? 'bg-blue-600 hover:bg-blue-700' : 'bg-blue-600 hover:bg-blue-700'}`}
