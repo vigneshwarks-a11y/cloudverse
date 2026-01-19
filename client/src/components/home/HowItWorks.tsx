@@ -87,7 +87,7 @@ export function HowItWorks() {
           className="rounded-3xl border border-cv-line dark:border-white/10 bg-cv-surface2/50 dark:bg-white/[0.03] backdrop-blur-sm overflow-hidden p-6 sm:p-8 lg:p-12 shadow-sm dark:shadow-[0_30px_80px_rgba(0,0,0,0.55)] relative"
         >
           {/* Desktop Timeline Line */}
-          <div className="hidden lg:block absolute top-[86px] left-[16.6%] right-[16.6%] h-px bg-gradient-to-r from-transparent via-cv-line dark:via-white/20 to-transparent" />
+          <div className="hidden lg:block absolute top-[72px] left-[16.6%] right-[16.6%] h-px bg-gradient-to-r from-transparent via-cv-line dark:via-white/20 to-transparent" />
 
           {/* Steps Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 relative z-10">
