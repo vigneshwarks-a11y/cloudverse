@@ -1,4 +1,6 @@
-export const privacyContent = {
+import { type LegalContent } from "./termsContent";
+
+export const privacyContent: LegalContent = {
   title: "Privacy Policy",
   sections: [
     {

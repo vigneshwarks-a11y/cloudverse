@@ -1,7 +1,7 @@
 import { BaseLayout } from "@/layouts/BaseLayout";
 import { useLocation } from "wouter";
 import { useEffect } from "react";
-import { termsContent } from "@/data/termsContent";
+import { termsContent, type LegalSection, type LegalSubsection } from "@/data/termsContent";
 import { privacyContent } from "@/data/privacyContent";
 
 export default function Legal() {
@@ -33,7 +33,7 @@ export default function Legal() {
               </p>
             )}
             
-            {content.sections.map((section) => (
+            {content.sections.map((section: LegalSection) => (
               <div key={section.id} className="space-y-4">
                 <h2 className="text-2xl font-bold text-cv-ink border-b border-cv-line pb-2">
                   {section.title}
@@ -61,7 +61,7 @@ export default function Legal() {
 
                 {section.subsections && (
                   <div className="space-y-6 pl-4 border-l-2 border-cv-line">
-                    {section.subsections.map((sub, i) => (
+                    {section.subsections.map((sub: LegalSubsection, i) => (
                       <div key={i} className="space-y-2">
                         <h3 className="text-lg font-semibold text-cv-ink">{sub.title}</h3>
                         {sub.body && <p className="leading-relaxed">{sub.body}</p>}

@@ -1,4 +1,30 @@
-export const termsContent = {
+export interface LegalSubsection {
+  title: string;
+  body?: string;
+  intro?: string;
+  list?: string[];
+  footer?: string;
+}
+
+export interface LegalSection {
+  id: string;
+  title: string;
+  body?: string;
+  intro?: string;
+  list?: string[];
+  content?: string[];
+  subsections?: LegalSubsection[];
+  footer?: string;
+}
+
+export interface LegalContent {
+  title: string;
+  intro?: string;
+  sections: LegalSection[];
+  lastUpdated: string;
+}
+
+export const termsContent: LegalContent = {
   title: "Terms and Conditions",
   intro: "This software as a service agreement (“Agreement”) is entered into between customer and CLOUDVERSE AI PTE. LTD. (“CloudVerse AI”), with its principal place of business at 3 Fraser Street, #05-24 DUO Tower, Singapore 189352. CloudVerse AI and Customer agree that the following terms and conditions will apply to the services provided under this agreement and orders placed thereunder.",
   sections: [
