@@ -114,10 +114,8 @@ export default function Pricing() {
                   </ul>
                 </div>
 
-                <a 
-                  href="https://meetings-na2.hubspot.com/cloudverse" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
+                <Link 
+                  href="/connect"
                   onClick={() => track("pricing_cta", { plan: plan.name, location: "pricing_plans" })}
                 >
                   <Button 
@@ -126,7 +124,7 @@ export default function Pricing() {
                   >
                     {plan.cta}
                   </Button>
-                </a>
+                </Link>
               </div>
             ))}
           </div>

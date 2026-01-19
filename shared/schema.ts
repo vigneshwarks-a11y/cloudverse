@@ -38,3 +38,18 @@ export const insertUserSchema = createInsertSchema(users).pick({
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
+
+export const demoInquiries = pgTable("demo_inquiries", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
+  email: text("email").notNull(),
+  preferredDateTime: text("preferred_date_time").notNull(),
+});
+
+export const insertDemoInquirySchema = createInsertSchema(demoInquiries).omit({
+  id: true,
+});
+
+export type InsertDemoInquiry = z.infer<typeof insertDemoInquirySchema>;
+export type DemoInquiry = typeof demoInquiries.$inferSelect;

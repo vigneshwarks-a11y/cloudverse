@@ -85,11 +85,11 @@ export default function Platform() {
               Manage cloud, data, and AI spend with clean dimensions, anomalies, and automated actions.
             </p>
             <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 pt-4">
-              <a href="https://meetings-na2.hubspot.com/cloudverse" target="_blank" rel="noopener noreferrer" onClick={() => track("cta_demo", { location: "platform_hero" })}>
+              <Link href="/connect" onClick={() => track("cta_demo", { location: "platform_hero" })}>
                 <Button size="lg" className="w-full sm:w-auto">
                   Book a demo
                 </Button>
-              </a>
+              </Link>
               <Link href="/integrations" onClick={() => track("cta_explore_integrations", { location: "platform_hero" })}>
                 <Button variant="secondary" size="lg" className="w-full sm:w-auto">
                   View integrations

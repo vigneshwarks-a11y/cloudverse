@@ -75,11 +75,11 @@ export default function Security() {
                   Talk to security
                 </Button>
               </Link>
-              <a href="https://meetings-na2.hubspot.com/cloudverse" target="_blank" rel="noopener noreferrer" onClick={() => track("cta_demo", { location: "security_hero" })}>
+              <Link href="/connect" onClick={() => track("cta_demo", { location: "security_hero" })}>
                 <Button variant="tertiary" size="lg" className="w-full sm:w-auto">
                   Book a demo
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -158,11 +158,11 @@ export default function Security() {
                   Talk to security
                 </Button>
               </Link>
-              <a href="https://meetings-na2.hubspot.com/cloudverse" target="_blank" rel="noopener noreferrer" onClick={() => track("cta_demo", { location: "security_bottom" })}>
+              <Link href="/connect" onClick={() => track("cta_demo", { location: "security_bottom" })}>
                 <Button variant="secondary" size="lg" className="w-full sm:w-auto">
                   Book a demo
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

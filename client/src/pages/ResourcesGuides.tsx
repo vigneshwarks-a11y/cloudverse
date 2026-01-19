@@ -168,11 +168,11 @@ export default function ResourcesGuides() {
         <div className="max-w-[760px] mx-auto px-6 lg:px-12 text-center">
           <h2 className="cv-h2 mb-3">Need help with implementation?</h2>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-4">
-            <a href="https://meetings-na2.hubspot.com/cloudverse" target="_blank" rel="noopener noreferrer">
+            <Link href="/connect">
               <Button size="lg" className="w-full sm:w-auto">
                 Book a demo
               </Button>
-            </a>
+            </Link>
             <Link href="/contact">
               <Button variant="secondary" size="lg" className="w-full sm:w-auto">
                 Contact sales

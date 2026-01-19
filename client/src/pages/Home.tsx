@@ -82,11 +82,11 @@ export default function Home() {
 
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 pt-4">
-                <a href="https://meetings-na2.hubspot.com/cloudverse" target="_blank" rel="noopener noreferrer" onClick={() => track("cta_demo", { location: "hero" })}>
+                <Link href="/connect" onClick={() => track("cta_demo", { location: "hero" })}>
                   <Button size="lg" className="w-full sm:w-auto">
                     Book a demo
                   </Button>
-                </a>
+                </Link>
                 <Link href="/tour" onClick={() => track("cta_watch_tour", { location: "hero" })}>
                   <Button variant="secondary" size="lg" className="w-full sm:w-auto">
                     Watch 90-second tour →

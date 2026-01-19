@@ -120,11 +120,11 @@ export default function ResourcesDocs() {
                 Contact sales
               </Button>
             </Link>
-            <a href="https://meetings-na2.hubspot.com/cloudverse" target="_blank" rel="noopener noreferrer">
+            <Link href="/connect">
               <Button variant="secondary" size="lg" className="w-full sm:w-auto">
                 Book a demo
               </Button>
-            </a>
+            </Link>
           </div>
         </div>
       </section>

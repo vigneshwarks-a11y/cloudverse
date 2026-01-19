@@ -1,5 +1,6 @@
 import { BaseLayout } from "@/layouts/BaseLayout";
 import { useEffect } from "react";
+import { Link } from "wouter";
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 
 const industryBenchmarks = {
@@ -290,14 +291,12 @@ export default function Compare() {
                 CloudVerse can help you identify and implement cost optimization strategies
                 specific to your organization.
               </p>
-              <a
-                href="https://meetings-na2.hubspot.com/cloudverse"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/connect"
                 className="inline-block bg-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 transition-colors"
               >
                 Schedule a Demo
-              </a>
+              </Link>
             </div>
           </div>
         </div>

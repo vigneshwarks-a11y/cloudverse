@@ -1,7 +1,7 @@
 import { Button } from "@/components/Button";
 import { track } from "@/lib/track";
 import { Link } from "wouter";
-import { ROUTES } from "@/lib/links";
+import { DEMO_URL } from "@/lib/links";
 
 interface FinalCTAProps {
   title?: string;
@@ -26,11 +26,11 @@ export function FinalCTA({
               {description}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="https://meetings-na2.hubspot.com/cloudverse" target="_blank" rel="noopener noreferrer" onClick={() => track("cta_demo", { location })}>
+              <Link href={DEMO_URL} onClick={() => track("cta_demo", { location })}>
                 <Button size="lg" className="w-full sm:w-auto">
                   Book a demo
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

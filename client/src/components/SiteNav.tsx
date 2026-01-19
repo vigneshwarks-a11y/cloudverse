@@ -87,15 +87,13 @@ export function SiteNav() {
             </a>
 
             {/* Book a demo - CTA */}
-            <a 
-              href="https://meetings-na2.hubspot.com/cloudverse"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link 
+              href={DEMO_URL}
               onClick={() => track("cta_demo", { location: "nav" })}
               className="text-sm font-semibold bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors"
             >
               Book a demo
-            </a>
+            </Link>
 
             {/* Dark mode toggle */}
             <div className="text-cv-muted hover:text-cv-ink transition-colors">
@@ -144,10 +142,8 @@ export function SiteNav() {
                   >
                     Sign in
                   </a>
-                  <a 
-                    href="https://meetings-na2.hubspot.com/cloudverse"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link 
+                    href={DEMO_URL}
                     onClick={() => {
                       track("cta_demo", { location: "nav_mobile" });
                       setMobileOpen(false);
@@ -155,7 +151,7 @@ export function SiteNav() {
                     className="block text-[15px] font-semibold text-center bg-blue-600 text-white py-3 px-4 rounded-full hover:bg-blue-700 transition-colors"
                   >
                     Book a demo
-                  </a>
+                  </Link>
                 </div>
               </SheetContent>
             </Sheet>

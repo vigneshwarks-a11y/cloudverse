@@ -5,7 +5,7 @@
 
 // External Authentication
 export const SIGNIN_URL = "https://id.cloudverse.ai";
-export const DEMO_URL = "https://meetings-na2.hubspot.com/cloudverse";
+export const DEMO_URL = "/connect";
 
 // Internal Routes
 export const ROUTES = {
@@ -24,5 +24,6 @@ export const ROUTES = {
   help: "/help",
   tour: "/tour",
   bookDemo: "/book-demo",
+  connect: "/connect",
   compare: "/compare",
 } as const;
