@@ -73,12 +73,12 @@ export function HeroCard() {
       </div>
 
       {/* Window Content */}
-      <div className="p-6 sm:p-8 relative z-10 flex flex-col h-full overflow-hidden">
+      <div className="p-6 sm:p-8 relative z-10 flex flex-col h-full">
         {/* Outcomes List - Crossfading */}
-        <div className="flex-1 relative mb-6 min-h-[320px] sm:min-h-[260px] overflow-hidden">
+        <div className="relative mb-6 min-h-[340px] sm:min-h-[280px]">
           <div
-            className={`absolute inset-0 transition-opacity duration-1000 space-y-4 sm:space-y-6 ${
-              showSet2 ? "opacity-0" : "opacity-100"
+            className={`transition-opacity duration-1000 space-y-4 sm:space-y-6 ${
+              showSet2 ? "opacity-0 pointer-events-none" : "opacity-100"
             }`}
           >
             {heroOutcomesSet1.map((outcome, idx) => (
@@ -93,8 +93,8 @@ export function HeroCard() {
             ))}
           </div>
           <div
-            className={`absolute inset-0 transition-opacity duration-1000 space-y-6 ${
-              showSet2 ? "opacity-100" : "opacity-0"
+            className={`absolute inset-0 transition-opacity duration-1000 space-y-4 sm:space-y-6 ${
+              showSet2 ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
           >
             {heroOutcomesSet2.map((outcome, idx) => (
