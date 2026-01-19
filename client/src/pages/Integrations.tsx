@@ -53,11 +53,6 @@ export default function Integrations() {
                 Explore integrations
               </Button>
             </a>
-            <Link href="/contact" onClick={() => track("cta_request_integration", { location: "integrations_hero" })}>
-              <Button variant="secondary" size="lg" className="w-full sm:w-auto">
-                Request an integration
-              </Button>
-            </Link>
           </div>
         </div>
       </section>
