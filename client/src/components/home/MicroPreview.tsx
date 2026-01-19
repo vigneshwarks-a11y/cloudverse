@@ -67,12 +67,12 @@ export function MicroPreview({ variant }: MicroPreviewProps) {
   }
 
   return (
-    <div className="w-full h-full rounded-xl border border-cv-line p-4 overflow-hidden flex flex-col gap-3 bg-white dark:bg-black">
+    <div className="w-full h-full rounded-xl border border-cv-line p-3 sm:p-4 overflow-hidden flex flex-col gap-2 sm:gap-3 bg-white dark:bg-black">
       <div className="flex items-center justify-between">
         <span className="text-[10px] font-medium text-cv-muted uppercase tracking-wider">Anomalies</span>
         <div className="px-1.5 py-0.5 rounded bg-red-500/10 border border-red-500/20 text-[8px] text-red-400 uppercase font-bold">Alert</div>
       </div>
-      <div className="relative h-16 w-full mt-1">
+      <div className="relative h-12 sm:h-16 w-full mt-1">
         <svg className="w-full h-full" viewBox="0 0 100 40">
           <path
             d="M0 35 L20 32 L40 34 L60 10 L80 15 L100 8"
