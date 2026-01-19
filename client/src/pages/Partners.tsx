@@ -326,89 +326,95 @@ export default function Partners() {
       </section>
 
       {/* Partner Form Section */}
-      <section ref={formRef} className="py-20 bg-black text-white">
+      <section ref={formRef} className="py-20 bg-cv-surface border-t border-cv-line">
         <div className="max-w-[1000px] mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-10">Become a partner with CloudVerse Ai</h2>
+          <h2 className="cv-h2 mb-10 text-cv-ink">Become a partner with CloudVerse Ai</h2>
           
           <form onSubmit={handleSubmit((data) => mutation.mutate(data))} className="space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="text-xs font-medium text-gray-400">Full Name</label>
+                <label className="text-xs font-medium text-cv-muted uppercase tracking-wider">Full Name</label>
                 <input 
                   {...register("fullName")}
                   placeholder="Full Name"
-                  className="w-full bg-[#111] border border-gray-800 rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors"
+                  className="w-full bg-cv-surface2 border border-cv-line rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors text-cv-ink placeholder:text-cv-muted/50"
                 />
                 {errors.fullName && <p className="text-red-500 text-[10px]">{errors.fullName.message}</p>}
               </div>
               <div className="space-y-2">
-                <label className="text-xs font-medium text-gray-400">Business Email</label>
+                <label className="text-xs font-medium text-cv-muted uppercase tracking-wider">Business Email</label>
                 <input 
                   {...register("businessEmail")}
                   placeholder="Business Email"
-                  className="w-full bg-[#111] border border-gray-800 rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors"
+                  className="w-full bg-cv-surface2 border border-cv-line rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors text-cv-ink placeholder:text-cv-muted/50"
                 />
                 {errors.businessEmail && <p className="text-red-500 text-[10px]">{errors.businessEmail.message}</p>}
               </div>
               <div className="space-y-2">
-                <label className="text-xs font-medium text-gray-400">Company Name</label>
+                <label className="text-xs font-medium text-cv-muted uppercase tracking-wider">Company Name</label>
                 <input 
                   {...register("companyName")}
                   placeholder="Company Name"
-                  className="w-full bg-[#111] border border-gray-800 rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors"
+                  className="w-full bg-cv-surface2 border border-cv-line rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors text-cv-ink placeholder:text-cv-muted/50"
                 />
                 {errors.companyName && <p className="text-red-500 text-[10px]">{errors.companyName.message}</p>}
               </div>
               <div className="space-y-2">
-                <label className="text-xs font-medium text-gray-400">Phone Number</label>
+                <label className="text-xs font-medium text-cv-muted uppercase tracking-wider">Phone Number</label>
                 <input 
                   {...register("phoneNumber")}
                   placeholder="Phone Number"
-                  className="w-full bg-[#111] border border-gray-800 rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors"
+                  className="w-full bg-cv-surface2 border border-cv-line rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors text-cv-ink placeholder:text-cv-muted/50"
                 />
                 {errors.phoneNumber && <p className="text-red-500 text-[10px]">{errors.phoneNumber.message}</p>}
               </div>
               <div className="space-y-2">
-                <label className="text-xs font-medium text-gray-400">Country/Region</label>
+                <label className="text-xs font-medium text-cv-muted uppercase tracking-wider">Country/Region</label>
                 <div className="relative">
                   <select 
                     {...register("countryRegion")}
-                    className="w-full appearance-none bg-[#111] border border-gray-800 rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors text-gray-400"
+                    className="w-full appearance-none bg-cv-surface2 border border-cv-line rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors text-cv-ink"
                   >
                     <option value="">Search and Select Country</option>
                     <option value="US">United States</option>
                     <option value="UK">United Kingdom</option>
                     <option value="CA">Canada</option>
-                    {/* Add more as needed */}
+                    <option value="SG">Singapore</option>
+                    <option value="DE">Germany</option>
+                    <option value="FR">France</option>
+                    <option value="JP">Japan</option>
+                    <option value="AU">Australia</option>
+                    <option value="IN">India</option>
                   </select>
-                  <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
+                  <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-cv-muted pointer-events-none" />
                 </div>
                 {errors.countryRegion && <p className="text-red-500 text-[10px]">{errors.countryRegion.message}</p>}
               </div>
               <div className="space-y-2">
-                <label className="text-xs font-medium text-gray-400">Partner Type</label>
+                <label className="text-xs font-medium text-cv-muted uppercase tracking-wider">Partner Type</label>
                 <div className="relative">
                   <select 
                     {...register("partnerType")}
-                    className="w-full appearance-none bg-[#111] border border-gray-800 rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors text-gray-400"
+                    className="w-full appearance-none bg-cv-surface2 border border-cv-line rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors text-cv-ink"
                   >
                     <option value="">Please select</option>
                     <option value="msp">MSP</option>
                     <option value="gsi">GSI</option>
                     <option value="reseller">Reseller</option>
+                    <option value="technology">Technology Partner</option>
                   </select>
-                  <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
+                  <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-cv-muted pointer-events-none" />
                 </div>
                 {errors.partnerType && <p className="text-red-500 text-[10px]">{errors.partnerType.message}</p>}
               </div>
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs font-medium text-gray-400">Partner Number of Employees</label>
+              <label className="text-xs font-medium text-cv-muted uppercase tracking-wider">Partner Number of Employees</label>
               <div className="relative">
                 <select 
                   {...register("employeeCount")}
-                  className="w-full appearance-none bg-[#111] border border-gray-800 rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors text-gray-400"
+                  className="w-full appearance-none bg-cv-surface2 border border-cv-line rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors text-cv-ink"
                 >
                   <option value="">Please select</option>
                   <option value="1-10">1-10</option>
@@ -417,13 +423,13 @@ export default function Partners() {
                   <option value="201-500">201-500</option>
                   <option value="500+">500+</option>
                 </select>
-                <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
+                <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-cv-muted pointer-events-none" />
               </div>
               {errors.employeeCount && <p className="text-red-500 text-[10px]">{errors.employeeCount.message}</p>}
             </div>
 
             <div className="space-y-4">
-              <label className="text-xs font-medium text-gray-400">Which main cloud providers do you work with today?</label>
+              <label className="text-xs font-medium text-cv-muted uppercase tracking-wider">Which main cloud providers do you work with today?</label>
               <div className="flex flex-wrap gap-x-6 gap-y-3">
                 {cloudProviders.map((provider) => (
                   <label key={provider} className="flex items-center gap-2 cursor-pointer group">
@@ -433,12 +439,12 @@ export default function Partners() {
                         "w-4 h-4 border rounded flex items-center justify-center transition-colors",
                         selectedProviders.includes(provider) 
                           ? "bg-blue-600 border-blue-600" 
-                          : "border-gray-700 group-hover:border-gray-500"
+                          : "border-cv-line group-hover:border-cv-muted"
                       )}
                     >
                       {selectedProviders.includes(provider) && <Check className="w-3 h-3 text-white" />}
                     </div>
-                    <span className="text-sm text-gray-300">{provider}</span>
+                    <span className="text-sm text-cv-muted group-hover:text-cv-ink">{provider}</span>
                   </label>
                 ))}
               </div>
@@ -446,22 +452,22 @@ export default function Partners() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs font-medium text-gray-400">Website</label>
+              <label className="text-xs font-medium text-cv-muted uppercase tracking-wider">Website</label>
               <input 
                 {...register("website")}
                 placeholder="https://example.com"
-                className="w-full bg-[#111] border border-gray-800 rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors"
+                className="w-full bg-cv-surface2 border border-cv-line rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors text-cv-ink placeholder:text-cv-muted/50"
               />
               {errors.website && <p className="text-red-500 text-[10px]">{errors.website.message}</p>}
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs font-medium text-gray-400">Message (optional)</label>
+              <label className="text-xs font-medium text-cv-muted uppercase tracking-wider">Message (optional)</label>
               <textarea 
                 {...register("message")}
                 placeholder="Your message"
                 rows={4}
-                className="w-full bg-[#111] border border-gray-800 rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors resize-none"
+                className="w-full bg-cv-surface2 border border-cv-line rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors resize-none text-cv-ink placeholder:text-cv-muted/50"
               />
             </div>
 
@@ -472,13 +478,13 @@ export default function Partners() {
                   "w-4 h-4 border rounded flex items-center justify-center cursor-pointer transition-colors",
                   watch("agreedToTerms") === "yes" 
                     ? "bg-blue-600 border-blue-600" 
-                    : "border-gray-700"
+                    : "border-cv-line"
                 )}
               >
                 {watch("agreedToTerms") === "yes" && <Check className="w-3 h-3 text-white" />}
               </div>
-              <span className="text-[10px] text-gray-400">
-                I agree to the <a href="/terms" className="text-blue-500 hover:underline">Terms & Conditions</a>
+              <span className="text-[10px] text-cv-muted">
+                I agree to the <a href="/legal/terms" className="text-blue-500 hover:underline">Terms & Conditions</a>
               </span>
               {errors.agreedToTerms && <p className="text-red-500 text-[10px] ml-2">{errors.agreedToTerms.message}</p>}
             </div>
