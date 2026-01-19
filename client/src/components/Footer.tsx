@@ -81,7 +81,7 @@ export function Footer() {
               href="/legal/privacy"
               className="text-[12px] sm:text-[13px] text-muted-foreground hover:text-foreground transition-colors"
             >
-              Privacy
+              Privacy Policy
             </Link>
             <Link 
               href="/legal/terms"
