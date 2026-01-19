@@ -1,0 +1,235 @@
+Terms and Conditions
+
+This software as a service agreement (“Agreement”) is entered into between cstomer and CLOUDVERSE AI PTE. LTD. (“CloudVerse AI”), with its principal place of business at 3 Fraser Street, #05-24 DUO Tower, Singapore 189352. CloudVerse AI and Customer agree that the following terms and conditions will apply to the services provided under this agreement and orders placed thereunder.
+
+
+1. Definitions
+“Administrator user” means each customer employee designated by customer to serve as technical administrator of theSaaS Services on customer’s behalf. Each administrator user must complete training and qualification requirements reasonably required by CloudVerse.
+“Customer content” means all data and materials provided by customer to CloudVerse for use in connection with theSaaS services, including, without limitation, customer applications, data files, and graphics.
+“Documentation” means the user guides, online help, release notes, training materials and other documentation provided or made available by CloudVerse to customer regarding the use or operation of theSaaS services.
+“Host” means the computer equipment on which the Software is installed, which is owned and operated by CloudVerse or its subcontractors.
+“Maintenance services” means the support and maintenance services provided by CloudVerse to customer pursuant to thisSaaS agreement and exhibit B.
+“Other services” means all technical and non-technical services performed or delivered by CloudVerse under thisSaaS agreement, including, without limitation, implementation services and other professional services, training and education services but excluding theSaaS services and the maintenance Services. Other Services will be provided on a time and material basis at such times or during such periods, as may be specified in a Schedule and mutually agreed to by the parties. All Other Services will be provided on a non-work for hire basis.
+“Schedule” is a written document attached to thisSaaS agreement under exhibit A or executed separately by CloudVerse and customer for the purpose of purchasingSaaS Services under the terms and conditions of thisSaaS agreement.
+“Software” means the object code version of any software to which customer is provided access as part of the service, including any updates or new versions.
+“SaaS services” refer to the specific CloudVerse’s internet-accessible service identified in a schedule that provides use of CloudVerse’s cloud management software that is hosted by CloudVerse or its services provider and made available to customer over a network on a term-use basis.
+“Subscription term” shall mean that period specified in a schedule during which customer will have on-line access and use of the Software through CloudVerse’sSaaS services. The subscription term shall renew for successive 12-month periods unless either party delivers written notice of non-renewal to the other party at least 30 days prior to the expiration of the then-current subscription term.
+
+
+2. SaaS services
+2.1. Permitted use
+During the subscription term, customer will receive a non-exclusive, non-assignable, royalty-free, worldwide right to access and use the SaaS services solely for your internal business operations subject to the terms of this agreement and up to the number of seats documented in the schedule.
+
+2.2. Ownership
+Customer acknowledges that this agreement is a services agreement and CloudVerse will not transfer ownership or deliver copies of the Software to Customer as part of the SaaS services.
+
+
+
+3. Restrictions
+Customer shall not, and shall not permit anyone to:
+
+copy or republish the SaaS services or Software,
+make the SaaS services available to any person other than authorized users,
+use or access the SaaS services to provide service bureau, time-sharing or other computer hosting services to third parties,
+modify or create derivative works based upon the SaaS services or documentation,
+remove, modify or obscure any copyright, trademark or other proprietary notices contained in the software used to provide the SaaS services or in the documentation,
+reverse engineer, decompile, disassemble, or otherwise attempt to derive the source code of the Software used to provide the SaaS services, except and only to the extent such activity is expressly permitted by applicable law, or
+access the SaaS services or use the documentation in order to build a similar or competitive product.
+Subject to the limited licenses granted herein, CloudVerse shall own all right, title and interest in and to the software, services, documentation, and other deliverables provided under this SaaS agreement, including all modifications, improvements, upgrades, derivative works and feedback related thereto and the intellectual property rights therein. Customer agrees to assign all right, title and interest it may have in the foregoing to CloudVerse.
+
+
+
+
+4. Customer responsibilities
+4.1. Assistance
+Customer shall provide commercially reasonable information and assistance to CloudVerse to enable CloudVerse to deliver the SaaS services. Upon request from CloudVerse, customer shall promptly deliver Customer Content to CloudVerse in the form of metadata via API call by granting read-only IAM Permission (Identity and Access Management) access to CloudVerse. Customer acknowledges that CloudVerse’s ability to deliver the SaaS services in the manner provided in this SaaS agreement may depend upon the accuracy and timeliness of such information and assistance.
+
+4.2. Compliance with lawsCustomer shall comply with all applicable local, state, national and foreign laws in connection with its use of the SaaS services, including those laws related to data privacy, international communications, and the transmission of technical or personal data. Customer acknowledges that CloudVerse exercises no control over the content of the information transmitted by Customer or the users through the SaaS services. Customer shall not upload, post, reproduce or distribute any information, software or other material protected by copyright, privacy rights, or any other intellectual property right without first obtaining the permission of the owner of such rights.
+
+4.3. Unauthorized use; false information
+Customer shall:
+
+notify CloudVerse immediately of any unauthorized use of any password, user ID, or any other known or suspected breach of security;
+report to CloudVerse immediately and use reasonable efforts to stop any unauthorized use of the SaaS services that is known or suspected by Customer or any user; and
+not provide false identity information to gain access to or use the SaaS services.
+For reporting security incidents, suspected breaches, or any other inquiries related to cybersecurity, customers can reach out to infosec@CloudVerse.ai.
+
+4.4. Administrator access
+Customer shall be solely responsible for the acts and omissions of its administrator users. CloudVerse shall not be liable for any loss of data or functionality caused directly or indirectly by the administrator users.
+
+4.5. Customer input
+Customer is solely responsible for collecting, inputting and updating all Customer Content stored on the Host, and for ensuring that the Customer Content does not:
+
+include anything that actually or potentially infringes or misappropriates the copyright, trade secret, trademark or other intellectual property right of any third party; or
+contain anything that is obscene, defamatory, harassing, offensive or malicious.
+Customer shall:
+
+notify CloudVerse immediately of any unauthorized use of any password or user ID or any other known or suspected breach of security;
+report to CloudVerse immediately and use reasonable efforts to stop any unauthorized use of the Service that is known or suspected by Customer or any user; and
+not provide false identity information to gain access to or use the Service.
+4.6. License from customer
+Subject to the terms and conditions of this SaaS agreement, Customer shall grant to CloudVerse a limited, non-exclusive and non-transferable license to view and use Customer Content solely as necessary to provide the SaaS services to Customer.
+
+4.7. Ownership and restrictions
+Customer retains ownership and intellectual property rights in and to its Customer Content. CloudVerse or its licensors retain all ownership and intellectual property rights to the services, Software programs, and anything developed and delivered under the Agreement. Third party technology that may be appropriate or necessary for use with some CloudVerse programs is specified in the program Documentation or ordering document as applicable. Customer’s right to use such third party technology is governed by the terms of the third party technology license agreement specified by CloudVerse and not under this Agreement.
+
+4.8. Suggestions
+CloudVerse shall have a royalty-free, worldwide, irrevocable, perpetual license to use and incorporate into the SaaS services any suggestions, enhancement requests, recommendations or other feedback provided by Customer, including Users, relating to the operation of the SaaS services.
+
+
+
+
+5. Orders and payment
+5.1. Orders
+Customer shall order SaaS Services pursuant to a Schedule. All services acquired by Customer shall be governed exclusively by this SaaS Agreement and the applicable Schedule. In the event of a conflict between the terms of a Schedule and this SaaS Agreement, the terms of the Schedule shall take precedence.
+
+5.2. Invoicing and payment
+Unless otherwise provided in the Schedule, CloudVerse shall invoice Customer for all fees on the Schedule effective date. Customer shall pay all undisputed invoices within 30 days after Customer receives the invoice. Except as expressly provided otherwise, fees are non-refundable. All fees are stated in United States Dollars, and must be paid by Customer to CloudVerse in United States Dollars.
+
+5.3. Expenses
+Customer will reimburse CloudVerse for its reasonable, out-of-pocket travel and related expenses incurred in performing the Other Services. CloudVerse shall notify Customer prior to incurring any such expense. CloudVerse shall comply with Customer’s travel and expense policy if made available to CloudVerse prior to the required travel.
+
+5.4. Taxes
+CloudVerse shall bill Customer for applicable taxes as a separate line item on each invoice. Customer shall be responsible for payment of all sales and use taxes, value added taxes (VAT), or similar charges relating to Customer’s purchase and use of the services. Customer shall not be liable for taxes based on CloudVerse’s net income, capital or corporate franchise.
+
+
+
+6. Term and termination
+
+6.1. Term of SaaS agreement
+The term of this SaaS Agreement shall begin on the Effective Date and shall continue until terminated by either party as outlined in this Section.
+
+6.2. Termination
+Either party may terminate this SaaS Agreement immediately upon a material breach by the other party that has not been cured within thirty (30) days after receipt of notice of such breach.
+
+6.3. Suspension for non-payment
+CloudVerse reserves the right to suspend delivery of the SaaS services if customer fails to timely pay any undisputed amounts due to CloudVerse under this SaaS Agreement, but only after CloudVerse notifies customer of such failure and such failure continues for fifteen (15) days. Suspension of the SaaS services shall not release customer of its payment obligations under this SaaS Agreement. Customer agrees that CloudVerse shall not be liable to Customer or to any third party for any liabilities, claims or expenses arising from or relating to suspension of the SaaS services resulting from Customer’s non-payment.
+
+6.4. Suspension for ongoing harm
+CloudVerse reserves the right to suspend delivery of the SaaS services if CloudVerse reasonably concludes that customer or a user’s use of the SaaS services is causing immediate and ongoing harm to CloudVerse or others. In the extraordinary case that CloudVerse must suspend delivery of the SaaS services, CloudVerse shall immediately notify customer of the suspension and the parties shall diligently attempt to resolve the issue. CloudVerse shall not be liable to customer or to any third party for any liabilities, claims or expenses arising from or relating to any suspension of the SaaS services in accordance with this Section 6.4.
+
+Nothing in this Section 6.4 will limit CloudVerse’s rights under Section 6.5 below.
+
+6.5. Effect of termination
+
+(a) Upon termination of this SaaS Agreement or expiration of the Subscription Term, CloudVerse shall immediately cease providing the SaaS services and all usage rights granted under this SaaS Agreement shall terminate.
+(b) If CloudVerse terminates this SaaS Agreement due to a breach by Customer, then Customer shall immediately pay to CloudVerse all amounts then due under this SaaS Agreement and to become due during the remaining term of this SaaS Agreement, but for such termination. If Customer terminates this SaaS Agreement due to a breach by CloudVerse, then CloudVerse shall, within five (5) working days, repay to Customer all pre-paid amounts for any unperformed SaaS services scheduled to be delivered after the termination date.
+(c) Upon termination of this SaaS Agreement and upon subsequent written request by the disclosing party, the receiving party of tangible Confidential Information shall immediately return such information or destroy such information and provide written certification of such destruction, provided that the receiving party may permit its legal counsel to retain one archival copy of such information in the event of a subsequent dispute between the parties.
+
+7. Service level agreementhe service level SaaS agreement (“SLA”) for the SaaS Services is set forth in Exhibit C hereto. The SLA sets forth customer’s sole remedies for availability or quality of the SaaS services including any failure to meet any guarantee set forth in the SLA.
+
+
+8. Warranties
+8.1. WarrantyCloudVerse represents and warrants that it will provide the SaaS services in a professional manner consistent with general industry standards and that the SaaS services will perform substantially in accordance with the Documentation. For any breach of a warranty, Customer’s exclusive remedy shall be as provided in Section 6, Term and Termination.
+
+
+8.2.CloudVerse warrants that the SaaS services will perform in all material respects in accordance with the Documentation. CloudVerse does not guarantee that the SaaS services will be performed error-free or uninterrupted, or that CloudVerse will correct all SaaS services errors. Customer acknowledges that CloudVerse does not control the transfer of data over communication facilities, including the internet, and that the SaaS services may be subject to limitations, delays, and other problems inherent in the use of such communication facilities. This section sets forth the sole and exclusive warranty given by CloudVerse (express or implied) with respect to the subject matter of this Agreement. Neither CloudVerse nor any of its licensors or other suppliers warrant or guarantee that the operation of the SaaS services will be uninterrupted, virus-free or error-free, nor shall CloudVerse or any of its service providers be liable for unauthorized alteration, theft or destruction of Customer’s or any user’s data, files, or programs.
+
+
+
+9. Limitations of liability
+Neither party (nor any licensor or other supplier of CloudVerse) shall be liable for indirect, incidental, special or consequential damages, including, without limitation, damages for lost business, profits, data or use of any service, incurred by either party or any third party in connection with this SaaS agreement, regardless of the nature of the claim (including negligence), even if foreseeable or the other party has been Advised of the possibility of such damages. Neither party’s aggregate liability for damages under this SaaS agreement, regardless of the nature of the claim (including negligence), shall exceed the fees paid or payable by customer under this SaaS agreement during the 12 months preceding the date the claim arose. The foregoing limitations shall not apply to the parties’ obligations (or any breach thereof) under Sections entitled “Restriction”, “Indemnification”, or “Confidentiality”.
+
+10. Indemnification
+10.1. Indemnification by CloudVerse
+(a) If a third party makes a claim against Customer that the SaaS services infringes any patent, copyright or trademark, or misappropriates any trade secret, or that CloudVerse’s negligence or willful misconduct has caused bodily injury or death, CloudVerse shall defend Customer and its directors, officers and employees against the claim.
+
+CloudVerse shall have no liability for any claim based on (i) the Customer Content, (ii) modification of the SaaS services not authorized by CloudVerse, or (iii) use of the SaaS services other than in accordance with the Documentation and this SaaS agreement. CloudVerse may, at its sole option and expense, procure for Customer the right to continue use of the SaaS services, modify the SaaS services in a manner that does not materially impair functionality, or terminate the Subscription Term and repay to Customer any amount paid by Customer with respect to the Subscription Term following the termination date.
+
+(b) Remedies. If CloudVerse is unable to resolve a claim referred to in section (a) above on commercially reasonable terms, CloudVerse may, at its sole discretion and at its expense, either:
+
+procure for Customer the right to continue using the SaaS services;
+replace the affected SaaS services with a non-infringing version;
+modify the affected SaaS services so that they become non-infringing; or
+if none of the foregoing are feasible, terminate Customer’s subscription and access to the affected services upon written confirmation from Customer and credit Customer the unused pre-paid subscription fees for such services.
+This section sets forth Customer’s sole and exclusive remedy and CloudVerse’s sole liability and obligation for any actual, threatened or alleged claims that the SaaS services or any subject matter of this agreement infringes, misappropriates or otherwise violates any intellectual property rights of any third party.
+
+10.2. Indemnification by Customer
+If a third party makes a claim against CloudVerse that the Customer Content infringes any patent, copyright or trademark, or misappropriates any trade secret, Customer shall defend CloudVerse and its directors, officers and employees against the claim at Customer’s expense and shall pay all losses, damages and expenses (including reasonable attorneys’ fees) finally awarded against such parties or agreed to in a written settlement agreement signed by Customer, to the extent arising from the claim.
+
+10.3. Conditions for indemnification
+A party seeking indemnification under this section shall: (a) promptly notify the other party of the claim; (b) give the other party sole control of the defense and settlement of the claim; and (c) provide, at the other party’s expense, the assistance, information and authority reasonably requested by the other party in the defense and settlement of the claim.
+
+
+
+10. Confidentiality
+11.1. Definition
+“Confidential information” means any information disclosed by a party to the other party, directly or indirectly, which:
+
+if in written, graphic, machine-readable or other tangible form, is marked as “confidential” or “proprietary,”
+if disclosed orally or by demonstration, is identified at the time of initial disclosure as confidential and is confirmed in writing to the receiving party to be “confidential” or “proprietary” within 30 days of such disclosure,
+is specifically deemed to be confidential by the terms of this SaaS agreement, or
+reasonably appears to be confidential or proprietary because of the circumstances of disclosure and the nature of the information itself.
+Confidential Information will also include information disclosed by third parties to a disclosing party under an obligation of confidentiality. Subject to the display of Customer Content as contemplated by this SaaS agreement, Customer Content is deemed Confidential Information of Customer. CloudVerse software and Documentation are deemed Confidential Information of CloudVerse.
+
+11.2. Confidentiality
+During the term of this SaaS agreement and for five (5) years thereafter (perpetually in the case of software), each party shall treat as confidential all Confidential Information of the other party, shall not use such Confidential Information except to exercise its rights and perform its obligations under this SaaS agreement, and shall not disclose such Confidential Information to any third party. Without limiting the foregoing, each party shall use at least the same degree of care, but not less than a reasonable degree of care, it uses to prevent the disclosure of its own confidential information to prevent the disclosure of Confidential Information of the other party. Each party shall promptly notify the other party of any actual or suspected misuse or unauthorized disclosure of the other party’s Confidential Information. Neither party shall reverse engineer, disassemble or decompile any prototypes, software or other tangible objects which embody the other party’s Confidential Information and which are provided to the party hereunder. Each party may disclose Confidential Information of the other party on a need-to-know basis to its contractors who are subject to confidentiality agreements requiring them to maintain such information in confidence and use it only to facilitate the performance of their services on behalf of the receiving party.
+
+11.3. Exceptions
+Confidential Information excludes information that:
+
+is known publicly at the time of the disclosure or becomes known publicly after disclosure through no fault of the receiving party,
+is known to the receiving party, without restriction, at the time of disclosure or becomes known to the receiving party, without restriction, from a source other than the disclosing party not bound by confidentiality obligations to the disclosing party, or
+is independently developed by the receiving party without use of the Confidential Information as demonstrated by the written records of the receiving party.
+The receiving party may disclose Confidential Information of the other party to the extent such disclosure is required by law or order of a court or other governmental authority, provided that the receiving party shall use reasonable efforts to promptly notify the other party prior to such disclosure to enable the disclosing party to seek a protective order or otherwise prevent or restrict such disclosure. Each party may disclose the existence of this SaaS agreement and the relationship of the parties, but agrees that the specific terms of this SaaS agreement will be treated as Confidential Information; provided, however, that each party may disclose the terms of this SaaS agreement to those with a need to know and under a duty of confidentiality such as accountants, lawyers, bankers and investors.
+
+
+
+12. General provisions
+12.1. Non-exclusive service
+Customer acknowledges that SaaS services is provided on a non-exclusive basis. Nothing shall be deemed to prevent or restrict CloudVerse’s ability to provide the SaaS services or other technology, including any features or functionality first developed for Customer, to other parties.
+
+12.2. Personal data
+Customer hereby acknowledges and agrees that CloudVerse’s performance of this SaaS agreement may require CloudVerse to process, transmit and/or store Customer personal data or the personal data of Customer employees and Affiliates. By submitting personal data to CloudVerse, Customer agrees that CloudVerse and its Affiliates may process, transmit and/or store personal data only to the extent necessary for, and for the sole purpose of, enabling CloudVerse to perform its obligations under this SaaS agreement. In relation to all Personal Data provided by or through Customer to CloudVerse, Customer will be responsible as sole Data Controller for complying with all applicable data protection or similar laws such as EU Directive 95/46/EC and laws implementing that directive that regulate the processing of personal data and special categories of data as such terms are defined in that directive. Customer agrees to obtain all necessary consents and make all necessary disclosures before including personal data in content and using the enabling software and CloudVerse SaaS. Customer confirms that Customer is solely responsible for any personal data that may be contained in content, including any information which any CloudVerse SaaS user shares with third parties on Customer’s behalf. Customer is solely responsible for determining the purposes and means of processing Customer personal data by CloudVerse under this agreement, including ensuring such processing according to Customer’s instructions will not place CloudVerse in breach of applicable data protection laws. Prior to processing, Customer will inform CloudVerse about any special categories of data contained within Customer personal data and any restrictions or special requirements in the processing of such special categories of data, including any cross-border transfer restrictions. Customer is responsible for ensuring that the CloudVerse SaaS meets such restrictions or special requirements. CloudVerse will process any personal data that meets the requirements set forth in this section according to these terms of use.
+
+12.3. CloudVerse personal data obligations
+In performing the SaaS services, CloudVerse will comply with the CloudVerse privacy policy, which is available at https://CloudVerse.ai/sign-in and incorporated herein by reference. The CloudVerse privacy policy is subject to change at CloudVerse’s discretion; however, CloudVerse policy changes will not result in a material reduction in the level of protection provided for Customer data during the period for which fees for the services have been paid. The services policies referenced in this SaaS agreement specify our respective responsibilities for maintaining the security of Customer data in connection with the SaaS services. CloudVerse reserves the right to provide the SaaS services from Host locations, and/or through use of subcontractors, worldwide. CloudVerse will only process Customer personal data in a manner that is reasonably necessary to provide SaaS services and only for that purpose. Customer agrees to provide any notices and obtain any consent related to CloudVerse’s use of the data for provisioning the SaaS services, including those related to the collection, use, processing, transfer and disclosure of personal information. Customer shall have sole responsibility for the accuracy, quality, integrity, legality, reliability, appropriateness and ownership of all Customer data.
+
+12.4. Assignment
+Neither party may assign this SaaS Agreement or any right under this SaaS Agreement without the consent of the other party, which consent shall not be unreasonably withheld or delayed; provided, however, that either party may assign this SaaS agreement to an acquirer of all or substantially all of the business of such party to which this SaaS agreement relates, whether by merger, asset sale or otherwise. This SaaS agreement shall be binding upon and inure to the benefit of the parties’ successors and permitted assigns. Either party may employ subcontractors in performing its duties under this SaaS agreement, but such party shall not be relieved of any obligation under this SaaS agreement.
+
+12.5. Notices
+Except as otherwise permitted in this SaaS agreement, notices under this SaaS agreement shall be in writing and shall be deemed to have been given (a) five (5) business days after mailing if sent by registered mail, (b) when transmitted if sent by facsimile, provided that a copy of the notice is promptly sent by another means specified in this section, or (c) when delivered if delivered personally or sent by express courier service. All notices shall be sent to the other party at the address set forth on the cover page of this SaaS agreement.
+
+12.6. Force majeure
+Each party will be excused from performance for any period during which, and to the extent that, such party or any subcontractor is prevented from performing any obligation or service, in whole or in part, as a result of causes beyond its reasonable control, and without its fault or negligence, including without limitation, acts of God, strikes, lockouts, riots, acts of terrorism or war, epidemics, communication line failures, and power failures.
+
+12.7. Waiver
+No waiver shall be effective unless it is in writing and signed by the waiving party. The waiver by either party of any breach of this SaaS agreement shall not constitute a waiver of any other or subsequent breach.
+
+12.8. Severability
+If any term of this SaaS agreement is held to be invalid or unenforceable, that term shall be reformed to achieve as nearly as possible the same effect as the original term, and the remainder of this SaaS Agreement shall remain in full force.
+
+12.9. Entire SaaS agreement
+This SaaS agreement (including all Schedules and exhibits) contains the entire agreement of the parties and supersedes all previous oral and written communications by the parties concerning the subject matter of this SaaS agreement. This SaaS agreement may be amended solely in a writing signed by both parties. Standard or printed terms contained in any purchase order or sales confirmation are deemed rejected and shall be void unless specifically accepted in writing by the party against whom their enforcement is sought; mere commencement of work or payment against such forms shall not be deemed acceptance of the terms.
+
+12.10. Survival
+Sections 3, 6, and 8 through 12 of this SaaS agreement shall survive the expiration or termination of this SaaS agreement for any reason.
+
+12.11. Publicity
+CloudVerse may include Customer’s name and logo in its customer lists and on its website. Upon signing, CloudVerse may issue a high-level press release announcing the relationship and the manner in which Customer will use the CloudVerse solution. CloudVerse shall coordinate its efforts with appropriate communications personnel in Customer’s organization to secure approval of the press release if necessary.
+
+12.12. Export regulations
+Export laws and regulations of the United States and any other relevant local export laws and regulations apply to the SaaS services. Customer agrees that such export control laws govern its use of the SaaS services (including technical data) and any services deliverables provided under this Agreement, and Customer agrees to comply with all such export laws and regulations. Customer agrees that no data, information, software programs and/or materials resulting from services (or direct product thereof) will be exported, directly or indirectly, in violation of these laws.
+
+12.13. No third-party beneficiaries
+This SaaS agreement is an agreement between the parties, and confers no rights upon either party’s employees, agents, contractors, partners of customers or upon any other person or entity.
+
+12.14. Independent contractor
+The parties have the status of independent contractors, and nothing in this SaaS agreement nor the conduct of the parties will be deemed to place the parties in any other relationship. Except as provided in this SaaS agreement, neither party shall be responsible for the acts or omissions of the other party or the other party’s personnel.
+
+12.15. Statistical information
+CloudVerse may anonymously compile statistical information related to the performance of the services for purposes of improving the SaaS service, provided that such information does not identify Customer’s data or include Customer’s name.
+
+12.16. Governing law and jurisdiction
+Each party agrees to the applicable governing law below without regard to choice or conflicts of law rules, and to the exclusive jurisdiction of the applicable courts below with respect to any dispute, claim, action, suit or proceeding (including non-contractual disputes or claims) arising out of or in connection with this agreement, or its subject matter or formation. To the extent not prohibited by applicable law, each of the Parties hereby irrevocably waives any and all right to trial by jury in any legal proceeding arising out of or related to this Agreement.
+CloudVerse entity entering into agreement with principal office at 3 Fraser Street, #05-24 DUO Tower, Singapore 189352; Laws of Singapore; Courts of Singapore.
+
+12.17. Compliance with laws
+CloudVerse shall comply with all applicable local, state, national and foreign laws in connection with its delivery of the SaaS services, including those laws related to data privacy, international communications, and the transmission of technical or personal data.
+
+12.18. Dispute resolution
+Customer’s satisfaction is an important objective to CloudVerse in performing its obligations under this SaaS agreement. Except with respect to intellectual property rights, if a dispute arises between the parties relating to the interpretation or performance of this SaaS agreement or the grounds for termination hereof, the parties agree to hold a meeting within fifteen (15) days of written request by either party, attended by individuals with decision-making authority, to attempt in good faith to negotiate a resolution of the dispute prior to pursuing other available remedies. If, within fifteen (15) days after such meeting, the parties have not succeeded in resolving the dispute, either party may protect its interests by any lawful means available to it.
+
+12.19. Signatures
+This SaaS agreement may be executed in multiple counterparts, each of which when executed will be an original, and all of which, when taken together, will constitute one agreement. Delivery of an executed counterpart of a signature page of this SaaS agreement by facsimile or other electronic transmission (including via PDF) will be effective as delivery of a manually executed counterpart.

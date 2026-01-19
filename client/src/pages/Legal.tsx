@@ -1,6 +1,7 @@
 import { BaseLayout } from "@/layouts/BaseLayout";
 import { useLocation } from "wouter";
 import { useEffect } from "react";
+import { termsContent } from "@/data/termsContent";
 
 export default function Legal() {
   const [location] = useLocation();
@@ -18,20 +19,81 @@ export default function Legal() {
   return (
     <BaseLayout>
       <section className="pt-20 sm:pt-24 lg:pt-32 pb-16 sm:pb-20 lg:pb-24">
-        <div className="max-w-3xl mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-5 sm:px-6 lg:px-8">
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-cv-ink mb-8">
-            {isTerms ? "Terms of Service" : "Privacy Policy"}
+            {isTerms ? termsContent.title : "Privacy Policy"}
           </h1>
 
-          <div className="prose max-w-none text-cv-muted">
-            <p className="mb-6">
-              {isTerms
-                ? "Terms of Service content goes here."
-                : "Privacy Policy content goes here."}
-            </p>
-            <p className="text-sm text-cv-muted">
-              Last updated: {new Date().toLocaleDateString()}
-            </p>
+          <div className="prose max-w-none text-cv-muted space-y-8">
+            {isTerms ? (
+              <>
+                <p className="text-cv-ink font-medium leading-relaxed">
+                  {termsContent.intro}
+                </p>
+                
+                {termsContent.sections.map((section) => (
+                  <div key={section.id} className="space-y-4">
+                    <h2 className="text-2xl font-bold text-cv-ink border-b border-cv-line pb-2">
+                      {section.title}
+                    </h2>
+                    
+                    {section.body && <p className="leading-relaxed">{section.body}</p>}
+                    
+                    {section.content && (
+                      <div className="space-y-4">
+                        {section.content.map((p, i) => (
+                          <p key={i} className="leading-relaxed">{p}</p>
+                        ))}
+                      </div>
+                    )}
+
+                    {section.intro && <p className="leading-relaxed">{section.intro}</p>}
+                    
+                    {section.list && (
+                      <ul className="list-disc pl-6 space-y-2">
+                        {section.list.map((item, i) => (
+                          <li key={i} className="leading-relaxed">{item}</li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {section.subsections && (
+                      <div className="space-y-6 pl-4 border-l-2 border-cv-line">
+                        {section.subsections.map((sub, i) => (
+                          <div key={i} className="space-y-2">
+                            <h3 className="text-lg font-semibold text-cv-ink">{sub.title}</h3>
+                            {sub.body && <p className="leading-relaxed">{sub.body}</p>}
+                            {sub.list && (
+                              <ul className="list-disc pl-6 space-y-2">
+                                {sub.list.map((item, j) => (
+                                  <li key={j} className="leading-relaxed">{item}</li>
+                                ))}
+                              </ul>
+                            )}
+                            {sub.footer && <p className="text-sm italic mt-2">{sub.footer}</p>}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {section.footer && <p className="text-sm italic pt-2">{section.footer}</p>}
+                  </div>
+                ))}
+                
+                <p className="text-sm text-cv-muted pt-8 border-t border-cv-line">
+                  Last updated: {termsContent.lastUpdated}
+                </p>
+              </>
+            ) : (
+              <>
+                <p className="mb-6">
+                  Privacy Policy content goes here.
+                </p>
+                <p className="text-sm text-cv-muted">
+                  Last updated: {new Date().toLocaleDateString()}
+                </p>
+              </>
+            )}
           </div>
         </div>
       </section>
