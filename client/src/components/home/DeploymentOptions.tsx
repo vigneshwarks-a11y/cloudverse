@@ -54,11 +54,6 @@ export function DeploymentOptions() {
               <p className="text-cv-muted leading-relaxed mb-6">
                 {option.description}
               </p>
-              <div className="mt-auto pt-6 border-t border-cv-line/50 dark:border-white/5">
-                <button className="text-sm font-semibold text-cv-muted group-hover:text-cv-ink transition-colors inline-flex items-center gap-2">
-                  Learn more <span className="group-hover:translate-x-1 transition-transform">→</span>
-                </button>
-              </div>
             </div>
           ))}
         </div>

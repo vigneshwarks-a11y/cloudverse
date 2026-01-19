@@ -26,11 +26,11 @@ export function FinalCTA({
               {description}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href={ROUTES.bookDemo} onClick={() => track("cta_demo", { location })}>
+              <a href="https://meetings-na2.hubspot.com/cloudverse" target="_blank" rel="noopener noreferrer" onClick={() => track("cta_demo", { location })}>
                 <Button size="lg" className="w-full sm:w-auto">
                   Book a demo
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
         </div>

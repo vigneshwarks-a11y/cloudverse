@@ -12,9 +12,9 @@ export function CTA() {
           Book a demo and we’ll walk through your spend structure, allocation needs, and the fastest path to measurable savings.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link href="/demo" onClick={() => track("cta_demo", { location: "bottom_cta" })}>
+          <a href="https://meetings-na2.hubspot.com/cloudverse" target="_blank" rel="noopener noreferrer" onClick={() => track("cta_demo", { location: "bottom_cta" })}>
             <Button size="lg" className="w-full sm:w-auto">Book a demo</Button>
-          </Link>
+          </a>
           <Link href="/contact" onClick={() => track("cta_contact", { location: "bottom_cta" })}>
             <Button variant="secondary" size="lg" className="w-full sm:w-auto">Contact sales</Button>
           </Link>

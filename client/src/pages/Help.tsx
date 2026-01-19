@@ -62,7 +62,7 @@ export default function Help() {
             <div className="mt-12 p-6 border border-cv-line rounded-lg bg-cv-surface2/50 dark:bg-white/5 text-center">
               <p className="text-cv-muted mb-4">Need more help?</p>
               <a
-                href="https://meetings.hubspot.com"
+                href="https://meetings-na2.hubspot.com/cloudverse"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block px-6 py-2 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors"

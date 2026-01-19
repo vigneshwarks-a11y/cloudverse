@@ -291,7 +291,9 @@ export default function Compare() {
                 specific to your organization.
               </p>
               <a
-                href="/demo"
+                href="https://meetings-na2.hubspot.com/cloudverse"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block bg-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 transition-colors"
               >
                 Schedule a Demo
