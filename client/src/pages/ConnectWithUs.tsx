@@ -3,10 +3,20 @@ import { Button } from "@/components/Button";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { insertDemoInquirySchema, type InsertDemoInquiry } from "@shared/schema";
+import { z } from "zod";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+
+const formSchema = z.object({
+  firstName: z.string().min(1, "First name is required"),
+  lastName: z.string().min(1, "Last name is required"),
+  email: z.string().email("Valid email is required"),
+  preferredDate: z.string().min(1, "Preferred date is required"),
+  preferredTime: z.string().min(1, "Preferred time is required"),
+});
+
+type FormData = z.infer<typeof formSchema>;
 
 export default function ConnectWithUs() {
   const { toast } = useToast();
@@ -15,19 +25,26 @@ export default function ConnectWithUs() {
     document.title = "Connect With Us — CloudVerse™";
   }, []);
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<InsertDemoInquiry>({
-    resolver: zodResolver(insertDemoInquirySchema),
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
       firstName: "",
       lastName: "",
       email: "",
-      preferredDateTime: ""
+      preferredDate: "",
+      preferredTime: ""
     }
   });
 
   const mutation = useMutation({
-    mutationFn: async (data: InsertDemoInquiry) => {
-      await apiRequest("POST", "/api/demo/inquiry", data);
+    mutationFn: async (data: FormData) => {
+      const payload = {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        preferredDateTime: `${data.preferredDate}T${data.preferredTime}`
+      };
+      await apiRequest("POST", "/api/demo/inquiry", payload);
     },
     onSuccess: () => {
       toast({
@@ -112,20 +129,38 @@ export default function ConnectWithUs() {
               )}
             </div>
 
-            <div className="space-y-2">
-              <label htmlFor="preferredDateTime" className="text-xs font-medium text-cv-muted uppercase tracking-wider">
-                Preferred Date & Time
-              </label>
-              <input 
-                id="preferredDateTime"
-                type="datetime-local"
-                {...register("preferredDateTime")}
-                className="w-full bg-cv-surface2 border border-cv-line rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors text-cv-ink"
-                data-testid="input-datetime"
-              />
-              {errors.preferredDateTime && (
-                <p className="text-red-500 text-xs">{errors.preferredDateTime.message}</p>
-              )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label htmlFor="preferredDate" className="text-xs font-medium text-cv-muted uppercase tracking-wider">
+                  Preferred Date
+                </label>
+                <input 
+                  id="preferredDate"
+                  type="date"
+                  {...register("preferredDate")}
+                  className="w-full bg-cv-surface2 border border-cv-line rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors text-cv-ink"
+                  data-testid="input-date"
+                />
+                {errors.preferredDate && (
+                  <p className="text-red-500 text-xs">{errors.preferredDate.message}</p>
+                )}
+              </div>
+              
+              <div className="space-y-2">
+                <label htmlFor="preferredTime" className="text-xs font-medium text-cv-muted uppercase tracking-wider">
+                  Preferred Time
+                </label>
+                <input 
+                  id="preferredTime"
+                  type="time"
+                  {...register("preferredTime")}
+                  className="w-full bg-cv-surface2 border border-cv-line rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors text-cv-ink"
+                  data-testid="input-time"
+                />
+                {errors.preferredTime && (
+                  <p className="text-red-500 text-xs">{errors.preferredTime.message}</p>
+                )}
+              </div>
             </div>
 
             <Button 
