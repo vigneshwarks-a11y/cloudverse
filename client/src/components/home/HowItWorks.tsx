@@ -69,7 +69,6 @@ export function HowItWorks() {
         }}
         aria-hidden="true"
       />
-      
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 lg:mb-20 space-y-3">
@@ -120,12 +119,7 @@ export function HowItWorks() {
                 {/* Desktop Number Pill */}
                 <div className="hidden lg:flex items-center justify-center mb-6">
                   <div
-                    className={cn(
-                      "w-12 h-12 rounded-full border-2 flex items-center justify-center font-semibold text-sm transition-all",
-                      activeStep === idx
-                        ? "border-blue-500 bg-blue-500/20 text-blue-400"
-                        : "border-cv-line dark:border-white/20 text-cv-muted"
-                    )}
+                    className="w-12 h-12 rounded-full border-2 flex items-center justify-center font-semibold text-sm transition-all border-cv-line dark:border-white/20 text-cv-muted bg-[#ffffff]"
                   >
                     {step.number}
                   </div>
@@ -160,7 +154,6 @@ export function HowItWorks() {
           </div>
         </div>
       </div>
-
       <style>{`
         @keyframes drift {
           0%, 100% {
