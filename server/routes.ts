@@ -2,6 +2,7 @@ import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { parseInvoice } from "./invoice-parser";
+import { insertPartnerInquirySchema } from "@shared/schema";
 import multer from "multer";
 import { promises as fs } from "fs";
 import path from "path";
@@ -57,6 +58,20 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  // Partner inquiry endpoint
+  app.post("/api/partners/inquiry", async (req: Request, res: Response) => {
+    try {
+      const data = insertPartnerInquirySchema.parse(req.body);
+      const inquiry = await storage.createPartnerInquiry(data);
+      res.json(inquiry);
+    } catch (error: any) {
+      console.error("Partner inquiry error:", error);
+      res.status(400).json({ 
+        error: error instanceof Error ? error.message : "Invalid inquiry data" 
+      });
+    }
+  });
+
   // Invoice analysis endpoint
   app.post("/api/invoice-analysis", upload.single("invoice"), async (req: Request, res: Response) => {
     if (!req.file) {

@@ -9,6 +9,28 @@ export const users = pgTable("users", {
   password: text("password").notNull(),
 });
 
+export const partnerInquiries = pgTable("partner_inquiries", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  fullName: text("full_name").notNull(),
+  businessEmail: text("business_email").notNull(),
+  companyName: text("company_name").notNull(),
+  phoneNumber: text("phone_number").notNull(),
+  countryRegion: text("country_region").notNull(),
+  partnerType: text("partner_type").notNull(),
+  employeeCount: text("employee_count").notNull(),
+  cloudProviders: text("cloud_providers").array().notNull(),
+  website: text("website").notNull(),
+  message: text("message"),
+  agreedToTerms: text("agreed_to_terms").notNull(),
+});
+
+export const insertPartnerInquirySchema = createInsertSchema(partnerInquiries).omit({
+  id: true,
+});
+
+export type InsertPartnerInquiry = z.infer<typeof insertPartnerInquirySchema>;
+export type PartnerInquiry = typeof partnerInquiries.$inferSelect;
+
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
   password: true,

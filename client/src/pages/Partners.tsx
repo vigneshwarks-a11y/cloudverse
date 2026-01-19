@@ -2,10 +2,16 @@ import { BaseLayout } from "@/layouts/BaseLayout";
 import { Button } from "@/components/Button";
 import { track } from "@/lib/track";
 import { Link } from "wouter";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { cn } from "@/lib/utils";
-import { Layers, TrendingUp, Users, CheckCircle2 } from "lucide-react";
+import { Layers, TrendingUp, Users, CheckCircle2, ChevronDown, Check } from "lucide-react";
 import { FinalCTA } from "@/components/FinalCTA";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { insertPartnerInquirySchema, type InsertPartnerInquiry } from "@shared/schema";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 type PartnerType = "msp" | "gsi" | "reseller";
 
@@ -91,7 +97,60 @@ const partnerWorkflow = [
 
 export default function Partners() {
   const [activeType, setActiveType] = useState<PartnerType>("msp");
+  const formRef = useRef<HTMLDivElement>(null);
   const content = partnerTypeContent[activeType];
+  const { toast } = useToast();
+
+  const { register, handleSubmit, formState: { errors }, reset, setValue, watch } = useForm<InsertPartnerInquiry>({
+    resolver: zodResolver(insertPartnerInquirySchema),
+    defaultValues: {
+      fullName: "",
+      businessEmail: "",
+      companyName: "",
+      phoneNumber: "",
+      countryRegion: "",
+      partnerType: "",
+      employeeCount: "",
+      cloudProviders: [],
+      website: "",
+      message: "",
+      agreedToTerms: "no"
+    }
+  });
+
+  const mutation = useMutation({
+    mutationFn: async (data: InsertPartnerInquiry) => {
+      await apiRequest("POST", "/api/partners/inquiry", data);
+    },
+    onSuccess: () => {
+      toast({
+        title: "Inquiry Sent",
+        description: "We'll be in touch shortly.",
+      });
+      reset();
+    }
+  });
+
+  const scrollToForm = () => {
+    formRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const cloudProviders = [
+    "Aws", "Gcp", "Azure", "Alicloud", "Tencent", "Huawei", "Private Cloud", "Other Cloud"
+  ];
+
+  const selectedProviders = watch("cloudProviders") || [];
+
+  const toggleProvider = (provider: string) => {
+    const current = [...selectedProviders];
+    const index = current.indexOf(provider);
+    if (index > -1) {
+      current.splice(index, 1);
+    } else {
+      current.push(provider);
+    }
+    setValue("cloudProviders", current);
+  };
 
   useEffect(() => {
     document.title = "Partners — CloudVerse™";
@@ -113,11 +172,14 @@ export default function Partners() {
               For MSPs, GSIs, and Resellers who want to deliver measurable savings faster and grow services revenue.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="mailto:partners@cloudverse.ai" onClick={() => track("cta_partner_apply", { location: "partners_hero" })} data-testid="link-partner-apply">
-                <Button size="lg" className="w-full sm:w-auto" data-testid="button-partner-apply">
-                  Become a partner
-                </Button>
-              </a>
+              <Button 
+                size="lg" 
+                className="w-full sm:w-auto" 
+                onClick={() => { track("cta_partner_apply", { location: "partners_hero" }); scrollToForm(); }}
+                data-testid="button-partner-apply-hero"
+              >
+                Become a partner
+              </Button>
               <Link href="/demo" onClick={() => track("cta_partner_demo", { location: "partners_hero" })} data-testid="link-partner-demo">
                 <Button variant="secondary" size="lg" className="w-full sm:w-auto" data-testid="button-partner-demo">
                   Book a partner demo
@@ -127,6 +189,176 @@ export default function Partners() {
           </div>
         </div>
       </section>
+
+      {/* Partner Form Section */}
+      <section ref={formRef} className="py-20 bg-black text-white">
+        <div className="max-w-[1000px] mx-auto px-6">
+          <h2 className="text-3xl font-bold mb-10">Become a partner with CloudVerse Ai</h2>
+          
+          <form onSubmit={handleSubmit((data) => mutation.mutate(data))} className="space-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label className="text-xs font-medium text-gray-400">Full Name</label>
+                <input 
+                  {...register("fullName")}
+                  placeholder="Full Name"
+                  className="w-full bg-[#111] border border-gray-800 rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors"
+                />
+                {errors.fullName && <p className="text-red-500 text-[10px]">{errors.fullName.message}</p>}
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-medium text-gray-400">Business Email</label>
+                <input 
+                  {...register("businessEmail")}
+                  placeholder="Business Email"
+                  className="w-full bg-[#111] border border-gray-800 rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors"
+                />
+                {errors.businessEmail && <p className="text-red-500 text-[10px]">{errors.businessEmail.message}</p>}
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-medium text-gray-400">Company Name</label>
+                <input 
+                  {...register("companyName")}
+                  placeholder="Company Name"
+                  className="w-full bg-[#111] border border-gray-800 rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors"
+                />
+                {errors.companyName && <p className="text-red-500 text-[10px]">{errors.companyName.message}</p>}
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-medium text-gray-400">Phone Number</label>
+                <input 
+                  {...register("phoneNumber")}
+                  placeholder="Phone Number"
+                  className="w-full bg-[#111] border border-gray-800 rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors"
+                />
+                {errors.phoneNumber && <p className="text-red-500 text-[10px]">{errors.phoneNumber.message}</p>}
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-medium text-gray-400">Country/Region</label>
+                <div className="relative">
+                  <select 
+                    {...register("countryRegion")}
+                    className="w-full appearance-none bg-[#111] border border-gray-800 rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors text-gray-400"
+                  >
+                    <option value="">Search and Select Country</option>
+                    <option value="US">United States</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="CA">Canada</option>
+                    {/* Add more as needed */}
+                  </select>
+                  <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
+                </div>
+                {errors.countryRegion && <p className="text-red-500 text-[10px]">{errors.countryRegion.message}</p>}
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-medium text-gray-400">Partner Type</label>
+                <div className="relative">
+                  <select 
+                    {...register("partnerType")}
+                    className="w-full appearance-none bg-[#111] border border-gray-800 rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors text-gray-400"
+                  >
+                    <option value="">Please select</option>
+                    <option value="msp">MSP</option>
+                    <option value="gsi">GSI</option>
+                    <option value="reseller">Reseller</option>
+                  </select>
+                  <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
+                </div>
+                {errors.partnerType && <p className="text-red-500 text-[10px]">{errors.partnerType.message}</p>}
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-xs font-medium text-gray-400">Partner Number of Employees</label>
+              <div className="relative">
+                <select 
+                  {...register("employeeCount")}
+                  className="w-full appearance-none bg-[#111] border border-gray-800 rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors text-gray-400"
+                >
+                  <option value="">Please select</option>
+                  <option value="1-10">1-10</option>
+                  <option value="11-50">11-50</option>
+                  <option value="51-200">51-200</option>
+                  <option value="201-500">201-500</option>
+                  <option value="500+">500+</option>
+                </select>
+                <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
+              </div>
+              {errors.employeeCount && <p className="text-red-500 text-[10px]">{errors.employeeCount.message}</p>}
+            </div>
+
+            <div className="space-y-4">
+              <label className="text-xs font-medium text-gray-400">Which main cloud providers do you work with today?</label>
+              <div className="flex flex-wrap gap-x-6 gap-y-3">
+                {cloudProviders.map((provider) => (
+                  <label key={provider} className="flex items-center gap-2 cursor-pointer group">
+                    <div 
+                      onClick={() => toggleProvider(provider)}
+                      className={cn(
+                        "w-4 h-4 border rounded flex items-center justify-center transition-colors",
+                        selectedProviders.includes(provider) 
+                          ? "bg-blue-600 border-blue-600" 
+                          : "border-gray-700 group-hover:border-gray-500"
+                      )}
+                    >
+                      {selectedProviders.includes(provider) && <Check className="w-3 h-3 text-white" />}
+                    </div>
+                    <span className="text-sm text-gray-300">{provider}</span>
+                  </label>
+                ))}
+              </div>
+              {errors.cloudProviders && <p className="text-red-500 text-[10px]">{errors.cloudProviders.message}</p>}
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-xs font-medium text-gray-400">Website</label>
+              <input 
+                {...register("website")}
+                placeholder="https://example.com"
+                className="w-full bg-[#111] border border-gray-800 rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors"
+              />
+              {errors.website && <p className="text-red-500 text-[10px]">{errors.website.message}</p>}
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-xs font-medium text-gray-400">Message (optional)</label>
+              <textarea 
+                {...register("message")}
+                placeholder="Your message"
+                rows={4}
+                className="w-full bg-[#111] border border-gray-800 rounded-md px-4 py-3 focus:outline-none focus:border-blue-500 transition-colors resize-none"
+              />
+            </div>
+
+            <div className="flex items-center gap-2">
+              <div 
+                onClick={() => setValue("agreedToTerms", watch("agreedToTerms") === "yes" ? "no" : "yes")}
+                className={cn(
+                  "w-4 h-4 border rounded flex items-center justify-center cursor-pointer transition-colors",
+                  watch("agreedToTerms") === "yes" 
+                    ? "bg-blue-600 border-blue-600" 
+                    : "border-gray-700"
+                )}
+              >
+                {watch("agreedToTerms") === "yes" && <Check className="w-3 h-3 text-white" />}
+              </div>
+              <span className="text-[10px] text-gray-400">
+                I agree to the <a href="/terms" className="text-blue-500 hover:underline">Terms & Conditions</a>
+              </span>
+              {errors.agreedToTerms && <p className="text-red-500 text-[10px] ml-2">{errors.agreedToTerms.message}</p>}
+            </div>
+
+            <button 
+              type="submit" 
+              disabled={mutation.isPending}
+              className="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-4 rounded-md transition-colors disabled:opacity-50"
+            >
+              {mutation.isPending ? "Submitting..." : "Submit"}
+            </button>
+          </form>
+        </div>
+      </section>
+
       {/* Value Pillars */}
       <section className="py-14 sm:py-16 lg:py-20 border-b border-cv-line">
         <div className="max-w-[1400px] mx-auto px-5 sm:px-6 lg:px-20">
