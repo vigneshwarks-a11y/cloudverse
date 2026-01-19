@@ -190,6 +190,146 @@ export default function Partners() {
         </div>
       </section>
 
+      {/* Value Pillars */}
+      <section className="py-14 sm:py-16 lg:py-20 border-b border-cv-line">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-6 lg:px-20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {valuePillars.map((pillar, idx) => {
+              const Icon = pillar.icon;
+              return (
+                <div
+                  key={idx}
+                  className="p-8 rounded-2xl border border-cv-line bg-cv-surface2/30 dark:bg-white/[0.02] hover:bg-cv-surface2/50 dark:hover:bg-white/[0.04] transition-colors"
+                >
+                  <div className="p-3 rounded-xl bg-blue-500/10 border border-blue-500/20 w-fit mb-6">
+                    <Icon className="w-6 h-6 text-blue-400" />
+                  </div>
+                  <h3 className="text-xl font-bold text-cv-ink mb-3">{pillar.title}</h3>
+                  <p className="text-cv-muted leading-relaxed">{pillar.desc}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Partner Types */}
+      <section className="py-14 sm:py-16 lg:py-20 border-b border-cv-line">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-6 lg:px-20">
+          <h2 className="text-2xl sm:text-3xl font-bold text-cv-ink mb-8 text-center">
+            Partner types
+          </h2>
+          
+          {/* Type Selector */}
+          <div className="flex justify-center gap-3 mb-10">
+            {partnerTypes.map((type) => (
+              <button
+                key={type.id}
+                onClick={() => setActiveType(type.id)}
+                data-testid={`button-partner-type-${type.id}`}
+                className={cn(
+                  "px-6 py-3 rounded-full text-sm font-medium transition-all",
+                  activeType === type.id
+                    ? "bg-blue-600 text-white"
+                    : "bg-cv-surface2/50 dark:bg-white/5 text-cv-muted hover:bg-cv-surface2 dark:hover:bg-white/10 border border-cv-line"
+                )}
+              >
+                {type.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Type Content */}
+          <div className="max-w-2xl mx-auto rounded-2xl border border-cv-line bg-cv-surface2/30 dark:bg-white/[0.03] p-8">
+            <div className="space-y-6">
+              <div>
+                <p className="text-xs font-semibold text-cv-muted uppercase tracking-wider mb-2">Best for</p>
+                <p className="text-lg text-cv-ink/90">{content.bestFor}</p>
+              </div>
+              <div>
+                <p className="text-xs font-semibold text-cv-muted uppercase tracking-wider mb-2">Typical motion</p>
+                <p className="text-base text-cv-muted">{content.motion}</p>
+              </div>
+              <div>
+                <p className="text-xs font-semibold text-cv-muted uppercase tracking-wider mb-3">What you deliver</p>
+                <ul className="space-y-2">
+                  {content.delivers.map((item, idx) => (
+                    <li key={idx} className="flex items-center gap-3 text-cv-muted">
+                      <CheckCircle2 className="w-4 h-4 text-green-400 flex-shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Program Components */}
+      <section className="py-14 sm:py-16 lg:py-20 border-b border-cv-line">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-6 lg:px-20">
+          <h2 className="text-2xl sm:text-3xl font-bold text-cv-ink mb-8 text-center">
+            Program components
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {programComponents.map((component, idx) => (
+              <div
+                key={idx}
+                className="p-5 rounded-xl border border-cv-line bg-cv-surface2/30 dark:bg-white/[0.02] text-center"
+              >
+                <p className="text-sm font-medium text-cv-ink/80">{component}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Revenue Streams */}
+      <section className="py-14 sm:py-16 lg:py-20 border-b border-cv-line">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-6 lg:px-20">
+          <h2 className="text-2xl sm:text-3xl font-bold text-cv-ink mb-8 text-center">
+            How partners make money
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {revenueStreams.map((stream, idx) => (
+              <div
+                key={idx}
+                className="p-6 rounded-2xl border border-cv-line bg-cv-surface2/30 dark:bg-white/[0.02]"
+              >
+                <h3 className="text-lg font-semibold text-cv-ink mb-2">{stream.title}</h3>
+                <p className="text-sm text-cv-muted">{stream.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Partner Workflow */}
+      <section className="py-14 sm:py-16 lg:py-20 border-b border-cv-line">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-6 lg:px-20">
+          <h2 className="text-2xl sm:text-3xl font-bold text-cv-ink mb-12 text-center">
+            Partner workflow
+          </h2>
+          <div className="relative">
+            {/* Connection Line (Desktop) */}
+            <div className="hidden md:block absolute top-6 left-[12.5%] right-[12.5%] h-px bg-cv-line z-0" />
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4 lg:gap-6 relative z-10">
+              {partnerWorkflow.map((item, idx) => (
+                <div key={idx} className="text-center group">
+                  <div className="w-12 h-12 rounded-full bg-cv-surface border border-cv-line group-hover:border-blue-500/50 flex items-center justify-center mx-auto mb-4 transition-colors relative bg-cv-surface">
+                    <span className="text-sm font-bold text-blue-500">{item.step}</span>
+                  </div>
+                  <h4 className="text-base font-semibold text-cv-ink mb-1">{item.title}</h4>
+                  <p className="text-xs text-cv-muted max-w-[160px] mx-auto">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Partner Form Section */}
       <section ref={formRef} className="py-20 bg-black text-white">
         <div className="max-w-[1000px] mx-auto px-6">
@@ -359,141 +499,6 @@ export default function Partners() {
         </div>
       </section>
 
-      {/* Value Pillars */}
-      <section className="py-14 sm:py-16 lg:py-20 border-b border-cv-line">
-        <div className="max-w-[1400px] mx-auto px-5 sm:px-6 lg:px-20">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {valuePillars.map((pillar, idx) => {
-              const Icon = pillar.icon;
-              return (
-                <div
-                  key={idx}
-                  className="p-8 rounded-2xl border border-cv-line bg-cv-surface2/30 dark:bg-white/[0.02] hover:bg-cv-surface2/50 dark:hover:bg-white/[0.04] transition-colors"
-                >
-                  <div className="p-3 rounded-xl bg-blue-500/10 border border-blue-500/20 w-fit mb-6">
-                    <Icon className="w-6 h-6 text-blue-400" />
-                  </div>
-                  <h3 className="text-xl font-bold text-cv-ink mb-3">{pillar.title}</h3>
-                  <p className="text-cv-muted leading-relaxed">{pillar.desc}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-      {/* Partner Types */}
-      <section className="py-14 sm:py-16 lg:py-20 border-b border-cv-line">
-        <div className="max-w-[1400px] mx-auto px-5 sm:px-6 lg:px-20">
-          <h2 className="text-2xl sm:text-3xl font-bold text-cv-ink mb-8 text-center">
-            Partner types
-          </h2>
-          
-          {/* Type Selector */}
-          <div className="flex justify-center gap-3 mb-10">
-            {partnerTypes.map((type) => (
-              <button
-                key={type.id}
-                onClick={() => setActiveType(type.id)}
-                data-testid={`button-partner-type-${type.id}`}
-                className={cn(
-                  "px-6 py-3 rounded-full text-sm font-medium transition-all",
-                  activeType === type.id
-                    ? "bg-blue-600 text-white"
-                    : "bg-cv-surface2/50 dark:bg-white/5 text-cv-muted hover:bg-cv-surface2 dark:hover:bg-white/10 border border-cv-line"
-                )}
-              >
-                {type.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Type Content */}
-          <div className="max-w-2xl mx-auto rounded-2xl border border-cv-line bg-cv-surface2/30 dark:bg-white/[0.03] p-8">
-            <div className="space-y-6">
-              <div>
-                <p className="text-xs font-semibold text-cv-muted uppercase tracking-wider mb-2">Best for</p>
-                <p className="text-lg text-cv-ink/90">{content.bestFor}</p>
-              </div>
-              <div>
-                <p className="text-xs font-semibold text-cv-muted uppercase tracking-wider mb-2">Typical motion</p>
-                <p className="text-base text-cv-muted">{content.motion}</p>
-              </div>
-              <div>
-                <p className="text-xs font-semibold text-cv-muted uppercase tracking-wider mb-3">What you deliver</p>
-                <ul className="space-y-2">
-                  {content.delivers.map((item, idx) => (
-                    <li key={idx} className="flex items-center gap-3 text-cv-muted">
-                      <CheckCircle2 className="w-4 h-4 text-green-400 flex-shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Program Components */}
-      <section className="py-14 sm:py-16 lg:py-20 border-b border-cv-line">
-        <div className="max-w-[1400px] mx-auto px-5 sm:px-6 lg:px-20">
-          <h2 className="text-2xl sm:text-3xl font-bold text-cv-ink mb-8 text-center">
-            Program components
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {programComponents.map((component, idx) => (
-              <div
-                key={idx}
-                className="p-5 rounded-xl border border-cv-line bg-cv-surface2/30 dark:bg-white/[0.02] text-center"
-              >
-                <p className="text-sm font-medium text-cv-ink/80">{component}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      {/* Revenue Streams */}
-      <section className="py-14 sm:py-16 lg:py-20 border-b border-cv-line">
-        <div className="max-w-[1400px] mx-auto px-5 sm:px-6 lg:px-20">
-          <h2 className="text-2xl sm:text-3xl font-bold text-cv-ink mb-8 text-center">
-            How partners make money
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {revenueStreams.map((stream, idx) => (
-              <div
-                key={idx}
-                className="p-6 rounded-2xl border border-cv-line bg-cv-surface2/30 dark:bg-white/[0.02]"
-              >
-                <h3 className="text-lg font-semibold text-cv-ink mb-2">{stream.title}</h3>
-                <p className="text-sm text-cv-muted">{stream.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      {/* Partner Workflow */}
-      <section className="py-14 sm:py-16 lg:py-20 border-b border-cv-line">
-        <div className="max-w-[1400px] mx-auto px-5 sm:px-6 lg:px-20">
-          <h2 className="text-2xl sm:text-3xl font-bold text-cv-ink mb-12 text-center">
-            Partner workflow
-          </h2>
-          <div className="relative">
-            {/* Connection Line (Desktop) */}
-            <div className="hidden md:block absolute top-6 left-[12.5%] right-[12.5%] h-px bg-cv-line z-0" />
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4 lg:gap-6 relative z-10">
-              {partnerWorkflow.map((item, idx) => (
-                <div key={idx} className="text-center group">
-                  <div className="w-12 h-12 rounded-full bg-cv-surface border border-cv-line group-hover:border-blue-500/50 flex items-center justify-center mx-auto mb-4 transition-colors relative bg-cv-surface">
-                    <span className="text-sm font-bold text-blue-500">{item.step}</span>
-                  </div>
-                  <h4 className="text-base font-semibold text-cv-ink mb-1">{item.title}</h4>
-                  <p className="text-xs text-cv-muted max-w-[160px] mx-auto">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
       {/* CTA */}
       <FinalCTA 
         title="Talk to our partner team"
