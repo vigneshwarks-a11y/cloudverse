@@ -56,18 +56,18 @@ export function HeroCard() {
   }, []);
 
   return (
-    <div className="w-full lg:w-[520px] xl:w-[600px] 2xl:w-[640px] rounded-[28px] border border-slate-700/50 bg-slate-900 overflow-hidden min-h-[520px] shadow-xl shadow-black/20 relative">
+    <div className="w-full lg:w-[520px] xl:w-[600px] 2xl:w-[640px] rounded-[28px] border border-cv-line dark:border-slate-700/50 bg-cv-surface dark:bg-slate-900 overflow-hidden min-h-[520px] shadow-xl shadow-black/20 relative">
       {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-800/50 via-transparent to-blue-900/20 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-800/50 via-transparent to-blue-900/20 pointer-events-none opacity-50 dark:opacity-100" />
       
       {/* Window Header */}
-      <div className="bg-slate-800/80 px-8 py-5 border-b border-slate-700/50 flex items-center gap-3 relative z-10">
+      <div className="bg-cv-surface2/80 dark:bg-slate-800/80 px-8 py-5 border-b border-cv-line dark:border-slate-700/50 flex items-center gap-3 relative z-10">
         <div className="flex gap-2">
           <div className="w-3 h-3 rounded-full bg-red-400/80" />
           <div className="w-3 h-3 rounded-full bg-yellow-400/80" />
           <div className="w-3 h-3 rounded-full bg-green-400/80" />
         </div>
-        <span className="text-[11px] font-semibold tracking-widest text-slate-400 uppercase ml-auto">
+        <span className="text-[11px] font-semibold tracking-widest text-cv-muted dark:text-slate-400 uppercase ml-auto">
           CloudVerse™ Outcomes
         </span>
       </div>
@@ -83,10 +83,10 @@ export function HeroCard() {
           >
             {heroOutcomesSet1.map((outcome, idx) => (
               <div key={idx}>
-                <h4 className="text-[15px] font-semibold text-blue-400 mb-1.5 leading-relaxed">
+                <h4 className="text-[15px] font-semibold text-blue-600 dark:text-blue-400 mb-1.5 leading-relaxed">
                   {outcome.title}
                 </h4>
-                <p className="text-[13px] text-slate-400 leading-relaxed">
+                <p className="text-[13px] text-cv-muted dark:text-slate-400 leading-relaxed">
                   {outcome.desc}
                 </p>
               </div>
@@ -99,10 +99,10 @@ export function HeroCard() {
           >
             {heroOutcomesSet2.map((outcome, idx) => (
               <div key={idx}>
-                <h4 className="text-[15px] font-semibold text-blue-400 mb-1.5 leading-relaxed">
+                <h4 className="text-[15px] font-semibold text-blue-600 dark:text-blue-400 mb-1.5 leading-relaxed">
                   {outcome.title}
                 </h4>
-                <p className="text-[13px] text-slate-400 leading-relaxed">
+                <p className="text-[13px] text-cv-muted dark:text-slate-400 leading-relaxed">
                   {outcome.desc}
                 </p>
               </div>
@@ -111,11 +111,11 @@ export function HeroCard() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-slate-700/50 pt-6 mb-6" />
+        <div className="border-t border-cv-line dark:border-slate-700/50 pt-6 mb-6" />
 
         {/* Supported Platforms */}
         <div className="mb-6">
-          <h5 className="text-[10px] font-bold tracking-[0.2em] text-slate-500 uppercase mb-4">
+          <h5 className="text-[10px] font-bold tracking-[0.2em] text-cv-muted dark:text-slate-500 uppercase mb-4">
             Supported Platforms
           </h5>
           <div className="grid grid-cols-3 gap-4">
@@ -127,7 +127,7 @@ export function HeroCard() {
 
         {/* AI Providers */}
         <div>
-          <h5 className="text-[10px] font-bold tracking-[0.2em] text-slate-500 uppercase mb-4">
+          <h5 className="text-[10px] font-bold tracking-[0.2em] text-cv-muted dark:text-slate-500 uppercase mb-4">
             AI & GPU Providers
           </h5>
           <div className="grid grid-cols-2 gap-4">
