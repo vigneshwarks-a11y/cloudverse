@@ -128,12 +128,12 @@ export function FeatureTabs() {
             </ul>
           </div>
 
-          <div className="hidden lg:flex items-center justify-center">
+          <div className="hidden lg:flex items-center justify-center h-full">
             {activeTabContent.image ? (
               <img
                 src={activeTabContent.image}
                 alt={activeTabContent.title}
-                className="w-full h-auto object-contain"
+                className="w-full h-full object-cover rounded-xl"
               />
             ) : (
               <div className="w-full aspect-[4/3] flex items-center justify-center rounded-xl bg-cv-surface border border-cv-line overflow-hidden">
