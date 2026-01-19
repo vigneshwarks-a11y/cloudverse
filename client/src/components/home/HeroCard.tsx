@@ -56,7 +56,7 @@ export function HeroCard() {
   }, []);
 
   return (
-    <div className="w-full lg:w-[520px] xl:w-[600px] 2xl:w-[640px] rounded-[28px] border border-cv-line dark:border-slate-700/50 bg-cv-surface dark:bg-slate-900 overflow-hidden min-h-[520px] shadow-xl shadow-black/20 relative">
+    <div className="w-full lg:w-[520px] xl:w-[600px] 2xl:w-[640px] rounded-[28px] border border-cv-line dark:border-slate-700/50 bg-cv-surface dark:bg-slate-900 overflow-hidden min-h-[600px] sm:min-h-[520px] shadow-xl shadow-black/20 relative flex flex-col">
       {/* Subtle gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-800/50 via-transparent to-blue-900/20 pointer-events-none opacity-50 dark:opacity-100" />
       
@@ -73,11 +73,11 @@ export function HeroCard() {
       </div>
 
       {/* Window Content */}
-      <div className="p-8 relative z-10">
+      <div className="p-6 sm:p-8 relative z-10 flex flex-col h-full overflow-hidden">
         {/* Outcomes List - Crossfading */}
-        <div className="min-h-[260px] relative mb-8">
+        <div className="flex-1 relative mb-6 min-h-[320px] sm:min-h-[260px] overflow-hidden">
           <div
-            className={`absolute inset-0 transition-opacity duration-1000 space-y-6 ${
+            className={`absolute inset-0 transition-opacity duration-1000 space-y-4 sm:space-y-6 ${
               showSet2 ? "opacity-0" : "opacity-100"
             }`}
           >
@@ -111,14 +111,14 @@ export function HeroCard() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-cv-line dark:border-slate-700/50 pt-6 mb-6" />
+        <div className="border-t border-cv-line dark:border-slate-700/50 pt-4 mb-4" />
 
         {/* Supported Platforms */}
-        <div className="mb-6">
-          <h5 className="text-[10px] font-bold tracking-[0.2em] text-cv-muted dark:text-slate-500 uppercase mb-4">
+        <div className="mb-4">
+          <h5 className="text-[10px] font-bold tracking-[0.2em] text-cv-muted dark:text-slate-500 uppercase mb-3">
             Supported Platforms
           </h5>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-3">
             {CLOUD_PROVIDERS.map((key) => (
               <LogoPill key={key} logoKey={key} />
             ))}
@@ -127,10 +127,10 @@ export function HeroCard() {
 
         {/* AI Providers */}
         <div>
-          <h5 className="text-[10px] font-bold tracking-[0.2em] text-cv-muted dark:text-slate-500 uppercase mb-4">
+          <h5 className="text-[10px] font-bold tracking-[0.2em] text-cv-muted dark:text-slate-500 uppercase mb-3">
             AI & GPU Providers
           </h5>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3">
             {AI_GPU_PROVIDERS.map((key) => (
               <LogoPill key={key} logoKey={key} />
             ))}
