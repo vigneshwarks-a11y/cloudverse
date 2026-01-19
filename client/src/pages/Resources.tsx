@@ -35,7 +35,14 @@ export default function Resources() {
       {/* Featured Guides */}
       <section className="py-14 sm:py-16 lg:py-20 border-t border-cv-line">
         <div className="cv-container max-w-[1000px]">
-          <h2 className="cv-h2 mb-8">Featured</h2>
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="cv-h2">Featured</h2>
+            <Link href="/resources/guides">
+              <Button variant="ghost" size="sm" className="text-cv-muted hover:text-cv-ink">
+                View all guides
+              </Button>
+            </Link>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {featuredGuides.slice(0, 3).map((guide) => (
               <Link 
