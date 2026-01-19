@@ -9,6 +9,7 @@ import financePreview from "@/assets/finance-preview.png";
 import developerFinopsPreview from "@/assets/developer-finops-preview.png";
 import businessPreview from "@/assets/business-preview.png";
 import itPreview from "@/assets/it-preview.png";
+import aiPreview from "@/assets/ai-preview.png";
 import { FinalCTA } from "@/components/FinalCTA";
 
 type Role = "finance" | "engineering" | "business" | "it" | "ai";
@@ -231,6 +232,14 @@ export default function Solutions() {
                   <img 
                     src={itPreview} 
                     alt="IT view: normalized dimensions, governance, and enterprise-wide controls"
+                    className="w-full h-auto block"
+                  />
+                </div>
+              ) : activeRole === "ai" ? (
+                <div className="rounded-2xl overflow-hidden">
+                  <img 
+                    src={aiPreview} 
+                    alt="AI/Data view: GPU utilization, LLM spend signals, pipeline cost drivers"
                     className="w-full h-auto block"
                   />
                 </div>
