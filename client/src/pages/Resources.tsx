@@ -3,7 +3,7 @@ import { Button } from "@/components/Button";
 import { Link } from "wouter";
 import { useEffect } from "react";
 import { track } from "@/lib/track";
-import { featuredGuides, categories } from "@/data/resourcesData";
+import { featuredGuides, categories, guides } from "@/data/resourcesData";
 import { FinalCTA } from "@/components/FinalCTA";
 
 export default function Resources() {
@@ -74,6 +74,41 @@ export default function Resources() {
                 {category}
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+      {/* Guides Section */}
+      <section className="py-14 sm:py-16 lg:py-20 border-t border-cv-line">
+        <div className="cv-container max-w-[1000px]">
+          <h2 className="cv-h2 mb-8">Guides</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {guides.slice(0, 4).map((guide) => (
+              <Link
+                key={guide.slug}
+                href={`/resources/guides/${guide.slug}`}
+                className="block rounded-xl border border-cv-line bg-cv-surface2 p-6 hover:bg-cv-line/30 transition-colors"
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-xs font-medium px-2 py-1 rounded border border-cv-line bg-cv-surface text-cv-muted">
+                    {guide.category}
+                  </span>
+                </div>
+                <h3 className="text-base font-semibold text-cv-ink mb-2">
+                  {guide.title}
+                </h3>
+                <p className="text-sm text-cv-muted mb-4 line-clamp-2">
+                  {guide.summary}
+                </p>
+                <div className="flex items-center gap-3 text-xs text-cv-muted/70">
+                  {guide.readingTime && <span>{guide.readingTime}</span>}
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Link href="/resources/guides">
+              <Button variant="secondary">View all guides</Button>
+            </Link>
           </div>
         </div>
       </section>
