@@ -29,7 +29,7 @@ export function Footer() {
       links: [
         { label: "About", href: "/about" },
         { label: "Careers", href: "#" },
-        { label: "Contact", href: "/contact" },
+        { label: "Contact", href: "/connect" },
         { label: "Legal", href: "/legal/terms" },
       ],
     },
