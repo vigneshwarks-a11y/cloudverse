@@ -15,7 +15,7 @@ const leadershipTeam = [
     linkedin: "https://www.linkedin.com/in/anh-pho-43b76311b/",
   },
   {
-    name: "Justin",
+    name: "Justin Gatlin",
     role: "GTM Lead North-America",
     image: "/team/justin.png",
     linkedin: "https://www.linkedin.com/in/justinrgatlin/",
@@ -46,7 +46,7 @@ const boardOfAdvisory = [
   {
     name: "Rachel Chen Paulo",
     image: "/team/rachel-chen-paulo.png",
-    linkedin: "https://www.linkedin.com/in/ajayturki/",
+    linkedin: "https://www.linkedin.com/in/rachel-chen-paulo-9b28637",
   },
   {
     name: "Vijay Sahrawat",
