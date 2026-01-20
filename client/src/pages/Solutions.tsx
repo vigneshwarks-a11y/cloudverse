@@ -13,6 +13,7 @@ import developerFinopsPreviewDark from "@/assets/developer-finops-preview-dark.p
 import businessPreview from "@/assets/business-preview.png";
 import businessPreviewDark from "@/assets/business-preview-dark.png";
 import itPreview from "@/assets/it-preview.png";
+import itPreviewDark from "@/assets/it-preview-dark.png";
 import aiPreview from "@/assets/ai-preview.png";
 import { FinalCTA } from "@/components/FinalCTA";
 
@@ -235,7 +236,7 @@ export default function Solutions() {
               ) : activeRole === "it" ? (
                 <div className="rounded-2xl overflow-hidden">
                   <img 
-                    src={itPreview} 
+                    src={resolvedTheme === "dark" ? itPreviewDark : itPreview} 
                     alt="IT view: normalized dimensions, governance, and enterprise-wide controls"
                     className="w-full h-auto block"
                   />
