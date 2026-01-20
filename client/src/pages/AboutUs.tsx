@@ -17,7 +17,7 @@ const leadershipTeam = [
   {
     name: "Justin",
     role: "GTM Lead North-America",
-    image: "/team/justin.jpg",
+    image: "/team/justin.png",
     linkedin: "https://linkedin.com/in/justin",
   },
 ];
