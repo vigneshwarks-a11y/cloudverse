@@ -120,23 +120,6 @@ export default function ConnectWithUs() {
                   );
                 })}
               </div>
-              
-              <div className="hidden lg:block p-6 rounded-xl border border-cv-line bg-cv-surface2/50">
-                <div className="flex items-start gap-4">
-                  <img 
-                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&crop=face" 
-                    alt="Customer" 
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
-                  <div>
-                    <p className="text-sm text-cv-muted italic mb-3">
-                      "CloudVerse helped us identify $2.3M in annual savings within the first month. The demo was incredibly valuable."
-                    </p>
-                    <p className="text-sm font-semibold text-cv-ink">Sarah Chen</p>
-                    <p className="text-xs text-cv-muted">VP of Engineering, TechCorp</p>
-                  </div>
-                </div>
-              </div>
             </div>
             
             <div className="relative">
