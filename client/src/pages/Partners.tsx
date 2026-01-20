@@ -146,7 +146,11 @@ export default function Partners() {
       message: data.message,
       agreedToTerms: data.agreedToTerms,
     });
-    // mutation.mutate(data);
+    toast({
+      title: "Inquiry Sent",
+      description: "We'll be in touch shortly.",
+    });
+    reset();
   };
 
   const scrollToForm = () => {

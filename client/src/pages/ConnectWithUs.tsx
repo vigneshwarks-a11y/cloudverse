@@ -117,7 +117,13 @@ export default function ConnectWithUs() {
       preferredTime: data.preferredTime,
       interestedIntegration: data.interestedIntegration || "none",
     });
-    // mutation.mutate(data);
+    toast({
+      title: "Demo Request Submitted",
+      description: "We'll be in touch shortly to confirm your demo.",
+    });
+    reset();
+    setSelectedDate(undefined);
+    setDateOpen(false);
   };
 
   return (
