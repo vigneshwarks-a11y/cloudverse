@@ -11,7 +11,8 @@ import { Calendar as CalendarIcon, Clock, ChevronDown } from "lucide-react";
 import { useSearch } from "wouter";
 import { integrationsData } from "@/data/integrationsData";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { format, addDays, startOfToday } from "date-fns";
+import { Calendar } from "@/components/ui/calendar";
+import { format } from "date-fns";
 
 const formSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
@@ -49,27 +50,13 @@ const timeSlots = [
   { value: "17:00", label: "5:00 PM" },
 ];
 
-// Generate next 14 available business days
-const getAvailableDates = () => {
-  const dates: Date[] = [];
-  let currentDate = startOfToday();
-  while (dates.length < 14) {
-    currentDate = addDays(currentDate, 1);
-    const day = currentDate.getDay();
-    if (day !== 0 && day !== 6) { // Skip weekends
-      dates.push(currentDate);
-    }
-  }
-  return dates;
-};
-
 export default function ConnectWithUs() {
   const { toast } = useToast();
   const searchString = useSearch();
   const urlParams = new URLSearchParams(searchString);
   const integrationFromUrl = urlParams.get("integration") || "";
   const [dateOpen, setDateOpen] = useState(false);
-  const availableDates = getAvailableDates();
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
 
   useEffect(() => {
     document.title = "Connect With Us — CloudVerse™";
@@ -228,33 +215,30 @@ export default function ConnectWithUs() {
                           className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-left cursor-pointer hover:border-cv-muted/50 flex items-center justify-between"
                           data-testid="input-date"
                         >
-                          <span className={watch("preferredDate") ? "text-cv-ink" : "text-cv-muted/50"}>
-                            {watch("preferredDate") 
-                              ? format(new Date(watch("preferredDate") + "T12:00:00"), "EEE, MMM d") 
-                              : "Select date"}
+                          <span className={selectedDate ? "text-cv-ink" : "text-cv-muted/50"}>
+                            {selectedDate ? format(selectedDate, "MMM d, yyyy") : "Select date"}
                           </span>
-                          <ChevronDown className="w-4 h-4 text-cv-muted" />
+                          <CalendarIcon className="w-4 h-4 text-cv-muted" />
                         </button>
                       </PopoverTrigger>
                       <PopoverContent 
-                        className="w-[200px] p-2 bg-cv-surface border border-cv-line shadow-xl max-h-[280px] overflow-y-auto" 
+                        className="w-auto p-0 bg-cv-surface border border-cv-line shadow-xl rounded-xl" 
                         align="start"
                       >
-                        <div className="space-y-1">
-                          {availableDates.map((date) => (
-                            <button
-                              key={date.toISOString()}
-                              type="button"
-                              onClick={() => {
-                                setValue("preferredDate", format(date, "yyyy-MM-dd"));
-                                setDateOpen(false);
-                              }}
-                              className="w-full text-left px-3 py-2 rounded-md text-sm hover:bg-blue-500/10 text-cv-ink transition-colors"
-                            >
-                              {format(date, "EEE, MMM d")}
-                            </button>
-                          ))}
-                        </div>
+                        <Calendar
+                          mode="single"
+                          selected={selectedDate}
+                          onSelect={(date) => {
+                            setSelectedDate(date);
+                            if (date) {
+                              setValue("preferredDate", format(date, "yyyy-MM-dd"));
+                            }
+                            setDateOpen(false);
+                          }}
+                          disabled={(date) => date < new Date() || date.getDay() === 0 || date.getDay() === 6}
+                          initialFocus
+                          className="rounded-xl"
+                        />
                       </PopoverContent>
                     </Popover>
                     <input type="hidden" {...register("preferredDate")} />
