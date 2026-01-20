@@ -38,8 +38,8 @@ export const LOGOS: Record<LogoKey, LogoVariant> = {
     dark: "/logos/huawei/huawei-dark.svg",
   },
   tencent: {
-    light: "/logos/tencent/tencent-light.svg",
-    dark: "/logos/tencent/tencent-dark.svg",
+    light: "/logos/tencent/tencent-cloud.png",
+    dark: "/logos/tencent/tencent-cloud.png",
   },
   openai: {
     light: "/logos/openai/openai-light.svg",
