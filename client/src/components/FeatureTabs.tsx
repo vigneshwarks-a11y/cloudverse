@@ -9,6 +9,7 @@ import anomalyDashboardPreviewDark from "@/assets/anomaly-dashboard-preview-dark
 import visibilityDashboardPreview from "@/assets/visibility-dashboard-preview.png";
 import visibilityDashboardPreviewDark from "@/assets/visibility-dashboard-preview-dark.png";
 import tagEngineDashboardPreview from "@/assets/tag-engine-dashboard-preview.png";
+import tagEngineDashboardPreviewDark from "@/assets/tag-engine-dashboard-preview-dark.png";
 
 const featureTabs = [
   {
@@ -48,6 +49,7 @@ const featureTabs = [
       "Allocation that holds up under scrutiny",
     ],
     image: tagEngineDashboardPreview,
+    imageDark: tagEngineDashboardPreviewDark,
   },
   {
     id: "anomalies",
