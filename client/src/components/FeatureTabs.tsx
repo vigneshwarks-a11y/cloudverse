@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { useTheme } from "next-themes";
 import platformDashboardPreview from "@/assets/platform-dashboard-preview.png";
+import platformDashboardPreviewDark from "@/assets/platform-dashboard-preview-dark.png";
 import automationDashboardPreview from "@/assets/automation-dashboard-preview.png";
 import anomalyDashboardPreview from "@/assets/anomaly-dashboard-preview.png";
 import visibilityDashboardPreview from "@/assets/visibility-dashboard-preview.png";
@@ -17,6 +19,7 @@ const featureTabs = [
       "Fewer surprises, less rework",
     ],
     image: platformDashboardPreview,
+    imageDark: platformDashboardPreviewDark,
   },
   {
     id: "visibility",
@@ -71,7 +74,9 @@ const featureTabs = [
 
 export function FeatureTabs() {
   const [activeTab, setActiveTab] = useState("developer-finops");
+  const { resolvedTheme } = useTheme();
   const activeTabContent = featureTabs.find((tab) => tab.id === activeTab);
+  const isDark = resolvedTheme === "dark";
 
   return (
     <div className="border border-cv-line rounded-2xl bg-cv-surface2 overflow-hidden">
@@ -138,7 +143,7 @@ export function FeatureTabs() {
           <div className="hidden lg:flex items-center justify-center h-full">
             {activeTabContent.image ? (
               <img
-                src={activeTabContent.image}
+                src={(isDark && activeTabContent.imageDark) ? activeTabContent.imageDark : activeTabContent.image}
                 alt={activeTabContent.title}
                 className="w-full h-full object-cover rounded-xl"
               />
