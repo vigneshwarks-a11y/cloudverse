@@ -15,6 +15,7 @@ import businessPreviewDark from "@/assets/business-preview-dark.png";
 import itPreview from "@/assets/it-preview.png";
 import itPreviewDark from "@/assets/it-preview-dark.png";
 import aiPreview from "@/assets/ai-preview.png";
+import aiPreviewDark from "@/assets/ai-preview-dark.png";
 import { FinalCTA } from "@/components/FinalCTA";
 
 type Role = "finance" | "engineering" | "business" | "it" | "ai";
@@ -244,7 +245,7 @@ export default function Solutions() {
               ) : activeRole === "ai" ? (
                 <div className="rounded-2xl overflow-hidden">
                   <img 
-                    src={aiPreview} 
+                    src={resolvedTheme === "dark" ? aiPreviewDark : aiPreview} 
                     alt="AI/Data view: GPU utilization, LLM spend signals, pipeline cost drivers"
                     className="w-full h-auto block"
                   />
