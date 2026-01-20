@@ -3,6 +3,7 @@ import { useTheme } from "next-themes";
 import platformDashboardPreview from "@/assets/platform-dashboard-preview.png";
 import platformDashboardPreviewDark from "@/assets/platform-dashboard-preview-dark.png";
 import automationDashboardPreview from "@/assets/automation-dashboard-preview.png";
+import automationDashboardPreviewDark from "@/assets/automation-dashboard-preview-dark.png";
 import anomalyDashboardPreview from "@/assets/anomaly-dashboard-preview.png";
 import anomalyDashboardPreviewDark from "@/assets/anomaly-dashboard-preview-dark.png";
 import visibilityDashboardPreview from "@/assets/visibility-dashboard-preview.png";
@@ -73,6 +74,7 @@ const featureTabs = [
       "GPU and model inference optimization paths",
     ],
     image: automationDashboardPreview,
+    imageDark: automationDashboardPreviewDark,
   },
 ];
 
