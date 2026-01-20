@@ -5,6 +5,7 @@ import platformDashboardPreviewDark from "@/assets/platform-dashboard-preview-da
 import automationDashboardPreview from "@/assets/automation-dashboard-preview.png";
 import anomalyDashboardPreview from "@/assets/anomaly-dashboard-preview.png";
 import visibilityDashboardPreview from "@/assets/visibility-dashboard-preview.png";
+import visibilityDashboardPreviewDark from "@/assets/visibility-dashboard-preview-dark.png";
 import tagEngineDashboardPreview from "@/assets/tag-engine-dashboard-preview.png";
 
 const featureTabs = [
@@ -32,6 +33,7 @@ const featureTabs = [
       "Export-ready views for reporting",
     ],
     image: visibilityDashboardPreview,
+    imageDark: visibilityDashboardPreviewDark,
   },
   {
     id: "tag-engine",
