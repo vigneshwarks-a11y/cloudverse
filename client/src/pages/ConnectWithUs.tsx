@@ -1,15 +1,18 @@
 import { BaseLayout } from "@/layouts/BaseLayout";
 import { Button } from "@/components/Button";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-import { Calendar, Clock, ChevronDown } from "lucide-react";
+import { Calendar as CalendarIcon, Clock, ChevronDown } from "lucide-react";
 import { useSearch } from "wouter";
 import { integrationsData } from "@/data/integrationsData";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { format } from "date-fns";
 
 const formSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
@@ -27,17 +30,39 @@ const integrationOptions = [
   ...integrationsData.map(i => ({ value: i.name, label: i.name }))
 ];
 
+const timeSlots = [
+  { value: "09:00", label: "9:00 AM" },
+  { value: "09:30", label: "9:30 AM" },
+  { value: "10:00", label: "10:00 AM" },
+  { value: "10:30", label: "10:30 AM" },
+  { value: "11:00", label: "11:00 AM" },
+  { value: "11:30", label: "11:30 AM" },
+  { value: "12:00", label: "12:00 PM" },
+  { value: "12:30", label: "12:30 PM" },
+  { value: "13:00", label: "1:00 PM" },
+  { value: "13:30", label: "1:30 PM" },
+  { value: "14:00", label: "2:00 PM" },
+  { value: "14:30", label: "2:30 PM" },
+  { value: "15:00", label: "3:00 PM" },
+  { value: "15:30", label: "3:30 PM" },
+  { value: "16:00", label: "4:00 PM" },
+  { value: "16:30", label: "4:30 PM" },
+  { value: "17:00", label: "5:00 PM" },
+];
+
 export default function ConnectWithUs() {
   const { toast } = useToast();
   const searchString = useSearch();
   const urlParams = new URLSearchParams(searchString);
   const integrationFromUrl = urlParams.get("integration") || "";
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+  const [dateOpen, setDateOpen] = useState(false);
 
   useEffect(() => {
     document.title = "Connect With Us — CloudVerse™";
   }, []);
 
-  const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm<FormData>({
+  const { register, handleSubmit, formState: { errors }, reset, setValue, watch } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       firstName: "",
@@ -179,17 +204,40 @@ export default function ConnectWithUs() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label htmlFor="preferredDate" className="text-xs font-medium text-cv-muted uppercase tracking-wider flex items-center gap-2">
-                      <Calendar className="w-3.5 h-3.5" />
+                    <label className="text-xs font-medium text-cv-muted uppercase tracking-wider flex items-center gap-2">
+                      <CalendarIcon className="w-3.5 h-3.5" />
                       Preferred Date
                     </label>
-                    <input 
-                      id="preferredDate"
-                      type="date"
-                      {...register("preferredDate")}
-                      className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink"
-                      data-testid="input-date"
-                    />
+                    <Popover open={dateOpen} onOpenChange={setDateOpen}>
+                      <PopoverTrigger asChild>
+                        <button
+                          type="button"
+                          className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink text-left flex items-center justify-between"
+                          data-testid="input-date"
+                        >
+                          <span className={selectedDate ? "text-cv-ink" : "text-cv-muted/50"}>
+                            {selectedDate ? format(selectedDate, "PPP") : "Select a date"}
+                          </span>
+                          <CalendarIcon className="w-4 h-4 text-cv-muted" />
+                        </button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="single"
+                          selected={selectedDate}
+                          onSelect={(date) => {
+                            setSelectedDate(date);
+                            if (date) {
+                              setValue("preferredDate", format(date, "yyyy-MM-dd"));
+                            }
+                            setDateOpen(false);
+                          }}
+                          disabled={(date) => date < new Date()}
+                          initialFocus
+                        />
+                      </PopoverContent>
+                    </Popover>
+                    <input type="hidden" {...register("preferredDate")} />
                     {errors.preferredDate && (
                       <p className="text-red-500 text-xs">{errors.preferredDate.message}</p>
                     )}
@@ -200,13 +248,22 @@ export default function ConnectWithUs() {
                       <Clock className="w-3.5 h-3.5" />
                       Preferred Time
                     </label>
-                    <input 
-                      id="preferredTime"
-                      type="time"
-                      {...register("preferredTime")}
-                      className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink"
-                      data-testid="input-time"
-                    />
+                    <div className="relative">
+                      <select
+                        id="preferredTime"
+                        {...register("preferredTime")}
+                        className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink appearance-none cursor-pointer"
+                        data-testid="input-time"
+                      >
+                        <option value="">Select a time</option>
+                        {timeSlots.map((slot) => (
+                          <option key={slot.value} value={slot.value}>
+                            {slot.label}
+                          </option>
+                        ))}
+                      </select>
+                      <Clock className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-cv-muted pointer-events-none" />
+                    </div>
                     {errors.preferredTime && (
                       <p className="text-red-500 text-xs">{errors.preferredTime.message}</p>
                     )}
