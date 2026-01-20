@@ -5,7 +5,9 @@ import { Link } from "wouter";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { DollarSign, Code2, Briefcase, Server, Cpu } from "lucide-react";
+import { useTheme } from "next-themes";
 import financePreview from "@/assets/finance-preview.png";
+import financePreviewDark from "@/assets/finance-preview-dark.png";
 import developerFinopsPreview from "@/assets/developer-finops-preview.png";
 import businessPreview from "@/assets/business-preview.png";
 import itPreview from "@/assets/it-preview.png";
@@ -103,6 +105,7 @@ const roleContent: Record<Role, {
 
 export default function Solutions() {
   const [activeRole, setActiveRole] = useState<Role>("finance");
+  const { resolvedTheme } = useTheme();
   const content = roleContent[activeRole];
 
   useEffect(() => {
@@ -206,7 +209,7 @@ export default function Solutions() {
               {activeRole === "finance" ? (
                 <div className="rounded-2xl overflow-hidden">
                   <img 
-                    src={financePreview} 
+                    src={resolvedTheme === "dark" ? financePreviewDark : financePreview} 
                     alt="Typical Finance view: spend variance, allocations, and savings realization"
                     className="w-full h-auto block"
                   />
