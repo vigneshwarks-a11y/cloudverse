@@ -146,7 +146,7 @@ export default function Home() {
             <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-cv-muted mb-3">
               What CloudVerse Offers
             </p>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink mb-4">One platform to understand, control, and optimize cloud, data, and AI spend</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink mb-4">One platform to manage cloud, data, and AI spend</h2>
             <p className="text-lg sm:text-xl text-cv-muted max-w-2xl">
               Built for enterprise scale, multi-tenant governance, and measurable outcomes.
             </p>

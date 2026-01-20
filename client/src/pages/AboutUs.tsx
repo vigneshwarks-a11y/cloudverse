@@ -9,7 +9,7 @@ const leadershipTeam = [
     linkedin: "https://www.linkedin.com/in/chanddeshwal/",
   },
   {
-    name: "Ann Pho Quoc",
+    name: "Ahn Pho Quoc",
     role: "CPTO",
     image: "/team/ann-pho-quoc.png",
     linkedin: "https://www.linkedin.com/in/anh-pho-43b76311b/",

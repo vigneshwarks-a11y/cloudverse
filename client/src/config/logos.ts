@@ -22,24 +22,24 @@ export const LOGOS: Record<LogoKey, LogoVariant> = {
     dark: "/logos/aws/aws-dark.svg",
   },
   azure: {
-    light: "/logos/azure/azure-light.svg",
-    dark: "/logos/azure/azure-dark.png",
+    light: "/logos/azure/azure-cloud.png",
+    dark: "/logos/azure/azure-cloud.png",
   },
   gcp: {
     light: "/logos/gcp/gcp-light.svg",
     dark: "/logos/gcp/gcp-dark.svg",
   },
   alibaba: {
-    light: "/logos/alibaba/alibaba-light.svg",
-    dark: "/logos/alibaba/alibaba-dark.png",
+    light: "/logos/alibaba/alibaba-cloud.png",
+    dark: "/logos/alibaba/alibaba-cloud.png",
   },
   huawei: {
-    light: "/logos/huawei/huawei-light.svg",
-    dark: "/logos/huawei/huawei-dark.svg",
+    light: "/logos/huawei/huawei-cloud.png",
+    dark: "/logos/huawei/huawei-cloud.png",
   },
   tencent: {
-    light: "/logos/tencent/tencent-light.svg",
-    dark: "/logos/tencent/tencent-dark.svg",
+    light: "/logos/tencent/tencent-cloud.png",
+    dark: "/logos/tencent/tencent-cloud.png",
   },
   openai: {
     light: "/logos/openai/openai-light.svg",
@@ -64,7 +64,7 @@ export const LOGOS: Record<LogoKey, LogoVariant> = {
 };
 
 export const CLOUD_PROVIDERS: LogoKey[] = ['aws', 'azure', 'gcp', 'alibaba', 'huawei', 'tencent'];
-export const AI_GPU_PROVIDERS: LogoKey[] = ['openai', 'databricks', 'snowflake', 'kubernetes'];
+export const AI_GPU_PROVIDERS: LogoKey[] = ['openai', 'snowflake', 'kubernetes'];
 
 export const LOGO_DISPLAY_NAMES: Record<LogoKey, string> = {
   aws: 'AWS',

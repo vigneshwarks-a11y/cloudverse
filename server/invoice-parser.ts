@@ -40,6 +40,7 @@ export interface InvoiceAnalysisResult {
 }
 
 function getOpenAIClient(): { client: OpenAI; model: string } {
+  // Check for Replit AI integrations first (available in Replit environment)
   if (process.env.AI_INTEGRATIONS_OPENAI_BASE_URL && process.env.AI_INTEGRATIONS_OPENAI_API_KEY) {
     return {
       client: new OpenAI({
@@ -50,14 +51,15 @@ function getOpenAIClient(): { client: OpenAI; model: string } {
     };
   }
   
+  // Fallback to standard OpenAI API key (works in any environment including production)
   if (process.env.OPENAI_API_KEY) {
     return {
       client: new OpenAI({ apiKey: process.env.OPENAI_API_KEY }),
-      model: "gpt-3.5-turbo",
+      model: "gpt-4o-mini",
     };
   }
   
-  throw new Error("No OpenAI API configuration found. Please set up AI integrations or provide OPENAI_API_KEY.");
+  throw new Error("OpenAI API key not configured. Please set OPENAI_API_KEY environment variable.");
 }
 
 export async function parseInvoice(fileContent: string, fileName: string): Promise<InvoiceAnalysisResult> {

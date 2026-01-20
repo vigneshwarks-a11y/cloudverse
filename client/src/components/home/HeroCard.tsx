@@ -36,7 +36,7 @@ function LogoPill({ logoKey, className = "" }: { logoKey: LogoKey; className?: s
       <img
         src={logoPath}
         alt={displayName}
-        className="h-6 w-auto max-w-full object-contain"
+        className="h-8 w-auto max-w-full object-contain"
       />
     </div>
   );
@@ -130,7 +130,7 @@ export function HeroCard() {
           <h5 className="text-[10px] font-bold tracking-[0.2em] text-cv-muted dark:text-slate-500 uppercase mb-3">
             AI & GPU Providers
           </h5>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-3 gap-3">
             {AI_GPU_PROVIDERS.map((key) => (
               <LogoPill key={key} logoKey={key} />
             ))}

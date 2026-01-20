@@ -119,7 +119,7 @@ export function HowItWorks() {
                 {/* Desktop Number Pill */}
                 <div className="hidden lg:flex items-center justify-center mb-6">
                   <div
-                    className="w-12 h-12 rounded-full border-2 flex items-center justify-center font-semibold text-sm transition-all border-cv-line dark:border-white/20 text-cv-muted bg-[#000000]"
+                    className="w-12 h-12 rounded-full border-2 flex items-center justify-center font-semibold text-sm transition-all border-cv-line dark:border-white/20 text-cv-muted bg-white dark:bg-transparent"
                   >
                     {step.number}
                   </div>

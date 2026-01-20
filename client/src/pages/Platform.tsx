@@ -25,17 +25,17 @@ const platformOutcomesSet2 = [
 ];
 
 const cloudProviders = [
-  { name: "AWS", src: "/logos/aws-colored.svg" },
-  { name: "Azure", src: "/logos/azure-colored.svg" },
-  { name: "GCP", src: "/logos/gcp-colored.svg" },
-  { name: "Alibaba Cloud", src: "/logos/alibaba-colored.svg" },
-  { name: "Huawei Cloud", src: "/logos/huawei-colored.svg" },
-  { name: "Tencent Cloud", src: "/logos/tencent-colored.svg" },
+  { name: "AWS", src: "/logos/aws/aws-light.svg" },
+  { name: "Azure", src: "/logos/azure/azure-icon.png" },
+  { name: "GCP", src: "/logos/gcp/gcp-icon.png" },
+  { name: "Alibaba Cloud", src: "/logos/alibaba/alibaba-icon.png" },
+  { name: "Huawei Cloud", src: "/logos/huawei/huawei-icon.png" },
+  { name: "Tencent Cloud", src: "/logos/tencent/tencent-icon.png" },
 ];
 
 const aiProviders = [
-  { name: "OpenAI", src: "/logos/openai-colored.svg" },
-  { name: "Databricks", src: "/logos/databricks-colored.svg" },
+  { name: "OpenAI", src: "/logos/openai/openai-light.svg" },
+  { name: "Snowflake", src: "/logos/snowflake/snowflake-light.svg" },
 ];
 
 const capabilities = [
@@ -78,9 +78,7 @@ export default function Platform() {
             <span className="cv-cap font-semibold tracking-widest text-cv-muted uppercase">
               CloudVerse™ Platform
             </span>
-            <h1 className="cv-h1">
-              A unified platform for visibility, allocation, and automation
-            </h1>
+            <h1 className="cv-h1">Automated spend governance in one platform</h1>
             <p className="text-[15px] sm:text-[16px] lg:text-[18px] leading-[24px] sm:leading-[26px] lg:leading-[30px] text-cv-muted max-w-[40rem]">
               Manage cloud, data, and AI spend with clean dimensions, anomalies, and automated actions.
             </p>

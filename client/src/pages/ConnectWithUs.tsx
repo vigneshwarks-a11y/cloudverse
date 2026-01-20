@@ -10,8 +10,8 @@ import { useToast } from "@/hooks/use-toast";
 import { Calendar as CalendarIcon, Clock, ChevronDown } from "lucide-react";
 import { useSearch } from "wouter";
 import { integrationsData } from "@/data/integrationsData";
-import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { track } from "@/lib/track";
 
@@ -56,8 +56,8 @@ export default function ConnectWithUs() {
   const searchString = useSearch();
   const urlParams = new URLSearchParams(searchString);
   const integrationFromUrl = urlParams.get("integration") || "";
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [dateOpen, setDateOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
 
   useEffect(() => {
     document.title = "Connect With Us — CloudVerse™";
@@ -208,26 +208,29 @@ export default function ConnectWithUs() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label className="text-xs font-medium text-cv-muted uppercase tracking-wider flex items-center gap-2">
-                      <CalendarIcon className="w-3.5 h-3.5" />
-                      Preferred Date
-                    </label>
+                <div className="space-y-2">
+                  <label className="text-xs font-medium text-cv-muted uppercase tracking-wider flex items-center gap-2">
+                    <CalendarIcon className="w-3.5 h-3.5" />
+                    Preferred Date & Time
+                  </label>
+                  <div className="grid grid-cols-2 gap-3">
                     <Popover open={dateOpen} onOpenChange={setDateOpen}>
                       <PopoverTrigger asChild>
                         <button
                           type="button"
-                          className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink text-left flex items-center justify-between"
+                          className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-left cursor-pointer hover:border-cv-muted/50 flex items-center justify-between"
                           data-testid="input-date"
                         >
                           <span className={selectedDate ? "text-cv-ink" : "text-cv-muted/50"}>
-                            {selectedDate ? format(selectedDate, "PPP") : "Select a date"}
+                            {selectedDate ? format(selectedDate, "MMM d, yyyy") : "Select date"}
                           </span>
                           <CalendarIcon className="w-4 h-4 text-cv-muted" />
                         </button>
                       </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0" align="start">
+                      <PopoverContent 
+                        className="w-auto p-0 bg-cv-surface border border-cv-line shadow-xl rounded-xl" 
+                        align="start"
+                      >
                         <Calendar
                           mode="single"
                           selected={selectedDate}
@@ -238,30 +241,22 @@ export default function ConnectWithUs() {
                             }
                             setDateOpen(false);
                           }}
-                          disabled={(date) => date < new Date()}
+                          disabled={(date) => date < new Date() || date.getDay() === 0 || date.getDay() === 6}
                           initialFocus
+                          className="rounded-xl"
                         />
                       </PopoverContent>
                     </Popover>
                     <input type="hidden" {...register("preferredDate")} />
-                    {errors.preferredDate && (
-                      <p className="text-red-500 text-xs">{errors.preferredDate.message}</p>
-                    )}
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <label htmlFor="preferredTime" className="text-xs font-medium text-cv-muted uppercase tracking-wider flex items-center gap-2">
-                      <Clock className="w-3.5 h-3.5" />
-                      Preferred Time
-                    </label>
+                    
                     <div className="relative">
                       <select
                         id="preferredTime"
                         {...register("preferredTime")}
-                        className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink appearance-none cursor-pointer"
+                        className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink appearance-none cursor-pointer pr-10"
                         data-testid="input-time"
                       >
-                        <option value="">Select a time</option>
+                        <option value="">Time</option>
                         {timeSlots.map((slot) => (
                           <option key={slot.value} value={slot.value}>
                             {slot.label}
@@ -270,10 +265,12 @@ export default function ConnectWithUs() {
                       </select>
                       <Clock className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-cv-muted pointer-events-none" />
                     </div>
-                    {errors.preferredTime && (
-                      <p className="text-red-500 text-xs">{errors.preferredTime.message}</p>
-                    )}
                   </div>
+                  {(errors.preferredDate || errors.preferredTime) && (
+                    <p className="text-red-500 text-xs">
+                      {errors.preferredDate?.message || errors.preferredTime?.message}
+                    </p>
+                  )}
                 </div>
 
                 <Button 
