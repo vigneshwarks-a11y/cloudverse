@@ -36,7 +36,7 @@ function LogoPill({ logoKey, className = "" }: { logoKey: LogoKey; className?: s
       <img
         src={logoPath}
         alt={displayName}
-        className="h-6 w-auto max-w-full object-contain"
+        className="h-8 w-auto max-w-full object-contain"
       />
     </div>
   );
