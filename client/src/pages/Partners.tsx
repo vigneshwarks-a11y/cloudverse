@@ -133,9 +133,18 @@ export default function Partners() {
 
   const onSubmit = (data: InsertPartnerInquiry) => {
     track("partner_inquiry_submit", {
+      fullName: data.fullName,
+      businessEmail: data.businessEmail,
+      companyName: data.companyName,
+      phoneNumber: data.phoneNumber,
+      countryRegion: data.countryRegion,
       partnerType: data.partnerType,
       employeeCount: data.employeeCount,
+      cloudProviders: data.cloudProviders,
       cloudProvidersCount: data.cloudProviders?.length ?? 0,
+      website: data.website,
+      message: data.message,
+      agreedToTerms: data.agreedToTerms,
     });
     // mutation.mutate(data);
   };

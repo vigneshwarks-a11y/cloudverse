@@ -110,6 +110,9 @@ export default function ConnectWithUs() {
 
   const onSubmit = (data: FormData) => {
     track("demo_inquiry_submit", {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
       preferredDate: data.preferredDate,
       preferredTime: data.preferredTime,
       interestedIntegration: data.interestedIntegration || "none",
