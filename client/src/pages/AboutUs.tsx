@@ -11,7 +11,7 @@ const leadershipTeam = [
   {
     name: "Ann Pho Quoc",
     role: "CPTO",
-    image: "/team/ann-pho-quoc.jpg",
+    image: "/team/ann-pho-quoc.png",
     linkedin: "https://linkedin.com/in/ann-pho-quoc",
   },
   {
