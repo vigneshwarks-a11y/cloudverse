@@ -6,6 +6,9 @@ export type TrackPayload = Record<string, any>;
 declare global {
   interface Window {
     __cvTrackQueue?: Array<{ event: string; payload?: TrackPayload }>;
+    mixpanel?: {
+      track?: (event: string, payload?: TrackPayload) => void;
+    };
   }
 }
 
@@ -27,7 +30,12 @@ export function track(event: string, payload?: TrackPayload): void {
   // 2. Push to global queue (can be picked up by GTM/GA/PostHog later)
   window.__cvTrackQueue?.push({ event, payload });
 
-  // 3. Dispatch custom event for immediate internal listeners
+  // 3. Forward to Mixpanel when available
+  if (window.mixpanel?.track) {
+    window.mixpanel.track(event, payload);
+  }
+
+  // 4. Dispatch custom event for immediate internal listeners
   const customEvent = new CustomEvent("cv:track", {
     detail: { event, payload },
   });

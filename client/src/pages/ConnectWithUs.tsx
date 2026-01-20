@@ -13,6 +13,7 @@ import { integrationsData } from "@/data/integrationsData";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { format } from "date-fns";
+import { track } from "@/lib/track";
 
 const formSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
@@ -91,7 +92,12 @@ export default function ConnectWithUs() {
       };
       await apiRequest("POST", "/api/demo/inquiry", payload);
     },
-    onSuccess: () => {
+    onSuccess: (_data, variables) => {
+      track("demo_inquiry_submit", {
+        preferredDate: variables.preferredDate,
+        preferredTime: variables.preferredTime,
+        interestedIntegration: variables.interestedIntegration || "none",
+      });
       toast({
         title: "Demo Request Submitted",
         description: "We'll be in touch shortly to confirm your demo.",

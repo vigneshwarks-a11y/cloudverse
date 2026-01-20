@@ -122,7 +122,12 @@ export default function Partners() {
     mutationFn: async (data: InsertPartnerInquiry) => {
       await apiRequest("POST", "/api/partners/inquiry", data);
     },
-    onSuccess: () => {
+    onSuccess: (_data, variables) => {
+      track("partner_inquiry_submit", {
+        partnerType: variables.partnerType,
+        employeeCount: variables.employeeCount,
+        cloudProvidersCount: variables.cloudProviders?.length ?? 0,
+      });
       toast({
         title: "Inquiry Sent",
         description: "We'll be in touch shortly.",
