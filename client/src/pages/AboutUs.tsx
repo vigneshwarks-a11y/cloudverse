@@ -120,12 +120,12 @@ export default function AboutUs() {
                 Industry veterans and thought leaders guiding our strategic vision.
               </p>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
               {boardOfAdvisory.map((member, idx) => (
                 <div key={idx} className="group text-center">
-                  <div className="relative mb-4 mx-auto w-24 h-24 sm:w-28 sm:h-28">
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-xl transform rotate-2 group-hover:rotate-4 transition-transform" />
-                    <div className="relative w-full h-full rounded-xl overflow-hidden border border-cv-line bg-cv-surface2">
+                  <div className="relative mb-5 mx-auto w-32 h-32 sm:w-40 sm:h-40">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-2xl transform rotate-2 group-hover:rotate-4 transition-transform" />
+                    <div className="relative w-full h-full rounded-2xl overflow-hidden border-2 border-cv-line bg-cv-surface2">
                       <img 
                         src={member.image} 
                         alt={member.name}
@@ -134,13 +134,13 @@ export default function AboutUs() {
                           const target = e.target as HTMLImageElement;
                           target.style.display = 'none';
                           target.parentElement!.classList.add('flex', 'items-center', 'justify-center');
-                          target.parentElement!.innerHTML = `<span class="text-2xl text-cv-muted">${member.name.charAt(0)}</span>`;
+                          target.parentElement!.innerHTML = `<span class="text-3xl text-cv-muted">${member.name.charAt(0)}</span>`;
                         }}
                       />
                     </div>
                   </div>
-                  <h3 className="text-sm font-semibold text-cv-ink mb-0.5">{member.name}</h3>
-                  <p className="text-xs text-cv-muted">{member.role}</p>
+                  <h3 className="text-base font-semibold text-cv-ink mb-1">{member.name}</h3>
+                  <p className="text-sm text-cv-muted">{member.role}</p>
                 </div>
               ))}
             </div>
