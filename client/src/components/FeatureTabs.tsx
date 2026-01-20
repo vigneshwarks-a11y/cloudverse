@@ -4,6 +4,7 @@ import platformDashboardPreview from "@/assets/platform-dashboard-preview.png";
 import platformDashboardPreviewDark from "@/assets/platform-dashboard-preview-dark.png";
 import automationDashboardPreview from "@/assets/automation-dashboard-preview.png";
 import anomalyDashboardPreview from "@/assets/anomaly-dashboard-preview.png";
+import anomalyDashboardPreviewDark from "@/assets/anomaly-dashboard-preview-dark.png";
 import visibilityDashboardPreview from "@/assets/visibility-dashboard-preview.png";
 import visibilityDashboardPreviewDark from "@/assets/visibility-dashboard-preview-dark.png";
 import tagEngineDashboardPreview from "@/assets/tag-engine-dashboard-preview.png";
@@ -58,6 +59,7 @@ const featureTabs = [
       "Clear paths to investigate and fix",
     ],
     image: anomalyDashboardPreview,
+    imageDark: anomalyDashboardPreviewDark,
   },
   {
     id: "automation",
