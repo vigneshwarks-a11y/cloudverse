@@ -8,8 +8,8 @@ import anomalyDashboardPreview from "@/assets/anomaly-dashboard-preview.png";
 import anomalyDashboardPreviewDark from "@/assets/anomaly-dashboard-preview-dark.png";
 import visibilityDashboardPreview from "@/assets/visibility-dashboard-preview.png";
 import visibilityDashboardPreviewDark from "@/assets/visibility-dashboard-preview-dark.png";
-import tagEngineDashboardPreview from "@/assets/tag-engine-dashboard-preview.png";
-import tagEngineDashboardPreviewDark from "@/assets/tag-engine-dashboard-preview-dark.png";
+import tagEngineDashboardPreview from "@/assets/tag_engine_white.png";
+import tagEngineDashboardPreviewDark from "@/assets/tag_engine_black.png";
 
 const featureTabs = [
   {
