@@ -114,7 +114,7 @@ export default function ConnectWithUs() {
                       id="firstName"
                       {...register("firstName")}
                       placeholder="John"
-                      className="w-full bg-cv-surface2 border border-cv-line rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
+                      className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
                       data-testid="input-first-name"
                     />
                     {errors.firstName && (
@@ -130,7 +130,7 @@ export default function ConnectWithUs() {
                       id="lastName"
                       {...register("lastName")}
                       placeholder="Doe"
-                      className="w-full bg-cv-surface2 border border-cv-line rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
+                      className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
                       data-testid="input-last-name"
                     />
                     {errors.lastName && (
@@ -148,7 +148,7 @@ export default function ConnectWithUs() {
                     type="email"
                     {...register("email")}
                     placeholder="john@company.com"
-                    className="w-full bg-cv-surface2 border border-cv-line rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
+                    className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
                     data-testid="input-email"
                   />
                   {errors.email && (
@@ -164,7 +164,7 @@ export default function ConnectWithUs() {
                     <select
                       id="interestedIntegration"
                       {...register("interestedIntegration")}
-                      className="w-full bg-cv-surface2 border border-cv-line rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink appearance-none cursor-pointer"
+                      className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink appearance-none cursor-pointer"
                       data-testid="select-integration"
                     >
                       {integrationOptions.map((option) => (
@@ -187,7 +187,7 @@ export default function ConnectWithUs() {
                       id="preferredDate"
                       type="date"
                       {...register("preferredDate")}
-                      className="w-full bg-cv-surface2 border border-cv-line rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink"
+                      className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink"
                       data-testid="input-date"
                     />
                     {errors.preferredDate && (
@@ -204,7 +204,7 @@ export default function ConnectWithUs() {
                       id="preferredTime"
                       type="time"
                       {...register("preferredTime")}
-                      className="w-full bg-cv-surface2 border border-cv-line rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink"
+                      className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink"
                       data-testid="input-time"
                     />
                     {errors.preferredTime && (
