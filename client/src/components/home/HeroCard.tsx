@@ -130,7 +130,7 @@ export function HeroCard() {
           <h5 className="text-[10px] font-bold tracking-[0.2em] text-cv-muted dark:text-slate-500 uppercase mb-3">
             AI & GPU Providers
           </h5>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-3 gap-3">
             {AI_GPU_PROVIDERS.map((key) => (
               <LogoPill key={key} logoKey={key} />
             ))}

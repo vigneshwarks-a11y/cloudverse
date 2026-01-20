@@ -64,7 +64,7 @@ export const LOGOS: Record<LogoKey, LogoVariant> = {
 };
 
 export const CLOUD_PROVIDERS: LogoKey[] = ['aws', 'azure', 'gcp', 'alibaba', 'huawei', 'tencent'];
-export const AI_GPU_PROVIDERS: LogoKey[] = ['openai', 'databricks', 'snowflake', 'kubernetes'];
+export const AI_GPU_PROVIDERS: LogoKey[] = ['openai', 'snowflake', 'kubernetes'];
 
 export const LOGO_DISPLAY_NAMES: Record<LogoKey, string> = {
   aws: 'AWS',
