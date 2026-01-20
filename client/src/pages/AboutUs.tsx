@@ -5,7 +5,7 @@ const leadershipTeam = [
   {
     name: "Chaand Deshwal",
     role: "Founder & CEO",
-    image: "/team/chaand-deshwal.jpg",
+    image: "/team/chaand-deshwal.png",
     linkedin: "https://linkedin.com/in/chaand-deshwal",
   },
   {
