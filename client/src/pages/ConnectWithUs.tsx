@@ -7,7 +7,7 @@ import { z } from "zod";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-import { Calendar, Clock, Users, Zap, Shield, TrendingDown, ChevronDown } from "lucide-react";
+import { Calendar, Clock, ChevronDown } from "lucide-react";
 import { useSearch } from "wouter";
 import { integrationsData } from "@/data/integrationsData";
 
@@ -21,29 +21,6 @@ const formSchema = z.object({
 });
 
 type FormData = z.infer<typeof formSchema>;
-
-const benefits = [
-  {
-    icon: TrendingDown,
-    title: "See Your Savings Potential",
-    description: "Get a personalized analysis of optimization opportunities across your cloud spend."
-  },
-  {
-    icon: Users,
-    title: "Talk to Cloud Experts",
-    description: "Our team has helped enterprises save millions on cloud infrastructure."
-  },
-  {
-    icon: Zap,
-    title: "30-Minute Deep Dive",
-    description: "A focused session tailored to your specific cloud challenges and goals."
-  },
-  {
-    icon: Shield,
-    title: "No Commitment Required",
-    description: "Learn how CloudVerse works with zero pressure. We're here to help."
-  }
-];
 
 const integrationOptions = [
   { value: "", label: "No specific integration" },
@@ -121,37 +98,12 @@ export default function ConnectWithUs() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-            <div className="space-y-8">
-              <div className="space-y-6">
-                {benefits.map((benefit, idx) => {
-                  const Icon = benefit.icon;
-                  return (
-                    <div key={idx} className="flex gap-4 group">
-                      <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
-                        <Icon className="w-6 h-6 text-blue-500" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-cv-ink mb-1">{benefit.title}</h3>
-                        <p className="text-sm text-cv-muted">{benefit.description}</p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-            
-            <div className="relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-3xl blur-xl opacity-50" />
-              <form 
-                onSubmit={handleSubmit((data) => mutation.mutate(data))} 
-                className="relative space-y-5 p-8 sm:p-10 rounded-2xl border border-cv-line bg-cv-surface dark:bg-cv-surface/80 backdrop-blur-sm shadow-xl"
-                data-testid="demo-inquiry-form"
-              >
-                <div className="text-center mb-6">
-                  <h2 className="text-xl font-bold text-cv-ink mb-2">Book Your Demo</h2>
-                  <p className="text-sm text-cv-muted">Fill in your details and we'll be in touch shortly.</p>
-                </div>
+          <div className="max-w-[700px] mx-auto">
+            <form 
+              onSubmit={handleSubmit((data) => mutation.mutate(data))} 
+              className="space-y-8"
+              data-testid="demo-inquiry-form"
+            >
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
@@ -274,8 +226,7 @@ export default function ConnectWithUs() {
                 <p className="text-xs text-cv-muted text-center pt-2">
                   By submitting, you agree to our privacy policy. We'll never share your information.
                 </p>
-              </form>
-            </div>
+            </form>
           </div>
         </div>
       </section>
