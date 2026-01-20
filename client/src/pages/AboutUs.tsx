@@ -96,26 +96,23 @@ export default function AboutUs() {
                 Our leadership team brings decades of experience in cloud infrastructure, enterprise software, and financial operations.
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12">
               {leadershipTeam.map((member, idx) => (
                 <div key={idx} className="group">
-                  <div className="relative mb-4 w-full aspect-square max-w-[200px] mx-auto">
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl transform rotate-2 group-hover:rotate-4 transition-transform" />
-                    <div className="relative w-full h-full rounded-2xl overflow-hidden border-2 border-cv-line bg-cv-surface2">
-                      <img 
-                        src={member.image} 
-                        alt={member.name}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                          target.parentElement!.classList.add('flex', 'items-center', 'justify-center');
-                          target.parentElement!.innerHTML = `<span class="text-4xl text-cv-muted">${member.name.charAt(0)}</span>`;
-                        }}
-                      />
-                    </div>
+                  <div className="relative mb-6 w-full aspect-square rounded-3xl overflow-hidden bg-black">
+                    <img 
+                      src={member.image} 
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        target.parentElement!.classList.add('flex', 'items-center', 'justify-center');
+                        target.parentElement!.innerHTML = `<span class="text-5xl text-gray-600">${member.name.charAt(0)}</span>`;
+                      }}
+                    />
                   </div>
-                  <div className="flex items-start justify-between max-w-[200px] mx-auto">
+                  <div className="flex items-start justify-between">
                     <div className="text-left">
                       <h3 className="text-lg font-semibold text-cv-ink">{member.name}</h3>
                       <p className="text-sm text-cv-muted">{member.role}</p>
@@ -124,10 +121,10 @@ export default function AboutUs() {
                       href={member.linkedin} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="flex-shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#0A66C2] hover:bg-[#004182] transition-colors mt-0.5"
+                      className="flex-shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-lg bg-[#0A66C2] hover:bg-[#004182] transition-colors"
                       aria-label={`${member.name}'s LinkedIn`}
                     >
-                      <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+                      <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                       </svg>
                     </a>
@@ -144,35 +141,32 @@ export default function AboutUs() {
                 Industry veterans and thought leaders guiding our strategic vision.
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-8">
               {boardOfAdvisory.map((member, idx) => (
                 <div key={idx} className="group">
-                  <div className="relative mb-4 w-full aspect-square max-w-[180px] mx-auto">
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/15 to-purple-500/15 rounded-2xl transform rotate-2 group-hover:rotate-4 transition-transform" />
-                    <div className="relative w-full h-full rounded-2xl overflow-hidden border-2 border-cv-line bg-cv-surface2">
-                      <img 
-                        src={member.image} 
-                        alt={member.name}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                          target.parentElement!.classList.add('flex', 'items-center', 'justify-center');
-                          target.parentElement!.innerHTML = `<span class="text-3xl text-cv-muted">${member.name.charAt(0)}</span>`;
-                        }}
-                      />
-                    </div>
+                  <div className="relative mb-4 w-full aspect-square rounded-2xl overflow-hidden bg-black">
+                    <img 
+                      src={member.image} 
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        target.parentElement!.classList.add('flex', 'items-center', 'justify-center');
+                        target.parentElement!.innerHTML = `<span class="text-3xl text-gray-600">${member.name.charAt(0)}</span>`;
+                      }}
+                    />
                   </div>
-                  <div className="flex items-start justify-between max-w-[180px] mx-auto">
-                    <div className="text-left">
-                      <h3 className="text-base font-semibold text-cv-ink">{member.name}</h3>
-                      <p className="text-sm text-cv-muted">{member.role}</p>
+                  <div className="flex items-start justify-between">
+                    <div className="text-left min-w-0 flex-1 mr-2">
+                      <h3 className="text-sm font-semibold text-cv-ink truncate">{member.name}</h3>
+                      <p className="text-xs text-cv-muted truncate">{member.role}</p>
                     </div>
                     <a 
                       href={member.linkedin} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="flex-shrink-0 inline-flex items-center justify-center w-7 h-7 rounded-md bg-[#0A66C2] hover:bg-[#004182] transition-colors mt-0.5"
+                      className="flex-shrink-0 inline-flex items-center justify-center w-7 h-7 rounded-md bg-[#0A66C2] hover:bg-[#004182] transition-colors"
                       aria-label={`${member.name}'s LinkedIn`}
                     >
                       <svg className="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="currentColor">
