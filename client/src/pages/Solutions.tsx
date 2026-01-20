@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { DollarSign, Code2, Briefcase, Server, Cpu } from "lucide-react";
 import { useTheme } from "next-themes";
 import financePreview from "@/assets/finance_white.png";
-import financePreviewDark from "@/assets/finance_white.png";
+import financePreviewDark from "@/assets/finance_black.png";
 import developerFinopsPreview from "@/assets/engineering_white.png";
 import developerFinopsPreviewDark from "@/assets/engineering_black.png";
 import businessPreview from "@/assets/business_white.png";
