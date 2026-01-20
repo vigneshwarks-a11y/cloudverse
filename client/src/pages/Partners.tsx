@@ -137,7 +137,7 @@ export default function Partners() {
       employeeCount: data.employeeCount,
       cloudProvidersCount: data.cloudProviders?.length ?? 0,
     });
-    mutation.mutate(data);
+    // mutation.mutate(data);
   };
 
   const scrollToForm = () => {
