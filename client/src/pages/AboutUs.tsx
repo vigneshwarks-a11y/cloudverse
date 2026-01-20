@@ -3,19 +3,19 @@ import { useEffect } from "react";
 
 const leadershipTeam = [
   {
-    name: "Leadership Member 1",
-    role: "CEO & Co-Founder",
-    image: "/team/leader-1.jpg",
+    name: "Chaand Deshwal",
+    role: "Founder & CEO",
+    image: "/team/chaand-deshwal.jpg",
   },
   {
-    name: "Leadership Member 2",
-    role: "CTO & Co-Founder",
-    image: "/team/leader-2.jpg",
+    name: "Ann Pho Quoc",
+    role: "CPTO",
+    image: "/team/ann-pho-quoc.jpg",
   },
   {
-    name: "Leadership Member 3",
-    role: "COO",
-    image: "/team/leader-3.jpg",
+    name: "Justin",
+    role: "GTM Lead North-America",
+    image: "/team/justin.jpg",
   },
 ];
 
