@@ -7,7 +7,9 @@ import { z } from "zod";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-import { Calendar, Clock, Users, Zap, Shield, TrendingDown } from "lucide-react";
+import { Calendar, Clock, Users, Zap, Shield, TrendingDown, ChevronDown } from "lucide-react";
+import { useSearch } from "wouter";
+import { integrationsData } from "@/data/integrationsData";
 
 const formSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
@@ -15,6 +17,7 @@ const formSchema = z.object({
   email: z.string().email("Valid email is required"),
   preferredDate: z.string().min(1, "Preferred date is required"),
   preferredTime: z.string().min(1, "Preferred time is required"),
+  interestedIntegration: z.string().optional(),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -42,23 +45,38 @@ const benefits = [
   }
 ];
 
+const integrationOptions = [
+  { value: "", label: "No specific integration" },
+  ...integrationsData.map(i => ({ value: i.name, label: i.name }))
+];
+
 export default function ConnectWithUs() {
   const { toast } = useToast();
+  const searchString = useSearch();
+  const urlParams = new URLSearchParams(searchString);
+  const integrationFromUrl = urlParams.get("integration") || "";
 
   useEffect(() => {
     document.title = "Connect With Us — CloudVerse™";
   }, []);
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
+  const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       firstName: "",
       lastName: "",
       email: "",
       preferredDate: "",
-      preferredTime: ""
+      preferredTime: "",
+      interestedIntegration: integrationFromUrl
     }
   });
+
+  useEffect(() => {
+    if (integrationFromUrl) {
+      setValue("interestedIntegration", integrationFromUrl);
+    }
+  }, [integrationFromUrl, setValue]);
 
   const mutation = useMutation({
     mutationFn: async (data: FormData) => {
@@ -66,7 +84,8 @@ export default function ConnectWithUs() {
         firstName: data.firstName,
         lastName: data.lastName,
         email: data.email,
-        preferredDateTime: `${data.preferredDate}T${data.preferredTime}`
+        preferredDateTime: `${data.preferredDate}T${data.preferredTime}`,
+        interestedIntegration: data.interestedIntegration || null
       };
       await apiRequest("POST", "/api/demo/inquiry", payload);
     },
@@ -183,6 +202,27 @@ export default function ConnectWithUs() {
                   {errors.email && (
                     <p className="text-red-500 text-xs">{errors.email.message}</p>
                   )}
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="interestedIntegration" className="text-xs font-medium text-cv-muted uppercase tracking-wider">
+                    Interested in a specific integration?
+                  </label>
+                  <div className="relative">
+                    <select
+                      id="interestedIntegration"
+                      {...register("interestedIntegration")}
+                      className="w-full bg-cv-surface2 border border-cv-line rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink appearance-none cursor-pointer"
+                      data-testid="select-integration"
+                    >
+                      {integrationOptions.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-cv-muted pointer-events-none" />
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

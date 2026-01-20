@@ -127,7 +127,15 @@ export function IntegrationDrawer({ integration, onClose }: IntegrationDrawerPro
           {/* Actions */}
           <div className="px-5 md:px-6 py-5 border-t border-cv-line">
             <div className="flex gap-3">
-              <Button variant="secondary" size="lg" className="flex-1">
+              <Button 
+                variant="secondary" 
+                size="lg" 
+                className="flex-1"
+                onClick={() => {
+                  onClose();
+                  setLocation(`/connect?integration=${encodeURIComponent(integration.name)}`);
+                }}
+              >
                 Request access
               </Button>
             </div>

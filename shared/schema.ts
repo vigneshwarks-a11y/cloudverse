@@ -45,6 +45,7 @@ export const demoInquiries = pgTable("demo_inquiries", {
   lastName: text("last_name").notNull(),
   email: text("email").notNull(),
   preferredDateTime: text("preferred_date_time").notNull(),
+  interestedIntegration: text("interested_integration"),
 });
 
 export const insertDemoInquirySchema = createInsertSchema(demoInquiries).omit({
