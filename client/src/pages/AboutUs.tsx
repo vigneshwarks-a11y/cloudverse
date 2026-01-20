@@ -1,21 +1,25 @@
 import { BaseLayout } from "@/layouts/BaseLayout";
 import { useEffect } from "react";
+import { Linkedin } from "lucide-react";
 
 const leadershipTeam = [
   {
     name: "Chaand Deshwal",
     role: "Founder & CEO",
     image: "/team/chaand-deshwal.jpg",
+    linkedin: "https://linkedin.com/in/chaand-deshwal",
   },
   {
     name: "Ann Pho Quoc",
     role: "CPTO",
     image: "/team/ann-pho-quoc.jpg",
+    linkedin: "https://linkedin.com/in/ann-pho-quoc",
   },
   {
     name: "Justin",
     role: "GTM Lead North-America",
     image: "/team/justin.jpg",
+    linkedin: "https://linkedin.com/in/justin",
   },
 ];
 
@@ -24,31 +28,37 @@ const boardOfAdvisory = [
     name: "Advisor 1",
     role: "Board Advisor",
     image: "/team/advisor-1.jpg",
+    linkedin: "https://linkedin.com/in/advisor-1",
   },
   {
     name: "Advisor 2",
     role: "Board Advisor",
     image: "/team/advisor-2.jpg",
+    linkedin: "https://linkedin.com/in/advisor-2",
   },
   {
     name: "Advisor 3",
     role: "Board Advisor",
     image: "/team/advisor-3.jpg",
+    linkedin: "https://linkedin.com/in/advisor-3",
   },
   {
     name: "Advisor 4",
     role: "Board Advisor",
     image: "/team/advisor-4.jpg",
+    linkedin: "https://linkedin.com/in/advisor-4",
   },
   {
     name: "Advisor 5",
     role: "Board Advisor",
     image: "/team/advisor-5.jpg",
+    linkedin: "https://linkedin.com/in/advisor-5",
   },
   {
     name: "Advisor 6",
     role: "Board Advisor",
     image: "/team/advisor-6.jpg",
+    linkedin: "https://linkedin.com/in/advisor-6",
   },
 ];
 
@@ -106,7 +116,18 @@ export default function AboutUs() {
                       />
                     </div>
                   </div>
-                  <h3 className="text-lg font-semibold text-cv-ink mb-1">{member.name}</h3>
+                  <div className="flex items-center justify-center gap-2 mb-1">
+                    <h3 className="text-lg font-semibold text-cv-ink">{member.name}</h3>
+                    <a 
+                      href={member.linkedin} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-blue-500 hover:text-blue-600 transition-colors"
+                      aria-label={`${member.name}'s LinkedIn`}
+                    >
+                      <Linkedin className="w-5 h-5" />
+                    </a>
+                  </div>
                   <p className="text-sm text-cv-muted">{member.role}</p>
                 </div>
               ))}
@@ -139,7 +160,18 @@ export default function AboutUs() {
                       />
                     </div>
                   </div>
-                  <h3 className="text-base font-semibold text-cv-ink mb-1">{member.name}</h3>
+                  <div className="flex items-center justify-center gap-2 mb-1">
+                    <h3 className="text-base font-semibold text-cv-ink">{member.name}</h3>
+                    <a 
+                      href={member.linkedin} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-blue-500 hover:text-blue-600 transition-colors"
+                      aria-label={`${member.name}'s LinkedIn`}
+                    >
+                      <Linkedin className="w-4 h-4" />
+                    </a>
+                  </div>
                   <p className="text-sm text-cv-muted">{member.role}</p>
                 </div>
               ))}
