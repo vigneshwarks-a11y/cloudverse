@@ -26,11 +26,11 @@ const platformOutcomesSet2 = [
 
 const cloudProviders = [
   { name: "AWS", src: "/logos/aws/aws-light.svg" },
-  { name: "Azure", src: "/logos/azure/azure-cloud.png" },
-  { name: "GCP", src: "/logos/gcp/gcp-light.svg" },
-  { name: "Alibaba Cloud", src: "/logos/alibaba/alibaba-cloud.png" },
-  { name: "Huawei Cloud", src: "/logos/huawei/huawei-cloud.png" },
-  { name: "Tencent Cloud", src: "/logos/tencent/tencent-cloud.png" },
+  { name: "Azure", src: "/logos/azure/azure-icon.png" },
+  { name: "GCP", src: "/logos/gcp/gcp-icon.png" },
+  { name: "Alibaba Cloud", src: "/logos/alibaba/alibaba-icon.png" },
+  { name: "Huawei Cloud", src: "/logos/huawei/huawei-icon.png" },
+  { name: "Tencent Cloud", src: "/logos/tencent/tencent-icon.png" },
 ];
 
 const aiProviders = [
