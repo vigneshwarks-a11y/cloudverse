@@ -210,18 +210,20 @@ export default function ConnectWithUs() {
                     </label>
                     <Popover open={dateOpen} onOpenChange={setDateOpen}>
                       <PopoverTrigger asChild>
-                        <button
-                          type="button"
-                          className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink text-left flex items-center justify-between"
-                          data-testid="input-date"
-                        >
-                          <span className={selectedDate ? "text-cv-ink" : "text-cv-muted/50"}>
-                            {selectedDate ? format(selectedDate, "PPP") : "Select a date"}
-                          </span>
-                          <CalendarIcon className="w-4 h-4 text-cv-muted" />
-                        </button>
+                        <div className="relative">
+                          <button
+                            type="button"
+                            className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-left cursor-pointer hover:border-cv-muted/50"
+                            data-testid="input-date"
+                          >
+                            <span className={selectedDate ? "text-cv-ink" : "text-cv-muted/50"}>
+                              {selectedDate ? format(selectedDate, "PPP") : "Select a date"}
+                            </span>
+                          </button>
+                          <CalendarIcon className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-cv-muted pointer-events-none" />
+                        </div>
                       </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0" align="start">
+                      <PopoverContent className="w-auto p-0 bg-cv-surface border border-cv-line shadow-xl" align="start">
                         <Calendar
                           mode="single"
                           selected={selectedDate}
