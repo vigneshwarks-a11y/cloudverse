@@ -27,7 +27,7 @@ export function Footer() {
     {
       title: "Company",
       links: [
-        { label: "About", href: "/company" },
+        { label: "About", href: "/about" },
         { label: "Careers", href: "#" },
         { label: "Contact", href: "/contact" },
         { label: "Legal", href: "/legal/terms" },
