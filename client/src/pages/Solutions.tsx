@@ -11,6 +11,7 @@ import financePreviewDark from "@/assets/finance-preview-dark.png";
 import developerFinopsPreview from "@/assets/developer-finops-preview.png";
 import developerFinopsPreviewDark from "@/assets/developer-finops-preview-dark.png";
 import businessPreview from "@/assets/business-preview.png";
+import businessPreviewDark from "@/assets/business-preview-dark.png";
 import itPreview from "@/assets/it-preview.png";
 import aiPreview from "@/assets/ai-preview.png";
 import { FinalCTA } from "@/components/FinalCTA";
@@ -226,7 +227,7 @@ export default function Solutions() {
               ) : activeRole === "business" ? (
                 <div className="rounded-2xl overflow-hidden">
                   <img 
-                    src={businessPreview} 
+                    src={resolvedTheme === "dark" ? businessPreviewDark : businessPreview} 
                     alt="Business view: unit economics, BU rollups, driver attribution"
                     className="w-full h-auto block"
                   />
