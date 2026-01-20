@@ -122,12 +122,7 @@ export default function Partners() {
     mutationFn: async (data: InsertPartnerInquiry) => {
       await apiRequest("POST", "/api/partners/inquiry", data);
     },
-    onSuccess: (_data, variables) => {
-      track("partner_inquiry_submit", {
-        partnerType: variables.partnerType,
-        employeeCount: variables.employeeCount,
-        cloudProvidersCount: variables.cloudProviders?.length ?? 0,
-      });
+    onSuccess: () => {
       toast({
         title: "Inquiry Sent",
         description: "We'll be in touch shortly.",
@@ -135,6 +130,15 @@ export default function Partners() {
       reset();
     }
   });
+
+  const onSubmit = (data: InsertPartnerInquiry) => {
+    track("partner_inquiry_submit", {
+      partnerType: data.partnerType,
+      employeeCount: data.employeeCount,
+      cloudProvidersCount: data.cloudProviders?.length ?? 0,
+    });
+    mutation.mutate(data);
+  };
 
   const scrollToForm = () => {
     formRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -335,7 +339,7 @@ export default function Partners() {
         <div className="max-w-[1000px] mx-auto px-6">
           <h2 className="cv-h2 mb-10 text-cv-ink">Become a partner with CloudVerse Ai</h2>
           
-          <form onSubmit={handleSubmit((data) => mutation.mutate(data))} className="space-y-8">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-xs font-medium text-cv-muted uppercase tracking-wider">Full Name</label>

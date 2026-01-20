@@ -92,12 +92,7 @@ export default function ConnectWithUs() {
       };
       await apiRequest("POST", "/api/demo/inquiry", payload);
     },
-    onSuccess: (_data, variables) => {
-      track("demo_inquiry_submit", {
-        preferredDate: variables.preferredDate,
-        preferredTime: variables.preferredTime,
-        interestedIntegration: variables.interestedIntegration || "none",
-      });
+    onSuccess: () => {
       toast({
         title: "Demo Request Submitted",
         description: "We'll be in touch shortly to confirm your demo.",
@@ -112,6 +107,15 @@ export default function ConnectWithUs() {
       });
     }
   });
+
+  const onSubmit = (data: FormData) => {
+    track("demo_inquiry_submit", {
+      preferredDate: data.preferredDate,
+      preferredTime: data.preferredTime,
+      interestedIntegration: data.interestedIntegration || "none",
+    });
+    mutation.mutate(data);
+  };
 
   return (
     <BaseLayout>
@@ -131,7 +135,7 @@ export default function ConnectWithUs() {
           
           <div className="max-w-[700px] mx-auto">
             <form 
-              onSubmit={handleSubmit((data) => mutation.mutate(data))} 
+              onSubmit={handleSubmit(onSubmit)} 
               className="space-y-8"
               data-testid="demo-inquiry-form"
             >
