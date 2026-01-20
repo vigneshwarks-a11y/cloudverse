@@ -6,21 +6,9 @@ import { EfficiencySnapshotModal, type AnalysisResult } from "./EfficiencySnapsh
 
 type State = "idle" | "processing" | "result" | "error";
 
-async function analyzeInvoice(file: File): Promise<AnalysisResult> {
-  const formData = new FormData();
-  formData.append("invoice", file);
-
-  const response = await fetch("/api/invoice-analysis", {
-    method: "POST",
-    body: formData,
-  });
-
-  if (!response.ok) {
-    const error = await response.json().catch(() => ({ error: "Failed to analyze invoice" }));
-    throw new Error(error.error || "Failed to analyze invoice");
-  }
-
-  return response.json();
+async function analyzeInvoice(_file: File): Promise<AnalysisResult> {
+  // API call intentionally disabled.
+  throw new Error("Invoice analysis is temporarily unavailable.");
 }
 
 const ACCEPTED_TYPES = [".pdf", ".csv", ".xlsx"];
