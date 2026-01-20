@@ -12,6 +12,7 @@ import Integrations from "@/pages/Integrations";
 import Pricing from "@/pages/Pricing";
 import Security from "@/pages/Security";
 import Company from "@/pages/Company";
+import AboutUs from "@/pages/AboutUs";
 import Resources from "@/pages/Resources";
 import ResourcesGuides from "@/pages/ResourcesGuides";
 import ResourcesGuideDetail from "@/pages/ResourcesGuideDetail";
@@ -37,6 +38,7 @@ function Router() {
       <Route path="/pricing" component={Pricing} />
       <Route path="/security" component={Security} />
       <Route path="/company" component={Company} />
+      <Route path="/about" component={AboutUs} />
       <Route path="/resources" component={Resources} />
       <Route path="/resources/guides" component={ResourcesGuides} />
       <Route path="/resources/guides/:slug" component={ResourcesGuideDetail} />
@@ -56,7 +58,7 @@ function Router() {
       <Route path="/demo">{() => { window.location.href = DEMO_URL; return null; }}</Route>
 
       {/* Redirects */}
-      <Route path="/about-us"><Redirect to="/company" /></Route>
+      <Route path="/about-us"><Redirect to="/about" /></Route>
       <Route path="/blog"><Redirect to="/resources" /></Route>
 
       <Route component={NotFound} />

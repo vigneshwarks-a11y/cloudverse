@@ -19,6 +19,7 @@ export const ROUTES = {
   resourcesDocs: "/resources/docs",
   pricing: "/pricing",
   company: "/company",
+  about: "/about",
   contact: "/contact",
   partners: "/partners",
   help: "/help",
