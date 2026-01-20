@@ -24,40 +24,34 @@ const leadershipTeam = [
 
 const boardOfAdvisory = [
   {
-    name: "Advisor 1",
-    role: "Board Advisor",
-    image: "/team/advisor-1.jpg",
-    linkedin: "https://linkedin.com/in/advisor-1",
+    name: "Venky Rao",
+    image: "/team/venky-rao.png",
+    linkedin: "https://linkedin.com/in/venky-rao",
   },
   {
-    name: "Advisor 2",
-    role: "Board Advisor",
-    image: "/team/advisor-2.jpg",
-    linkedin: "https://linkedin.com/in/advisor-2",
+    name: "Minh Le",
+    image: "/team/minh-le.png",
+    linkedin: "https://linkedin.com/in/minh-le",
   },
   {
-    name: "Advisor 3",
-    role: "Board Advisor",
-    image: "/team/advisor-3.jpg",
-    linkedin: "https://linkedin.com/in/advisor-3",
+    name: "Manoj Chugh",
+    image: "/team/manoj-chugh.png",
+    linkedin: "https://linkedin.com/in/manoj-chugh",
   },
   {
-    name: "Advisor 4",
-    role: "Board Advisor",
-    image: "/team/advisor-4.jpg",
-    linkedin: "https://linkedin.com/in/advisor-4",
+    name: "Ajay Turki",
+    image: "/team/ajay-turki.png",
+    linkedin: "https://linkedin.com/in/ajay-turki",
   },
   {
-    name: "Advisor 5",
-    role: "Board Advisor",
-    image: "/team/advisor-5.jpg",
-    linkedin: "https://linkedin.com/in/advisor-5",
+    name: "Rachel Chen Paulo",
+    image: "/team/rachel-chen-paulo.png",
+    linkedin: "https://linkedin.com/in/rachel-chen-paulo",
   },
   {
-    name: "Advisor 6",
-    role: "Board Advisor",
-    image: "/team/advisor-6.jpg",
-    linkedin: "https://linkedin.com/in/advisor-6",
+    name: "Vijay Sahrawat",
+    image: "/team/vijay-sahrawat.png",
+    linkedin: "https://linkedin.com/in/vijay-sahrawat",
   },
 ];
 
@@ -157,11 +151,8 @@ export default function AboutUs() {
                       }}
                     />
                   </div>
-                  <div className="flex items-start justify-between">
-                    <div className="text-left">
-                      <h3 className="text-lg font-semibold text-cv-ink">{member.name}</h3>
-                      <p className="text-sm text-cv-muted">{member.role}</p>
-                    </div>
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-semibold text-cv-ink">{member.name}</h3>
                     <a 
                       href={member.linkedin} 
                       target="_blank" 
