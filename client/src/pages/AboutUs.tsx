@@ -6,19 +6,19 @@ const leadershipTeam = [
     name: "Chaand Deshwal",
     role: "Founder & CEO",
     image: "/team/chaand-deshwal.png",
-    linkedin: "https://linkedin.com/in/chaand-deshwal",
+    linkedin: "https://www.linkedin.com/in/chanddeshwal/",
   },
   {
     name: "Ann Pho Quoc",
     role: "CPTO",
     image: "/team/ann-pho-quoc.png",
-    linkedin: "https://linkedin.com/in/ann-pho-quoc",
+    linkedin: "https://www.linkedin.com/in/anh-pho-43b76311b/",
   },
   {
     name: "Justin",
     role: "GTM Lead North-America",
     image: "/team/justin.png",
-    linkedin: "https://linkedin.com/in/justin",
+    linkedin: "https://www.linkedin.com/in/justinrgatlin/",
   },
 ];
 
