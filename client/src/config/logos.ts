@@ -23,7 +23,7 @@ export const LOGOS: Record<LogoKey, LogoVariant> = {
   },
   azure: {
     light: "/logos/azure/azure-light.svg",
-    dark: "/logos/azure/azure-dark.svg",
+    dark: "/logos/azure/azure-dark.png",
   },
   gcp: {
     light: "/logos/gcp/gcp-light.svg",
@@ -31,7 +31,7 @@ export const LOGOS: Record<LogoKey, LogoVariant> = {
   },
   alibaba: {
     light: "/logos/alibaba/alibaba-light.svg",
-    dark: "/logos/alibaba/alibaba-dark.svg",
+    dark: "/logos/alibaba/alibaba-dark.png",
   },
   huawei: {
     light: "/logos/huawei/huawei-light.svg",

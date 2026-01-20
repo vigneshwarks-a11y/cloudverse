@@ -6,19 +6,19 @@ const leadershipTeam = [
     name: "Chaand Deshwal",
     role: "Founder & CEO",
     image: "/team/chaand-deshwal.png",
-    linkedin: "https://linkedin.com/in/chaand-deshwal",
+    linkedin: "https://www.linkedin.com/in/chanddeshwal/",
   },
   {
     name: "Ann Pho Quoc",
     role: "CPTO",
     image: "/team/ann-pho-quoc.png",
-    linkedin: "https://linkedin.com/in/ann-pho-quoc",
+    linkedin: "https://www.linkedin.com/in/anh-pho-43b76311b/",
   },
   {
     name: "Justin",
     role: "GTM Lead North-America",
     image: "/team/justin.png",
-    linkedin: "https://linkedin.com/in/justin",
+    linkedin: "https://www.linkedin.com/in/justinrgatlin/",
   },
 ];
 
@@ -26,32 +26,32 @@ const boardOfAdvisory = [
   {
     name: "Venky Rao",
     image: "/team/venky-rao.png",
-    linkedin: "https://linkedin.com/in/venky-rao",
+    linkedin: "https://www.linkedin.com/in/venkyrao/",
   },
   {
     name: "Minh Le",
     image: "/team/minh-le.png",
-    linkedin: "https://linkedin.com/in/minh-le",
+    linkedin: "https://www.linkedin.com/in/minh-le-9987634/",
   },
   {
     name: "Manoj Chugh",
     image: "/team/manoj-chugh.png",
-    linkedin: "https://linkedin.com/in/manoj-chugh",
+    linkedin: "https://www.linkedin.com/in/manoj-chugh-a68ab15/",
   },
   {
     name: "Ajay Turki",
     image: "/team/ajay-turki.png",
-    linkedin: "https://linkedin.com/in/ajay-turki",
+    linkedin: "https://www.linkedin.com/in/ajayturki/",
   },
   {
     name: "Rachel Chen Paulo",
     image: "/team/rachel-chen-paulo.png",
-    linkedin: "https://linkedin.com/in/rachel-chen-paulo",
+    linkedin: "https://www.linkedin.com/in/ajayturki/",
   },
   {
     name: "Vijay Sahrawat",
     image: "/team/vijay-sahrawat.png",
-    linkedin: "https://linkedin.com/in/vijay-sahrawat",
+    linkedin: "https://www.linkedin.com/in/vijay-sahrawat/",
   },
 ];
 

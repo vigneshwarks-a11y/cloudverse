@@ -5,11 +5,17 @@ import { Link } from "wouter";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { DollarSign, Code2, Briefcase, Server, Cpu } from "lucide-react";
+import { useTheme } from "next-themes";
 import financePreview from "@/assets/finance-preview.png";
+import financePreviewDark from "@/assets/finance-preview-dark.png";
 import developerFinopsPreview from "@/assets/developer-finops-preview.png";
+import developerFinopsPreviewDark from "@/assets/developer-finops-preview-dark.png";
 import businessPreview from "@/assets/business-preview.png";
+import businessPreviewDark from "@/assets/business-preview-dark.png";
 import itPreview from "@/assets/it-preview.png";
+import itPreviewDark from "@/assets/it-preview-dark.png";
 import aiPreview from "@/assets/ai-preview.png";
+import aiPreviewDark from "@/assets/ai-preview-dark.png";
 import { FinalCTA } from "@/components/FinalCTA";
 
 type Role = "finance" | "engineering" | "business" | "it" | "ai";
@@ -103,6 +109,7 @@ const roleContent: Record<Role, {
 
 export default function Solutions() {
   const [activeRole, setActiveRole] = useState<Role>("finance");
+  const { resolvedTheme } = useTheme();
   const content = roleContent[activeRole];
 
   useEffect(() => {
@@ -206,7 +213,7 @@ export default function Solutions() {
               {activeRole === "finance" ? (
                 <div className="rounded-2xl overflow-hidden">
                   <img 
-                    src={financePreview} 
+                    src={resolvedTheme === "dark" ? financePreviewDark : financePreview} 
                     alt="Typical Finance view: spend variance, allocations, and savings realization"
                     className="w-full h-auto block"
                   />
@@ -214,7 +221,7 @@ export default function Solutions() {
               ) : activeRole === "engineering" ? (
                 <div className="rounded-2xl overflow-hidden">
                   <img 
-                    src={developerFinopsPreview} 
+                    src={resolvedTheme === "dark" ? developerFinopsPreviewDark : developerFinopsPreview} 
                     alt="Engineering context: service-level cost, environment split, recommended actions"
                     className="w-full h-auto block"
                   />
@@ -222,7 +229,7 @@ export default function Solutions() {
               ) : activeRole === "business" ? (
                 <div className="rounded-2xl overflow-hidden">
                   <img 
-                    src={businessPreview} 
+                    src={resolvedTheme === "dark" ? businessPreviewDark : businessPreview} 
                     alt="Business view: unit economics, BU rollups, driver attribution"
                     className="w-full h-auto block"
                   />
@@ -230,7 +237,7 @@ export default function Solutions() {
               ) : activeRole === "it" ? (
                 <div className="rounded-2xl overflow-hidden">
                   <img 
-                    src={itPreview} 
+                    src={resolvedTheme === "dark" ? itPreviewDark : itPreview} 
                     alt="IT view: normalized dimensions, governance, and enterprise-wide controls"
                     className="w-full h-auto block"
                   />
@@ -238,7 +245,7 @@ export default function Solutions() {
               ) : activeRole === "ai" ? (
                 <div className="rounded-2xl overflow-hidden">
                   <img 
-                    src={aiPreview} 
+                    src={resolvedTheme === "dark" ? aiPreviewDark : aiPreview} 
                     alt="AI/Data view: GPU utilization, LLM spend signals, pipeline cost drivers"
                     className="w-full h-auto block"
                   />
