@@ -9,6 +9,7 @@ import { useTheme } from "next-themes";
 import financePreview from "@/assets/finance-preview.png";
 import financePreviewDark from "@/assets/finance-preview-dark.png";
 import developerFinopsPreview from "@/assets/developer-finops-preview.png";
+import developerFinopsPreviewDark from "@/assets/developer-finops-preview-dark.png";
 import businessPreview from "@/assets/business-preview.png";
 import itPreview from "@/assets/it-preview.png";
 import aiPreview from "@/assets/ai-preview.png";
@@ -217,7 +218,7 @@ export default function Solutions() {
               ) : activeRole === "engineering" ? (
                 <div className="rounded-2xl overflow-hidden">
                   <img 
-                    src={developerFinopsPreview} 
+                    src={resolvedTheme === "dark" ? developerFinopsPreviewDark : developerFinopsPreview} 
                     alt="Engineering context: service-level cost, environment split, recommended actions"
                     className="w-full h-auto block"
                   />
