@@ -109,7 +109,7 @@ Return ONLY valid JSON, no markdown or explanation.`;
       input: prompt,
       max_output_tokens: 2048,
     });
-    const content = response.output_text;
+    const content = response.output_text?.trim();
     if (!content) throw new Error("No response from AI");
 
    
