@@ -102,18 +102,23 @@ Analysis guidelines:
 Return ONLY valid JSON, no markdown or explanation.`;
 
   try {
-    const { client, model } = getOpenAIClient();
 
-    const response = await client.responses.create({
-      model: "gpt-4.1-mini",
-      input: prompt,
-      max_output_tokens: 2048,
+   const { client, model } = getOpenAIClient();
+    
+    const response = await client.chat.completions.create({
+      model,
+      messages: [{ role: "user", content: prompt }],
+      response_format: { type: "json_object" },
+      max_tokens: 2048,
     });
-    const content = response.output_text?.trim();
-    if (!content) throw new Error("No response from AI");
 
-   
+    const content = response.choices[0]?.message?.content;
+    if (!content) {
+      throw new Error("No response from AI");
+    }
+
     const result = JSON.parse(content) as InvoiceAnalysisResult;
+
 
     // Explicitly validate that we are not using fallback data if we have a real response
     return {

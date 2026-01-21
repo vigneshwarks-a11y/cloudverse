@@ -7,7 +7,7 @@ import multer from "multer";
 import { promises as fs } from "fs";
 import path from "path";
 import * as XLSX from "xlsx";
-import { DOMMatrix } from "@thednp/dommatrix";
+import  DOMMatrix  from "@thednp/dommatrix";
 
 type PdfjsModule = typeof import("pdfjs-dist/legacy/build/pdf.mjs");
 
@@ -19,9 +19,12 @@ async function getPdfjsLib(): Promise<PdfjsModule> {
   }
 
   if (!globalThis.DOMMatrix) {
-    (globalThis as typeof globalThis & { DOMMatrix: typeof DOMMatrix }).DOMMatrix = DOMMatrix;
-  }
+    const dommatrixModule = await import("@thednp/dommatrix");
+    const DOMMatrix =
+      (dommatrixModule as any).default ?? dommatrixModule;
 
+    (globalThis as any).DOMMatrix = DOMMatrix;
+  }
   pdfjsModule = await import("pdfjs-dist/legacy/build/pdf.mjs");
   return pdfjsModule;
 }
