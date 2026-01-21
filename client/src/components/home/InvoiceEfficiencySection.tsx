@@ -7,8 +7,26 @@ import { EfficiencySnapshotModal, type AnalysisResult } from "./EfficiencySnapsh
 type State = "idle" | "processing" | "result" | "error";
 
 async function analyzeInvoice(_file: File): Promise<AnalysisResult> {
-  // API call intentionally disabled.
-  throw new Error("Invoice analysis is temporarily unavailable.");
+  const formData = new FormData();
+  formData.append("invoice", _file);
+
+  const response = await fetch("/api/invoice-analysis", {
+    method: "POST",
+    body: formData,
+  });
+
+  if (!response.ok) {
+    let message = "Failed to analyze invoice";
+    try {
+      const payload = (await response.json()) as { error?: string; message?: string };
+      message = payload.error || payload.message || message;
+    } catch {
+      // Ignore JSON parse errors and keep default message.
+    }
+    throw new Error(message);
+  }
+
+  return (await response.json()) as AnalysisResult;
 }
 
 const ACCEPTED_TYPES = [".pdf", ".csv", ".xlsx"];

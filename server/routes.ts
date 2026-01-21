@@ -103,7 +103,8 @@ export async function registerRoutes(
       if (ext === "csv") {
         fileContent = await fs.readFile(filePath, "utf-8");
       } else if (ext === "xlsx" || ext === "xls") {
-        const workbook = XLSX.readFile(filePath);
+        const buffer = await fs.readFile(filePath);
+        const workbook = XLSX.read(buffer, { type: "buffer" });
         const sheets: string[] = [];
         for (const sheetName of workbook.SheetNames) {
           const sheet = workbook.Sheets[sheetName];
