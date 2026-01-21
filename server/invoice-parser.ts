@@ -67,18 +67,6 @@ function getGeminiClient(): { model: any } {
   if (!process.env.GEMINI_API_KEY) {
     throw new Error("GEMINI_API_KEY not configured");
   }
-<<<<<<< Updated upstream
-  
-  // Fallback to standard OpenAI API key (works in any environment including production)
-  if (process.env.OPENAI_API_KEY) {
-    return {
-      client: new OpenAI({ apiKey: process.env.OPENAI_API_KEY }),
-      model: "gpt-4o-mini",
-    };
-  }
-  
-  throw new Error("OpenAI API key not configured. Please set OPENAI_API_KEY environment variable.");
-=======
 
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
   const modelName = process.env.GEMINI_MODEL || "gemini-2.5-flash";
@@ -92,7 +80,6 @@ function getGeminiClient(): { model: any } {
       },
     }),
   };
->>>>>>> Stashed changes
 }
 
 // export async function parseInvoice(fileContent: string, fileName: string): Promise<InvoiceAnalysisResult> {
@@ -219,34 +206,17 @@ Return ONLY valid JSON. No explanations.
 `;
 
   try {
-<<<<<<< Updated upstream
-    const { client, model } = getOpenAIClient();
-    
-    const response = await client.chat.completions.create({
-      model,
-      messages: [{ role: "user", content: prompt }],
-      response_format: { type: "json_object" },
-      max_tokens: 2048,
-    });
-=======
     const { model } = getGeminiClient();
 
     const result = await model.generateContent(prompt);
     const text = result.response.text();
->>>>>>> Stashed changes
 
     if (!text) {
       throw new Error("No response from Gemini");
     }
 
-<<<<<<< Updated upstream
-    const result = JSON.parse(content) as InvoiceAnalysisResult;
-    
-    // Explicitly validate that we are not using fallback data if we have a real response
-=======
     const parsed = JSON.parse(text) as InvoiceAnalysisResult;
 
->>>>>>> Stashed changes
     return {
       score: Math.max(0, Math.min(100, Math.round(parsed.score))),
       currency: parsed.currency || "USD",
