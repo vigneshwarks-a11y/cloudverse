@@ -7,7 +7,24 @@ import multer from "multer";
 import { promises as fs } from "fs";
 import path from "path";
 import * as XLSX from "xlsx";
-import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf.mjs";
+import { DOMMatrix } from "@thednp/dommatrix";
+
+type PdfjsModule = typeof import("pdfjs-dist/legacy/build/pdf.mjs");
+
+let pdfjsModule: PdfjsModule | null = null;
+
+async function getPdfjsLib(): Promise<PdfjsModule> {
+  if (pdfjsModule) {
+    return pdfjsModule;
+  }
+
+  if (!globalThis.DOMMatrix) {
+    (globalThis as typeof globalThis & { DOMMatrix: typeof DOMMatrix }).DOMMatrix = DOMMatrix;
+  }
+
+  pdfjsModule = await import("pdfjs-dist/legacy/build/pdf.mjs");
+  return pdfjsModule;
+}
 
 // Configure multer for file uploads
 const upload = multer({
@@ -33,6 +50,7 @@ const upload = multer({
 
 async function extractPdfText(buffer: Buffer): Promise<{ text: string; numpages: number }> {
   const uint8Array = new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.byteLength);
+  const pdfjsLib = await getPdfjsLib();
   
   const loadingTask = pdfjsLib.getDocument({
     data: uint8Array,
