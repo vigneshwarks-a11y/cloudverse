@@ -2,7 +2,7 @@ import { BaseLayout } from "@/layouts/BaseLayout";
 import { Button } from "@/components/Button";
 import { track } from "@/lib/track";
 import { Link } from "wouter";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { DEMO_URL } from "@/lib/links";
 import { PillarCard } from "@/components/PillarCard";
 import { OutcomeTile } from "@/components/OutcomeTile";
@@ -11,7 +11,7 @@ import { HeroCard } from "@/components/home/HeroCard";
 import { DeploymentOptions } from "@/components/home/DeploymentOptions";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { InvoiceEfficiencySection } from "@/components/home/InvoiceEfficiencySection";
-import { Globe, Receipt, Tag, Code2, Cpu, Activity } from "lucide-react";
+import { Globe, Receipt, Tag, Code2, Cpu, Activity, X } from "lucide-react";
 import { FinalCTA } from "@/components/FinalCTA";
 
 const customerLogos = [
@@ -60,6 +60,8 @@ const pillarCards = [
 ];
 
 export default function Home() {
+  const [showVideo, setShowVideo] = useState(false);
+
   useEffect(() => {
     document.title = "CloudVerse™ — Cloud Financial Management";
   }, []);
@@ -90,11 +92,17 @@ export default function Home() {
                     Book a demo
                   </Button>
                 </Link>
-                <Link href="/tour" onClick={() => track("cta_watch_tour", { location: "hero" })}>
-                  <Button variant="secondary" size="lg" className="w-full sm:w-auto">
-                    Watch 90-second tour →
-                  </Button>
-                </Link>
+                <Button 
+                  variant="secondary" 
+                  size="lg" 
+                  className="w-full sm:w-auto"
+                  onClick={() => {
+                    track("cta_watch_tour", { location: "hero" });
+                    setShowVideo(true);
+                  }}
+                >
+                  Watch 90-second tour →
+                </Button>
               </div>
 
               <p className="text-sm text-cv-muted pt-2">
@@ -208,6 +216,31 @@ export default function Home() {
       </section>
       {/* Final CTA Section */}
       <FinalCTA location="home_final" />
+
+      {/* Video Modal */}
+      {showVideo && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+          onClick={() => setShowVideo(false)}
+        >
+          <div className="relative w-full max-w-4xl mx-4" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setShowVideo(false)}
+              className="absolute -top-12 right-0 text-white/80 hover:text-white transition-colors"
+            >
+              <X className="w-8 h-8" />
+            </button>
+            <div className="rounded-2xl overflow-hidden shadow-2xl bg-black">
+              <video 
+                src="/assets/videos/tour.mp4" 
+                controls 
+                autoPlay 
+                className="w-full aspect-video rounded-[10px]"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </BaseLayout>
   );
 }
