@@ -113,7 +113,7 @@ export default function Home() {
       <InvoiceEfficiencySection />
       <DeploymentOptions />
       {/* Customer Logos Section */}
-      <section className="py-6 sm:py-8 lg:py-10 border-t border-cv-line dark:border-white/10 overflow-hidden">
+      <section className="pt-6 sm:pt-8 lg:pt-10 pb-10 sm:pb-12 lg:pb-14 border-t border-cv-line dark:border-white/10 overflow-hidden">
         <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <p className="text-center text-base sm:text-lg text-cv-muted mb-8 sm:mb-10">
             Used by FinOps teams at leading enterprises.
