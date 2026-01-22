@@ -14,7 +14,7 @@ import { integrationsData } from "@/data/integrationsData";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
-import { track } from "@/lib/track";
+
 
 const formSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
