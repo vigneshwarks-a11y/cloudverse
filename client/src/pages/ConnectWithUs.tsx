@@ -194,7 +194,7 @@ export default function ConnectWithUs() {
           {/* Or Divider */}
           <div className="max-w-[700px] mx-auto flex items-center gap-4 mb-8">
             <div className="flex-1 h-px bg-cv-line"></div>
-            <span className="text-sm text-cv-muted font-medium">or fill the form</span>
+            <span className="text-sm text-cv-muted font-medium">or talk to us</span>
             <div className="flex-1 h-px bg-cv-line"></div>
           </div>
 
