@@ -24,7 +24,7 @@ const leadershipTeam = [
     name: "Shishir Garg",
     role: "Chief Alliances & Partnerships Officer",
     image: "/team/shishir-garg.png",
-    linkedin: "https://www.linkedin.com/in/shishirgarg/",
+    linkedin: "https://www.linkedin.com/in/gargs/",
   },
 ];
 
