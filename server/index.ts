@@ -3,7 +3,7 @@ import { config } from "dotenv";
 import { serveStatic } from "./static";
 import { createApp, log } from "./app";
 
-config({ path: path.resolve(process.cwd(), "server/.env") });
+config({ path: path.resolve(process.cwd(), ".env") });
 
 (async () => {
   const { app, httpServer } = await createApp();

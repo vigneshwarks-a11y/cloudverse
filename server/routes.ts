@@ -7,7 +7,6 @@ import multer from "multer";
 import { promises as fs } from "fs";
 import path from "path";
 import * as XLSX from "xlsx";
-import  DOMMatrix  from "@thednp/dommatrix";
 
 type PdfjsModule = typeof import("pdfjs-dist/legacy/build/pdf.mjs");
 
@@ -55,9 +54,10 @@ async function extractPdfText(buffer: Buffer): Promise<{ text: string; numpages:
   const uint8Array = new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.byteLength);
   const pdfjsLib = await getPdfjsLib();
   
-  const loadingTask = pdfjsLib.getDocument({
+  const loadingTask = (pdfjsLib as any).getDocument({
     data: uint8Array,
     useSystemFonts: true,
+    disableWorker: true,
   });
   
   const pdfDocument = await loadingTask.promise;
