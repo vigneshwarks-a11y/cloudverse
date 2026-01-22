@@ -21,6 +21,9 @@ const customerLogos = [
   { name: "Shaw Industries", srcLight: "/logos/logo-dark-Shaw.svg", srcDark: "/logos/logo-white-Shaw.svg", className: "" },
   { name: "SISL Infotech", srcLight: "/logos/logo-1-1-sisl.svg", srcDark: "/logos/logo-light-sisl.svg", className: "" },
   { name: "Ginesys", srcLight: "/logos/ginesys-dark.svg", srcDark: "/logos/ginesys-light.svg", className: "" },
+  { name: "Ken42", src: "/logos/ken42.png", srcDark: "/logos/ken42.png", className: "" },
+  { name: "PiChain", src: "/logos/pichain.png", srcDark: "/logos/pichain.png", className: "" },
+  { name: "Optimile", src: "/logos/optimile.png", srcDark: "/logos/optimile.png", className: "" },
 ];
 
 const pillarCards = [
