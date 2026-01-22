@@ -20,7 +20,6 @@ export function Footer() {
       links: [
         { label: "Guides", href: "/resources/guides" },
         { label: "Documentation", href: "#" },
-        { label: "API Reference", href: "#" },
         { label: "Status", href: "#" },
       ],
     },
