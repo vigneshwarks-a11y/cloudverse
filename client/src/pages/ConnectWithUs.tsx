@@ -136,38 +136,38 @@ export default function ConnectWithUs() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => track("marketplace_click", { provider: "aws" })}
-                className="flex items-center justify-center h-14 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
+                className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
               >
-                <img src="/logos/aws-light-mode.png" alt="AWS" className="h-7 w-auto dark:hidden" />
-                <img src="/logos/aws-dark-mode.png" alt="AWS" className="h-7 w-auto hidden dark:block" />
+                <img src="/logos/aws-light-mode.png" alt="AWS" className="h-9 w-auto dark:hidden" />
+                <img src="/logos/aws-dark-mode.png" alt="AWS" className="h-9 w-auto hidden dark:block" />
               </a>
               <a
                 href="https://console.cloud.google.com/marketplace/product/cloudverse-marketplace-public/mcp20"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => track("marketplace_click", { provider: "gcp" })}
-                className="flex items-center justify-center h-14 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
+                className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
               >
-                <img src="/logos/gcp-light-mode.png" alt="Google Cloud" className="h-7 w-auto dark:hidden" />
-                <img src="/logos/gcp-dark-mode.png" alt="Google Cloud" className="h-7 w-auto hidden dark:block" />
+                <img src="/logos/gcp-light-mode.png" alt="Google Cloud" className="h-9 w-auto dark:hidden" />
+                <img src="/logos/gcp-dark-mode.png" alt="Google Cloud" className="h-9 w-auto hidden dark:block" />
               </a>
               <a
                 href="https://marketplace.microsoft.com/en-au/product/saas/cloudversepteltd1683193289260.cloudverse-multi-cloud-management-platform"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => track("marketplace_click", { provider: "microsoft" })}
-                className="flex items-center justify-center h-14 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
+                className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
               >
-                <img src="/logos/azure-marketplace.png" alt="Microsoft Azure" className="h-7 w-auto" />
+                <img src="/logos/azure-marketplace.png" alt="Microsoft Azure" className="h-9 w-auto" />
               </a>
               <a
                 href="https://marketplace.alibabacloud.com/products/56680002/sgcmfw00032481.html?spm=a3c0i.26795044.0.0.5edb2faaOBdVso&innerSource=search"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => track("marketplace_click", { provider: "alibaba" })}
-                className="flex items-center justify-center h-14 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
+                className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
               >
-                <img src="/logos/alibaba-marketplace.png" alt="Alibaba Cloud" className="h-7 w-auto" />
+                <img src="/logos/alibaba-marketplace.png" alt="Alibaba Cloud" className="h-9 w-auto" />
               </a>
             </div>
           </div>
