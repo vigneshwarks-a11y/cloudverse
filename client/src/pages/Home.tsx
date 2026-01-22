@@ -20,7 +20,7 @@ const customerLogos = [
   { name: "Max Life Insurance", src: "/logos/axis-max-life-insurance-logo.svg", srcDark: "/logos/axis-max-life-insurance-logo.svg", className: "brightness-150" },
   { name: "Shaw Industries", srcLight: "/logos/logo-dark-Shaw.svg", srcDark: "/logos/logo-white-Shaw.svg", className: "" },
   { name: "SISL Infotech", srcLight: "/logos/logo-1-1-sisl.svg", srcDark: "/logos/logo-light-sisl.svg", className: "" },
-  { name: "Ginesys", srcLight: "/logos/ginesys-dark.svg", srcDark: "/logos/ginesys-light.svg", className: "" },
+  { name: "Ginesys", srcLight: "/logos/ginesys-dark.png", srcDark: "/logos/ginesys-light.svg", className: "" },
   { name: "Ken42", src: "/logos/ken42.png", srcDark: "/logos/ken42-dark.png", className: "" },
   { name: "PiChain", src: "/logos/pichain.png", srcDark: "/logos/pichain.png", className: "!h-9 sm:!h-10 invert dark:invert-0" },
   { name: "Optimile", src: "/logos/optimile.png", srcDark: "/logos/optimile.png", className: "invert dark:invert-0" },
