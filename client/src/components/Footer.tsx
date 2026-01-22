@@ -19,7 +19,7 @@ export function Footer() {
       title: "Resources",
       links: [
         { label: "Guides", href: "/resources/guides" },
-        { label: "Documentation", href: "#" },
+        { label: "Blogs", href: "/resources" },
       ],
     },
     {
