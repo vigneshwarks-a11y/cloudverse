@@ -25,7 +25,7 @@ async function getPdfjsLib(): Promise<PdfjsModule> {
   const pdfjsLib = await import("pdfjs-dist/legacy/build/pdf.mjs");
 
   // 🔑 THIS is the key line
-  (pdfjsLib as any).GlobalWorkerOptions.workerSrc = undefined;
+  (pdfjsLib as any).GlobalWorkerOptions.workerSrc = "";
 
   pdfjsModule = pdfjsLib;
   return pdfjsLib;
