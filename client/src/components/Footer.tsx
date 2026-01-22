@@ -18,10 +18,8 @@ export function Footer() {
     {
       title: "Resources",
       links: [
-        { label: "Blog", href: "/resources" },
-        { label: "Documentation", href: "#" },
-        { label: "API Reference", href: "#" },
-        { label: "Status", href: "#" },
+        { label: "Guides", href: "/resources/guides" },
+        { label: "Blogs", href: "/resources" },
       ],
     },
     {

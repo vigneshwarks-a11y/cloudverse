@@ -28,6 +28,8 @@ function LogoPill({ logoKey, className = "" }: { logoKey: LogoKey; className?: s
   const logoPath = LOGOS[logoKey][variant];
   const displayName = LOGO_DISPLAY_NAMES[logoKey];
 
+  const sizeClass = logoKey === 'nvidia' ? 'h-12' : 'h-8';
+  
   return (
     <div 
       className={`logo-pill flex items-center justify-center h-12 px-3 rounded-lg ${className}`}
@@ -36,7 +38,7 @@ function LogoPill({ logoKey, className = "" }: { logoKey: LogoKey; className?: s
       <img
         src={logoPath}
         alt={displayName}
-        className="h-8 w-auto max-w-full object-contain"
+        className={`${sizeClass} w-auto max-w-full object-contain`}
       />
     </div>
   );

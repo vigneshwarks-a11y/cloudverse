@@ -30,7 +30,8 @@ export default function Pricing() {
       cta: "Purchase now",
       ctaVariant: "primary" as const,
       limits: ["Maximum $1M annual spend", "Access to all features", "Unlimited users", "1 year data retention"],
-      dark: false
+      dark: false,
+      popular: true
     },
     {
       name: "Enterprise",
@@ -77,8 +78,15 @@ export default function Pricing() {
             {plans.map((plan, idx) => (
               <div 
                 key={idx} 
-                className={`p-10 rounded-3xl border ${plan.dark ? 'bg-black text-white border-white/10' : 'bg-white dark:bg-cv-surface2 border-cv-line'} flex flex-col shadow-sm`}
+                className={`p-10 rounded-3xl border relative ${plan.popular ? 'ring-2 ring-blue-600 border-blue-600' : ''} ${plan.dark ? 'bg-black text-white border-white/10' : 'bg-white dark:bg-cv-surface2 border-cv-line'} flex flex-col shadow-sm`}
               >
+                {plan.popular && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                    <span className="bg-blue-600 text-white text-xs font-semibold px-4 py-2 rounded-full uppercase tracking-wider">
+                      Most Popular
+                    </span>
+                  </div>
+                )}
                 <h3 className={`text-xl font-medium mb-8 ${plan.dark ? 'text-white/60' : 'text-cv-muted'}`}>
                   {plan.name}
                 </h3>

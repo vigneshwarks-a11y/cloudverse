@@ -146,7 +146,7 @@ export function OutcomesWindow({
                         <img
                           src={provider.src}
                           alt={provider.name}
-                          className="h-5 w-auto"
+                          className={`${provider.name === 'NVIDIA' ? 'h-8' : 'h-5'} w-auto`}
                         />
                       </div>
                     ))}
