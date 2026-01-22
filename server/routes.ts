@@ -1,29 +1,14 @@
-import type { Express, Request, Response } from "express";
+import { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
-import { parseInvoice } from "./invoice-parser";
-import { insertPartnerInquirySchema, insertDemoInquirySchema } from "@shared/schema";
+import { storage } from "./storage.ts";
+import { parseInvoice } from "./invoice-parser.ts";
+import { insertPartnerInquirySchema, insertDemoInquirySchema } from "@shared/schema.ts";
 import multer from "multer";
 import { promises as fs } from "fs";
-import path from "path";
 import * as XLSX from "xlsx";
-import { createRequire } from "module";
-
-const require = createRequire(import.meta.url);
+import pdfjsLib from "./pdfjs.cjs";
 
 
-import * as pdfjsImport from "pdfjs-dist/legacy/build/pdf.js";
-
-const pdfjsLib: any = (pdfjsImport as any).default ?? pdfjsImport;
-
-
-// ✅ REQUIRED FOR SERVERLESS
-(pdfjsLib as any).GlobalWorkerOptions.workerSrc =
-  require.resolve("pdfjs-dist/legacy/build/pdf.worker.js");
-
-// --------------------
-// Multer config
-// --------------------
 const upload = multer({
   dest: "/tmp/uploads/",
   limits: { fileSize: 20 * 1024 * 1024 },
@@ -45,18 +30,21 @@ const upload = multer({
   },
 });
 
-// --------------------
-// PDF extraction
-// --------------------
+/**
+ * =========================================================
+ * PDF extraction
+ * =========================================================
+ */
+
 async function extractPdfText(
   buffer: Buffer
 ): Promise<{ text: string; numpages: number }> {
   const uint8Array = new Uint8Array(buffer);
 
-  const pdfDocument = await pdfjsLib
+  const pdfDocument = await (pdfjsLib as any)
     .getDocument({
       data: uint8Array,
-      disableWorker: true, // 🔑 critical
+      disableWorker: true, // 🔑 REQUIRED
     })
     .promise;
 
@@ -72,9 +60,12 @@ async function extractPdfText(
   return { text: extractedText, numpages: pdfDocument.numPages };
 }
 
-// --------------------
-// Routes
-// --------------------
+/**
+ * =========================================================
+ * Routes
+ * =========================================================
+ */
+
 export async function registerRoutes(
   httpServer: Server,
   app: Express
@@ -143,7 +134,7 @@ Pages: ${pdfData.numpages}`;
         console.error(error);
         res.status(500).json({ error: error.message });
       } finally {
-        await fs.unlink(filePath).catch(() => {});
+        await fs.unlink(filePath).catch(() => { });
       }
     }
   );
