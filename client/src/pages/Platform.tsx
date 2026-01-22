@@ -36,6 +36,7 @@ const cloudProviders = [
 const aiProviders = [
   { name: "OpenAI", src: "/logos/openai/openai-light.svg" },
   { name: "Snowflake", src: "/logos/snowflake/snowflake-light.svg" },
+  { name: "NVIDIA", src: "/logos/nvidia.png" },
 ];
 
 const capabilities = [
