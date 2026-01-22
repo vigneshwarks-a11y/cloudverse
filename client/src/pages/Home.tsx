@@ -118,7 +118,7 @@ export default function Home() {
           <p className="text-center text-base sm:text-lg text-cv-muted mb-8 sm:mb-10">
             Used by FinOps teams at leading enterprises.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-8 sm:gap-x-12 gap-y-6">
+          <div className="flex flex-nowrap items-center justify-center gap-x-6 sm:gap-x-8 lg:gap-x-10 overflow-x-auto">
             {customerLogos.map((logo) => (
               <img
                 key={logo.name}
