@@ -125,7 +125,7 @@ export default function ConnectWithUs() {
           </div>
           
           {/* Get it Directly */}
-          <div className="max-w-[700px] mx-auto mb-12 p-8 rounded-2xl border border-cv-line bg-cv-surface2/50 dark:bg-white/5">
+          <div className="max-w-[700px] mx-auto mb-8 p-8 rounded-2xl border border-cv-line bg-cv-surface2/50 dark:bg-white/5">
             <h2 className="text-xl font-semibold text-cv-ink text-center mb-2">Get it directly</h2>
             <p className="text-sm text-cv-muted text-center mb-6">
               Purchase CloudVerse directly from your preferred cloud marketplace.
@@ -138,7 +138,7 @@ export default function ConnectWithUs() {
                 onClick={() => track("marketplace_click", { provider: "aws" })}
                 className="flex items-center justify-center px-6 py-3 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
               >
-                <img src="/logos/aws-colored.svg" alt="AWS Marketplace" className="h-7 w-auto" />
+                <img src="/logos/aws-full.svg" alt="AWS Marketplace" className="h-8 w-auto" />
               </a>
               <a
                 href="https://console.cloud.google.com/marketplace/product/cloudverse-marketplace-public/mcp20"
@@ -147,7 +147,7 @@ export default function ConnectWithUs() {
                 onClick={() => track("marketplace_click", { provider: "gcp" })}
                 className="flex items-center justify-center px-6 py-3 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
               >
-                <img src="/logos/gcp-colored.svg" alt="Google Cloud Marketplace" className="h-7 w-auto" />
+                <img src="/logos/gcp-full.svg" alt="Google Cloud Marketplace" className="h-8 w-auto" />
               </a>
               <a
                 href="https://marketplace.microsoft.com/en-au/product/saas/cloudversepteltd1683193289260.cloudverse-multi-cloud-management-platform"
@@ -156,7 +156,7 @@ export default function ConnectWithUs() {
                 onClick={() => track("marketplace_click", { provider: "microsoft" })}
                 className="flex items-center justify-center px-6 py-3 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
               >
-                <img src="/logos/azure-colored.svg" alt="Microsoft Azure Marketplace" className="h-7 w-auto" />
+                <img src="/logos/azure-full.svg" alt="Microsoft Azure Marketplace" className="h-8 w-auto" />
               </a>
               <a
                 href="https://marketplace.alibabacloud.com/products/56680002/sgcmfw00032481.html?spm=a3c0i.26795044.0.0.5edb2faaOBdVso&innerSource=search"
@@ -165,9 +165,16 @@ export default function ConnectWithUs() {
                 onClick={() => track("marketplace_click", { provider: "alibaba" })}
                 className="flex items-center justify-center px-6 py-3 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
               >
-                <img src="/logos/alibaba-colored.svg" alt="Alibaba Cloud Marketplace" className="h-7 w-auto" />
+                <img src="/logos/alibaba-full.svg" alt="Alibaba Cloud Marketplace" className="h-8 w-auto" />
               </a>
             </div>
+          </div>
+
+          {/* Or Divider */}
+          <div className="max-w-[700px] mx-auto flex items-center gap-4 mb-8">
+            <div className="flex-1 h-px bg-cv-line"></div>
+            <span className="text-sm text-cv-muted font-medium">or fill the form</span>
+            <div className="flex-1 h-px bg-cv-line"></div>
           </div>
 
           <div className="max-w-[700px] mx-auto">
