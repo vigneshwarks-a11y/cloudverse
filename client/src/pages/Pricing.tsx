@@ -251,54 +251,6 @@ export default function Pricing() {
           </div>
         </div>
       </section>
-      {/* Get it Directly */}
-      <section className="py-14 sm:py-16 lg:py-20 border-t border-cv-line">
-        <div className="cv-container max-w-[800px] text-center">
-          <h2 className="cv-h2 mb-4">Get it directly</h2>
-          <p className="text-[15px] leading-[24px] text-cv-muted mb-10">
-            Purchase CloudVerse directly from your preferred cloud marketplace.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-6">
-            <a
-              href="https://aws.amazon.com/marketplace/pp/prodview-g72gjnuqrts2m"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => track("marketplace_click", { provider: "aws" })}
-              className="flex items-center justify-center px-8 py-4 rounded-2xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all group"
-            >
-              <img src="/logos/aws-colored.svg" alt="AWS Marketplace" className="h-8 w-auto" />
-            </a>
-            <a
-              href="https://console.cloud.google.com/marketplace/product/cloudverse-marketplace-public/mcp20"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => track("marketplace_click", { provider: "gcp" })}
-              className="flex items-center justify-center px-8 py-4 rounded-2xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all group"
-            >
-              <img src="/logos/gcp-colored.svg" alt="Google Cloud Marketplace" className="h-8 w-auto" />
-            </a>
-            <a
-              href="https://marketplace.microsoft.com/en-au/product/saas/cloudversepteltd1683193289260.cloudverse-multi-cloud-management-platform"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => track("marketplace_click", { provider: "microsoft" })}
-              className="flex items-center justify-center px-8 py-4 rounded-2xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all group"
-            >
-              <img src="/logos/azure-colored.svg" alt="Microsoft Azure Marketplace" className="h-8 w-auto" />
-            </a>
-            <a
-              href="https://marketplace.alibabacloud.com/products/56680002/sgcmfw00032481.html?spm=a3c0i.26795044.0.0.5edb2faaOBdVso&innerSource=search"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => track("marketplace_click", { provider: "alibaba" })}
-              className="flex items-center justify-center px-8 py-4 rounded-2xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all group"
-            >
-              <img src="/logos/alibaba-colored.svg" alt="Alibaba Cloud Marketplace" className="h-8 w-auto" />
-            </a>
-          </div>
-        </div>
-      </section>
-
       {/* Final CTA */}
       <FinalCTA 
         description="We'll walk through your environment and recommend the right plan."
