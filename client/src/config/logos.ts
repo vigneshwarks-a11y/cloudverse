@@ -58,12 +58,12 @@ export const LOGOS: Record<LogoKey, LogoVariant> = {
     dark: "/logos/kubernetes/kubernetes-dark.svg",
   },
   oracle: {
-    light: "/logos/oracle/oracle-light.svg",
-    dark: "/logos/oracle/oracle-dark.svg",
+    light: "/logos/oracle.png",
+    dark: "/logos/oracle.png",
   },
 };
 
-export const CLOUD_PROVIDERS: LogoKey[] = ['aws', 'azure', 'gcp', 'alibaba', 'huawei', 'tencent'];
+export const CLOUD_PROVIDERS: LogoKey[] = ['aws', 'azure', 'gcp', 'alibaba', 'huawei', 'tencent', 'oracle'];
 export const AI_GPU_PROVIDERS: LogoKey[] = ['openai', 'snowflake', 'kubernetes'];
 
 export const LOGO_DISPLAY_NAMES: Record<LogoKey, string> = {
