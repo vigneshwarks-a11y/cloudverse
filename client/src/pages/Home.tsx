@@ -31,8 +31,8 @@ const pillarCards = [
   },
   {
     icon: Receipt,
-    title: "BillOps (Billing Intelligence)",
-    description: "Invoice validation, margin insights, anomaly alerts, and dispute prevention for resellers and enterprises.",
+    title: "Data Cost Optimization",
+    description: "Optimize Databricks, Snowflake, Azure Synapse, and Amazon Redshift by eliminating inefficient query patterns, right-sizing compute, and attribute costs.",
   },
   {
     icon: Tag,
