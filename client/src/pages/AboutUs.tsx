@@ -20,6 +20,12 @@ const leadershipTeam = [
     image: "/team/justin.png",
     linkedin: "https://www.linkedin.com/in/justinrgatlin/",
   },
+  {
+    name: "Shishir Garg",
+    role: "Chief Alliances & Partnerships Officer",
+    image: "/team/shishir-garg.png",
+    linkedin: "https://www.linkedin.com/in/shishirgarg/",
+  },
 ];
 
 const boardOfAdvisory = [
