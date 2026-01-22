@@ -96,7 +96,7 @@ export default function AboutUs() {
                 Our leadership team brings decades of experience in cloud infrastructure, enterprise software, and financial operations.
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
               {leadershipTeam.map((member, idx) => (
                 <div key={idx} className="group">
                   <div className="relative mb-6 w-full aspect-square rounded-3xl overflow-hidden bg-black">
