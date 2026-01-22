@@ -235,7 +235,7 @@ export default function Home() {
                 src="/assets/videos/tour.mp4" 
                 controls 
                 autoPlay 
-                className="w-full aspect-video"
+                className="w-full aspect-video rounded-[10px]"
               />
             </div>
           </div>
