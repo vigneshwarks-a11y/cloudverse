@@ -113,32 +113,36 @@ export default function Home() {
       <InvoiceEfficiencySection />
       <DeploymentOptions />
       {/* Customer Logos Section */}
-      <section className="py-6 sm:py-8 lg:py-10 border-t border-cv-line dark:border-white/10">
+      <section className="py-6 sm:py-8 lg:py-10 border-t border-cv-line dark:border-white/10 overflow-hidden">
         <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <p className="text-center text-base sm:text-lg text-cv-muted mb-8 sm:mb-10">
             Used by FinOps teams at leading enterprises.
           </p>
-          <div className="flex flex-nowrap items-center justify-center gap-x-6 sm:gap-x-8 lg:gap-x-10 overflow-x-auto">
-            {customerLogos.map((logo) => (
-              <img
-                key={logo.name}
-                src={logo.srcLight || logo.src || logo.srcDark}
-                alt={logo.name}
-                loading="lazy"
-                decoding="async"
-                className={`h-7 sm:h-8 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity grayscale dark:hidden ${logo.className || ""}`}
-              />
-            ))}
-            {customerLogos.filter(l => l.srcDark).map((logo) => (
-              <img
-                key={`${logo.name}-dark`}
-                src={logo.srcDark}
-                alt={logo.name}
-                loading="lazy"
-                decoding="async"
-                className={`h-7 sm:h-8 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity hidden dark:block ${logo.className || ""}`}
-              />
-            ))}
+          <div className="relative">
+            <div className="flex items-center gap-x-10 sm:gap-x-14 lg:gap-x-16 animate-marquee">
+              {[...customerLogos, ...customerLogos].map((logo, idx) => (
+                <img
+                  key={`${logo.name}-${idx}`}
+                  src={logo.srcLight || logo.src || logo.srcDark}
+                  alt={logo.name}
+                  loading="lazy"
+                  decoding="async"
+                  className={`h-7 sm:h-8 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity grayscale shrink-0 dark:hidden ${logo.className || ""}`}
+                />
+              ))}
+            </div>
+            <div className="flex items-center gap-x-10 sm:gap-x-14 lg:gap-x-16 animate-marquee hidden dark:flex absolute top-0 left-0">
+              {[...customerLogos, ...customerLogos].map((logo, idx) => (
+                <img
+                  key={`${logo.name}-dark-${idx}`}
+                  src={logo.srcDark || logo.src}
+                  alt={logo.name}
+                  loading="lazy"
+                  decoding="async"
+                  className={`h-7 sm:h-8 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity shrink-0 ${logo.className || ""}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
