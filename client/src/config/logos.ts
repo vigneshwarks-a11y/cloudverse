@@ -14,7 +14,8 @@ export type LogoKey =
   | 'databricks' 
   | 'snowflake' 
   | 'kubernetes' 
-  | 'oracle';
+  | 'oracle'
+  | 'nvidia';
 
 export const LOGOS: Record<LogoKey, LogoVariant> = {
   aws: {
@@ -61,10 +62,14 @@ export const LOGOS: Record<LogoKey, LogoVariant> = {
     light: "/logos/oracle.png",
     dark: "/logos/oracle.png",
   },
+  nvidia: {
+    light: "/logos/nvidia.png",
+    dark: "/logos/nvidia.png",
+  },
 };
 
 export const CLOUD_PROVIDERS: LogoKey[] = ['aws', 'azure', 'gcp', 'alibaba', 'huawei', 'tencent', 'oracle'];
-export const AI_GPU_PROVIDERS: LogoKey[] = ['openai', 'snowflake', 'kubernetes'];
+export const AI_GPU_PROVIDERS: LogoKey[] = ['openai', 'snowflake', 'nvidia'];
 
 export const LOGO_DISPLAY_NAMES: Record<LogoKey, string> = {
   aws: 'AWS',
@@ -78,4 +83,5 @@ export const LOGO_DISPLAY_NAMES: Record<LogoKey, string> = {
   snowflake: 'Snowflake',
   kubernetes: 'Kubernetes',
   oracle: 'Oracle Cloud',
+  nvidia: 'NVIDIA',
 };
