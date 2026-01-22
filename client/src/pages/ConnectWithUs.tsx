@@ -130,42 +130,43 @@ export default function ConnectWithUs() {
             <p className="text-sm text-cv-muted text-center mb-6">
               Purchase CloudVerse directly from your preferred cloud marketplace.
             </p>
-            <div className="flex flex-nowrap items-center justify-center gap-3">
+            <div className="grid grid-cols-4 gap-3">
               <a
                 href="https://aws.amazon.com/marketplace/pp/prodview-g72gjnuqrts2m"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => track("marketplace_click", { provider: "aws" })}
-                className="flex items-center justify-center px-5 py-3 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all shrink-0"
+                className="flex items-center justify-center h-14 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
               >
-                <img src="/logos/aws/aws-dark.svg" alt="AWS Marketplace" className="h-6 w-auto" />
+                <img src="/logos/aws/aws-dark.svg" alt="AWS" className="h-5 w-auto dark:hidden" />
+                <img src="/logos/aws/aws-light.svg" alt="AWS" className="h-5 w-auto hidden dark:block" />
               </a>
               <a
                 href="https://console.cloud.google.com/marketplace/product/cloudverse-marketplace-public/mcp20"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => track("marketplace_click", { provider: "gcp" })}
-                className="flex items-center justify-center px-5 py-3 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all shrink-0"
+                className="flex items-center justify-center h-14 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
               >
-                <img src="/logos/gcp/gcp-dark.svg" alt="Google Cloud Marketplace" className="h-6 w-auto" />
+                <img src="/logos/gcp/gcp-dark.svg" alt="Google Cloud" className="h-5 w-auto" />
               </a>
               <a
                 href="https://marketplace.microsoft.com/en-au/product/saas/cloudversepteltd1683193289260.cloudverse-multi-cloud-management-platform"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => track("marketplace_click", { provider: "microsoft" })}
-                className="flex items-center justify-center px-5 py-3 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all shrink-0"
+                className="flex items-center justify-center h-14 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
               >
-                <img src="/logos/azure/azure-cloud.png" alt="Microsoft Azure Marketplace" className="h-6 w-auto" />
+                <img src="/logos/azure/azure-light.svg" alt="Microsoft Azure" className="h-5 w-auto" />
               </a>
               <a
                 href="https://marketplace.alibabacloud.com/products/56680002/sgcmfw00032481.html?spm=a3c0i.26795044.0.0.5edb2faaOBdVso&innerSource=search"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => track("marketplace_click", { provider: "alibaba" })}
-                className="flex items-center justify-center px-5 py-3 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all shrink-0"
+                className="flex items-center justify-center h-14 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
               >
-                <img src="/logos/alibaba/alibaba-cloud.png" alt="Alibaba Cloud Marketplace" className="h-6 w-auto" />
+                <img src="/logos/alibaba/alibaba-light.svg" alt="Alibaba Cloud" className="h-5 w-auto" />
               </a>
             </div>
           </div>
