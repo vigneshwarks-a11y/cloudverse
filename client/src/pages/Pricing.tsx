@@ -38,8 +38,6 @@ export default function Pricing() {
       description: "Custom pricing and deployment for complex environments.",
       price: "Custom",
       billingUnit: "",
-      cta: "Contact Us",
-      ctaVariant: "primary" as const,
       limits: ["Unlimited cloud spend", "Access to all features", "Unlimited users", "5 years data retention", "SOC2 Report", "Dedicated account manager"],
       dark: true
     }
