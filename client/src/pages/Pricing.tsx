@@ -38,8 +38,6 @@ export default function Pricing() {
       description: "Custom pricing and deployment for complex environments.",
       price: "Custom",
       billingUnit: "",
-      cta: "Contact Us",
-      ctaVariant: "primary" as const,
       limits: ["Unlimited cloud spend", "Access to all features", "Unlimited users", "5 years data retention", "SOC2 Report", "Dedicated account manager"],
       dark: true
     }
@@ -204,11 +202,11 @@ export default function Pricing() {
             </div>
           </div>
           <div className="text-center">
-            <Link href="/contact" onClick={() => track("pricing_contact_sales", { location: "pricing_enterprise" })}>
+            {/* <Link href="/contact" onClick={() => track("pricing_contact_sales", { location: "pricing_enterprise" })}>
               <Button variant="secondary" size="lg">
                 Contact sales
               </Button>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </section>

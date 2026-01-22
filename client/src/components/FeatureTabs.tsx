@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTheme } from "next-themes";
-import platformDashboardPreview from "@/assets/platform-dashboard-preview.png";
-import platformDashboardPreviewDark from "@/assets/platform-dashboard-preview-dark.png";
+import platformDashboardPreview from "@/assets/developer_finops_light.png";
+import platformDashboardPreviewDark from "@/assets/developer_finops_black.png";
 import automationDashboardPreview from "@/assets/automation-dashboard-preview.png";
 import automationDashboardPreviewDark from "@/assets/automation-dashboard-preview-dark.png";
 import anomalyDashboardPreview from "@/assets/anomaly-dashboard-preview.png";
