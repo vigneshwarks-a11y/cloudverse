@@ -9,3 +9,5 @@ vite.config.ts.*
 zirfsNuE
 source_code.zip
 *.zip
+
+*.env
