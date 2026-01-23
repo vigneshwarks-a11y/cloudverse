@@ -208,30 +208,31 @@ export async function parseInvoice(
   fileName: string
 ): Promise<InvoiceAnalysisResult> {
   const prompt = `
-You are an expert cloud invoice analyzer specializing in AWS, Azure, GCP, Oracle, and Alibaba billing formats.
-
-Your task is to analyze the invoice content and extract structured insights.
-The invoice content may be incomplete or truncated.
+You are an expert cloud invoice analyzer. Analyze the following cloud invoice data and extract key information accurately.
 
 File name: ${fileName}
 
 Invoice content:
 ${fileContent.substring(0, 50000)}
 
-STRICT OUTPUT RULES:
-•⁠  ⁠Return ONLY valid JSON
-•⁠  ⁠Do NOT include markdown, comments, or explanations
-•⁠  ⁠Do NOT infer values that are not clearly present
-•⁠  ⁠If a value cannot be determined, use:
-  - null for strings
-  - 0 for numbers
-  - [] for arrays
+IMPORTANT EXTRACTION & DERIVATION RULES:
+•⁠  ⁠Extract all cost-bearing line items first
+•⁠  ⁠topServices MUST be derived by aggregating costs from topLineItems grouped by service
+•⁠  ⁠topRegions MUST be derived by aggregating costs from topLineItems grouped by region
+•⁠  ⁠If a region is not explicitly mentioned, use "Unknown"
+•⁠  ⁠Quantity and unit SHOULD be extracted from usage text such as:
+  - "720 Hours"
+  - "1,200 GB-Month"
+  - "210 GB"
+•⁠  ⁠If usage text exists, do NOT leave quantity or unit empty
+•⁠  ⁠Do not leave topServices, topRegions, or topLineItems empty if any costs are present
 
-DATA NORMALIZATION RULES:
+DATA RULES:
 •⁠  ⁠Currency must be a 3-letter ISO code (USD, EUR, INR, etc.)
-•⁠  ⁠Percent values must be numbers between 0–100
-•⁠  ⁠Percent values in a list should sum to <= 100
-•⁠  ⁠Round all monetary values to 2 decimal places
+•⁠  ⁠Percent fields must be numbers between 0–100
+•⁠  ⁠Percentages are relative to totalSpend
+•⁠  ⁠Percent values may be approximate but must be reasonable
+•⁠  ⁠Round monetary values to 2 decimal places
 
 PROVIDER DETECTION:
 •⁠  ⁠Detect provider ONLY if explicit indicators exist
@@ -240,13 +241,18 @@ PROVIDER DETECTION:
 
 EFFICIENCY SCORE (0–100):
 Estimate based on:
-•⁠  ⁠High on-demand usage → lower score
+•⁠  ⁠High on-demand compute usage → lower score
 •⁠  ⁠High compute concentration → lower score
 •⁠  ⁠Presence of optimization opportunities → lower score
 •⁠  ⁠Reserved/committed usage → higher score
-Use best judgment; do NOT randomize.
+Use informed judgment, not random values.
 
-Extract and return the following JSON structure exactly:
+If a value truly cannot be determined:
+•⁠  ⁠Use null for strings
+•⁠  ⁠Use 0 for numbers
+•⁠  ⁠Use [] for arrays
+
+Extract and return ONLY the following JSON structure:
 {
   "score": 0,
   "currency": null,
@@ -258,13 +264,23 @@ Extract and return the following JSON structure exactly:
   "topAccountIdentifier": null,
   "topServices": [],
   "topRegions": [],
-  "topLineItems": [],
+  "topLineItems": [{
+    "displayName": null,
+    "service": null,
+    "quantity": 0,
+    "unit": null,
+    "cost": 0
+  }],
   "computeSpendPercent": 0,
   "onDemandPercent": 0,
   "optimizationPotentialMin": 0,
   "optimizationPotentialMax": 0,
   "insights": []
 }
+
+Return ONLY valid JSON.
+Do not wrap the response in markdown.
+Do not add explanations or extra text.
 `;
 
   try {
