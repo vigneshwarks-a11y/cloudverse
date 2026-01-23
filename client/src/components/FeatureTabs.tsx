@@ -121,42 +121,60 @@ export function FeatureTabs() {
           id={`panel-${activeTab}`}
           role="tabpanel"
           aria-labelledby={`tab-${activeTab}`}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-10 p-6 md:p-10"
+          className="p-4 sm:p-6 md:p-10"
         >
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-cv-ink">
-              {activeTabContent.title}
-            </h3>
-            <p className="text-sm text-cv-muted max-w-[56ch]">
-              {activeTabContent.body}
-            </p>
-            <ul className="space-y-2 pt-4">
-              {activeTabContent.bullets.map((bullet, idx) => (
-                <li
-                  key={idx}
-                  className="flex items-start gap-3 text-sm text-cv-muted"
-                >
-                  <span className="text-primary font-semibold mt-0.5 flex-shrink-0">
-                    •
-                  </span>
-                  <span>{bullet}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="hidden lg:flex items-center justify-center h-full">
+          {/* Image - shows first on mobile, hidden on desktop */}
+          <div className="block lg:hidden mb-6">
             {activeTabContent.image ? (
               <img
                 src={(isDark && activeTabContent.imageDark) ? activeTabContent.imageDark : activeTabContent.image}
                 alt={activeTabContent.title}
-                className="w-full h-full object-cover rounded-xl"
+                className="w-full aspect-[16/10] object-cover rounded-xl"
               />
             ) : (
-              <div className="w-full aspect-[4/3] flex items-center justify-center rounded-xl bg-cv-surface border border-cv-line overflow-hidden">
+              <div className="w-full aspect-[16/10] flex items-center justify-center rounded-xl bg-cv-surface border border-cv-line overflow-hidden">
                 <span className="text-cv-muted text-sm">Preview coming soon</span>
               </div>
             )}
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
+            <div className="space-y-4">
+              <h3 className="text-lg sm:text-xl font-semibold text-cv-ink">
+                {activeTabContent.title}
+              </h3>
+              <p className="text-sm text-cv-muted">
+                {activeTabContent.body}
+              </p>
+              <ul className="space-y-2 pt-2 sm:pt-4">
+                {activeTabContent.bullets.map((bullet, idx) => (
+                  <li
+                    key={idx}
+                    className="flex items-start gap-3 text-sm text-cv-muted"
+                  >
+                    <span className="text-primary font-semibold mt-0.5 flex-shrink-0">
+                      •
+                    </span>
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Image - hidden on mobile, shows on desktop */}
+            <div className="hidden lg:flex items-center justify-center h-full">
+              {activeTabContent.image ? (
+                <img
+                  src={(isDark && activeTabContent.imageDark) ? activeTabContent.imageDark : activeTabContent.image}
+                  alt={activeTabContent.title}
+                  className="w-full h-full object-cover rounded-xl"
+                />
+              ) : (
+                <div className="w-full aspect-[4/3] flex items-center justify-center rounded-xl bg-cv-surface border border-cv-line overflow-hidden">
+                  <span className="text-cv-muted text-sm">Preview coming soon</span>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}
