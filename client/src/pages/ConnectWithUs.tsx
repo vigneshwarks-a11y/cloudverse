@@ -1,6 +1,6 @@
 import { BaseLayout } from "@/layouts/BaseLayout";
 import { Button } from "@/components/Button";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -58,10 +58,19 @@ export default function ConnectWithUs() {
   const integrationFromUrl = urlParams.get("integration") || "";
   const [dateOpen, setDateOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+  const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     document.title = "Connect With Us — CloudVerse™";
   }, []);
+
+  useEffect(() => {
+    if (integrationFromUrl && formRef.current) {
+      setTimeout(() => {
+        formRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 100);
+    }
+  }, [integrationFromUrl]);
 
   const { register, handleSubmit, formState: { errors }, reset, setValue, watch } = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -181,6 +190,7 @@ export default function ConnectWithUs() {
 
           <div className="max-w-[700px] mx-auto">
             <form 
+              ref={formRef}
               onSubmit={handleSubmit((data) => mutation.mutate(data))} 
               className="space-y-8"
               data-testid="demo-inquiry-form"
