@@ -69,12 +69,12 @@ export default function Home() {
   return (
     <BaseLayout>
       {/* Hero Section */}
-      <section className="relative pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-14 lg:pb-16 overflow-hidden">
+      <section className="relative sm:pt-24 lg:pt-28 sm:pb-14 lg:pb-16 overflow-hidden pt-[50px] pb-[50px]">
         <MotionHeroBackground />
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-6 lg:px-10 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 lg:gap-14 items-center">
             {/* Left: Copy Block */}
-            <div className="text-left space-y-4 sm:space-y-6 max-w-[44rem]">
+            <div className="text-left space-y-4 sm:space-y-6 max-w-[52rem]">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-cv-ink leading-tight">
                 Cloud financial management for modern enterprises.
               </h1>
@@ -216,7 +216,6 @@ export default function Home() {
       </section>
       {/* Final CTA Section */}
       <FinalCTA location="home_final" />
-
       {/* Video Modal */}
       {showVideo && (
         <div 
