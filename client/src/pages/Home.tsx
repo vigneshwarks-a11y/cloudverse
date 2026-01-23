@@ -74,19 +74,19 @@ export default function Home() {
         <div className="max-w-[1400px] mx-auto px-5 sm:px-6 lg:px-10 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 lg:gap-14 items-center">
             {/* Left: Copy Block */}
-            <div className="text-left space-y-4 sm:space-y-6 max-w-[52rem]">
+            <div className="text-center lg:text-left space-y-4 sm:space-y-6 max-w-[52rem] mx-auto lg:mx-0">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-cv-ink leading-tight">
                 Cloud financial management for modern enterprises.
               </h1>
-              <p className="text-lg sm:text-xl text-cv-ink/80 leading-relaxed max-w-[40rem]">
+              <p className="text-lg sm:text-xl text-cv-ink/80 leading-relaxed max-w-[40rem] mx-auto lg:mx-0">
                 Unified visibility, allocation, anomalies, and automated optimization across cloud, data, and AI platforms.
               </p>
-              <p className="text-base sm:text-lg text-cv-muted pb-8 border-b border-cv-line leading-relaxed max-w-[40rem]">
+              <p className="text-base sm:text-lg text-cv-muted pb-8 border-b border-cv-line leading-relaxed max-w-[40rem] mx-auto lg:mx-0">
                 Private deployment and air-gapped options available for regulated environments.
               </p>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-4">
                 <Link href="/connect" onClick={() => track("cta_demo", { location: "hero" })}>
                   <Button size="lg" className="w-full sm:w-auto">
                     Book a demo
