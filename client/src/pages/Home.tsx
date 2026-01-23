@@ -119,74 +119,6 @@ export default function Home() {
       </section>
       {/* Invoice Efficiency Score Section */}
       <InvoiceEfficiencySection />
-      <DeploymentOptions />
-      {/* Customer Logos Section */}
-      <section className="pt-6 sm:pt-8 lg:pt-10 pb-10 sm:pb-12 lg:pb-14 border-t border-cv-line dark:border-white/10 overflow-hidden">
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
-          <p className="text-center text-base sm:text-lg text-cv-muted mb-8 sm:mb-10">
-            Used by FinOps teams at leading enterprises.
-          </p>
-          <div className="relative">
-            <div className="flex items-center gap-x-10 sm:gap-x-14 lg:gap-x-16 animate-marquee">
-              {[...customerLogos, ...customerLogos].map((logo, idx) => (
-                <img
-                  key={`${logo.name}-${idx}`}
-                  src={logo.srcLight || logo.src || logo.srcDark}
-                  alt={logo.name}
-                  loading="lazy"
-                  decoding="async"
-                  className={`h-7 sm:h-8 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity grayscale shrink-0 dark:hidden ${logo.className || ""}`}
-                />
-              ))}
-            </div>
-            <div className="flex items-center gap-x-10 sm:gap-x-14 lg:gap-x-16 animate-marquee hidden dark:flex absolute top-0 left-0">
-              {[...customerLogos, ...customerLogos].map((logo, idx) => (
-                <img
-                  key={`${logo.name}-dark-${idx}`}
-                  src={logo.srcDark || logo.src}
-                  alt={logo.name}
-                  loading="lazy"
-                  decoding="async"
-                  className={`h-7 sm:h-8 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity shrink-0 ${logo.className || ""}`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* What CloudVerse Offers Section */}
-      <section className="py-8 sm:py-10 lg:py-12 border-t border-cv-line dark:border-white/10">
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
-          <div className="mb-10 sm:mb-12">
-            <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-cv-muted mb-3">
-              What CloudVerse Offers
-            </p>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink mb-4">One platform to manage cloud, data, and AI spend</h2>
-            <p className="text-lg sm:text-xl text-cv-muted max-w-2xl">
-              Built for enterprise scale, multi-tenant governance, and measurable outcomes.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            {pillarCards.map((card, idx) => (
-              <PillarCard
-                key={idx}
-                icon={card.icon}
-                title={card.title}
-                description={card.description}
-              />
-            ))}
-          </div>
-
-          <div className="text-center">
-            <Link href="/platform" onClick={() => track("link_explore_platform", { location: "pillar_cards" })}>
-              <span className="text-cv-muted hover:text-cv-ink transition-colors inline-flex items-center gap-2">
-                Explore the platform →
-              </span>
-            </Link>
-          </div>
-        </div>
-      </section>
       {/* Products Section */}
       <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10">
         <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
@@ -256,6 +188,74 @@ export default function Home() {
                 </div>
               </div>
             </a>
+          </div>
+        </div>
+      </section>
+      <DeploymentOptions />
+      {/* Customer Logos Section */}
+      <section className="pt-6 sm:pt-8 lg:pt-10 pb-10 sm:pb-12 lg:pb-14 border-t border-cv-line dark:border-white/10 overflow-hidden">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
+          <p className="text-center text-base sm:text-lg text-cv-muted mb-8 sm:mb-10">
+            Used by FinOps teams at leading enterprises.
+          </p>
+          <div className="relative">
+            <div className="flex items-center gap-x-10 sm:gap-x-14 lg:gap-x-16 animate-marquee">
+              {[...customerLogos, ...customerLogos].map((logo, idx) => (
+                <img
+                  key={`${logo.name}-${idx}`}
+                  src={logo.srcLight || logo.src || logo.srcDark}
+                  alt={logo.name}
+                  loading="lazy"
+                  decoding="async"
+                  className={`h-7 sm:h-8 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity grayscale shrink-0 dark:hidden ${logo.className || ""}`}
+                />
+              ))}
+            </div>
+            <div className="flex items-center gap-x-10 sm:gap-x-14 lg:gap-x-16 animate-marquee hidden dark:flex absolute top-0 left-0">
+              {[...customerLogos, ...customerLogos].map((logo, idx) => (
+                <img
+                  key={`${logo.name}-dark-${idx}`}
+                  src={logo.srcDark || logo.src}
+                  alt={logo.name}
+                  loading="lazy"
+                  decoding="async"
+                  className={`h-7 sm:h-8 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity shrink-0 ${logo.className || ""}`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* What CloudVerse Offers Section */}
+      <section className="py-8 sm:py-10 lg:py-12 border-t border-cv-line dark:border-white/10">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
+          <div className="mb-10 sm:mb-12">
+            <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-cv-muted mb-3">
+              What CloudVerse Offers
+            </p>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink mb-4">One platform to manage cloud, data, and AI spend</h2>
+            <p className="text-lg sm:text-xl text-cv-muted max-w-2xl">
+              Built for enterprise scale, multi-tenant governance, and measurable outcomes.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            {pillarCards.map((card, idx) => (
+              <PillarCard
+                key={idx}
+                icon={card.icon}
+                title={card.title}
+                description={card.description}
+              />
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Link href="/platform" onClick={() => track("link_explore_platform", { location: "pillar_cards" })}>
+              <span className="text-cv-muted hover:text-cv-ink transition-colors inline-flex items-center gap-2">
+                Explore the platform →
+              </span>
+            </Link>
           </div>
         </div>
       </section>
