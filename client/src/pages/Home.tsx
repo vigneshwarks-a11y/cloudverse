@@ -86,8 +86,8 @@ export default function Home() {
               </p>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-4">
-                <Link href="/connect" onClick={() => track("cta_demo", { location: "hero" })}>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-4 max-w-xs sm:max-w-none mx-auto lg:mx-0">
+                <Link href="/connect" onClick={() => track("cta_demo", { location: "hero" })} className="w-full sm:w-auto">
                   <Button size="lg" className="w-full sm:w-auto">
                     Book a demo
                   </Button>
