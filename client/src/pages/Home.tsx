@@ -229,12 +229,12 @@ export default function Home() {
       {/* What CloudVerse Offers Section */}
       <section className="py-8 sm:py-10 lg:py-12 border-t border-cv-line dark:border-white/10">
         <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
-          <div className="mb-10 sm:mb-12">
+          <div className="mb-10 sm:mb-12 text-center">
             <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-cv-muted mb-3">
               What CloudVerse Offers
             </p>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink mb-4">One platform to manage cloud, data, and AI spend</h2>
-            <p className="text-lg sm:text-xl text-cv-muted max-w-2xl">
+            <p className="text-lg sm:text-xl text-cv-muted max-w-2xl mx-auto">
               Built for enterprise scale, multi-tenant governance, and measurable outcomes.
             </p>
           </div>
