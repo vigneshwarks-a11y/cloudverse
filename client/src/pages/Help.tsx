@@ -27,7 +27,7 @@ export default function Help() {
 
   return (
     <BaseLayout>
-      <section className="pt-16 lg:pt-24 pb-16 lg:pb-24 relative overflow-hidden">
+      <section className="pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-16 lg:pb-20 relative overflow-hidden">
         <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <div className="max-w-2xl mx-auto">
             <div className="text-center mb-12 space-y-3">
