@@ -30,13 +30,13 @@ function LogoPill({ logoKey, className = "" }: { logoKey: LogoKey; className?: s
 
   return (
     <div 
-      className={`logo-pill flex items-center justify-center w-[88px] h-10 rounded bg-slate-200 dark:bg-slate-200 ${className}`}
+      className={`logo-pill flex items-center justify-center h-11 sm:h-10 rounded bg-slate-200 dark:bg-slate-200 ${className}`}
       data-testid={`logo-${logoKey}`}
     >
       <img
         src={logoPath}
         alt={displayName}
-        className="h-7 w-auto max-w-[76px] object-contain"
+        className="h-6 sm:h-6 w-auto max-w-[65px] sm:max-w-[70px] object-contain"
       />
     </div>
   );
@@ -75,7 +75,7 @@ export function HeroCard() {
       {/* Window Content */}
       <div className="p-6 sm:p-8 relative z-10 flex flex-col h-full">
         {/* Outcomes List - Crossfading */}
-        <div className="relative mb-6 min-h-[340px] sm:min-h-[280px]">
+        <div className="relative mb-4 sm:mb-6 min-h-[260px] sm:min-h-[280px]">
           <div
             className={`transition-opacity duration-1000 space-y-4 sm:space-y-6 ${
               showSet2 ? "opacity-0 pointer-events-none" : "opacity-100"
@@ -118,7 +118,7 @@ export function HeroCard() {
           <p className="text-[9px] font-medium tracking-wider text-cv-muted/60 dark:text-slate-500/60 uppercase mb-2">
             Works with
           </p>
-          <div className="flex flex-wrap gap-2">
+          <div className="grid grid-cols-4 sm:grid-cols-5 gap-1.5 sm:gap-2">
             {[...CLOUD_PROVIDERS, ...AI_GPU_PROVIDERS].map((key) => (
               <LogoPill key={key} logoKey={key} />
             ))}
