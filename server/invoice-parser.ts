@@ -1,5 +1,6 @@
 import OpenAI from "openai";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import Anthropic from "@anthropic-ai/sdk";
 
 export interface TopService {
   name: string;
@@ -81,6 +82,24 @@ function getGeminiClient(): { model: any } {
     }),
   };
 }
+
+function getClaudeClient(): { client: Anthropic; model: string } {
+  if (!process.env.ANTHROPIC_API_KEY) {
+    throw new Error("ANTHROPIC_API_KEY not configured");
+  }
+
+  const client = new Anthropic({
+    apiKey: process.env.ANTHROPIC_API_KEY,
+  });
+
+  return {
+    client,
+    model: process.env.CLAUDE_MODEL || "claude-sonnet-4-20250514",
+  };
+}
+
+
+
 
 // export async function parseInvoice(fileContent: string, fileName: string): Promise<InvoiceAnalysisResult> {
 //   const prompt = `You are an expert cloud invoice analyzer. Analyze the following cloud invoice data and extract key information.
@@ -164,6 +183,26 @@ function getGeminiClient(): { model: any } {
 //     throw new Error("Failed to parse invoice: " + (error instanceof Error ? error.message : "Unknown error"));
 //   }
 // }
+
+
+function extractJson(text: string): string {
+  // Remove ```json ... ``` or ``` ... ```
+  const fenced = text.match(/```(?:json)?\s*([\s\S]*?)\s*```/i);
+  if (fenced?.[1]) {
+    return fenced[1];
+  }
+
+  // Fallback: attempt to find first { ... }
+  const firstBrace = text.indexOf("{");
+  const lastBrace = text.lastIndexOf("}");
+  if (firstBrace !== -1 && lastBrace !== -1) {
+    return text.slice(firstBrace, lastBrace + 1);
+  }
+
+  return text;
+}
+
+
 export async function parseInvoice(
   fileContent: string,
   fileName: string
@@ -203,19 +242,38 @@ Extract and return a JSON object with the following structure:
 }
 
 Return ONLY valid JSON. No explanations.
+Do not wrap the response in markdown.
+Do not add comments or trailing text.
 `;
 
   try {
-    const { model } = getGeminiClient();
+    // const { model } = getGeminiClient();
 
-    const result = await model.generateContent(prompt);
-    const text = result.response.text();
+    // const result = await model.generateContent(prompt);
+    // const text = result.response.text();
+
+    const { client, model } = getClaudeClient();
+
+    const response = await client.messages.create({
+      model,
+      max_tokens: 2048,
+      temperature: 0.2,
+      messages: [
+        {
+          role: "user",
+          content: prompt,
+        },
+      ],
+    });
+
+    const text = response.content.find(c => c.type === "text")?.text;
 
     if (!text) {
       throw new Error("No response from Gemini");
     }
 
-    const parsed = JSON.parse(text) as InvoiceAnalysisResult;
+    const cleaned = extractJson(text);
+    const parsed = JSON.parse(cleaned) as InvoiceAnalysisResult;
 
     return {
       score: Math.max(0, Math.min(100, Math.round(parsed.score))),
