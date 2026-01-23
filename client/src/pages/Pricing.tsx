@@ -57,7 +57,7 @@ export default function Pricing() {
   return (
     <BaseLayout>
       {/* Hero */}
-      <section className="pt-24 sm:pt-28 lg:pt-32 pb-14 sm:pb-16 lg:pb-20">
+      <section className="pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-14 lg:pb-16">
         <div className="cv-container text-center space-y-4 sm:space-y-6 max-w-[720px] mx-auto">
           <span className="cv-cap font-semibold tracking-widest text-cv-muted uppercase">
             Pricing
@@ -97,12 +97,12 @@ export default function Pricing() {
                     <span className="text-xl font-bold">
                       {plan.billingUnit ? '/Month' : ''}
                     </span>
-                    {plan.billingUnit && (
-                      <span className={`text-sm ml-1 ${plan.dark ? 'text-white/40' : 'text-cv-muted'}`}>
-                        (billed annually)
-                      </span>
-                    )}
                   </div>
+                  {plan.billingUnit && (
+                    <p className={`text-sm mt-2 ${plan.dark ? 'text-white/40' : 'text-cv-muted'}`}>
+                      Billed annually
+                    </p>
+                  )}
                 </div>
 
                 <div className="flex-1 mb-10">

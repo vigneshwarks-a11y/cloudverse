@@ -1,6 +1,6 @@
 import { BaseLayout } from "@/layouts/BaseLayout";
 import { Button } from "@/components/Button";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -59,10 +59,19 @@ export default function ConnectWithUs() {
   const integrationFromUrl = urlParams.get("integration") || "";
   const [dateOpen, setDateOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+  const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     document.title = "Connect With Us — CloudVerse™";
   }, []);
+
+  useEffect(() => {
+    if (integrationFromUrl && formRef.current) {
+      setTimeout(() => {
+        formRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 100);
+    }
+  }, [integrationFromUrl]);
 
   const { register, handleSubmit, formState: { errors }, reset, setValue, watch } = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -129,10 +138,10 @@ export default function ConnectWithUs() {
 
   return (
     <BaseLayout>
-      <section className="pt-20 sm:pt-24 lg:pt-28 pb-16 sm:pb-20 lg:pb-24 relative overflow-hidden">
+      <section className="pt-12 sm:pt-16 lg:pt-20 pb-16 sm:pb-20 lg:pb-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none" />
         
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-8 relative">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20 relative">
           <div className="text-center mb-12 lg:mb-16">
             <span className="inline-block text-xs uppercase tracking-widest text-blue-500 font-semibold mb-4">
               Schedule a Demo
@@ -149,7 +158,7 @@ export default function ConnectWithUs() {
             <p className="text-sm text-cv-muted text-center mb-6">
               Purchase CloudVerse directly from your preferred cloud marketplace.
             </p>
-            <div className="grid grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               <a
                 href="https://aws.amazon.com/marketplace/pp/prodview-g72gjnuqrts2m"
                 target="_blank"
@@ -200,7 +209,8 @@ export default function ConnectWithUs() {
 
           <div className="max-w-[700px] mx-auto">
             <form 
-              onSubmit={handleSubmit(onSubmit)} 
+              ref={formRef}
+              onSubmit={handleSubmit((data) => mutation.mutate(data))} 
               className="space-y-8"
               data-testid="demo-inquiry-form"
             >
@@ -282,7 +292,7 @@ export default function ConnectWithUs() {
                     <CalendarIcon className="w-3.5 h-3.5" />
                     Preferred Date & Time
                   </label>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <Popover open={dateOpen} onOpenChange={setDateOpen}>
                       <PopoverTrigger asChild>
                         <button

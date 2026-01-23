@@ -27,8 +27,8 @@ export default function Help() {
 
   return (
     <BaseLayout>
-      <section className="pt-16 lg:pt-24 pb-16 lg:pb-24 relative overflow-hidden">
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-8">
+      <section className="pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-16 lg:pb-20 relative overflow-hidden">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <div className="max-w-2xl mx-auto">
             <div className="text-center mb-12 space-y-3">
               <span className="inline-block text-xs uppercase tracking-widest text-cv-muted font-semibold">

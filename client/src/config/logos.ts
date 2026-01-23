@@ -20,27 +20,27 @@ export type LogoKey =
 export const LOGOS: Record<LogoKey, LogoVariant> = {
   aws: {
     light: "/logos/aws/aws-light.svg",
-    dark: "/logos/aws/aws-dark.svg",
+    dark: "/logos/aws/aws-dark.png",
   },
   azure: {
     light: "/logos/azure/azure-cloud.png",
-    dark: "/logos/azure/azure-cloud.png",
+    dark: "/logos/azure/azure-dark.png",
   },
   gcp: {
-    light: "/logos/gcp/gcp-light.svg",
-    dark: "/logos/gcp/gcp-dark.svg",
+    light: "/logos/gcp/gcp-light.png",
+    dark: "/logos/gcp/gcp-dark.png",
   },
   alibaba: {
     light: "/logos/alibaba/alibaba-cloud.png",
-    dark: "/logos/alibaba/alibaba-cloud.png",
+    dark: "/logos/alibaba/alibaba-dark.png",
   },
   huawei: {
     light: "/logos/huawei/huawei-cloud.png",
-    dark: "/logos/huawei/huawei-cloud.png",
+    dark: "/logos/huawei/huawei-dark.png",
   },
   tencent: {
     light: "/logos/tencent/tencent-cloud.png",
-    dark: "/logos/tencent/tencent-cloud.png",
+    dark: "/logos/tencent/tencent-dark.png",
   },
   openai: {
     light: "/logos/openai/openai-light.svg",
@@ -60,7 +60,7 @@ export const LOGOS: Record<LogoKey, LogoVariant> = {
   },
   oracle: {
     light: "/logos/oracle.png",
-    dark: "/logos/oracle.png",
+    dark: "/logos/oracle-dark.png",
   },
   nvidia: {
     light: "/logos/nvidia.png",

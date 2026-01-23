@@ -69,13 +69,13 @@ export default function Security() {
             <p className="text-sm text-cv-muted/70 border-l-2 border-cv-line pl-4">
               Private deployment and air-gapped options available for regulated environments.
             </p>
-            <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 pt-4">
-              <Link href="/contact" onClick={() => track("cta_security_contact", { location: "security_hero" })}>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-4 max-w-xs sm:max-w-none">
+              <Link href="/contact" onClick={() => track("cta_security_contact", { location: "security_hero" })} className="w-full sm:w-auto">
                 <Button size="lg" className="w-full sm:w-auto">
                   Talk to security
                 </Button>
               </Link>
-              <Link href="/connect" onClick={() => track("cta_demo", { location: "security_hero" })}>
+              <Link href="/connect" onClick={() => track("cta_demo", { location: "security_hero" })} className="w-full sm:w-auto">
                 <Button variant="tertiary" size="lg" className="w-full sm:w-auto">
                   Book a demo
                 </Button>

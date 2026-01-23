@@ -14,7 +14,7 @@ export default function Company() {
     <BaseLayout>
       {/* Hero Section */}
       <section className="pt-16 sm:pt-20 lg:pt-24 pb-10 sm:pb-12 lg:pb-16">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <div className="space-y-4 sm:space-y-6 max-w-3xl">
             <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-cv-muted">
               CLOUDVERSE™
@@ -31,7 +31,7 @@ export default function Company() {
 
       {/* Mission Section */}
       <section className="py-12 sm:py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             <div className="lg:col-span-4">
               <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-cv-ink">
@@ -51,7 +51,7 @@ export default function Company() {
 
       {/* What We Do Section */}
       <section className="py-12 sm:py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             <div className="lg:col-span-4">
               <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-cv-ink">
@@ -98,7 +98,7 @@ export default function Company() {
 
       {/* How We Work Section */}
       <section className="py-12 sm:py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             <div className="lg:col-span-4">
               <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-cv-ink">
@@ -141,7 +141,7 @@ export default function Company() {
 
       {/* Trust & Security Section */}
       <section className="py-12 sm:py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             <div className="lg:col-span-4">
               <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-cv-ink">

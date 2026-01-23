@@ -113,7 +113,7 @@ export function InvoiceEfficiencySection() {
   return (
     <>
       <section className="py-10 sm:py-12 lg:py-14">
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <div className="max-w-2xl mx-auto text-center space-y-6">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cv-muted">
               Instant Efficiency Snapshot

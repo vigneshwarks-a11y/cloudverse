@@ -36,8 +36,8 @@ export default function Integrations() {
   return (
     <BaseLayout>
       {/* Hero */}
-      <section className="pt-24 sm:pt-28 lg:pt-32 pb-14 sm:pb-16 lg:pb-20">
-        <div className="cv-container-full space-y-6 pl-[48px] pr-[48px]">
+      <section className="pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-14 lg:pb-16">
+        <div className="cv-container-full space-y-6">
           <div className="max-w-[900px]">
             <span className="cv-cap font-semibold tracking-widest text-cv-muted uppercase mb-4 inline-block">
               Integrations

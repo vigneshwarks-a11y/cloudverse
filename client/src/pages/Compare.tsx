@@ -74,8 +74,8 @@ export default function Compare() {
   return (
     <BaseLayout>
       {/* Hero Section */}
-      <section className="pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-14 lg:pb-16">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+      <section className="pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-14 lg:pb-16">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <div className="max-w-3xl">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-cv-ink mb-6">
               Cloud Spending Comparison
@@ -92,7 +92,7 @@ export default function Compare() {
 
       {/* Quick Metrics Section */}
       <section className="py-14 sm:py-16 lg:py-18 border-t border-cv-line">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <h2 className="text-2xl sm:text-3xl font-bold text-cv-ink mb-8">
             Your vs. Industry Average
           </h2>
@@ -136,7 +136,7 @@ export default function Compare() {
 
       {/* Spending by Industry Section */}
       <section className="py-14 sm:py-16 lg:py-18 border-t border-cv-line">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <h2 className="text-2xl sm:text-3xl font-bold text-cv-ink mb-8">
             Average Spending by Industry
           </h2>
@@ -176,7 +176,7 @@ export default function Compare() {
 
       {/* Cost Breakdown */}
       <section className="py-14 sm:py-16 lg:py-18 border-t border-cv-line">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <h2 className="text-2xl sm:text-3xl font-bold text-cv-ink mb-8">
             Industry Average Cost Breakdown
           </h2>
@@ -234,7 +234,7 @@ export default function Compare() {
 
       {/* Optimization Opportunities */}
       <section className="py-14 sm:py-16 lg:py-18 border-t border-cv-line">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <h2 className="text-2xl sm:text-3xl font-bold text-cv-ink mb-8">
             Optimization Opportunities (% Savings Potential)
           </h2>
@@ -281,7 +281,7 @@ export default function Compare() {
 
       {/* CTA Section */}
       <section className="py-14 sm:py-16 lg:py-18 border-t border-cv-line">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <div className="rounded-2xl border border-cv-line bg-gradient-to-b from-cv-surface2/80 to-cv-surface2/50 dark:from-white/[0.06] dark:to-white/[0.03] p-10 sm:p-12">
             <div className="max-w-2xl">
               <h2 className="text-3xl sm:text-4xl font-bold text-cv-ink mb-4">

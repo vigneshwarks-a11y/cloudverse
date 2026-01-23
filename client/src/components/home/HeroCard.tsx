@@ -28,17 +28,15 @@ function LogoPill({ logoKey, className = "" }: { logoKey: LogoKey; className?: s
   const logoPath = LOGOS[logoKey][variant];
   const displayName = LOGO_DISPLAY_NAMES[logoKey];
 
-  const sizeClass = logoKey === 'nvidia' ? 'h-12' : 'h-8';
-  
   return (
     <div 
-      className={`logo-pill flex items-center justify-center h-12 px-3 rounded-lg ${className}`}
+      className={`logo-pill flex items-center justify-center w-[88px] h-10 rounded bg-slate-200 dark:bg-slate-200 ${className}`}
       data-testid={`logo-${logoKey}`}
     >
       <img
         src={logoPath}
         alt={displayName}
-        className={`${sizeClass} w-auto max-w-full object-contain`}
+        className="h-7 w-auto max-w-[76px] object-contain"
       />
     </div>
   );
@@ -58,7 +56,7 @@ export function HeroCard() {
   }, []);
 
   return (
-    <div className="w-full lg:w-[520px] xl:w-[600px] 2xl:w-[640px] rounded-[28px] border border-cv-line dark:border-slate-700/50 bg-cv-surface dark:bg-slate-900 overflow-hidden min-h-[600px] sm:min-h-[520px] shadow-xl shadow-black/20 relative flex flex-col">
+    <div className="w-full lg:w-[480px] xl:w-[540px] 2xl:w-[580px] rounded-[28px] border border-cv-line dark:border-slate-700/50 bg-cv-surface dark:bg-slate-900 overflow-hidden min-h-[480px] sm:min-h-[440px] shadow-xl shadow-black/20 relative flex flex-col">
       {/* Subtle gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-800/50 via-transparent to-blue-900/20 pointer-events-none opacity-50 dark:opacity-100" />
       
@@ -113,27 +111,15 @@ export function HeroCard() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-cv-line dark:border-slate-700/50 pt-4 mb-4" />
+        <div className="border-t border-cv-line dark:border-slate-700/50 pt-3 mt-auto" />
 
-        {/* Supported Platforms */}
-        <div className="mb-4">
-          <h5 className="text-[10px] font-bold tracking-[0.2em] text-cv-muted dark:text-slate-500 uppercase mb-3">
-            Supported Platforms
-          </h5>
-          <div className="grid grid-cols-3 gap-3">
-            {CLOUD_PROVIDERS.map((key) => (
-              <LogoPill key={key} logoKey={key} />
-            ))}
-          </div>
-        </div>
-
-        {/* AI Providers */}
-        <div>
-          <h5 className="text-[10px] font-bold tracking-[0.2em] text-cv-muted dark:text-slate-500 uppercase mb-3">
-            AI & GPU Providers
-          </h5>
-          <div className="grid grid-cols-3 gap-3">
-            {AI_GPU_PROVIDERS.map((key) => (
+        {/* Supported Platforms - Compact single section */}
+        <div className="pt-2">
+          <p className="text-[9px] font-medium tracking-wider text-cv-muted/60 dark:text-slate-500/60 uppercase mb-2">
+            Works with
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {[...CLOUD_PROVIDERS, ...AI_GPU_PROVIDERS].map((key) => (
               <LogoPill key={key} logoKey={key} />
             ))}
           </div>

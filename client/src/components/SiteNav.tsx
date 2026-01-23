@@ -43,7 +43,7 @@ export function SiteNav() {
           : "bg-transparent"
       )}
     >
-      <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-8 w-full">
+      <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20 w-full">
         <div className="flex items-center justify-between h-full">
           {/* Logo */}
           <Link href="/" onClick={() => track("nav_home")} className="flex items-center gap-2 flex-shrink-0">

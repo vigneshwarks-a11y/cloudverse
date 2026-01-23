@@ -11,7 +11,7 @@ import { HeroCard } from "@/components/home/HeroCard";
 import { DeploymentOptions } from "@/components/home/DeploymentOptions";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { InvoiceEfficiencySection } from "@/components/home/InvoiceEfficiencySection";
-import { Globe, Receipt, Tag, Code2, Cpu, Activity, X } from "lucide-react";
+import { Globe, Receipt, Tag, Code2, Cpu, Activity, X, Boxes, Sparkles } from "lucide-react";
 import { FinalCTA } from "@/components/FinalCTA";
 
 const customerLogos = [
@@ -69,25 +69,25 @@ export default function Home() {
   return (
     <BaseLayout>
       {/* Hero Section */}
-      <section className="relative pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-14 lg:pb-16 overflow-hidden">
+      <section className="relative pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-14 lg:pb-16 overflow-hidden">
         <MotionHeroBackground />
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 lg:gap-14 items-center">
             {/* Left: Copy Block */}
-            <div className="text-left space-y-4 sm:space-y-6 max-w-[44rem]">
+            <div className="text-center lg:text-left space-y-4 sm:space-y-6 max-w-[52rem] mx-auto lg:mx-0">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-cv-ink leading-tight">
                 Cloud financial management for modern enterprises.
               </h1>
-              <p className="text-lg sm:text-xl text-cv-ink/80 leading-relaxed max-w-[40rem]">
+              <p className="text-lg sm:text-xl text-cv-ink/80 leading-relaxed max-w-[40rem] mx-auto lg:mx-0">
                 Unified visibility, allocation, anomalies, and automated optimization across cloud, data, and AI platforms.
               </p>
-              <p className="text-base sm:text-lg text-cv-muted pb-8 border-b border-cv-line leading-relaxed max-w-[40rem]">
+              <p className="text-base sm:text-lg text-cv-muted pb-8 border-b border-cv-line leading-relaxed max-w-[40rem] mx-auto lg:mx-0">
                 Private deployment and air-gapped options available for regulated environments.
               </p>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 pt-4">
-                <Link href="/connect" onClick={() => track("cta_demo", { location: "hero" })}>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-4 max-w-xs sm:max-w-none mx-auto lg:mx-0">
+                <Link href="/connect" onClick={() => track("cta_demo", { location: "hero" })} className="w-full sm:w-auto">
                   <Button size="lg" className="w-full sm:w-auto">
                     Book a demo
                   </Button>
@@ -119,6 +119,78 @@ export default function Home() {
       </section>
       {/* Invoice Efficiency Score Section */}
       <InvoiceEfficiencySection />
+      {/* Products Section */}
+      <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
+          <div className="mb-10 sm:mb-12 text-center">
+            <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-cv-muted mb-3">
+              CloudVerse Products
+            </p>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink mb-4">
+              Purpose-built platforms for every team
+            </h2>
+            <p className="text-lg sm:text-xl text-cv-muted max-w-2xl mx-auto">
+              Specialized solutions that extend CloudVerse capabilities to developers and AI teams.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            {/* DevX Card */}
+            <a 
+              href="https://devx.cloudverse.ai" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={() => track("product_devx", { location: "products_section" })}
+              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300"
+              data-testid="product-devx-card"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
+                  <Boxes className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    DevX
+                  </h3>
+                  <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
+                    Cost context in engineering workflows. Shift-left FinOps for CI/CD, services, and environments.
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:gap-3 transition-all">
+                    Visit devx.cloudverse.ai →
+                  </span>
+                </div>
+              </div>
+            </a>
+
+            {/* AIx Card */}
+            <a 
+              href="https://aix.cloudverse.ai" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={() => track("product_aix", { location: "products_section" })}
+              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300"
+              data-testid="product-aix-card"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-lg shadow-purple-500/20">
+                  <Sparkles className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                    AIx
+                  </h3>
+                  <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
+                    AI cost intelligence for LLM and GPU workloads. Optimize inference, track tokens, and control AI spend.
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-sm font-medium text-purple-600 dark:text-purple-400 group-hover:gap-3 transition-all">
+                    Visit aix.cloudverse.ai →
+                  </span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
       <DeploymentOptions />
       {/* Customer Logos Section */}
       <section className="pt-6 sm:pt-8 lg:pt-10 pb-10 sm:pb-12 lg:pb-14 border-t border-cv-line dark:border-white/10 overflow-hidden">
@@ -157,12 +229,12 @@ export default function Home() {
       {/* What CloudVerse Offers Section */}
       <section className="py-8 sm:py-10 lg:py-12 border-t border-cv-line dark:border-white/10">
         <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
-          <div className="mb-10 sm:mb-12">
+          <div className="mb-10 sm:mb-12 text-center">
             <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-cv-muted mb-3">
               What CloudVerse Offers
             </p>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink mb-4">One platform to manage cloud, data, and AI spend</h2>
-            <p className="text-lg sm:text-xl text-cv-muted max-w-2xl">
+            <p className="text-lg sm:text-xl text-cv-muted max-w-2xl mx-auto">
               Built for enterprise scale, multi-tenant governance, and measurable outcomes.
             </p>
           </div>
@@ -216,7 +288,6 @@ export default function Home() {
       </section>
       {/* Final CTA Section */}
       <FinalCTA location="home_final" />
-
       {/* Video Modal */}
       {showVideo && (
         <div 

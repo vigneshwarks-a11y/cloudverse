@@ -18,7 +18,7 @@ export default function Contact() {
 
   return (
     <BaseLayout>
-      <Section className="pt-32 max-w-2xl mx-auto">
+      <Section className="pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-16 lg:pb-20 max-w-2xl mx-auto px-5 sm:px-6">
         <div className="text-center mb-12">
            <h1 className="mb-6">Contact Us</h1>
            <p className="text-xl text-muted-foreground">

@@ -119,8 +119,8 @@ export default function Solutions() {
   return (
     <BaseLayout>
       {/* Hero */}
-      <section className="pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-14 lg:pb-16 border-b border-cv-line">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 pl-[48px] pr-[48px]">
+      <section className="pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-14 lg:pb-16 border-b border-cv-line">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <div className="max-w-3xl">
             <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-cv-muted mb-4">
               CloudVerse™ Solutions
@@ -129,13 +129,13 @@ export default function Solutions() {
             <p className="text-lg sm:text-xl text-cv-muted mb-8 leading-relaxed">
               Finance, Engineering, IT, Business, and AI/Data teams use CloudVerse to see spend clearly, enforce accountability, and act on savings.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/connect" onClick={() => track("cta_demo", { location: "solutions_hero" })}>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 max-w-xs sm:max-w-none">
+              <Link href="/connect" onClick={() => track("cta_demo", { location: "solutions_hero" })} className="w-full sm:w-auto">
                 <Button size="lg" className="w-full sm:w-auto">
                   Book a demo
                 </Button>
               </Link>
-              <Link href="/integrations" onClick={() => track("cta_integrations", { location: "solutions_hero" })}>
+              <Link href="/integrations" onClick={() => track("cta_integrations", { location: "solutions_hero" })} className="w-full sm:w-auto">
                 <Button variant="secondary" size="lg" className="w-full sm:w-auto">
                   View integrations
                 </Button>
@@ -146,7 +146,7 @@ export default function Solutions() {
       </section>
       {/* Role Selector */}
       <section className="py-10 sm:py-12 lg:py-14 border-b border-cv-line">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
             {roles.map((role) => {
               const Icon = role.icon;
@@ -172,7 +172,7 @@ export default function Solutions() {
       </section>
       {/* Role Content */}
       <section className="py-14 sm:py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
             {/* Left: Outcomes + Use Cases */}
             <div className="space-y-10">

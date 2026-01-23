@@ -90,10 +90,10 @@ export function FeatureTabs() {
     <div className="border border-cv-line rounded-2xl bg-cv-surface2 overflow-hidden">
       {/* Tab buttons */}
       <div
-        className="flex lg:justify-center overflow-hidden border-b border-cv-line p-2 sm:p-4 md:p-6"
+        className="overflow-x-auto scrollbar-hide border-b border-cv-line"
         role="tablist"
       >
-        <div className="flex gap-2 sm:gap-4 lg:w-full lg:justify-between max-w-5xl">
+        <div className="flex gap-2 p-3 sm:p-4 md:p-6 min-w-max sm:min-w-0 sm:flex-wrap sm:justify-center">
           {featureTabs.map((tab) => (
             <button
               key={tab.id}
@@ -103,16 +103,13 @@ export function FeatureTabs() {
               aria-controls={`panel-${tab.id}`}
               tabIndex={activeTab === tab.id ? 0 : -1}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-4 sm:px-6 py-2.5 text-sm font-semibold transition-all relative whitespace-nowrap ${
+              className={`px-3 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold transition-all rounded-lg flex-shrink-0 ${
                 activeTab === tab.id
-                  ? "text-blue-600 dark:text-blue-400 bg-blue-500/10 dark:bg-blue-500/20 rounded-lg shadow-sm"
-                  : "text-cv-muted hover:text-cv-ink hover:bg-cv-surface2 dark:hover:bg-white/5 rounded-lg"
+                  ? "text-blue-600 dark:text-blue-400 bg-blue-500/10 dark:bg-blue-500/20 shadow-sm"
+                  : "text-cv-muted hover:text-cv-ink hover:bg-cv-surface2 dark:hover:bg-white/5"
               }`}
             >
               {tab.label}
-              {activeTab === tab.id && (
-                <div className="absolute -bottom-[9px] sm:-bottom-[17px] md:-bottom-[25px] left-0 right-0 h-[2px] bg-blue-600 dark:bg-blue-400" />
-              )}
             </button>
           ))}
         </div>
@@ -124,42 +121,60 @@ export function FeatureTabs() {
           id={`panel-${activeTab}`}
           role="tabpanel"
           aria-labelledby={`tab-${activeTab}`}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-10 p-6 md:p-10"
+          className="p-4 sm:p-6 md:p-10"
         >
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-cv-ink">
-              {activeTabContent.title}
-            </h3>
-            <p className="text-sm text-cv-muted max-w-[56ch]">
-              {activeTabContent.body}
-            </p>
-            <ul className="space-y-2 pt-4">
-              {activeTabContent.bullets.map((bullet, idx) => (
-                <li
-                  key={idx}
-                  className="flex items-start gap-3 text-sm text-cv-muted"
-                >
-                  <span className="text-primary font-semibold mt-0.5 flex-shrink-0">
-                    •
-                  </span>
-                  <span>{bullet}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="hidden lg:flex items-center justify-center h-full">
+          {/* Image - shows first on mobile, hidden on desktop */}
+          <div className="block lg:hidden mb-6">
             {activeTabContent.image ? (
               <img
                 src={(isDark && activeTabContent.imageDark) ? activeTabContent.imageDark : activeTabContent.image}
                 alt={activeTabContent.title}
-                className="w-full h-full object-cover rounded-xl"
+                className="w-full aspect-[16/10] object-cover rounded-xl"
               />
             ) : (
-              <div className="w-full aspect-[4/3] flex items-center justify-center rounded-xl bg-cv-surface border border-cv-line overflow-hidden">
+              <div className="w-full aspect-[16/10] flex items-center justify-center rounded-xl bg-cv-surface border border-cv-line overflow-hidden">
                 <span className="text-cv-muted text-sm">Preview coming soon</span>
               </div>
             )}
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
+            <div className="space-y-4">
+              <h3 className="text-lg sm:text-xl font-semibold text-cv-ink">
+                {activeTabContent.title}
+              </h3>
+              <p className="text-sm text-cv-muted">
+                {activeTabContent.body}
+              </p>
+              <ul className="space-y-2 pt-2 sm:pt-4">
+                {activeTabContent.bullets.map((bullet, idx) => (
+                  <li
+                    key={idx}
+                    className="flex items-start gap-3 text-sm text-cv-muted"
+                  >
+                    <span className="text-primary font-semibold mt-0.5 flex-shrink-0">
+                      •
+                    </span>
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Image - hidden on mobile, shows on desktop */}
+            <div className="hidden lg:flex items-center justify-center h-full">
+              {activeTabContent.image ? (
+                <img
+                  src={(isDark && activeTabContent.imageDark) ? activeTabContent.imageDark : activeTabContent.image}
+                  alt={activeTabContent.title}
+                  className="w-full h-full object-cover rounded-xl"
+                />
+              ) : (
+                <div className="w-full aspect-[4/3] flex items-center justify-center rounded-xl bg-cv-surface border border-cv-line overflow-hidden">
+                  <span className="text-cv-muted text-sm">Preview coming soon</span>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}
