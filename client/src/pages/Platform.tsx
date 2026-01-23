@@ -117,7 +117,7 @@ export default function Platform() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {capabilities.map((cap, idx) => (
               <div key={idx} className="border border-cv-line rounded-cv p-6 hover:border-cv-muted transition-colors">
                 <h3 className="text-base font-semibold mb-3">{cap.title}</h3>
