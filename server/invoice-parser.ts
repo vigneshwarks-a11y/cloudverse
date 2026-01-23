@@ -208,42 +208,63 @@ export async function parseInvoice(
   fileName: string
 ): Promise<InvoiceAnalysisResult> {
   const prompt = `
-You are an expert cloud invoice analyzer. Analyze the following cloud invoice data and extract key information.
+You are an expert cloud invoice analyzer specializing in AWS, Azure, GCP, Oracle, and Alibaba billing formats.
+
+Your task is to analyze the invoice content and extract structured insights.
+The invoice content may be incomplete or truncated.
 
 File name: ${fileName}
 
 Invoice content:
 ${fileContent.substring(0, 50000)}
 
-Extract and return a JSON object with the following structure:
-{
-  "score": <efficiency score 0-100>,
-  "currency": "<3-letter currency code>",
-  "totalSpend": <number>,
-  "billingPeriodStart": "<YYYY-MM-DD>",
-  "billingPeriodEnd": "<YYYY-MM-DD>",
-  "providerDetected": "<AWS|Azure|GCP|Alibaba|Oracle|Other>",
-  "lineItemCount": <number>,
-  "topAccountIdentifier": "<string if found>",
-  "topServices": [{"name": "<service>", "spend": <amount>, "percent": <percent>}],
-  "topRegions": [{"name": "<region>", "spend": <amount>, "percent": <percent>}],
-  "topLineItems": [{
-    "displayName": "<resource>",
-    "service": "<service>",
-    "quantity": <number>,
-    "unit": "<unit>",
-    "cost": <number>
-  }],
-  "computeSpendPercent": <number>,
-  "onDemandPercent": <number>,
-  "optimizationPotentialMin": <number>,
-  "optimizationPotentialMax": <number>,
-  "insights": ["<insight>"]
-}
+STRICT OUTPUT RULES:
+•⁠  ⁠Return ONLY valid JSON
+•⁠  ⁠Do NOT include markdown, comments, or explanations
+•⁠  ⁠Do NOT infer values that are not clearly present
+•⁠  ⁠If a value cannot be determined, use:
+  - null for strings
+  - 0 for numbers
+  - [] for arrays
 
-Return ONLY valid JSON. No explanations.
-Do not wrap the response in markdown.
-Do not add comments or trailing text.
+DATA NORMALIZATION RULES:
+•⁠  ⁠Currency must be a 3-letter ISO code (USD, EUR, INR, etc.)
+•⁠  ⁠Percent values must be numbers between 0–100
+•⁠  ⁠Percent values in a list should sum to <= 100
+•⁠  ⁠Round all monetary values to 2 decimal places
+
+PROVIDER DETECTION:
+•⁠  ⁠Detect provider ONLY if explicit indicators exist
+  (e.g., "Amazon Web Services", "EC2", "Azure Subscription", "GCP Project")
+•⁠  ⁠If unclear, set providerDetected to "Other"
+
+EFFICIENCY SCORE (0–100):
+Estimate based on:
+•⁠  ⁠High on-demand usage → lower score
+•⁠  ⁠High compute concentration → lower score
+•⁠  ⁠Presence of optimization opportunities → lower score
+•⁠  ⁠Reserved/committed usage → higher score
+Use best judgment; do NOT randomize.
+
+Extract and return the following JSON structure exactly:
+{
+  "score": 0,
+  "currency": null,
+  "totalSpend": 0,
+  "billingPeriodStart": null,
+  "billingPeriodEnd": null,
+  "providerDetected": "Other",
+  "lineItemCount": 0,
+  "topAccountIdentifier": null,
+  "topServices": [],
+  "topRegions": [],
+  "topLineItems": [],
+  "computeSpendPercent": 0,
+  "onDemandPercent": 0,
+  "optimizationPotentialMin": 0,
+  "optimizationPotentialMax": 0,
+  "insights": []
+}
 `;
 
   try {
