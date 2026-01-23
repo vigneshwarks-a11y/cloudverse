@@ -130,7 +130,7 @@ export default function ConnectWithUs() {
             <p className="text-sm text-cv-muted text-center mb-6">
               Purchase CloudVerse directly from your preferred cloud marketplace.
             </p>
-            <div className="grid grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               <a
                 href="https://aws.amazon.com/marketplace/pp/prodview-g72gjnuqrts2m"
                 target="_blank"
