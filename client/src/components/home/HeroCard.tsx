@@ -75,7 +75,7 @@ export function HeroCard() {
       {/* Window Content */}
       <div className="p-6 sm:p-8 relative z-10 flex flex-col h-full">
         {/* Outcomes List - Crossfading */}
-        <div className="relative mb-6 min-h-[340px] sm:min-h-[280px]">
+        <div className="relative mb-4 sm:mb-6 min-h-[260px] sm:min-h-[280px]">
           <div
             className={`transition-opacity duration-1000 space-y-4 sm:space-y-6 ${
               showSet2 ? "opacity-0 pointer-events-none" : "opacity-100"
