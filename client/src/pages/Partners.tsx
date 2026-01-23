@@ -9,8 +9,6 @@ import { FinalCTA } from "@/components/FinalCTA";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { insertPartnerInquirySchema, type InsertPartnerInquiry } from "@shared/schema";
-import { useMutation } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
 type PartnerType = "msp" | "gsi" | "reseller";
@@ -115,19 +113,6 @@ export default function Partners() {
       website: "",
       message: "",
       agreedToTerms: "no"
-    }
-  });
-
-  const mutation = useMutation({
-    mutationFn: async (data: InsertPartnerInquiry) => {
-      await apiRequest("POST", "/api/partners/inquiry", data);
-    },
-    onSuccess: () => {
-      toast({
-        title: "Inquiry Sent",
-        description: "We'll be in touch shortly.",
-      });
-      reset();
     }
   });
 

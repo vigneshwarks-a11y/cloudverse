@@ -4,8 +4,6 @@ import { useEffect, useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useMutation } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { Calendar as CalendarIcon, Clock, ChevronDown } from "lucide-react";
 import { track } from "@/lib/track";
@@ -73,7 +71,7 @@ export default function ConnectWithUs() {
     }
   }, [integrationFromUrl]);
 
-  const { register, handleSubmit, formState: { errors }, reset, setValue, watch } = useForm<FormData>({
+  const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       firstName: "",
@@ -90,33 +88,6 @@ export default function ConnectWithUs() {
       setValue("interestedIntegration", integrationFromUrl);
     }
   }, [integrationFromUrl, setValue]);
-
-  const mutation = useMutation({
-    mutationFn: async (data: FormData) => {
-      const payload = {
-        firstName: data.firstName,
-        lastName: data.lastName,
-        email: data.email,
-        preferredDateTime: `${data.preferredDate}T${data.preferredTime}`,
-        interestedIntegration: data.interestedIntegration || null
-      };
-      await apiRequest("POST", "/api/demo/inquiry", payload);
-    },
-    onSuccess: () => {
-      toast({
-        title: "Demo Request Submitted",
-        description: "We'll be in touch shortly to confirm your demo.",
-      });
-      reset();
-    },
-    onError: (error: Error) => {
-      toast({
-        title: "Error",
-        description: error.message || "Failed to submit request. Please try again.",
-        variant: "destructive"
-      });
-    }
-  });
 
   const onSubmit = (data: FormData) => {
     track("demo_inquiry_submit", {
@@ -210,7 +181,7 @@ export default function ConnectWithUs() {
           <div className="max-w-[700px] mx-auto">
             <form 
               ref={formRef}
-              onSubmit={handleSubmit((data) => mutation.mutate(data))} 
+              onSubmit={handleSubmit(onSubmit)} 
               className="space-y-8"
               data-testid="demo-inquiry-form"
             >
@@ -356,10 +327,9 @@ export default function ConnectWithUs() {
                   type="submit" 
                   size="lg"
                   className="w-full mt-2"
-                  disabled={mutation.isPending}
                   data-testid="button-submit-demo"
                 >
-                  {mutation.isPending ? "Submitting..." : "Request Demo"}
+                  Request Demo
                 </Button>
                 
                 <p className="text-xs text-cv-muted text-center pt-2">
