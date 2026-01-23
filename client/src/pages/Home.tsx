@@ -11,7 +11,7 @@ import { HeroCard } from "@/components/home/HeroCard";
 import { DeploymentOptions } from "@/components/home/DeploymentOptions";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { InvoiceEfficiencySection } from "@/components/home/InvoiceEfficiencySection";
-import { Globe, Receipt, Tag, Code2, Cpu, Activity, X } from "lucide-react";
+import { Globe, Receipt, Tag, Code2, Cpu, Activity, X, Boxes, Sparkles } from "lucide-react";
 import { FinalCTA } from "@/components/FinalCTA";
 
 const customerLogos = [
@@ -184,6 +184,78 @@ export default function Home() {
                 Explore the platform →
               </span>
             </Link>
+          </div>
+        </div>
+      </section>
+      {/* Products Section */}
+      <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
+          <div className="mb-10 sm:mb-12 text-center">
+            <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-cv-muted mb-3">
+              CloudVerse Products
+            </p>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink mb-4">
+              Purpose-built platforms for every team
+            </h2>
+            <p className="text-lg sm:text-xl text-cv-muted max-w-2xl mx-auto">
+              Specialized solutions that extend CloudVerse capabilities to developers and AI teams.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            {/* DevX Card */}
+            <a 
+              href="https://devx.cloudverse.ai" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={() => track("product_devx", { location: "products_section" })}
+              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-8 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300"
+              data-testid="product-devx-card"
+            >
+              <div className="flex items-start gap-5">
+                <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
+                  <Boxes className="w-7 h-7 text-white" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-bold text-cv-ink mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    DevX
+                  </h3>
+                  <p className="text-cv-muted leading-relaxed mb-4">
+                    Developer experience platform that brings cost context directly into engineering workflows. Shift-left FinOps with real-time insights in CI/CD pipelines, services, and environments.
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:gap-3 transition-all">
+                    Visit devx.cloudverse.ai →
+                  </span>
+                </div>
+              </div>
+            </a>
+
+            {/* AIx Card */}
+            <a 
+              href="https://aix.cloudverse.ai" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={() => track("product_aix", { location: "products_section" })}
+              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-8 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300"
+              data-testid="product-aix-card"
+            >
+              <div className="flex items-start gap-5">
+                <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-lg shadow-purple-500/20">
+                  <Sparkles className="w-7 h-7 text-white" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-bold text-cv-ink mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                    AIx
+                  </h3>
+                  <p className="text-cv-muted leading-relaxed mb-4">
+                    AI cost intelligence platform for LLM and GPU workloads. Optimize inference costs, track token usage, manage model deployments, and control AI spend at scale.
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-sm font-medium text-purple-600 dark:text-purple-400 group-hover:gap-3 transition-all">
+                    Visit aix.cloudverse.ai →
+                  </span>
+                </div>
+              </div>
+            </a>
           </div>
         </div>
       </section>
