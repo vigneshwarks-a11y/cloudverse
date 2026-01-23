@@ -118,7 +118,7 @@ export function HeroCard() {
           <p className="text-[9px] font-medium tracking-wider text-cv-muted/60 dark:text-slate-500/60 uppercase mb-2">
             Works with
           </p>
-          <div className="grid grid-cols-5 sm:grid-cols-5 gap-1.5 sm:gap-2">
+          <div className="grid grid-cols-4 sm:grid-cols-5 gap-1.5 sm:gap-2">
             {[...CLOUD_PROVIDERS, ...AI_GPU_PROVIDERS].map((key) => (
               <LogoPill key={key} logoKey={key} />
             ))}
