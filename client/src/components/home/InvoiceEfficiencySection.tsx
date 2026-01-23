@@ -6,11 +6,14 @@ import { EfficiencySnapshotModal, type AnalysisResult } from "./EfficiencySnapsh
 
 type State = "idle" | "processing" | "result" | "error";
 
+// API base URL - can be configured for external hosting
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+
 async function analyzeInvoice(file: File): Promise<AnalysisResult> {
   const formData = new FormData();
   formData.append("invoice", file);
 
-  const response = await fetch("/api/invoice-analysis", {
+  const response = await fetch(`${API_BASE_URL}/api/invoice-analysis`, {
     method: "POST",
     body: formData,
   });
