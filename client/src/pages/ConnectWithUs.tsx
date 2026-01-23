@@ -263,7 +263,7 @@ export default function ConnectWithUs() {
                     <CalendarIcon className="w-3.5 h-3.5" />
                     Preferred Date & Time
                   </label>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <Popover open={dateOpen} onOpenChange={setDateOpen}>
                       <PopoverTrigger asChild>
                         <button
