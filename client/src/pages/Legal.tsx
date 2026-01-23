@@ -21,7 +21,7 @@ export default function Legal() {
   return (
     <BaseLayout>
       <section className="pt-20 sm:pt-24 lg:pt-32 pb-16 sm:pb-20 lg:pb-24">
-        <div className="max-w-4xl mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-5 sm:px-6 lg:px-20">
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-cv-ink mb-8">
             {content.title}
           </h1>

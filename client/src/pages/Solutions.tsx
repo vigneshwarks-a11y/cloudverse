@@ -120,7 +120,7 @@ export default function Solutions() {
     <BaseLayout>
       {/* Hero */}
       <section className="pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-14 lg:pb-16 border-b border-cv-line">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <div className="max-w-3xl">
             <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-cv-muted mb-4">
               CloudVerse™ Solutions
@@ -146,7 +146,7 @@ export default function Solutions() {
       </section>
       {/* Role Selector */}
       <section className="py-10 sm:py-12 lg:py-14 border-b border-cv-line">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
             {roles.map((role) => {
               const Icon = role.icon;
@@ -172,7 +172,7 @@ export default function Solutions() {
       </section>
       {/* Role Content */}
       <section className="py-14 sm:py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
             {/* Left: Outcomes + Use Cases */}
             <div className="space-y-10">

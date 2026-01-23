@@ -69,7 +69,7 @@ export function HowItWorks() {
         }}
         aria-hidden="true"
       />
-      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-[1240px] px-5 sm:px-6 lg:px-20">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 lg:mb-20 space-y-3">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-cv-ink">

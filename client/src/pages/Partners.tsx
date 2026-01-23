@@ -327,7 +327,7 @@ export default function Partners() {
 
       {/* Partner Form Section */}
       <section ref={formRef} className="py-20 bg-cv-surface border-t border-cv-line">
-        <div className="max-w-[1000px] mx-auto px-6">
+        <div className="max-w-[1000px] mx-auto px-5 sm:px-6 lg:px-20">
           <h2 className="cv-h2 mb-10 text-cv-ink">Become a partner with CloudVerse Ai</h2>
           
           <form onSubmit={handleSubmit((data) => mutation.mutate(data))} className="space-y-8">
