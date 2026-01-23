@@ -153,7 +153,7 @@ export default function Home() {
                     DevX
                   </h3>
                   <p className="text-cv-muted leading-relaxed mb-4">
-                    Developer experience platform that brings cost context directly into engineering workflows. Shift-left FinOps with real-time insights in CI/CD pipelines, services, and environments.
+                    Cost context in engineering workflows. Shift-left FinOps for CI/CD, services, and environments.
                   </p>
                   <span className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:gap-3 transition-all">
                     Visit devx.cloudverse.ai →
@@ -180,7 +180,7 @@ export default function Home() {
                     AIx
                   </h3>
                   <p className="text-cv-muted leading-relaxed mb-4">
-                    AI cost intelligence platform for LLM and GPU workloads. Optimize inference costs, track token usage, manage model deployments, and control AI spend at scale.
+                    AI cost intelligence for LLM and GPU workloads. Optimize inference, track tokens, and control AI spend.
                   </p>
                   <span className="inline-flex items-center gap-2 text-sm font-medium text-purple-600 dark:text-purple-400 group-hover:gap-3 transition-all">
                     Visit aix.cloudverse.ai →
