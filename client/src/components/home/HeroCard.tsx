@@ -30,13 +30,13 @@ function LogoPill({ logoKey, className = "" }: { logoKey: LogoKey; className?: s
 
   return (
     <div 
-      className={`logo-pill flex items-center justify-center h-8 px-4 rounded bg-slate-200/80 dark:bg-slate-600/80 ${className}`}
+      className={`logo-pill flex items-center justify-center w-[88px] h-8 rounded bg-slate-200/80 dark:bg-slate-600/80 ${className}`}
       data-testid={`logo-${logoKey}`}
     >
       <img
         src={logoPath}
         alt={displayName}
-        className="h-4 w-auto max-w-[60px] object-contain"
+        className="h-4 w-auto max-w-[70px] object-contain"
       />
     </div>
   );
