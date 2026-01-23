@@ -119,7 +119,7 @@ export default function Solutions() {
   return (
     <BaseLayout>
       {/* Hero */}
-      <section className="pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-14 lg:pb-16 border-b border-cv-line">
+      <section className="pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-14 lg:pb-16 border-b border-cv-line">
         <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <div className="max-w-3xl">
             <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-cv-muted mb-4">

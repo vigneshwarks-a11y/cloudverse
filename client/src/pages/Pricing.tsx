@@ -59,7 +59,7 @@ export default function Pricing() {
   return (
     <BaseLayout>
       {/* Hero */}
-      <section className="pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-14 lg:pb-16">
+      <section className="pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-14 lg:pb-16">
         <div className="cv-container text-center space-y-4 sm:space-y-6 max-w-[720px] mx-auto">
           <span className="cv-cap font-semibold tracking-widest text-cv-muted uppercase">
             Pricing

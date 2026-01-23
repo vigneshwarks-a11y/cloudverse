@@ -14,7 +14,7 @@ export default function Resources() {
   return (
     <BaseLayout>
       {/* Hero */}
-      <section className="pt-20 sm:pt-24 lg:pt-28 pb-12 sm:pb-14 lg:pb-16">
+      <section className="pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-14 lg:pb-16">
         <div className="cv-container-full space-y-4 sm:space-y-6">
           <div className="max-w-3xl">
             <span className="text-xs uppercase tracking-widest text-cv-muted mb-4 inline-block">CloudVerse™ Resources</span>

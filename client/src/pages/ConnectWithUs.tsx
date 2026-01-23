@@ -110,7 +110,7 @@ export default function ConnectWithUs() {
 
   return (
     <BaseLayout>
-      <section className="pt-20 sm:pt-24 lg:pt-28 pb-16 sm:pb-20 lg:pb-24 relative overflow-hidden">
+      <section className="pt-12 sm:pt-16 lg:pt-20 pb-16 sm:pb-20 lg:pb-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none" />
         
         <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20 relative">
