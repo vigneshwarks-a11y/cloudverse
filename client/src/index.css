@@ -275,7 +275,7 @@
   }
   
   .animate-marquee-loop {
-    animation: marquee-loop 18s linear infinite;
+    animation: marquee-loop 25s linear infinite;
   }
   
   @media (min-width: 640px) {
