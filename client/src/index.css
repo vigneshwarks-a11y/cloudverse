@@ -212,6 +212,15 @@
     @apply gap-8 sm:gap-10 lg:gap-12;
   }
   
+  /* Hide scrollbar utility */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
   /* Eyebrow text */
   .cv-eyebrow {
     @apply text-xs tracking-[0.25em] uppercase text-cv-muted;

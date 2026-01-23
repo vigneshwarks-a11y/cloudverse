@@ -90,10 +90,10 @@ export function FeatureTabs() {
     <div className="border border-cv-line rounded-2xl bg-cv-surface2 overflow-hidden">
       {/* Tab buttons */}
       <div
-        className="flex lg:justify-center overflow-hidden border-b border-cv-line p-2 sm:p-4 md:p-6"
+        className="overflow-x-auto scrollbar-hide border-b border-cv-line"
         role="tablist"
       >
-        <div className="flex gap-2 sm:gap-4 lg:w-full lg:justify-between max-w-5xl">
+        <div className="flex gap-2 p-3 sm:p-4 md:p-6 min-w-max sm:min-w-0 sm:flex-wrap sm:justify-center">
           {featureTabs.map((tab) => (
             <button
               key={tab.id}
@@ -103,16 +103,13 @@ export function FeatureTabs() {
               aria-controls={`panel-${tab.id}`}
               tabIndex={activeTab === tab.id ? 0 : -1}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-4 sm:px-6 py-2.5 text-sm font-semibold transition-all relative whitespace-nowrap ${
+              className={`px-3 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold transition-all rounded-lg flex-shrink-0 ${
                 activeTab === tab.id
-                  ? "text-blue-600 dark:text-blue-400 bg-blue-500/10 dark:bg-blue-500/20 rounded-lg shadow-sm"
-                  : "text-cv-muted hover:text-cv-ink hover:bg-cv-surface2 dark:hover:bg-white/5 rounded-lg"
+                  ? "text-blue-600 dark:text-blue-400 bg-blue-500/10 dark:bg-blue-500/20 shadow-sm"
+                  : "text-cv-muted hover:text-cv-ink hover:bg-cv-surface2 dark:hover:bg-white/5"
               }`}
             >
               {tab.label}
-              {activeTab === tab.id && (
-                <div className="absolute -bottom-[9px] sm:-bottom-[17px] md:-bottom-[25px] left-0 right-0 h-[2px] bg-blue-600 dark:bg-blue-400" />
-              )}
             </button>
           ))}
         </div>
