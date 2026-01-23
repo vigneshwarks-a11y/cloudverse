@@ -266,6 +266,6 @@
   }
   
   .animate-marquee-continuous {
-    animation: marquee-continuous 15s linear infinite;
+    animation: marquee-continuous 10s linear infinite;
   }
 }
