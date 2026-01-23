@@ -198,28 +198,28 @@ export default function Home() {
           <p className="text-center text-base sm:text-lg text-cv-muted mb-8 sm:mb-10">
             Used by FinOps teams at leading enterprises.
           </p>
-          <div className="relative">
-            <div className="flex items-center gap-x-10 sm:gap-x-14 lg:gap-x-16 animate-marquee">
-              {[...customerLogos, ...customerLogos].map((logo, idx) => (
+          <div className="relative overflow-hidden">
+            <div className="flex items-center gap-x-12 sm:gap-x-16 lg:gap-x-20 animate-marquee-continuous dark:hidden">
+              {[...customerLogos, ...customerLogos, ...customerLogos].map((logo, idx) => (
                 <img
                   key={`${logo.name}-${idx}`}
                   src={logo.srcLight || logo.src || logo.srcDark}
                   alt={logo.name}
                   loading="lazy"
                   decoding="async"
-                  className={`h-7 sm:h-8 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity grayscale shrink-0 dark:hidden ${logo.className || ""}`}
+                  className={`h-10 sm:h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity grayscale shrink-0 ${logo.className || ""}`}
                 />
               ))}
             </div>
-            <div className="flex items-center gap-x-10 sm:gap-x-14 lg:gap-x-16 animate-marquee hidden dark:flex absolute top-0 left-0">
-              {[...customerLogos, ...customerLogos].map((logo, idx) => (
+            <div className="hidden dark:flex items-center gap-x-12 sm:gap-x-16 lg:gap-x-20 animate-marquee-continuous">
+              {[...customerLogos, ...customerLogos, ...customerLogos].map((logo, idx) => (
                 <img
                   key={`${logo.name}-dark-${idx}`}
                   src={logo.srcDark || logo.src}
                   alt={logo.name}
                   loading="lazy"
                   decoding="async"
-                  className={`h-7 sm:h-8 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity shrink-0 ${logo.className || ""}`}
+                  className={`h-10 sm:h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity shrink-0 ${logo.className || ""}`}
                 />
               ))}
             </div>
