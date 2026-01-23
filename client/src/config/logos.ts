@@ -27,7 +27,7 @@ export const LOGOS: Record<LogoKey, LogoVariant> = {
     dark: "/logos/azure/azure-dark.png",
   },
   gcp: {
-    light: "/logos/gcp/gcp-light.svg",
+    light: "/logos/gcp/gcp-light.png",
     dark: "/logos/gcp/gcp-dark.png",
   },
   alibaba: {
