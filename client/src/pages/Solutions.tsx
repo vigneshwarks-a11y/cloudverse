@@ -129,13 +129,13 @@ export default function Solutions() {
             <p className="text-lg sm:text-xl text-cv-muted mb-8 leading-relaxed">
               Finance, Engineering, IT, Business, and AI/Data teams use CloudVerse to see spend clearly, enforce accountability, and act on savings.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/connect" onClick={() => track("cta_demo", { location: "solutions_hero" })}>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 max-w-xs sm:max-w-none">
+              <Link href="/connect" onClick={() => track("cta_demo", { location: "solutions_hero" })} className="w-full sm:w-auto">
                 <Button size="lg" className="w-full sm:w-auto">
                   Book a demo
                 </Button>
               </Link>
-              <Link href="/integrations" onClick={() => track("cta_integrations", { location: "solutions_hero" })}>
+              <Link href="/integrations" onClick={() => track("cta_integrations", { location: "solutions_hero" })} className="w-full sm:w-auto">
                 <Button variant="secondary" size="lg" className="w-full sm:w-auto">
                   View integrations
                 </Button>

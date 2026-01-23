@@ -83,13 +83,13 @@ export default function Platform() {
             <p className="text-[15px] sm:text-[16px] lg:text-[18px] leading-[24px] sm:leading-[26px] lg:leading-[30px] text-cv-muted max-w-[40rem]">
               Manage cloud, data, and AI spend with clean dimensions, anomalies, and automated actions.
             </p>
-            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 pt-4">
-              <Link href="/connect" onClick={() => track("cta_demo", { location: "platform_hero" })}>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-4 max-w-xs sm:max-w-none">
+              <Link href="/connect" onClick={() => track("cta_demo", { location: "platform_hero" })} className="w-full sm:w-auto">
                 <Button size="lg" className="w-full sm:w-auto">
                   Book a demo
                 </Button>
               </Link>
-              <Link href="/integrations" onClick={() => track("cta_explore_integrations", { location: "platform_hero" })}>
+              <Link href="/integrations" onClick={() => track("cta_explore_integrations", { location: "platform_hero" })} className="w-full sm:w-auto">
                 <Button variant="secondary" size="lg" className="w-full sm:w-auto">
                   View integrations
                 </Button>
