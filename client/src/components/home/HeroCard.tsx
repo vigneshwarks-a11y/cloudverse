@@ -28,17 +28,15 @@ function LogoPill({ logoKey, className = "" }: { logoKey: LogoKey; className?: s
   const logoPath = LOGOS[logoKey][variant];
   const displayName = LOGO_DISPLAY_NAMES[logoKey];
 
-  const sizeClass = logoKey === 'nvidia' ? 'h-5' : 'h-4';
-  
   return (
     <div 
-      className={`logo-pill flex items-center justify-center h-8 px-2 rounded-md ${className}`}
+      className={`logo-pill flex items-center justify-center w-12 h-12 rounded-lg bg-cv-surface2/50 dark:bg-slate-800/50 ${className}`}
       data-testid={`logo-${logoKey}`}
     >
       <img
         src={logoPath}
         alt={displayName}
-        className={`${sizeClass} w-auto max-w-full object-contain opacity-60 grayscale`}
+        className="h-5 w-5 object-contain opacity-60 grayscale"
       />
     </div>
   );
