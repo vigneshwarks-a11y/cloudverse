@@ -30,13 +30,13 @@ function LogoPill({ logoKey, className = "" }: { logoKey: LogoKey; className?: s
 
   return (
     <div 
-      className={`logo-pill flex items-center justify-center w-12 h-12 rounded-lg bg-cv-surface2/50 dark:bg-slate-700/50 ${className}`}
+      className={`logo-pill flex items-center justify-center w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-700 ${className}`}
       data-testid={`logo-${logoKey}`}
     >
       <img
         src={logoPath}
         alt={displayName}
-        className="h-5 w-5 object-contain opacity-70"
+        className="h-5 w-5 object-contain"
       />
     </div>
   );
@@ -118,7 +118,7 @@ export function HeroCard() {
           <p className="text-[9px] font-medium tracking-wider text-cv-muted/60 dark:text-slate-500/60 uppercase mb-2">
             Works with
           </p>
-          <div className="flex flex-wrap gap-1.5">
+          <div className="grid grid-cols-5 gap-2">
             {[...CLOUD_PROVIDERS, ...AI_GPU_PROVIDERS].map((key) => (
               <LogoPill key={key} logoKey={key} />
             ))}
