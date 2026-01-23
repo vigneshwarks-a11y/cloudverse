@@ -99,12 +99,12 @@ export default function Pricing() {
                     <span className="text-xl font-bold">
                       {plan.billingUnit ? '/Month' : ''}
                     </span>
-                    {plan.billingUnit && (
-                      <span className={`text-sm ml-1 ${plan.dark ? 'text-white/40' : 'text-cv-muted'}`}>
-                        (billed annually)
-                      </span>
-                    )}
                   </div>
+                  {plan.billingUnit && (
+                    <p className={`text-sm mt-2 ${plan.dark ? 'text-white/40' : 'text-cv-muted'}`}>
+                      Billed annually
+                    </p>
+                  )}
                 </div>
 
                 <div className="flex-1 mb-10">
