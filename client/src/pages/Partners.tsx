@@ -99,7 +99,7 @@ export default function Partners() {
   const content = partnerTypeContent[activeType];
   const { toast } = useToast();
 
-  const { register, handleSubmit, formState: { errors }, reset, setValue, watch } = useForm<InsertPartnerInquiry>({
+  const { register, handleSubmit, formState: { errors, isSubmitting }, reset, setValue, watch } = useForm<InsertPartnerInquiry>({
     resolver: zodResolver(insertPartnerInquirySchema),
     defaultValues: {
       fullName: "",
@@ -498,10 +498,10 @@ export default function Partners() {
 
             <button 
               type="submit" 
-              disabled={mutation.isPending}
+              disabled={isSubmitting}
               className="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-4 rounded-md transition-colors disabled:opacity-50"
             >
-              {mutation.isPending ? "Submitting..." : "Submit"}
+              {isSubmitting ? "Submitting..." : "Submit"}
             </button>
           </form>
         </div>
