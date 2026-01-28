@@ -1,7 +1,9 @@
 import { Button } from "@/components/Button";
 import { track } from "@/lib/track";
-import { Link } from "wouter";
-import { DEMO_URL } from "@/lib/links";
+import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 
 interface FinalCTAProps {
   title?: string;
@@ -10,10 +12,45 @@ interface FinalCTAProps {
 }
 
 export function FinalCTA({ 
-  title = "See CloudVerse on your data.", 
-  description = "We'll map your spend structure and the fastest path to measurable savings.",
+  title = "Stay updated with CloudVerse", 
+  description = "Get the latest guides, best practices, and FinOps insights delivered to your inbox.",
   location
 }: FinalCTAProps) {
+  const { toast } = useToast();
+  const [email, setEmail] = useState("");
+
+  const mutation = useMutation({
+    mutationFn: async (data: { email: string }) => {
+      await apiRequest("POST", "/api/subscribe", {
+        firstName: "",
+        lastName: "",
+        email: data.email,
+      });
+    },
+    onSuccess: () => {
+      toast({
+        title: "Subscribed!",
+        description: "You'll receive our latest resources and updates.",
+      });
+      setEmail("");
+      track("subscribe_success", { location });
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to subscribe. Please try again.",
+        variant: "destructive"
+      });
+    }
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) {
+      mutation.mutate({ email });
+    }
+  };
+
   return (
     <section className="py-8 sm:py-10 lg:py-12 border-t border-cv-line dark:border-white/10">
       <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
@@ -25,13 +62,31 @@ export function FinalCTA({
             <p className="text-lg sm:text-xl text-cv-muted mb-8">
               {description}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href={DEMO_URL} onClick={() => track("cta_demo", { location })}>
-                <Button size="lg" className="w-full sm:w-auto">
-                  Book a demo
+            <form onSubmit={handleSubmit} className="w-full max-w-md">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <input 
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="your@email.com"
+                  required
+                  className="flex-1 bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
+                  data-testid="input-email-cta"
+                />
+                <Button 
+                  type="submit" 
+                  size="lg" 
+                  className="w-full sm:w-auto"
+                  disabled={mutation.isPending}
+                  data-testid="button-subscribe-cta"
+                >
+                  {mutation.isPending ? "Subscribing..." : "Subscribe"}
                 </Button>
-              </Link>
-            </div>
+              </div>
+              <p className="text-xs text-cv-muted mt-4">
+                We'll never share your information.
+              </p>
+            </form>
           </div>
         </div>
       </div>
