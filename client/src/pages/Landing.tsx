@@ -192,6 +192,48 @@ export default function Landing() {
 
       <GetItDirectlySection />
 
+      <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
+          <div className="text-center mb-12 sm:mb-14">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink mb-4">
+              Let's explore what's possible
+            </h2>
+            <p className="text-lg sm:text-xl text-cv-muted dark:text-slate-400 max-w-2xl mx-auto">
+              See how CloudVerse can help your team gain visibility, control costs, and unlock savings across your cloud infrastructure.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="rounded-2xl border border-cv-line dark:border-white/10 bg-cv-surface dark:bg-slate-900/80 p-6 sm:p-8 flex flex-col">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-blue-600 mb-6 flex items-center justify-center">
+                <span className="text-white text-xl font-bold">AI</span>
+              </div>
+              <p className="text-sm text-cv-muted dark:text-slate-400 mb-3">
+                Cut AI costs without breaking latency or quality.
+              </p>
+              <h3 className="text-xl sm:text-2xl font-semibold text-cv-ink">
+                CloudVerse AIX
+              </h3>
+            </div>
+
+            <div className="rounded-2xl border border-cv-line dark:border-white/10 bg-cv-surface dark:bg-slate-900/80 p-6 sm:p-8 flex flex-col">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-cyan-600 mb-6 flex items-center justify-center">
+                <span className="text-white text-xl font-bold">DX</span>
+              </div>
+              <p className="text-sm text-cv-muted dark:text-slate-400 mb-3">
+                Catch cloud cost mistakes before they reach production.
+              </p>
+              <h3 className="text-xl sm:text-2xl font-semibold text-cv-ink">
+                DevX
+              </h3>
+              <p className="text-sm text-cv-muted dark:text-slate-500 mt-1">
+                by CloudVerse.ai
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <FinalCTA location="landing_page" />
     </BaseLayout>
   );
