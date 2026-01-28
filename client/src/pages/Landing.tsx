@@ -287,15 +287,6 @@ export default function Landing() {
             })}
           </div>
 
-          <div className="text-center">
-            <Link
-              href="/connect"
-              onClick={() => track("cta_schedule_demo", { location: "landing_features" })}
-              className="text-sm font-medium tracking-wide uppercase text-cv-muted hover:text-cv-ink dark:text-slate-400 dark:hover:text-white transition-colors"
-            >
-              Schedule a demo →
-            </Link>
-          </div>
         </div>
       </section>
 
