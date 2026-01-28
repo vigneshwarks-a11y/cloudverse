@@ -1,6 +1,5 @@
 import { BaseLayout } from "@/layouts/BaseLayout";
 import { InvoiceEfficiencySection } from "@/components/home/InvoiceEfficiencySection";
-import { FinalCTA } from "@/components/FinalCTA";
 import { Link } from "wouter";
 import { track } from "@/lib/track";
 import { useState } from "react";
@@ -233,8 +232,6 @@ export default function Landing() {
           </div>
         </div>
       </section>
-
-      <FinalCTA location="landing_page" />
     </BaseLayout>
   );
 }
