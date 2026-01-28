@@ -1,0 +1,160 @@
+You are working on an existing website codebase.
+
+Your task is to ONLY add a new landing page as an additional page/route, without modifying or breaking anything already present. This must be an add-on.
+
+Strict Rules (non-negotiable)
+
+Do NOT edit, refactor, rename, or reformat any existing files unless routing requires a minimal change.
+
+Do NOT change any existing styles, layout, components, config, or dependencies.
+
+Do NOT touch existing pages/components except adding a single route entry if needed.
+
+Create the new landing page in a new separate file and keep styling scoped to that page only.
+
+New Route
+
+Add a new route: /cloudverse-landing
+
+File to Create
+
+Create: CloudverseLanding.jsx (or the equivalent page location used in this project)
+
+Page Design Requirements (describe + build exactly as below)
+
+Build a dark, modern SaaS landing page with the following sections, in this order:
+
+1) Top micro-header
+
+Small label text centered: “INSTANT EFFICIENCY SNAPSHOT”
+
+2) Hero section
+
+Main H1: “Know how efficient your cloud is?”
+
+Supporting paragraph (2 lines max):
+“Upload a cloud invoice and receive a read-only efficiency snapshot.
+We highlight your waste signals, coverage gaps, and optimization potential.”
+
+Primary element: Upload dropzone card
+
+Large dashed border container
+
+Upload icon
+
+Text: “Drop invoice here or click to upload”
+
+Helper text: “PDF, CSV, or XLSX • Max 20MB”
+
+Security note under upload card (small text):
+“Read-only analysis. No credentials required. Files encrypted in transit and deleted after processing.”
+
+3) “What’s included with CloudVerse” features grid
+
+Section title: “What’s included with CloudVerse”
+
+8 feature items in a 4-column (desktop) / 2-column (tablet) / 1-column (mobile) layout:
+
+Visibility & reporting
+
+Developer FinOps (shift-left)
+
+Allocation & chargeback
+
+Autonomous tag normalization
+
+Detected + predicted anomalies
+
+Enterprise access controls
+
+Automation-first optimization
+
+Audit logs and governance
+
+Add a centered text-link button below the grid:
+“SCHEDULE A DEMO”
+
+4) “Get it directly” marketplace card + demo request form
+
+Card title: “Get it directly”
+
+Subtitle: “Purchase CloudVerse directly from your preferred cloud marketplace.”
+
+Marketplace buttons/logos (as simple text buttons is fine):
+
+AWS
+
+Google Cloud
+
+Azure
+
+Alibaba Cloud
+
+Divider line + small text: “or talk to us”
+
+Demo form fields (dark inputs):
+
+First Name (text)
+
+Last Name (text)
+
+Work Email (email)
+
+Interested in a specific integration? (select dropdown)
+
+Default: “No specific integration”
+
+Options: AWS, GCP, Azure, Alibaba, Other
+
+Preferred date (date picker or text input if no date component exists)
+
+Time (time picker or text input)
+
+Primary CTA button (full width):
+“Request Demo”
+
+Footer note (small):
+“By submitting, you agree to our privacy policy. We’ll never share your information.”
+
+5) Bottom value section
+
+Large heading: “Let’s explore what’s possible”
+
+Subtitle:
+“See how CloudVerse can help your team gain visibility, control costs, and unlock savings across your cloud infrastructure.”
+
+6) Two product cards (side-by-side on desktop)
+
+Left card:
+
+Caption: “Cut AI costs without breaking latency or quality.”
+
+Product tile text: “CloudVerse AIX”
+
+Right card:
+
+Caption: “Catch cloud cost mistakes before they reach production”
+
+Product tile text: “DevX”
+
+Subtext: “by CloudVerse.ai”
+
+Styling / Layout
+
+Dark background (#0B0B0F style), subtle gradients/glows acceptable.
+
+Use Tailwind or the project’s existing styling system.
+
+Keep all styles scoped to this page only.
+
+Must be responsive and readable.
+
+Output Requirements
+
+Provide ONLY:
+
+the new page file content (CloudverseLanding.jsx)
+
+the minimal routing addition required to access /cloudverse-landing
+
+Do NOT modify any other existing pages or components.
