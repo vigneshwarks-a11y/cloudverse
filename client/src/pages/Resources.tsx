@@ -13,8 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 const subscribeSchema = z.object({
-  firstName: z.string().min(1, "First name is required"),
-  lastName: z.string().min(1, "Last name is required"),
+  lastName: z.string().min(1, "Name is required"),
   email: z.string().email("Valid email is required"),
 });
 
@@ -30,7 +29,6 @@ export default function Resources() {
   const { register, handleSubmit, formState: { errors }, reset } = useForm<SubscribeFormData>({
     resolver: zodResolver(subscribeSchema),
     defaultValues: {
-      firstName: "",
       lastName: "",
       email: "",
     }
@@ -38,7 +36,11 @@ export default function Resources() {
 
   const mutation = useMutation({
     mutationFn: async (data: SubscribeFormData) => {
-      await apiRequest("POST", "/api/subscribe", data);
+      await apiRequest("POST", "/api/subscribe", {
+        firstName: "",
+        lastName: data.lastName,
+        email: data.email,
+      });
     },
     onSuccess: () => {
       toast({
@@ -79,38 +81,20 @@ export default function Resources() {
               className="space-y-6"
               data-testid="subscribe-form"
             >
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label htmlFor="firstName" className="text-xs font-medium text-cv-muted uppercase tracking-wider">
-                    First Name
-                  </label>
-                  <input 
-                    id="firstName"
-                    {...register("firstName")}
-                    placeholder="John"
-                    className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
-                    data-testid="input-first-name"
-                  />
-                  {errors.firstName && (
-                    <p className="text-red-500 text-xs">{errors.firstName.message}</p>
-                  )}
-                </div>
-                
-                <div className="space-y-2">
-                  <label htmlFor="lastName" className="text-xs font-medium text-cv-muted uppercase tracking-wider">
-                    Last Name
-                  </label>
-                  <input 
-                    id="lastName"
-                    {...register("lastName")}
-                    placeholder="Doe"
-                    className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
-                    data-testid="input-last-name"
-                  />
-                  {errors.lastName && (
-                    <p className="text-red-500 text-xs">{errors.lastName.message}</p>
-                  )}
-                </div>
+              <div className="space-y-2">
+                <label htmlFor="lastName" className="text-xs font-medium text-cv-muted uppercase tracking-wider">
+                  Name
+                </label>
+                <input 
+                  id="lastName"
+                  {...register("lastName")}
+                  placeholder="John Doe"
+                  className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
+                  data-testid="input-name"
+                />
+                {errors.lastName && (
+                  <p className="text-red-500 text-xs">{errors.lastName.message}</p>
+                )}
               </div>
 
               <div className="space-y-2">
