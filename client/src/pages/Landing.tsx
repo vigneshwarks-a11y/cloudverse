@@ -85,7 +85,7 @@ function GetItDirectlySection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    track("landing_demo_request", { ...formData });
+    track("campaign_enquiry", { ...formData });
     alert("Demo request submitted! We'll be in touch soon.");
   };
 
