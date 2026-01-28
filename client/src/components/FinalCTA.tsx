@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { Link } from "wouter";
+import { DEMO_URL } from "@/lib/links";
 
 interface FinalCTAProps {
   title?: string;
@@ -63,16 +65,16 @@ export function FinalCTA({
               {description}
             </p>
             <form onSubmit={handleSubmit} className="w-full max-w-md">
-              <div className="flex flex-col sm:flex-row gap-3">
-                <input 
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="your@email.com"
-                  required
-                  className="flex-1 bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
-                  data-testid="input-email-cta"
-                />
+              <input 
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="your@email.com"
+                required
+                className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50 mb-4"
+                data-testid="input-email-cta"
+              />
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Button 
                   type="submit" 
                   size="lg" 
@@ -82,6 +84,11 @@ export function FinalCTA({
                 >
                   {mutation.isPending ? "Subscribing..." : "Subscribe"}
                 </Button>
+                <Link href={DEMO_URL} onClick={() => track("cta_demo", { location })}>
+                  <Button variant="secondary" size="lg" className="w-full sm:w-auto">
+                    Book a demo
+                  </Button>
+                </Link>
               </div>
               <p className="text-xs text-cv-muted mt-4">
                 We'll never share your information.
