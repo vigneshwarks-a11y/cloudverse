@@ -1,8 +1,8 @@
 import { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage.ts";
-import { parseInvoice } from "./invoice-parser.ts";
-import { insertPartnerInquirySchema, insertDemoInquirySchema } from "@shared/schema.ts";
+import { storage } from "./storage";
+import { parseInvoice } from "./invoice-parser";
+import { insertPartnerInquirySchema, insertDemoInquirySchema, insertSubscriberSchema } from "@shared/schema";
 import multer from "multer";
 import { promises as fs } from "fs";
 import * as XLSX from "xlsx";
@@ -83,10 +83,31 @@ export async function registerRoutes(
   app.post("/api/demo/inquiry", async (req, res) => {
     try {
       const data = insertDemoInquirySchema.parse(req.body);
-      res.json(await storage.createDemoInquiry(data));
+      const inquiry = await storage.createDemoInquiry(data);
+      res.json(inquiry);
     } catch (error: any) {
-      console.error(error);
-      res.status(400).json({ error: error.message });
+      console.error("Demo inquiry error:", error);
+      res.status(400).json({ 
+        error: error instanceof Error ? error.message : "Invalid demo inquiry data" 
+      });
+    }
+  });
+
+  // Subscribe endpoint
+  app.post("/api/subscribe", async (req: Request, res: Response) => {
+    try {
+      const data = insertSubscriberSchema.parse(req.body);
+      const subscriber = await storage.createSubscriber(data);
+      res.json(subscriber);
+    } catch (error: any) {
+      console.error("Subscribe error:", error);
+      if (error.code === "23505") {
+        res.status(400).json({ error: "This email is already subscribed." });
+      } else {
+        res.status(400).json({ 
+          error: error instanceof Error ? error.message : "Invalid subscriber data" 
+        });
+      }
     }
   });
 

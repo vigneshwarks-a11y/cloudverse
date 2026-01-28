@@ -1,15 +1,61 @@
 import { BaseLayout } from "@/layouts/BaseLayout";
 import { Button } from "@/components/Button";
 import { Link } from "wouter";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { track } from "@/lib/track";
 import { featuredGuides, categories, guides } from "@/data/resourcesData";
 import { FinalCTA } from "@/components/FinalCTA";
+import { useToast } from "@/hooks/use-toast";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
+const subscribeSchema = z.object({
+  email: z.string().email("Valid email is required"),
+});
+
+type SubscribeFormData = z.infer<typeof subscribeSchema>;
 
 export default function Resources() {
+  const { toast } = useToast();
+
   useEffect(() => {
     document.title = "Resources — CloudVerse™";
   }, []);
+
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<SubscribeFormData>({
+    resolver: zodResolver(subscribeSchema),
+    defaultValues: {
+      email: "",
+    }
+  });
+
+  const mutation = useMutation({
+    mutationFn: async (data: SubscribeFormData) => {
+      await apiRequest("POST", "/api/subscribe", {
+        firstName: "",
+        lastName: "",
+        email: data.email,
+      });
+    },
+    onSuccess: () => {
+      toast({
+        title: "Subscribed!",
+        description: "You'll receive our latest resources and updates.",
+      });
+      reset();
+      track("resources_subscribe_success");
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to subscribe. Please try again.",
+        variant: "destructive"
+      });
+    }
+  });
 
   return (
     <BaseLayout>
@@ -28,6 +74,17 @@ export default function Resources() {
                   Browse guides
                 </Button>
               </Link>
+              <Button 
+                variant="secondary" 
+                size="lg" 
+                className="w-full sm:w-auto"
+                onClick={() => {
+                  document.getElementById("subscribe-section")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                data-testid="button-subscribe"
+              >
+                Subscribe
+              </Button>
             </div>
           </div>
         </div>
