@@ -1,4 +1,4 @@
-import { type User, type InsertUser, type PartnerInquiry, type InsertPartnerInquiry, type DemoInquiry, type InsertDemoInquiry, users, partnerInquiries, demoInquiries } from "@shared/schema";
+import { type User, type InsertUser, type PartnerInquiry, type InsertPartnerInquiry, type DemoInquiry, type InsertDemoInquiry, type Subscriber, type InsertSubscriber, users, partnerInquiries, demoInquiries, subscribers } from "@shared/schema";
 import { randomUUID } from "crypto";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
@@ -9,6 +9,7 @@ export interface IStorage {
   createUser(user: InsertUser): Promise<User>;
   createPartnerInquiry(inquiry: InsertPartnerInquiry): Promise<PartnerInquiry>;
   createDemoInquiry(inquiry: InsertDemoInquiry): Promise<DemoInquiry>;
+  createSubscriber(subscriber: InsertSubscriber): Promise<Subscriber>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -34,6 +35,11 @@ export class DatabaseStorage implements IStorage {
 
   async createDemoInquiry(inquiry: InsertDemoInquiry): Promise<DemoInquiry> {
     const [result] = await db.insert(demoInquiries).values(inquiry).returning();
+    return result;
+  }
+
+  async createSubscriber(subscriber: InsertSubscriber): Promise<Subscriber> {
+    const [result] = await db.insert(subscribers).values(subscriber).returning();
     return result;
   }
 }

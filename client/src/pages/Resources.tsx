@@ -1,20 +1,155 @@
 import { BaseLayout } from "@/layouts/BaseLayout";
 import { Button } from "@/components/Button";
 import { Link } from "wouter";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { track } from "@/lib/track";
 import { featuredGuides, categories, guides } from "@/data/resourcesData";
 import { FinalCTA } from "@/components/FinalCTA";
+import { useToast } from "@/hooks/use-toast";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
+const subscribeSchema = z.object({
+  firstName: z.string().min(1, "First name is required"),
+  lastName: z.string().min(1, "Last name is required"),
+  email: z.string().email("Valid email is required"),
+});
+
+type SubscribeFormData = z.infer<typeof subscribeSchema>;
 
 export default function Resources() {
+  const { toast } = useToast();
+
   useEffect(() => {
     document.title = "Resources — CloudVerse™";
   }, []);
 
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<SubscribeFormData>({
+    resolver: zodResolver(subscribeSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+    }
+  });
+
+  const mutation = useMutation({
+    mutationFn: async (data: SubscribeFormData) => {
+      await apiRequest("POST", "/api/subscribe", data);
+    },
+    onSuccess: () => {
+      toast({
+        title: "Subscribed!",
+        description: "You'll receive our latest resources and updates.",
+      });
+      reset();
+      track("resources_subscribe_success");
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to subscribe. Please try again.",
+        variant: "destructive"
+      });
+    }
+  });
+
   return (
     <BaseLayout>
+      {/* Subscribe CTA */}
+      <section className="pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-14 lg:pb-16 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none" />
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20 relative">
+          <div className="text-center mb-10 lg:mb-12">
+            <span className="inline-block text-xs uppercase tracking-widest text-blue-500 font-semibold mb-4">
+              Stay Updated
+            </span>
+            <h1 className="cv-h1 mb-4">Subscribe to CloudVerse Resources</h1>
+            <p className="cv-body text-cv-muted max-w-2xl mx-auto">
+              Get the latest guides, best practices, and FinOps insights delivered directly to your inbox.
+            </p>
+          </div>
+
+          <div className="max-w-[700px] mx-auto">
+            <form 
+              onSubmit={handleSubmit((data) => mutation.mutate(data))} 
+              className="space-y-6"
+              data-testid="subscribe-form"
+            >
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <label htmlFor="firstName" className="text-xs font-medium text-cv-muted uppercase tracking-wider">
+                    First Name
+                  </label>
+                  <input 
+                    id="firstName"
+                    {...register("firstName")}
+                    placeholder="John"
+                    className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
+                    data-testid="input-first-name"
+                  />
+                  {errors.firstName && (
+                    <p className="text-red-500 text-xs">{errors.firstName.message}</p>
+                  )}
+                </div>
+                
+                <div className="space-y-2">
+                  <label htmlFor="lastName" className="text-xs font-medium text-cv-muted uppercase tracking-wider">
+                    Last Name
+                  </label>
+                  <input 
+                    id="lastName"
+                    {...register("lastName")}
+                    placeholder="Doe"
+                    className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
+                    data-testid="input-last-name"
+                  />
+                  {errors.lastName && (
+                    <p className="text-red-500 text-xs">{errors.lastName.message}</p>
+                  )}
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label htmlFor="email" className="text-xs font-medium text-cv-muted uppercase tracking-wider">
+                  Work Email
+                </label>
+                <input 
+                  id="email"
+                  type="email"
+                  {...register("email")}
+                  placeholder="john@company.com"
+                  className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
+                  data-testid="input-email"
+                />
+                {errors.email && (
+                  <p className="text-red-500 text-xs">{errors.email.message}</p>
+                )}
+              </div>
+
+              <Button 
+                type="submit" 
+                size="lg"
+                className="w-full"
+                disabled={mutation.isPending}
+                data-testid="button-subscribe"
+              >
+                {mutation.isPending ? "Subscribing..." : "Subscribe"}
+              </Button>
+              
+              <p className="text-xs text-cv-muted text-center">
+                By subscribing, you agree to our privacy policy. We'll never share your information.
+              </p>
+            </form>
+          </div>
+        </div>
+      </section>
+
       {/* Hero */}
-      <section className="pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-14 lg:pb-16">
+      <section className="pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-14 lg:pb-16 border-t border-cv-line">
         <div className="cv-container-full space-y-4 sm:space-y-6">
           <div className="max-w-3xl">
             <span className="text-xs uppercase tracking-widest text-cv-muted mb-4 inline-block">CloudVerse™ Resources</span>

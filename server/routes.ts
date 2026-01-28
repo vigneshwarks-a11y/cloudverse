@@ -2,7 +2,7 @@ import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { parseInvoice } from "./invoice-parser";
-import { insertPartnerInquirySchema, insertDemoInquirySchema } from "@shared/schema";
+import { insertPartnerInquirySchema, insertDemoInquirySchema, insertSubscriberSchema } from "@shared/schema";
 import multer from "multer";
 import { promises as fs } from "fs";
 import path from "path";
@@ -83,6 +83,24 @@ export async function registerRoutes(
       res.status(400).json({ 
         error: error instanceof Error ? error.message : "Invalid demo inquiry data" 
       });
+    }
+  });
+
+  // Subscribe endpoint
+  app.post("/api/subscribe", async (req: Request, res: Response) => {
+    try {
+      const data = insertSubscriberSchema.parse(req.body);
+      const subscriber = await storage.createSubscriber(data);
+      res.json(subscriber);
+    } catch (error: any) {
+      console.error("Subscribe error:", error);
+      if (error.code === "23505") {
+        res.status(400).json({ error: "This email is already subscribed." });
+      } else {
+        res.status(400).json({ 
+          error: error instanceof Error ? error.message : "Invalid subscriber data" 
+        });
+      }
     }
   });
 
