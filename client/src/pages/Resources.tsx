@@ -59,59 +59,36 @@ export default function Resources() {
 
   return (
     <BaseLayout>
-      {/* Hero with Subscribe */}
+      {/* Hero */}
       <section className="pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-14 lg:pb-16">
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div>
-              <span className="text-xs uppercase tracking-widest text-cv-muted mb-4 inline-block">CloudVerse™ Resources</span>
-              <h1 className="cv-h1 mb-4">Guides and documentation for enterprise FinOps</h1>
-              <p className="text-[15px] sm:text-[16px] lg:text-[17px] leading-[24px] sm:leading-[26px] lg:leading-[28px] text-cv-muted mb-6">
-                Practical guidance on visibility, allocation, anomalies, and automation across cloud, data, and AI platforms.
-              </p>
-              <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
-                <Link href="/resources/guides" data-track="resources_guides_open">
-                  <Button size="lg" className="w-full sm:w-auto">
-                    Browse guides
-                  </Button>
-                </Link>
-              </div>
-            </div>
-
-            <div className="p-6 sm:p-8 rounded-2xl border border-cv-line bg-cv-surface2/50 dark:bg-white/5">
-              <h3 className="text-lg font-semibold text-cv-ink mb-2">Subscribe</h3>
-              <p className="text-sm text-cv-muted mb-4">
-                Get the latest guides and FinOps insights delivered to your inbox.
-              </p>
-              <form 
-                onSubmit={handleSubmit((data) => mutation.mutate(data))} 
-                className="space-y-4"
-                data-testid="subscribe-form"
-              >
-                <input 
-                  id="email"
-                  type="email"
-                  {...register("email")}
-                  placeholder="your@email.com"
-                  className="w-full bg-cv-surface border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50 text-sm"
-                  data-testid="input-email"
-                />
-                {errors.email && (
-                  <p className="text-red-500 text-xs">{errors.email.message}</p>
-                )}
-                <Button 
-                  type="submit" 
-                  size="lg"
-                  className="w-full"
-                  disabled={mutation.isPending}
-                  data-testid="button-subscribe"
-                >
-                  {mutation.isPending ? "Subscribing..." : "Subscribe"}
+        <div className="cv-container-full space-y-4 sm:space-y-6">
+          <div className="max-w-3xl">
+            <span className="text-xs uppercase tracking-widest text-cv-muted mb-4 inline-block">CloudVerse™ Resources</span>
+            <h1 className="cv-h1 mb-4">Guides and documentation for enterprise FinOps</h1>
+            <p className="text-[15px] sm:text-[16px] lg:text-[17px] leading-[24px] sm:leading-[26px] lg:leading-[28px] text-cv-muted mb-6">
+              Practical guidance on visibility, allocation, anomalies, and automation across cloud, data, and AI platforms.
+            </p>
+            <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
+              <Link href="/resources/guides" data-track="resources_guides_open">
+                <Button size="lg" className="w-full sm:w-auto">
+                  Browse guides
                 </Button>
-                <p className="text-xs text-cv-muted text-center">
-                  We'll never share your information.
-                </p>
-              </form>
+              </Link>
+              <Button 
+                variant="secondary" 
+                size="lg" 
+                className="w-full sm:w-auto"
+                onClick={() => {
+                  const email = prompt("Enter your email to subscribe:");
+                  if (email) {
+                    mutation.mutate({ email });
+                  }
+                }}
+                disabled={mutation.isPending}
+                data-testid="button-subscribe"
+              >
+                {mutation.isPending ? "Subscribing..." : "Subscribe"}
+              </Button>
             </div>
           </div>
         </div>
