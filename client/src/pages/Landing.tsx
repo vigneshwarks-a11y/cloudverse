@@ -92,17 +92,45 @@ function GetItDirectlySection() {
               </p>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-3 mb-8">
-              {marketplaces.map((mp) => (
-                <button
-                  key={mp.name}
-                  type="button"
-                  className="px-4 py-2 rounded-full text-sm font-medium bg-cv-surface2/50 dark:bg-white/[0.06] border border-cv-line dark:border-white/10 text-cv-muted dark:text-slate-300 hover:bg-cv-surface2 dark:hover:bg-white/10 transition-colors inline-flex items-center gap-2"
-                >
-                  {mp.icon}
-                  <span>{mp.name}</span>
-                </button>
-              ))}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+              <a
+                href="https://aws.amazon.com/marketplace/pp/prodview-g72gjnuqrts2m"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => track("marketplace_click", { provider: "aws", location: "landing" })}
+                className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
+              >
+                <img src="/logos/aws-light-mode.png" alt="AWS" className="h-9 w-auto dark:hidden" />
+                <img src="/logos/aws-dark-mode.png" alt="AWS" className="h-9 w-auto hidden dark:block" />
+              </a>
+              <a
+                href="https://console.cloud.google.com/marketplace/product/cloudverse-marketplace-public/mcp20"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => track("marketplace_click", { provider: "gcp", location: "landing" })}
+                className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
+              >
+                <img src="/logos/gcp-light-mode.png" alt="Google Cloud" className="h-9 w-auto dark:hidden" />
+                <img src="/logos/gcp-dark-mode.png" alt="Google Cloud" className="h-9 w-auto hidden dark:block" />
+              </a>
+              <a
+                href="https://marketplace.microsoft.com/en-au/product/saas/cloudversepteltd1683193289260.cloudverse-multi-cloud-management-platform"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => track("marketplace_click", { provider: "microsoft", location: "landing" })}
+                className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
+              >
+                <img src="/logos/azure-marketplace.png" alt="Microsoft Azure" className="h-9 w-auto" />
+              </a>
+              <a
+                href="https://marketplace.alibabacloud.com/products/56680002/sgcmfw00032481.html?spm=a3c0i.26795044.0.0.5edb2faaOBdVso&innerSource=search"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => track("marketplace_click", { provider: "alibaba", location: "landing" })}
+                className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
+              >
+                <img src="/logos/alibaba-marketplace.png" alt="Alibaba Cloud" className="h-9 w-auto" />
+              </a>
             </div>
 
             <div className="flex items-center gap-4 mb-8">
