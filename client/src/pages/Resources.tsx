@@ -11,6 +11,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { subscribers } from '@shared/schema';
 
 const subscribeSchema = z.object({
   email: z.string().email("Valid email is required"),
@@ -69,22 +70,22 @@ export default function Resources() {
               Practical guidance on visibility, allocation, anomalies, and automation across cloud, data, and AI platforms.
             </p>
             <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
-              <Link href="/resources/guides" data-track="resources_guides_open">
-                <Button size="lg" className="w-full sm:w-auto">
-                  Browse guides
-                </Button>
-              </Link>
-              <Button 
-                variant="secondary" 
-                size="lg" 
-                className="w-full sm:w-auto"
-                onClick={() => {
-                  document.getElementById("subscribe-section")?.scrollIntoView({ behavior: "smooth" });
-                }}
-                data-testid="button-subscribe"
-              >
+
+              <Button size="lg" className="w-full sm:w-auto" data-testid="button-subscribe" onClick={() => {
+                document.getElementById("subscribe-section")?.scrollIntoView({ behavior: "smooth" });
+              }}>
                 Subscribe
               </Button>
+
+              <Link href="/resources/guides" data-track="resources_guides_open">
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  className="w-full sm:w-auto"
+                >
+                  Browse Guides
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -102,8 +103,8 @@ export default function Resources() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {featuredGuides.slice(0, 3).map((guide) => (
-              <Link 
-                key={guide.slug} 
+              <Link
+                key={guide.slug}
                 href={`/resources/guides/${guide.slug}`}
                 className="block rounded-xl border border-cv-line bg-cv-surface2 p-5 hover:bg-cv-line/30 transition-colors"
               >
@@ -177,10 +178,10 @@ export default function Resources() {
         </div>
       </section>
       {/* Bottom CTA */}
-      <FinalCTA 
+      <FinalCTA
         title="Want help applying this to your environment?"
         location="resources_bottom"
       />
-    </BaseLayout>
+    </BaseLayout >
   );
 }
