@@ -13,7 +13,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 const subscribeSchema = z.object({
-  lastName: z.string().min(1, "Name is required"),
   email: z.string().email("Valid email is required"),
 });
 
@@ -29,7 +28,6 @@ export default function Resources() {
   const { register, handleSubmit, formState: { errors }, reset } = useForm<SubscribeFormData>({
     resolver: zodResolver(subscribeSchema),
     defaultValues: {
-      lastName: "",
       email: "",
     }
   });
@@ -38,7 +36,7 @@ export default function Resources() {
     mutationFn: async (data: SubscribeFormData) => {
       await apiRequest("POST", "/api/subscribe", {
         firstName: "",
-        lastName: data.lastName,
+        lastName: "",
         email: data.email,
       });
     },
@@ -81,22 +79,6 @@ export default function Resources() {
               className="space-y-6"
               data-testid="subscribe-form"
             >
-              <div className="space-y-2">
-                <label htmlFor="lastName" className="text-xs font-medium text-cv-muted uppercase tracking-wider">
-                  Name
-                </label>
-                <input 
-                  id="lastName"
-                  {...register("lastName")}
-                  placeholder="John Doe"
-                  className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
-                  data-testid="input-name"
-                />
-                {errors.lastName && (
-                  <p className="text-red-500 text-xs">{errors.lastName.message}</p>
-                )}
-              </div>
-
               <div className="space-y-2">
                 <label htmlFor="email" className="text-xs font-medium text-cv-muted uppercase tracking-wider">
                   Work Email
