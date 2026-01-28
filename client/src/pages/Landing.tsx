@@ -3,16 +3,27 @@ import { InvoiceEfficiencySection } from "@/components/home/InvoiceEfficiencySec
 import { Link } from "wouter";
 import { track } from "@/lib/track";
 import { useState } from "react";
+import { 
+  BarChart3, 
+  Code2, 
+  Target, 
+  Tag, 
+  Search, 
+  Shield, 
+  Settings, 
+  ClipboardList,
+  type LucideIcon
+} from "lucide-react";
 
-const features = [
-  { title: "Visibility & reporting", desc: "Track spend, usage, and trends across teams.", icon: "📊" },
-  { title: "Developer FinOps (shift-left)", desc: "Put cost signals into dev workflows early.", icon: "⚡" },
-  { title: "Allocation & chargeback", desc: "Attribute costs to owners with confidence.", icon: "🎯" },
-  { title: "Autonomous tag normalization", desc: "Clean and standardize tags automatically.", icon: "🏷️" },
-  { title: "Detected + predicted anomalies", desc: "Spot spikes now and forecast risk.", icon: "🔍" },
-  { title: "Enterprise access controls", desc: "Role-based access and auditability built in.", icon: "🔐" },
-  { title: "Automation-first optimization", desc: "Turn savings actions into policies.", icon: "⚙️" },
-  { title: "Audit logs and governance", desc: "Full change history for compliance.", icon: "📋" },
+const features: { title: string; desc: string; icon: LucideIcon }[] = [
+  { title: "Visibility & reporting", desc: "Track spend, usage, and trends across teams.", icon: BarChart3 },
+  { title: "Developer FinOps (shift-left)", desc: "Put cost signals into dev workflows early.", icon: Code2 },
+  { title: "Allocation & chargeback", desc: "Attribute costs to owners with confidence.", icon: Target },
+  { title: "Autonomous tag normalization", desc: "Clean and standardize tags automatically.", icon: Tag },
+  { title: "Detected + predicted anomalies", desc: "Spot spikes now and forecast risk.", icon: Search },
+  { title: "Enterprise access controls", desc: "Role-based access and auditability built in.", icon: Shield },
+  { title: "Automation-first optimization", desc: "Turn savings actions into policies.", icon: Settings },
+  { title: "Audit logs and governance", desc: "Full change history for compliance.", icon: ClipboardList },
 ];
 
 const marketplaces = [
@@ -259,18 +270,21 @@ export default function Landing() {
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10 sm:mb-12">
-            {features.map((feature, idx) => (
-              <div
-                key={idx}
-                className="p-4 rounded-xl bg-cv-surface dark:bg-slate-900/60 border border-cv-line dark:border-white/10 hover:border-cv-line/80 dark:hover:border-white/20 hover:bg-cv-surface2/30 dark:hover:bg-slate-800/60 transition-all group"
-              >
-                <div className="w-9 h-9 rounded-full bg-cv-surface2/80 dark:bg-white/[0.08] flex items-center justify-center mb-3 group-hover:bg-cv-surface2 dark:group-hover:bg-white/10 transition-colors">
-                  <span className="text-base">{feature.icon}</span>
+            {features.map((feature, idx) => {
+              const Icon = feature.icon;
+              return (
+                <div
+                  key={idx}
+                  className="p-4 rounded-xl bg-cv-surface dark:bg-slate-900/60 border border-cv-line dark:border-white/10 hover:border-cv-line/80 dark:hover:border-white/20 hover:bg-cv-surface2/30 dark:hover:bg-slate-800/60 transition-all group"
+                >
+                  <div className="w-9 h-9 rounded-full bg-blue-500/10 dark:bg-blue-500/20 flex items-center justify-center mb-3 group-hover:bg-blue-500/15 dark:group-hover:bg-blue-500/25 transition-colors">
+                    <Icon className="w-4 h-4 text-blue-500" />
+                  </div>
+                  <h4 className="text-sm font-medium text-cv-ink mb-1">{feature.title}</h4>
+                  <p className="text-xs text-cv-muted dark:text-slate-500 leading-relaxed">{feature.desc}</p>
                 </div>
-                <h4 className="text-sm font-medium text-cv-ink mb-1">{feature.title}</h4>
-                <p className="text-xs text-cv-muted dark:text-slate-500 leading-relaxed">{feature.desc}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <div className="text-center">
