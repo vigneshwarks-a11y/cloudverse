@@ -5,14 +5,14 @@ import { track } from "@/lib/track";
 import { useState } from "react";
 
 const features = [
-  "Visibility & reporting",
-  "Developer FinOps (shift-left)",
-  "Allocation & chargeback",
-  "Autonomous tag normalization",
-  "Detected + predicted anomalies",
-  "Enterprise access controls",
-  "Automation-first optimization",
-  "Audit logs and governance",
+  { title: "Visibility & reporting", desc: "Track spend, usage, and trends across teams.", icon: "📊" },
+  { title: "Developer FinOps (shift-left)", desc: "Put cost signals into dev workflows early.", icon: "⚡" },
+  { title: "Allocation & chargeback", desc: "Attribute costs to owners with confidence.", icon: "🎯" },
+  { title: "Autonomous tag normalization", desc: "Clean and standardize tags automatically.", icon: "🏷️" },
+  { title: "Detected + predicted anomalies", desc: "Spot spikes now and forecast risk.", icon: "🔍" },
+  { title: "Enterprise access controls", desc: "Role-based access and auditability built in.", icon: "🔐" },
+  { title: "Automation-first optimization", desc: "Turn savings actions into policies.", icon: "⚙️" },
+  { title: "Audit logs and governance", desc: "Full change history for compliance.", icon: "📋" },
 ];
 
 const marketplaces = [
@@ -166,13 +166,17 @@ export default function Landing() {
             What's included with CloudVerse
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-10 sm:mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10 sm:mb-12">
             {features.map((feature, idx) => (
               <div
                 key={idx}
-                className="py-3 px-4 rounded-lg bg-cv-surface2/50 dark:bg-white/[0.04] border border-cv-line dark:border-white/10"
+                className="p-4 rounded-xl bg-cv-surface dark:bg-slate-900/60 border border-cv-line dark:border-white/10 hover:border-cv-line/80 dark:hover:border-white/20 hover:bg-cv-surface2/30 dark:hover:bg-slate-800/60 transition-all group"
               >
-                <p className="text-sm text-cv-muted dark:text-slate-400">{feature}</p>
+                <div className="w-9 h-9 rounded-full bg-cv-surface2/80 dark:bg-white/[0.08] flex items-center justify-center mb-3 group-hover:bg-cv-surface2 dark:group-hover:bg-white/10 transition-colors">
+                  <span className="text-base">{feature.icon}</span>
+                </div>
+                <h4 className="text-sm font-medium text-cv-ink mb-1">{feature.title}</h4>
+                <p className="text-xs text-cv-muted dark:text-slate-500 leading-relaxed">{feature.desc}</p>
               </div>
             ))}
           </div>
