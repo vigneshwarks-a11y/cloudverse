@@ -52,7 +52,7 @@ export function FinalCTA({
   };
 
   return (
-    <section className="py-8 sm:py-10 lg:py-12 border-t border-cv-line dark:border-white/10">
+    <section id="subscribe-section" className="py-8 sm:py-10 lg:py-12 border-t border-cv-line dark:border-white/10">
       <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
         <div className="rounded-2xl border border-cv-line bg-cv-surface2/50 dark:bg-gradient-to-b dark:from-white/[0.06] dark:to-white/[0.03] p-10 sm:p-12 lg:p-16 flex flex-col items-center text-center">
           <div className="max-w-2xl flex flex-col items-center">

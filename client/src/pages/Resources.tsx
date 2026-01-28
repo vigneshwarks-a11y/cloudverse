@@ -79,15 +79,11 @@ export default function Resources() {
                 size="lg" 
                 className="w-full sm:w-auto"
                 onClick={() => {
-                  const email = prompt("Enter your email to subscribe:");
-                  if (email) {
-                    mutation.mutate({ email });
-                  }
+                  document.getElementById("subscribe-section")?.scrollIntoView({ behavior: "smooth" });
                 }}
-                disabled={mutation.isPending}
                 data-testid="button-subscribe"
               >
-                {mutation.isPending ? "Subscribing..." : "Subscribe"}
+                Subscribe
               </Button>
             </div>
           </div>
