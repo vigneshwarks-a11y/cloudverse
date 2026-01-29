@@ -141,7 +141,7 @@ export default function Home() {
               target="_blank" 
               rel="noopener noreferrer"
               onClick={() => track("product_devx", { location: "products_section" })}
-              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300"
+              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 is_cvdevx"
               data-testid="product-devx-card"
             >
               <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
@@ -168,7 +168,7 @@ export default function Home() {
               target="_blank" 
               rel="noopener noreferrer"
               onClick={() => track("product_aix", { location: "products_section" })}
-              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300"
+              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300  is_cvaix"
               data-testid="product-aix-card"
             >
               <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
