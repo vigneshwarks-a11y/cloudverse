@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { track } from "@/lib/track";
 import { useState } from "react";
 import { CheckCircle2 } from "lucide-react";
+import { THANK_YOU_URL } from "@/lib/links";
 
 export default function Contact() {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -14,6 +15,7 @@ export default function Contact() {
   const onSubmit = (data: any) => {
     track("contact_submit", data);
     setSubmitted(true);
+    window.location.href = THANK_YOU_URL;
   };
 
   return (

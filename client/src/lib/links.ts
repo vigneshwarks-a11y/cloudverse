@@ -6,6 +6,7 @@
 // External Authentication
 export const SIGNIN_URL = "https://id.cloudverse.ai";
 export const DEMO_URL = "/connect";
+export const THANK_YOU_URL = "/efficiency-snapshot/thank-you";
 
 // Internal Routes
 export const ROUTES = {
@@ -23,7 +24,7 @@ export const ROUTES = {
   contact: "/contact",
   partners: "/partners",
   help: "/help",
-  landing: "/landing",
+  efficiencySnapshot: "/efficiency-snapshot",
   tour: "/tour",
   bookDemo: "/book-demo",
   connect: "/connect",

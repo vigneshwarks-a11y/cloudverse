@@ -3,9 +3,8 @@ import { track } from "@/lib/track";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
-import { useToast } from "@/hooks/use-toast";
 import { Link } from "wouter";
-import { DEMO_URL } from "@/lib/links";
+import { DEMO_URL, THANK_YOU_URL } from "@/lib/links";
 
 interface FinalCTAProps {
   title?: string;
@@ -18,7 +17,6 @@ export function FinalCTA({
   description = "Get the latest guides, best practices, and FinOps insights delivered to your inbox.",
   location
 }: FinalCTAProps) {
-  const { toast } = useToast();
   const [email, setEmail] = useState("");
 
   const mutation = useMutation({
@@ -30,20 +28,10 @@ export function FinalCTA({
       });
     },
     onSuccess: () => {
-      toast({
-        title: "Subscribed!",
-        description: "You'll receive our latest resources and updates.",
-      });
       setEmail("");
       track("subscribe_success", { location });
+      window.location.href = THANK_YOU_URL;
     },
-    onError: (error: Error) => {
-      toast({
-        title: "Error",
-        description: error.message || "Failed to subscribe. Please try again.",
-        variant: "destructive"
-      });
-    }
   });
 
   const handleSubmit = (e: React.FormEvent) => {

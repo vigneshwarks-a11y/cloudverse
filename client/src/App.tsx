@@ -26,6 +26,7 @@ import ConnectWithUs from "@/pages/ConnectWithUs";
 import Legal from "@/pages/Legal";
 import Compare from "@/pages/Compare";
 import Landing from "@/pages/Landing";
+import ThankYou from "@/pages/Thankyou";
 import NotFound from "@/pages/not-found";
 import { SIGNIN_URL, DEMO_URL } from "@/lib/links";
 
@@ -51,7 +52,8 @@ function Router() {
       <Route path="/book-demo" component={BookDemo} />
       <Route path="/connect" component={ConnectWithUs} />
       <Route path="/compare" component={Compare} />
-      <Route path="/landing" component={Landing} />
+      <Route path="/efficiency-snapshot" component={Landing} />
+      <Route path="/efficiency-snapshot/thank-you" component={ThankYou} />
       <Route path="/legal/terms" component={Legal} />
       <Route path="/legal/privacy" component={Legal} />
 

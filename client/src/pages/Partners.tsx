@@ -9,7 +9,7 @@ import { FinalCTA } from "@/components/FinalCTA";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { insertPartnerInquirySchema, type InsertPartnerInquiry } from "@shared/schema";
-import { useToast } from "@/hooks/use-toast";
+import { THANK_YOU_URL } from "@/lib/links";
 
 type PartnerType = "msp" | "gsi" | "reseller";
 
@@ -97,8 +97,6 @@ export default function Partners() {
   const [activeType, setActiveType] = useState<PartnerType>("msp");
   const formRef = useRef<HTMLDivElement>(null);
   const content = partnerTypeContent[activeType];
-  const { toast } = useToast();
-
   const { register, handleSubmit, formState: { errors, isSubmitting }, reset, setValue, watch } = useForm<InsertPartnerInquiry>({
     resolver: zodResolver(insertPartnerInquirySchema),
     defaultValues: {
@@ -131,11 +129,8 @@ export default function Partners() {
       message: data.message,
       agreedToTerms: data.agreedToTerms,
     });
-    toast({
-      title: "Inquiry Sent",
-      description: "We'll be in touch shortly.",
-    });
     reset();
+    window.location.href = THANK_YOU_URL;
   };
 
   const scrollToForm = () => {

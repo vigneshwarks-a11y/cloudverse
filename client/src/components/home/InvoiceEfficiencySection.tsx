@@ -193,7 +193,7 @@ export function InvoiceEfficiencySection() {
 
               {/* Result State - Inline Status */}
               {state === "result" && result && (
-                <div className="border-2 border-green-500/30 rounded-2xl p-6 text-center bg-green-500/5">
+                <div className="efficiency_snapshot_success border-2 border-green-500/30 rounded-2xl p-6 text-center bg-green-500/5">
                   <div className="flex items-center justify-center gap-3 mb-4">
                     <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
                       <CheckCircle className="w-5 h-5 text-green-500" />

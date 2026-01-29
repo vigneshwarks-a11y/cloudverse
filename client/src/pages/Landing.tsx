@@ -1,6 +1,5 @@
 import { BaseLayout } from "@/layouts/BaseLayout";
 import { InvoiceEfficiencySection } from "@/components/home/InvoiceEfficiencySection";
-import { Link } from "wouter";
 import { track } from "@/lib/track";
 import { useState } from "react";
 import { 
@@ -115,7 +114,7 @@ function GetItDirectlySection() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => track("marketplace_click", { provider: "aws", location: "landing" })}
-              className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
+              className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all cloud_aws"
             >
               <img src="/logos/aws-light-mode.png" alt="AWS" className="h-9 w-auto dark:hidden" />
               <img src="/logos/aws-dark-mode.png" alt="AWS" className="h-9 w-auto hidden dark:block" />
@@ -125,7 +124,7 @@ function GetItDirectlySection() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => track("marketplace_click", { provider: "gcp", location: "landing" })}
-              className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
+              className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all cloud_gcp"
             >
               <img src="/logos/gcp-light-mode.png" alt="Google Cloud" className="h-9 w-auto dark:hidden" />
               <img src="/logos/gcp-dark-mode.png" alt="Google Cloud" className="h-9 w-auto hidden dark:block" />
@@ -135,7 +134,7 @@ function GetItDirectlySection() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => track("marketplace_click", { provider: "microsoft", location: "landing" })}
-              className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
+              className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all cloud_azure"
             >
               <img src="/logos/azure-marketplace.png" alt="Microsoft Azure" className="h-9 w-auto" />
             </a>
@@ -144,7 +143,7 @@ function GetItDirectlySection() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => track("marketplace_click", { provider: "alibaba", location: "landing" })}
-              className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
+              className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all cloud_alibaba"
             >
               <img src="/logos/alibaba-marketplace.png" alt="Alibaba Cloud" className="h-9 w-auto" />
             </a>

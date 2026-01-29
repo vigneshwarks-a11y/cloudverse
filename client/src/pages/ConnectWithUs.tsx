@@ -4,7 +4,6 @@ import { useEffect, useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useToast } from "@/hooks/use-toast";
 import { Calendar as CalendarIcon, Clock, ChevronDown } from "lucide-react";
 import { track } from "@/lib/track";
 import { useSearch } from "wouter";
@@ -12,6 +11,7 @@ import { integrationsData } from "@/data/integrationsData";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
+import { THANK_YOU_URL } from "@/lib/links";
 
 
 const formSchema = z.object({
@@ -51,7 +51,6 @@ const timeSlots = [
 ];
 
 export default function ConnectWithUs() {
-  const { toast } = useToast();
   const searchString = useSearch();
   const urlParams = new URLSearchParams(searchString);
   const integrationFromUrl = urlParams.get("integration") || "";
@@ -98,13 +97,10 @@ export default function ConnectWithUs() {
       preferredTime: data.preferredTime,
       interestedIntegration: data.interestedIntegration || "none",
     });
-    toast({
-      title: "Demo Request Submitted",
-      description: "We'll be in touch shortly to confirm your demo.",
-    });
     reset();
     setSelectedDate(undefined);
     setDateOpen(false);
+    window.location.href = THANK_YOU_URL;
   };
 
   return (
@@ -135,7 +131,7 @@ export default function ConnectWithUs() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => track("marketplace_click", { provider: "aws" })}
-                className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
+                className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all cloud_aws"
               >
                 <img src="/logos/aws-light-mode.png" alt="AWS" className="h-9 w-auto dark:hidden" />
                 <img src="/logos/aws-dark-mode.png" alt="AWS" className="h-9 w-auto hidden dark:block" />
@@ -145,7 +141,7 @@ export default function ConnectWithUs() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => track("marketplace_click", { provider: "gcp" })}
-                className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
+                className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all cloud_gcp"
               >
                 <img src="/logos/gcp-light-mode.png" alt="Google Cloud" className="h-9 w-auto dark:hidden" />
                 <img src="/logos/gcp-dark-mode.png" alt="Google Cloud" className="h-9 w-auto hidden dark:block" />
@@ -155,7 +151,7 @@ export default function ConnectWithUs() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => track("marketplace_click", { provider: "microsoft" })}
-                className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
+                className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all cloud_azure"
               >
                 <img src="/logos/azure-marketplace.png" alt="Microsoft Azure" className="h-9 w-auto" />
               </a>
@@ -164,7 +160,7 @@ export default function ConnectWithUs() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => track("marketplace_click", { provider: "alibaba" })}
-                className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all"
+                className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all cloud_alibaba"
               >
                 <img src="/logos/alibaba-marketplace.png" alt="Alibaba Cloud" className="h-9 w-auto" />
               </a>
