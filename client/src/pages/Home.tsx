@@ -24,6 +24,11 @@ const customerLogos = [
   { name: "Ken42", src: "/logos/ken42.png", srcDark: "/logos/ken42-dark.png", className: "" },
   { name: "PiChain", src: "/logos/pichain.png", srcDark: "/logos/pichain.png", className: "!h-9 sm:!h-10 invert dark:invert-0" },
   { name: "Optimile", src: "/logos/optimile.png", srcDark: "/logos/optimile.png", className: "invert dark:invert-0" },
+  { name: "Aura ML", src: "/logos/aura-ml.png", srcDark: "/logos/aura-ml.png", className: "invert dark:invert-0" },
+  { name: "Autoflow", src: "/logos/autoflow.png", srcDark: "/logos/autoflow.png", className: "invert dark:invert-0" },
+  { name: "Climaty AI", src: "/logos/climaty-ai.png", srcDark: "/logos/climaty-ai.png", className: "!h-7 sm:!h-8 invert dark:invert-0" },
+  { name: "Doqfy", src: "/logos/doqfy.png", srcDark: "/logos/doqfy.png", className: "!h-9 sm:!h-10 invert dark:invert-0 brightness-150" },
+  { name: "Skylark", src: "/logos/skylark.png", srcDark: "/logos/skylark.png", className: "invert dark:invert-0" },
 ];
 
 const pillarCards = [
@@ -92,9 +97,9 @@ export default function Home() {
                     Book a demo
                   </Button>
                 </Link>
-                <Button 
-                  variant="secondary" 
-                  size="lg" 
+                <Button
+                  variant="secondary"
+                  size="lg"
                   className="w-full sm:w-auto"
                   onClick={() => {
                     track("cta_watch_tour", { location: "hero" });
@@ -136,9 +141,9 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {/* DevX Card */}
-            <a 
-              href="https://devx.cloudverse.ai" 
-              target="_blank" 
+            <a
+              href="https://devx.cloudverse.ai"
+              target="_blank"
               rel="noopener noreferrer"
               onClick={() => track("product_devx", { location: "products_section" })}
               className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 is_cvdevx"
@@ -163,9 +168,9 @@ export default function Home() {
             </a>
 
             {/* AIx Card */}
-            <a 
-              href="https://aix.cloudverse.ai" 
-              target="_blank" 
+            <a
+              href="https://aix.cloudverse.ai"
+              target="_blank"
               rel="noopener noreferrer"
               onClick={() => track("product_aix", { location: "products_section" })}
               className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300  is_cvaix"
@@ -320,7 +325,7 @@ export default function Home() {
       <FinalCTA location="home_final" />
       {/* Video Modal */}
       {showVideo && (
-        <div 
+        <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
           onClick={() => setShowVideo(false)}
         >
@@ -332,10 +337,10 @@ export default function Home() {
               <X className="w-8 h-8" />
             </button>
             <div className="rounded-2xl overflow-hidden shadow-2xl bg-black">
-              <video 
-                src="/assets/videos/tour.mp4" 
-                controls 
-                autoPlay 
+              <video
+                src="/assets/videos/tour.mp4"
+                controls
+                autoPlay
                 className="w-full aspect-video rounded-[10px]"
               />
             </div>
