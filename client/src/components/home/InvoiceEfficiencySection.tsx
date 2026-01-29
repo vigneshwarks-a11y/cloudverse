@@ -164,7 +164,7 @@ export function InvoiceEfficiencySection() {
 
               {/* Processing State */}
               {state === "processing" && (
-                <div className="border-2 border-cv-line rounded-2xl p-8 text-center">
+                <div className="border-2 border-cv-line rounded-2xl p-8 text-center is_analyzing">
                   <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-blue-500/10 flex items-center justify-center">
                     <FileText className="w-7 h-7 text-blue-500 animate-pulse" />
                   </div>
