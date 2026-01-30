@@ -11,13 +11,14 @@ import { apiRequest } from "@/lib/queryClient";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { subscribers } from '@shared/schema';
+import { subscribers } from "@shared/schema";
 
 const subscribeSchema = z.object({
   email: z.string().email("Valid email is required"),
 });
 
 type SubscribeFormData = z.infer<typeof subscribeSchema>;
+const SHOULD_CALL_SUBSCRIBE_API = false;
 
 export default function Resources() {
   const { toast } = useToast();
@@ -35,11 +36,13 @@ export default function Resources() {
 
   const mutation = useMutation({
     mutationFn: async (data: SubscribeFormData) => {
-      await apiRequest("POST", "/api/subscribe", {
-        firstName: "",
-        lastName: "",
-        email: data.email,
-      });
+      if (SHOULD_CALL_SUBSCRIBE_API) {
+        await apiRequest("POST", "/api/subscribe", {
+          firstName: "",
+          lastName: "",
+          email: data.email,
+        });
+      }
     },
     onSuccess: () => {
       toast({

@@ -7,6 +7,7 @@
 export const SIGNIN_URL = "https://id.cloudverse.ai";
 export const DEMO_URL = "/connect";
 export const THANK_YOU_URL = "/efficiency-snapshot/thank-you";
+export const SUBSCRIBE_THANK_YOU_URL = "/subscribe-thankyou";
 
 // Internal Routes
 export const ROUTES = {
@@ -29,4 +30,5 @@ export const ROUTES = {
   bookDemo: "/book-demo",
   connect: "/connect",
   compare: "/compare",
+  subscribeThankYou: "/subscribe-thankyou",
 } as const;

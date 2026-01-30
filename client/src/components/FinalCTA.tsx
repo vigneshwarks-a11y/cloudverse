@@ -4,7 +4,8 @@ import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { Link } from "wouter";
-import { DEMO_URL, THANK_YOU_URL } from "@/lib/links";
+import { DEMO_URL, SUBSCRIBE_THANK_YOU_URL } from "@/lib/links";
+import { useNavigate } from "@/hooks/useNavigate";
 
 interface FinalCTAProps {
   title?: string;
@@ -12,25 +13,30 @@ interface FinalCTAProps {
   location: string;
 }
 
+const SHOULD_CALL_SUBSCRIBE_API = false;
+
 export function FinalCTA({ 
   title = "Stay updated with CloudVerse", 
   description = "Get the latest guides, best practices, and FinOps insights delivered to your inbox.",
   location
 }: FinalCTAProps) {
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
 
   const mutation = useMutation({
     mutationFn: async (data: { email: string }) => {
-      await apiRequest("POST", "/api/subscribe", {
-        firstName: "",
-        lastName: "",
-        email: data.email,
-      });
+      if (SHOULD_CALL_SUBSCRIBE_API) {
+        await apiRequest("POST", "/api/subscribe", {
+          firstName: "",
+          lastName: "",
+          email: data.email,
+        });
+      }
     },
     onSuccess: () => {
       setEmail("");
       track("subscribe_success", { location });
-      window.location.href = THANK_YOU_URL;
+      navigate(SUBSCRIBE_THANK_YOU_URL);
     },
   });
 
@@ -67,8 +73,8 @@ export function FinalCTA({
                   type="submit" 
                   size="lg" 
                   className="w-full sm:w-auto"
-                  disabled={mutation.isPending}
                   data-testid="button-subscribe-cta"
+                  disabled={mutation.isPending}
                 >
                   {mutation.isPending ? "Subscribing..." : "Subscribe"}
                 </Button>
