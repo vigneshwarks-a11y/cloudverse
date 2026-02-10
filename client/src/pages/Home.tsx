@@ -13,6 +13,8 @@ import { HowItWorks } from "@/components/home/HowItWorks";
 import { InvoiceEfficiencySection } from "@/components/home/InvoiceEfficiencySection";
 import { Globe, Receipt, Tag, Code2, Cpu, Activity, X, Boxes, Sparkles } from "lucide-react";
 import { FinalCTA } from "@/components/FinalCTA";
+import billopsLogo from "@/assets/billops.png";
+import dataxLogo from "@/assets/datax-logo.png";
 
 const customerLogos = [
   { name: "Dr. Reddy's", src: "/logos/dr-reddys.svg", srcDark: "/logos/dr-reddys.svg", className: "brightness-110" },
@@ -189,6 +191,60 @@ export default function Home() {
                   </p>
                   <span className="inline-flex items-center gap-2 text-sm font-medium text-purple-600 dark:text-purple-400 group-hover:gap-3 transition-all">
                     Visit aix.cloudverse.ai →
+                  </span>
+                </div>
+              </div>
+            </a>
+
+            {/* DataX Card */}
+            <a
+              href="https://datax.cloudverse.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track("product_datax", { location: "products_section" })}
+              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-pink-500/50 hover:shadow-lg hover:shadow-pink-500/10 transition-all duration-300 is_cvdatax"
+              data-testid="product-datax-card"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-pink-500 to-fuchsia-500 flex items-center justify-center shadow-lg shadow-pink-500/20">
+                  <img src={dataxLogo} alt="DataX" className="w-6 h-6 sm:w-7 sm:h-7 object-contain" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">
+                    DataX
+                  </h3>
+                  <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
+                    Analytics data cost visibility and governance. Monitor usage, optimize queries, and control spend.
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-sm font-medium text-pink-600 dark:text-pink-400 group-hover:gap-3 transition-all">
+                    Visit datax.cloudverse.ai →
+                  </span>
+                </div>
+              </div>
+            </a>
+
+            {/* CloudBillOps Card */}
+            <a
+              href="https://billops.cloudverse.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track("product_billops", { location: "products_section" })}
+              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-orange-500/50 hover:shadow-lg hover:shadow-orange-500/10 transition-all duration-300 is_cvbillops"
+              data-testid="product-billops-card"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center shadow-lg shadow-orange-500/20">
+                  <img src={billopsLogo} alt="CloudBillOps" className="w-6 h-6 sm:w-7 sm:h-7 object-contain" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
+                    CloudBillOps
+                  </h3>
+                  <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
+                    Unified cloud billing and cost operations. Track usage, allocate costs, enforce controls.
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-sm font-medium text-orange-600 dark:text-orange-400 group-hover:gap-3 transition-all">
+                    Visit billops.cloudverse.ai →
                   </span>
                 </div>
               </div>
