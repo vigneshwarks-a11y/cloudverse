@@ -270,7 +270,7 @@ export default function Home() {
                     alt={logo.name}
                     loading="lazy"
                     decoding="async"
-                    className={`h-10 sm:h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity grayscale shrink-0 ${logo.className || ""}`}
+                    className={`h-10 sm:h-12 w-auto object-contain opacity-100 grayscale shrink-0 ${logo.className || ""}`}
                   />
                 ))}
               </div>
@@ -282,7 +282,7 @@ export default function Home() {
                     alt={logo.name}
                     loading="lazy"
                     decoding="async"
-                    className={`h-10 sm:h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity grayscale shrink-0 ${logo.className || ""}`}
+                    className={`h-10 sm:h-12 w-auto object-contain opacity-100  grayscale shrink-0 ${logo.className || ""}`}
                   />
                 ))}
               </div>
@@ -297,7 +297,7 @@ export default function Home() {
                     alt={logo.name}
                     loading="lazy"
                     decoding="async"
-                    className={`h-10 sm:h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity shrink-0 ${logo.className || ""}`}
+                    className={`h-10 sm:h-12 w-auto object-contain opacity-100 transition-opacity shrink-0 ${logo.className || ""}`}
                   />
                 ))}
               </div>
@@ -309,7 +309,7 @@ export default function Home() {
                     alt={logo.name}
                     loading="lazy"
                     decoding="async"
-                    className={`h-10 sm:h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity shrink-0 ${logo.className || ""}`}
+                    className={`h-10 sm:h-12 w-auto object-contain opacity-100 transition-opacity shrink-0 ${logo.className || ""}`}
                   />
                 ))}
               </div>
