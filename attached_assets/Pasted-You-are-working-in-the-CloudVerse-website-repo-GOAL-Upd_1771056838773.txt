@@ -1,0 +1,108 @@
+You are working in the CloudVerse website repo.
+
+GOAL:
+Update the entire "Economic Decision Logic Across the AI Stack" product cards section (AIX, DevX, DataX, Commitments Optimizer, Volatility Control, Autonomous Optimization Engine) to match our new positioning.
+
+STRICT RULES:
+- Maintain existing theme, layout, grid, icons, spacing, and typography.
+- Do NOT redesign components.
+- Only edit card titles + descriptions.
+- Do NOT use these words anywhere: routing, route, block, blocking, gate, gating, throttle, stop.
+- Avoid generic FinOps language like allocation, chargeback, cost visibility, monitoring tool, dashboards.
+
+WHERE:
+Find the product cards data/array or JSX under the section labeled something like:
+"What CloudVerse Offers" / "Economic decision logic for every layer" / "Economic Decision Logic Across the AI Stack"
+Likely in:
+- client/src/pages/Home.tsx
+or
+- client/src/components/home/*
+
+Update the titles and descriptions exactly as follows:
+
+====================================================
+CARD 1 — AIX
+====================================================
+Title:
+AIX: AI Model Economics (LLMs)
+
+Description:
+AIX applies economic decision logic to Large Language Model (LLM) usage.
+
+For every prompt, inference request, or AI workload, it evaluates required performance — reasoning depth, latency, context length, and quality — against real-time cost-per-token and model economics.
+
+It ensures routine tasks use cost-efficient models and complex tasks use premium models only when justified, preventing silent LLM overspend at scale.
+
+====================================================
+CARD 2 — DevX
+====================================================
+Title:
+DevX: Engineering Decision Economics
+
+Description:
+DevX embeds economic decision logic directly into pull requests, repositories, and CI/CD pipelines.
+
+It analyzes both Infrastructure-as-Code (Terraform, Pulumi, CDK, ARM, and related frameworks) and application source code across 14+ supported languages.
+
+When developers introduce changes — whether provisioning infrastructure or modifying runtime logic — DevX evaluates projected compute and cost impact before deployment, highlighting economically significant patterns early in the workflow.
+
+====================================================
+CARD 3 — DataX
+====================================================
+Title:
+DataX: Data Execution Economics
+
+Description:
+DataX applies economic intent to live data workloads across warehouses and data platforms.
+
+It detects inefficient queries, high-cost execution patterns, and compute-heavy pipelines, and ensures warehouse behavior remains within defined cost-performance thresholds during execution.
+
+This prevents structural warehouse waste from compounding as AI-driven data usage scales.
+
+====================================================
+CARD 4 — Commitments Optimizer
+====================================================
+Title:
+Commitments Optimizer: Compute Procurement Economics
+
+Description:
+Align long-term capacity commitments with real demand patterns to improve blended compute rates and reduce structural exposure.
+
+It turns commitment strategy into a systematic discipline — informed by usage trends and demand signals — rather than ad hoc purchasing.
+
+====================================================
+CARD 5 — Volatility Control
+====================================================
+Title:
+Volatility Control: Variance & Exposure Management
+
+Description:
+Predict usage spikes early to reduce variance and prevent weekend-scale surprises.
+
+Volatility Control identifies abnormal demand patterns across AI, compute, and data workloads so exposure is contained before it becomes a material budget deviation.
+
+====================================================
+CARD 6 — Autonomous Optimization Engine
+====================================================
+Title:
+Autonomous Optimization Engine: Continuous Baseline Shift
+
+Description:
+Lower steady-state infrastructure cost by continuously tuning live workloads using ML-driven actions with guardrails.
+
+This drives a sustained downward shift in baseline compute behavior — not one-time cleanups or theoretical savings.
+
+====================================================
+ACCEPTANCE CRITERIA
+====================================================
+- No usage of routing/route, blocking/block, gate/gating, throttle, stop
+- AIX explicitly references LLMs and cost-per-token economics
+- DevX explicitly includes PRs, repos, CI/CD pipelines, IaC + application code, and 14+ languages
+- Cards are not overly technical, but clearly state what we do
+- Layout and styling unchanged
+- Page renders correctly on mobile + desktop
+
+Run:
+npm run dev
+
+Return only the modified code.
