@@ -42,7 +42,7 @@ const pillarCards = [
   {
     icon: Code2,
     title: "DevX: Engineering Decision Economics",
-    description: "Embed economic intent into engineering workflows so infrastructure choices align with defined financial thresholds before production.",
+    description: "DevX embeds economic decision logic into pull requests, repositories, and CI/CD pipelines. It analyzes Infrastructure-as-Code and application source code across 14+ languages, evaluating projected compute and cost impact before deployment.",
   },
   {
     icon: Receipt,
@@ -237,7 +237,7 @@ export default function Home() {
               Modern AI stacks include models, data platforms, orchestration, and infrastructure. What they lack is embedded economic decision logic.
             </p>
             <p className="text-base sm:text-lg text-cv-ink/80 leading-relaxed">
-              CloudVerse operates as the economic decision layer — influencing model selection, blocking inefficient deployments, shaping live workload behavior, and structuring long-term capacity commitments.
+              CloudVerse operates as the economic decision layer — influencing model selection, evaluating deployments for economic impact, shaping live workload behavior, and structuring long-term capacity commitments.
             </p>
           </div>
 
@@ -247,12 +247,12 @@ export default function Home() {
             <div className="p-6 rounded-xl border border-cv-line bg-cv-surface2/50 dark:bg-white/[0.04]">
               <h3 className="text-lg font-semibold text-cv-ink mb-3">Model & Workload Selection</h3>
               <p className="text-sm text-cv-muted leading-relaxed mb-2">AIX evaluates cost-performance curves at runtime.</p>
-              <p className="text-sm text-cv-muted leading-relaxed">DevX blocks economically risky changes before production.</p>
+              <p className="text-sm text-cv-muted leading-relaxed">DevX evaluates economic impact of engineering changes before production.</p>
             </div>
             <div className="p-6 rounded-xl border border-cv-line bg-cv-surface2/50 dark:bg-white/[0.04]">
               <h3 className="text-lg font-semibold text-cv-ink mb-3">Active Infrastructure Behavior</h3>
               <p className="text-sm text-cv-muted leading-relaxed mb-2">DataX enforces execution policies on live workloads.</p>
-              <p className="text-sm text-cv-muted leading-relaxed">Inefficient queries can be gated, throttled, or stopped automatically.</p>
+              <p className="text-sm text-cv-muted leading-relaxed">Inefficient queries are identified and addressed automatically.</p>
             </div>
             <div className="p-6 rounded-xl border border-cv-line bg-cv-surface2/50 dark:bg-white/[0.04]">
               <h3 className="text-lg font-semibold text-cv-ink mb-3">Commitment & Procurement Strategy</h3>
@@ -296,7 +296,7 @@ export default function Home() {
                     DevX
                   </h3>
                   <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
-                    Cost context in engineering workflows. Shift-left economic gates for CI/CD, services, and environments.
+                    Economic decision logic embedded in PRs, repos, and CI/CD pipelines — analyzing IaC and application code across 14+ languages.
                   </p>
                   <span className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:gap-3 transition-all">
                     Visit devx.cloudverse.ai →
