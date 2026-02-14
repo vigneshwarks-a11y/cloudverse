@@ -18,6 +18,7 @@ export type Integration = {
     alt: string;
     invert?: boolean;
   };
+  products?: ("AIX" | "DevX" | "DataX")[];
 };
 
 export const integrationsData: Integration[] = [
@@ -27,6 +28,7 @@ export const integrationsData: Integration[] = [
     name: "AWS",
     category: "Cloud",
     status: "Available",
+    products: ["AIX", "DevX", "DataX"],
     short: "Billing and usage ingestion with allocation dimensions.",
     logo: { src: "/logos/aws.svg", alt: "AWS" },
     whatWeIngest: [
@@ -54,6 +56,7 @@ export const integrationsData: Integration[] = [
     aliases: ["Azure"],
     category: "Cloud",
     status: "Available",
+    products: ["AIX", "DevX", "DataX"],
     short: "Billing, subscriptions, and cost dimensions across tenants.",
     logo: { src: "/logos/azure.svg", alt: "Microsoft Azure" },
     whatWeIngest: [
@@ -66,7 +69,7 @@ export const integrationsData: Integration[] = [
       "Cost reporting by subscription and resource group",
       "Allocation by business unit and environment",
       "Anomaly detection on spend trends",
-      "Automation for resource governance"
+      "Automation for resource management"
     ],
     setup: {
       method: "Read-only API + billing export support",
@@ -81,6 +84,7 @@ export const integrationsData: Integration[] = [
     aliases: ["GCP"],
     category: "Cloud",
     status: "Available",
+    products: ["AIX", "DevX", "DataX"],
     short: "Billing and usage via BigQuery-backed exports and APIs.",
     logo: { src: "/logos/gcp.svg", alt: "Google Cloud" },
     whatWeIngest: [
@@ -108,6 +112,7 @@ export const integrationsData: Integration[] = [
     aliases: ["OCI"],
     category: "Cloud",
     status: "Available",
+    products: ["AIX", "DevX", "DataX"],
     short: "Billing and usage across tenancy compartments.",
     logo: { src: "/logos/oci.svg", alt: "Oracle Cloud" },
     whatWeIngest: [
@@ -134,6 +139,7 @@ export const integrationsData: Integration[] = [
     aliases: ["AliCloud", "Alibaba"],
     category: "Cloud",
     status: "Available",
+    products: ["AIX", "DevX", "DataX"],
     short: "Billing and usage ingestion for multi-cloud visibility.",
     logo: { src: "/logos/alibaba.svg", alt: "Alibaba Cloud" },
     whatWeIngest: [
@@ -159,6 +165,7 @@ export const integrationsData: Integration[] = [
     name: "Huawei Cloud",
     category: "Cloud",
     status: "Available",
+    products: ["AIX", "DevX", "DataX"],
     short: "Billing and usage ingestion for enterprise reporting.",
     logo: { src: "/logos/huawei.svg", alt: "Huawei Cloud" },
     whatWeIngest: [
@@ -184,6 +191,7 @@ export const integrationsData: Integration[] = [
     name: "Tencent Cloud",
     category: "Cloud",
     status: "Available",
+    products: ["AIX", "DevX", "DataX"],
     short: "Billing and usage ingestion across accounts and regions.",
     logo: { src: "/logos/tencent.svg", alt: "Tencent Cloud" },
     whatWeIngest: [
@@ -211,6 +219,7 @@ export const integrationsData: Integration[] = [
     name: "Databricks",
     category: "Data",
     status: "Available",
+    products: ["DataX"],
     short: "Workspace usage and compute costs for analytics spend.",
     logo: { src: "/logos/databricks.svg", alt: "Databricks" },
     whatWeIngest: [
@@ -238,6 +247,7 @@ export const integrationsData: Integration[] = [
     name: "Snowflake",
     category: "Data",
     status: "Coming soon",
+    products: ["DataX"],
     short: "Warehouse consumption and credits for data spend.",
     logo: { src: "/logos/snowflake.svg", alt: "Snowflake" },
     whatWeIngest: [
@@ -265,6 +275,7 @@ export const integrationsData: Integration[] = [
     name: "OpenAI",
     category: "AI",
     status: "Available",
+    products: ["AIX"],
     short: "API usage, token consumption, and cost signals.",
     logo: { src: "/logos/openai.svg", alt: "OpenAI" },
     whatWeIngest: [
@@ -292,6 +303,7 @@ export const integrationsData: Integration[] = [
     name: "Kubernetes",
     category: "Kubernetes",
     status: "Available",
+    products: ["DevX"],
     short: "Cluster usage and workload attribution via agent.",
     logo: { src: "/logos/kubernetes.svg", alt: "Kubernetes" },
     whatWeIngest: [
@@ -318,6 +330,7 @@ export const integrationsData: Integration[] = [
     name: "OpenShift",
     category: "Kubernetes",
     status: "Available",
+    products: ["DevX"],
     short: "Cluster and namespace attribution for enterprise platforms.",
     logo: { src: "/logos/openshift.svg", alt: "OpenShift" },
     whatWeIngest: [
@@ -330,7 +343,7 @@ export const integrationsData: Integration[] = [
       "Cost reporting by namespace and team",
       "Project-level allocation",
       "Workload optimization recommendations",
-      "Automation for governance"
+      "Automation for workload management"
     ],
     setup: {
       method: "Agent",
@@ -346,6 +359,7 @@ export const integrationsData: Integration[] = [
     aliases: ["VMware"],
     category: "Infrastructure",
     status: "Available",
+    products: ["DevX"],
     short: "Virtual infrastructure inventory and usage attribution.",
     logo: { src: "/logos/vcenter.svg", alt: "vCenter" },
     whatWeIngest: [
@@ -373,6 +387,7 @@ export const integrationsData: Integration[] = [
     name: "OAuth: Microsoft",
     category: "Identity",
     status: "Available",
+    products: ["DevX"],
     short: "SSO via Microsoft OAuth for secure login.",
     logo: { src: "/logos/microsoft-oauth.svg", alt: "Microsoft OAuth" },
     whatWeIngest: [
@@ -384,7 +399,7 @@ export const integrationsData: Integration[] = [
     outputs: [
       "User-based cost allocation",
       "Team and department attribution",
-      "Access control and governance",
+      "Access control and policy enforcement",
       "Compliance and audit trails"
     ],
     setup: {
@@ -399,6 +414,7 @@ export const integrationsData: Integration[] = [
     name: "OAuth: Google",
     category: "Identity",
     status: "Available",
+    products: ["DevX"],
     short: "SSO via Google OAuth for secure login.",
     logo: { src: "/logos/google-oauth.svg", alt: "Google OAuth" },
     whatWeIngest: [
@@ -410,7 +426,7 @@ export const integrationsData: Integration[] = [
     outputs: [
       "User-based cost allocation",
       "Team attribution",
-      "Access control and governance",
+      "Access control and policy enforcement",
       "Audit trails"
     ],
     setup: {
@@ -426,7 +442,8 @@ export const integrationsData: Integration[] = [
     aliases: ["Azure AD"],
     category: "Identity",
     status: "Available",
-    short: "Directory sync for identity-based allocation and governance.",
+    products: ["DevX"],
+    short: "Directory sync for identity-based allocation and access control.",
     logo: { src: "/logos/entra.svg", alt: "Microsoft Entra ID" },
     whatWeIngest: [
       "User and group metadata",
@@ -453,6 +470,7 @@ export const integrationsData: Integration[] = [
     name: "Jira",
     category: "Ticketing",
     status: "Available",
+    products: ["DevX"],
     short: "Tickets and ownership context for allocation and ops.",
     logo: { src: "/logos/jira.svg", alt: "Jira" },
     whatWeIngest: [
@@ -465,7 +483,7 @@ export const integrationsData: Integration[] = [
       "Cost allocation by project and epic",
       "Team-level attribution",
       "ROI and delivery cost analysis",
-      "Automation for issue-based governance"
+      "Automation for issue-based workflows"
     ],
     setup: {
       method: "Read-only API",
@@ -479,7 +497,8 @@ export const integrationsData: Integration[] = [
     name: "ServiceNow",
     category: "Ticketing",
     status: "Available",
-    short: "ITSM + ownership context for governance and accountability.",
+    products: ["DevX"],
+    short: "ITSM + ownership context for accountability and workflow integration.",
     logo: { src: "/logos/servicenow.svg", alt: "ServiceNow" },
     whatWeIngest: [
       "Configuration items and CMDB data",
@@ -506,6 +525,7 @@ export const integrationsData: Integration[] = [
     name: "Slack",
     category: "Collaboration",
     status: "Available",
+    products: ["DevX"],
     short: "Alerts and notifications delivery for anomalies and automation.",
     logo: { src: "/logos/slack.svg", alt: "Slack" },
     whatWeIngest: [
@@ -518,7 +538,7 @@ export const integrationsData: Integration[] = [
       "Real-time cost anomaly alerts",
       "Automation approval workflows",
       "Team-based notifications",
-      "Governance and compliance alerts"
+      "Compliance and policy alerts"
     ],
     setup: {
       method: "Webhook",
@@ -532,6 +552,7 @@ export const integrationsData: Integration[] = [
     name: "Microsoft Teams",
     category: "Collaboration",
     status: "Available",
+    products: ["DevX"],
     short: "Notifications and approvals for automation workflows.",
     logo: { src: "/logos/teams.svg", alt: "Microsoft Teams" },
     whatWeIngest: [
@@ -544,7 +565,7 @@ export const integrationsData: Integration[] = [
       "Real-time cost alerts and anomalies",
       "Automation approval workflows",
       "Team notifications and updates",
-      "Governance alerts"
+      "Policy enforcement alerts"
     ],
     setup: {
       method: "Webhook",
@@ -560,6 +581,7 @@ export const integrationsData: Integration[] = [
     aliases: ["CloudWatch", "Azure Monitor", "Google Monitoring", "GCP Monitoring", "Ops Suite"],
     category: "Observability",
     status: "Available",
+    products: ["DevX"],
     short: "Signals from major cloud monitoring suites.",
     logo: { src: "/logos/cloud-monitoring.svg", alt: "Cloud Monitoring" },
     whatWeIngest: [
@@ -585,6 +607,7 @@ export const integrationsData: Integration[] = [
     name: "Top SaaS (Top 10)",
     category: "SaaS",
     status: "Coming soon",
+    products: ["DevX"],
     short: "Key SaaS spend and usage normalization.",
     logo: { src: "/logos/saas.svg", alt: "SaaS" },
     whatWeIngest: [
@@ -597,12 +620,305 @@ export const integrationsData: Integration[] = [
       "SaaS cost reporting and allocation",
       "License utilization analysis",
       "Spend anomalies and optimization",
-      "Governance and compliance"
+      "Compliance reporting"
     ],
     setup: {
       method: "APIs vary by vendor",
       timeToValue: "20–40 minutes",
       permissions: "Read-only, scoped to billing and usage"
+    }
+  },
+
+  // AIX - Coming Soon (AI Providers)
+  {
+    id: "anthropic",
+    name: "Anthropic",
+    category: "AI",
+    status: "Coming soon",
+    products: ["AIX"],
+    short: "Claude API usage and cost attribution for model economics.",
+    logo: { src: "/logos/saas.svg", alt: "Anthropic" },
+    whatWeIngest: [
+      "API usage and request volumes",
+      "Token consumption by model variant",
+      "Latency and error metrics",
+      "Organization-level billing data"
+    ],
+    outputs: [
+      "Cost reporting by model and use case",
+      "Cost-performance curve analysis",
+      "Usage anomaly detection",
+      "Routing optimization recommendations"
+    ],
+    setup: {
+      method: "Read-only API",
+      timeToValue: "10–15 minutes",
+      permissions: "Read-only, scoped to usage and billing"
+    }
+  },
+  {
+    id: "azure-openai",
+    name: "Azure OpenAI",
+    category: "AI",
+    status: "Coming soon",
+    products: ["AIX"],
+    short: "Managed OpenAI deployment cost and usage signals.",
+    logo: { src: "/logos/azure.svg", alt: "Azure OpenAI" },
+    whatWeIngest: [
+      "Deployment and model usage metrics",
+      "Token consumption and throughput",
+      "Provisioned capacity utilization",
+      "Regional deployment data"
+    ],
+    outputs: [
+      "Cost reporting by deployment and model",
+      "Capacity utilization analysis",
+      "Cost-performance optimization paths",
+      "Routing and scaling recommendations"
+    ],
+    setup: {
+      method: "Read-only API",
+      timeToValue: "15–20 minutes",
+      permissions: "Read-only, scoped to Azure OpenAI resources"
+    }
+  },
+  {
+    id: "aws-bedrock",
+    name: "AWS Bedrock",
+    category: "AI",
+    status: "Coming soon",
+    products: ["AIX"],
+    short: "Foundation model invocation costs and usage attribution.",
+    logo: { src: "/logos/aws.svg", alt: "AWS Bedrock" },
+    whatWeIngest: [
+      "Model invocation counts and latency",
+      "Token usage by foundation model",
+      "Provisioned throughput metrics",
+      "Cross-account usage data"
+    ],
+    outputs: [
+      "Cost reporting by model and workload",
+      "Foundation model cost comparison",
+      "Usage anomaly detection",
+      "Commitment and throughput optimization"
+    ],
+    setup: {
+      method: "Read-only API",
+      timeToValue: "15–20 minutes",
+      permissions: "Read-only, scoped to Bedrock usage and billing"
+    }
+  },
+  {
+    id: "google-vertex-ai",
+    name: "Google Vertex AI",
+    category: "AI",
+    status: "Coming soon",
+    products: ["AIX"],
+    short: "Vertex AI model and pipeline cost attribution.",
+    logo: { src: "/logos/gcp.svg", alt: "Google Vertex AI" },
+    whatWeIngest: [
+      "Model endpoint usage and prediction counts",
+      "Training job costs and duration",
+      "Pipeline execution metrics",
+      "Auto-scaling and resource utilization"
+    ],
+    outputs: [
+      "Cost reporting by model and pipeline",
+      "Training vs. inference cost breakdown",
+      "Resource utilization analysis",
+      "Optimization recommendations"
+    ],
+    setup: {
+      method: "Read-only API",
+      timeToValue: "15–20 minutes",
+      permissions: "Read-only, scoped to Vertex AI resources"
+    }
+  },
+
+  // DevX - Coming Soon (Dev workflow)
+  {
+    id: "github",
+    name: "GitHub",
+    category: "SaaS",
+    status: "Coming soon",
+    products: ["DevX"],
+    short: "PR-level economic gates and infrastructure change detection.",
+    logo: { src: "/logos/saas.svg", alt: "GitHub" },
+    whatWeIngest: [
+      "Pull request metadata and diffs",
+      "Repository and branch information",
+      "CI/CD workflow execution data",
+      "Team and contributor assignments"
+    ],
+    outputs: [
+      "PR-level cost impact estimates",
+      "Economic gate enforcement on merges",
+      "Infrastructure change cost attribution",
+      "Team-level deployment cost tracking"
+    ],
+    setup: {
+      method: "GitHub App or OAuth",
+      timeToValue: "10–15 minutes",
+      permissions: "Read-only, scoped to repository and PR data"
+    }
+  },
+  {
+    id: "gitlab",
+    name: "GitLab",
+    category: "SaaS",
+    status: "Coming soon",
+    products: ["DevX"],
+    short: "Merge request gates and pipeline cost attribution.",
+    logo: { src: "/logos/saas.svg", alt: "GitLab" },
+    whatWeIngest: [
+      "Merge request metadata and changes",
+      "Pipeline execution and job data",
+      "Project and group information",
+      "Runner utilization metrics"
+    ],
+    outputs: [
+      "MR-level cost impact analysis",
+      "Pipeline cost attribution by team",
+      "Economic enforcement on merge approval",
+      "Infrastructure change detection"
+    ],
+    setup: {
+      method: "OAuth or API token",
+      timeToValue: "10–15 minutes",
+      permissions: "Read-only, scoped to projects and pipelines"
+    }
+  },
+  {
+    id: "azure-devops",
+    name: "Azure DevOps",
+    category: "SaaS",
+    status: "Coming soon",
+    products: ["DevX"],
+    short: "Pipeline and repo integration for shift-left economics.",
+    logo: { src: "/logos/azure.svg", alt: "Azure DevOps" },
+    whatWeIngest: [
+      "Pull request and branch metadata",
+      "Build and release pipeline data",
+      "Work item and sprint tracking",
+      "Agent pool utilization"
+    ],
+    outputs: [
+      "PR-level infrastructure cost estimates",
+      "Pipeline cost attribution",
+      "Economic gates on deployment approval",
+      "Team and project cost tracking"
+    ],
+    setup: {
+      method: "OAuth or PAT",
+      timeToValue: "15–20 minutes",
+      permissions: "Read-only, scoped to repos and pipelines"
+    }
+  },
+  {
+    id: "terraform",
+    name: "Terraform",
+    category: "Infrastructure",
+    status: "Coming soon",
+    products: ["DevX"],
+    short: "Infrastructure-as-code cost estimation and drift detection.",
+    logo: { src: "/logos/saas.svg", alt: "Terraform" },
+    whatWeIngest: [
+      "Plan output and resource changes",
+      "State file resource inventory",
+      "Module and workspace metadata",
+      "Provider and version information"
+    ],
+    outputs: [
+      "Pre-apply cost estimates",
+      "Drift detection and cost impact",
+      "Resource lifecycle cost tracking",
+      "Economic gates on terraform apply"
+    ],
+    setup: {
+      method: "CLI integration or API",
+      timeToValue: "15–20 minutes",
+      permissions: "Read-only, scoped to plan and state data"
+    }
+  },
+
+  // DataX - Coming Soon (Data platforms)
+  {
+    id: "bigquery",
+    name: "BigQuery",
+    category: "Data",
+    status: "Coming soon",
+    products: ["DataX"],
+    short: "Query-level cost enforcement and workload economics.",
+    logo: { src: "/logos/gcp.svg", alt: "BigQuery" },
+    whatWeIngest: [
+      "Query execution logs and bytes scanned",
+      "Slot utilization and reservation data",
+      "Dataset and table metadata",
+      "User and project-level usage"
+    ],
+    outputs: [
+      "Query-level cost attribution",
+      "Workload gating and throttling policies",
+      "Slot utilization optimization",
+      "Team and project cost reporting"
+    ],
+    setup: {
+      method: "Read-only API + INFORMATION_SCHEMA",
+      timeToValue: "15–25 minutes",
+      permissions: "Read-only, scoped to job and usage data"
+    }
+  },
+  {
+    id: "amazon-redshift",
+    name: "Amazon Redshift",
+    category: "Data",
+    status: "Coming soon",
+    products: ["DataX"],
+    short: "Cluster workload economics and query cost enforcement.",
+    logo: { src: "/logos/aws.svg", alt: "Amazon Redshift" },
+    whatWeIngest: [
+      "Query execution logs and resource usage",
+      "Cluster and node utilization metrics",
+      "Workload management queue data",
+      "Concurrency scaling usage"
+    ],
+    outputs: [
+      "Query-level cost attribution",
+      "Cluster right-sizing recommendations",
+      "Workload policy enforcement",
+      "Team and schema cost reporting"
+    ],
+    setup: {
+      method: "Read-only API + system tables",
+      timeToValue: "20–30 minutes",
+      permissions: "Read-only, scoped to system views and usage data"
+    }
+  },
+  {
+    id: "azure-synapse",
+    name: "Azure Synapse / Fabric",
+    aliases: ["Synapse", "Fabric"],
+    category: "Data",
+    status: "Coming soon",
+    products: ["DataX"],
+    short: "Data platform workload economics and capacity management.",
+    logo: { src: "/logos/azure.svg", alt: "Azure Synapse" },
+    whatWeIngest: [
+      "SQL pool and Spark pool usage",
+      "Pipeline execution and data flow metrics",
+      "Capacity unit consumption",
+      "Workspace and lakehouse metadata"
+    ],
+    outputs: [
+      "Workload cost attribution by pool",
+      "Pipeline cost analysis",
+      "Capacity right-sizing recommendations",
+      "Policy enforcement on data workloads"
+    ],
+    setup: {
+      method: "Read-only API",
+      timeToValue: "20–30 minutes",
+      permissions: "Read-only, scoped to workspace and pool data"
     }
   }
 ];

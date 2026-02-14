@@ -11,7 +11,8 @@ import { HeroCard } from "@/components/home/HeroCard";
 import { DeploymentOptions } from "@/components/home/DeploymentOptions";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { InvoiceEfficiencySection } from "@/components/home/InvoiceEfficiencySection";
-import { Globe, Receipt, Tag, Code2, Cpu, Activity, X, Boxes, Sparkles } from "lucide-react";
+import { EconomicDecisionLayerDiagram } from "@/components/home/EconomicDecisionLayerDiagram";
+import { Receipt, Tag, Code2, Cpu, Activity, X, Boxes, Sparkles } from "lucide-react";
 import { FinalCTA } from "@/components/FinalCTA";
 import billopsLogo from "@/assets/billops.png";
 import dataxLogo from "@/assets/datax-logo.png";
@@ -35,34 +36,34 @@ const customerLogos = [
 
 const pillarCards = [
   {
-    icon: Globe,
-    title: "Multi-cloud FinOps",
-    description: "Unified cost visibility, allocation, chargeback, and optimization across major clouds and regions.",
-  },
-  {
-    icon: Receipt,
-    title: "Data Cost Optimization",
-    description: "Optimize Databricks, Snowflake, Azure Synapse, and Amazon Redshift by eliminating inefficient query patterns, right-sizing compute, and attribute costs.",
-  },
-  {
-    icon: Tag,
-    title: "Tagging & Cost Normalization",
-    description: "Automated tag governance and normalized dimensions that make allocation and reporting consistent.",
+    icon: Sparkles,
+    title: "AIX: Model & Routing Economics",
+    description: "Select the right models at the right cost-performance point — with runtime routing that prevents accidental spend.",
   },
   {
     icon: Code2,
-    title: "Developer FinOps (Shift-left)",
-    description: "Cost context where engineers work: services, environments, pipelines, and workloads.",
+    title: "DevX: Shift-left Economic Gates",
+    description: "Block PRs that introduce economically risky code and infrastructure patterns before they reach production.",
+  },
+  {
+    icon: Receipt,
+    title: "DataX: Data Workload Economics",
+    description: "Enforce policies on warehouse workloads — gate, throttle, or stop inefficient queries before they create exposure.",
+  },
+  {
+    icon: Tag,
+    title: "Commitments Optimizer",
+    description: "Plan and execute commitments programmatically to secure lower effective rates based on real demand signals.",
   },
   {
     icon: Cpu,
-    title: "AI & GPU Workload Optimization",
-    description: "Optimize GPUs and LLM usage across training and inference with smarter placement and routing.",
+    title: "Optimization Engine",
+    description: "Lower your baseline by continuously tuning live workloads using ML-driven recommendations with guardrails.",
   },
   {
     icon: Activity,
-    title: "ML-driven Optimization & Anomalies",
-    description: "Detect anomalies early, predict risk, and automate savings actions with guardrails and tracking.",
+    title: "Volatility Control",
+    description: "Detect and contain usage spikes early to reduce variance and prevent weekend-scale surprises.",
   },
 ];
 
@@ -70,7 +71,7 @@ export default function Home() {
   const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
-    document.title = "CloudVerse™ — Cloud Financial Management";
+    document.title = "CloudVerse™ — AI Infrastructure Economics";
   }, []);
 
   return (
@@ -83,13 +84,13 @@ export default function Home() {
             {/* Left: Copy Block */}
             <div className="text-center lg:text-left space-y-4 sm:space-y-6 max-w-[52rem] mx-auto lg:mx-0">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-cv-ink leading-tight">
-                Cloud financial management for modern enterprises.
+                Enterprise AI Infrastructure Economics Platform
               </h1>
               <p className="text-lg sm:text-xl text-cv-ink/80 leading-relaxed max-w-[40rem] mx-auto lg:mx-0">
-                Unified visibility, allocation, anomalies, and automated optimization across cloud, data, and AI platforms.
+                Making AI infrastructure decisions economically intentional.
               </p>
               <p className="text-base sm:text-lg text-cv-muted pb-8 border-b border-cv-line leading-relaxed max-w-[40rem] mx-auto lg:mx-0">
-                Private deployment and air-gapped options available for regulated environments.
+                CloudVerse embeds economic decision logic across model selection, workload behavior, and compute procurement — so technical execution and financial intent stay aligned.
               </p>
 
               {/* CTAs */}
@@ -113,7 +114,7 @@ export default function Home() {
               </div>
 
               <p className="text-sm text-cv-muted pt-2">
-                Trusted by FinOps and platform teams at leading enterprises.
+                Trusted by platform and engineering teams at leading enterprises.
               </p>
             </div>
 
@@ -124,6 +125,68 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* Decision Point Section */}
+      <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink">
+              AI Introduces Economic Consequences Into Technical Decisions
+            </h2>
+            <p className="text-lg sm:text-xl text-cv-muted leading-relaxed">
+              Every AI deployment, model swap, and data workload carries immediate infrastructure implications. In most organizations, these decisions are optimized for performance in isolation — leaving financial consequences to be discovered only after the invoice arrives.
+            </p>
+            <p className="text-lg sm:text-xl text-cv-ink/80 leading-relaxed">
+              CloudVerse ensures infrastructure decisions reflect economic intent at the moment they are made.
+            </p>
+            <div className="space-y-1 pt-4">
+              <p className="text-base sm:text-lg text-cv-muted">Not after the invoice.</p>
+              <p className="text-base sm:text-lg text-cv-muted">Not during the post-mortem.</p>
+              <p className="text-base sm:text-lg font-semibold text-cv-ink">At the decision point.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Economic Decision Layer Section */}
+      <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
+          <div className="max-w-3xl mx-auto text-center space-y-6 mb-12">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink">
+              The Economic Decision Layer for AI Infrastructure
+            </h2>
+            <p className="text-lg sm:text-xl text-cv-muted leading-relaxed">
+              Modern AI stacks include models, data platforms, orchestration, and infrastructure. What they lack is embedded economic decision logic.
+            </p>
+            <p className="text-lg sm:text-xl text-cv-ink/80 leading-relaxed">
+              CloudVerse operates as the economic decision layer — influencing model selection, blocking inefficient deployments, shaping live workload behavior, and structuring long-term capacity commitments.
+            </p>
+            <p className="text-base sm:text-lg text-cv-muted leading-relaxed">
+              Without this layer, infrastructure decisions optimize for speed and performance — not economic consequence.
+            </p>
+          </div>
+
+          <EconomicDecisionLayerDiagram />
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mt-12">
+            <div className="p-6 rounded-xl border border-cv-line bg-cv-surface2/50 dark:bg-white/[0.04]">
+              <h3 className="text-lg font-semibold text-cv-ink mb-3">Model & Workload Selection</h3>
+              <p className="text-sm text-cv-muted leading-relaxed mb-2">AIX evaluates cost-performance curves at runtime.</p>
+              <p className="text-sm text-cv-muted leading-relaxed">DevX blocks economically risky changes before production.</p>
+            </div>
+            <div className="p-6 rounded-xl border border-cv-line bg-cv-surface2/50 dark:bg-white/[0.04]">
+              <h3 className="text-lg font-semibold text-cv-ink mb-3">Active Infrastructure Behavior</h3>
+              <p className="text-sm text-cv-muted leading-relaxed mb-2">DataX enforces execution policies on live workloads.</p>
+              <p className="text-sm text-cv-muted leading-relaxed">Inefficient queries can be gated, throttled, or stopped automatically.</p>
+            </div>
+            <div className="p-6 rounded-xl border border-cv-line bg-cv-surface2/50 dark:bg-white/[0.04]">
+              <h3 className="text-lg font-semibold text-cv-ink mb-3">Commitment & Procurement Strategy</h3>
+              <p className="text-sm text-cv-muted leading-relaxed mb-2">Commitments can be executed programmatically.</p>
+              <p className="text-sm text-cv-muted leading-relaxed">Procurement becomes systematic — not reactive.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Invoice Efficiency Score Section */}
       <InvoiceEfficiencySection />
       {/* Products Section */}
@@ -160,7 +223,7 @@ export default function Home() {
                     DevX
                   </h3>
                   <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
-                    Cost context in engineering workflows. Shift-left FinOps for CI/CD, services, and environments.
+                    Cost context in engineering workflows. Shift-left economic gates for CI/CD, services, and environments.
                   </p>
                   <span className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:gap-3 transition-all">
                     Visit devx.cloudverse.ai →
@@ -214,7 +277,7 @@ export default function Home() {
                     DataX
                   </h3>
                   <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
-                    Analytics data cost visibility and governance. Monitor usage, optimize queries, and control spend.
+                    Analytics data cost visibility and workload controls. Monitor usage, optimize queries, and control spend.
                   </p>
                   <span className="inline-flex items-center gap-2 text-sm font-medium text-pink-600 dark:text-pink-400 group-hover:gap-3 transition-all">
                     Visit datax.cloudverse.ai →
@@ -257,7 +320,7 @@ export default function Home() {
       <section className="pt-6 sm:pt-8 lg:pt-10 pb-10 sm:pb-12 lg:pb-14 border-t border-cv-line dark:border-white/10 overflow-hidden">
         <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <p className="text-center text-base sm:text-lg text-cv-muted mb-8 sm:mb-10">
-            Used by FinOps teams at leading enterprises.
+            Used by platform and engineering teams at leading enterprises.
           </p>
           <div className="relative overflow-hidden">
             {/* Light mode marquee */}
@@ -324,9 +387,9 @@ export default function Home() {
             <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-cv-muted mb-3">
               What CloudVerse Offers
             </p>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink mb-4">One platform to manage cloud, data, and AI spend</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink mb-4">Economic decision logic for every layer</h2>
             <p className="text-lg sm:text-xl text-cv-muted max-w-2xl mx-auto">
-              Built for enterprise scale, multi-tenant governance, and measurable outcomes.
+              Built for enterprise scale, with enforcement at the decision point.
             </p>
           </div>
 

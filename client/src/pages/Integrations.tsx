@@ -10,6 +10,7 @@ import { useEffect } from "react";
 
 const CATEGORIES = ["All", "Cloud", "Data", "AI", "Kubernetes", "Infrastructure", "Identity", "Ticketing", "Collaboration", "Observability", "SaaS"];
 const STATUSES = ["All", "Available", "Beta", "Coming soon"];
+const MODULES = ["All", "AIX", "DevX", "DataX"] as const;
 
 export default function Integrations() {
   useEffect(() => {
@@ -19,7 +20,14 @@ export default function Integrations() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedStatus, setSelectedStatus] = useState("All");
+  const [selectedModule, setSelectedModule] = useState<string>("All");
   const [selectedIntegration, setSelectedIntegration] = useState<Integration | null>(null);
+
+  const moduleCounts = useMemo(() => ({
+    AIX: integrationsData.filter(i => i.products?.includes("AIX")).length,
+    DevX: integrationsData.filter(i => i.products?.includes("DevX")).length,
+    DataX: integrationsData.filter(i => i.products?.includes("DataX")).length,
+  }), []);
 
   const filtered = useMemo(() => {
     return integrationsData.filter((integration) => {
@@ -29,9 +37,10 @@ export default function Integrations() {
                            (integration.aliases && integration.aliases.some(alias => alias.toLowerCase().includes(searchLower)));
       const matchesCategory = selectedCategory === "All" || integration.category === selectedCategory;
       const matchesStatus = selectedStatus === "All" || integration.status === selectedStatus;
-      return matchesSearch && matchesCategory && matchesStatus;
+      const matchesModule = selectedModule === "All" || (integration.products?.includes(selectedModule as "AIX" | "DevX" | "DataX"));
+      return matchesSearch && matchesCategory && matchesStatus && matchesModule;
     });
-  }, [searchQuery, selectedCategory, selectedStatus]);
+  }, [searchQuery, selectedCategory, selectedStatus, selectedModule]);
 
   return (
     <BaseLayout>
@@ -42,9 +51,9 @@ export default function Integrations() {
             <span className="cv-cap font-semibold tracking-widest text-cv-muted uppercase mb-4 inline-block">
               Integrations
             </span>
-            <h1 className="cv-h1 mb-4">Connect your cloud, data, and AI platforms</h1>
+            <h1 className="cv-h1 mb-4">Integrations for AI Infrastructure Economics</h1>
             <p className="text-[15px] sm:text-[16px] lg:text-[17px] leading-[24px] sm:leading-[26px] lg:leading-[28px] text-cv-muted max-w-[800px]">
-              CloudVerse normalizes billing, usage, tags, and ownership into one consistent model so reporting and automation work everywhere.
+              CloudVerse integrates into the AI stack — model routing (AIX), PR enforcement (DevX), and workload controls (DataX) — so economic intent is applied at the decision point.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 pt-2">
@@ -56,29 +65,39 @@ export default function Integrations() {
           </div>
         </div>
       </section>
-      {/* Normalization Layer Strip */}
-      <section className="py-14 sm:py-16 lg:py-20 border-t border-cv-line">
+      {/* Module At-a-Glance */}
+      <section className="py-10 sm:py-12 lg:py-14 border-t border-cv-line">
         <div className="cv-container-full">
-          <h2 className="cv-h2 mb-10 text-center">A normalization layer, not a connector list.</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-lg font-semibold text-cv-ink mb-2">Standardize</h3>
-              <p className="text-sm text-cv-muted">
-                Unify accounts, services, tags, and cost dimensions across sources.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-cv-ink mb-2">Govern</h3>
-              <p className="text-sm text-cv-muted">
-                Scoped permissions, audit logs, and safe automation guardrails.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-cv-ink mb-2">Automate</h3>
-              <p className="text-sm text-cv-muted">
-                Recommendations and actions work consistently across platforms.
-              </p>
-            </div>
+          <h2 className="cv-h2 mb-8 text-center">Integrations by module</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {([
+              { module: "AIX" as const, label: "AIX Integrations", color: "purple", desc: "AI model routing and cost-performance optimization" },
+              { module: "DevX" as const, label: "DevX Integrations", color: "blue", desc: "Shift-left economic gates and dev workflow enforcement" },
+              { module: "DataX" as const, label: "DataX Integrations", color: "pink", desc: "Data workload policies and query cost controls" },
+            ]).map(({ module, label, color, desc }) => (
+              <button
+                key={module}
+                onClick={() => {
+                  setSelectedModule(module);
+                  document.getElementById("explorer")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className={`p-6 rounded-xl border border-cv-line bg-cv-surface2 hover:bg-cv-line/30 transition-colors text-left`}
+                data-testid={`module-glance-${module.toLowerCase()}`}
+              >
+                <div className="flex items-center gap-3 mb-2">
+                  <span className={`text-[11px] font-bold px-2 py-0.5 rounded border ${
+                    color === "purple" ? "border-purple-500/30 text-purple-600 dark:text-purple-400 bg-purple-500/10"
+                    : color === "blue" ? "border-blue-500/30 text-blue-600 dark:text-blue-400 bg-blue-500/10"
+                    : "border-pink-500/30 text-pink-600 dark:text-pink-400 bg-pink-500/10"
+                  }`}>
+                    {module}
+                  </span>
+                  <span className="text-2xl font-bold text-cv-ink">{moduleCounts[module]}</span>
+                </div>
+                <h3 className="text-base font-semibold text-cv-ink mb-1">{label}</h3>
+                <p className="text-sm text-cv-muted">{desc}</p>
+              </button>
+            ))}
           </div>
         </div>
       </section>
@@ -98,6 +117,29 @@ export default function Integrations() {
 
           {/* Filters */}
           <div className="flex flex-col sm:flex-row gap-6 mb-10">
+            {/* Module Filter */}
+            <div>
+              <p className="text-xs uppercase tracking-widest text-cv-muted/60 font-medium mb-3">
+                Module
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {MODULES.map((mod) => (
+                  <button
+                    key={mod}
+                    onClick={() => setSelectedModule(mod)}
+                    className={`px-3 py-1.5 text-sm rounded-lg transition-colors border ${
+                      selectedModule === mod
+                        ? "bg-cv-ink text-cv-surface border-cv-ink"
+                        : "bg-transparent border-cv-line text-cv-muted hover:bg-cv-surface2"
+                    }`}
+                    data-testid={`filter-module-${mod.toLowerCase()}`}
+                  >
+                    {mod}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {/* Category Filters */}
             <div>
               <p className="text-xs uppercase tracking-widest text-cv-muted/60 font-medium mb-3">

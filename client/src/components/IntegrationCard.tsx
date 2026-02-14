@@ -34,9 +34,29 @@ export function IntegrationCard({ integration, onClick }: IntegrationCardProps) 
         <p className="text-sm text-cv-muted line-clamp-2">
           {integration.short}
         </p>
-        <span className="inline-block text-xs text-cv-muted/60">
-          {integration.category}
-        </span>
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="text-xs text-cv-muted/60">
+            {integration.category}
+          </span>
+          {integration.products && integration.products.length > 0 && (
+            <>
+              {integration.products.map((product) => (
+                <span
+                  key={product}
+                  className={`text-[10px] font-medium px-1.5 py-0.5 rounded border ${
+                    product === "AIX"
+                      ? "border-purple-500/30 text-purple-600 dark:text-purple-400 bg-purple-500/10"
+                      : product === "DevX"
+                      ? "border-blue-500/30 text-blue-600 dark:text-blue-400 bg-blue-500/10"
+                      : "border-pink-500/30 text-pink-600 dark:text-pink-400 bg-pink-500/10"
+                  }`}
+                >
+                  {product}
+                </span>
+              ))}
+            </>
+          )}
+        </div>
       </div>
     </button>
   );

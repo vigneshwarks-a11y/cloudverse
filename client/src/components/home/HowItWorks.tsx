@@ -5,33 +5,33 @@ import { MicroPreview } from "./MicroPreview";
 const steps = [
   {
     number: "01",
-    title: "Connect",
-    body: "Read-only connections across clouds, data, and AI platforms.",
+    title: "Integrate",
+    body: "Connect securely across cloud, data, and AI environments.",
     bullets: [
-      "Scoped access and tenant isolation",
-      "Imports billing + usage signals"
+      "Read-only ingestion where needed",
+      "Tenant isolation by design"
     ],
-    visualLabel: "Connections"
+    visualLabel: "Integration"
   },
   {
     number: "02",
-    title: "Normalize",
-    body: "A unified cost model for accounts, tags, owners, services, and products.",
+    title: "Decide",
+    body: "Embed economic decision logic across model choice, deployments, and runtime policies.",
     bullets: [
-      "Tag normalization + governance",
-      "Allocation-ready dimensions"
+      "Decision thresholds & guardrails",
+      "Policy-driven enforcement points"
     ],
-    visualLabel: "Cost model"
+    visualLabel: "Decision logic"
   },
   {
     number: "03",
-    title: "Automate",
-    body: "Recommendations and actions driven by 40+ ML models, with guardrails.",
+    title: "Enforce",
+    body: "Prevent accidental economics with automated gates, controls, and programmatic commitments.",
     bullets: [
-      "Detect + predict anomalies",
-      "Track realized savings"
+      "PR gates + runtime policies",
+      "Commitment execution (optional automation)"
     ],
-    visualLabel: "Automation"
+    visualLabel: "Enforcement"
   }
 ];
 
@@ -76,7 +76,7 @@ export function HowItWorks() {
             How CloudVerse™ works
           </h2>
           <p className="text-base sm:text-lg text-cv-muted leading-relaxed">
-            Connect once. Normalize everything. Automate what you can.
+            Integrate once. Decide everywhere. Enforce automatically.
           </p>
         </div>
 
