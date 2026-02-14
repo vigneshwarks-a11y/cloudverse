@@ -53,7 +53,7 @@ export default function Integrations() {
             </span>
             <h1 className="cv-h1 mb-4">Integrations for AI Infrastructure Economics</h1>
             <p className="text-[15px] sm:text-[16px] lg:text-[17px] leading-[24px] sm:leading-[26px] lg:leading-[28px] text-cv-muted max-w-[800px]">
-              CloudVerse integrates into the AI stack — model routing (AIX), PR enforcement (DevX), and workload controls (DataX) — so economic intent is applied at the decision point.
+              CloudVerse connects to your existing infrastructure to ensure every decision reflects economic intent — without compromising performance requirements.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 pt-2">
@@ -71,9 +71,9 @@ export default function Integrations() {
           <h2 className="cv-h2 mb-8 text-center">Integrations by module</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {([
-              { module: "AIX" as const, label: "AIX Integrations", color: "purple", desc: "AI model routing and cost-performance optimization" },
-              { module: "DevX" as const, label: "DevX Integrations", color: "blue", desc: "Shift-left economic gates and dev workflow enforcement" },
-              { module: "DataX" as const, label: "DataX Integrations", color: "pink", desc: "Data workload policies and query cost controls" },
+              { module: "AIX" as const, label: "AIX Integrations", color: "purple", desc: "Where AI Model Economics Is Applied" },
+              { module: "DevX" as const, label: "DevX Integrations", color: "blue", desc: "Where Engineering Economics Is Applied" },
+              { module: "DataX" as const, label: "DataX Integrations", color: "pink", desc: "Where Data Execution Economics Is Enforced" },
             ]).map(({ module, label, color, desc }) => (
               <button
                 key={module}
@@ -247,6 +247,11 @@ export default function Integrations() {
       {/* FAQ */}
       <section className="py-14 sm:py-16 lg:py-20 border-t border-cv-line">
         <div className="cv-container max-w-[800px]">
+          <div className="text-center mb-10">
+            <p className="text-xs text-cv-muted max-w-[600px] mx-auto">
+              CloudVerse operates as an embedded economic decision layer — enhancing your existing stack without requiring architectural replacement.
+            </p>
+          </div>
           <h2 className="cv-h2 mb-10 text-center">Questions?</h2>
           <div className="space-y-4">
             {[
