@@ -65,42 +65,6 @@ export default function Integrations() {
           </div>
         </div>
       </section>
-      {/* Module At-a-Glance */}
-      <section className="py-10 sm:py-12 lg:py-14 border-t border-cv-line">
-        <div className="cv-container-full">
-          <h2 className="cv-h2 mb-8 text-center">Integrations by module</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {([
-              { module: "AIX" as const, label: "AIX Integrations", color: "purple", desc: "Where AI Model Economics Is Applied" },
-              { module: "DevX" as const, label: "DevX Integrations", color: "blue", desc: "Where Engineering Economics Is Applied" },
-              { module: "DataX" as const, label: "DataX Integrations", color: "pink", desc: "Where Data Execution Economics Is Enforced" },
-            ]).map(({ module, label, color, desc }) => (
-              <button
-                key={module}
-                onClick={() => {
-                  setSelectedModule(module);
-                  document.getElementById("explorer")?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className={`p-6 rounded-xl border border-cv-line bg-cv-surface2 hover:bg-cv-line/30 transition-colors text-left`}
-                data-testid={`module-glance-${module.toLowerCase()}`}
-              >
-                <div className="flex items-center gap-3 mb-2">
-                  <span className={`text-[11px] font-bold px-2 py-0.5 rounded border ${
-                    color === "purple" ? "border-purple-500/30 text-purple-600 dark:text-purple-400 bg-purple-500/10"
-                    : color === "blue" ? "border-blue-500/30 text-blue-600 dark:text-blue-400 bg-blue-500/10"
-                    : "border-pink-500/30 text-pink-600 dark:text-pink-400 bg-pink-500/10"
-                  }`}>
-                    {module}
-                  </span>
-                  <span className="text-2xl font-bold text-cv-ink">{moduleCounts[module]}</span>
-                </div>
-                <h3 className="text-base font-semibold text-cv-ink mb-1">{label}</h3>
-                <p className="text-sm text-cv-muted">{desc}</p>
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
       {/* Integrations Explorer */}
       <section className="py-14 sm:py-16 lg:py-20 border-t border-cv-line" id="explorer">
         <div className="cv-container-full">
