@@ -592,7 +592,7 @@ export const integrationsData: Integration[] = [
     outputs: [
       "Faster anomaly investigation",
       "Enriched recommendations and automation guardrails",
-      "Ops-level alerts alongside FinOps context"
+      "Ops-level alerts alongside economic context"
     ],
     setup: {
       method: "Read-only API",

@@ -15,7 +15,7 @@ export default function SubscribeThankYou() {
             Thanks for subscribing
           </h1>
           <p className="text-base sm:text-lg text-cv-muted leading-relaxed mb-8">
-            You're on the list. We'll send the latest guides and FinOps insights straight to your inbox.
+            You're on the list. We'll send the latest guides and infrastructure economics insights straight to your inbox.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 cursor-pointer">
             <Link href="/resources" asChild>

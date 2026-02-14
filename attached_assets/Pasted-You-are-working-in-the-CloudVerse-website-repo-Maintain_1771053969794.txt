@@ -1,0 +1,181 @@
+You are working in the CloudVerse website repo. Maintain the current theme, design system, spacing, typography, logos, and component structure. Make minimal changes. Do NOT redesign the site. Only adjust copy, ordering of existing sections, and fix the Economic Decision Layer diagram to look intentional and premium.
+
+DO NOT use the word "govern" anywhere.
+
+========================================================
+TASKS
+========================================================
+
+1) HERO RIGHT CARD: Update “Outcomes” to match our agreed metrics
+--------------------------------------------------------
+On the Home page hero section, the right-hand card currently shows FinOps-like outcomes (e.g., Unified Cost Visibility, Compliance Ready, etc). Replace that list with the four metrics cluster we agreed:
+
+- Baseline Reduction
+- Avoided Demand
+- Effective Rate
+- Volatility Control
+
+Each metric should have a crisp one-liner that feels enterprise and economics-driven (not “save money”).
+
+Use this EXACT copy:
+
+Card Title (small label can remain whatever it is, but the list items must change)
+
+Metric 1:
+Title: Baseline Reduction
+Desc: Shift steady-state compute spend downward.
+
+Metric 2:
+Title: Avoided Demand
+Desc: Prevent vCPU/GPU/token burn before production.
+
+Metric 3:
+Title: Effective Rate
+Desc: Lower blended unit cost across on-demand and commitments.
+
+Metric 4:
+Title: Volatility Control
+Desc: Reduce variance and contain spike exposure early.
+
+Keep the integrations/logo strip inside the card intact as-is.
+
+Files to update:
+- client/src/pages/Home.tsx (or wherever the hero right card list is defined)
+- OR the hero card component if it’s extracted (search for "Unified Cost Visibility" and update there)
+
+Acceptance:
+- No “visibility/allocation/chargeback” vibe inside this hero card.
+- The 4 items above appear exactly and look consistent with current styling.
+
+--------------------------------------------------------
+
+2) Bring “What CloudVerse Offers” section UP (Economic decision logic for every layer)
+--------------------------------------------------------
+Currently “What CloudVerse Offers — Economic decision logic for every layer” appears too far down. Move this entire section ABOVE “How CloudVerse works”.
+
+New order on Home page should be:
+
+- HERO
+- Customers / Trust logos (move up — see #3)
+- What CloudVerse Offers (Economic decision logic for every layer)  <-- moved here
+- How CloudVerse works (Integrate / Decide / Enforce)
+- Economic Decision Layer section + diagram (fixed in #4)
+- Deployment options
+- Instant snapshot / newsletter (reword in #5)
+- Footer
+
+Files:
+- client/src/pages/Home.tsx (reorder components/sections only; do not rewrite their internal layout)
+
+Acceptance:
+- “Economic decision logic for every layer” appears as the FIRST major section after customers.
+
+--------------------------------------------------------
+
+3) Customers section needs to move UP
+--------------------------------------------------------
+Move the customer logos / “Trusted by …” section so it is directly under the HERO (and before What CloudVerse Offers).
+
+Keep styling exactly the same, just reorder.
+
+Files:
+- client/src/pages/Home.tsx
+
+Acceptance:
+- Logos appear immediately after hero.
+- No layout break.
+
+--------------------------------------------------------
+
+4) Fix “The Economic Decision Layer for AI Infrastructure” (diagram poorly done)
+--------------------------------------------------------
+The current diagram is visually confusing because the “Economic Decision Layer” appears as one of the stack blocks. It must instead look like an OVERLAY band spanning ACROSS all stack layers.
+
+Implement a clean dark minimal diagram consistent with existing design tokens:
+
+REQUIREMENTS:
+- Keep a vertical stack of 5 boxes:
+  Applications
+  AI Models & Inference
+  Data & Pipelines
+  CI/CD & Deployment
+  Cloud Infrastructure
+
+- The Economic Decision Layer must be a horizontal band that overlays the stack (position: absolute), spanning full width of stack, with subtle blue glow and letterspaced label.
+- The band should NOT replace “Data & Pipelines” or sit inside any one layer. It should cut across all layers visually.
+
+IMPLEMENTATION:
+Create/Update component:
+- client/src/components/home/EconomicDecisionLayerDiagram.tsx
+
+Structure:
+- Outer container: relative
+- Stack list: mapped divs (5)
+- Overlay band: absolute, centered vertically across the stack, full width, z-index above stack
+- Under the band, add 4 tiny inline labels (subtle):
+  Model Selection • Deployment Enforcement • Runtime Controls • Procurement Execution
+
+Style:
+- Use existing classes / tokens where possible (cv-surface, borders, muted text)
+- Keep it minimal; no SVG required.
+
+Then, update the “Economic Decision Layer for AI Infrastructure” section copy slightly tighter and reduce vertical whitespace so it feels purposeful (no huge empty gaps).
+Keep the 3 influence cards underneath as-is.
+
+Files:
+- client/src/components/home/EconomicDecisionLayerDiagram.tsx
+- client/src/pages/Home.tsx (where section is rendered)
+
+Acceptance:
+- Diagram looks like a true “layer” embedded across the stack, not another block.
+- No awkward text overlap.
+- On laptop width, the overlay band is clean and legible.
+
+--------------------------------------------------------
+
+5) Review everything else: remove remaining FinOps-y copy + obvious mismatches
+--------------------------------------------------------
+There are still a few phrases that pull the page back into FinOps. Replace them minimally:
+
+A) Newsletter section:
+Current: “FinOps insights delivered to your inbox.”
+Change to: “Infrastructure economics insights delivered to your inbox.”
+
+B) “Know how efficient your cloud is?” section:
+This reads like FinOps. Keep the feature but reframe headline/subcopy.
+
+Replace headline with:
+“How economically intentional is your infrastructure?”
+
+Replace subcopy with:
+“Upload an invoice to get a read-only economic snapshot — baseline, rate, volatility signals, and demand drivers. No credentials required.”
+
+Keep upload widget unchanged.
+
+C) Ensure no section uses “cloud financial management” language in headings anymore.
+Search for:
+- “Cloud financial management”
+- “allocation”
+- “chargeback”
+- “cost visibility”
+and rewrite only if it appears in a user-facing headline/subhead.
+
+Files:
+- client/src/pages/Home.tsx
+- client/src/components/* (where these sections live)
+- client/src/pages/Resources.tsx (if newsletter appears there too)
+
+Acceptance:
+- No “FinOps insights” anywhere.
+- Snapshot section feels economics/decision-layer aligned.
+
+--------------------------------------------------------
+
+DELIVERABLE
+--------------------------------------------------------
+Make the changes above, run the site, and ensure:
+- layout intact (no major spacing shifts)
+- home sections are reordered as specified
+- hero right card metrics updated
+- diagram looks clean and premium
+Return code changes only.

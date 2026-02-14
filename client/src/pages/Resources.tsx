@@ -68,7 +68,7 @@ export default function Resources() {
         <div className="cv-container-full space-y-4 sm:space-y-6">
           <div className="max-w-3xl">
             <span className="text-xs uppercase tracking-widest text-cv-muted mb-4 inline-block">CloudVerse™ Resources</span>
-            <h1 className="cv-h1 mb-4">Guides and documentation for enterprise FinOps</h1>
+            <h1 className="cv-h1 mb-4">Guides and documentation for infrastructure economics</h1>
             <p className="text-[15px] sm:text-[16px] lg:text-[17px] leading-[24px] sm:leading-[26px] lg:leading-[28px] text-cv-muted mb-6">
               Practical guidance on visibility, allocation, anomalies, and automation across cloud, data, and AI platforms.
             </p>

@@ -5,7 +5,6 @@ import { Link } from "wouter";
 import { useEffect, useState } from "react";
 import { DEMO_URL } from "@/lib/links";
 import { PillarCard } from "@/components/PillarCard";
-import { OutcomeTile } from "@/components/OutcomeTile";
 import { MotionHeroBackground } from "@/components/MotionHeroBackground";
 import { HeroCard } from "@/components/home/HeroCard";
 import { DeploymentOptions } from "@/components/home/DeploymentOptions";
@@ -125,197 +124,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {/* Decision Point Section */}
-      <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10">
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink">
-              AI Introduces Economic Consequences Into Technical Decisions
-            </h2>
-            <p className="text-lg sm:text-xl text-cv-muted leading-relaxed">
-              Every AI deployment, model swap, and data workload carries immediate infrastructure implications. In most organizations, these decisions are optimized for performance in isolation — leaving financial consequences to be discovered only after the invoice arrives.
-            </p>
-            <p className="text-lg sm:text-xl text-cv-ink/80 leading-relaxed">
-              CloudVerse ensures infrastructure decisions reflect economic intent at the moment they are made.
-            </p>
-            <div className="space-y-1 pt-4">
-              <p className="text-base sm:text-lg text-cv-muted">Not after the invoice.</p>
-              <p className="text-base sm:text-lg text-cv-muted">Not during the post-mortem.</p>
-              <p className="text-base sm:text-lg font-semibold text-cv-ink">At the decision point.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Economic Decision Layer Section */}
-      <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10">
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
-          <div className="max-w-3xl mx-auto text-center space-y-6 mb-12">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink">
-              The Economic Decision Layer for AI Infrastructure
-            </h2>
-            <p className="text-lg sm:text-xl text-cv-muted leading-relaxed">
-              Modern AI stacks include models, data platforms, orchestration, and infrastructure. What they lack is embedded economic decision logic.
-            </p>
-            <p className="text-lg sm:text-xl text-cv-ink/80 leading-relaxed">
-              CloudVerse operates as the economic decision layer — influencing model selection, blocking inefficient deployments, shaping live workload behavior, and structuring long-term capacity commitments.
-            </p>
-            <p className="text-base sm:text-lg text-cv-muted leading-relaxed">
-              Without this layer, infrastructure decisions optimize for speed and performance — not economic consequence.
-            </p>
-          </div>
-
-          <EconomicDecisionLayerDiagram />
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mt-12">
-            <div className="p-6 rounded-xl border border-cv-line bg-cv-surface2/50 dark:bg-white/[0.04]">
-              <h3 className="text-lg font-semibold text-cv-ink mb-3">Model & Workload Selection</h3>
-              <p className="text-sm text-cv-muted leading-relaxed mb-2">AIX evaluates cost-performance curves at runtime.</p>
-              <p className="text-sm text-cv-muted leading-relaxed">DevX blocks economically risky changes before production.</p>
-            </div>
-            <div className="p-6 rounded-xl border border-cv-line bg-cv-surface2/50 dark:bg-white/[0.04]">
-              <h3 className="text-lg font-semibold text-cv-ink mb-3">Active Infrastructure Behavior</h3>
-              <p className="text-sm text-cv-muted leading-relaxed mb-2">DataX enforces execution policies on live workloads.</p>
-              <p className="text-sm text-cv-muted leading-relaxed">Inefficient queries can be gated, throttled, or stopped automatically.</p>
-            </div>
-            <div className="p-6 rounded-xl border border-cv-line bg-cv-surface2/50 dark:bg-white/[0.04]">
-              <h3 className="text-lg font-semibold text-cv-ink mb-3">Commitment & Procurement Strategy</h3>
-              <p className="text-sm text-cv-muted leading-relaxed mb-2">Commitments can be executed programmatically.</p>
-              <p className="text-sm text-cv-muted leading-relaxed">Procurement becomes systematic — not reactive.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Invoice Efficiency Score Section */}
-      <InvoiceEfficiencySection />
-      {/* Products Section */}
-      <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10">
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
-          <div className="mb-10 sm:mb-12 text-center">
-            <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-cv-muted mb-3">
-              CloudVerse Products
-            </p>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink mb-4">
-              Purpose-built platforms for every team
-            </h2>
-            <p className="text-lg sm:text-xl text-cv-muted max-w-2xl mx-auto">
-              Specialized solutions that extend CloudVerse capabilities to developers and AI teams.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-            {/* DevX Card */}
-            <a
-              href="https://devx.cloudverse.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => track("product_devx", { location: "products_section" })}
-              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 is_cvdevx"
-              data-testid="product-devx-card"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
-                <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
-                  <Boxes className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    DevX
-                  </h3>
-                  <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
-                    Cost context in engineering workflows. Shift-left economic gates for CI/CD, services, and environments.
-                  </p>
-                  <span className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:gap-3 transition-all">
-                    Visit devx.cloudverse.ai →
-                  </span>
-                </div>
-              </div>
-            </a>
-
-            {/* AIx Card */}
-            <a
-              href="https://aix.cloudverse.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => track("product_aix", { location: "products_section" })}
-              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300  is_cvaix"
-              data-testid="product-aix-card"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
-                <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-lg shadow-purple-500/20">
-                  <Sparkles className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
-                    AIx
-                  </h3>
-                  <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
-                    AI cost intelligence for LLM and GPU workloads. Optimize inference, track tokens, and control AI spend.
-                  </p>
-                  <span className="inline-flex items-center gap-2 text-sm font-medium text-purple-600 dark:text-purple-400 group-hover:gap-3 transition-all">
-                    Visit aix.cloudverse.ai →
-                  </span>
-                </div>
-              </div>
-            </a>
-
-            {/* DataX Card */}
-            <a
-              href="https://datax.cloudverse.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => track("product_datax", { location: "products_section" })}
-              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-pink-500/50 hover:shadow-lg hover:shadow-pink-500/10 transition-all duration-300 is_cvdatax"
-              data-testid="product-datax-card"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
-                <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-pink-500 to-fuchsia-500 flex items-center justify-center shadow-lg shadow-pink-500/20">
-                  <img src={dataxLogo} alt="DataX" className="w-6 h-6 sm:w-7 sm:h-7 object-contain" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">
-                    DataX
-                  </h3>
-                  <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
-                    Analytics data cost visibility and workload controls. Monitor usage, optimize queries, and control spend.
-                  </p>
-                  <span className="inline-flex items-center gap-2 text-sm font-medium text-pink-600 dark:text-pink-400 group-hover:gap-3 transition-all">
-                    Visit datax.cloudverse.ai →
-                  </span>
-                </div>
-              </div>
-            </a>
-
-            {/* CloudBillOps Card */}
-            <a
-              href="https://billops.cloudverse.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => track("product_billops", { location: "products_section" })}
-              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-orange-500/50 hover:shadow-lg hover:shadow-orange-500/10 transition-all duration-300 is_cvbillops"
-              data-testid="product-billops-card"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
-                <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center shadow-lg shadow-orange-500/20">
-                  <img src={billopsLogo} alt="CloudBillOps" className="w-6 h-6 sm:w-7 sm:h-7 object-contain" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
-                    CloudBillOps
-                  </h3>
-                  <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
-                    Unified cloud billing and cost operations. Track usage, allocate costs, enforce controls.
-                  </p>
-                  <span className="inline-flex items-center gap-2 text-sm font-medium text-orange-600 dark:text-orange-400 group-hover:gap-3 transition-all">
-                    Visit billops.cloudverse.ai →
-                  </span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </section>
-      <DeploymentOptions />
       {/* Customer Logos Section */}
       <section className="pt-6 sm:pt-8 lg:pt-10 pb-10 sm:pb-12 lg:pb-14 border-t border-cv-line dark:border-white/10 overflow-hidden">
         <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
@@ -323,7 +131,6 @@ export default function Home() {
             Used by platform and engineering teams at leading enterprises.
           </p>
           <div className="relative overflow-hidden">
-            {/* Light mode marquee */}
             <div className="flex dark:hidden">
               <div className="flex items-center gap-x-12 sm:gap-x-16 lg:gap-x-20 animate-marquee-loop shrink-0">
                 {customerLogos.map((logo, idx) => (
@@ -345,12 +152,11 @@ export default function Home() {
                     alt={logo.name}
                     loading="lazy"
                     decoding="async"
-                    className={`h-10 sm:h-12 w-auto object-contain opacity-100  grayscale shrink-0 ${logo.className || ""}`}
+                    className={`h-10 sm:h-12 w-auto object-contain opacity-100 grayscale shrink-0 ${logo.className || ""}`}
                   />
                 ))}
               </div>
             </div>
-            {/* Dark mode marquee */}
             <div className="hidden dark:flex">
               <div className="flex items-center gap-x-12 sm:gap-x-16 lg:gap-x-20 animate-marquee-loop shrink-0">
                 {customerLogos.map((logo, idx) => (
@@ -380,6 +186,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       {/* What CloudVerse Offers Section */}
       <section className="py-8 sm:py-10 lg:py-12 border-t border-cv-line dark:border-white/10">
         <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
@@ -413,10 +220,177 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {/* How CloudVerse Works Section (imported premium component) */}
+
+      {/* How CloudVerse Works Section */}
       <div className="border-t border-cv-line dark:border-white/10">
         <HowItWorks />
       </div>
+
+      {/* Economic Decision Layer Section */}
+      <section className="py-10 sm:py-14 lg:py-16 border-t border-cv-line dark:border-white/10">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
+          <div className="max-w-3xl mx-auto text-center space-y-4 mb-8">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink">
+              The Economic Decision Layer for AI Infrastructure
+            </h2>
+            <p className="text-lg sm:text-xl text-cv-muted leading-relaxed">
+              Modern AI stacks include models, data platforms, orchestration, and infrastructure. What they lack is embedded economic decision logic.
+            </p>
+            <p className="text-base sm:text-lg text-cv-ink/80 leading-relaxed">
+              CloudVerse operates as the economic decision layer — influencing model selection, blocking inefficient deployments, shaping live workload behavior, and structuring long-term capacity commitments.
+            </p>
+          </div>
+
+          <EconomicDecisionLayerDiagram />
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mt-10">
+            <div className="p-6 rounded-xl border border-cv-line bg-cv-surface2/50 dark:bg-white/[0.04]">
+              <h3 className="text-lg font-semibold text-cv-ink mb-3">Model & Workload Selection</h3>
+              <p className="text-sm text-cv-muted leading-relaxed mb-2">AIX evaluates cost-performance curves at runtime.</p>
+              <p className="text-sm text-cv-muted leading-relaxed">DevX blocks economically risky changes before production.</p>
+            </div>
+            <div className="p-6 rounded-xl border border-cv-line bg-cv-surface2/50 dark:bg-white/[0.04]">
+              <h3 className="text-lg font-semibold text-cv-ink mb-3">Active Infrastructure Behavior</h3>
+              <p className="text-sm text-cv-muted leading-relaxed mb-2">DataX enforces execution policies on live workloads.</p>
+              <p className="text-sm text-cv-muted leading-relaxed">Inefficient queries can be gated, throttled, or stopped automatically.</p>
+            </div>
+            <div className="p-6 rounded-xl border border-cv-line bg-cv-surface2/50 dark:bg-white/[0.04]">
+              <h3 className="text-lg font-semibold text-cv-ink mb-3">Commitment & Procurement Strategy</h3>
+              <p className="text-sm text-cv-muted leading-relaxed mb-2">Commitments can be executed programmatically.</p>
+              <p className="text-sm text-cv-muted leading-relaxed">Procurement becomes systematic — not reactive.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Products Section */}
+      <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
+          <div className="mb-10 sm:mb-12 text-center">
+            <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-cv-muted mb-3">
+              CloudVerse Products
+            </p>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink mb-4">
+              Purpose-built platforms for every team
+            </h2>
+            <p className="text-lg sm:text-xl text-cv-muted max-w-2xl mx-auto">
+              Specialized solutions that extend CloudVerse capabilities to developers and AI teams.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            <a
+              href="https://devx.cloudverse.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track("product_devx", { location: "products_section" })}
+              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 is_cvdevx"
+              data-testid="product-devx-card"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
+                  <Boxes className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    DevX
+                  </h3>
+                  <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
+                    Cost context in engineering workflows. Shift-left economic gates for CI/CD, services, and environments.
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:gap-3 transition-all">
+                    Visit devx.cloudverse.ai →
+                  </span>
+                </div>
+              </div>
+            </a>
+
+            <a
+              href="https://aix.cloudverse.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track("product_aix", { location: "products_section" })}
+              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300 is_cvaix"
+              data-testid="product-aix-card"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-lg shadow-purple-500/20">
+                  <Sparkles className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                    AIx
+                  </h3>
+                  <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
+                    AI cost intelligence for LLM and GPU workloads. Optimize inference, track tokens, and control AI spend.
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-sm font-medium text-purple-600 dark:text-purple-400 group-hover:gap-3 transition-all">
+                    Visit aix.cloudverse.ai →
+                  </span>
+                </div>
+              </div>
+            </a>
+
+            <a
+              href="https://datax.cloudverse.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track("product_datax", { location: "products_section" })}
+              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-pink-500/50 hover:shadow-lg hover:shadow-pink-500/10 transition-all duration-300 is_cvdatax"
+              data-testid="product-datax-card"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-pink-500 to-fuchsia-500 flex items-center justify-center shadow-lg shadow-pink-500/20">
+                  <img src={dataxLogo} alt="DataX" className="w-6 h-6 sm:w-7 sm:h-7 object-contain" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">
+                    DataX
+                  </h3>
+                  <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
+                    Analytics data cost visibility and workload controls. Monitor usage, optimize queries, and control spend.
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-sm font-medium text-pink-600 dark:text-pink-400 group-hover:gap-3 transition-all">
+                    Visit datax.cloudverse.ai →
+                  </span>
+                </div>
+              </div>
+            </a>
+
+            <a
+              href="https://billops.cloudverse.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track("product_billops", { location: "products_section" })}
+              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-orange-500/50 hover:shadow-lg hover:shadow-orange-500/10 transition-all duration-300 is_cvbillops"
+              data-testid="product-billops-card"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center shadow-lg shadow-orange-500/20">
+                  <img src={billopsLogo} alt="CloudBillOps" className="w-6 h-6 sm:w-7 sm:h-7 object-contain" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
+                    CloudBillOps
+                  </h3>
+                  <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
+                    Unified cloud billing and cost operations. Track usage, allocate costs, enforce controls.
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-sm font-medium text-orange-600 dark:text-orange-400 group-hover:gap-3 transition-all">
+                    Visit billops.cloudverse.ai →
+                  </span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <DeploymentOptions />
+
+      {/* Invoice Efficiency Score Section */}
+      <InvoiceEfficiencySection />
+
       {/* Security & Compliance Section */}
       <section className="py-10 sm:py-12 lg:py-14 border-t border-cv-line dark:border-white/10">
         <div className="cv-container text-center px-5 sm:px-6 lg:px-20">
