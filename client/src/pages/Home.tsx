@@ -388,6 +388,58 @@ export default function Home() {
 
       <DeploymentOptions />
 
+      {/* Multi-Tenant Section */}
+      <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10">
+        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink">
+                Built for Multi-Tenant Cloud Providers
+              </h2>
+              <p className="text-lg sm:text-xl text-cv-muted leading-relaxed">
+                CloudVerse supports hierarchical tenancy, sub-tenant isolation, and partner-level economic visibility — enabling resellers and distributors to manage compute exposure across customer portfolios.
+              </p>
+              <ul className="space-y-4">
+                {[
+                  "Multi-tenant architecture with strict data isolation",
+                  "Portfolio-level compute exposure visibility",
+                  "Commitment optimization across downstream customers"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-base sm:text-lg text-cv-muted">
+                    <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+              <div className="relative bg-cv-surface2 border border-cv-line rounded-2xl p-8 sm:p-10 shadow-2xl">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center">
+                    <Boxes className="w-6 h-6 text-blue-500" />
+                  </div>
+                  <div className="h-px flex-1 bg-cv-line"></div>
+                </div>
+                <div className="space-y-6">
+                  <div className="h-4 w-3/4 bg-cv-muted/10 rounded-full animate-pulse"></div>
+                  <div className="h-4 w-full bg-cv-muted/10 rounded-full animate-pulse delay-75"></div>
+                  <div className="h-4 w-5/6 bg-cv-muted/10 rounded-full animate-pulse delay-150"></div>
+                </div>
+                <div className="mt-12 grid grid-cols-3 gap-4">
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="h-20 rounded-lg border border-cv-line bg-cv-surface flex flex-col items-center justify-center gap-2">
+                      <div className="w-8 h-2 bg-cv-muted/10 rounded-full"></div>
+                      <div className="w-12 h-2 bg-blue-500/20 rounded-full"></div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Invoice Efficiency Score Section */}
       <InvoiceEfficiencySection />
 
