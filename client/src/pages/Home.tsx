@@ -11,6 +11,7 @@ import { DeploymentOptions } from "@/components/home/DeploymentOptions";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { InvoiceEfficiencySection } from "@/components/home/InvoiceEfficiencySection";
 import { MultiTenantProviderCard } from "@/components/home/MultiTenantProviderCard";
+import { EconomicDecisionLayerDiagram } from "@/components/home/EconomicDecisionLayerDiagram";
 import { Receipt, Tag, Code2, Cpu, Activity, X, Boxes, Sparkles } from "lucide-react";
 import { FinalCTA } from "@/components/FinalCTA";
 import billopsLogo from "@/assets/billops.png";
