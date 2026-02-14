@@ -1,0 +1,84 @@
+You are working in the CloudVerse Website repo.
+
+TASK:
+Fix the diagram under the section:
+"The Economic Decision Layer for AI Infrastructure"
+
+The current diagram (stacked pill buttons) does not render well. Replace it with a clean, responsive architecture diagram that matches the existing theme (dark, rounded, subtle borders, blue accent glow).
+
+DO NOT:
+- change navbar, footer, typography system, spacing scale globally
+- introduce a new page or routing
+- redesign the entire section beyond the diagram block
+- use the words: routing, blocking, gate, gating, throttle, stop
+
+DO:
+- keep the section headline and paragraph structure
+- replace ONLY the diagram component/markup
+- keep minimal changes to surrounding layout
+
+WHERE:
+Search for the section component in:
+client/src/pages/Home.tsx
+or the home sections folder (client/src/components/home/*)
+
+Replace the existing diagram JSX with the following structure:
+
+========================================================
+NEW DIAGRAM SPEC (Responsive Stack + Highlight Band)
+========================================================
+
+1) A vertically stacked list (5 rows), each row is a rounded card:
+- Applications
+- AI Models & Inference
+- Data Platforms & Pipelines
+- CI/CD & Deployment
+- Cloud Infrastructure
+
+Each row should be:
+- full width on mobile
+- centered max width on desktop (like existing sections)
+- subtle border and dark background consistent with your cards
+- text centered, medium weight
+
+2) Insert a highlighted band BETWEEN "AI Models & Inference" and "Data Platforms & Pipelines":
+Band copy:
+"CloudVerse Economic Decision Layer"
+
+Band styling:
+- same rounded style but more prominent
+- border in accent blue
+- soft blue glow shadow
+- slightly brighter background
+- small eyebrow text above band: "EMBEDDED DECISION LOGIC"
+
+3) Under the band (inside the band area or directly below it), show 4 small chips/badges:
+- Model Choice
+- Engineering Change
+- Query Execution
+- Capacity Commitments
+
+These chips should be:
+- wrap on mobile
+- centered
+- subtle border + blue accent text
+
+4) Under the diagram, add one single line of helper text:
+"Economic intent is applied at the decision point — not after the invoice."
+
+Make this helper line muted, centered, and consistent with the section typography.
+
+========================================================
+ACCEPTANCE CRITERIA
+========================================================
+- Diagram renders cleanly at 1440px and mobile widths (no overlap)
+- Highlight band is visually obvious
+- No pill-button UI
+- No cramped text
+- No forbidden words (routing/blocking/gating/throttle/stop)
+- Only this diagram block changes; theme stays the same
+
+Run:
+npm run dev
+
+Return the updated code only (diff is fine).
