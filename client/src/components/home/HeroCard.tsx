@@ -3,10 +3,10 @@ import { useTheme } from "next-themes";
 import { LOGOS, CLOUD_PROVIDERS, AI_GPU_PROVIDERS, LOGO_DISPLAY_NAMES, type LogoKey } from "@/config/logos";
 
 const heroOutcomesSet1 = [
-  { title: "Baseline Reduction", desc: "Shift steady-state compute spend downward." },
-  { title: "Avoided Demand", desc: "Prevent vCPU/GPU/token burn before production." },
-  { title: "Effective Rate", desc: "Lower blended unit cost across on-demand and commitments." },
-  { title: "Volatility Control", desc: "Reduce variance and contain spike exposure early." },
+  { title: "Baseline Cost Shift", desc: "Permanent reduction in steady-state compute spend." },
+  { title: "Avoided Compute Demand", desc: "Savings captured before code, models, or queries scale." },
+  { title: "Blended Compute Rate", desc: "Lower effective unit cost through smarter commitments." },
+  { title: "Volatility Control", desc: "Fewer surprise spikes from runaway usage and anomalies." },
 ];
 
 function LogoPill({ logoKey, className = "" }: { logoKey: LogoKey; className?: string }) {
