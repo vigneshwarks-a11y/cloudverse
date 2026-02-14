@@ -38,32 +38,38 @@ const pillarCards = [
   {
     icon: Sparkles,
     title: "AIX: AI Model Economics (LLMs)",
-    description: "AIX applies economic decision logic to Large Language Model (LLM) usage. For every prompt, inference request, or AI workload, it evaluates required performance — reasoning depth, latency, context length, and quality — against real-time cost-per-token and model economics. It ensures routine tasks use cost-efficient models and complex tasks use premium models only when justified, preventing silent LLM overspend at scale.",
+    description: "Choose the right LLM for each prompt and workload. Match quality, latency, and token cost—so you don’t overpay at scale.",
+    outcome: "Lower blended AI $/token without quality regressions."
   },
   {
     icon: Code2,
-    title: "DevX: Engineering Decision Economics",
-    description: "DevX embeds economic decision logic directly into pull requests, repositories, and CI/CD pipelines. It analyzes both Infrastructure-as-Code (Terraform, Pulumi, CDK, ARM, and related frameworks) and application source code across 14+ supported languages. When developers introduce changes — whether provisioning infrastructure or modifying runtime logic — DevX evaluates projected compute and cost impact before deployment, highlighting economically significant patterns early in the workflow.",
+    title: "DevX: Engineering Economics",
+    description: "Bring compute cost awareness into PRs, repos, and CI/CD. Evaluate IaC + application code changes across 14+ languages before release.",
+    outcome: "Fewer costly changes reaching production."
   },
   {
     icon: Receipt,
-    title: "DataX: Data Execution Economics",
-    description: "DataX applies economic intent to live data workloads across warehouses and data platforms. It detects inefficient queries, high-cost execution patterns, and compute-heavy pipelines, and ensures warehouse behavior remains within defined cost-performance thresholds during execution. This prevents structural warehouse waste from compounding as AI-driven data usage scales.",
+    title: "DataX: Data Workload Economics",
+    description: "Detect expensive query and pipeline patterns while they run. Enforce execution policies—gate, throttle, or stop runaway workloads.",
+    outcome: "Prevent warehouse waste from compounding with AI usage."
   },
   {
     icon: Tag,
     title: "Commitments Optimizer: Compute Procurement Economics",
-    description: "Align long-term capacity commitments with real demand patterns to improve blended compute rates and reduce structural exposure. It turns commitment strategy into a systematic discipline — informed by usage trends and demand signals — rather than ad hoc purchasing.",
+    description: "Forecast demand and plan commitments ahead of time. Improve blended rates and reduce long-term exposure automatically (optional).",
+    outcome: "Lower effective compute rate across providers."
   },
   {
     icon: Activity,
-    title: "Volatility Control: Variance & Exposure Management",
-    description: "Predict usage spikes early to reduce variance and prevent weekend-scale surprises. Volatility Control identifies abnormal demand patterns across AI, compute, and data workloads so exposure is contained before it becomes a material budget deviation.",
+    title: "Volatility Control: Variance & Spike Containment",
+    description: "Predict and detect abnormal spend and usage early. Contain spikes before they become a budget incident.",
+    outcome: "Reduced cost variance and fewer surprise surges."
   },
   {
     icon: Cpu,
-    title: "Autonomous Optimization Engine: Continuous Baseline Shift",
-    description: "Lower steady-state infrastructure cost by continuously tuning live workloads using ML-driven actions with guardrails. This drives a sustained downward shift in baseline compute behavior — not one-time cleanups or theoretical savings.",
+    title: "Autonomous Optimization Engine: Baseline Shift",
+    description: "Continuously tune live workloads with ML-driven actions. Drive a sustained downward shift in steady-state infrastructure cost.",
+    outcome: "Permanent baseline reduction (not theoretical savings)."
   },
 ];
 
@@ -208,6 +214,7 @@ export default function Home() {
                 icon={card.icon}
                 title={card.title}
                 description={card.description}
+                outcome={card.outcome}
               />
             ))}
           </div>
