@@ -1,0 +1,94 @@
+You are working in the CloudVerse website repo.
+
+GOAL:
+Update the 4 core product cards under:
+"What CloudVerse Offers – Economic decision logic for every layer"
+
+Maintain:
+- All layout
+- All icons
+- All styling
+- All spacing
+- All card structure
+- All component usage
+
+Only update:
+- Titles
+- Descriptions
+
+DO NOT:
+- Redesign
+- Add new components
+- Change grid layout
+- Use the words: routing, block, blocking, gate, gating
+- Introduce FinOps buzzwords like allocation, chargeback, cost visibility
+
+====================================================
+UPDATE THESE FOUR CARDS ONLY
+====================================================
+
+FILE:
+Search for the card definitions in:
+client/src/pages/Home.tsx
+OR
+client/src/components/home/ (where these cards are defined)
+
+----------------------------------------------------
+1) AIX CARD
+----------------------------------------------------
+
+Replace title with:
+AIX: AI Model Economics
+
+Replace description with:
+Evaluate cost-performance tradeoffs across models and ensure AI inference decisions reflect defined economic thresholds before they scale.
+
+----------------------------------------------------
+2) DevX CARD
+----------------------------------------------------
+
+Replace title with:
+DevX: Engineering Decision Economics
+
+Replace description with:
+Embed economic intent into engineering workflows so infrastructure choices align with defined financial thresholds before production.
+
+----------------------------------------------------
+3) DataX CARD
+----------------------------------------------------
+
+Replace title with:
+DataX: Data Execution Economics
+
+Replace description with:
+Detect inefficient queries and compute-heavy workloads and ensure warehouse behavior remains within defined cost-performance thresholds during execution.
+
+----------------------------------------------------
+4) Commitments Optimizer CARD
+----------------------------------------------------
+
+Replace title with:
+Commitments Optimizer: Compute Procurement Economics
+
+Replace description with:
+Align long-term capacity commitments with real demand patterns to improve blended compute rates and reduce structural exposure.
+
+====================================================
+ACCEPTANCE CRITERIA
+====================================================
+
+- No use of "routing"
+- No use of "block"
+- No use of "gate"
+- No over-technical implementation detail
+- Cards clearly communicate:
+  - what decision surface they influence
+  - what economic outcome they drive
+- Layout unchanged
+- Icons unchanged
+- Visual structure identical
+
+Run:
+npm run dev
+
+Return only the modified code.

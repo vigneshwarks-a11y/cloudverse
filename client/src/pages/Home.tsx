@@ -36,23 +36,23 @@ const customerLogos = [
 const pillarCards = [
   {
     icon: Sparkles,
-    title: "AIX: Model & Routing Economics",
-    description: "Select the right models at the right cost-performance point — with runtime routing that prevents accidental spend.",
+    title: "AIX: AI Model Economics",
+    description: "Evaluate cost-performance tradeoffs across models and ensure AI inference decisions reflect defined economic thresholds before they scale.",
   },
   {
     icon: Code2,
-    title: "DevX: Shift-left Economic Gates",
-    description: "Block PRs that introduce economically risky code and infrastructure patterns before they reach production.",
+    title: "DevX: Engineering Decision Economics",
+    description: "Embed economic intent into engineering workflows so infrastructure choices align with defined financial thresholds before production.",
   },
   {
     icon: Receipt,
-    title: "DataX: Data Workload Economics",
-    description: "Enforce policies on warehouse workloads — gate, throttle, or stop inefficient queries before they create exposure.",
+    title: "DataX: Data Execution Economics",
+    description: "Detect inefficient queries and compute-heavy workloads and ensure warehouse behavior remains within defined cost-performance thresholds during execution.",
   },
   {
     icon: Tag,
-    title: "Commitments Optimizer",
-    description: "Plan and execute commitments programmatically to secure lower effective rates based on real demand signals.",
+    title: "Commitments Optimizer: Compute Procurement Economics",
+    description: "Align long-term capacity commitments with real demand patterns to improve blended compute rates and reduce structural exposure.",
   },
   {
     icon: Cpu,
