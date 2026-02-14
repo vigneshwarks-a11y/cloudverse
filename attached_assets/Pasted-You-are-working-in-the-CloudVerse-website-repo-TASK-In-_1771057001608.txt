@@ -1,0 +1,75 @@
+You are working in the CloudVerse website repo.
+
+TASK:
+In the section titled “Built for Multi-Tenant Cloud Providers”, the right-side visual is currently a generic placeholder card. Replace it with a polished “Multi-Tenant Provider Console” visual card that matches the existing dark enterprise aesthetic (glass, subtle gradient border, minimal neon glow).
+
+STRICT RULES:
+- Keep the existing layout/grid/spacing.
+- Only replace the right-side card content (the visual component on the right).
+- Do NOT change the left copy in this section (unless absolutely required for spacing).
+- Do NOT introduce new design systems; reuse existing Tailwind classes/styles already used across the homepage.
+- The card must render cleanly on desktop + mobile.
+- No external images. Everything should be pure JSX + Tailwind.
+
+WHERE:
+Find the component/section for “Built for Multi-Tenant Cloud Providers”.
+Likely in:
+- client/src/pages/Home.tsx
+or a home section component like:
+- client/src/components/home/*
+
+IMPLEMENTATION:
+1) Create a new reusable component:
+   client/src/components/home/MultiTenantProviderCard.tsx
+2) Replace the current right-side placeholder card with <MultiTenantProviderCard />.
+
+DESIGN SPEC (what to build):
+A single large card (same size as current placeholder) with:
+- Rounded corners (2xl or 3xl)
+- Glass effect: dark background + subtle blur + thin border
+- Subtle dual glow (blue/purple) on outer edge consistent with current hero card glow
+
+CARD CONTENT (exact copy):
+Header row:
+- Left: small icon (use an existing lucide icon already used in repo, e.g. Layers / Shield / Server)
+- Title: “Provider Console”
+- Right: pill badge “Multi-tenant” (muted, not loud)
+
+Row of 3 KPI tiles (mini cards inside):
+1) “Tenants” value “24”
+2) “Active Orgs” value “186”
+3) “Isolation” value “Strict”
+
+Mini list/table below (3 rows):
+Columns: Tenant | Coverage | Exposure
+Rows:
+- “Enterprise A” | “AWS + Azure” | “Stable”
+- “Enterprise B” | “AWS + GCP” | “Watch”
+- “Enterprise C” | “Azure + Snowflake” | “Stable”
+
+Exposure styling:
+- “Stable” uses subtle green-ish text (but do not hardcode neon; keep subdued)
+- “Watch” uses subtle amber-ish text
+
+Footer chips (small inline badges):
+- “Org → Team → Keys”
+- “Audit Trails”
+- “Policy Controls”
+- “Portfolio View”
+
+VISUAL DETAILS:
+- Use skeleton lines very lightly ONLY where needed, but make the card feel like a real console.
+- Add a small “Last sync: 2m ago” text in the header area (very subtle).
+- Ensure typography matches other cards (font sizes, tracking, muted foreground).
+- Use borders like border-white/10 or border-neutral-800; follow existing conventions in repo.
+
+ACCEPTANCE CRITERIA:
+- The right-side card looks like a real product UI, not a placeholder.
+- No layout shifts.
+- Looks premium and consistent with existing hero/outcomes card.
+- Works in dark mode (obviously).
+- Mobile: card stacks below text and remains readable.
+
+Return only:
+- The new component file
+- The changed section code where it’s used

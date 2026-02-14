@@ -10,7 +10,7 @@ import { HeroCard } from "@/components/home/HeroCard";
 import { DeploymentOptions } from "@/components/home/DeploymentOptions";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { InvoiceEfficiencySection } from "@/components/home/InvoiceEfficiencySection";
-import { EconomicDecisionLayerDiagram } from "@/components/home/EconomicDecisionLayerDiagram";
+import { MultiTenantProviderCard } from "@/components/home/MultiTenantProviderCard";
 import { Receipt, Tag, Code2, Cpu, Activity, X, Boxes, Sparkles } from "lucide-react";
 import { FinalCTA } from "@/components/FinalCTA";
 import billopsLogo from "@/assets/billops.png";
@@ -412,30 +412,7 @@ export default function Home() {
                 ))}
               </ul>
             </div>
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
-              <div className="relative bg-cv-surface2 border border-cv-line rounded-2xl p-8 sm:p-10 shadow-2xl">
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center">
-                    <Boxes className="w-6 h-6 text-blue-500" />
-                  </div>
-                  <div className="h-px flex-1 bg-cv-line"></div>
-                </div>
-                <div className="space-y-6">
-                  <div className="h-4 w-3/4 bg-cv-muted/10 rounded-full animate-pulse"></div>
-                  <div className="h-4 w-full bg-cv-muted/10 rounded-full animate-pulse delay-75"></div>
-                  <div className="h-4 w-5/6 bg-cv-muted/10 rounded-full animate-pulse delay-150"></div>
-                </div>
-                <div className="mt-12 grid grid-cols-3 gap-4">
-                  {[1, 2, 3].map((i) => (
-                    <div key={i} className="h-20 rounded-lg border border-cv-line bg-cv-surface flex flex-col items-center justify-center gap-2">
-                      <div className="w-8 h-2 bg-cv-muted/10 rounded-full"></div>
-                      <div className="w-12 h-2 bg-blue-500/20 rounded-full"></div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <MultiTenantProviderCard />
           </div>
         </div>
       </section>
