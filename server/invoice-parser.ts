@@ -292,7 +292,7 @@ Do not add explanations or extra text.
     const { client, model } = getClaudeClient();
 
     const response = await client.messages.create({
-      model,
+      model: "claude-3-5-sonnet-20240620",
       max_tokens: 2048,
       temperature: 0.2,
       messages: [
@@ -335,7 +335,7 @@ Do not add explanations or extra text.
       insights: (parsed.insights || []).slice(0, 5),
     };
   } catch (error) {
-    console.error("Gemini invoice parsing error:", error);
+    console.error("Claude invoice parsing error:", error);
     throw new Error(
       "Failed to parse invoice: " +
       (error instanceof Error ? error.message : "Unknown error")
