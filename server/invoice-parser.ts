@@ -84,12 +84,13 @@ function getGeminiClient(): { model: any } {
 }
 
 function getClaudeClient(): { client: Anthropic; model: string } {
-  if (!process.env.ANTHROPIC_API_KEY) {
+  const apiKey = process.env.ANTHROPIC_API_KEY?.trim();
+  if (!apiKey) {
     throw new Error("ANTHROPIC_API_KEY not configured");
   }
 
   const client = new Anthropic({
-    apiKey: process.env.ANTHROPIC_API_KEY,
+    apiKey,
   });
 
   return {
@@ -284,7 +285,7 @@ Do not add explanations or extra text.
 `;
 
   try {
-    const { client, model: configModel } = getClaudeClient();
+    const { client } = getClaudeClient();
     const model = "claude-3-5-sonnet-20240620";
 
     const response = await client.messages.create({
