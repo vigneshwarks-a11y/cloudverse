@@ -1,6 +1,6 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/Button";
-import { X, Cpu, Code2, Database, Tag } from "lucide-react";
+import { X } from "lucide-react";
 import { DEMO_URL } from "@/lib/links";
 import { track } from "@/lib/track";
 
@@ -30,33 +30,43 @@ interface EfficiencySnapshotModalProps {
   onUploadAnother: () => void;
 }
 
-const kpis = [
-  { label: "Baseline Cost Shift", value: "-12%", subtext: "steady-state spend reduced" },
-  { label: "Avoided Compute Demand", value: "18%", subtext: "demand prevented pre-production" },
-  { label: "Blended Compute Rate", value: "-9%", subtext: "effective unit cost reduced" },
-  { label: "Volatility Control", value: "-23%", subtext: "variance reduced across daily spend" },
-];
+function fmt(n: number, currency: string): string {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: currency || "USD",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(n);
+}
 
-const decisionPoints = [
-  { label: "Model Choice", icon: Cpu },
-  { label: "Engineering Change", icon: Code2 },
-  { label: "Query Execution", icon: Database },
-  { label: "Capacity Commitments", icon: Tag },
-];
+function buildInsightsFromData(result: AnalysisResult): string[] {
+  const lines: string[] = [];
+  const c = result.currency || "USD";
 
-const economicChanges = [
-  { label: "Baseline shifted down", delta: "-$41K/month" },
-  { label: "Demand avoided", delta: "1.8M tokens + 420 vCPU-hrs" },
-  { label: "Effective rate improved", delta: "-$0.012 per compute unit" },
-  { label: "Spike risk contained", delta: "3 anomalies neutralized" },
-];
+  if (result.totalSpend > 0) {
+    lines.push(`Total spend for the billing period: ${fmt(result.totalSpend, c)}`);
+  }
 
-const whereItHappened = [
-  { label: "Model selection decisions", detail: "2 cheaper equivalents adopted" },
-  { label: "Engineering changes", detail: "3 high-cost patterns corrected pre-release" },
-  { label: "Warehouse execution", detail: "2 runaway queries contained" },
-  { label: "Commitments", detail: "coverage increased +8% (optional automation)" },
-];
+  for (const svc of result.topServices) {
+    if (svc.name && svc.percent > 0) {
+      lines.push(`${svc.name} accounts for ${svc.percent.toFixed(1)}% of total spend (${fmt(svc.spend, c)})`);
+    }
+  }
+
+  if (result.computeSpendPercent > 0) {
+    lines.push(`Compute concentration: ${result.computeSpendPercent.toFixed(0)}% of total spend`);
+  }
+
+  if (result.onDemandPercent > 0) {
+    lines.push(`Estimated on-demand usage: ${result.onDemandPercent.toFixed(0)}% of compute`);
+  }
+
+  if (result.optimizationPotentialMin > 0 || result.optimizationPotentialMax > 0) {
+    lines.push(`Estimated savings potential: ${result.optimizationPotentialMin}% – ${result.optimizationPotentialMax}%`);
+  }
+
+  return lines;
+}
 
 export function EfficiencySnapshotModal({
   open,
@@ -66,11 +76,29 @@ export function EfficiencySnapshotModal({
 }: EfficiencySnapshotModalProps) {
   if (!result) return null;
 
+  const insights = result.insights.length > 0 ? result.insights : buildInsightsFromData(result);
+
   const dynamicKpis = [
-    { label: "Baseline Cost Shift", value: `${result.optimizationPotentialMin}%`, subtext: "steady-state spend reduced" },
-    { label: "Avoided Compute Demand", value: `${Math.round(result.computeSpendPercent / 2)}%`, subtext: "demand prevented pre-production" },
-    { label: "Blended Compute Rate", value: `-${Math.round(result.onDemandPercent / 5)}%`, subtext: "effective unit cost reduced" },
-    { label: "Volatility Control", value: `-${result.score > 70 ? 23 : 10}%`, subtext: "variance reduced across daily spend" },
+    {
+      label: "Efficiency Score",
+      value: `${result.score}/100`,
+      subtext: result.score >= 70 ? "above average" : "improvement opportunity",
+    },
+    {
+      label: "Total Spend",
+      value: fmt(result.totalSpend, result.currency),
+      subtext: `${result.billingPeriodStart} – ${result.billingPeriodEnd}`,
+    },
+    {
+      label: "Compute Concentration",
+      value: `${result.computeSpendPercent.toFixed(0)}%`,
+      subtext: "of total spend on compute",
+    },
+    {
+      label: "Savings Potential",
+      value: `${result.optimizationPotentialMin}–${result.optimizationPotentialMax}%`,
+      subtext: "estimated optimization range",
+    },
   ];
 
   const handleBookDemo = () => {
@@ -88,11 +116,13 @@ export function EfficiencySnapshotModal({
       <DialogContent className="max-w-[960px] w-[95vw] max-h-[90vh] overflow-y-auto p-0 gap-0 bg-cv-surface dark:bg-cv-surface2 border-cv-line dark:border-white/10">
         <DialogHeader className="sticky top-0 z-10 flex flex-row items-center justify-between px-6 py-4 border-b border-cv-line dark:border-white/10 bg-cv-surface dark:bg-cv-surface2">
           <div>
-            <DialogTitle className="text-lg font-semibold text-cv-ink">
+            <DialogTitle className="text-lg font-semibold text-cv-ink" data-testid="text-modal-title">
               Economic Decision Snapshot
             </DialogTitle>
             <p className="text-xs text-cv-muted mt-0.5">
-              Baseline, demand avoidance, effective rate, and volatility — in one view.
+              {result.providerDetected !== "Other" && result.providerDetected !== "Unknown"
+                ? `${result.providerDetected} — ${result.lineItemCount} line items analyzed`
+                : `${result.lineItemCount} line items analyzed`}
             </p>
           </div>
           <button
@@ -106,7 +136,6 @@ export function EfficiencySnapshotModal({
         </DialogHeader>
 
         <div className="p-6 space-y-6">
-          {/* Section A — KPI Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {dynamicKpis.map((kpi, idx) => (
               <div
@@ -114,7 +143,7 @@ export function EfficiencySnapshotModal({
                 className="p-4 rounded-xl bg-cv-surface2/50 dark:bg-white/5 border border-cv-line dark:border-white/10 text-center"
                 data-testid={`kpi-tile-${idx}`}
               >
-                <p className="text-2xl sm:text-3xl font-bold text-green-600 dark:text-green-400">
+                <p className={`text-xl sm:text-2xl font-bold ${idx === 0 && result.score >= 70 ? "text-green-600 dark:text-green-400" : idx === 0 ? "text-amber-600 dark:text-amber-400" : "text-cv-ink"}`}>
                   {kpi.value}
                 </p>
                 <p className="text-xs font-semibold text-cv-ink mt-1">{kpi.label}</p>
@@ -123,85 +152,64 @@ export function EfficiencySnapshotModal({
             ))}
           </div>
 
-          {/* Section B — Decision Points Covered */}
-          <div className="space-y-3">
-            <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-cv-muted">
-              Decision Points Covered
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {decisionPoints.map((dp, idx) => (
-                <span
-                  key={idx}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-sm font-medium text-blue-600 dark:text-blue-400"
-                >
-                  <dp.icon className="w-3.5 h-3.5" />
-                  {dp.label}
-                </span>
-              ))}
-            </div>
-            <p className="text-xs text-cv-muted">
-              CloudVerse applies economic intent where decisions are made — not after the invoice.
-            </p>
-          </div>
-
-          {/* Section C — What Changed */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="space-y-3">
               <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-cv-muted">
-                Economic Changes Detected
+                Analysis
               </h3>
               <ul className="space-y-3">
-                {result.insights.length > 0 ? result.insights.map((insight, idx) => (
+                {insights.map((insight, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-sm">
                     <span className="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5 flex-shrink-0" />
-                    <div>
-                      <span className="text-cv-ink leading-tight block">{insight}</span>
-                    </div>
-                  </li>
-                )) : economicChanges.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-sm">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5 flex-shrink-0" />
-                    <div>
-                      <span className="text-cv-ink">{item.label}</span>
-                      <span className="ml-2 font-semibold text-green-600 dark:text-green-400">{item.delta}</span>
-                    </div>
+                    <span className="text-cv-ink leading-tight">{insight}</span>
                   </li>
                 ))}
               </ul>
             </div>
+
             <div className="space-y-3">
               <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-cv-muted">
-                Where It Happened
+                Top Services by Spend
               </h3>
               <ul className="space-y-3">
-                {result.topServices.length > 0 ? result.topServices.slice(0, 4).map((svc, idx) => (
+                {result.topServices.map((svc, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-sm">
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />
                     <div>
-                      <span className="text-cv-ink">{svc.name}</span>
+                      <span className="text-cv-ink font-medium">{svc.name}</span>
                       <span className="block text-xs text-cv-muted mt-0.5">
-                        {svc.percent.toFixed(1)}% of total spend detected
+                        {fmt(svc.spend, result.currency)} — {(svc.percent || 0).toFixed(1)}% of total
                       </span>
                     </div>
                   </li>
-                )) : whereItHappened.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-sm">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />
-                    <div>
-                      <span className="text-cv-ink">{item.label}</span>
-                      <span className="block text-xs text-cv-muted mt-0.5">{item.detail}</span>
-                    </div>
-                  </li>
                 ))}
+                {result.topServices.length === 0 && (
+                  <li className="text-sm text-cv-muted">No service breakdown available</li>
+                )}
               </ul>
+
+              {result.topLineItems.length > 0 && (
+                <div className="mt-4 space-y-2">
+                  <h4 className="text-[11px] font-semibold uppercase tracking-[0.12em] text-cv-muted">
+                    Top Line Items
+                  </h4>
+                  {result.topLineItems.filter(li => li.cost > 0).slice(0, 3).map((li, idx) => (
+                    <div key={idx} className="flex justify-between text-xs text-cv-ink">
+                      <span className="truncate mr-2">{li.displayName}</span>
+                      <span className="font-medium flex-shrink-0">{fmt(li.cost, result.currency)}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
 
-        {/* Footer Actions */}
         <div className="sticky bottom-0 flex flex-col gap-3 p-6 border-t border-cv-line dark:border-white/10 bg-cv-surface dark:bg-cv-surface2">
           <p className="text-[10px] text-cv-muted text-center">
-            {result.providerDetected !== "Other" ? `Analysis of ${result.providerDetected} environment.` : "Snapshot is illustrative. Full metrics are computed from connected environments."}
+            {result.providerDetected !== "Other" && result.providerDetected !== "Unknown"
+              ? `Analysis of ${result.providerDetected} environment.`
+              : "Analysis based on uploaded invoice data."}
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <Button
