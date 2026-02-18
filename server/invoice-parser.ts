@@ -177,8 +177,18 @@ Do not add explanations or extra text.
       providerDetected: parsed.providerDetected || "Unknown",
       lineItemCount: parsed.lineItemCount || 0,
       topAccountIdentifier: parsed.topAccountIdentifier,
-      topServices: (parsed.topServices || []).slice(0, 3),
-      topRegions: (parsed.topRegions || []).slice(0, 3),
+      topServices: (parsed.topServices || []).slice(0, 3).map((s: any) => {
+        const totalSpend = parsed.totalSpend || 1;
+        const spend = s.spend ?? s.cost ?? 0;
+        const percent = s.percent ?? (totalSpend > 0 ? (spend / totalSpend) * 100 : 0);
+        return { name: s.name || s.service || "Unknown", spend, percent };
+      }),
+      topRegions: (parsed.topRegions || []).slice(0, 3).map((r: any) => {
+        const totalSpend = parsed.totalSpend || 1;
+        const spend = r.spend ?? r.cost ?? 0;
+        const percent = r.percent ?? (totalSpend > 0 ? (spend / totalSpend) * 100 : 0);
+        return { name: r.name || r.region || "Unknown", spend, percent };
+      }),
       topLineItems: (parsed.topLineItems || []).slice(0, 5),
       computeSpendPercent: parsed.computeSpendPercent || 0,
       onDemandPercent: parsed.onDemandPercent || 0,
