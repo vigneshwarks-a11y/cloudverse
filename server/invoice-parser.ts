@@ -284,29 +284,49 @@ Do not add explanations or extra text.
 `;
 
   try {
-    // const { model } = getGeminiClient();
+    let client: OpenAI;
+    let model: string;
 
-    // const result = await model.generateContent(prompt);
-    // const text = result.response.text();
+    // Use built-in Replit AI integration for testing
+    if (process.env.AI_INTEGRATIONS_OPENAI_BASE_URL && process.env.AI_INTEGRATIONS_OPENAI_API_KEY) {
+      client = new OpenAI({
+        apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY,
+        baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
+      });
+      model = "gpt-4o-mini";
+    } else if (process.env.OPENAI_API_KEY) {
+      client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+      model = "gpt-4o-mini";
+    } else {
+      // Fallback to Claude if OpenAI is not available
+      const claude = getClaudeClient();
+      client = claude.client as any;
+      model = "claude-3-5-sonnet-20240620";
+    }
 
-    const { client, model } = getClaudeClient();
+    let text: string | undefined;
 
-    const response = await client.messages.create({
-      model: "claude-3-5-sonnet-20240620",
-      max_tokens: 2048,
-      temperature: 0.2,
-      messages: [
-        {
-          role: "user",
-          content: prompt,
-        },
-      ],
-    });
-
-    const text = response.content.find(c => c.type === "text")?.text;
+    if (model.startsWith("claude")) {
+      const response = await (client as any).messages.create({
+        model,
+        max_tokens: 2048,
+        temperature: 0.2,
+        messages: [{ role: "user", content: prompt }],
+      });
+      text = response.content.find((c: any) => c.type === "text")?.text;
+    } else {
+      const response = await (client as any).chat.completions.create({
+        model,
+        messages: [{ role: "user", content: prompt }],
+        response_format: { type: "json_object" },
+        max_tokens: 2048,
+        temperature: 0.2,
+      });
+      text = response.choices[0]?.message?.content;
+    }
 
     if (!text) {
-      throw new Error("No response from Gemini");
+      throw new Error("No response from AI");
     }
 
     const cleaned = extractJson(text);
@@ -335,7 +355,7 @@ Do not add explanations or extra text.
       insights: (parsed.insights || []).slice(0, 5),
     };
   } catch (error) {
-    console.error("Claude invoice parsing error:", error);
+    console.error("Invoice parsing error:", error);
     throw new Error(
       "Failed to parse invoice: " +
       (error instanceof Error ? error.message : "Unknown error")
