@@ -1,8 +1,16 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/Button";
-import { X } from "lucide-react";
+import { X, TrendingDown } from "lucide-react";
 import { DEMO_URL } from "@/lib/links";
 import { track } from "@/lib/track";
+
+export interface SavingsOpportunity {
+  service: string;
+  currentSpend: number;
+  estimatedSavingsPercent: number;
+  estimatedSavingsAmount: number;
+  action: string;
+}
 
 export interface AnalysisResult {
   score: number;
@@ -20,6 +28,7 @@ export interface AnalysisResult {
   onDemandPercent: number;
   optimizationPotentialMin: number;
   optimizationPotentialMax: number;
+  savingsOpportunities: SavingsOpportunity[];
   insights: string[];
 }
 
@@ -39,35 +48,6 @@ function fmt(n: number, currency: string): string {
   }).format(n);
 }
 
-function buildInsightsFromData(result: AnalysisResult): string[] {
-  const lines: string[] = [];
-  const c = result.currency || "USD";
-
-  if (result.totalSpend > 0) {
-    lines.push(`Total spend for the billing period: ${fmt(result.totalSpend, c)}`);
-  }
-
-  for (const svc of result.topServices) {
-    if (svc.name && svc.percent > 0) {
-      lines.push(`${svc.name} accounts for ${svc.percent.toFixed(1)}% of total spend (${fmt(svc.spend, c)})`);
-    }
-  }
-
-  if (result.computeSpendPercent > 0) {
-    lines.push(`Compute concentration: ${result.computeSpendPercent.toFixed(0)}% of total spend`);
-  }
-
-  if (result.onDemandPercent > 0) {
-    lines.push(`Estimated on-demand usage: ${result.onDemandPercent.toFixed(0)}% of compute`);
-  }
-
-  if (result.optimizationPotentialMin > 0 || result.optimizationPotentialMax > 0) {
-    lines.push(`Estimated savings potential: ${result.optimizationPotentialMin}% – ${result.optimizationPotentialMax}%`);
-  }
-
-  return lines;
-}
-
 export function EfficiencySnapshotModal({
   open,
   onOpenChange,
@@ -76,28 +56,31 @@ export function EfficiencySnapshotModal({
 }: EfficiencySnapshotModalProps) {
   if (!result) return null;
 
-  const insights = result.insights.length > 0 ? result.insights : buildInsightsFromData(result);
+  const totalEstimatedSavings = (result.savingsOpportunities || []).reduce(
+    (sum, o) => sum + (o.estimatedSavingsAmount || 0),
+    0
+  );
 
   const dynamicKpis = [
     {
       label: "Efficiency Score",
       value: `${result.score}/100`,
-      subtext: result.score >= 70 ? "above average" : "improvement opportunity",
+      subtext: result.score >= 70 ? "above average" : "optimization opportunity",
     },
     {
       label: "Total Spend",
       value: fmt(result.totalSpend, result.currency),
-      subtext: `${result.billingPeriodStart} – ${result.billingPeriodEnd}`,
+      subtext: `${result.billingPeriodStart} to ${result.billingPeriodEnd}`,
     },
     {
-      label: "Compute Concentration",
-      value: `${result.computeSpendPercent.toFixed(0)}%`,
-      subtext: "of total spend on compute",
+      label: "Estimated Savings",
+      value: totalEstimatedSavings > 0 ? fmt(totalEstimatedSavings, result.currency) : `${result.optimizationPotentialMin}–${result.optimizationPotentialMax}%`,
+      subtext: totalEstimatedSavings > 0 ? "potential monthly savings" : "estimated savings range",
     },
     {
-      label: "Savings Potential",
-      value: `${result.optimizationPotentialMin}–${result.optimizationPotentialMax}%`,
-      subtext: "estimated optimization range",
+      label: "On-Demand Exposure",
+      value: `${result.onDemandPercent}%`,
+      subtext: "of compute without commitments",
     },
   ];
 
@@ -110,6 +93,8 @@ export function EfficiencySnapshotModal({
     onOpenChange(false);
     onUploadAnother();
   };
+
+  const opportunities = result.savingsOpportunities || [];
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -143,7 +128,15 @@ export function EfficiencySnapshotModal({
                 className="p-4 rounded-xl bg-cv-surface2/50 dark:bg-white/5 border border-cv-line dark:border-white/10 text-center"
                 data-testid={`kpi-tile-${idx}`}
               >
-                <p className={`text-xl sm:text-2xl font-bold ${idx === 0 && result.score >= 70 ? "text-green-600 dark:text-green-400" : idx === 0 ? "text-amber-600 dark:text-amber-400" : "text-cv-ink"}`}>
+                <p className={`text-xl sm:text-2xl font-bold ${
+                  idx === 0 && result.score >= 70
+                    ? "text-green-600 dark:text-green-400"
+                    : idx === 0
+                    ? "text-amber-600 dark:text-amber-400"
+                    : idx === 2
+                    ? "text-green-600 dark:text-green-400"
+                    : "text-cv-ink"
+                }`}>
                   {kpi.value}
                 </p>
                 <p className="text-xs font-semibold text-cv-ink mt-1">{kpi.label}</p>
@@ -152,64 +145,76 @@ export function EfficiencySnapshotModal({
             ))}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {opportunities.length > 0 && (
             <div className="space-y-3">
               <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-cv-muted">
-                Analysis
+                Where You Can Save — By Service
               </h3>
-              <ul className="space-y-3">
-                {insights.map((insight, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-sm">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5 flex-shrink-0" />
-                    <span className="text-cv-ink leading-tight">{insight}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="space-y-3">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-cv-muted">
-                Top Services by Spend
-              </h3>
-              <ul className="space-y-3">
-                {result.topServices.map((svc, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-sm">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />
-                    <div>
-                      <span className="text-cv-ink font-medium">{svc.name}</span>
-                      <span className="block text-xs text-cv-muted mt-0.5">
-                        {fmt(svc.spend, result.currency)} — {(svc.percent || 0).toFixed(1)}% of total
-                      </span>
+              <div className="space-y-2">
+                {opportunities.map((opp, idx) => (
+                  <div
+                    key={idx}
+                    className="p-4 rounded-xl bg-cv-surface2/50 dark:bg-white/5 border border-cv-line dark:border-white/10"
+                    data-testid={`savings-opportunity-${idx}`}
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          <TrendingDown className="w-4 h-4 text-green-500 flex-shrink-0" />
+                          <span className="text-sm font-semibold text-cv-ink">{opp.service}</span>
+                        </div>
+                        <p className="text-xs text-cv-muted mt-1.5 leading-relaxed">{opp.action}</p>
+                      </div>
+                      <div className="text-right flex-shrink-0">
+                        <p className="text-lg font-bold text-green-600 dark:text-green-400">
+                          {fmt(opp.estimatedSavingsAmount, result.currency)}
+                        </p>
+                        <p className="text-[10px] text-cv-muted">
+                          ~{opp.estimatedSavingsPercent}% of {fmt(opp.currentSpend, result.currency)}
+                        </p>
+                      </div>
                     </div>
-                  </li>
+                  </div>
                 ))}
-                {result.topServices.length === 0 && (
-                  <li className="text-sm text-cv-muted">No service breakdown available</li>
-                )}
-              </ul>
-
-              {result.topLineItems.length > 0 && (
-                <div className="mt-4 space-y-2">
-                  <h4 className="text-[11px] font-semibold uppercase tracking-[0.12em] text-cv-muted">
-                    Top Line Items
-                  </h4>
-                  {result.topLineItems.filter(li => li.cost > 0).slice(0, 3).map((li, idx) => (
-                    <div key={idx} className="flex justify-between text-xs text-cv-ink">
-                      <span className="truncate mr-2">{li.displayName}</span>
-                      <span className="font-medium flex-shrink-0">{fmt(li.cost, result.currency)}</span>
-                    </div>
-                  ))}
+              </div>
+              {totalEstimatedSavings > 0 && (
+                <div className="flex items-center justify-between px-4 py-3 rounded-xl bg-green-500/10 border border-green-500/20">
+                  <span className="text-sm font-semibold text-green-700 dark:text-green-400">
+                    Total Estimated Savings
+                  </span>
+                  <span className="text-lg font-bold text-green-700 dark:text-green-400">
+                    {fmt(totalEstimatedSavings, result.currency)}/mo
+                  </span>
                 </div>
               )}
             </div>
+          )}
+
+          <div className="space-y-3">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-cv-muted">
+              Recommendations
+            </h3>
+            <ul className="space-y-3">
+              {result.insights.map((insight, idx) => (
+                <li key={idx} className="flex items-start gap-3 text-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />
+                  <span className="text-cv-ink leading-relaxed">{insight}</span>
+                </li>
+              ))}
+              {result.insights.length === 0 && opportunities.length === 0 && (
+                <li className="text-sm text-cv-muted">
+                  Upload a more detailed invoice for specific recommendations.
+                </li>
+              )}
+            </ul>
           </div>
         </div>
 
         <div className="sticky bottom-0 flex flex-col gap-3 p-6 border-t border-cv-line dark:border-white/10 bg-cv-surface dark:bg-cv-surface2">
           <p className="text-[10px] text-cv-muted text-center">
             {result.providerDetected !== "Other" && result.providerDetected !== "Unknown"
-              ? `Analysis of ${result.providerDetected} environment.`
-              : "Analysis based on uploaded invoice data."}
+              ? `Analysis of ${result.providerDetected} environment. Estimates are directional — connect your environment for precise recommendations.`
+              : "Estimates are directional — connect your environment for precise recommendations."}
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <Button

@@ -20,6 +20,14 @@ export interface TopLineItem {
   cost: number;
 }
 
+export interface SavingsOpportunity {
+  service: string;
+  currentSpend: number;
+  estimatedSavingsPercent: number;
+  estimatedSavingsAmount: number;
+  action: string;
+}
+
 export interface InvoiceAnalysisResult {
   score: number;
   currency: string;
@@ -36,6 +44,7 @@ export interface InvoiceAnalysisResult {
   onDemandPercent: number;
   optimizationPotentialMin: number;
   optimizationPotentialMax: number;
+  savingsOpportunities: SavingsOpportunity[];
   insights: string[];
 }
 
@@ -47,19 +56,15 @@ function getOpenAIClient(): OpenAI {
 }
 
 function extractJson(text: string): string {
-  // Remove ```json ... ``` or ``` ... ```
   const fenced = text.match(/```(?:json)?\s*([\s\S]*?)\s*```/i);
   if (fenced?.[1]) {
     return fenced[1];
   }
-
-  // Fallback: attempt to find first { ... }
   const firstBrace = text.indexOf("{");
   const lastBrace = text.lastIndexOf("}");
   if (firstBrace !== -1 && lastBrace !== -1) {
     return text.slice(firstBrace, lastBrace + 1);
   }
-
   return text;
 }
 
@@ -69,79 +74,75 @@ export async function parseInvoice(
   fileName: string
 ): Promise<InvoiceAnalysisResult> {
   const prompt = `
-You are an expert cloud invoice analyzer. Analyze the following cloud invoice data and extract key information accurately.
+You are an expert cloud infrastructure economics advisor. Your job is NOT to read back the invoice — it is to analyze spending patterns and identify WHERE and HOW the customer can save money.
 
 File name: ${fileName}
 
 Invoice content:
 ${fileContent.substring(0, 50000)}
 
-IMPORTANT EXTRACTION & DERIVATION RULES:
-•⁠  ⁠Extract all cost-bearing line items first
-•⁠  ⁠topServices MUST be derived by aggregating costs from topLineItems grouped by service
-•⁠  ⁠topRegions MUST be derived by aggregating costs from topLineItems grouped by region
-•⁠  ⁠If a region is not explicitly mentioned, use "Unknown"
-•⁠  ⁠Quantity and unit SHOULD be extracted from usage text such as:
-  - "720 Hours"
-  - "1,200 GB-Month"
-  - "210 GB"
-•⁠  ⁠If usage text exists, do NOT leave quantity or unit empty
-•⁠  ⁠Do not leave topServices, topRegions, or topLineItems empty if any costs are present
+YOUR PRIMARY TASK:
+1. Extract the invoice metadata (provider, total spend, billing period, currency)
+2. Identify the top services by spend
+3. For EACH top service, estimate a specific savings opportunity with:
+   - What percentage can be saved on that service
+   - The estimated dollar amount that can be saved
+   - A specific, actionable recommendation (e.g., "Right-size underutilized EC2 instances", "Switch to Graviton instances", "Use Reserved Instances for steady-state RDS workloads", "Enable S3 Intelligent Tiering")
+4. Generate 3-5 actionable insights that are RECOMMENDATIONS, not summaries. Each insight should tell the customer what to DO, not what they spent.
 
-DATA RULES:
-•⁠  ⁠Currency must be a 3-letter ISO code (USD, EUR, INR, etc.)
-•⁠  ⁠Percent fields must be numbers between 0–100
-•⁠  ⁠Percentages are relative to totalSpend
-•⁠  ⁠Percent values may be approximate but must be reasonable
-•⁠  ⁠Round monetary values to 2 decimal places
+BAD insight examples (do NOT write these):
+- "EC2 accounts for 24% of total spend"
+- "Total spend for billing period is $4,771"
 
-PROVIDER DETECTION:
-•⁠  ⁠Detect provider ONLY if explicit indicators exist
-  (e.g., "Amazon Web Services", "EC2", "Azure Subscription", "GCP Project")
-•⁠  ⁠If unclear, set providerDetected to "Other"
+GOOD insight examples (write these):
+- "EC2 instances appear to be on-demand — switching to 1-year Reserved Instances could save ~30% on compute"
+- "Load balancer spend is high relative to compute — consider consolidating to fewer ALBs"
+- "CloudWatch costs suggest verbose logging — review log retention policies to cut monitoring spend by ~40%"
 
-EFFICIENCY SCORE (0–100):
-Estimate based on:
-•⁠  ⁠High on-demand compute usage → lower score
-•⁠  ⁠High compute concentration → lower score
-•⁠  ⁠Presence of optimization opportunities → lower score
-•⁠  ⁠Reserved/committed usage → higher score
-Use informed judgment, not random values.
+SAVINGS OPPORTUNITIES:
+For each top service, provide a savingsOpportunity with:
+- service: the service name
+- currentSpend: current spend amount
+- estimatedSavingsPercent: realistic savings percentage (be conservative, 10-40% range typically)
+- estimatedSavingsAmount: currentSpend * estimatedSavingsPercent / 100
+- action: one specific sentence describing what to do
 
-If a value truly cannot be determined:
-•⁠  ⁠Use null for strings
-•⁠  ⁠Use 0 for numbers
-•⁠  ⁠Use [] for arrays
+EXTRACTION RULES:
+- Currency must be a 3-letter ISO code (USD, EUR, SGD, etc.)
+- topServices: aggregate costs grouped by service, include name, spend, percent
+- Percent fields must be numbers between 0-100 relative to totalSpend
+- Round monetary values to 2 decimal places
 
-Extract and return ONLY the following JSON structure:
+EFFICIENCY SCORE (0-100):
+- 90+: excellent commitment coverage, right-sized resources
+- 70-89: good but room for optimization
+- 50-69: significant savings available
+- <50: urgent optimization needed
+
+Return ONLY the following JSON structure:
 {
   "score": 0,
-  "currency": null,
+  "currency": "USD",
   "totalSpend": 0,
-  "billingPeriodStart": null,
-  "billingPeriodEnd": null,
+  "billingPeriodStart": "YYYY-MM-DD",
+  "billingPeriodEnd": "YYYY-MM-DD",
   "providerDetected": "Other",
   "lineItemCount": 0,
   "topAccountIdentifier": null,
-  "topServices": [],
-  "topRegions": [],
-  "topLineItems": [{
-    "displayName": null,
-    "service": null,
-    "quantity": 0,
-    "unit": null,
-    "cost": 0
-  }],
+  "topServices": [{"name": "", "spend": 0, "percent": 0}],
+  "topRegions": [{"name": "", "spend": 0, "percent": 0}],
+  "topLineItems": [{"displayName": "", "service": "", "quantity": 0, "unit": "", "cost": 0}],
   "computeSpendPercent": 0,
   "onDemandPercent": 0,
   "optimizationPotentialMin": 0,
   "optimizationPotentialMax": 0,
+  "savingsOpportunities": [
+    {"service": "", "currentSpend": 0, "estimatedSavingsPercent": 0, "estimatedSavingsAmount": 0, "action": ""}
+  ],
   "insights": []
 }
 
-Return ONLY valid JSON.
-Do not wrap the response in markdown.
-Do not add explanations or extra text.
+Return ONLY valid JSON. No markdown wrapping. No explanations.
 `;
 
   try {
@@ -162,10 +163,10 @@ Do not add explanations or extra text.
     }
 
     const cleaned = extractJson(text);
-    const parsed = JSON.parse(cleaned) as InvoiceAnalysisResult;
+    const parsed = JSON.parse(cleaned) as any;
 
     return {
-      score: Math.max(0, Math.min(100, Math.round(parsed.score))),
+      score: Math.max(0, Math.min(100, Math.round(parsed.score || 0))),
       currency: parsed.currency || "USD",
       totalSpend: parsed.totalSpend || 0,
       billingPeriodStart:
@@ -177,7 +178,7 @@ Do not add explanations or extra text.
       providerDetected: parsed.providerDetected || "Unknown",
       lineItemCount: parsed.lineItemCount || 0,
       topAccountIdentifier: parsed.topAccountIdentifier,
-      topServices: (parsed.topServices || []).slice(0, 3).map((s: any) => {
+      topServices: (parsed.topServices || []).slice(0, 5).map((s: any) => {
         const totalSpend = parsed.totalSpend || 1;
         const spend = s.spend ?? s.cost ?? 0;
         const percent = s.percent ?? (totalSpend > 0 ? (spend / totalSpend) * 100 : 0);
@@ -194,6 +195,13 @@ Do not add explanations or extra text.
       onDemandPercent: parsed.onDemandPercent || 0,
       optimizationPotentialMin: parsed.optimizationPotentialMin || 0,
       optimizationPotentialMax: parsed.optimizationPotentialMax || 0,
+      savingsOpportunities: (parsed.savingsOpportunities || []).slice(0, 5).map((o: any) => ({
+        service: o.service || "Unknown",
+        currentSpend: o.currentSpend || 0,
+        estimatedSavingsPercent: o.estimatedSavingsPercent || 0,
+        estimatedSavingsAmount: o.estimatedSavingsAmount || 0,
+        action: o.action || "",
+      })),
       insights: (parsed.insights || []).slice(0, 5),
     };
   } catch (error) {
