@@ -151,15 +151,14 @@ export function EfficiencySnapshotModal({
                 Economic Changes Detected
               </h3>
               <ul className="space-y-3">
-                {result.insights.map((insight, idx) => (
+                {result.insights.length > 0 ? result.insights.map((insight, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-sm">
                     <span className="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5 flex-shrink-0" />
                     <div>
                       <span className="text-cv-ink leading-tight block">{insight}</span>
                     </div>
                   </li>
-                ))}
-                {result.insights.length === 0 && economicChanges.map((item, idx) => (
+                )) : economicChanges.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-sm">
                     <span className="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5 flex-shrink-0" />
                     <div>
@@ -175,7 +174,7 @@ export function EfficiencySnapshotModal({
                 Where It Happened
               </h3>
               <ul className="space-y-3">
-                {result.topServices.slice(0, 4).map((svc, idx) => (
+                {result.topServices.length > 0 ? result.topServices.slice(0, 4).map((svc, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-sm">
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />
                     <div>
@@ -185,8 +184,7 @@ export function EfficiencySnapshotModal({
                       </span>
                     </div>
                   </li>
-                ))}
-                {result.topServices.length === 0 && whereItHappened.map((item, idx) => (
+                )) : whereItHappened.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-sm">
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />
                     <div>
