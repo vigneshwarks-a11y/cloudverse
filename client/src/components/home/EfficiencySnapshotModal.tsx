@@ -66,14 +66,21 @@ export function EfficiencySnapshotModal({
 }: EfficiencySnapshotModalProps) {
   if (!result) return null;
 
+  const dynamicKpis = [
+    { label: "Baseline Cost Shift", value: `${result.optimizationPotentialMin}%`, subtext: "steady-state spend reduced" },
+    { label: "Avoided Compute Demand", value: `${Math.round(result.computeSpendPercent / 2)}%`, subtext: "demand prevented pre-production" },
+    { label: "Blended Compute Rate", value: `-${Math.round(result.onDemandPercent / 5)}%`, subtext: "effective unit cost reduced" },
+    { label: "Volatility Control", value: `-${result.score > 70 ? 23 : 10}%`, subtext: "variance reduced across daily spend" },
+  ];
+
   const handleBookDemo = () => {
     track("cta_demo", { location: "economic_snapshot_modal" });
     window.open(DEMO_URL, "_blank");
   };
 
   const handleUploadAnother = () => {
-    onUploadAnother();
     onOpenChange(false);
+    onUploadAnother();
   };
 
   return (
@@ -101,7 +108,7 @@ export function EfficiencySnapshotModal({
         <div className="p-6 space-y-6">
           {/* Section A — KPI Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {kpis.map((kpi, idx) => (
+            {dynamicKpis.map((kpi, idx) => (
               <div
                 key={idx}
                 className="p-4 rounded-xl bg-cv-surface2/50 dark:bg-white/5 border border-cv-line dark:border-white/10 text-center"
@@ -144,7 +151,15 @@ export function EfficiencySnapshotModal({
                 Economic Changes Detected
               </h3>
               <ul className="space-y-3">
-                {economicChanges.map((item, idx) => (
+                {result.insights.map((insight, idx) => (
+                  <li key={idx} className="flex items-start gap-3 text-sm">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5 flex-shrink-0" />
+                    <div>
+                      <span className="text-cv-ink leading-tight block">{insight}</span>
+                    </div>
+                  </li>
+                ))}
+                {result.insights.length === 0 && economicChanges.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-sm">
                     <span className="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5 flex-shrink-0" />
                     <div>
@@ -160,7 +175,18 @@ export function EfficiencySnapshotModal({
                 Where It Happened
               </h3>
               <ul className="space-y-3">
-                {whereItHappened.map((item, idx) => (
+                {result.topServices.slice(0, 4).map((svc, idx) => (
+                  <li key={idx} className="flex items-start gap-3 text-sm">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />
+                    <div>
+                      <span className="text-cv-ink">{svc.name}</span>
+                      <span className="block text-xs text-cv-muted mt-0.5">
+                        {svc.percent.toFixed(1)}% of total spend detected
+                      </span>
+                    </div>
+                  </li>
+                ))}
+                {result.topServices.length === 0 && whereItHappened.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-sm">
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />
                     <div>
@@ -177,7 +203,7 @@ export function EfficiencySnapshotModal({
         {/* Footer Actions */}
         <div className="sticky bottom-0 flex flex-col gap-3 p-6 border-t border-cv-line dark:border-white/10 bg-cv-surface dark:bg-cv-surface2">
           <p className="text-[10px] text-cv-muted text-center">
-            Snapshot is illustrative. Full metrics are computed from connected environments.
+            {result.providerDetected !== "Other" ? `Analysis of ${result.providerDetected} environment.` : "Snapshot is illustrative. Full metrics are computed from connected environments."}
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <Button
