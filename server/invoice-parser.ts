@@ -94,7 +94,7 @@ function getClaudeClient(): { client: Anthropic; model: string } {
 
   return {
     client,
-    model: process.env.CLAUDE_MODEL || "claude-sonnet-4-20250514",
+    model: process.env.CLAUDE_MODEL || "claude-3-5-sonnet-20240620",
   };
 }
 
@@ -284,10 +284,11 @@ Do not add explanations or extra text.
 `;
 
   try {
-    const { client, model } = getClaudeClient();
+    const { client, model: configModel } = getClaudeClient();
+    const model = "claude-3-5-sonnet-20240620";
 
     const response = await client.messages.create({
-      model: "claude-3-5-sonnet-20240620",
+      model,
       max_tokens: 4096,
       temperature: 0,
       messages: [
