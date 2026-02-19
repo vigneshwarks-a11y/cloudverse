@@ -1,4 +1,6 @@
-import type { Context } from "@netlify/edge-functions";
+type EdgeContext = {
+  next: () => Response | Promise<Response>;
+};
 
 const GOOGLE_CRAWLER_TOKENS = [
   "adsbot-google",
@@ -12,7 +14,7 @@ function isGoogleCrawler(userAgent: string): boolean {
   return GOOGLE_CRAWLER_TOKENS.some((token) => ua.includes(token));
 }
 
-export default async (request: Request, context: Context) => {
+export default async (request: Request, context: EdgeContext) => {
   const userAgent = request.headers.get("user-agent") ?? "";
 
   if (isGoogleCrawler(userAgent)) {
