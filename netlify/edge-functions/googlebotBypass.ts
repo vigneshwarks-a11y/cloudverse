@@ -1,6 +1,4 @@
-type EdgeContext = {
-  next: () => Response | Promise<Response>;
-};
+import type { Context } from "@netlify/edge-functions";
 
 const GOOGLE_CRAWLER_TOKENS = [
   "adsbot-google",
@@ -10,23 +8,18 @@ const GOOGLE_CRAWLER_TOKENS = [
 ] as const;
 
 function isGoogleCrawler(userAgent: string): boolean {
-  const normalizedUserAgent = userAgent.toLowerCase();
-  return GOOGLE_CRAWLER_TOKENS.some((token) =>
-    normalizedUserAgent.includes(token),
-  );
+  const ua = userAgent.toLowerCase();
+  return GOOGLE_CRAWLER_TOKENS.some((token) => ua.includes(token));
 }
 
-export default async function googlebotBypass(
-  request: Request,
-  context: EdgeContext,
-): Promise<Response | void> {
+export default async (request: Request, context: Context) => {
   const userAgent = request.headers.get("user-agent") ?? "";
 
   if (isGoogleCrawler(userAgent)) {
-    // Bots: continue via explicit next() response handling.
+    // Bots: bypass redirect/personalization edge logic by ending the edge chain here.
     return context.next();
   }
 
-  // Humans: keep flowing through the request chain.
+  // Humans: let the request continue through the rest of the edge-function chain.
   return;
-}
+};
