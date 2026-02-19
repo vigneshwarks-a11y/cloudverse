@@ -19,14 +19,14 @@ function isGoogleCrawler(userAgent: string): boolean {
 export default async function googlebotBypass(
   request: Request,
   context: EdgeContext,
-): Promise<Response> {
+): Promise<Response | void> {
   const userAgent = request.headers.get("user-agent") ?? "";
 
   if (isGoogleCrawler(userAgent)) {
-    // Bypass landing-page redirect/personalization logic for Google crawlers.
+    // Bots: continue via explicit next() response handling.
     return context.next();
   }
 
-  // Keep existing human redirect behavior untouched.
-  return context.next();
+  // Humans: keep flowing through the request chain.
+  return;
 }

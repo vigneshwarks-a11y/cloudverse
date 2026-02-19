@@ -8,12 +8,20 @@
   external_node_modules = ["pdfjs-dist"]
 
 [[edge_functions]]
-  function = "googlebotBypass"
-  path = "/efficiency-snapshot"
+function = "googlebotBypass"
+path = "/resources"
 
 [[edge_functions]]
-  function = "googlebotBypass"
-  path = "/efficiency-snapshot/*"
+function = "googlebotBypass"
+path = "/resources/*"
+
+[[edge_functions]]
+function = "googlebotBypass"
+path = "/solutions"
+
+[[edge_functions]]
+function = "googlebotBypass"
+path = "/solutions/*"
 
 [[redirects]]
   from = "/api/*"
