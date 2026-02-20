@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback } from "react";
 import { Button } from "@/components/Button";
 import { track } from "@/lib/track";
-import { Upload, FileText, CheckCircle, AlertCircle, Database } from "lucide-react";
+import { Upload, FileText, CheckCircle, AlertCircle, Boxes, Sparkles } from "lucide-react";
 import { EfficiencySnapshotModal, type AnalysisResult } from "./EfficiencySnapshotModal";
 import dataxLogo from "@/assets/datax-logo.png";
 import billopsLogo from "@/assets/billops.png";
@@ -232,6 +232,58 @@ export function InvoiceEfficiencySection() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mt-12 max-w-[960px] mx-auto">
+            <a
+              href="https://devx.cloudverse.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track("product_devx", { location: "efficiency_snapshot" })}
+              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300"
+              data-testid="snapshot-devx-card"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
+                  <Boxes className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    DevX
+                  </h3>
+                  <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
+                    Economic decision logic embedded in PRs, repos, and CI/CD pipelines — analyzing IaC and application code across 14+ languages.
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:gap-3 transition-all">
+                    Visit devx.cloudverse.ai →
+                  </span>
+                </div>
+              </div>
+            </a>
+
+            <a
+              href="https://aix.cloudverse.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track("product_aix", { location: "efficiency_snapshot" })}
+              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300"
+              data-testid="snapshot-aix-card"
+            >
+              <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-lg shadow-purple-500/20">
+                  <Sparkles className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                    AIx
+                  </h3>
+                  <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
+                    AI cost intelligence for LLM and GPU workloads. Optimize inference, track tokens, and control AI spend.
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-sm font-medium text-purple-600 dark:text-purple-400 group-hover:gap-3 transition-all">
+                    Visit aix.cloudverse.ai →
+                  </span>
+                </div>
+              </div>
+            </a>
+
             <a
               href="https://datax.cloudverse.ai"
               target="_blank"
