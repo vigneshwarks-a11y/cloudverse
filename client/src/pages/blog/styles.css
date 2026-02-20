@@ -1,0 +1,11 @@
+.blog-heading {
+  font-size: 14px;        /* text-sm */
+  color: #383838;         /* text-[#383838] */
+  text-align: left;       /* text-start */
+}
+
+@media (min-width: 768px) {
+  .blog-heading {
+    font-size: 18px;      /* md:text-lg */
+  }
+}

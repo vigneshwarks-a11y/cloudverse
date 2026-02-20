@@ -1,0 +1,6 @@
+.blog-inner-page a {
+  color: blue;
+}
+.blog-inner-page a:hover {
+  color: rgb(48, 48, 237);
+}

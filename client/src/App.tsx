@@ -29,6 +29,8 @@ import Landing from "@/pages/Landing";
 import ThankYou from "@/pages/Thankyou";
 import SubscribeThankYou from "@/pages/SubscribeThankYou";
 import NotFound from "@/pages/not-found";
+import BlogPage from "@/pages/blog/page";
+import BlogDetailPage from "@/pages/blog/[slug]/page";
 import { SIGNIN_URL, DEMO_URL } from "@/lib/links";
 
 function Router() {
@@ -43,6 +45,10 @@ function Router() {
       <Route path="/company" component={Company} />
       <Route path="/about" component={AboutUs} />
       <Route path="/resources" component={Resources} />
+      <Route path="/blog" component={BlogPage} />
+      <Route path="/blog/:slug" component={BlogDetailPage} />
+      <Route path="/blogs" component={BlogPage} />
+      <Route path="/blogs/:slug" component={BlogDetailPage} />
       <Route path="/resources/guides" component={ResourcesGuides} />
       <Route path="/resources/guides/:slug" component={ResourcesGuideDetail} />
       <Route path="/resources/docs" component={ResourcesDocs} />
@@ -65,7 +71,6 @@ function Router() {
 
       {/* Redirects */}
       <Route path="/about-us"><Redirect to="/about" /></Route>
-      <Route path="/blog"><Redirect to="/resources" /></Route>
 
       <Route component={NotFound} />
     </Switch>
