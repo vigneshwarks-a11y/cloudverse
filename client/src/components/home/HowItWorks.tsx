@@ -91,9 +91,9 @@ export function HowItWorks() {
           {/* Steps Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 relative z-10">
             {steps.map((step, idx) => (
-              <div key={idx} data-step={idx} className="space-y-6">
+              <div key={idx} data-step={idx} className="flex flex-col">
                 {/* Mobile Timeline Indicator */}
-                <div className="lg:hidden flex items-start gap-4">
+                <div className="lg:hidden flex items-start gap-4 mb-6">
                   <div className="flex flex-col items-center pt-1">
                     <div
                       className={cn(
@@ -117,7 +117,7 @@ export function HowItWorks() {
                 </div>
 
                 {/* Desktop Number Pill */}
-                <div className="hidden lg:flex items-center justify-center mb-6">
+                <div className="hidden lg:flex items-center justify-center mb-8">
                   <div
                     className="w-12 h-12 rounded-full border-2 flex items-center justify-center font-semibold text-sm transition-all border-cv-line dark:border-white/20 text-cv-muted bg-white dark:bg-black"
                   >
@@ -126,11 +126,11 @@ export function HowItWorks() {
                 </div>
 
                 {/* Card Content */}
-                <div className="space-y-4">
+                <div className="space-y-4 flex-1">
                   <h3 className="text-xl sm:text-2xl font-semibold text-cv-ink">
                     {step.title}
                   </h3>
-                  <p className="text-sm sm:text-base text-cv-muted leading-relaxed">
+                  <p className="text-sm sm:text-base text-cv-muted leading-relaxed min-h-[3.5rem] lg:min-h-[4.5rem]">
                     {step.body}
                   </p>
 
@@ -146,7 +146,7 @@ export function HowItWorks() {
                 </div>
 
                 {/* Micro Visual Tile */}
-                <div className="mt-5 lg:mt-6 h-[180px] sm:h-[160px]">
+                <div className="mt-6 lg:mt-8 h-[180px] sm:h-[160px]">
                   <MicroPreview variant={idx === 0 ? "connect" : idx === 1 ? "normalize" : "automate"} />
                 </div>
               </div>
