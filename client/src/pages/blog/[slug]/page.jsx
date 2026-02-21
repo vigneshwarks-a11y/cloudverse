@@ -217,7 +217,7 @@ function BlogDetailPage() {
                 ) : null}
                 {section.para ? (
                   <div
-                    className="text-sm md:text-base leading-7 text-cv-muted [&_ul]:list-none [&_ul]:pl-0 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mb-2 [&_a]:text-primary [&_a]:underline"
+                    className="text-sm md:text-base leading-7 text-cv-muted [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:my-3 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:my-3 [&_li]:mb-2 [&_li]:pl-1 [&_a]:text-primary [&_a]:underline"
                     dangerouslySetInnerHTML={{
                       __html: removeLeadingBulletDots(section.para),
                     }}
