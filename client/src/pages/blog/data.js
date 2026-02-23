@@ -28,6 +28,7 @@ const buildSummary = (blog) => {
 };
 
 export const blogData = [...blogDetailPage]
+  .filter((blog) => !(blog.id >= 28 && blog.id <= 36))
   .sort((a, b) => b.id - a.id)
   .map((blog) => {
     const slug = formatBlogSlug(blog.routtitle || blog.title);
