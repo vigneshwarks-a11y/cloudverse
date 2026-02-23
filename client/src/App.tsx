@@ -17,6 +17,7 @@ import Resources from "@/pages/Resources";
 import ResourcesGuides from "@/pages/ResourcesGuides";
 import ResourcesGuideDetail from "@/pages/ResourcesGuideDetail";
 import ResourcesDocs from "@/pages/ResourcesDocs";
+import ResourcesFaq from "@/pages/ResourcesFaq";
 import Contact from "@/pages/Contact";
 import Partners from "@/pages/Partners";
 import Help from "@/pages/Help";
@@ -50,6 +51,7 @@ function Router() {
       <Route path="/resources/guides" component={ResourcesGuides} />
       <Route path="/resources/guides/:slug" component={ResourcesGuideDetail} />
       <Route path="/resources/docs" component={ResourcesDocs} />
+      <Route path="/resources/faq" component={ResourcesFaq} />
       <Route path="/contact" component={Contact} />
       <Route path="/partners" component={Partners} />
       <Route path="/help" component={Help} />
@@ -69,6 +71,8 @@ function Router() {
 
       {/* Redirects */}
       <Route path="/about-us"><Redirect to="/about" /></Route>
+      <Route path="/faq"><Redirect to="/resources/faq" /></Route>
+      <Route path="/resources/faqs"><Redirect to="/resources/faq" /></Route>
 
       <Route component={NotFound} />
     </Switch>

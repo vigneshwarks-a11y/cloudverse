@@ -4,14 +4,123 @@ import { Link, useParams } from "wouter";
 import { useEffect } from "react";
 import { guides } from "@/data/resourcesData";
 
+const sectionTitlePattern =
+  /^(Section\s+\d+\s+—\s+.+|The\s+(Trigger|Constraint|Misconception|Reality|Model|Failure Modes|CloudVerse Approach|Outcome|Starting Point)\s*:?\s*)(.*)$/i;
+
+const splitSectionHeading = (content: string) => {
+  const trimmed = content.trim();
+  const firstBreakMatch = trimmed.match(/<br\s*\/?>\s*<br\s*\/?>/i);
+
+  // Prefer "first line = heading, rest = body" so headings like
+  // "The Trigger: When ..." keep their right-side text.
+  if (firstBreakMatch) {
+    const breakIndex = firstBreakMatch.index ?? -1;
+    const headingCandidate = trimmed.slice(0, breakIndex).trim();
+    const remainder = trimmed
+      .slice(breakIndex + firstBreakMatch[0].length)
+      .trim();
+
+    if (headingCandidate.match(sectionTitlePattern)) {
+      return { heading: headingCandidate, remainder };
+    }
+  }
+
+  const match = trimmed.match(sectionTitlePattern);
+  if (!match) return null;
+  return { heading: match[1].trim(), remainder: "" };
+};
+
+const clearManagedHeadTags = () => {
+  if (typeof document === "undefined") return;
+  document
+    .querySelectorAll('[data-guide-seo="true"], [data-guide-schema="true"]')
+    .forEach((node) => node.remove());
+};
+
+const upsertMetaTag = (attribute: string, key: string, content?: string) => {
+  if (!content || typeof document === "undefined") return;
+
+  let element = document.querySelector(
+    `meta[${attribute}="${key}"][data-guide-seo="true"]`
+  ) as HTMLMetaElement | null;
+
+  if (!element) {
+    element = document.createElement("meta");
+    element.setAttribute(attribute, key);
+    element.setAttribute("data-guide-seo", "true");
+    document.head.appendChild(element);
+  }
+
+  element.setAttribute("content", content);
+};
+
+const upsertCanonicalTag = (href?: string) => {
+  if (!href || typeof document === "undefined") return;
+
+  let element = document.querySelector(
+    'link[rel="canonical"][data-guide-seo="true"]'
+  ) as HTMLLinkElement | null;
+  if (!element) {
+    element = document.createElement("link");
+    element.setAttribute("rel", "canonical");
+    element.setAttribute("data-guide-seo", "true");
+    document.head.appendChild(element);
+  }
+
+  element.setAttribute("href", href);
+};
+
+const applyGuideHeadTags = (guide: (typeof guides)[number]) => {
+  if (!guide || typeof document === "undefined") return;
+
+  clearManagedHeadTags();
+
+  const seo = guide.seo || {};
+  const fallbackDescription = seo.description || guide.summary || "";
+
+  document.title = seo.title || `${guide.title} — CloudVerse`;
+
+  upsertMetaTag("name", "description", fallbackDescription);
+  upsertMetaTag("name", "keywords", seo.keywords || "");
+  upsertMetaTag("name", "llm:summary", seo.llmSummary || "");
+
+  upsertMetaTag("property", "og:type", "article");
+  upsertMetaTag("property", "og:title", seo.ogTitle || seo.title || guide.title);
+  upsertMetaTag("property", "og:description", seo.ogDescription || fallbackDescription);
+  upsertMetaTag(
+    "property",
+    "og:url",
+    typeof window !== "undefined" ? window.location.href : ""
+  );
+
+  upsertMetaTag("name", "twitter:card", "summary_large_image");
+  upsertMetaTag("name", "twitter:title", seo.ogTitle || seo.title || guide.title);
+  upsertMetaTag(
+    "name",
+    "twitter:description",
+    seo.ogDescription || fallbackDescription
+  );
+
+  upsertCanonicalTag(typeof window !== "undefined" ? window.location.href : "");
+
+  if (guide.schema) {
+    const schemaElement = document.createElement("script");
+    schemaElement.type = "application/ld+json";
+    schemaElement.setAttribute("data-guide-schema", "true");
+    schemaElement.textContent = JSON.stringify(guide.schema);
+    document.head.appendChild(schemaElement);
+  }
+};
+
 export default function ResourcesGuideDetail() {
   const params = useParams<{ slug: string }>();
   const guide = guides.find(g => g.slug === params.slug);
 
   useEffect(() => {
     if (guide) {
-      document.title = `${guide.title} — CloudVerse`;
+      applyGuideHeadTags(guide);
     }
+    return () => clearManagedHeadTags();
   }, [guide]);
 
   if (!guide) {
@@ -81,9 +190,32 @@ export default function ResourcesGuideDetail() {
               {guide.summary}
             </p>
             {guide.content && guide.content.map((paragraph, idx) => (
-              <p key={idx} className="text-sm text-cv-muted leading-7 mb-4">
-                {paragraph}
-              </p>
+              (() => {
+                const section = splitSectionHeading(paragraph);
+                if (!section) {
+                  return (
+                    <div
+                      key={idx}
+                      className="text-sm text-cv-muted leading-7 mb-4 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:my-3 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:my-3 [&_li]:mb-2 [&_li]:pl-1 [&_a]:text-primary [&_a]:underline"
+                      dangerouslySetInnerHTML={{ __html: paragraph }}
+                    />
+                  );
+                }
+
+                return (
+                  <section key={idx} className="mb-5">
+                    <h2 className="text-lg md:text-xl font-semibold text-cv-ink mb-2">
+                      {section.heading}
+                    </h2>
+                    {section.remainder ? (
+                      <div
+                        className="text-sm text-cv-muted leading-7 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:my-3 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:my-3 [&_li]:mb-2 [&_li]:pl-1 [&_a]:text-primary [&_a]:underline"
+                        dangerouslySetInnerHTML={{ __html: section.remainder }}
+                      />
+                    ) : null}
+                  </section>
+                );
+              })()
             ))}
           </div>
         </div>

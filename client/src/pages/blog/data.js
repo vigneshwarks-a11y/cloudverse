@@ -7,6 +7,13 @@ const stripHtmlTags = (value = "") =>
     .replace(/\s+/g, " ")
     .trim();
 
+const truncateWithEllipsis = (value = "", limit = 190) => {
+  const content = value.trim();
+  if (!content) return "";
+  if (content.length <= limit) return `${content}...`;
+  return `${content.slice(0, limit).trim()}...`;
+};
+
 export const formatBlogSlug = (value = "") =>
   value
     .toLowerCase()
@@ -16,11 +23,8 @@ export const formatBlogSlug = (value = "") =>
     .replace(/^-+|-+$/g, "");
 
 const buildSummary = (blog) => {
-  const seoDescription = blog?.seo?.description?.trim();
-  if (seoDescription) return seoDescription;
-
-  const fallbackDesc = stripHtmlTags(blog?.paragraph?.[0]?.para || "");
-  return fallbackDesc ? `${fallbackDesc.slice(0, 190)}...` : "";
+  const firstParagraph = stripHtmlTags(blog?.paragraph?.[0]?.para || "");
+  return truncateWithEllipsis(firstParagraph, 190);
 };
 
 export const blogData = [...blogDetailPage]
