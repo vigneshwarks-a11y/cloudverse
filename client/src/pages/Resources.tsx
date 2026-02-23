@@ -126,6 +126,11 @@ export default function Resources() {
               </div>
             ))}
           </div>
+          <div className="mt-10 text-center">
+            <Link href="/blog">
+              <Button variant="secondary" data-testid="button-view-all-blog">View all posts</Button>
+            </Link>
+          </div>
         </div>
       </section>
       {/* Guides Section */}
