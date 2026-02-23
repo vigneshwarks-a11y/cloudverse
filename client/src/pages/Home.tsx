@@ -131,6 +131,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Invoice Efficiency Score Section */}
+      <InvoiceEfficiencySection />
+
       {/* Customer Logos Section */}
       <section className="pt-6 sm:pt-8 lg:pt-10 pb-10 sm:pb-12 lg:pb-14 border-t border-cv-line dark:border-white/10 overflow-hidden">
         <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
@@ -424,9 +428,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Invoice Efficiency Score Section */}
-      <InvoiceEfficiencySection />
 
       {/* Security & Compliance Section */}
       <section className="py-10 sm:py-12 lg:py-14 border-t border-cv-line dark:border-white/10">
