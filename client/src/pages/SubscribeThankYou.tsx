@@ -4,7 +4,7 @@ import { Button } from "@/components/Button";
 
 export default function SubscribeThankYou() {
   useEffect(() => {
-    document.title = "Subscribed - CloudVerse™";
+    document.title = "Subscribed — CloudVerse™";
   }, []);
 
   return (

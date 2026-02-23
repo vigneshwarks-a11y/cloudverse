@@ -38,7 +38,7 @@ const pillarCards = [
   {
     icon: Sparkles,
     title: "AIX: AI Model Economics (LLMs)",
-    description: "Choose the right LLM for each prompt and workload. Match quality, latency, and token cost - so you don’t overpay at scale.",
+    description: "Choose the right LLM for each prompt and workload. Match quality, latency, and token cost—so you don’t overpay at scale.",
     outcome: "Lower blended AI $/token without quality regressions."
   },
   {
@@ -50,7 +50,7 @@ const pillarCards = [
   {
     icon: Receipt,
     title: "DataX: Data Workload Economics",
-    description: "Detect expensive query and pipeline patterns while they run. Enforce execution policies - gate, throttle, or stop runaway workloads.",
+    description: "Detect expensive query and pipeline patterns while they run. Enforce execution policies—gate, throttle, or stop runaway workloads.",
     outcome: "Prevent warehouse waste from compounding with AI usage."
   },
   {
@@ -77,7 +77,7 @@ export default function Home() {
   const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
-    document.title = "CloudVerse™ - AI Infrastructure Economics";
+    document.title = "CloudVerse™ — AI Infrastructure Economics";
   }, []);
 
   return (
@@ -96,7 +96,7 @@ export default function Home() {
                 Making AI infrastructure decisions economically intentional.
               </p>
               <p className="text-base sm:text-lg text-cv-muted pb-8 border-b border-cv-line leading-relaxed max-w-[40rem] mx-auto lg:mx-0">
-                CloudVerse embeds economic decision logic across model selection, workload behavior, and compute procurement - so technical execution and financial intent stay aligned.
+                CloudVerse embeds economic decision logic across model selection, workload behavior, and compute procurement — so technical execution and financial intent stay aligned.
               </p>
 
               {/* CTAs */}
@@ -249,7 +249,7 @@ export default function Home() {
               Modern AI stacks include models, data platforms, orchestration, and infrastructure. What they lack is embedded economic decision logic.
             </p>
             <p className="text-base sm:text-lg text-cv-ink/80 leading-relaxed">
-              CloudVerse operates as the economic decision layer - influencing model selection, evaluating deployments for economic impact, shaping live workload behavior, and structuring long-term capacity commitments.
+              CloudVerse operates as the economic decision layer — influencing model selection, evaluating deployments for economic impact, shaping live workload behavior, and structuring long-term capacity commitments.
             </p>
           </div>
 
@@ -269,7 +269,7 @@ export default function Home() {
             <div className="p-6 rounded-xl border border-cv-line bg-cv-surface2/50 dark:bg-white/[0.04]">
               <h3 className="text-lg font-semibold text-cv-ink mb-3">Commitment & Procurement Strategy</h3>
               <p className="text-sm text-cv-muted leading-relaxed mb-2">Commitments can be executed programmatically.</p>
-              <p className="text-sm text-cv-muted leading-relaxed">Procurement becomes systematic - not reactive.</p>
+              <p className="text-sm text-cv-muted leading-relaxed">Procurement becomes systematic — not reactive.</p>
             </div>
           </div>
         </div>
@@ -308,7 +308,7 @@ export default function Home() {
                     DevX
                   </h3>
                   <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
-                    Economic decision logic embedded in PRs, repos, and CI/CD pipelines - analyzing IaC and application code across 14+ languages.
+                    Economic decision logic embedded in PRs, repos, and CI/CD pipelines — analyzing IaC and application code across 14+ languages.
                   </p>
                   <span className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:gap-3 transition-all">
                     Visit devx.cloudverse.ai →
@@ -409,7 +409,7 @@ export default function Home() {
                 Built for Multi-Tenant Cloud Providers
               </h2>
               <p className="text-lg sm:text-xl text-cv-muted leading-relaxed">
-                CloudVerse supports hierarchical tenancy, sub-tenant isolation, and partner-level economic visibility - enabling resellers and distributors to manage compute exposure across customer portfolios.
+                CloudVerse supports hierarchical tenancy, sub-tenant isolation, and partner-level economic visibility — enabling resellers and distributors to manage compute exposure across customer portfolios.
               </p>
               <ul className="space-y-4">
                 {[

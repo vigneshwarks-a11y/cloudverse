@@ -10,7 +10,7 @@ export default function ResourcesGuideDetail() {
 
   useEffect(() => {
     if (guide) {
-      document.title = `${guide.title} - CloudVerse™`;
+      document.title = `${guide.title} — CloudVerse™`;
     }
   }, [guide]);
 

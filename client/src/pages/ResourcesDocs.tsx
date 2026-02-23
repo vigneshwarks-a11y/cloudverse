@@ -50,7 +50,7 @@ const docSections = [
 
 export default function ResourcesDocs() {
   useEffect(() => {
-    document.title = "Documentation - CloudVerse™";
+    document.title = "Documentation — CloudVerse™";
   }, []);
 
   return (

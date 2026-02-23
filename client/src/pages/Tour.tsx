@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 export default function Tour() {
   useEffect(() => {
-    document.title = "90-Second Tour - CloudVerse™";
+    document.title = "90-Second Tour — CloudVerse™";
   }, []);
 
   return (
