@@ -69,7 +69,6 @@ export default function Pricing() {
           </p>
         </div>
       </section>
-
       {/* Pricing Plans */}
       <section className="py-14 sm:py-16 lg:py-20 border-t border-cv-line">
         <div className="cv-container-full">
@@ -157,22 +156,22 @@ export default function Pricing() {
           <p className="text-[15px] leading-[24px] text-cv-muted mb-6 text-center">
             CloudVerse supports multi-account, multi-org, and multi-cloud environments. Pricing scales with usage and complexity, not arbitrary limits.
           </p>
-          <div className="space-y-3 flex flex-col items-center">
-            <div className="flex items-start gap-3 w-fit">
+          <div className="space-y-3 w-fit mx-auto">
+            <div className="flex items-start gap-3">
               <span className="text-primary font-semibold mt-1 flex-shrink-0">•</span>
-              <span className="text-sm text-cv-muted text-left">Multi-cloud and multi-platform support</span>
+              <span className="text-sm text-cv-muted">Multi-cloud and multi-platform support</span>
             </div>
-            <div className="flex items-start gap-3 w-fit">
+            <div className="flex items-start gap-3">
               <span className="text-primary font-semibold mt-1 flex-shrink-0">•</span>
-              <span className="text-sm text-cv-muted text-left">Large org hierarchies and shared services</span>
+              <span className="text-sm text-cv-muted">Large org hierarchies and shared services</span>
             </div>
-            <div className="flex items-start gap-3 w-fit">
+            <div className="flex items-start gap-3">
               <span className="text-primary font-semibold mt-1 flex-shrink-0">•</span>
-              <span className="text-sm text-cv-muted text-left">Safe automation with guardrails</span>
+              <span className="text-sm text-cv-muted">Safe automation with guardrails</span>
             </div>
-            <div className="flex items-start gap-3 w-fit">
+            <div className="flex items-start gap-3">
               <span className="text-primary font-semibold mt-1 flex-shrink-0">•</span>
-              <span className="text-sm text-cv-muted text-left">No impact on production workloads</span>
+              <span className="text-sm text-cv-muted">No impact on production workloads</span>
             </div>
           </div>
         </div>
@@ -184,22 +183,22 @@ export default function Pricing() {
           <p className="text-sm text-cv-muted mb-6 text-center">
             For complex environments, CloudVerse offers custom pricing and deployment options aligned to your architecture and governance needs.
           </p>
-          <div className="space-y-3 mb-8 flex flex-col items-center">
-            <div className="flex items-start gap-3 w-fit">
+          <div className="space-y-3 mb-8 w-fit mx-auto">
+            <div className="flex items-start gap-3">
               <span className="text-primary font-semibold mt-1 flex-shrink-0">•</span>
-              <span className="text-sm text-cv-muted text-left">Custom onboarding and data modeling</span>
+              <span className="text-sm text-cv-muted">Custom onboarding and data modeling</span>
             </div>
-            <div className="flex items-start gap-3 w-fit">
+            <div className="flex items-start gap-3">
               <span className="text-primary font-semibold mt-1 flex-shrink-0">•</span>
-              <span className="text-sm text-cv-muted text-left">Advanced automation workflows</span>
+              <span className="text-sm text-cv-muted">Advanced automation workflows</span>
             </div>
-            <div className="flex items-start gap-3 w-fit">
+            <div className="flex items-start gap-3">
               <span className="text-primary font-semibold mt-1 flex-shrink-0">•</span>
-              <span className="text-sm text-cv-muted text-left">Dedicated support options</span>
+              <span className="text-sm text-cv-muted">Dedicated support options</span>
             </div>
-            <div className="flex items-start gap-3 w-fit">
+            <div className="flex items-start gap-3">
               <span className="text-primary font-semibold mt-1 flex-shrink-0">•</span>
-              <span className="text-sm text-cv-muted text-left">Security and compliance reviews</span>
+              <span className="text-sm text-cv-muted">Security and compliance reviews</span>
             </div>
           </div>
           <div className="text-center">

@@ -1,27 +1,15 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/Button";
-import { X, Server, Calendar, DollarSign, FileStack, Lightbulb } from "lucide-react";
+import { X, Cpu, Code2, Database, Tag } from "lucide-react";
 import { DEMO_URL } from "@/lib/links";
 import { track } from "@/lib/track";
 
-interface TopService {
-  name: string;
-  spend: number;
-  percent: number;
-}
-
-interface TopRegion {
-  name: string;
-  spend: number;
-  percent: number;
-}
-
-interface TopLineItem {
-  displayName: string;
+export interface SavingsOpportunity {
   service: string;
-  quantity?: number;
-  unit?: string;
-  cost: number;
+  currentSpend: number;
+  estimatedSavingsPercent: number;
+  estimatedSavingsAmount: number;
+  action: string;
 }
 
 export interface AnalysisResult {
@@ -33,13 +21,14 @@ export interface AnalysisResult {
   providerDetected: string;
   lineItemCount: number;
   topAccountIdentifier?: string;
-  topServices: TopService[];
-  topRegions: TopRegion[];
-  topLineItems: TopLineItem[];
+  topServices: { name: string; spend: number; percent: number }[];
+  topRegions: { name: string; spend: number; percent: number }[];
+  topLineItems: { displayName: string; service: string; quantity?: number; unit?: string; cost: number }[];
   computeSpendPercent: number;
   onDemandPercent: number;
   optimizationPotentialMin: number;
   optimizationPotentialMax: number;
+  savingsOpportunities?: SavingsOpportunity[];
   insights: string[];
 }
 
@@ -50,46 +39,63 @@ interface EfficiencySnapshotModalProps {
   onUploadAnother: () => void;
 }
 
-function formatCurrency(amount: number, currency: string): string {
+const decisionPoints = [
+  { label: "Model Choice", icon: Cpu },
+  { label: "Engineering Change", icon: Code2 },
+  { label: "Query Execution", icon: Database },
+  { label: "Capacity Commitments", icon: Tag },
+];
+
+function fmt(n: number, currency: string): string {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency,
+    currency: currency || "USD",
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
-  }).format(amount);
+  }).format(n);
 }
 
-function formatDate(dateStr: string): string {
-  const date = new Date(dateStr);
-  return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-}
-
-export function EfficiencySnapshotModal({ 
-  open, 
-  onOpenChange, 
-  result, 
-  onUploadAnother 
+export function EfficiencySnapshotModal({
+  open,
+  onOpenChange,
+  result,
+  onUploadAnother,
 }: EfficiencySnapshotModalProps) {
   if (!result) return null;
 
+  const opportunities = result.savingsOpportunities || [];
+  const totalSavings = opportunities.reduce((s, o) => s + (o.estimatedSavingsAmount || 0), 0);
+
+  const dynamicKpis = [
+    { label: "Baseline Cost Shift", value: `${result.optimizationPotentialMin}–${result.optimizationPotentialMax}%`, subtext: "estimated savings potential" },
+    { label: "Avoided Compute Demand", value: `${Math.round(result.computeSpendPercent)}%`, subtext: "compute concentration detected" },
+    { label: "Blended Compute Rate", value: `${result.onDemandPercent}%`, subtext: "on-demand exposure" },
+    { label: "Volatility Control", value: `${result.score}/100`, subtext: "efficiency score" },
+  ];
+
   const handleBookDemo = () => {
-    track("cta_demo", { location: "efficiency_modal" });
+    track("cta_demo", { location: "economic_snapshot_modal" });
     window.open(DEMO_URL, "_blank");
   };
 
   const handleUploadAnother = () => {
-    onUploadAnother();
     onOpenChange(false);
+    onUploadAnother();
   };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-[960px] w-[95vw] max-h-[90vh] overflow-y-auto p-0 gap-0 bg-cv-surface dark:bg-cv-surface2 border-cv-line dark:border-white/10">
         <DialogHeader className="sticky top-0 z-10 flex flex-row items-center justify-between px-6 py-4 border-b border-cv-line dark:border-white/10 bg-cv-surface dark:bg-cv-surface2">
-          <DialogTitle className="text-lg font-semibold text-cv-ink">
-            Efficiency Snapshot
-          </DialogTitle>
-          <button 
+          <div>
+            <DialogTitle className="text-lg font-semibold text-cv-ink">
+              Economic Decision Snapshot
+            </DialogTitle>
+            <p className="text-xs text-cv-muted mt-0.5">
+              Baseline, demand avoidance, effective rate, and volatility — in one view.
+            </p>
+          </div>
+          <button
             onClick={() => onOpenChange(false)}
             className="p-1.5 rounded-lg hover:bg-cv-surface2 dark:hover:bg-white/5 transition-colors"
             aria-label="Close"
@@ -100,227 +106,130 @@ export function EfficiencySnapshotModal({
         </DialogHeader>
 
         <div className="p-6 space-y-6">
-          {/* Score Block */}
-          <div className="text-center py-6 bg-cv-surface2 dark:bg-white/5 rounded-2xl">
-            <div className="inline-flex items-baseline gap-1">
-              <span className="text-6xl sm:text-7xl font-bold text-cv-ink" data-testid="modal-score-value">
-                {result.score}
-              </span>
-              <span className="text-2xl sm:text-3xl text-cv-muted">/100</span>
-            </div>
-            <p className="text-sm text-cv-muted mt-2">Preliminary efficiency score</p>
-            
-            {/* Savings Range */}
-            {typeof result.optimizationPotentialMin === 'number' && typeof result.optimizationPotentialMax === 'number' && (
-              <div className="mt-4 pt-4 border-t border-cv-line dark:border-white/10">
-                <p className="text-sm text-cv-muted mb-1">Estimated savings potential</p>
-                <p className="text-lg font-semibold text-green-600 dark:text-green-400" data-testid="modal-savings-range">
-                  {result.optimizationPotentialMin}% – {result.optimizationPotentialMax}%
+          {/* Section A — KPI Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {dynamicKpis.map((kpi, idx) => (
+              <div
+                key={idx}
+                className="p-4 rounded-xl bg-cv-surface2/50 dark:bg-white/5 border border-cv-line dark:border-white/10 text-center"
+                data-testid={`kpi-tile-${idx}`}
+              >
+                <p className="text-2xl sm:text-3xl font-bold text-green-600 dark:text-green-400">
+                  {kpi.value}
                 </p>
+                <p className="text-xs font-semibold text-cv-ink mt-1">{kpi.label}</p>
+                <p className="text-[10px] text-cv-muted mt-0.5">{kpi.subtext}</p>
               </div>
-            )}
+            ))}
           </div>
 
-          {/* Invoice Snapshot */}
-          <div className="space-y-4">
+          {/* Section B — Decision Points Covered */}
+          <div className="space-y-3">
             <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-cv-muted">
-              Invoice Snapshot
+              Decision Points Covered
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {result.providerDetected && (
-                <SnapshotItem icon={Server} label="Provider" value={result.providerDetected} />
-              )}
-              {result.billingPeriodStart && result.billingPeriodEnd && (
-                <SnapshotItem 
-                  icon={Calendar} 
-                  label="Billing period" 
-                  value={`${formatDate(result.billingPeriodStart)} → ${formatDate(result.billingPeriodEnd)}`} 
-                />
-              )}
-              {result.totalSpend > 0 && (
-                <SnapshotItem 
-                  icon={DollarSign} 
-                  label="Total spend" 
-                  value={formatCurrency(result.totalSpend, result.currency)} 
-                  highlight 
-                />
-              )}
-              {result.lineItemCount > 0 && (
-                <SnapshotItem icon={FileStack} label="Line items parsed" value={result.lineItemCount.toLocaleString()} />
-              )}
+            <div className="flex flex-wrap gap-2">
+              {decisionPoints.map((dp, idx) => (
+                <span
+                  key={idx}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-sm font-medium text-blue-600 dark:text-blue-400"
+                >
+                  <dp.icon className="w-3.5 h-3.5" />
+                  {dp.label}
+                </span>
+              ))}
             </div>
-            {result.topAccountIdentifier && (
-              <p className="text-sm text-cv-muted">
-                Account: <span className="text-cv-ink font-medium">{result.topAccountIdentifier}</span>
-              </p>
-            )}
+            <p className="text-xs text-cv-muted">
+              CloudVerse applies economic intent where decisions are made — not after the invoice.
+            </p>
           </div>
 
-          {/* Top Spend Chips */}
-          {(result.topServices.length > 0 || result.topRegions.length > 0) && (
-            <div className="space-y-4">
+          {/* Section C — Economic Changes & Where It Happened */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="space-y-3">
               <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-cv-muted">
-                Top Spend
+                Economic Changes Detected
               </h3>
-              <div className="space-y-3">
-                {result.topServices.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    {result.topServices.map((svc) => (
-                      <span 
-                        key={svc.name} 
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-500/10 text-sm font-medium text-blue-600 dark:text-blue-400"
-                      >
-                        {svc.name}
-                        {typeof svc.percent === 'number' && !isNaN(svc.percent) && (
-                          <span className="text-cv-muted">{svc.percent.toFixed(1)}%</span>
-                        )}
-                      </span>
-                    ))}
-                  </div>
-                )}
-                {result.topRegions.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    {result.topRegions.slice(0, 3).map((reg) => (
-                      <span 
-                        key={reg.name} 
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-purple-500/10 text-sm font-medium text-purple-600 dark:text-purple-400"
-                      >
-                        {reg.name}
-                        {typeof reg.percent === 'number' && !isNaN(reg.percent) && (
-                          <span className="text-cv-muted">{reg.percent.toFixed(1)}%</span>
-                        )}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-
-          {/* Top Line Items */}
-          {result.topLineItems.length > 0 && (
-            <div className="space-y-4">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-cv-muted">
-                Top Line Items Detected
-              </h3>
-              {/* Desktop Table */}
-              <div className="hidden sm:block overflow-x-auto rounded-xl border border-cv-line dark:border-white/10">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="bg-cv-surface2 dark:bg-white/5 text-cv-muted border-b border-cv-line dark:border-white/10">
-                      <th className="text-left px-4 py-3 font-medium">Resource / Meter</th>
-                      <th className="text-left px-4 py-3 font-medium">Service</th>
-                      <th className="text-right px-4 py-3 font-medium">Qty</th>
-                      <th className="text-right px-4 py-3 font-medium">Cost</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {result.topLineItems.map((item, idx) => (
-                      <tr 
-                        key={idx} 
-                        className="border-b border-cv-line/50 dark:border-white/5 last:border-0 hover:bg-cv-surface2/50 dark:hover:bg-white/5"
-                      >
-                        <td className="px-4 py-3 text-cv-ink font-mono text-xs">{item.displayName}</td>
-                        <td className="px-4 py-3 text-cv-muted">{item.service}</td>
-                        <td className="px-4 py-3 text-right text-cv-muted">
-                          {item.quantity && item.unit ? `${item.quantity.toLocaleString()} ${item.unit}` : "—"}
-                        </td>
-                        <td className="px-4 py-3 text-right text-cv-ink font-medium">
-                          {formatCurrency(item.cost, result.currency)}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              {/* Mobile Cards */}
-              <div className="sm:hidden space-y-3">
-                {result.topLineItems.slice(0, 5).map((item, idx) => (
-                  <div 
-                    key={idx} 
-                    className="p-4 rounded-xl border border-cv-line dark:border-white/10 bg-cv-surface2/50 dark:bg-white/5"
-                  >
-                    <div className="flex justify-between items-start mb-2">
-                      <p className="text-sm text-cv-ink font-mono truncate flex-1 mr-3">{item.displayName}</p>
-                      <span className="text-sm text-cv-ink font-semibold flex-shrink-0">
-                        {formatCurrency(item.cost, result.currency)}
-                      </span>
-                    </div>
-                    <p className="text-xs text-cv-muted">
-                      {item.service}
-                      {item.quantity && item.unit && ` • ${item.quantity.toLocaleString()} ${item.unit}`}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Insights */}
-          {result.insights && result.insights.length > 0 && (
-            <div className="space-y-4">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-cv-muted flex items-center gap-2">
-                <Lightbulb className="w-4 h-4" />
-                Insights
-              </h3>
-              <ul className="space-y-2">
-                {result.insights.map((insight, idx) => (
-                  <li 
-                    key={idx} 
-                    className="flex items-start gap-3 text-sm text-cv-ink"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 flex-shrink-0" />
-                    {insight}
+              <ul className="space-y-3">
+                {result.insights.length > 0 ? result.insights.map((insight, idx) => (
+                  <li key={idx} className="flex items-start gap-3 text-sm">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5 flex-shrink-0" />
+                    <span className="text-cv-ink leading-tight">{insight}</span>
+                  </li>
+                )) : opportunities.map((opp, idx) => (
+                  <li key={idx} className="flex items-start gap-3 text-sm">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5 flex-shrink-0" />
+                    <span className="text-cv-ink leading-tight">{opp.action}</span>
                   </li>
                 ))}
               </ul>
             </div>
-          )}
+            <div className="space-y-3">
+              <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-cv-muted">
+                Where You Can Save
+              </h3>
+              <ul className="space-y-3">
+                {opportunities.length > 0 ? opportunities.map((opp, idx) => (
+                  <li key={idx} className="flex items-start gap-3 text-sm">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />
+                    <div>
+                      <span className="text-cv-ink">{opp.service}</span>
+                      <span className="ml-2 font-semibold text-green-600 dark:text-green-400">
+                        ~{fmt(opp.estimatedSavingsAmount, result.currency)} ({opp.estimatedSavingsPercent}%)
+                      </span>
+                      <span className="block text-xs text-cv-muted mt-0.5">{opp.action}</span>
+                    </div>
+                  </li>
+                )) : result.topServices.map((svc, idx) => (
+                  <li key={idx} className="flex items-start gap-3 text-sm">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />
+                    <div>
+                      <span className="text-cv-ink">{svc.name}</span>
+                      <span className="block text-xs text-cv-muted mt-0.5">
+                        {fmt(svc.spend, result.currency)} — {(svc.percent || 0).toFixed(1)}% of total
+                      </span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              {totalSavings > 0 && (
+                <div className="pt-2 border-t border-cv-line dark:border-white/10">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="font-semibold text-cv-ink">Total estimated savings</span>
+                    <span className="font-bold text-green-600 dark:text-green-400">{fmt(totalSavings, result.currency)}/mo</span>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
 
         {/* Footer Actions */}
-        <div className="sticky bottom-0 flex flex-col sm:flex-row gap-3 p-6 border-t border-cv-line dark:border-white/10 bg-cv-surface dark:bg-cv-surface2">
-          <Button 
-            onClick={handleBookDemo} 
-            className="flex-1"
-            data-testid="button-modal-book-demo"
-          >
-            Book a demo
-          </Button>
-          <Button 
-            variant="secondary" 
-            onClick={handleUploadAnother} 
-            className="flex-1"
-            data-testid="button-modal-upload-another"
-          >
-            Upload another
-          </Button>
+        <div className="sticky bottom-0 flex flex-col gap-3 p-6 border-t border-cv-line dark:border-white/10 bg-cv-surface dark:bg-cv-surface2">
+          <p className="text-[10px] text-cv-muted text-center">
+            {result.providerDetected !== "Other" && result.providerDetected !== "Unknown"
+              ? `Analysis of ${result.providerDetected} environment. Estimates are directional — connect your environment for precise figures.`
+              : "Estimates are directional — connect your environment for precise figures."}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Button
+              onClick={handleBookDemo}
+              className="flex-1"
+              data-testid="button-modal-book-demo"
+            >
+              Book a demo
+            </Button>
+            <Button
+              variant="secondary"
+              onClick={handleUploadAnother}
+              className="flex-1"
+              data-testid="button-modal-upload-another"
+            >
+              Run another snapshot
+            </Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
-  );
-}
-
-function SnapshotItem({ 
-  icon: Icon, 
-  label, 
-  value, 
-  highlight 
-}: { 
-  icon: React.ElementType; 
-  label: string; 
-  value: string; 
-  highlight?: boolean;
-}) {
-  return (
-    <div className="flex items-start gap-3 p-3 rounded-xl bg-cv-surface2/50 dark:bg-white/5">
-      <Icon className="w-5 h-5 text-cv-muted flex-shrink-0 mt-0.5" />
-      <div className="min-w-0">
-        <p className="text-xs text-cv-muted uppercase tracking-wide mb-0.5">{label}</p>
-        <p className={`text-sm font-medium truncate ${highlight ? "text-green-600 dark:text-green-400" : "text-cv-ink"}`}>
-          {value}
-        </p>
-      </div>
-    </div>
   );
 }

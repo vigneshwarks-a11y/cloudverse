@@ -1,0 +1,83 @@
+We are updating the integrations pages for AIX, DevX, and DataX.
+
+DO NOT change theme, spacing, logos, icon styling, layout system, or design tokens.
+Maintain existing dark enterprise aesthetic.
+
+This is a content + section title refinement only.
+
+--------------------------------------------------
+AIX INTEGRATIONS PAGE UPDATE
+--------------------------------------------------
+
+Replace section title:
+"Works with your entire AI stack"
+
+With:
+"Where AI Model Economics Is Applied"
+
+Replace description text with:
+
+CloudVerse AIX connects to public, private, and GPU-native LLM ecosystems to ensure every inference reflects economic intent — without compromising performance requirements.
+
+Add integration grouping labels (small caps / muted style above each grid):
+
+- Cloud & Hyperscalers
+- Model Providers
+- GPU & Inference Infrastructure
+- Private Deployment
+
+Do NOT mention routing, arbitration, switching, or traffic steering.
+
+--------------------------------------------------
+DEVX INTEGRATIONS PAGE UPDATE
+--------------------------------------------------
+
+Replace section title:
+"Integrations That Power DevX"
+
+With:
+"Where Engineering Economics Is Applied"
+
+Replace description text with:
+
+DevX embeds economic evaluation into repositories, pipelines, and application code — ensuring infrastructure and software decisions reflect cost impact before deployment.
+
+Update integration grouping labels to:
+
+- Repositories
+- CI / CD Systems
+- Observability & Runtime Context
+- AI Coding Environments
+
+Do NOT use the words:
+block, static analysis, prevent, gate.
+
+--------------------------------------------------
+DATAX INTEGRATIONS PAGE UPDATE
+--------------------------------------------------
+
+Replace section title:
+"Supported Platforms"
+
+With:
+"Where Data Execution Economics Is Enforced"
+
+Replace description text with:
+
+DataX connects to modern warehouses and lakehouse platforms to ensure live data execution remains aligned with defined cost-performance expectations.
+
+Group integrations under:
+
+- Cloud Data Warehouses
+- Lakehouse & Spark Platforms
+- Cloud Infrastructure
+
+--------------------------------------------------
+
+Add the following closing statement to all three pages (small centered text below grid):
+
+"CloudVerse operates as an embedded economic decision layer — enhancing your existing stack without requiring architectural replacement."
+
+Do not alter layout grid structure.
+Do not change component hierarchy.
+Only update headings and descriptions.

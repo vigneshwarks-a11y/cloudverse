@@ -1,0 +1,69 @@
+You are working in the CloudVerse Website repo.
+
+GOAL:
+1) Update the Hero right-side "Outcomes" card copy to the new 4 metrics.
+2) Redesign the "Economic Decision Layer" diagram so it renders cleanly and looks like an architecture layer (not buttons).
+
+STRICT RULES:
+- Keep existing theme, spacing system, typography, colors, glow style, and overall layout.
+- Do NOT change navbar/footer or global styles.
+- Do NOT introduce new pages.
+- Do NOT use these words anywhere in the updated copy: routing, blocking, gate, gating, throttle, stop.
+- Keep changes minimal and localized.
+
+PART A — HERO OUTCOMES CARD COPY
+Find the hero right-side card (the one titled like "CloudVerse Outcomes" or similar).
+Replace the list items with exactly:
+
+Title: "CloudVerse™ Outcomes"
+Subtitle (muted small): "Economic impact, measured"
+
+Bullets:
+1. "Baseline Cost Shift" — "Permanent reduction in steady-state compute spend."
+2. "Avoided Compute Demand" — "Savings captured before code, models, or queries scale."
+3. "Blended Compute Rate" — "Lower effective unit cost through smarter commitments."
+4. "Volatility Control" — "Fewer surprise spikes from runaway usage and anomalies."
+
+PART B — REPLACE THE DIAGRAM
+Locate the section component under:
+"The Economic Decision Layer for AI Infrastructure"
+The current diagram uses stacked pill/accordion buttons. Replace ONLY the diagram JSX with a new component that renders a 3-tier architecture stack.
+
+NEW DIAGRAM STRUCTURE (Tailwind, responsive):
+- Container: max-w-3xl centered, with consistent padding/margins.
+- Three stacked cards with equal width:
+  1) Top card label: "Applications & AI Systems"
+     Subtext (muted): "Product features, agents, and services"
+  2) Middle highlighted band (most prominent):
+     Eyebrow (tiny uppercase): "ECONOMIC DECISION LAYER"
+     Title: "CloudVerse"
+     Subtext (muted): "Decision logic embedded at execution points"
+     Styling: accent-blue border + soft blue glow + slightly brighter background
+  3) Bottom card label: "Cloud Infrastructure & Capacity"
+     Subtext (muted): "Cloud, data platforms, and GPU/CPU capacity"
+
+- Under the middle band, add 4 chips/badges (wrap on mobile):
+  "Model Choice"
+  "Engineering Change"
+  "Query Execution"
+  "Capacity Commitments"
+
+- Add a single muted caption under the entire diagram:
+  "Economic intent is applied at the decision point — not after the invoice."
+
+VISUAL DETAILS:
+- Use the existing card style: rounded-2xl, subtle border, dark gradient, soft shadow.
+- The highlighted middle layer must be visually distinct but consistent with the current blue accent.
+- Ensure no overlap at 1440px and mobile widths.
+- Keep text centered and clean.
+
+ACCEPTANCE:
+- Diagram looks like architecture (3 layers) and renders perfectly on mobile/desktop.
+- No pill buttons remain.
+- No forbidden words appear.
+- Hero card shows the new outcomes.
+
+Run:
+npm run dev
+
+Return the code changes (diff or updated component files).

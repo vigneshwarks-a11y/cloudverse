@@ -1,6 +1,4 @@
 import OpenAI from "openai";
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import Anthropic from "@anthropic-ai/sdk";
 
 export interface TopService {
   name: string;
@@ -22,6 +20,14 @@ export interface TopLineItem {
   cost: number;
 }
 
+export interface SavingsOpportunity {
+  service: string;
+  currentSpend: number;
+  estimatedSavingsPercent: number;
+  estimatedSavingsAmount: number;
+  action: string;
+}
+
 export interface InvoiceAnalysisResult {
   score: number;
   currency: string;
@@ -38,167 +44,27 @@ export interface InvoiceAnalysisResult {
   onDemandPercent: number;
   optimizationPotentialMin: number;
   optimizationPotentialMax: number;
+  savingsOpportunities: SavingsOpportunity[];
   insights: string[];
 }
 
-// function getOpenAIClient(): { client: OpenAI; model: string } {
-//   // Check for Replit AI integrations first (available in Replit environment)
-//   if (process.env.AI_INTEGRATIONS_OPENAI_BASE_URL && process.env.AI_INTEGRATIONS_OPENAI_API_KEY) {
-//     return {
-//       client: new OpenAI({
-//         apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY,
-//         baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
-//       }),
-//       model: "gpt-4o-mini",
-//     };
-//   }
-
-//   // Fallback to standard OpenAI API key (works in any environment including production)
-//   if (process.env.OPENAI_API_KEY) {
-//     return {
-//       client: new OpenAI({ apiKey: process.env.OPENAI_API_KEY }),
-//       model: "gpt-4o-mini",
-//     };
-//   }
-
-//   throw new Error("OpenAI API key not configured. Please set OPENAI_API_KEY environment variable.");
-// }
-
-function getGeminiClient(): { model: any } {
-  if (!process.env.GEMINI_API_KEY) {
-    throw new Error("GEMINI_API_KEY not configured");
+function getOpenAIClient(): OpenAI {
+  if (process.env.OPENAI_API_KEY) {
+    return new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
   }
-
-  const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-  const modelName = process.env.GEMINI_MODEL || "gemini-2.5-flash";
-
-  return {
-    model: genAI.getGenerativeModel({
-      model: modelName,
-      generationConfig: {
-        temperature: 0.2,
-        responseMimeType: "application/json",
-      },
-    }),
-  };
+  throw new Error("OpenAI API key not configured. Please set OPENAI_API_KEY.");
 }
-
-function getClaudeClient(): { client: Anthropic; model: string } {
-  if (!process.env.ANTHROPIC_API_KEY) {
-    throw new Error("ANTHROPIC_API_KEY not configured");
-  }
-
-  const client = new Anthropic({
-    apiKey: process.env.ANTHROPIC_API_KEY,
-  });
-
-  return {
-    client,
-    model: process.env.CLAUDE_MODEL || "claude-sonnet-4-20250514",
-  };
-}
-
-
-
-
-// export async function parseInvoice(fileContent: string, fileName: string): Promise<InvoiceAnalysisResult> {
-//   const prompt = `You are an expert cloud invoice analyzer. Analyze the following cloud invoice data and extract key information.
-
-// File name: ${fileName}
-
-// Invoice content:
-// ${fileContent.substring(0, 50000)}
-
-// Extract and return a JSON object with the following structure:
-// {
-//   "score": <efficiency score 0-100 based on waste signals, commitment coverage, etc>,
-//   "currency": "<3-letter currency code like USD, EUR>",
-//   "totalSpend": <total spend as number>,
-//   "billingPeriodStart": "<YYYY-MM-DD>",
-//   "billingPeriodEnd": "<YYYY-MM-DD>",
-//   "providerDetected": "<AWS|Azure|GCP|Alibaba|Oracle|Other>",
-//   "lineItemCount": <number of line items>,
-//   "topAccountIdentifier": "<account ID, subscription, or project name if found>",
-//   "topServices": [{"name": "<service>", "spend": <amount>, "percent": <percent of total>}], // top 3
-//   "topRegions": [{"name": "<region>", "spend": <amount>, "percent": <percent of total>}], // top 3
-//   "topLineItems": [{"displayName": "<resource/meter name>", "service": "<service>", "quantity": <number if available>, "unit": "<unit if available>", "cost": <cost>}], // top 5 by cost
-//   "computeSpendPercent": <percent of total spend on compute>,
-//   "onDemandPercent": <estimated percent that is on-demand vs reserved/committed>,
-//   "optimizationPotentialMin": <conservative savings estimate percent>,
-//   "optimizationPotentialMax": <optimistic savings estimate percent>,
-//   "insights": ["<insight 1>", "<insight 2>", ...] // 3-5 key insights referencing specific data from the invoice
-// }
-
-// Analysis guidelines:
-// - Detect the cloud provider from invoice format, SKU names, or metadata
-// - Calculate efficiency score: 90+ excellent, 70-89 good, 50-69 needs improvement, <50 poor
-// - Look for waste signals: idle resources, oversized instances, missing reservations
-// - Estimate on-demand percentage from usage types and pricing
-// - Be conservative with optimization estimates (5-15% min, 15-35% max typically)
-// - If data is missing, make reasonable estimates based on typical patterns
-// - Generate 3-5 specific insights referencing actual data (e.g., "EC2 accounts for 41% of total spend")
-
-// Return ONLY valid JSON, no markdown or explanation.`;
-
-//   try {
-
-//    const { client, model } = getOpenAIClient();
-
-//     const response = await client.chat.completions.create({
-//       model,
-//       messages: [{ role: "user", content: prompt }],
-//       response_format: { type: "json_object" },
-//       max_tokens: 2048,
-//     });
-
-//     const content = response.choices[0]?.message?.content;
-//     if (!content) {
-//       throw new Error("No response from AI");
-//     }
-
-//     const result = JSON.parse(content) as InvoiceAnalysisResult;
-
-
-//     // Explicitly validate that we are not using fallback data if we have a real response
-//     return {
-//       score: Math.max(0, Math.min(100, Math.round(result.score))),
-//       currency: result.currency || "USD",
-//       totalSpend: result.totalSpend || 0,
-//       billingPeriodStart: result.billingPeriodStart || new Date().toISOString().split("T")[0],
-//       billingPeriodEnd: result.billingPeriodEnd || new Date().toISOString().split("T")[0],
-//       providerDetected: result.providerDetected || "Unknown",
-//       lineItemCount: result.lineItemCount || 0,
-//       topAccountIdentifier: result.topAccountIdentifier,
-//       topServices: (result.topServices || []).slice(0, 3),
-//       topRegions: (result.topRegions || []).slice(0, 3),
-//       topLineItems: (result.topLineItems || []).slice(0, 5),
-//       computeSpendPercent: result.computeSpendPercent || 0,
-//       onDemandPercent: result.onDemandPercent || 0,
-//       optimizationPotentialMin: result.optimizationPotentialMin || 0,
-//       optimizationPotentialMax: result.optimizationPotentialMax || 0,
-//       insights: (result.insights || []).slice(0, 5),
-//     };
-//   } catch (error) {
-//     console.error("Invoice parsing error:", error);
-//     throw new Error("Failed to parse invoice: " + (error instanceof Error ? error.message : "Unknown error"));
-//   }
-// }
-
 
 function extractJson(text: string): string {
-  // Remove ```json ... ``` or ``` ... ```
   const fenced = text.match(/```(?:json)?\s*([\s\S]*?)\s*```/i);
   if (fenced?.[1]) {
     return fenced[1];
   }
-
-  // Fallback: attempt to find first { ... }
   const firstBrace = text.indexOf("{");
   const lastBrace = text.lastIndexOf("}");
   if (firstBrace !== -1 && lastBrace !== -1) {
     return text.slice(firstBrace, lastBrace + 1);
   }
-
   return text;
 }
 
@@ -208,112 +74,99 @@ export async function parseInvoice(
   fileName: string
 ): Promise<InvoiceAnalysisResult> {
   const prompt = `
-You are an expert cloud invoice analyzer. Analyze the following cloud invoice data and extract key information accurately.
+You are an expert cloud infrastructure economics advisor. Your job is NOT to read back the invoice — it is to analyze spending patterns and identify WHERE and HOW the customer can save money.
 
 File name: ${fileName}
 
 Invoice content:
 ${fileContent.substring(0, 50000)}
 
-IMPORTANT EXTRACTION & DERIVATION RULES:
-•⁠  ⁠Extract all cost-bearing line items first
-•⁠  ⁠topServices MUST be derived by aggregating costs from topLineItems grouped by service
-•⁠  ⁠topRegions MUST be derived by aggregating costs from topLineItems grouped by region
-•⁠  ⁠If a region is not explicitly mentioned, use "Unknown"
-•⁠  ⁠Quantity and unit SHOULD be extracted from usage text such as:
-  - "720 Hours"
-  - "1,200 GB-Month"
-  - "210 GB"
-•⁠  ⁠If usage text exists, do NOT leave quantity or unit empty
-•⁠  ⁠Do not leave topServices, topRegions, or topLineItems empty if any costs are present
+YOUR PRIMARY TASK:
+1. Extract the invoice metadata (provider, total spend, billing period, currency)
+2. Identify the top services by spend
+3. For EACH top service, estimate a specific savings opportunity with:
+   - What percentage can be saved on that service
+   - The estimated dollar amount that can be saved
+   - A specific, actionable recommendation (e.g., "Right-size underutilized EC2 instances", "Switch to Graviton instances", "Use Reserved Instances for steady-state RDS workloads", "Enable S3 Intelligent Tiering")
+4. Generate 3-5 actionable insights that are RECOMMENDATIONS, not summaries. Each insight should tell the customer what to DO, not what they spent.
 
-DATA RULES:
-•⁠  ⁠Currency must be a 3-letter ISO code (USD, EUR, INR, etc.)
-•⁠  ⁠Percent fields must be numbers between 0–100
-•⁠  ⁠Percentages are relative to totalSpend
-•⁠  ⁠Percent values may be approximate but must be reasonable
-•⁠  ⁠Round monetary values to 2 decimal places
+BAD insight examples (do NOT write these):
+- "EC2 accounts for 24% of total spend"
+- "Total spend for billing period is $4,771"
 
-PROVIDER DETECTION:
-•⁠  ⁠Detect provider ONLY if explicit indicators exist
-  (e.g., "Amazon Web Services", "EC2", "Azure Subscription", "GCP Project")
-•⁠  ⁠If unclear, set providerDetected to "Other"
+GOOD insight examples (write these):
+- "EC2 instances appear to be on-demand — switching to 1-year Reserved Instances could save ~30% on compute"
+- "Load balancer spend is high relative to compute — consider consolidating to fewer ALBs"
+- "CloudWatch costs suggest verbose logging — review log retention policies to cut monitoring spend by ~40%"
 
-EFFICIENCY SCORE (0–100):
-Estimate based on:
-•⁠  ⁠High on-demand compute usage → lower score
-•⁠  ⁠High compute concentration → lower score
-•⁠  ⁠Presence of optimization opportunities → lower score
-•⁠  ⁠Reserved/committed usage → higher score
-Use informed judgment, not random values.
+SAVINGS OPPORTUNITIES:
+For each top service, provide a savingsOpportunity with:
+- service: the service name
+- currentSpend: current spend amount
+- estimatedSavingsPercent: realistic savings percentage (be conservative, 10-40% range typically)
+- estimatedSavingsAmount: currentSpend * estimatedSavingsPercent / 100
+- action: one specific sentence describing what to do
 
-If a value truly cannot be determined:
-•⁠  ⁠Use null for strings
-•⁠  ⁠Use 0 for numbers
-•⁠  ⁠Use [] for arrays
+EXTRACTION RULES:
+- Currency must be a 3-letter ISO code (USD, EUR, SGD, etc.)
+- topServices: aggregate costs grouped by service, include name, spend, percent
+- Percent fields must be numbers between 0-100 relative to totalSpend
+- Round monetary values to 2 decimal places
 
-Extract and return ONLY the following JSON structure:
+EFFICIENCY SCORE (0-100):
+- 90+: excellent commitment coverage, right-sized resources
+- 70-89: good but room for optimization
+- 50-69: significant savings available
+- <50: urgent optimization needed
+
+Return ONLY the following JSON structure:
 {
   "score": 0,
-  "currency": null,
+  "currency": "USD",
   "totalSpend": 0,
-  "billingPeriodStart": null,
-  "billingPeriodEnd": null,
+  "billingPeriodStart": "YYYY-MM-DD",
+  "billingPeriodEnd": "YYYY-MM-DD",
   "providerDetected": "Other",
   "lineItemCount": 0,
   "topAccountIdentifier": null,
-  "topServices": [],
-  "topRegions": [],
-  "topLineItems": [{
-    "displayName": null,
-    "service": null,
-    "quantity": 0,
-    "unit": null,
-    "cost": 0
-  }],
+  "topServices": [{"name": "", "spend": 0, "percent": 0}],
+  "topRegions": [{"name": "", "spend": 0, "percent": 0}],
+  "topLineItems": [{"displayName": "", "service": "", "quantity": 0, "unit": "", "cost": 0}],
   "computeSpendPercent": 0,
   "onDemandPercent": 0,
   "optimizationPotentialMin": 0,
   "optimizationPotentialMax": 0,
+  "savingsOpportunities": [
+    {"service": "", "currentSpend": 0, "estimatedSavingsPercent": 0, "estimatedSavingsAmount": 0, "action": ""}
+  ],
   "insights": []
 }
 
-Return ONLY valid JSON.
-Do not wrap the response in markdown.
-Do not add explanations or extra text.
+Return ONLY valid JSON. No markdown wrapping. No explanations.
 `;
 
   try {
-    // const { model } = getGeminiClient();
+    const client = getOpenAIClient();
 
-    // const result = await model.generateContent(prompt);
-    // const text = result.response.text();
-
-    const { client, model } = getClaudeClient();
-
-    const response = await client.messages.create({
-      model,
-      max_tokens: 2048,
-      temperature: 0.2,
-      messages: [
-        {
-          role: "user",
-          content: prompt,
-        },
-      ],
+    const response = await client.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [{ role: "user", content: prompt }],
+      response_format: { type: "json_object" },
+      max_tokens: 4096,
+      temperature: 0,
     });
 
-    const text = response.content.find(c => c.type === "text")?.text;
+    const text = response.choices[0]?.message?.content;
 
     if (!text) {
-      throw new Error("No response from Gemini");
+      throw new Error("No response from AI");
     }
 
     const cleaned = extractJson(text);
-    const parsed = JSON.parse(cleaned) as InvoiceAnalysisResult;
+    const parsed = JSON.parse(cleaned) as any;
 
     return {
-      score: Math.max(0, Math.min(100, Math.round(parsed.score))),
+      score: Math.max(0, Math.min(100, Math.round(parsed.score || 0))),
       currency: parsed.currency || "USD",
       totalSpend: parsed.totalSpend || 0,
       billingPeriodStart:
@@ -325,17 +178,34 @@ Do not add explanations or extra text.
       providerDetected: parsed.providerDetected || "Unknown",
       lineItemCount: parsed.lineItemCount || 0,
       topAccountIdentifier: parsed.topAccountIdentifier,
-      topServices: (parsed.topServices || []).slice(0, 3),
-      topRegions: (parsed.topRegions || []).slice(0, 3),
+      topServices: (parsed.topServices || []).slice(0, 5).map((s: any) => {
+        const totalSpend = parsed.totalSpend || 1;
+        const spend = s.spend ?? s.cost ?? 0;
+        const percent = s.percent ?? (totalSpend > 0 ? (spend / totalSpend) * 100 : 0);
+        return { name: s.name || s.service || "Unknown", spend, percent };
+      }),
+      topRegions: (parsed.topRegions || []).slice(0, 3).map((r: any) => {
+        const totalSpend = parsed.totalSpend || 1;
+        const spend = r.spend ?? r.cost ?? 0;
+        const percent = r.percent ?? (totalSpend > 0 ? (spend / totalSpend) * 100 : 0);
+        return { name: r.name || r.region || "Unknown", spend, percent };
+      }),
       topLineItems: (parsed.topLineItems || []).slice(0, 5),
       computeSpendPercent: parsed.computeSpendPercent || 0,
       onDemandPercent: parsed.onDemandPercent || 0,
       optimizationPotentialMin: parsed.optimizationPotentialMin || 0,
       optimizationPotentialMax: parsed.optimizationPotentialMax || 0,
+      savingsOpportunities: (parsed.savingsOpportunities || []).slice(0, 5).map((o: any) => ({
+        service: o.service || "Unknown",
+        currentSpend: o.currentSpend || 0,
+        estimatedSavingsPercent: o.estimatedSavingsPercent || 0,
+        estimatedSavingsAmount: o.estimatedSavingsAmount || 0,
+        action: o.action || "",
+      })),
       insights: (parsed.insights || []).slice(0, 5),
     };
   } catch (error) {
-    console.error("Gemini invoice parsing error:", error);
+    console.error("Invoice parsing error:", error);
     throw new Error(
       "Failed to parse invoice: " +
       (error instanceof Error ? error.message : "Unknown error")
