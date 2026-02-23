@@ -7,7 +7,7 @@ const docSections = [
   {
     title: "Getting started",
     items: [
-      { title: "Documentation Overview", description: "Start here for a complete guide to CloudVerse documentation.", slug: "overview" },
+      { title: "Documentation Overview", description: "Start here for a complete guide to CloudVerse™ documentation.", slug: "overview" },
       { title: "Quick Start Guide", description: "Connect your first data source in under 30 minutes.", slug: "quick-start" },
     ]
   },
@@ -50,7 +50,7 @@ const docSections = [
 
 export default function ResourcesDocs() {
   useEffect(() => {
-    document.title = "Documentation — CloudVerse";
+    document.title = "Documentation — CloudVerse™";
   }, []);
 
   return (

@@ -130,7 +130,7 @@ export default function Security() {
         <div className="cv-container max-w-[800px] text-center">
           <h2 className="cv-h2 mb-4">Compliance alignment</h2>
           <p className="text-sm text-cv-muted mb-6">
-            CloudVerse is built to support common enterprise security reviews and compliance requirements.
+            CloudVerse™ is built to support common enterprise security reviews and compliance requirements.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             {["ISO 27001", "SOC 2 Type II", "GDPR Ready", "HIPAA Compatible"].map((cert) => (

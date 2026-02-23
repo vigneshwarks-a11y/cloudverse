@@ -57,7 +57,7 @@ export const blogPosts: BlogPost[] = [
   {
     title: "Multi-Tenant Cloud Economics for Resellers and Distributors",
     slug: "multi-tenant-cloud-economics",
-    summary: "Managing compute exposure across customer portfolios requires hierarchical visibility and tenant-level isolation. Here's how CloudVerse enables it.",
+    summary: "Managing compute exposure across customer portfolios requires hierarchical visibility and tenant-level isolation. Here's how CloudVerse™ enables it.",
     category: "Multi-Tenant",
     readingTime: "6 min",
     date: "2026-01-05",

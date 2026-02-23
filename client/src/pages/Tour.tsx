@@ -15,7 +15,7 @@ export default function Tour() {
               90-Second Tour
             </h1>
             <p className="text-xl text-cv-muted mb-12">
-              See CloudVerse in action.
+              See CloudVerse™ in action.
             </p>
 
             {/* Video Placeholder */}
@@ -23,7 +23,7 @@ export default function Tour() {
               <div className="text-center">
                 <p className="text-cv-muted mb-4">Video coming soon</p>
                 <p className="text-sm text-cv-muted">
-                  Check back later for a full walkthrough of CloudVerse features.
+                  Check back later for a full walkthrough of CloudVerse™ features.
                 </p>
               </div>
             </div>

@@ -16,7 +16,7 @@ interface FinalCTAProps {
 const SHOULD_CALL_SUBSCRIBE_API = false;
 
 export function FinalCTA({ 
-  title = "Stay updated with CloudVerse", 
+  title = "Stay updated with CloudVerse™", 
   description = "Get the latest guides, best practices, and infrastructure economics insights delivered to your inbox.",
   location
 }: FinalCTAProps) {

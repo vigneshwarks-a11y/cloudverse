@@ -140,7 +140,7 @@ export function EfficiencySnapshotModal({
               ))}
             </div>
             <p className="text-xs text-cv-muted">
-              CloudVerse applies economic intent where decisions are made — not after the invoice.
+              CloudVerse™ applies economic intent where decisions are made — not after the invoice.
             </p>
           </div>
 

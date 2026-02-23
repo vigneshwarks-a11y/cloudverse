@@ -288,7 +288,7 @@ export default function Compare() {
                 Ready to optimize your cloud spend?
               </h2>
               <p className="text-lg text-cv-muted mb-8">
-                CloudVerse can help you identify and implement cost optimization strategies
+                CloudVerse™ can help you identify and implement cost optimization strategies
                 specific to your organization.
               </p>
               <Link

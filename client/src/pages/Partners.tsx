@@ -26,7 +26,7 @@ const partnerTypeContent: Record<PartnerType, {
 }> = {
   msp: {
     bestFor: "Managed service providers delivering ongoing cloud operations",
-    motion: "Embed CloudVerse into managed FinOps and optimization offerings",
+    motion: "Embed CloudVerse™ into managed FinOps and optimization offerings",
     delivers: [
       "Multi-tenant portfolio visibility",
       "Recurring optimization services",
@@ -35,7 +35,7 @@ const partnerTypeContent: Record<PartnerType, {
   },
   gsi: {
     bestFor: "Global systems integrators with enterprise transformation practices",
-    motion: "Lead with CloudVerse in cloud modernization and FinOps programs",
+    motion: "Lead with CloudVerse™ in cloud modernization and FinOps programs",
     delivers: [
       "Enterprise implementation services",
       "Change management and governance",
@@ -44,7 +44,7 @@ const partnerTypeContent: Record<PartnerType, {
   },
   reseller: {
     bestFor: "Cloud resellers and distributors expanding service portfolio",
-    motion: "Bundle CloudVerse with cloud consumption to drive value",
+    motion: "Bundle CloudVerse™ with cloud consumption to drive value",
     delivers: [
       "Margin-friendly pricing models",
       "Customer success and retention",
@@ -330,7 +330,7 @@ export default function Partners() {
       {/* Partner Form Section */}
       <section ref={formRef} className="py-20 bg-cv-surface border-t border-cv-line">
         <div className="max-w-[1000px] mx-auto px-5 sm:px-6 lg:px-20">
-          <h2 className="cv-h2 mb-10 text-cv-ink">Become a partner with CloudVerse Ai</h2>
+          <h2 className="cv-h2 mb-10 text-cv-ink">Become a partner with CloudVerse™ Ai</h2>
           
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -505,7 +505,7 @@ export default function Partners() {
       {/* CTA */}
       <FinalCTA 
         title="Talk to our partner team"
-        description="Learn how CloudVerse can help you grow services revenue and deliver measurable value."
+        description="Learn how CloudVerse™ can help you grow services revenue and deliver measurable value."
         location="partners_bottom"
       />
     </BaseLayout>

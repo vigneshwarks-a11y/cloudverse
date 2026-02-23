@@ -16,7 +16,7 @@ export default function BookDemo() {
               Book a Demo
             </h1>
             <p className="text-xl text-cv-muted mb-12">
-              Let us show you how CloudVerse can help you manage your cloud costs.
+              Let us show you how CloudVerse™ can help you manage your cloud costs.
             </p>
 
             {/* Calendly Placeholder */}

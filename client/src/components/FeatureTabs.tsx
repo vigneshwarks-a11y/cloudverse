@@ -68,7 +68,7 @@ const featureTabs = [
     id: "automation",
     label: "Automation",
     title: "Move from insight to action, automatically.",
-    body: "CloudVerse applies recommendations safely, not just reports them.",
+    body: "CloudVerse™ applies recommendations safely, not just reports them.",
     bullets: [
       "40+ ML models powering recommendations",
       "Guardrails, approvals, and safe automation",

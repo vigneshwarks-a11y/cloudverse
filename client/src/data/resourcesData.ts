@@ -201,7 +201,7 @@ export const resourcesData: Resource[] = [
     type: "Doc",
     title: "Documentation Overview",
     slug: "overview",
-    summary: "Start here for a complete guide to CloudVerse documentation.",
+    summary: "Start here for a complete guide to CloudVerse™ documentation.",
     category: "FinOps"
   },
   {

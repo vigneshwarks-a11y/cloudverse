@@ -2,14 +2,14 @@ import { Shield, Cloud, Lock } from "lucide-react";
 
 const options = [
   {
-    title: "CloudVerse Cloud",
-    description: "Fully managed SaaS hosted by CloudVerse. Get started in minutes with zero infrastructure overhead.",
+    title: "CloudVerse™ Cloud",
+    description: "Fully managed SaaS hosted by CloudVerse™. Get started in minutes with zero infrastructure overhead.",
     icon: Cloud,
     tag: "Most Popular",
   },
   {
     title: "Private Deployment",
-    description: "Deploy CloudVerse within your own VPC (AWS), VNet (Azure), or private cluster. Keep data within your network.",
+    description: "Deploy CloudVerse™ within your own VPC (AWS), VNet (Azure), or private cluster. Keep data within your network.",
     icon: Shield,
     tag: "Enterprise",
   },

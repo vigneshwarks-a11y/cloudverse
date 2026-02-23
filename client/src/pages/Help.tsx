@@ -17,7 +17,7 @@ const faqItems = [
     answer: "Contact our sales team to discuss trial options for your organization."
   },
   {
-    question: "How secure is CloudVerse?",
+    question: "How secure is CloudVerse™?",
     answer: "We follow ISO 27001, SOC 2 Type II, and offer private deployment for regulated environments."
   }
 ];

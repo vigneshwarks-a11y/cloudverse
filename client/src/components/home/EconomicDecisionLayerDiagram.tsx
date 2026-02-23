@@ -21,7 +21,7 @@ export function EconomicDecisionLayerDiagram() {
             <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400 mb-1">
               ECONOMIC DECISION LAYER
             </p>
-            <h3 className="text-xl sm:text-2xl font-bold text-cv-ink">CloudVerse</h3>
+            <h3 className="text-xl sm:text-2xl font-bold text-cv-ink">CloudVerse™</h3>
             <p className="text-xs sm:text-sm text-cv-muted mt-1">Decision logic embedded at execution points</p>
             
             <div className="flex items-center justify-center gap-2 sm:gap-3 mt-6 flex-wrap">

@@ -45,7 +45,7 @@ export function Footer() {
               className="flex items-center gap-2 text-xl font-bold tracking-tight mb-4"
             >
               <img src="/logo.png" alt="CloudVerse.ai" className="h-7 w-auto" />
-              <span>CloudVerse.ai</span>
+              <span>CloudVerse™</span>
             </Link>
             <p className="text-muted-foreground text-[14px] sm:text-[15px] max-w-xs">
               Cloud financial management for modern engineering teams. Visibility, allocation, and optimization in one platform.
@@ -73,7 +73,7 @@ export function Footer() {
 
         <div className="pt-6 sm:pt-8 border-t border-border/50 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-[12px] sm:text-[13px] text-muted-foreground text-center sm:text-left">
-            © {currentYear} CloudVerse Inc. All rights reserved.
+            © {currentYear} CloudVerse™ Inc. All rights reserved.
           </p>
           <div className="flex gap-4 sm:gap-6">
             <Link 

@@ -111,7 +111,7 @@ export default function Platform() {
       <section className="py-14 sm:py-16 lg:py-20">
         <div className="cv-container-full">
           <div className="text-center max-w-3xl mx-auto mb-10">
-            <h2 className="cv-h2 mb-3">What you get with CloudVerse</h2>
+            <h2 className="cv-h2 mb-3">What you get with CloudVerse™</h2>
             <p className="text-[15px] sm:text-[16px] lg:text-[17px] leading-[24px] sm:leading-[26px] lg:leading-[28px] text-cv-muted">
               A platform built to report, detect, and act automatically.
             </p>

@@ -115,7 +115,7 @@ export default function ConnectWithUs() {
             </span>
             <h1 className="cv-h1 mb-4">Let's explore what's possible</h1>
             <p className="cv-body text-cv-muted max-w-2xl mx-auto">
-              See how CloudVerse can help your team gain visibility, control costs, and unlock savings across your cloud infrastructure.
+              See how CloudVerse™ can help your team gain visibility, control costs, and unlock savings across your cloud infrastructure.
             </p>
           </div>
           
@@ -123,7 +123,7 @@ export default function ConnectWithUs() {
           <div className="max-w-[700px] mx-auto mb-8 p-8 rounded-2xl border border-cv-line bg-cv-surface2/50 dark:bg-white/5">
             <h2 className="text-xl font-semibold text-cv-ink text-center mb-2">Get it directly</h2>
             <p className="text-sm text-cv-muted text-center mb-6">
-              Purchase CloudVerse directly from your preferred cloud marketplace.
+              Purchase CloudVerse™ directly from your preferred cloud marketplace.
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               <a
