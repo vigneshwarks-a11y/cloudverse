@@ -22,7 +22,8 @@ const SHOULD_CALL_SUBSCRIBE_API = false;
 
 export default function Resources() {
   const { toast } = useToast();
-  const recentBlogPosts = blogData.slice(0, 6);
+  const featuredBlogPosts = blogData.slice(0, 3);
+  const recentBlogPosts = blogData.slice(3, 9);
 
   useEffect(() => {
     document.title = "Resources CloudVerse™";
@@ -99,7 +100,45 @@ export default function Resources() {
                   Browse FAQ
                 </Button>
               </Link>
+              <Link href="/blog" data-track="resources_blog_open">
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  className="w-full sm:w-auto"
+                >
+                  Browse Blogs
+                </Button>
+              </Link>
             </div>
+          </div>
+        </div>
+      </section>
+      {/* Featured Blog Section */}
+      <section className="py-14 sm:py-16 lg:py-20 border-t border-cv-line">
+        <div className="cv-container max-w-[1000px]">
+          <h2 className="cv-h2 mb-8">Featured Blog</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredBlogPosts.map((post) => (
+              <Link
+                key={post.id}
+                href={post.path}
+                className="block rounded-xl border border-cv-line bg-cv-surface2 p-5 hover:bg-cv-line/30 transition-colors cursor-pointer"
+                data-testid={`card-featured-blog-${post.slug}`}
+              >
+                <h3 className="text-sm font-semibold text-cv-ink mb-2 line-clamp-2">
+                  {post.title}
+                </h3>
+                <p className="text-sm text-cv-muted mb-4 line-clamp-3">
+                  {post.desc}
+                </p>
+                <div className="flex items-center justify-between text-xs text-cv-muted/70">
+                  <span>{post.name || "CloudVerse Team"}</span>
+                  <div className="flex items-center gap-2">
+                    <span>{post.date}</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -115,11 +154,6 @@ export default function Resources() {
                 className="block rounded-xl border border-cv-line bg-cv-surface2 p-5 hover:bg-cv-line/30 transition-colors cursor-pointer"
                 data-testid={`card-blog-${post.slug}`}
               >
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xs font-medium px-2 py-1 rounded border border-cv-line bg-cv-surface text-cv-muted">
-                    Blog
-                  </span>
-                </div>
                 <h3 className="text-sm font-semibold text-cv-ink mb-2 line-clamp-2">
                   {post.title}
                 </h3>
