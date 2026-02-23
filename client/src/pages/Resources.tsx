@@ -91,7 +91,7 @@ export default function Resources() {
                   Browse Guides
                 </Button>
               </Link>
-              <Link href="/resources/faq" data-track="resources_faq_open">
+              {/* <Link href="/resources/faq" data-track="resources_faq_open">
                 <Button
                   variant="secondary"
                   size="lg"
@@ -99,7 +99,7 @@ export default function Resources() {
                 >
                   Browse FAQ
                 </Button>
-              </Link>
+              </Link> */}
               <Link href="/blog" data-track="resources_blog_open">
                 <Button
                   variant="secondary"

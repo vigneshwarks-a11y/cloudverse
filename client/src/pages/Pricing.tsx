@@ -156,24 +156,12 @@ export default function Pricing() {
           <p className="text-[15px] leading-[24px] text-cv-muted mb-6 text-center">
             CloudVerse supports multi-account, multi-org, and multi-cloud environments. Pricing scales with usage and complexity, not arbitrary limits.
           </p>
-          <div className="space-y-3 w-fit mx-auto">
-            <div className="flex items-start gap-3">
-              <span className="text-primary font-semibold mt-1 flex-shrink-0">•</span>
-              <span className="text-sm text-cv-muted">Multi-cloud and multi-platform support</span>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="text-primary font-semibold mt-1 flex-shrink-0">•</span>
-              <span className="text-sm text-cv-muted">Large org hierarchies and shared services</span>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="text-primary font-semibold mt-1 flex-shrink-0">•</span>
-              <span className="text-sm text-cv-muted">Safe automation with guardrails</span>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="text-primary font-semibold mt-1 flex-shrink-0">•</span>
-              <span className="text-sm text-cv-muted">No impact on production workloads</span>
-            </div>
-          </div>
+          <ul className="space-y-3 w-fit mx-auto list-disc list-outside pl-6 marker:text-primary marker:font-semibold">
+            <li className="text-sm text-cv-muted">Multi-cloud and multi-platform support</li>
+            <li className="text-sm text-cv-muted">Large org hierarchies and shared services</li>
+            <li className="text-sm text-cv-muted">Safe automation with guardrails</li>
+            <li className="text-sm text-cv-muted">No impact on production workloads</li>
+          </ul>
         </div>
       </section>
       {/* Enterprise & Custom */}
@@ -183,24 +171,12 @@ export default function Pricing() {
           <p className="text-sm text-cv-muted mb-6 text-center">
             For complex environments, CloudVerse offers custom pricing and deployment options aligned to your architecture and governance needs.
           </p>
-          <div className="space-y-3 mb-8 w-fit mx-auto">
-            <div className="flex items-start gap-3">
-              <span className="text-primary font-semibold mt-1 flex-shrink-0">•</span>
-              <span className="text-sm text-cv-muted">Custom onboarding and data modeling</span>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="text-primary font-semibold mt-1 flex-shrink-0">•</span>
-              <span className="text-sm text-cv-muted">Advanced automation workflows</span>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="text-primary font-semibold mt-1 flex-shrink-0">•</span>
-              <span className="text-sm text-cv-muted">Dedicated support options</span>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="text-primary font-semibold mt-1 flex-shrink-0">•</span>
-              <span className="text-sm text-cv-muted">Security and compliance reviews</span>
-            </div>
-          </div>
+          <ul className="space-y-3 mb-8 w-fit mx-auto list-disc list-outside pl-6 marker:text-primary marker:font-semibold">
+            <li className="text-sm text-cv-muted">Custom onboarding and data modeling</li>
+            <li className="text-sm text-cv-muted">Advanced automation workflows</li>
+            <li className="text-sm text-cv-muted">Dedicated support options</li>
+            <li className="text-sm text-cv-muted">Security and compliance reviews</li>
+          </ul>
           <div className="text-center">
             {/* <Link href="/contact" onClick={() => track("pricing_contact_sales", { location: "pricing_enterprise" })}>
               <Button variant="secondary" size="lg">
