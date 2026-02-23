@@ -20,6 +20,7 @@ export function Footer() {
       links: [
         { label: "Guides", href: "/resources/guides" },
         { label: "FAQ", href: "/resources/faq" },
+        { label: "Glossary", href: "/glossary" },
         { label: "Blogs", href: "/blog" },
         { label: "Instant efficiency snapshot", href: "/efficiency-snapshot" },
       ],

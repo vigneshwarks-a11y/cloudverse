@@ -1,15 +1,9 @@
-'use client';
+import React, { useCallback, useMemo, useRef, useState } from "react";
+import { ChevronDown } from "lucide-react";
+import { BaseLayout } from "@/layouts/BaseLayout";
+import { glossaryEntries } from "./components/data";
 
-import React, {
-  useCallback,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
-import { BiSolidDownArrow } from 'react-icons/bi';
-import { glossaryEntries } from './components/data';
-
-const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
 const buildGroupedEntries = (entries) => {
   const groups = ALPHABET.reduce((acc, letter) => {
@@ -21,11 +15,9 @@ const buildGroupedEntries = (entries) => {
     const letterKey =
       entry.letter?.toUpperCase() ||
       entry.term?.charAt(0)?.toUpperCase() ||
-      '';
+      "";
 
-    if (!letterKey) {
-      return;
-    }
+    if (!letterKey) return;
 
     if (!groups[letterKey]) {
       groups[letterKey] = [];
@@ -41,58 +33,56 @@ const buildGroupedEntries = (entries) => {
   return groups;
 };
 
-const GlossaryAccordionItem = ({
+function GlossaryAccordionItem({
   entry,
   isOpen,
   onToggle,
   registerContentRef,
   contentRefs,
-}) => (
-  <div className="overflow-hidden rounded-xl border border-[#d7e5ff] bg-white shadow-[0_8px_24px_rgba(17,125,250,0.08)]">
-    <button
-      type="button"
-      onClick={() => onToggle(entry.id)}
-      className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition-colors hover:bg-[#f6f9ff]"
-    >
-      <span className="text-base font-medium text-[#0a1f63]">
-        {entry.term}
-      </span>
-      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#e9f2ff]">
-        <BiSolidDownArrow
-          className={`text-[#117DFA] transition-transform duration-300 ${isOpen ? 'rotate-180' : ''
+}) {
+  return (
+    <div className="overflow-hidden rounded-xl border border-cv-line bg-cv-surface2">
+      <button
+        type="button"
+        onClick={() => onToggle(entry.id)}
+        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-cv-line/30"
+      >
+        <span className="text-[15px] sm:text-base font-semibold text-cv-ink">
+          {entry.term}
+        </span>
+        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-cv-surface border border-cv-line">
+          <ChevronDown
+            className={`h-4 w-4 text-cv-muted transition-transform duration-300 ${
+              isOpen ? "rotate-180" : ""
             }`}
-        />
-      </span>
-    </button>
-    <div
-      ref={registerContentRef(entry.id)}
-      className="overflow-hidden transition-all duration-300 ease-in-out"
-      style={{
-        maxHeight: isOpen
-          ? `${contentRefs.current[entry.id]?.scrollHeight ?? 0}px`
-          : '0px',
-      }}
-    >
-      <div className="px-6 pb-5 leading-relaxed">
-        <p className="whitespace-pre-line text-base text-[#344054] pt-2">
-          {entry.definition.replace(/\. (Ken42\b)/, '.\n$1')}
-        </p>
+          />
+        </span>
+      </button>
+
+      <div
+        ref={registerContentRef(entry.id)}
+        className="overflow-hidden transition-all duration-300 ease-in-out"
+        style={{
+          maxHeight: isOpen
+            ? `${contentRefs.current[entry.id]?.scrollHeight ?? 0}px`
+            : "0px",
+        }}
+      >
+        <div className="px-5 pb-4">
+          <p className="whitespace-pre-line text-sm sm:text-[15px] leading-7 text-cv-muted">
+            {entry.definition}
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-);
-
-const GlossaryPage = () => {
-  const groupedEntries = useMemo(
-    () => buildGroupedEntries(glossaryEntries),
-    []
   );
+}
+
+export default function GlossaryPage() {
+  const groupedEntries = useMemo(() => buildGroupedEntries(glossaryEntries), []);
 
   const lettersWithTerms = useMemo(
-    () =>
-      ALPHABET.filter(
-        (letter) => groupedEntries[letter]?.length > 0
-      ),
+    () => ALPHABET.filter((letter) => groupedEntries[letter]?.length > 0),
     [groupedEntries]
   );
 
@@ -107,21 +97,11 @@ const GlossaryPage = () => {
     event.preventDefault();
     setActiveLetter(letter);
 
-    const targetId = `group-${letter}`;
-    const targetElement = document.getElementById(targetId);
+    const target = document.getElementById(`group-${letter}`);
+    if (!target) return;
 
-    if (!targetElement) {
-      return;
-    }
-
-    const elementTop =
-      targetElement.getBoundingClientRect().top + window.scrollY;
-    const offsetTop = Math.max(elementTop - 96, 0); // aligns with sticky filter offset
-
-    window.scrollTo({
-      top: offsetTop,
-      behavior: 'smooth',
-    });
+    const top = target.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top: Math.max(top - 120, 0), behavior: "smooth" });
   }, []);
 
   const handleToggle = useCallback((id) => {
@@ -129,123 +109,99 @@ const GlossaryPage = () => {
   }, []);
 
   const registerContentRef = useCallback(
-    (id) => (element) => {
-      if (element) {
-        contentRefs.current[id] = element;
-      } else {
-        delete contentRefs.current[id];
-      }
+    (id) => (el) => {
+      if (el) contentRefs.current[id] = el;
+      else delete contentRefs.current[id];
     },
     []
   );
 
   return (
-    <div className="mt-20">
-      <div className="relative bg-gradient-to-r from-[#005b97] to-[#363795]">
-        <div className="blog-bg">
-          <div className="section-width 2xl:pt-44 xl:pt-40 lg:pt-36 md:pt-32 pt-28 pb-16">
-            <h1 className="mb-0 text-center text-white xl:text-5xl lg:text-4xl md:text-3xl text-2xl font-semibold leading-tight">
-              Glossary
-            </h1>
+    <BaseLayout>
+      <section className="pt-12 sm:pt-16 lg:pt-20 pb-12 border-b border-cv-line">
+        <div className="cv-container-full">
+          <div className="max-w-3xl">
+            <span className="text-xs uppercase tracking-widest text-cv-muted mb-4 inline-block">
+              CloudVerse Resources
+            </span>
+            <h1 className="cv-h1 mb-4">Glossary</h1>
+            <p className="text-[15px] sm:text-[16px] lg:text-[17px] leading-[24px] sm:leading-[26px] lg:leading-[28px] text-cv-muted">
+              Key terms used across Cloud, FinOps, Kubernetes, AI cost management, and
+              governance.
+            </p>
           </div>
         </div>
-      </div>
-      <div className="bg-gradient-to-b from-[#f4f8ff] via-white to-[#f7fbff] py-16">
-      <div className="mx-auto flex max-w-6xl flex-col gap-12 px-4 sm:px-6 lg:flex-row lg:gap-16 lg:px-8">
-        <aside className="w-full max-w-xs self-center space-y-8 rounded-2xl border border-[#d7e5ff] bg-white p-6 shadow-[0_10px_30px_rgba(17,125,250,0.08)] lg:sticky lg:top-40 lg:self-start xl:top-44">
-          <div>
-            <h1 className="mb-0 text-left text-3xl font-semibold text-[#0a1f63]">
-              Stay up to date with institutional terms
-            </h1>
-            <p className="mt-4 text-sm leading-relaxed text-[#4d5b7c]">
-              This glossary helps you quickly understand key higher-education
-              and campus operations terms used across Ken42 modules.
-            </p>
-          </div>
+      </section>
 
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wide text-[#117DFA]">
-              Filter
-            </p>
-            <div className="mt-3 grid grid-cols-5 gap-2">
+      <section className="py-10 sm:py-12 lg:py-14">
+        <div className="cv-container-full grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-8 lg:gap-10">
+          <aside className="lg:sticky lg:top-28 h-fit rounded-xl border border-cv-line bg-cv-surface2 p-5">
+            <h2 className="text-sm font-semibold uppercase tracking-[0.12em] text-cv-muted mb-4">
+              Filter by letter
+            </h2>
+            <div className="grid grid-cols-6 sm:grid-cols-8 lg:grid-cols-5 gap-2">
               {ALPHABET.map((letter) => {
-                const hasEntries =
-                  groupedEntries[letter]?.length > 0;
+                const hasEntries = groupedEntries[letter]?.length > 0;
+                const isActive = activeLetter === letter;
 
                 if (!hasEntries) {
                   return (
                     <span
                       key={letter}
-                      className="flex h-10 items-center justify-center rounded-md border border-[#d9e5fb] bg-[#f8fbff] text-sm font-medium text-[#a2a9bc]"
+                      className="flex h-9 items-center justify-center rounded-md border border-cv-line bg-cv-surface text-xs font-medium text-cv-muted/50"
                     >
                       {letter}
                     </span>
                   );
                 }
 
-                const isActive = activeLetter === letter;
-
                 return (
                   <a
                     key={letter}
                     href={`#group-${letter}`}
-                    onClick={(event) =>
-                      handleLetterClick(event, letter)
-                    }
-                    className={`flex h-10 items-center justify-center rounded-md border text-sm font-medium transition-colors ${isActive
-                      ? 'border-[#117DFA] bg-[#117DFA] text-white'
-                      : 'border-[#d9e5fb] bg-white text-[#0a1f63] hover:border-[#117DFA] hover:text-[#117DFA]'
-                      }`}
+                    onClick={(e) => handleLetterClick(e, letter)}
+                    className={`flex h-9 items-center justify-center rounded-md border text-xs font-semibold transition-colors ${
+                      isActive
+                        ? "border-primary bg-primary/10 text-primary"
+                        : "border-cv-line bg-cv-surface text-cv-muted hover:text-cv-ink hover:bg-cv-line/30"
+                    }`}
                   >
                     {letter}
                   </a>
                 );
               })}
             </div>
-          </div>
-        </aside>
+          </aside>
 
-        <section className="flex-1 space-y-12">
-          {ALPHABET.filter(
-            (letter) => groupedEntries[letter]?.length > 0
-          ).map((letter) => (
-            <div
-              key={letter}
-              id={`group-${letter}`}
-              className="scroll-mt-32"
-            >
-              <div className="flex items-baseline gap-4">
-                <h2 className="mb-0 text-2xl font-semibold text-[#0a1f63]">
-                  {letter}
-                </h2>
-                <span className="text-sm text-[#4d5b7c]">
-                  ({groupedEntries[letter].length}{' '}
-                  {groupedEntries[letter].length === 1
-                    ? 'term'
-                    : 'terms'}
-                  )
-                </span>
-              </div>
+          <section className="space-y-10">
+            {ALPHABET.filter((letter) => groupedEntries[letter]?.length > 0).map(
+              (letter) => (
+                <div key={letter} id={`group-${letter}`} className="scroll-mt-28">
+                  <div className="flex items-center gap-3 mb-4">
+                    <h2 className="cv-h2 !text-2xl">{letter}</h2>
+                    <span className="text-sm text-cv-muted">
+                      {groupedEntries[letter].length} {groupedEntries[letter].length === 1 ? "term" : "terms"}
+                    </span>
+                  </div>
 
-              <div className="mt-4 space-y-4">
-                {groupedEntries[letter].map((entry) => (
-                  <GlossaryAccordionItem
-                    key={entry.id}
-                    entry={entry}
-                    isOpen={expandedId === entry.id}
-                    onToggle={handleToggle}
-                    registerContentRef={registerContentRef}
-                    contentRefs={contentRefs}
-                  />
-                ))}
-              </div>
-            </div>
-          ))}
-        </section>
-      </div>
-      </div>
-    </div>
+                  <div className="space-y-3">
+                    {groupedEntries[letter].map((entry) => (
+                      <GlossaryAccordionItem
+                        key={entry.id}
+                        entry={entry}
+                        isOpen={expandedId === entry.id}
+                        onToggle={handleToggle}
+                        registerContentRef={registerContentRef}
+                        contentRefs={contentRefs}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )
+            )}
+          </section>
+        </div>
+      </section>
+    </BaseLayout>
   );
-};
-
-export default GlossaryPage;
+}

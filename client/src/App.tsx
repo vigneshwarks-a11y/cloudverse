@@ -18,6 +18,7 @@ import ResourcesGuides from "@/pages/ResourcesGuides";
 import ResourcesGuideDetail from "@/pages/ResourcesGuideDetail";
 import ResourcesDocs from "@/pages/ResourcesDocs";
 import ResourcesFaq from "@/pages/ResourcesFaq";
+import GlossaryPage from "@/pages/glossary/page.jsx";
 import Contact from "@/pages/Contact";
 import Partners from "@/pages/Partners";
 import Help from "@/pages/Help";
@@ -52,6 +53,7 @@ function Router() {
       <Route path="/resources/guides/:slug" component={ResourcesGuideDetail} />
       <Route path="/resources/docs" component={ResourcesDocs} />
       <Route path="/resources/faq" component={ResourcesFaq} />
+      <Route path="/glossary" component={GlossaryPage} />
       <Route path="/contact" component={Contact} />
       <Route path="/partners" component={Partners} />
       <Route path="/help" component={Help} />
@@ -73,6 +75,7 @@ function Router() {
       <Route path="/about-us"><Redirect to="/about" /></Route>
       <Route path="/faq"><Redirect to="/resources/faq" /></Route>
       <Route path="/resources/faqs"><Redirect to="/resources/faq" /></Route>
+      <Route path="/resources/glossary"><Redirect to="/glossary" /></Route>
 
       <Route component={NotFound} />
     </Switch>
