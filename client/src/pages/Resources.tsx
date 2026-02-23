@@ -3,7 +3,7 @@ import { Button } from "@/components/Button";
 import { Link } from "wouter";
 import { useEffect, useState } from "react";
 import { track } from "@/lib/track";
-import { featuredGuides, categories, guides } from "@/data/resourcesData";
+import { featuredGuides, categories, guides, blogPosts } from "@/data/resourcesData";
 import { FinalCTA } from "@/components/FinalCTA";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
@@ -141,6 +141,41 @@ export default function Resources() {
               >
                 {category}
               </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* Blog Section */}
+      <section className="py-14 sm:py-16 lg:py-20 border-t border-cv-line">
+        <div className="cv-container max-w-[1000px]">
+          <h2 className="cv-h2 mb-8">Blog</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {blogPosts.map((post) => (
+              <div
+                key={post.slug}
+                className="block rounded-xl border border-cv-line bg-cv-surface2 p-5 hover:bg-cv-line/30 transition-colors cursor-pointer"
+                data-testid={`card-blog-${post.slug}`}
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-xs font-medium px-2 py-1 rounded border border-cv-line bg-cv-surface text-cv-muted">
+                    {post.category}
+                  </span>
+                </div>
+                <h3 className="text-sm font-semibold text-cv-ink mb-2 line-clamp-2">
+                  {post.title}
+                </h3>
+                <p className="text-sm text-cv-muted mb-4 line-clamp-3">
+                  {post.summary}
+                </p>
+                <div className="flex items-center justify-between text-xs text-cv-muted/70">
+                  <span>{post.author}</span>
+                  <div className="flex items-center gap-2">
+                    <span>{post.readingTime}</span>
+                    <span>·</span>
+                    <span>{new Date(post.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</span>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
