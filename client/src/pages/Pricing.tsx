@@ -156,7 +156,7 @@ export default function Pricing() {
           <p className="text-[15px] leading-[24px] text-cv-muted mb-6 text-center">
             CloudVerse supports multi-account, multi-org, and multi-cloud environments. Pricing scales with usage and complexity, not arbitrary limits.
           </p>
-          <div className="space-y-3 pl-[160px] pr-[160px]">
+          <div className="space-y-3 pl-[160px] pr-[160px] text-center">
             <div className="flex items-start gap-3">
               <span className="text-primary font-semibold mt-1 flex-shrink-0">•</span>
               <span className="text-sm text-cv-muted">Multi-cloud and multi-platform support</span>
