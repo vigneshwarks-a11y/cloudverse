@@ -3,7 +3,7 @@ import { Button } from "@/components/Button";
 import { Link } from "wouter";
 import { useEffect, useState } from "react";
 import { track } from "@/lib/track";
-import { featuredGuides, categories, guides, blogPosts } from "@/data/resourcesData";
+import { categories, guides, blogPosts } from "@/data/resourcesData";
 import { FinalCTA } from "@/components/FinalCTA";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
@@ -90,41 +90,6 @@ export default function Resources() {
                 </Button>
               </Link>
             </div>
-          </div>
-        </div>
-      </section>
-      {/* Featured Guides */}
-      <section className="py-14 sm:py-16 lg:py-20 border-t border-cv-line">
-        <div className="cv-container max-w-[1000px]">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="cv-h2">Featured</h2>
-            <Link href="/resources/guides">
-              <Button variant="ghost" size="sm" className="text-cv-muted hover:text-cv-ink">
-                View all guides
-              </Button>
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {featuredGuides.slice(0, 3).map((guide) => (
-              <Link
-                key={guide.slug}
-                href={`/resources/guides/${guide.slug}`}
-                className="block rounded-xl border border-cv-line bg-cv-surface2 p-5 hover:bg-cv-line/30 transition-colors"
-              >
-                <span className="text-xs font-medium px-2 py-1 rounded border border-cv-line bg-cv-surface text-cv-muted inline-block mb-3">
-                  {guide.category}
-                </span>
-                <h4 className="text-sm font-semibold text-cv-ink mb-2 line-clamp-2">
-                  {guide.title}
-                </h4>
-                <p className="text-sm text-cv-muted mb-3 line-clamp-2">
-                  {guide.summary}
-                </p>
-                {guide.readingTime && (
-                  <span className="text-xs text-cv-muted/70">{guide.readingTime}</span>
-                )}
-              </Link>
-            ))}
           </div>
         </div>
       </section>
