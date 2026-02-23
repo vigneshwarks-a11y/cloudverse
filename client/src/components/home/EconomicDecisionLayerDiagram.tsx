@@ -45,7 +45,7 @@ export function EconomicDecisionLayerDiagram() {
       </div>
 
       <p className="text-center text-sm text-cv-muted mt-8 italic">
-        Economic intent is applied at the decision point — not after the invoice.
+        Economic intent is applied at the decision point - not after the invoice.
       </p>
     </div>
   );

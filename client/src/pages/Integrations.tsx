@@ -14,7 +14,7 @@ const MODULES = ["All", "AIX", "DevX", "DataX"] as const;
 
 export default function Integrations() {
   useEffect(() => {
-    document.title = "Integrations — CloudVerse™";
+    document.title = "Integrations - CloudVerse™";
   }, []);
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -53,7 +53,7 @@ export default function Integrations() {
             </span>
             <h1 className="cv-h1 mb-4">Integrations for AI Infrastructure Economics</h1>
             <p className="text-[15px] sm:text-[16px] lg:text-[17px] leading-[24px] sm:leading-[26px] lg:leading-[28px] text-cv-muted max-w-[800px]">
-              CloudVerse connects to your existing infrastructure to ensure every decision reflects economic intent — without compromising performance requirements.
+              CloudVerse connects to your existing infrastructure to ensure every decision reflects economic intent - without compromising performance requirements.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 pt-2">
@@ -213,7 +213,7 @@ export default function Integrations() {
         <div className="cv-container max-w-[800px]">
           <div className="text-center mb-10">
             <p className="text-xs text-cv-muted max-w-[600px] mx-auto">
-              CloudVerse operates as an embedded economic decision layer — enhancing your existing stack without requiring architectural replacement.
+              CloudVerse operates as an embedded economic decision layer - enhancing your existing stack without requiring architectural replacement.
             </p>
           </div>
           <h2 className="cv-h2 mb-10 text-center">Questions?</h2>

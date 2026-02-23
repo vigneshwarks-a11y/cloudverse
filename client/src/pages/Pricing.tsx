@@ -8,7 +8,7 @@ import { Check } from "lucide-react";
 
 export default function Pricing() {
   useEffect(() => {
-    document.title = "Pricing — CloudVerse™";
+    document.title = "Pricing - CloudVerse™";
   }, []);
 
   const plans = [

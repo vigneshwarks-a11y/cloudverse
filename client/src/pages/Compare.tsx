@@ -68,7 +68,7 @@ const comparisonMetrics = [
 
 export default function Compare() {
   useEffect(() => {
-    document.title = "Cloud Spending Comparison — CloudVerse™";
+    document.title = "Cloud Spending Comparison - CloudVerse™";
   }, []);
 
   return (

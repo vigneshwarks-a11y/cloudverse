@@ -63,7 +63,7 @@ const boardOfAdvisory = [
 
 export default function AboutUs() {
   useEffect(() => {
-    document.title = "About Us — CloudVerse™";
+    document.title = "About Us - CloudVerse™";
   }, []);
 
   return (

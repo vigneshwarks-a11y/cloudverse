@@ -9,9 +9,9 @@ export default function Legal() {
   
   useEffect(() => {
     if (location === "/legal/terms") {
-      document.title = "Terms of Service — CloudVerse™";
+      document.title = "Terms of Service - CloudVerse™";
     } else if (location === "/legal/privacy") {
-      document.title = "Privacy Policy — CloudVerse™";
+      document.title = "Privacy Policy - CloudVerse™";
     }
   }, [location]);
 

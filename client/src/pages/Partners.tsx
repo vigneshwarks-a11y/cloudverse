@@ -155,7 +155,7 @@ export default function Partners() {
   };
 
   useEffect(() => {
-    document.title = "Partners — CloudVerse™";
+    document.title = "Partners - CloudVerse™";
   }, []);
 
   return (

@@ -121,7 +121,7 @@ export function InvoiceEfficiencySection() {
             <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-bold tracking-tight text-cv-ink leading-tight">
               How economically intentional is your infrastructure?
             </h2>
-            <p className="text-base sm:text-lg text-cv-muted leading-relaxed max-w-xl mx-auto">Upload an invoice to get a read-only economic snapshot — baseline, rate, volatility signals, and demand drivers. No credentials required.</p>
+            <p className="text-base sm:text-lg text-cv-muted leading-relaxed max-w-xl mx-auto">Upload an invoice to get a read-only economic snapshot - baseline, rate, volatility signals, and demand drivers. No credentials required.</p>
 
             {/* Upload Card */}
             <div className="mt-8 max-w-md mx-auto">

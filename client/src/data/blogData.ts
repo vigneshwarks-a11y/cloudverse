@@ -12,7 +12,7 @@ export const blogPosts: BlogPost[] = [
   {
     title: "Why Infrastructure Economics Is the Next Frontier for AI Teams",
     slug: "infrastructure-economics-next-frontier",
-    summary: "AI teams are scaling fast — but without economic decision logic, every model call, every GPU hour, and every pipeline run accumulates unmanaged cost. Here's how to change that.",
+    summary: "AI teams are scaling fast - but without economic decision logic, every model call, every GPU hour, and every pipeline run accumulates unmanaged cost. Here's how to change that.",
     category: "AI Infrastructure",
     readingTime: "6 min",
     date: "2026-02-18",
@@ -30,7 +30,7 @@ export const blogPosts: BlogPost[] = [
   {
     title: "From FinOps to Infrastructure Economics: What Changed and Why",
     slug: "finops-to-infrastructure-economics",
-    summary: "FinOps focused on visibility and reporting. Infrastructure economics embeds decision logic at the point of execution — model choice, deployment, and procurement.",
+    summary: "FinOps focused on visibility and reporting. Infrastructure economics embeds decision logic at the point of execution - model choice, deployment, and procurement.",
     category: "Industry",
     readingTime: "5 min",
     date: "2026-01-28",
