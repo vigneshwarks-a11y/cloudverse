@@ -146,7 +146,7 @@ export function HowItWorks() {
                 </div>
 
                 {/* Micro Visual Tile */}
-                <div className="mt-6 lg:mt-8 h-[180px] sm:h-[160px]">
+                <div className="mt-6 lg:mt-8 h-[200px] sm:h-[180px] overflow-hidden rounded-xl">
                   <MicroPreview variant={idx === 0 ? "connect" : idx === 1 ? "normalize" : "automate"} />
                 </div>
               </div>
