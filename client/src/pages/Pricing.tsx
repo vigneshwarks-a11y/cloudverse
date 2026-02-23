@@ -156,7 +156,7 @@ export default function Pricing() {
           <p className="text-[15px] leading-[24px] text-cv-muted mb-6 text-center">
             CloudVerse supports multi-account, multi-org, and multi-cloud environments. Pricing scales with usage and complexity, not arbitrary limits.
           </p>
-          <div className="space-y-3 text-center pl-[165px] pr-[165px]">
+          <div className="space-y-3 w-fit mx-auto">
             <div className="flex items-start gap-3">
               <span className="text-primary font-semibold mt-1 flex-shrink-0">•</span>
               <span className="text-sm text-cv-muted">Multi-cloud and multi-platform support</span>
@@ -183,7 +183,7 @@ export default function Pricing() {
           <p className="text-sm text-cv-muted mb-6 text-center">
             For complex environments, CloudVerse offers custom pricing and deployment options aligned to your architecture and governance needs.
           </p>
-          <div className="space-y-3 mb-8">
+          <div className="space-y-3 mb-8 w-fit mx-auto">
             <div className="flex items-start gap-3">
               <span className="text-primary font-semibold mt-1 flex-shrink-0">•</span>
               <span className="text-sm text-cv-muted">Custom onboarding and data modeling</span>
