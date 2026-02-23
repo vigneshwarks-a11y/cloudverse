@@ -3,7 +3,7 @@ import { Button } from "@/components/Button";
 import { Link } from "wouter";
 import { useEffect, useState } from "react";
 import { track } from "@/lib/track";
-import { categories, guides, blogPosts } from "@/data/resourcesData";
+import { guides, blogPosts } from "@/data/resourcesData";
 import { FinalCTA } from "@/components/FinalCTA";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
@@ -90,23 +90,6 @@ export default function Resources() {
                 </Button>
               </Link>
             </div>
-          </div>
-        </div>
-      </section>
-      {/* Browse by Category */}
-      <section className="py-14 sm:py-16 lg:py-20 border-t border-cv-line">
-        <div className="cv-container max-w-[1000px]">
-          <h2 className="cv-h2 mb-6">Browse by category</h2>
-          <div className="flex flex-wrap gap-3">
-            {categories.map((category) => (
-              <Link
-                key={category}
-                href={`/resources/guides?category=${encodeURIComponent(category)}`}
-                className="text-sm font-medium px-4 py-2 rounded-full border border-cv-line bg-cv-surface2 text-cv-muted hover:bg-cv-line/30 transition-colors"
-              >
-                {category}
-              </Link>
-            ))}
           </div>
         </div>
       </section>
