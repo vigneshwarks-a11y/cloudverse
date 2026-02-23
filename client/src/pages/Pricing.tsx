@@ -69,7 +69,6 @@ export default function Pricing() {
           </p>
         </div>
       </section>
-
       {/* Pricing Plans */}
       <section className="py-14 sm:py-16 lg:py-20 border-t border-cv-line">
         <div className="cv-container-full">
@@ -157,7 +156,7 @@ export default function Pricing() {
           <p className="text-[15px] leading-[24px] text-cv-muted mb-6 text-center">
             CloudVerse supports multi-account, multi-org, and multi-cloud environments. Pricing scales with usage and complexity, not arbitrary limits.
           </p>
-          <div className="space-y-3">
+          <div className="space-y-3 pl-[45px] pr-[45px]">
             <div className="flex items-start gap-3">
               <span className="text-primary font-semibold mt-1 flex-shrink-0">•</span>
               <span className="text-sm text-cv-muted">Multi-cloud and multi-platform support</span>
