@@ -4,6 +4,7 @@ import { Link } from "wouter";
 import { useEffect } from "react";
 import { track } from "@/lib/track";
 import { guides } from "@/data/resourcesData";
+import { resourcesFaqData } from "@/data/resourcesFaqData";
 import { blogData } from "@/pages/blog/data";
 import { FinalCTA } from "@/components/FinalCTA";
 import { useToast } from "@/hooks/use-toast";
@@ -24,6 +25,7 @@ export default function Resources() {
   const { toast } = useToast();
   const featuredBlogPosts = blogData.slice(0, 3);
   const recentBlogPosts = blogData.slice(3, 9);
+  const featuredFaqs = resourcesFaqData.slice(0, 3);
 
   useEffect(() => {
     document.title = "Resources CloudVerse™";
@@ -91,7 +93,7 @@ export default function Resources() {
                   Browse Guides
                 </Button>
               </Link>
-              {/* <Link href="/resources/faq" data-track="resources_faq_open">
+              <Link href="/resources/faq" data-track="resources_faq_open">
                 <Button
                   variant="secondary"
                   size="lg"
@@ -99,7 +101,7 @@ export default function Resources() {
                 >
                   Browse FAQ
                 </Button>
-              </Link> */}
+              </Link>
               <Link href="/blog" data-track="resources_blog_open">
                 <Button
                   variant="secondary"
@@ -172,6 +174,40 @@ export default function Resources() {
           <div className="mt-10 text-center">
             <Link href="/blog">
               <Button variant="secondary" data-testid="button-view-all-blog">View all posts</Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+      {/* FAQ Section */}
+      <section className="py-14 sm:py-16 lg:py-20 border-t border-cv-line">
+        <div className="cv-container max-w-[1000px]">
+          <h2 className="cv-h2 mb-8">FAQ</h2>
+          <div className="space-y-4">
+            {featuredFaqs.map((faq) => (
+              <article
+                key={faq.id}
+                className="rounded-xl border border-cv-line bg-cv-surface2 p-5 sm:p-6"
+                data-testid={`faq-preview-${faq.id}`}
+              >
+                <h3 className="text-base sm:text-lg font-semibold text-cv-ink mb-3">
+                  {faq.id}. {faq.question}
+                </h3>
+                <div className="space-y-3 mb-4">
+                  {faq.answer.split("\n").slice(0, 2).map((line, idx) => (
+                    <p key={`${faq.id}-${idx}`} className="text-sm sm:text-[15px] leading-6 text-cv-muted whitespace-pre-wrap">
+                      {line}
+                    </p>
+                  ))}
+                </div>
+                <span className="inline-flex items-center text-xs font-medium px-2 py-1 rounded border border-cv-line bg-cv-surface text-cv-muted">
+                  {faq.tag}
+                </span>
+              </article>
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Link href="/resources/faq">
+              <Button variant="secondary" data-testid="button-view-all-faq">View all FAQs</Button>
             </Link>
           </div>
         </div>

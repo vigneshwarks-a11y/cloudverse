@@ -75,7 +75,7 @@ export default function ResourcesFaq() {
                   ))}
                 </div>
                 <span className="inline-flex items-center text-xs font-medium px-2 py-1 rounded border border-cv-line bg-cv-surface text-cv-muted">
-                  Tag: {item.tag}
+                  {item.tag}
                 </span>
               </article>
             ))}
