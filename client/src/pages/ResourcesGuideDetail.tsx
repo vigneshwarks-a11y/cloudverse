@@ -6,7 +6,7 @@ import { guides } from "@/data/resourcesData";
 
 export default function ResourcesGuideDetail() {
   const params = useParams<{ slug: string }>();
-  const guide = guides.find(g => g.slug === params.slug);
+  const guide = guides.find((g) => g.slug === params.slug);
 
   useEffect(() => {
     if (guide) {
@@ -33,7 +33,7 @@ export default function ResourcesGuideDetail() {
   }
 
   const relatedGuides = guides
-    .filter(g => g.slug !== guide.slug && g.category === guide.category)
+    .filter((g) => g.slug !== guide.slug && g.category === guide.category)
     .slice(0, 3);
 
   return (
@@ -41,7 +41,10 @@ export default function ResourcesGuideDetail() {
       {/* Back Link */}
       <section className="pt-8 pb-4">
         <div className="max-w-[840px] mx-auto px-6 lg:px-12">
-          <Link href="/resources/guides" className="text-sm text-cv-muted hover:text-cv-ink transition-colors">
+          <Link
+            href="/resources/guides"
+            className="text-sm text-cv-muted hover:text-cv-ink transition-colors"
+          >
             ← Back to guides
           </Link>
         </div>
@@ -66,7 +69,13 @@ export default function ResourcesGuideDetail() {
             {guide.date && (
               <>
                 <span>•</span>
-                <span>{new Date(guide.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+                <span>
+                  {new Date(guide.date).toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </span>
               </>
             )}
           </div>
@@ -80,11 +89,12 @@ export default function ResourcesGuideDetail() {
             <p className="text-base text-cv-muted leading-7 mb-6">
               {guide.summary}
             </p>
-            {guide.content && guide.content.map((paragraph, idx) => (
-              <p key={idx} className="text-sm text-cv-muted leading-7 mb-4">
-                {paragraph}
-              </p>
-            ))}
+            {guide.content &&
+              guide.content.map((paragraph, idx) => (
+                <p key={idx} className="text-sm text-cv-muted leading-7 mb-4">
+                  {paragraph}
+                </p>
+              ))}
           </div>
         </div>
       </section>
@@ -93,7 +103,9 @@ export default function ResourcesGuideDetail() {
       {relatedGuides.length > 0 && (
         <section className="py-cv-sec-lg border-t border-cv-line">
           <div className="max-w-[840px] mx-auto px-6 lg:px-12">
-            <h2 className="text-lg font-semibold text-cv-ink mb-6">Related guides</h2>
+            <h2 className="text-lg font-semibold text-cv-ink mb-6">
+              Related guides
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {relatedGuides.map((related) => (
                 <Link
@@ -105,7 +117,9 @@ export default function ResourcesGuideDetail() {
                     {related.title}
                   </h4>
                   {related.readingTime && (
-                    <span className="text-xs text-cv-muted/70">{related.readingTime}</span>
+                    <span className="text-xs text-cv-muted/70">
+                      {related.readingTime}
+                    </span>
                   )}
                 </Link>
               ))}
@@ -125,7 +139,11 @@ export default function ResourcesGuideDetail() {
               </Button>
             </Link>
             <Link href="/contact">
-              <Button variant="secondary" size="lg" className="w-full sm:w-auto">
+              <Button
+                variant="secondary"
+                size="lg"
+                className="w-full sm:w-auto"
+              >
                 Contact sales
               </Button>
             </Link>
