@@ -67,7 +67,7 @@ const applyBlogHeadTags = (blog) => {
   const fallbackDescription =
     seo.description || stripHtmlTags(blog?.paragraph?.[0]?.para || "");
 
-  document.title = seo.title || `${blog.title} — CloudVerse™`;
+  document.title = seo.title || `${blog.title} CloudVerse™`;
 
   upsertMetaTag("name", "description", fallbackDescription);
   upsertMetaTag("name", "keywords", seo.keywords || blog.keywords || "");
@@ -125,7 +125,7 @@ function BlogDetailPage() {
 
   useEffect(() => {
     if (!blog) {
-      document.title = "Blog Not Found — CloudVerse™";
+      document.title = "Blog Not Found CloudVerse™";
       return;
     }
 

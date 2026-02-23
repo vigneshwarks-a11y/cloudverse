@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { guides } from "@/data/resourcesData";
 
 const sectionTitlePattern =
-  /^(Section\s+\d+\s+—\s+.+|The\s+(Trigger|Constraint|Misconception|Reality|Model|Failure Modes|CloudVerse Approach|Outcome|Starting Point)\s*:?\s*)(.*)$/i;
+  /^(Section\s+\d+\s*(?:-|:)?\s+.+|The\s+(Trigger|Constraint|Misconception|Reality|Model|Failure Modes|CloudVerse Approach|Outcome|Starting Point)\s*:?\s*)(.*)$/i;
 
 const splitSectionHeading = (content: string) => {
   const trimmed = content.trim();
@@ -78,7 +78,7 @@ const applyGuideHeadTags = (guide: (typeof guides)[number]) => {
   const seo = guide.seo || {};
   const fallbackDescription = seo.description || guide.summary || "";
 
-  document.title = seo.title || `${guide.title} — CloudVerse`;
+  document.title = seo.title || `${guide.title} CloudVerse`;
 
   upsertMetaTag("name", "description", fallbackDescription);
   upsertMetaTag("name", "keywords", seo.keywords || "");

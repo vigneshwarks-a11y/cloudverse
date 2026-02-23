@@ -8,7 +8,7 @@ export default function ResourcesFaq() {
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    document.title = "FAQ — CloudVerse";
+    document.title = "FAQ CloudVerse";
   }, []);
 
   const filteredFaqs = useMemo(() => {

@@ -25,7 +25,7 @@ export default function Resources() {
   const recentBlogPosts = blogData.slice(0, 6);
 
   useEffect(() => {
-    document.title = "Resources — CloudVerse™";
+    document.title = "Resources CloudVerse™";
   }, []);
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<SubscribeFormData>({

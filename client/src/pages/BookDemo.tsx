@@ -4,7 +4,7 @@ import { DEMO_URL } from "@/lib/links";
 
 export default function BookDemo() {
   useEffect(() => {
-    document.title = "Book a Demo — CloudVerse™";
+    document.title = "Book a Demo CloudVerse™";
   }, []);
 
   return (
