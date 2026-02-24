@@ -123,23 +123,53 @@ function normalizeDate(value: unknown, fallback: string): string {
 export async function parseInvoice(fileContent: string, fileName: string): Promise<InvoiceAnalysisResult> {
   const today = new Date().toISOString().split("T")[0];
   const prompt = `
-You are an expert cloud invoice analyzer and cloud economics advisor.
-Analyze the invoice text and return ONLY valid JSON in the exact schema below.
+You are an expert cloud infrastructure economics advisor. Your job is NOT to read back the invoice — it is to analyze spending patterns and identify WHERE and HOW the customer can save money.
 
 File name: ${fileName}
 
 Invoice content:
 ${fileContent.substring(0, 50000)}
 
-Rules:
-- Detect provider if explicit evidence exists, otherwise set providerDetected to "Other".
-- Extract top services, top regions, and top line items from cost-bearing rows.
-- Keep percentages in 0-100 and relative to totalSpend.
-- Create 3-5 actionable insights (recommendations), not spend summaries.
-- Create savingsOpportunities for top services with realistic savings percentages.
-- Use 3-letter currency code when available.
+YOUR PRIMARY TASK:
+1. Extract the invoice metadata (provider, total spend, billing period, currency)
+2. Identify the top services by spend
+3. For EACH top service, estimate a specific savings opportunity with:
+   - What percentage can be saved on that service
+   - The estimated dollar amount that can be saved
+   - A specific, actionable recommendation (e.g., "Right-size underutilized EC2 instances", "Switch to Graviton instances", "Use Reserved Instances for steady-state RDS workloads", "Enable S3 Intelligent Tiering")
+4. Generate 3-5 actionable insights that are RECOMMENDATIONS, not summaries. Each insight should tell the customer what to DO, not what they spent.
 
-Return exactly this JSON shape:
+BAD insight examples (do NOT write these):
+- "EC2 accounts for 24% of total spend"
+- "Total spend for billing period is $4,771"
+
+GOOD insight examples (write these):
+- "EC2 instances appear to be on-demand — switching to 1-year Reserved Instances could save ~30% on compute"
+- "Load balancer spend is high relative to compute — consider consolidating to fewer ALBs"
+- "CloudWatch costs suggest verbose logging — review log retention policies to cut monitoring spend by ~40%"
+
+SAVINGS OPPORTUNITIES:
+For each top service, provide a savingsOpportunity with:
+- service: the service name
+- currentSpend: current spend amount
+- estimatedSavingsPercent: realistic savings percentage (be conservative, 10-40% range typically)
+- estimatedSavingsAmount: currentSpend * estimatedSavingsPercent / 100
+- action: one specific sentence describing what to do
+
+EXTRACTION RULES:
+- Currency must be a 3-letter ISO code (USD, EUR, SGD, etc.)
+- topServices: aggregate costs grouped by service, include name, spend, percent
+- Percent fields must be numbers between 0-100 relative to totalSpend
+- Round monetary values to 2 decimal places
+
+EFFICIENCY SCORE (0-100):
+- 90+: excellent commitment coverage, right-sized resources
+- 70-89: good but room for optimization
+- 50-69: significant savings available
+- <50: urgent optimization needed
+
+Return ONLY the following JSON structure:
+
 {
   "score": 0,
   "currency": "USD",
@@ -148,7 +178,7 @@ Return exactly this JSON shape:
   "billingPeriodEnd": "YYYY-MM-DD",
   "providerDetected": "Other",
   "lineItemCount": 0,
-  "topAccountIdentifier": "",
+  "topAccountIdentifier": null,
   "topServices": [{"name": "", "spend": 0, "percent": 0}],
   "topRegions": [{"name": "", "spend": 0, "percent": 0}],
   "topLineItems": [{"displayName": "", "service": "", "quantity": 0, "unit": "", "cost": 0}],
@@ -161,6 +191,8 @@ Return exactly this JSON shape:
   ],
   "insights": []
 }
+
+Return ONLY valid JSON. No markdown wrapping. No explanations.
 `;
 
   try {
