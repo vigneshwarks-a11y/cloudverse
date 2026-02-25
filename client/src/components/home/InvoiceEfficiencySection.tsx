@@ -114,17 +114,17 @@ export function InvoiceEfficiencySection() {
     <>
       <section className="py-10 sm:py-12 lg:py-14 pt-[50px] pb-[50px]">
         <div className="max-w-[1240px] mx-auto px-0">
-          <div className="max-w-2xl space-y-6">
+          <div className="max-w-2xl mx-auto space-y-6 text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cv-muted">
               Compute Economics Snapshot
             </p>
             <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-bold tracking-tight text-cv-ink leading-tight">
               Get an Instant Compute Economics Snapshot
             </h2>
-            <p className="text-base sm:text-lg text-cv-muted leading-relaxed max-w-xl">Upload a cloud invoice or spend export to generate a read-only baseline: unit cost, volatility signals, and demand drivers. No credentials required.</p>
+            <p className="text-base sm:text-lg text-cv-muted leading-relaxed max-w-xl mx-auto">Upload a cloud invoice or spend export to generate a read-only baseline: unit cost, volatility signals, and demand drivers. No credentials required.</p>
 
             {/* Upload Card */}
-            <div className="mt-8 max-w-md">
+            <div className="mt-8 max-w-md mx-auto">
               {/* Idle State */}
               {state === "idle" && (
                 <div
