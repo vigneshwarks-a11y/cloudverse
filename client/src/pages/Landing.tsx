@@ -144,15 +144,10 @@ function GetItDirectlySection() {
 
   return (
     <div
-      className={`rounded-2xl border bg-cv-surface p-5 sm:p-6 shadow-lg transition-all duration-500 relative overflow-hidden ${
-        isHighlighted
-          ? "border-blue-500/40 shadow-blue-500/10"
-          : "border-cv-line shadow-cv-line/10"
-      }`}
+      className="rounded-2xl border bg-cv-surface p-5 sm:p-6 shadow-lg transition-all duration-500 relative overflow-hidden border-blue-500/40 shadow-blue-500/10 pt-[6px] pb-[6px] pl-[20px] pr-[20px]"
       data-testid="demo-form-sidebar"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none" />
-
       <div className="relative">
         <div className="text-center mb-5">
           <span className="inline-block text-[10px] uppercase tracking-[0.2em] text-blue-500 font-semibold mb-2">
