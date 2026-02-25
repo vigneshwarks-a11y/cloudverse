@@ -116,247 +116,6 @@ function GetItDirectlySection() {
   const [dateOpen, setDateOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [dateTimeError, setDateTimeError] = useState<string | null>(null);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.preferredDate || !formData.preferredTime) {
-      setDateTimeError("Preferred date and time are required.");
-      return;
-    }
-    track("campaign_enquiry", { ...formData });
-    setFormData(initialFormData);
-    setSelectedDate(undefined);
-    setDateOpen(false);
-    setDateTimeError(null);
-    window.location.href = THANK_YOU_URL;
-  };
-
-  return (
-    <section className="pt-12 sm:pt-16 lg:pt-20 pb-16 sm:pb-20 lg:pb-24 relative overflow-hidden border-t border-cv-line dark:border-white/10">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none" />
-
-      <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20 relative">
-        <div className="text-center mb-12 lg:mb-16">
-          <span className="inline-block text-xs uppercase tracking-widest text-blue-500 font-semibold mb-4">
-            Schedule a Demo
-          </span>
-          <h2 className="cv-h1 mb-4">Let's explore what's possible</h2>
-          <p className="cv-body text-cv-muted max-w-2xl mx-auto">
-            See how CloudVerse can help your team gain visibility, control costs, and unlock savings across your cloud infrastructure.
-          </p>
-        </div>
-
-        <div className="max-w-[700px] mx-auto mb-8 p-8 rounded-2xl border border-cv-line bg-cv-surface2/50 dark:bg-white/5">
-          <h3 className="text-xl font-semibold text-cv-ink text-center mb-2">Get it directly</h3>
-          <p className="text-sm text-cv-muted text-center mb-6">
-            Purchase CloudVerse directly from your preferred cloud marketplace.
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <a
-              href="https://aws.amazon.com/marketplace/pp/prodview-g72gjnuqrts2m"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => track("marketplace_click", { provider: "aws", location: "landing" })}
-              className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all cloud_aws"
-            >
-              <img src="/logos/aws-light-mode.png" alt="AWS" className="h-9 w-auto dark:hidden" />
-              <img src="/logos/aws-dark-mode.png" alt="AWS" className="h-9 w-auto hidden dark:block" />
-            </a>
-            <a
-              href="https://console.cloud.google.com/marketplace/product/cloudverse-marketplace-public/mcp20"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => track("marketplace_click", { provider: "gcp", location: "landing" })}
-              className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all cloud_gcp"
-            >
-              <img src="/logos/gcp-light-mode.png" alt="Google Cloud" className="h-9 w-auto dark:hidden" />
-              <img src="/logos/gcp-dark-mode.png" alt="Google Cloud" className="h-9 w-auto hidden dark:block" />
-            </a>
-            <a
-              href="https://marketplace.microsoft.com/en-au/product/saas/cloudversepteltd1683193289260.cloudverse-multi-cloud-management-platform"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => track("marketplace_click", { provider: "microsoft", location: "landing" })}
-              className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all cloud_azure"
-            >
-              <img src="/logos/azure-marketplace.png" alt="Microsoft Azure" className="h-9 w-auto" />
-            </a>
-            <a
-              href="https://marketplace.alibabacloud.com/products/56680002/sgcmfw00032481.html?spm=a3c0i.26795044.0.0.5edb2faaOBdVso&innerSource=search"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => track("marketplace_click", { provider: "alibaba", location: "landing" })}
-              className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all cloud_alibaba"
-            >
-              <img src="/logos/alibaba-marketplace.png" alt="Alibaba Cloud" className="h-9 w-auto" />
-            </a>
-          </div>
-        </div>
-
-        <div className="max-w-[700px] mx-auto flex items-center gap-4 mb-8">
-          <div className="flex-1 h-px bg-cv-line"></div>
-          <span className="text-sm text-cv-muted font-medium">or fill the form</span>
-          <div className="flex-1 h-px bg-cv-line"></div>
-        </div>
-
-        <div className="max-w-[700px] mx-auto">
-          <form onSubmit={handleSubmit} className="space-y-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <label className="text-xs font-medium text-cv-muted uppercase tracking-wider">
-                  First Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="John"
-                  required
-                  value={formData.firstName}
-                  onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                  className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-xs font-medium text-cv-muted uppercase tracking-wider">
-                  Last Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="Doe"
-                  required
-                  value={formData.lastName}
-                  onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                  className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-xs font-medium text-cv-muted uppercase tracking-wider">
-                Work Email
-              </label>
-              <input
-                type="email"
-                placeholder="john@company.com"
-                required
-                value={formData.workEmail}
-                onChange={(e) => setFormData({ ...formData, workEmail: e.target.value })}
-                className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-xs font-medium text-cv-muted uppercase tracking-wider">
-                Interested in a specific integration?
-              </label>
-              <select
-                value={formData.integration}
-                onChange={(e) => setFormData({ ...formData, integration: e.target.value })}
-                className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink appearance-none cursor-pointer"
-              >
-                {integrationOptions.map((opt) => (
-                  <option key={opt} value={opt} className="bg-cv-surface">
-                    {opt}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-xs font-medium text-cv-muted uppercase tracking-wider flex items-center gap-2">
-                <CalendarIcon className="w-3.5 h-3.5" />
-                Preferred Date & Time
-              </label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <Popover open={dateOpen} onOpenChange={setDateOpen}>
-                  <PopoverTrigger asChild>
-                    <button
-                      type="button"
-                      className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-left cursor-pointer hover:border-cv-muted/50 flex items-center justify-between"
-                    >
-                      <span className={selectedDate ? "text-cv-ink" : "text-cv-muted/50"}>
-                        {selectedDate ? format(selectedDate, "MMM d, yyyy") : "Select date"}
-                      </span>
-                      <CalendarIcon className="w-4 h-4 text-cv-muted" />
-                    </button>
-                  </PopoverTrigger>
-                  <PopoverContent
-                    className="w-auto p-0 bg-cv-surface border border-cv-line shadow-xl rounded-xl"
-                    align="start"
-                  >
-                    <Calendar
-                      mode="single"
-                      selected={selectedDate}
-                      onSelect={(date) => {
-                        setSelectedDate(date);
-                        setFormData((prev) => ({
-                          ...prev,
-                          preferredDate: date ? format(date, "yyyy-MM-dd") : "",
-                        }));
-                        setDateTimeError(null);
-                        setDateOpen(false);
-                      }}
-                      disabled={(date) => date < new Date() || date.getDay() === 0 || date.getDay() === 6}
-                      initialFocus
-                      className="rounded-xl"
-                    />
-                  </PopoverContent>
-                </Popover>
-
-                <div className="relative">
-                  <select
-                    value={formData.preferredTime}
-                    onChange={(e) => {
-                      setFormData({ ...formData, preferredTime: e.target.value });
-                      setDateTimeError(null);
-                    }}
-                    className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink appearance-none cursor-pointer pr-10"
-                  >
-                    <option value="">Time</option>
-                    {timeSlots.map((slot) => (
-                      <option key={slot.value} value={slot.value}>
-                        {slot.label}
-                      </option>
-                    ))}
-                  </select>
-                  <Clock className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-cv-muted pointer-events-none" />
-                </div>
-              </div>
-              {dateTimeError && (
-                <p className="text-red-500 text-xs">{dateTimeError}</p>
-              )}
-            </div>
-
-            <button
-              type="submit"
-              className="w-full py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors"
-            >
-              Request Demo
-            </button>
-
-            <p className="text-xs text-cv-muted text-center pt-2">
-              By submitting, you agree to our privacy policy. We'll never share your information.
-            </p>
-          </form>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function StickyDemoForm() {
-  const initialFormData = {
-    firstName: "",
-    lastName: "",
-    workEmail: "",
-    integration: "No specific integration",
-    preferredDate: "",
-    preferredTime: "",
-  };
-
-  const [formData, setFormData] = useState(initialFormData);
-  const [dateOpen, setDateOpen] = useState(false);
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
-  const [dateTimeError, setDateTimeError] = useState<string | null>(null);
   const [isHighlighted, setIsHighlighted] = useState(false);
 
   useEffect(() => {
@@ -373,7 +132,7 @@ function StickyDemoForm() {
       setDateTimeError("Preferred date and time are required.");
       return;
     }
-    track("campaign_enquiry", { ...formData, source: "landing_sidebar" });
+    track("campaign_enquiry", { ...formData });
     setFormData(initialFormData);
     setSelectedDate(undefined);
     setDateOpen(false);
@@ -385,139 +144,218 @@ function StickyDemoForm() {
 
   return (
     <div
-      className={`rounded-2xl border bg-cv-surface p-5 shadow-lg transition-all duration-500 ${
+      className={`rounded-2xl border bg-cv-surface p-5 sm:p-6 shadow-lg transition-all duration-500 relative overflow-hidden ${
         isHighlighted
           ? "border-blue-500/40 shadow-blue-500/10"
           : "border-cv-line shadow-cv-line/10"
       }`}
-      data-testid="sticky-demo-form"
+      data-testid="demo-form-sidebar"
     >
-      <div className="text-center mb-5">
-        <span className="inline-block text-[10px] uppercase tracking-[0.2em] text-blue-500 font-semibold mb-2">
-          Schedule a Demo
-        </span>
-        <h3 className="text-lg font-bold text-cv-ink leading-snug">
-          See CloudVerse™ in action
-        </h3>
-        <p className="text-xs text-cv-muted mt-1">
-          30-minute personalized walkthrough
-        </p>
-      </div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none" />
 
-      <form onSubmit={handleSubmit} className="space-y-3" data-testid="sidebar-demo-form">
-        <div className="grid grid-cols-2 gap-2">
-          <input
-            type="text"
-            placeholder="First name"
-            required
-            value={formData.firstName}
-            onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-            className={inputClass}
-            data-testid="sidebar-input-first-name"
-          />
-          <input
-            type="text"
-            placeholder="Last name"
-            required
-            value={formData.lastName}
-            onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-            className={inputClass}
-            data-testid="sidebar-input-last-name"
-          />
+      <div className="relative">
+        <div className="text-center mb-5">
+          <span className="inline-block text-[10px] uppercase tracking-[0.2em] text-blue-500 font-semibold mb-2">
+            Schedule a Demo
+          </span>
+          <h3 className="text-lg font-bold text-cv-ink leading-snug">
+            See CloudVerse™ in action
+          </h3>
+          <p className="text-xs text-cv-muted mt-1">
+            30-minute personalized walkthrough
+          </p>
         </div>
 
-        <input
-          type="email"
-          placeholder="Work email"
-          required
-          value={formData.workEmail}
-          onChange={(e) => setFormData({ ...formData, workEmail: e.target.value })}
-          className={inputClass}
-          data-testid="sidebar-input-email"
-        />
-
-        <select
-          value={formData.integration}
-          onChange={(e) => setFormData({ ...formData, integration: e.target.value })}
-          className={`${inputClass} appearance-none cursor-pointer`}
-          data-testid="sidebar-select-integration"
-        >
-          {integrationOptions.map((opt) => (
-            <option key={opt} value={opt}>{opt}</option>
-          ))}
-        </select>
-
-        <div className="grid grid-cols-2 gap-2">
-          <Popover open={dateOpen} onOpenChange={setDateOpen}>
-            <PopoverTrigger asChild>
-              <button
-                type="button"
-                className={`${inputClass} text-left cursor-pointer flex items-center justify-between`}
-                data-testid="sidebar-input-date"
-              >
-                <span className={selectedDate ? "text-cv-ink" : "text-cv-muted/50"}>
-                  {selectedDate ? format(selectedDate, "MMM d") : "Date"}
-                </span>
-                <CalendarIcon className="w-3.5 h-3.5 text-cv-muted" />
-              </button>
-            </PopoverTrigger>
-            <PopoverContent
-              className="w-auto p-0 bg-cv-surface border border-cv-line shadow-xl rounded-xl"
-              align="start"
+        <div className="mb-5 p-4 rounded-xl border border-cv-line bg-cv-surface2/50 dark:bg-white/5">
+          <h4 className="text-sm font-semibold text-cv-ink text-center mb-2">Get it directly</h4>
+          <p className="text-[11px] text-cv-muted text-center mb-3">
+            Purchase from your preferred cloud marketplace.
+          </p>
+          <div className="grid grid-cols-2 gap-2">
+            <a
+              href="https://aws.amazon.com/marketplace/pp/prodview-g72gjnuqrts2m"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track("marketplace_click", { provider: "aws", location: "landing" })}
+              className="flex items-center justify-center h-12 rounded-lg border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all cloud_aws"
+              data-testid="marketplace-aws"
             >
-              <Calendar
-                mode="single"
-                selected={selectedDate}
-                onSelect={(date) => {
-                  setSelectedDate(date);
-                  setFormData((prev) => ({
-                    ...prev,
-                    preferredDate: date ? format(date, "yyyy-MM-dd") : "",
-                  }));
-                  setDateTimeError(null);
-                  setDateOpen(false);
-                }}
-                disabled={(date) => date < new Date() || date.getDay() === 0 || date.getDay() === 6}
-                initialFocus
-                className="rounded-xl"
-              />
-            </PopoverContent>
-          </Popover>
-
-          <div className="relative">
-            <select
-              value={formData.preferredTime}
-              onChange={(e) => {
-                setFormData({ ...formData, preferredTime: e.target.value });
-                setDateTimeError(null);
-              }}
-              className={`${inputClass} appearance-none cursor-pointer pr-8`}
-              data-testid="sidebar-input-time"
+              <img src="/logos/aws-light-mode.png" alt="AWS" className="h-7 w-auto dark:hidden" />
+              <img src="/logos/aws-dark-mode.png" alt="AWS" className="h-7 w-auto hidden dark:block" />
+            </a>
+            <a
+              href="https://console.cloud.google.com/marketplace/product/cloudverse-marketplace-public/mcp20"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track("marketplace_click", { provider: "gcp", location: "landing" })}
+              className="flex items-center justify-center h-12 rounded-lg border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all cloud_gcp"
+              data-testid="marketplace-gcp"
             >
-              <option value="">Time</option>
-              {timeSlots.map((slot) => (
-                <option key={slot.value} value={slot.value}>{slot.label}</option>
-              ))}
-            </select>
-            <Clock className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-cv-muted pointer-events-none" />
+              <img src="/logos/gcp-light-mode.png" alt="Google Cloud" className="h-7 w-auto dark:hidden" />
+              <img src="/logos/gcp-dark-mode.png" alt="Google Cloud" className="h-7 w-auto hidden dark:block" />
+            </a>
+            <a
+              href="https://marketplace.microsoft.com/en-au/product/saas/cloudversepteltd1683193289260.cloudverse-multi-cloud-management-platform"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track("marketplace_click", { provider: "microsoft", location: "landing" })}
+              className="flex items-center justify-center h-12 rounded-lg border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all cloud_azure"
+              data-testid="marketplace-azure"
+            >
+              <img src="/logos/azure-marketplace.png" alt="Microsoft Azure" className="h-7 w-auto" />
+            </a>
+            <a
+              href="https://marketplace.alibabacloud.com/products/56680002/sgcmfw00032481.html?spm=a3c0i.26795044.0.0.5edb2faaOBdVso&innerSource=search"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track("marketplace_click", { provider: "alibaba", location: "landing" })}
+              className="flex items-center justify-center h-12 rounded-lg border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all cloud_alibaba"
+              data-testid="marketplace-alibaba"
+            >
+              <img src="/logos/alibaba-marketplace.png" alt="Alibaba Cloud" className="h-7 w-auto" />
+            </a>
           </div>
         </div>
-        {dateTimeError && (
-          <p className="text-red-500 text-[10px]">{dateTimeError}</p>
-        )}
 
-        <button
-          type="submit"
-          className="w-full py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors text-sm"
-          data-testid="sidebar-button-submit"
-        >
-          Request Demo
-        </button>
-      </form>
+        <div className="flex items-center gap-3 mb-5">
+          <div className="flex-1 h-px bg-cv-line"></div>
+          <span className="text-xs text-cv-muted font-medium">or fill the form</span>
+          <div className="flex-1 h-px bg-cv-line"></div>
+        </div>
 
-      <p className="text-[10px] text-cv-muted/60 text-center mt-3">
-        By submitting, you agree to our privacy policy.
-      </p>
+        <form onSubmit={handleSubmit} className="space-y-3" data-testid="landing-demo-form">
+          <div className="grid grid-cols-2 gap-2">
+            <div className="space-y-1">
+              <label className="text-[10px] font-medium text-cv-muted uppercase tracking-wider">First Name</label>
+              <input
+                type="text"
+                placeholder="John"
+                required
+                value={formData.firstName}
+                onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                className={inputClass}
+                data-testid="input-first-name"
+              />
+            </div>
+            <div className="space-y-1">
+              <label className="text-[10px] font-medium text-cv-muted uppercase tracking-wider">Last Name</label>
+              <input
+                type="text"
+                placeholder="Doe"
+                required
+                value={formData.lastName}
+                onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                className={inputClass}
+                data-testid="input-last-name"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-1">
+            <label className="text-[10px] font-medium text-cv-muted uppercase tracking-wider">Work Email</label>
+            <input
+              type="email"
+              placeholder="john@company.com"
+              required
+              value={formData.workEmail}
+              onChange={(e) => setFormData({ ...formData, workEmail: e.target.value })}
+              className={inputClass}
+              data-testid="input-work-email"
+            />
+          </div>
+
+          <div className="space-y-1">
+            <label className="text-[10px] font-medium text-cv-muted uppercase tracking-wider">Integration?</label>
+            <select
+              value={formData.integration}
+              onChange={(e) => setFormData({ ...formData, integration: e.target.value })}
+              className={`${inputClass} appearance-none cursor-pointer`}
+              data-testid="select-integration"
+            >
+              {integrationOptions.map((opt) => (
+                <option key={opt} value={opt} className="bg-cv-surface">{opt}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="space-y-1">
+            <label className="text-[10px] font-medium text-cv-muted uppercase tracking-wider flex items-center gap-1">
+              <CalendarIcon className="w-3 h-3" />
+              Preferred Date & Time
+            </label>
+            <div className="grid grid-cols-2 gap-2">
+              <Popover open={dateOpen} onOpenChange={setDateOpen}>
+                <PopoverTrigger asChild>
+                  <button
+                    type="button"
+                    className={`${inputClass} text-left cursor-pointer flex items-center justify-between`}
+                    data-testid="input-date"
+                  >
+                    <span className={selectedDate ? "text-cv-ink" : "text-cv-muted/50"}>
+                      {selectedDate ? format(selectedDate, "MMM d, yyyy") : "Select date"}
+                    </span>
+                    <CalendarIcon className="w-3.5 h-3.5 text-cv-muted" />
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent
+                  className="w-auto p-0 bg-cv-surface border border-cv-line shadow-xl rounded-xl"
+                  align="start"
+                >
+                  <Calendar
+                    mode="single"
+                    selected={selectedDate}
+                    onSelect={(date) => {
+                      setSelectedDate(date);
+                      setFormData((prev) => ({
+                        ...prev,
+                        preferredDate: date ? format(date, "yyyy-MM-dd") : "",
+                      }));
+                      setDateTimeError(null);
+                      setDateOpen(false);
+                    }}
+                    disabled={(date) => date < new Date() || date.getDay() === 0 || date.getDay() === 6}
+                    initialFocus
+                    className="rounded-xl"
+                  />
+                </PopoverContent>
+              </Popover>
+
+              <div className="relative">
+                <select
+                  value={formData.preferredTime}
+                  onChange={(e) => {
+                    setFormData({ ...formData, preferredTime: e.target.value });
+                    setDateTimeError(null);
+                  }}
+                  className={`${inputClass} appearance-none cursor-pointer pr-8`}
+                  data-testid="input-time"
+                >
+                  <option value="">Time</option>
+                  {timeSlots.map((slot) => (
+                    <option key={slot.value} value={slot.value}>{slot.label}</option>
+                  ))}
+                </select>
+                <Clock className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-cv-muted pointer-events-none" />
+              </div>
+            </div>
+            {dateTimeError && (
+              <p className="text-red-500 text-[10px]">{dateTimeError}</p>
+            )}
+          </div>
+
+          <button
+            type="submit"
+            className="w-full py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors text-sm"
+            data-testid="button-request-demo"
+          >
+            Request Demo
+          </button>
+
+          <p className="text-[10px] text-cv-muted/60 text-center">
+            By submitting, you agree to our privacy policy. We'll never share your information.
+          </p>
+        </form>
+      </div>
     </div>
   );
 }
@@ -534,7 +372,7 @@ export default function Landing() {
 
             {/* Mobile-only Demo Form */}
             <div className="lg:hidden py-8 border-b border-cv-line dark:border-white/10">
-              <StickyDemoForm />
+              <GetItDirectlySection />
             </div>
 
             <InvoiceEfficiencySection />
@@ -562,8 +400,6 @@ export default function Landing() {
                 })}
               </div>
             </section>
-
-            <GetItDirectlySection />
 
             <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10">
               <div className="text-center mb-12 sm:mb-14">
@@ -662,7 +498,7 @@ export default function Landing() {
           {/* Right Column: Sticky Demo Form (desktop only) */}
           <div className="hidden lg:block">
             <div className="sticky top-24 pt-10">
-              <StickyDemoForm />
+              <GetItDirectlySection />
             </div>
           </div>
 
