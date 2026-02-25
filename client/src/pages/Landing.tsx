@@ -489,7 +489,7 @@ export default function Landing() {
 
           {/* Right Column: Sticky Demo Form (desktop only) */}
           <div className="hidden lg:block">
-            <div className="sticky top-24 pt-10">
+            <div className="sticky top-24 pt-[4px] pb-[4px]">
               <GetItDirectlySection />
             </div>
           </div>
