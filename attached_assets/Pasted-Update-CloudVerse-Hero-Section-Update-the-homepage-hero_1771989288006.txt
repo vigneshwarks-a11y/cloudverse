@@ -1,0 +1,126 @@
+Update CloudVerse Hero Section
+Update the homepage hero section to reflect CloudVerse’s category positioning as the Compute Economics Platform for the AI Era.
+Objective
+Replace the current hero content:
+Enterprise AI Infrastructure Economics Platform
+with a stronger category-defining hero focused on Compute Economics Platform positioning.
+Maintain the existing layout:
+	•	Left side → Text
+	•	Right side → UI card
+	•	Same spacing
+	•	Same styling
+	•	Same typography scale
+	•	Same dark theme
+Do NOT redesign layout.
+Only update content.
+
+Hero Content
+Category Label (Small Text Above Headline)
+Add small uppercase label above the headline:
+
+
+COMPUTE ECONOMICS PLATFORM
+
+Style:
+	•	Small font
+	•	Letter spaced
+	•	Muted color
+	•	Same style used for small section labels elsewhere
+
+Headline
+Replace headline with:
+
+
+The Compute Economics Platform for the AI Era
+
+Formatting:
+	•	Same font size
+	•	Same line spacing
+	•	Same alignment
+
+Subheadline
+Replace the first paragraph with:
+
+
+CloudVerse gives enterprises economic control over AI, cloud, and data infrastructure.
+
+Short single sentence.
+
+Strategic Line (Bold)
+Add a bold line below subheadline:
+
+
+Turn compute into an economically engineered system.
+
+Style:
+	•	Slightly larger than paragraph text
+	•	Semi-bold or bold
+	•	White text
+
+Supporting Lines
+Replace the existing descriptive paragraph with three short lines:
+
+
+Route AI workloads intelligently.
+Optimize compute automatically.
+Control infrastructure cost growth at scale.
+
+Formatting:
+	•	One per line
+	•	Same style as current paragraph text
+	•	Comfortable line spacing
+
+CTA Buttons
+Keep primary button:
+
+
+Book a Demo
+
+Replace secondary button text:
+
+Explore Platform →
+
+Replace:
+
+Watch 90-second tour
+
+Do not change styling.
+
+Remove Text
+Remove this sentence:
+
+Making AI infrastructure decisions economically intentional.
+
+Remove the long descriptive paragraph below it.
+
+Layout Rules
+Do NOT change:
+	•	Hero height
+	•	Alignment
+	•	Button styling
+	•	UI card on right
+	•	Logos
+	•	Colors
+	•	Typography system
+	•	Padding/margins
+Only text updates.
+
+Expected Result
+Hero should read exactly:
+
+COMPUTE ECONOMICS PLATFORM
+The Compute Economics Platform for the AI Era
+CloudVerse gives enterprises economic control over AI, cloud, and data infrastructure.
+Turn compute into an economically engineered system.
+Route AI workloads intelligently. Optimize compute automatically. Control infrastructure cost growth at scale.
+[ Book a Demo ] [ Explore Platform → ]
+
+Quality Requirements
+Ensure:
+	•	Text wraps cleanly on desktop
+	•	No orphan words
+	•	No layout shift
+	•	No hero height increase
+	•	Mobile layout still works
+
+

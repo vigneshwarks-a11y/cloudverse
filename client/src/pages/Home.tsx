@@ -89,34 +89,41 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 lg:gap-14 items-center">
             {/* Left: Copy Block */}
             <div className="text-center lg:text-left space-y-4 sm:space-y-6 max-w-[52rem] mx-auto lg:mx-0">
+              <p className="text-xs sm:text-sm uppercase tracking-[0.2em] text-cv-muted font-medium">
+                Compute Economics Platform
+              </p>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-cv-ink leading-tight">
-                Enterprise AI Infrastructure Economics Platform
+                The Compute Economics Platform for the AI Era
               </h1>
               <p className="text-lg sm:text-xl text-cv-ink/80 leading-relaxed max-w-[40rem] mx-auto lg:mx-0">
-                Making AI infrastructure decisions economically intentional.
+                CloudVerse™ gives enterprises economic control over AI, cloud, and data infrastructure.
+              </p>
+              <p className="text-lg sm:text-xl font-semibold text-cv-ink max-w-[40rem] mx-auto lg:mx-0">
+                Turn compute into an economically engineered system.
               </p>
               <p className="text-base sm:text-lg text-cv-muted pb-8 border-b border-cv-line leading-relaxed max-w-[40rem] mx-auto lg:mx-0">
-                CloudVerse embeds economic decision logic across model selection, workload behavior, and compute procurement so technical execution and financial intent stay aligned.
+                Route AI workloads intelligently.<br />
+                Optimize compute automatically.<br />
+                Control infrastructure cost growth at scale.
               </p>
 
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-4 max-w-xs sm:max-w-none mx-auto lg:mx-0">
                 <Link href="/connect" onClick={() => track("cta_demo", { location: "hero" })} className="w-full sm:w-auto">
                   <Button size="lg" className="w-full sm:w-auto">
-                    Book a demo
+                    Book a Demo
                   </Button>
                 </Link>
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  className="w-full sm:w-auto"
-                  onClick={() => {
-                    track("cta_watch_tour", { location: "hero" });
-                    setShowVideo(true);
-                  }}
-                >
-                  Watch 90-second tour →
-                </Button>
+                <Link href="/platform" className="w-full sm:w-auto">
+                  <Button
+                    variant="secondary"
+                    size="lg"
+                    className="w-full sm:w-auto"
+                    onClick={() => track("cta_explore_platform", { location: "hero" })}
+                  >
+                    Explore Platform →
+                  </Button>
+                </Link>
               </div>
 
               <p className="text-sm text-cv-muted pt-2">
