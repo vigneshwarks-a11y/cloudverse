@@ -78,7 +78,7 @@ const applyGuideHeadTags = (guide: (typeof guides)[number]) => {
   const seo = guide.seo || {};
   const fallbackDescription = seo.description || guide.summary || "";
 
-  document.title = seo.title || `${guide.title} CloudVerse`;
+  document.title = seo.title || `${guide.title} CloudVerse™`;
 
   upsertMetaTag("name", "description", fallbackDescription);
   upsertMetaTag("name", "keywords", seo.keywords || "");
@@ -118,11 +118,7 @@ export default function ResourcesGuideDetail() {
 
   useEffect(() => {
     if (guide) {
-<<<<<<< HEAD
-      document.title = `${guide.title} — CloudVerse™`;
-=======
       applyGuideHeadTags(guide);
->>>>>>> a9d7154e80aac5d8805041dcdf932a0a77ab65c1
     }
     return () => clearManagedHeadTags();
   }, [guide]);
@@ -202,14 +198,6 @@ export default function ResourcesGuideDetail() {
             <p className="text-base text-cv-muted leading-7 mb-6">
               {guide.summary}
             </p>
-<<<<<<< HEAD
-            {guide.content &&
-              guide.content.map((paragraph, idx) => (
-                <p key={idx} className="text-sm text-cv-muted leading-7 mb-4">
-                  {paragraph}
-                </p>
-              ))}
-=======
             {guide.content && guide.content.map((paragraph, idx) => (
               (() => {
                 const section = splitSectionHeading(paragraph);
@@ -238,7 +226,6 @@ export default function ResourcesGuideDetail() {
                 );
               })()
             ))}
->>>>>>> a9d7154e80aac5d8805041dcdf932a0a77ab65c1
           </div>
         </div>
       </section>

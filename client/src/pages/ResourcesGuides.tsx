@@ -15,11 +15,7 @@ export default function ResourcesGuides() {
   const [sortBy, setSortBy] = useState<"Newest" | "Featured">("Newest");
 
   useEffect(() => {
-<<<<<<< HEAD
     document.title = "Guides — CloudVerse™";
-=======
-    document.title = "Guides CloudVerse";
->>>>>>> a9d7154e80aac5d8805041dcdf932a0a77ab65c1
   }, []);
 
   const filtered = useMemo(() => {
