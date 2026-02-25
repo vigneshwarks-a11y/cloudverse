@@ -393,7 +393,7 @@ export default function Landing() {
               </div>
             </section>
 
-            <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10">
+            <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10 pt-[60px] pb-[60px]">
               <div className="mb-12 sm:mb-14">
                 <h2 className="sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink mb-4 text-[30px]">
                   Let's explore what's possible
