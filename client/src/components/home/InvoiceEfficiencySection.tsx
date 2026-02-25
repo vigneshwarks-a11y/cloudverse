@@ -227,9 +227,6 @@ export function InvoiceEfficiencySection() {
             <p className="text-xs text-cv-muted/70 pt-4">
               Read-only analysis. Files encrypted in transit and deleted after processing.
             </p>
-            <p className="text-xs text-cv-muted/50 pt-1">
-              Works with AWS CUR, Azure exports, GCP billing, and data warehouse spend.
-            </p>
           </div>
         </div>
       </section>
