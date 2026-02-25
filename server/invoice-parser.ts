@@ -293,3 +293,5 @@ Return ONLY valid JSON. No markdown wrapping. No explanations.
     throw new Error("Failed to parse invoice: " + (error instanceof Error ? error.message : "Unknown error"));
   }
 }
+
+//dummy text for re-commit
