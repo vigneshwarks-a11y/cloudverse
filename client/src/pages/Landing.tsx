@@ -412,11 +412,11 @@ export default function Landing() {
                   className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 is_cvdevx"
                   data-testid="product-devx-card"
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                  <div className="flex flex-col gap-4">
                     <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
                       <Boxes className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                     </div>
-                    <div className="flex-1">
+                    <div>
                       <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">DevX</h3>
                       <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">Cut AI costs without breaking latency or quality.</p>
                       <span className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:gap-3 transition-all">Visit devx.cloudverse.ai →</span>
@@ -432,11 +432,11 @@ export default function Landing() {
                   className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300 is_cvaix"
                   data-testid="product-aix-card"
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                  <div className="flex flex-col gap-4">
                     <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-lg shadow-purple-500/20">
                       <Sparkles className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                     </div>
-                    <div className="flex-1">
+                    <div>
                       <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">AIx</h3>
                       <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">Catch cloud cost mistakes before they reach production.</p>
                       <span className="inline-flex items-center gap-2 text-sm font-medium text-purple-600 dark:text-purple-400 group-hover:gap-3 transition-all">Visit aix.cloudverse.ai →</span>
@@ -452,11 +452,11 @@ export default function Landing() {
                   className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-pink-500/50 hover:shadow-lg hover:shadow-pink-500/10 transition-all duration-300 is_cvdatax"
                   data-testid="product-datax-card"
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                  <div className="flex flex-col gap-4">
                     <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-pink-500 to-fuchsia-500 flex items-center justify-center shadow-lg shadow-pink-500/20">
                       <img src={dataxLogo} alt="DataX" className="w-6 h-6 sm:w-7 sm:h-7 object-contain" />
                     </div>
-                    <div className="flex-1">
+                    <div>
                       <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">DataX</h3>
                       <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">Analytics data cost visibility and workload controls. Monitor usage, optimize queries, and control spend.</p>
                       <span className="inline-flex items-center gap-2 text-sm font-medium text-pink-600 dark:text-pink-400 group-hover:gap-3 transition-all">Visit datax.cloudverse.ai →</span>
@@ -472,11 +472,11 @@ export default function Landing() {
                   className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-orange-500/50 hover:shadow-lg hover:shadow-orange-500/10 transition-all duration-300 is_cvbillops"
                   data-testid="product-billops-card"
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                  <div className="flex flex-col gap-4">
                     <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center shadow-lg shadow-orange-500/20">
                       <img src={billopsLogo} alt="CloudBillOps" className="w-6 h-6 sm:w-7 sm:h-7 object-contain" />
                     </div>
-                    <div className="flex-1">
+                    <div>
                       <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">CloudBillOps</h3>
                       <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">Unified cloud billing and cost operations. Track usage, allocate costs, enforce controls.</p>
                       <span className="inline-flex items-center gap-2 text-sm font-medium text-orange-600 dark:text-orange-400 group-hover:gap-3 transition-all">Visit billops.cloudverse.ai →</span>
