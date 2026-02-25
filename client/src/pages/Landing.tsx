@@ -1,7 +1,7 @@
 import { BaseLayout } from "@/layouts/BaseLayout";
 import { InvoiceEfficiencySection } from "@/components/home/InvoiceEfficiencySection";
 import { track } from "@/lib/track";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Boxes,
   BarChart3,
@@ -343,162 +343,331 @@ function GetItDirectlySection() {
   );
 }
 
+function StickyDemoForm() {
+  const initialFormData = {
+    firstName: "",
+    lastName: "",
+    workEmail: "",
+    integration: "No specific integration",
+    preferredDate: "",
+    preferredTime: "",
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
+  const [dateOpen, setDateOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+  const [dateTimeError, setDateTimeError] = useState<string | null>(null);
+  const [isHighlighted, setIsHighlighted] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 400) setIsHighlighted(true);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.preferredDate || !formData.preferredTime) {
+      setDateTimeError("Preferred date and time are required.");
+      return;
+    }
+    track("campaign_enquiry", { ...formData, source: "landing_sidebar" });
+    setFormData(initialFormData);
+    setSelectedDate(undefined);
+    setDateOpen(false);
+    setDateTimeError(null);
+    window.location.href = THANK_YOU_URL;
+  };
+
+  const inputClass = "w-full bg-cv-surface2 border border-cv-line rounded px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50";
+
+  return (
+    <div
+      className={`rounded-2xl border bg-cv-surface p-5 shadow-lg transition-all duration-500 ${
+        isHighlighted
+          ? "border-blue-500/40 shadow-blue-500/10"
+          : "border-cv-line shadow-cv-line/10"
+      }`}
+      data-testid="sticky-demo-form"
+    >
+      <div className="text-center mb-5">
+        <span className="inline-block text-[10px] uppercase tracking-[0.2em] text-blue-500 font-semibold mb-2">
+          Schedule a Demo
+        </span>
+        <h3 className="text-lg font-bold text-cv-ink leading-snug">
+          See CloudVerse™ in action
+        </h3>
+        <p className="text-xs text-cv-muted mt-1">
+          30-minute personalized walkthrough
+        </p>
+      </div>
+
+      <form onSubmit={handleSubmit} className="space-y-3" data-testid="sidebar-demo-form">
+        <div className="grid grid-cols-2 gap-2">
+          <input
+            type="text"
+            placeholder="First name"
+            required
+            value={formData.firstName}
+            onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+            className={inputClass}
+            data-testid="sidebar-input-first-name"
+          />
+          <input
+            type="text"
+            placeholder="Last name"
+            required
+            value={formData.lastName}
+            onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+            className={inputClass}
+            data-testid="sidebar-input-last-name"
+          />
+        </div>
+
+        <input
+          type="email"
+          placeholder="Work email"
+          required
+          value={formData.workEmail}
+          onChange={(e) => setFormData({ ...formData, workEmail: e.target.value })}
+          className={inputClass}
+          data-testid="sidebar-input-email"
+        />
+
+        <select
+          value={formData.integration}
+          onChange={(e) => setFormData({ ...formData, integration: e.target.value })}
+          className={`${inputClass} appearance-none cursor-pointer`}
+          data-testid="sidebar-select-integration"
+        >
+          {integrationOptions.map((opt) => (
+            <option key={opt} value={opt}>{opt}</option>
+          ))}
+        </select>
+
+        <div className="grid grid-cols-2 gap-2">
+          <Popover open={dateOpen} onOpenChange={setDateOpen}>
+            <PopoverTrigger asChild>
+              <button
+                type="button"
+                className={`${inputClass} text-left cursor-pointer flex items-center justify-between`}
+                data-testid="sidebar-input-date"
+              >
+                <span className={selectedDate ? "text-cv-ink" : "text-cv-muted/50"}>
+                  {selectedDate ? format(selectedDate, "MMM d") : "Date"}
+                </span>
+                <CalendarIcon className="w-3.5 h-3.5 text-cv-muted" />
+              </button>
+            </PopoverTrigger>
+            <PopoverContent
+              className="w-auto p-0 bg-cv-surface border border-cv-line shadow-xl rounded-xl"
+              align="start"
+            >
+              <Calendar
+                mode="single"
+                selected={selectedDate}
+                onSelect={(date) => {
+                  setSelectedDate(date);
+                  setFormData((prev) => ({
+                    ...prev,
+                    preferredDate: date ? format(date, "yyyy-MM-dd") : "",
+                  }));
+                  setDateTimeError(null);
+                  setDateOpen(false);
+                }}
+                disabled={(date) => date < new Date() || date.getDay() === 0 || date.getDay() === 6}
+                initialFocus
+                className="rounded-xl"
+              />
+            </PopoverContent>
+          </Popover>
+
+          <div className="relative">
+            <select
+              value={formData.preferredTime}
+              onChange={(e) => {
+                setFormData({ ...formData, preferredTime: e.target.value });
+                setDateTimeError(null);
+              }}
+              className={`${inputClass} appearance-none cursor-pointer pr-8`}
+              data-testid="sidebar-input-time"
+            >
+              <option value="">Time</option>
+              {timeSlots.map((slot) => (
+                <option key={slot.value} value={slot.value}>{slot.label}</option>
+              ))}
+            </select>
+            <Clock className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-cv-muted pointer-events-none" />
+          </div>
+        </div>
+        {dateTimeError && (
+          <p className="text-red-500 text-[10px]">{dateTimeError}</p>
+        )}
+
+        <button
+          type="submit"
+          className="w-full py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors text-sm"
+          data-testid="sidebar-button-submit"
+        >
+          Request Demo
+        </button>
+      </form>
+
+      <p className="text-[10px] text-cv-muted/60 text-center mt-3">
+        By submitting, you agree to our privacy policy.
+      </p>
+    </div>
+  );
+}
+
 export default function Landing() {
   return (
     <BaseLayout>
-      <InvoiceEfficiencySection />
+      {/* Two-Column Layout */}
+      <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-0 lg:gap-10">
 
-      <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10">
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-center text-cv-ink mb-10 sm:mb-12">
-            What's included with CloudVerse
-          </h2>
+          {/* Left Column: All content sections */}
+          <div className="min-w-0">
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10 sm:mb-12">
-            {features.map((feature, idx) => {
-              const Icon = feature.icon;
-              return (
-                <div
-                  key={idx}
-                  className="p-4 rounded-xl bg-cv-surface dark:bg-slate-900/60 border border-cv-line dark:border-white/10 hover:border-cv-line/80 dark:hover:border-white/20 hover:bg-cv-surface2/30 dark:hover:bg-slate-800/60 transition-all group"
+            {/* Mobile-only Demo Form */}
+            <div className="lg:hidden py-8 border-b border-cv-line dark:border-white/10">
+              <StickyDemoForm />
+            </div>
+
+            <InvoiceEfficiencySection />
+
+            <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10">
+              <h2 className="text-2xl sm:text-3xl font-semibold text-center text-cv-ink mb-10 sm:mb-12">
+                What's included with CloudVerse™
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 sm:mb-12">
+                {features.map((feature, idx) => {
+                  const Icon = feature.icon;
+                  return (
+                    <div
+                      key={idx}
+                      className="p-4 rounded-xl bg-cv-surface dark:bg-slate-900/60 border border-cv-line dark:border-white/10 hover:border-cv-line/80 dark:hover:border-white/20 hover:bg-cv-surface2/30 dark:hover:bg-slate-800/60 transition-all group"
+                      data-testid={`feature-card-${idx}`}
+                    >
+                      <div className="w-9 h-9 rounded-full bg-blue-500/10 dark:bg-blue-500/20 flex items-center justify-center mb-3 group-hover:bg-blue-500/15 dark:group-hover:bg-blue-500/25 transition-colors">
+                        <Icon className="w-4 h-4 text-blue-500" />
+                      </div>
+                      <h4 className="text-sm font-medium text-cv-ink mb-1">{feature.title}</h4>
+                      <p className="text-xs text-cv-muted dark:text-slate-500 leading-relaxed">{feature.desc}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+
+            <GetItDirectlySection />
+
+            <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10">
+              <div className="text-center mb-12 sm:mb-14">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink mb-4">
+                  Let's explore what's possible
+                </h2>
+                <p className="text-lg sm:text-xl text-cv-muted dark:text-slate-400 max-w-2xl mx-auto">
+                  See how CloudVerse™ can help your team gain visibility, control costs, and unlock savings across your cloud infrastructure.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                <a
+                  href="https://devx.cloudverse.ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => track("product_devx", { location: "products_section" })}
+                  className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 is_cvdevx"
+                  data-testid="product-devx-card"
                 >
-                  <div className="w-9 h-9 rounded-full bg-blue-500/10 dark:bg-blue-500/20 flex items-center justify-center mb-3 group-hover:bg-blue-500/15 dark:group-hover:bg-blue-500/25 transition-colors">
-                    <Icon className="w-4 h-4 text-blue-500" />
+                  <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                    <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
+                      <Boxes className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">DevX</h3>
+                      <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">Cut AI costs without breaking latency or quality.</p>
+                      <span className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:gap-3 transition-all">Visit devx.cloudverse.ai →</span>
+                    </div>
                   </div>
-                  <h4 className="text-sm font-medium text-cv-ink mb-1">{feature.title}</h4>
-                  <p className="text-xs text-cv-muted dark:text-slate-500 leading-relaxed">{feature.desc}</p>
-                </div>
-              );
-            })}
+                </a>
+
+                <a
+                  href="https://aix.cloudverse.ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => track("product_aix", { location: "products_section" })}
+                  className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300 is_cvaix"
+                  data-testid="product-aix-card"
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                    <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-lg shadow-purple-500/20">
+                      <Sparkles className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">AIx</h3>
+                      <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">Catch cloud cost mistakes before they reach production.</p>
+                      <span className="inline-flex items-center gap-2 text-sm font-medium text-purple-600 dark:text-purple-400 group-hover:gap-3 transition-all">Visit aix.cloudverse.ai →</span>
+                    </div>
+                  </div>
+                </a>
+
+                <a
+                  href="https://datax.cloudverse.ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => track("product_datax", { location: "products_section" })}
+                  className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-pink-500/50 hover:shadow-lg hover:shadow-pink-500/10 transition-all duration-300 is_cvdatax"
+                  data-testid="product-datax-card"
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                    <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-pink-500 to-fuchsia-500 flex items-center justify-center shadow-lg shadow-pink-500/20">
+                      <img src={dataxLogo} alt="DataX" className="w-6 h-6 sm:w-7 sm:h-7 object-contain" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">DataX</h3>
+                      <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">Analytics data cost visibility and workload controls. Monitor usage, optimize queries, and control spend.</p>
+                      <span className="inline-flex items-center gap-2 text-sm font-medium text-pink-600 dark:text-pink-400 group-hover:gap-3 transition-all">Visit datax.cloudverse.ai →</span>
+                    </div>
+                  </div>
+                </a>
+
+                <a
+                  href="https://billops.cloudverse.ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => track("product_billops", { location: "products_section" })}
+                  className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-orange-500/50 hover:shadow-lg hover:shadow-orange-500/10 transition-all duration-300 is_cvbillops"
+                  data-testid="product-billops-card"
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+                    <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center shadow-lg shadow-orange-500/20">
+                      <img src={billopsLogo} alt="CloudBillOps" className="w-6 h-6 sm:w-7 sm:h-7 object-contain" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">CloudBillOps</h3>
+                      <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">Unified cloud billing and cost operations. Track usage, allocate costs, enforce controls.</p>
+                      <span className="inline-flex items-center gap-2 text-sm font-medium text-orange-600 dark:text-orange-400 group-hover:gap-3 transition-all">Visit billops.cloudverse.ai →</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </section>
+          </div>
+
+          {/* Right Column: Sticky Demo Form (desktop only) */}
+          <div className="hidden lg:block">
+            <div className="sticky top-24 pt-10">
+              <StickyDemoForm />
+            </div>
           </div>
 
         </div>
-      </section>
-
-      <GetItDirectlySection />
-
-      <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10">
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
-          <div className="text-center mb-12 sm:mb-14">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink mb-4">
-              Let's explore what's possible
-            </h2>
-            <p className="text-lg sm:text-xl text-cv-muted dark:text-slate-400 max-w-2xl mx-auto">
-              See how CloudVerse can help your team gain visibility, control costs, and unlock savings across your cloud infrastructure.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-            {/* DevX Card */}
-            <a
-              href="https://devx.cloudverse.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => track("product_devx", { location: "products_section" })}
-              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 is_cvdevx"
-              data-testid="product-devx-card"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
-                <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
-                  <Boxes className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    DevX
-                  </h3>
-                  <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
-                    Cut AI costs without breaking latency or quality.
-                  </p>
-                  <span className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:gap-3 transition-all">
-                    Visit devx.cloudverse.ai →
-                  </span>
-                </div>
-              </div>
-            </a>
-
-            {/* AIx Card */}
-            <a
-              href="https://aix.cloudverse.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => track("product_aix", { location: "products_section" })}
-              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300  is_cvaix"
-              data-testid="product-aix-card"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
-                <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-lg shadow-purple-500/20">
-                  <Sparkles className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
-                    AIx
-                  </h3>
-                  <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
-                    Catch cloud cost mistakes before they reach production.
-                  </p>
-                  <span className="inline-flex items-center gap-2 text-sm font-medium text-purple-600 dark:text-purple-400 group-hover:gap-3 transition-all">
-                    Visit aix.cloudverse.ai →
-                  </span>
-                </div>
-              </div>
-            </a>
-
-            {/* DataX Card */}
-            <a
-              href="https://datax.cloudverse.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => track("product_datax", { location: "products_section" })}
-              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-pink-500/50 hover:shadow-lg hover:shadow-pink-500/10 transition-all duration-300 is_cvdatax"
-              data-testid="product-datax-card"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
-                <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-pink-500 to-fuchsia-500 flex items-center justify-center shadow-lg shadow-pink-500/20">
-                  <img src={dataxLogo} alt="DataX" className="w-6 h-6 sm:w-7 sm:h-7 object-contain" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">
-                    DataX
-                  </h3>
-                  <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
-                    Analytics data cost visibility and workload controls. Monitor usage, optimize queries, and control spend.
-                  </p>
-                  <span className="inline-flex items-center gap-2 text-sm font-medium text-pink-600 dark:text-pink-400 group-hover:gap-3 transition-all">
-                    Visit datax.cloudverse.ai →
-                  </span>
-                </div>
-              </div>
-            </a>
-
-            {/* CloudBillOps Card */}
-            <a
-              href="https://billops.cloudverse.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => track("product_billops", { location: "products_section" })}
-              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-orange-500/50 hover:shadow-lg hover:shadow-orange-500/10 transition-all duration-300 is_cvbillops"
-              data-testid="product-billops-card"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
-                <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center shadow-lg shadow-orange-500/20">
-                  <img src={billopsLogo} alt="CloudBillOps" className="w-6 h-6 sm:w-7 sm:h-7 object-contain" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
-                    CloudBillOps
-                  </h3>
-                  <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
-                    Unified cloud billing and cost operations. Track usage, allocate costs, enforce controls.
-                  </p>
-                  <span className="inline-flex items-center gap-2 text-sm font-medium text-orange-600 dark:text-orange-400 group-hover:gap-3 transition-all">
-                    Visit billops.cloudverse.ai →
-                  </span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </section>
+      </div>
     </BaseLayout>
   );
 }
