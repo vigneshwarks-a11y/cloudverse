@@ -144,7 +144,7 @@ function GetItDirectlySection() {
 
   return (
     <div
-      className="rounded-2xl border bg-cv-surface p-5 sm:p-6 shadow-lg transition-all duration-500 relative overflow-hidden border-blue-500/40 shadow-blue-500/10 pt-[6px] pb-[6px] pl-[20px] pr-[20px]"
+      className="rounded-2xl border bg-cv-surface p-5 sm:p-6 shadow-lg transition-all duration-500 relative overflow-hidden border-blue-500/40 shadow-blue-500/10 pl-[20px] pr-[20px] pt-[12px] pb-[12px]"
       data-testid="demo-form-sidebar"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none" />
