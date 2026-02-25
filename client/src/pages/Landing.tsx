@@ -369,7 +369,7 @@ export default function Landing() {
 
             <InvoiceEfficiencySection />
 
-            <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10 pt-[30px] pb-[30px]">
+            <section className="pt-[30px] pb-[30px] border-t border-cv-line dark:border-white/10">
               <h2 className="text-2xl sm:text-3xl font-semibold text-cv-ink sm:mb-12 mt-[27px] mb-[27px]">
                 What's included with CloudVerse™
               </h2>
