@@ -398,7 +398,7 @@ export default function Landing() {
                 <h2 className="sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink mb-4 text-[30px]">
                   Let's explore what's possible
                 </h2>
-                <p className="text-lg sm:text-xl text-cv-muted dark:text-slate-400 max-w-2xl">
+                <p className="sm:text-xl text-cv-muted dark:text-slate-400 max-w-2xl text-[18px]">
                   See how CloudVerse™ can help your team gain visibility, control costs, and unlock savings across your cloud infrastructure.
                 </p>
               </div>
