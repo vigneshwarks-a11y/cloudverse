@@ -161,9 +161,6 @@ function GetItDirectlySection() {
           <h3 className="text-lg font-bold text-cv-ink leading-snug">
             See CloudVerse™ in action
           </h3>
-          <p className="text-xs text-cv-muted mt-1">
-            30-minute personalized walkthrough
-          </p>
         </div>
 
         <div className="mb-5 p-4 rounded-xl border border-cv-line bg-cv-surface2/50 dark:bg-white/5">
