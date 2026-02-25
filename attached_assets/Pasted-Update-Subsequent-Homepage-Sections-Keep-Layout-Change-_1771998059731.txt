@@ -1,0 +1,153 @@
+Update Subsequent Homepage Sections (Keep Layout, Change Copy)
+
+Update the homepage sections immediately following the hero to align with CloudVerse’s category: Compute Economics Platform for the AI Era.
+
+Hard rules
+
+Do not change layout, spacing, or components.
+
+Only change headings, subheadings, and body copy.
+
+Keep dark theme and current typography system.
+
+Keep the same number of cards/blocks.
+
+Ensure copy is short, scannable, enterprise-grade (avoid marketing fluff).
+
+Section 1: (Currently: “The Economic Decision Layer for AI Infrastructure”)
+Replace H2 with:
+
+How Compute Economics Works
+
+Replace the first paragraph with:
+
+Modern AI stacks have observability and orchestration. What they lack is economic control at the decision point.
+
+Replace the second paragraph with:
+
+CloudVerse embeds economic decision logic across model selection, workload execution, and capacity commitments—so every compute decision is evaluated for cost, performance, and risk before it scales.
+
+Replace the small label above the diagram (if present) with:
+
+COMPUTE ECONOMICS DECISION LAYER
+
+Rename diagram labels (if these exist in your UI)
+
+“Applications & AI Systems” → Applications, Agents & Data Workloads
+
+“Economic Decision Layer” (CloudVerse box) → CloudVerse Compute Economics Layer
+
+Pills:
+
+“Model Choice” → Model Routing
+
+“Engineering Change” → DevX Guardrails
+
+“Query Execution” → DataX Policies
+
+“Capacity Commitments” → Commitments Optimizer
+
+Section 2: (Currently: “Economic decision logic for every layer”)
+Replace H2 with:
+
+Compute Economics Across Every Layer
+
+Replace subheadline with:
+
+One platform to govern unit cost, demand, and volatility across AI, cloud, and data workloads.
+
+Card updates (keep same 6 cards, rewrite copy)
+Card 1: AIX: AI Model Economics (LLMs)
+
+Replace body with:
+Choose the right model per request using cost, latency, and quality constraints. Enforce routing policies and prevent token-cost drift.
+
+Replace italic line with:
+Lower blended $/1K tokens without regressions.
+
+Card 2: DevX: Engineering Economics
+
+Replace body with:
+Prevent expensive changes before they ship. Enforce cost guardrails in PRs, CI/CD, and IaC—across repos and teams.
+
+Italic:
+Fewer cost incidents reaching production.
+
+Card 3: DataX: Data Workload Economics
+
+Replace body with:
+Detect expensive query and pipeline patterns in real time. Enforce execution policies to throttle, gate, or stop runaway workloads.
+
+Italic:
+Reduce warehouse waste from compounding usage.
+
+Card 4: Commitments Optimizer: Compute Procurement Economics
+
+Replace body with:
+Forecast demand and automate RI/SP/CUD strategies. Improve coverage and blended rates while limiting long-term commitment risk.
+
+Italic:
+Lower effective compute rate across providers.
+
+Card 5: Volatility Control: Variance & Spike Containment
+
+Replace body with:
+Detect spend anomalies early and contain blast radius. Convert spikes into governed events with automated response.
+
+Italic:
+Fewer surprise spikes and lower variance.
+
+Card 6: Autonomous Optimization Engine: Baseline Shift
+
+Replace body with:
+Continuously tune steady-state infrastructure using ML-driven actions—rightsizing, scheduling, and waste elimination.
+
+Italic:
+Permanent baseline reduction, not one-time savings.
+
+Section 3: (Currently: “How economically intentional is your infrastructure?”)
+
+This section is good but needs to sound less “upload invoice” and more “instant assessment”.
+
+Replace H2 with:
+
+Get an Instant Compute Economics Snapshot
+
+Replace description with:
+
+Upload a cloud invoice or spend export to generate a read-only baseline: unit cost, volatility signals, and demand drivers. No credentials required.
+
+Change upload box helper text to:
+
+Drop invoice here or upload a file
+PDF, CSV, XLSX • Max 20MB
+
+Replace privacy footnote with:
+
+Read-only analysis. Files encrypted in transit and deleted after processing.
+
+Add a small line under CTA (if you have room):
+
+Works with AWS CUR, Azure exports, GCP billing, and data warehouse spend.
+
+Additional Consistency Fix (Highly Recommended)
+
+Everywhere you say “Economic decision layer”, ensure the phrase “Compute Economics” appears at least once in the same section.
+
+Examples:
+
+“Compute Economics Decision Layer”
+
+“Compute Economics Snapshot”
+
+“Compute Economics Outcomes”
+
+Acceptance Criteria
+
+After changes:
+
+The story reads: Compute Economics Platform → How it works → Where it applies → Instant proof
+
+Copy is scannable and enterprise-grade.
+
+No layout shift on desktop or mobile.

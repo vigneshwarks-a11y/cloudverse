@@ -112,16 +112,16 @@ export function InvoiceEfficiencySection() {
 
   return (
     <>
-      <section className="py-10 sm:py-12 lg:py-14">
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
-          <div className="max-w-2xl mx-auto text-center space-y-6">
+      <section className="py-10 sm:py-12 lg:py-14 pt-[50px] pb-[50px]">
+        <div className="max-w-[1240px] mx-auto px-0">
+          <div className="max-w-2xl mx-auto space-y-6 text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cv-muted">
-              Instant Efficiency Snapshot
+              Compute Economics Snapshot
             </p>
             <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-bold tracking-tight text-cv-ink leading-tight">
-              How economically intentional is your infrastructure?
+              Get an Instant Compute Economics Snapshot
             </h2>
-            <p className="text-base sm:text-lg text-cv-muted leading-relaxed max-w-xl mx-auto">Upload an invoice to get a read-only economic snapshot baseline, rate, volatility signals, and demand drivers. No credentials required.</p>
+            <p className="text-base sm:text-lg text-cv-muted leading-relaxed max-w-xl mx-auto">Upload a cloud invoice or spend export to generate a read-only baseline: unit cost, volatility signals, and demand drivers. No credentials required.</p>
 
             {/* Upload Card */}
             <div className="mt-8 max-w-md mx-auto">
@@ -145,10 +145,10 @@ export function InvoiceEfficiencySection() {
                 >
                   <Upload className="w-10 h-10 mx-auto mb-4 text-cv-muted" />
                   <p className="text-base font-medium text-cv-ink mb-2">
-                    Drop invoice here or click to upload
+                    Drop invoice here or upload a file
                   </p>
                   <p className="text-sm text-cv-muted">
-                    PDF, CSV, or XLSX • Max {MAX_SIZE_MB}MB
+                    PDF, CSV, XLSX • Max {MAX_SIZE_MB}MB
                   </p>
                   <input
                     ref={fileInputRef}
@@ -225,7 +225,7 @@ export function InvoiceEfficiencySection() {
             </div>
 
             <p className="text-xs text-cv-muted/70 pt-4">
-              Read-only analysis. No credentials required. Files encrypted in transit and deleted after processing.
+              Read-only analysis. Files encrypted in transit and deleted after processing.
             </p>
           </div>
         </div>

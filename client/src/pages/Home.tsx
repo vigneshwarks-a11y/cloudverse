@@ -38,38 +38,38 @@ const pillarCards = [
   {
     icon: Sparkles,
     title: "AIX: AI Model Economics (LLMs)",
-    description: "Choose the right LLM for each prompt and workload. Match quality, latency, and token cost so you don’t overpay at scale.",
-    outcome: "Lower blended AI $/token without quality regressions."
+    description: "Choose the right model per request using cost, latency, and quality constraints. Enforce routing policies and prevent token-cost drift.",
+    outcome: "Lower blended $/1K tokens without regressions."
   },
   {
     icon: Code2,
     title: "DevX: Engineering Economics",
-    description: "Bring compute cost awareness into PRs, repos, and CI/CD. Evaluate IaC + application code changes across 14+ languages before release.",
-    outcome: "Fewer costly changes reaching production."
+    description: "Prevent expensive changes before they ship. Enforce cost guardrails in PRs, CI/CD, and IaC—across repos and teams.",
+    outcome: "Fewer cost incidents reaching production."
   },
   {
     icon: Receipt,
     title: "DataX: Data Workload Economics",
-    description: "Detect expensive query and pipeline patterns while they run. Enforce execution policies gate, throttle, or stop runaway workloads.",
-    outcome: "Prevent warehouse waste from compounding with AI usage."
+    description: "Detect expensive query and pipeline patterns in real time. Enforce execution policies to throttle, gate, or stop runaway workloads.",
+    outcome: "Reduce warehouse waste from compounding usage."
   },
   {
     icon: Tag,
     title: "Commitments Optimizer: Compute Procurement Economics",
-    description: "Forecast demand and plan commitments ahead of time. Improve blended rates and reduce long-term exposure automatically (optional).",
+    description: "Forecast demand and automate RI/SP/CUD strategies. Improve coverage and blended rates while limiting long-term commitment risk.",
     outcome: "Lower effective compute rate across providers."
   },
   {
     icon: Activity,
     title: "Volatility Control: Variance & Spike Containment",
-    description: "Predict and detect abnormal spend and usage early. Contain spikes before they become a budget incident.",
-    outcome: "Reduced cost variance and fewer surprise surges."
+    description: "Detect spend anomalies early and contain blast radius. Convert spikes into governed events with automated response.",
+    outcome: "Fewer surprise spikes and lower variance."
   },
   {
     icon: Cpu,
     title: "Autonomous Optimization Engine: Baseline Shift",
-    description: "Continuously tune live workloads with ML-driven actions. Drive a sustained downward shift in steady-state infrastructure cost.",
-    outcome: "Permanent baseline reduction (not theoretical savings)."
+    description: "Continuously tune steady-state infrastructure using ML-driven actions—rightsizing, scheduling, and waste elimination.",
+    outcome: "Permanent baseline reduction, not one-time savings."
   },
 ];
 
@@ -138,7 +138,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Invoice Efficiency Score Section */}
       <InvoiceEfficiencySection />
 
@@ -205,16 +204,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* What CloudVerse Offers Section */}
+      {/* Compute Economics Section */}
       <section className="py-8 sm:py-10 lg:py-12 border-t border-cv-line dark:border-white/10">
         <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <div className="mb-10 sm:mb-12 text-center">
             <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-cv-muted mb-3">
-              What CloudVerse Offers
+              Compute Economics
             </p>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink mb-4">Economic decision logic for every layer</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink mb-4">Compute Economics Across Every Layer</h2>
             <p className="text-lg sm:text-xl text-cv-muted max-w-2xl mx-auto">
-              Built for enterprise scale, with enforcement at the decision point.
+              One platform to govern unit cost, demand, and volatility across AI, cloud, and data workloads.
             </p>
           </div>
 
@@ -250,13 +249,13 @@ export default function Home() {
         <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
           <div className="max-w-3xl mx-auto text-center space-y-4 mb-8">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink">
-              The Economic Decision Layer for AI Infrastructure
+              How Compute Economics Works
             </h2>
             <p className="text-lg sm:text-xl text-cv-muted leading-relaxed">
-              Modern AI stacks include models, data platforms, orchestration, and infrastructure. What they lack is embedded economic decision logic.
+              Modern AI stacks have observability and orchestration. What they lack is economic control at the decision point.
             </p>
             <p className="text-base sm:text-lg text-cv-ink/80 leading-relaxed">
-              CloudVerse operates as the economic decision layer influencing model selection, evaluating deployments for economic impact, shaping live workload behavior, and structuring long-term capacity commitments.
+              CloudVerse™ embeds economic decision logic across model selection, workload execution, and capacity commitments—so every compute decision is evaluated for cost, performance, and risk before it scales.
             </p>
           </div>
 
@@ -459,6 +458,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       {/* Final CTA Section */}
       <FinalCTA location="home_final" />
       {/* Video Modal */}

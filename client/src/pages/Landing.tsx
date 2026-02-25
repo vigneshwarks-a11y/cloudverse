@@ -1,7 +1,7 @@
 import { BaseLayout } from "@/layouts/BaseLayout";
 import { InvoiceEfficiencySection } from "@/components/home/InvoiceEfficiencySection";
 import { track } from "@/lib/track";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Boxes,
   BarChart3,
@@ -116,6 +116,15 @@ function GetItDirectlySection() {
   const [dateOpen, setDateOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [dateTimeError, setDateTimeError] = useState<string | null>(null);
+  const [isHighlighted, setIsHighlighted] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 400) setIsHighlighted(true);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -131,374 +140,362 @@ function GetItDirectlySection() {
     window.location.href = THANK_YOU_URL;
   };
 
-  return (
-    <section className="pt-12 sm:pt-16 lg:pt-20 pb-16 sm:pb-20 lg:pb-24 relative overflow-hidden border-t border-cv-line dark:border-white/10">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none" />
+  const inputClass = "w-full bg-cv-surface2 border border-cv-line rounded px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50";
 
-      <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20 relative">
-        <div className="text-center mb-12 lg:mb-16">
-          <span className="inline-block text-xs uppercase tracking-widest text-blue-500 font-semibold mb-4">
+  return (
+    <div
+      className="rounded-2xl border bg-cv-surface p-5 sm:p-6 shadow-lg transition-all duration-500 relative overflow-hidden border-blue-500/40 shadow-blue-500/10 pl-[20px] pr-[20px] pt-[12px] pb-[12px]"
+      data-testid="demo-form-sidebar"
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none" />
+      <div className="relative">
+        <div className="text-center mb-5">
+          <span className="inline-block text-[10px] uppercase tracking-[0.2em] text-blue-500 font-semibold mb-2">
             Schedule a Demo
           </span>
-          <h2 className="cv-h1 mb-4">Let's explore what's possible</h2>
-          <p className="cv-body text-cv-muted max-w-2xl mx-auto">
-            See how CloudVerse can help your team gain visibility, control costs, and unlock savings across your cloud infrastructure.
-          </p>
+          <h3 className="text-lg font-bold text-cv-ink leading-snug">
+            See CloudVerse™ in action
+          </h3>
         </div>
 
-        <div className="max-w-[700px] mx-auto mb-8 p-8 rounded-2xl border border-cv-line bg-cv-surface2/50 dark:bg-white/5">
-          <h3 className="text-xl font-semibold text-cv-ink text-center mb-2">Get it directly</h3>
-          <p className="text-sm text-cv-muted text-center mb-6">
-            Purchase CloudVerse directly from your preferred cloud marketplace.
+        <div className="mb-5 p-4 rounded-xl border border-cv-line bg-cv-surface2/50 dark:bg-white/5">
+          <h4 className="text-sm font-semibold text-cv-ink text-center mb-2">Get it directly</h4>
+          <p className="text-[11px] text-cv-muted text-center mb-3">
+            Purchase from your preferred cloud marketplace.
           </p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 gap-2">
             <a
               href="https://aws.amazon.com/marketplace/pp/prodview-g72gjnuqrts2m"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => track("marketplace_click", { provider: "aws", location: "landing" })}
-              className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all cloud_aws"
+              className="flex items-center justify-center h-12 rounded-lg border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all cloud_aws"
+              data-testid="marketplace-aws"
             >
-              <img src="/logos/aws-light-mode.png" alt="AWS" className="h-9 w-auto dark:hidden" />
-              <img src="/logos/aws-dark-mode.png" alt="AWS" className="h-9 w-auto hidden dark:block" />
+              <img src="/logos/aws-light-mode.png" alt="AWS" className="h-7 w-auto dark:hidden" />
+              <img src="/logos/aws-dark-mode.png" alt="AWS" className="h-7 w-auto hidden dark:block" />
             </a>
             <a
               href="https://console.cloud.google.com/marketplace/product/cloudverse-marketplace-public/mcp20"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => track("marketplace_click", { provider: "gcp", location: "landing" })}
-              className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all cloud_gcp"
+              className="flex items-center justify-center h-12 rounded-lg border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all cloud_gcp"
+              data-testid="marketplace-gcp"
             >
-              <img src="/logos/gcp-light-mode.png" alt="Google Cloud" className="h-9 w-auto dark:hidden" />
-              <img src="/logos/gcp-dark-mode.png" alt="Google Cloud" className="h-9 w-auto hidden dark:block" />
+              <img src="/logos/gcp-light-mode.png" alt="Google Cloud" className="h-7 w-auto dark:hidden" />
+              <img src="/logos/gcp-dark-mode.png" alt="Google Cloud" className="h-7 w-auto hidden dark:block" />
             </a>
             <a
               href="https://marketplace.microsoft.com/en-au/product/saas/cloudversepteltd1683193289260.cloudverse-multi-cloud-management-platform"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => track("marketplace_click", { provider: "microsoft", location: "landing" })}
-              className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all cloud_azure"
+              className="flex items-center justify-center h-12 rounded-lg border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all cloud_azure"
+              data-testid="marketplace-azure"
             >
-              <img src="/logos/azure-marketplace.png" alt="Microsoft Azure" className="h-9 w-auto" />
+              <img src="/logos/azure-marketplace.png" alt="Microsoft Azure" className="h-7 w-auto" />
             </a>
             <a
               href="https://marketplace.alibabacloud.com/products/56680002/sgcmfw00032481.html?spm=a3c0i.26795044.0.0.5edb2faaOBdVso&innerSource=search"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => track("marketplace_click", { provider: "alibaba", location: "landing" })}
-              className="flex items-center justify-center h-16 rounded-xl border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all cloud_alibaba"
+              className="flex items-center justify-center h-12 rounded-lg border border-cv-line bg-white dark:bg-cv-surface2 hover:border-blue-600 hover:shadow-md transition-all cloud_alibaba"
+              data-testid="marketplace-alibaba"
             >
-              <img src="/logos/alibaba-marketplace.png" alt="Alibaba Cloud" className="h-9 w-auto" />
+              <img src="/logos/alibaba-marketplace.png" alt="Alibaba Cloud" className="h-7 w-auto" />
             </a>
           </div>
         </div>
 
-        <div className="max-w-[700px] mx-auto flex items-center gap-4 mb-8">
+        <div className="flex items-center gap-3 mb-5">
           <div className="flex-1 h-px bg-cv-line"></div>
-          <span className="text-sm text-cv-muted font-medium">or fill the form</span>
+          <span className="text-xs text-cv-muted font-medium">or fill the form</span>
           <div className="flex-1 h-px bg-cv-line"></div>
         </div>
 
-        <div className="max-w-[700px] mx-auto">
-          <form onSubmit={handleSubmit} className="space-y-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <label className="text-xs font-medium text-cv-muted uppercase tracking-wider">
-                  First Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="John"
-                  required
-                  value={formData.firstName}
-                  onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                  className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-xs font-medium text-cv-muted uppercase tracking-wider">
-                  Last Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="Doe"
-                  required
-                  value={formData.lastName}
-                  onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                  className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-xs font-medium text-cv-muted uppercase tracking-wider">
-                Work Email
-              </label>
+        <form onSubmit={handleSubmit} className="space-y-3" data-testid="landing-demo-form">
+          <div className="grid grid-cols-2 gap-2">
+            <div className="space-y-1">
+              <label className="text-[10px] font-medium text-cv-muted uppercase tracking-wider">First Name</label>
               <input
-                type="email"
-                placeholder="john@company.com"
+                type="text"
+                placeholder="John"
                 required
-                value={formData.workEmail}
-                onChange={(e) => setFormData({ ...formData, workEmail: e.target.value })}
-                className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
+                value={formData.firstName}
+                onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                className={inputClass}
+                data-testid="input-first-name"
               />
             </div>
-
-            <div className="space-y-2">
-              <label className="text-xs font-medium text-cv-muted uppercase tracking-wider">
-                Interested in a specific integration?
-              </label>
-              <select
-                value={formData.integration}
-                onChange={(e) => setFormData({ ...formData, integration: e.target.value })}
-                className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink appearance-none cursor-pointer"
-              >
-                {integrationOptions.map((opt) => (
-                  <option key={opt} value={opt} className="bg-cv-surface">
-                    {opt}
-                  </option>
-                ))}
-              </select>
+            <div className="space-y-1">
+              <label className="text-[10px] font-medium text-cv-muted uppercase tracking-wider">Last Name</label>
+              <input
+                type="text"
+                placeholder="Doe"
+                required
+                value={formData.lastName}
+                onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                className={inputClass}
+                data-testid="input-last-name"
+              />
             </div>
+          </div>
 
-            <div className="space-y-2">
-              <label className="text-xs font-medium text-cv-muted uppercase tracking-wider flex items-center gap-2">
-                <CalendarIcon className="w-3.5 h-3.5" />
-                Preferred Date & Time
-              </label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <Popover open={dateOpen} onOpenChange={setDateOpen}>
-                  <PopoverTrigger asChild>
-                    <button
-                      type="button"
-                      className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-left cursor-pointer hover:border-cv-muted/50 flex items-center justify-between"
-                    >
-                      <span className={selectedDate ? "text-cv-ink" : "text-cv-muted/50"}>
-                        {selectedDate ? format(selectedDate, "MMM d, yyyy") : "Select date"}
-                      </span>
-                      <CalendarIcon className="w-4 h-4 text-cv-muted" />
-                    </button>
-                  </PopoverTrigger>
-                  <PopoverContent
-                    className="w-auto p-0 bg-cv-surface border border-cv-line shadow-xl rounded-xl"
-                    align="start"
-                  >
-                    <Calendar
-                      mode="single"
-                      selected={selectedDate}
-                      onSelect={(date) => {
-                        setSelectedDate(date);
-                        setFormData((prev) => ({
-                          ...prev,
-                          preferredDate: date ? format(date, "yyyy-MM-dd") : "",
-                        }));
-                        setDateTimeError(null);
-                        setDateOpen(false);
-                      }}
-                      disabled={(date) => date < new Date() || date.getDay() === 0 || date.getDay() === 6}
-                      initialFocus
-                      className="rounded-xl"
-                    />
-                  </PopoverContent>
-                </Popover>
+          <div className="space-y-1">
+            <label className="text-[10px] font-medium text-cv-muted uppercase tracking-wider">Work Email</label>
+            <input
+              type="email"
+              placeholder="john@company.com"
+              required
+              value={formData.workEmail}
+              onChange={(e) => setFormData({ ...formData, workEmail: e.target.value })}
+              className={inputClass}
+              data-testid="input-work-email"
+            />
+          </div>
 
-                <div className="relative">
-                  <select
-                    value={formData.preferredTime}
-                    onChange={(e) => {
-                      setFormData({ ...formData, preferredTime: e.target.value });
-                      setDateTimeError(null);
-                    }}
-                    className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink appearance-none cursor-pointer pr-10"
-                  >
-                    <option value="">Time</option>
-                    {timeSlots.map((slot) => (
-                      <option key={slot.value} value={slot.value}>
-                        {slot.label}
-                      </option>
-                    ))}
-                  </select>
-                  <Clock className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-cv-muted pointer-events-none" />
-                </div>
-              </div>
-              {dateTimeError && (
-                <p className="text-red-500 text-xs">{dateTimeError}</p>
-              )}
-            </div>
-
-            <button
-              type="submit"
-              className="w-full py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors"
+          <div className="space-y-1">
+            <label className="text-[10px] font-medium text-cv-muted uppercase tracking-wider">Integration?</label>
+            <select
+              value={formData.integration}
+              onChange={(e) => setFormData({ ...formData, integration: e.target.value })}
+              className={`${inputClass} appearance-none cursor-pointer`}
+              data-testid="select-integration"
             >
-              Request Demo
-            </button>
+              {integrationOptions.map((opt) => (
+                <option key={opt} value={opt} className="bg-cv-surface">{opt}</option>
+              ))}
+            </select>
+          </div>
 
-            <p className="text-xs text-cv-muted text-center pt-2">
-              By submitting, you agree to our privacy policy. We'll never share your information.
-            </p>
-          </form>
-        </div>
+          <div className="space-y-1">
+            <label className="text-[10px] font-medium text-cv-muted uppercase tracking-wider flex items-center gap-1">
+              <CalendarIcon className="w-3 h-3" />
+              Preferred Date & Time
+            </label>
+            <div className="grid grid-cols-2 gap-2">
+              <Popover open={dateOpen} onOpenChange={setDateOpen}>
+                <PopoverTrigger asChild>
+                  <button
+                    type="button"
+                    className={`${inputClass} text-left cursor-pointer flex items-center justify-between`}
+                    data-testid="input-date"
+                  >
+                    <span className={selectedDate ? "text-cv-ink" : "text-cv-muted/50"}>
+                      {selectedDate ? format(selectedDate, "MMM d, yyyy") : "Select date"}
+                    </span>
+                    <CalendarIcon className="w-3.5 h-3.5 text-cv-muted" />
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent
+                  className="w-auto p-0 bg-cv-surface border border-cv-line shadow-xl rounded-xl"
+                  align="start"
+                >
+                  <Calendar
+                    mode="single"
+                    selected={selectedDate}
+                    onSelect={(date) => {
+                      setSelectedDate(date);
+                      setFormData((prev) => ({
+                        ...prev,
+                        preferredDate: date ? format(date, "yyyy-MM-dd") : "",
+                      }));
+                      setDateTimeError(null);
+                      setDateOpen(false);
+                    }}
+                    disabled={(date) => date < new Date() || date.getDay() === 0 || date.getDay() === 6}
+                    initialFocus
+                    className="rounded-xl"
+                  />
+                </PopoverContent>
+              </Popover>
+
+              <div className="relative">
+                <select
+                  value={formData.preferredTime}
+                  onChange={(e) => {
+                    setFormData({ ...formData, preferredTime: e.target.value });
+                    setDateTimeError(null);
+                  }}
+                  className={`${inputClass} appearance-none cursor-pointer pr-8`}
+                  data-testid="input-time"
+                >
+                  <option value="">Time</option>
+                  {timeSlots.map((slot) => (
+                    <option key={slot.value} value={slot.value}>{slot.label}</option>
+                  ))}
+                </select>
+                <Clock className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-cv-muted pointer-events-none" />
+              </div>
+            </div>
+            {dateTimeError && (
+              <p className="text-red-500 text-[10px]">{dateTimeError}</p>
+            )}
+          </div>
+
+          <button
+            type="submit"
+            className="w-full py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors text-sm"
+            data-testid="button-request-demo"
+          >
+            Request Demo
+          </button>
+
+          <p className="text-[10px] text-cv-muted/60 text-center">
+            By submitting, you agree to our privacy policy. We'll never share your information.
+          </p>
+        </form>
       </div>
-    </section>
+    </div>
   );
 }
 
 export default function Landing() {
   return (
     <BaseLayout>
-      <InvoiceEfficiencySection />
+      {/* Two-Column Layout */}
+      <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-10">
 
-      <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10">
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-center text-cv-ink mb-10 sm:mb-12">
-            What's included with CloudVerse
-          </h2>
+          {/* Left Column: All content sections */}
+          <div className="min-w-0">
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10 sm:mb-12">
-            {features.map((feature, idx) => {
-              const Icon = feature.icon;
-              return (
-                <div
-                  key={idx}
-                  className="p-4 rounded-xl bg-cv-surface dark:bg-slate-900/60 border border-cv-line dark:border-white/10 hover:border-cv-line/80 dark:hover:border-white/20 hover:bg-cv-surface2/30 dark:hover:bg-slate-800/60 transition-all group"
+            {/* Mobile-only Demo Form */}
+            <div className="lg:hidden py-8 border-b border-cv-line dark:border-white/10">
+              <GetItDirectlySection />
+            </div>
+
+            <InvoiceEfficiencySection />
+
+            <section className="pt-[30px] pb-[30px] border-t border-cv-line dark:border-white/10">
+              <h2 className="text-2xl sm:text-3xl font-semibold text-cv-ink sm:mb-12 mt-[27px] mb-[27px]">
+                What's included with CloudVerse™
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 sm:mb-12">
+                {features.map((feature, idx) => {
+                  const Icon = feature.icon;
+                  return (
+                    <div
+                      key={idx}
+                      className="p-4 rounded-xl bg-cv-surface dark:bg-slate-900/60 border border-cv-line dark:border-white/10 hover:border-cv-line/80 dark:hover:border-white/20 hover:bg-cv-surface2/30 dark:hover:bg-slate-800/60 transition-all group"
+                      data-testid={`feature-card-${idx}`}
+                    >
+                      <div className="w-9 h-9 rounded-full bg-blue-500/10 dark:bg-blue-500/20 flex items-center justify-center mb-3 group-hover:bg-blue-500/15 dark:group-hover:bg-blue-500/25 transition-colors">
+                        <Icon className="w-4 h-4 text-blue-500" />
+                      </div>
+                      <h4 className="font-medium text-cv-ink mb-1 text-[16px]">{feature.title}</h4>
+                      <p className="text-cv-muted dark:text-slate-500 text-[14px]">{feature.desc}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+
+            <section className="pt-[40px] pb-[40px] border-t border-cv-line dark:border-white/10">
+              <div className="mb-12 sm:mb-14">
+                <h2 className="text-[30px] font-bold tracking-tight text-cv-ink mb-4">
+                  Let's explore what's possible
+                </h2>
+                <p className="sm:text-xl text-cv-muted dark:text-slate-400 max-w-2xl text-[18px]">
+                  See how CloudVerse™ can help your team gain visibility, control costs, and unlock savings across your cloud infrastructure.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                <a
+                  href="https://devx.cloudverse.ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => track("product_devx", { location: "products_section" })}
+                  className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 is_cvdevx"
+                  data-testid="product-devx-card"
                 >
-                  <div className="w-9 h-9 rounded-full bg-blue-500/10 dark:bg-blue-500/20 flex items-center justify-center mb-3 group-hover:bg-blue-500/15 dark:group-hover:bg-blue-500/25 transition-colors">
-                    <Icon className="w-4 h-4 text-blue-500" />
+                  <div className="flex flex-col gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
+                      <Boxes className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">DevX</h3>
+                      <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">Cut AI costs without breaking latency or quality.</p>
+                      <span className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:gap-3 transition-all">Visit devx.cloudverse.ai →</span>
+                    </div>
                   </div>
-                  <h4 className="text-sm font-medium text-cv-ink mb-1">{feature.title}</h4>
-                  <p className="text-xs text-cv-muted dark:text-slate-500 leading-relaxed">{feature.desc}</p>
-                </div>
-              );
-            })}
+                </a>
+
+                <a
+                  href="https://aix.cloudverse.ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => track("product_aix", { location: "products_section" })}
+                  className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300 is_cvaix"
+                  data-testid="product-aix-card"
+                >
+                  <div className="flex flex-col gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-lg shadow-purple-500/20">
+                      <Sparkles className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">AIx</h3>
+                      <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">Catch cloud cost mistakes before they reach production.</p>
+                      <span className="inline-flex items-center gap-2 text-sm font-medium text-purple-600 dark:text-purple-400 group-hover:gap-3 transition-all">Visit aix.cloudverse.ai →</span>
+                    </div>
+                  </div>
+                </a>
+
+                <a
+                  href="https://datax.cloudverse.ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => track("product_datax", { location: "products_section" })}
+                  className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-pink-500/50 hover:shadow-lg hover:shadow-pink-500/10 transition-all duration-300 is_cvdatax"
+                  data-testid="product-datax-card"
+                >
+                  <div className="flex flex-col gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-pink-500 to-fuchsia-500 flex items-center justify-center shadow-lg shadow-pink-500/20">
+                      <img src={dataxLogo} alt="DataX" className="w-6 h-6 sm:w-7 sm:h-7 object-contain" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">DataX</h3>
+                      <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">Analytics data cost visibility and workload controls. Monitor usage, optimize queries, and control spend.</p>
+                      <span className="inline-flex items-center gap-2 text-sm font-medium text-pink-600 dark:text-pink-400 group-hover:gap-3 transition-all">Visit datax.cloudverse.ai →</span>
+                    </div>
+                  </div>
+                </a>
+
+                <a
+                  href="https://billops.cloudverse.ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => track("product_billops", { location: "products_section" })}
+                  className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-orange-500/50 hover:shadow-lg hover:shadow-orange-500/10 transition-all duration-300 is_cvbillops"
+                  data-testid="product-billops-card"
+                >
+                  <div className="flex flex-col gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center shadow-lg shadow-orange-500/20">
+                      <img src={billopsLogo} alt="CloudBillOps" className="w-6 h-6 sm:w-7 sm:h-7 object-contain" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">CloudBillOps</h3>
+                      <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">Unified cloud billing and cost operations. Track usage, allocate costs, enforce controls.</p>
+                      <span className="inline-flex items-center gap-2 text-sm font-medium text-orange-600 dark:text-orange-400 group-hover:gap-3 transition-all">Visit billops.cloudverse.ai →</span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </section>
+          </div>
+
+          {/* Right Column: Sticky Demo Form (desktop only) */}
+          <div className="hidden lg:block">
+            <div className="sticky top-24 pt-[4px] pb-[4px]">
+              <GetItDirectlySection />
+            </div>
           </div>
 
         </div>
-      </section>
-
-      <GetItDirectlySection />
-
-      <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10">
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
-          <div className="text-center mb-12 sm:mb-14">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink mb-4">
-              Let's explore what's possible
-            </h2>
-            <p className="text-lg sm:text-xl text-cv-muted dark:text-slate-400 max-w-2xl mx-auto">
-              See how CloudVerse can help your team gain visibility, control costs, and unlock savings across your cloud infrastructure.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-            {/* DevX Card */}
-            <a
-              href="https://devx.cloudverse.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => track("product_devx", { location: "products_section" })}
-              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 is_cvdevx"
-              data-testid="product-devx-card"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
-                <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
-                  <Boxes className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    DevX
-                  </h3>
-                  <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
-                    Cut AI costs without breaking latency or quality.
-                  </p>
-                  <span className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 group-hover:gap-3 transition-all">
-                    Visit devx.cloudverse.ai →
-                  </span>
-                </div>
-              </div>
-            </a>
-
-            {/* AIx Card */}
-            <a
-              href="https://aix.cloudverse.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => track("product_aix", { location: "products_section" })}
-              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300  is_cvaix"
-              data-testid="product-aix-card"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
-                <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-lg shadow-purple-500/20">
-                  <Sparkles className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
-                    AIx
-                  </h3>
-                  <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
-                    Catch cloud cost mistakes before they reach production.
-                  </p>
-                  <span className="inline-flex items-center gap-2 text-sm font-medium text-purple-600 dark:text-purple-400 group-hover:gap-3 transition-all">
-                    Visit aix.cloudverse.ai →
-                  </span>
-                </div>
-              </div>
-            </a>
-
-            {/* DataX Card */}
-            <a
-              href="https://datax.cloudverse.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => track("product_datax", { location: "products_section" })}
-              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-pink-500/50 hover:shadow-lg hover:shadow-pink-500/10 transition-all duration-300 is_cvdatax"
-              data-testid="product-datax-card"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
-                <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-pink-500 to-fuchsia-500 flex items-center justify-center shadow-lg shadow-pink-500/20">
-                  <img src={dataxLogo} alt="DataX" className="w-6 h-6 sm:w-7 sm:h-7 object-contain" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">
-                    DataX
-                  </h3>
-                  <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
-                    Analytics data cost visibility and workload controls. Monitor usage, optimize queries, and control spend.
-                  </p>
-                  <span className="inline-flex items-center gap-2 text-sm font-medium text-pink-600 dark:text-pink-400 group-hover:gap-3 transition-all">
-                    Visit datax.cloudverse.ai →
-                  </span>
-                </div>
-              </div>
-            </a>
-
-            {/* CloudBillOps Card */}
-            <a
-              href="https://billops.cloudverse.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => track("product_billops", { location: "products_section" })}
-              className="group relative bg-cv-surface2/50 dark:bg-slate-800/50 border border-cv-line dark:border-slate-700/50 rounded-2xl p-6 sm:p-8 hover:border-orange-500/50 hover:shadow-lg hover:shadow-orange-500/10 transition-all duration-300 is_cvbillops"
-              data-testid="product-billops-card"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
-                <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center shadow-lg shadow-orange-500/20">
-                  <img src={billopsLogo} alt="CloudBillOps" className="w-6 h-6 sm:w-7 sm:h-7 object-contain" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl sm:text-2xl font-bold text-cv-ink mb-2 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
-                    CloudBillOps
-                  </h3>
-                  <p className="text-cv-muted leading-relaxed mb-4 text-sm sm:text-base">
-                    Unified cloud billing and cost operations. Track usage, allocate costs, enforce controls.
-                  </p>
-                  <span className="inline-flex items-center gap-2 text-sm font-medium text-orange-600 dark:text-orange-400 group-hover:gap-3 transition-all">
-                    Visit billops.cloudverse.ai →
-                  </span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </section>
+      </div>
     </BaseLayout>
   );
 }

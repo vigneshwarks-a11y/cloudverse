@@ -20,7 +20,7 @@ export function BaseLayout({ children, className }: BaseLayoutProps) {
   return (
     <div className="min-h-screen flex flex-col font-sans bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary">
       <SiteNav />
-      <main className={className}>
+      <main className="mt-[12px] mb-[12px]">
         {children}
       </main>
       <Footer />
