@@ -68,7 +68,7 @@ const capabilities = [
 
 export default function Platform() {
   useEffect(() => {
-    document.title = "Platform — CloudVerse™";
+    document.title = "Platform CloudVerse™";
   }, []);
 
   return (

@@ -6,7 +6,7 @@ import Blogs from "./components/Blogs";
 
 const BlogPage = () => {
   useEffect(() => {
-    document.title = "Blog — CloudVerse™";
+    document.title = "Blog CloudVerse™";
   }, []);
 
   return (

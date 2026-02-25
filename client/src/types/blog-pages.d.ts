@@ -13,3 +13,17 @@ declare module "@/pages/blog/[slug]/page" {
   const BlogDetailPage: ComponentType<RouteComponentProps<{ slug: string }>>;
   export default BlogDetailPage;
 }
+
+declare module "@/pages/blog/data" {
+  export type BlogListItem = {
+    id: number;
+    slug: string;
+    title: string;
+    desc: string;
+    path: string;
+    name: string;
+    date: string;
+  };
+
+  export const blogData: BlogListItem[];
+}

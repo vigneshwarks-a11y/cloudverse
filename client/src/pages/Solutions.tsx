@@ -113,7 +113,7 @@ export default function Solutions() {
   const content = roleContent[activeRole];
 
   useEffect(() => {
-    document.title = "Solutions — CloudVerse™";
+    document.title = "Solutions CloudVerse™";
   }, []);
 
   return (

@@ -92,7 +92,7 @@ export function EfficiencySnapshotModal({
               Economic Decision Snapshot
             </DialogTitle>
             <p className="text-xs text-cv-muted mt-0.5">
-              Baseline, demand avoidance, effective rate, and volatility — in one view.
+              Baseline, demand avoidance, effective rate, and volatility in one view.
             </p>
           </div>
           <button
@@ -106,7 +106,7 @@ export function EfficiencySnapshotModal({
         </DialogHeader>
 
         <div className="p-6 space-y-6">
-          {/* Section A — KPI Grid */}
+          {/* Section A KPI Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {dynamicKpis.map((kpi, idx) => (
               <div
@@ -123,7 +123,7 @@ export function EfficiencySnapshotModal({
             ))}
           </div>
 
-          {/* Section B — Decision Points Covered */}
+          {/* Section B Decision Points Covered */}
           <div className="space-y-3">
             <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-cv-muted">
               Decision Points Covered
@@ -140,11 +140,15 @@ export function EfficiencySnapshotModal({
               ))}
             </div>
             <p className="text-xs text-cv-muted">
+<<<<<<< HEAD
               CloudVerse™ applies economic intent where decisions are made — not after the invoice.
+=======
+              CloudVerse applies economic intent where decisions are made not after the invoice.
+>>>>>>> a9d7154e80aac5d8805041dcdf932a0a77ab65c1
             </p>
           </div>
 
-          {/* Section C — Economic Changes & Where It Happened */}
+          {/* Section C Economic Changes & Where It Happened */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="space-y-3">
               <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-cv-muted">
@@ -186,7 +190,7 @@ export function EfficiencySnapshotModal({
                     <div>
                       <span className="text-cv-ink">{svc.name}</span>
                       <span className="block text-xs text-cv-muted mt-0.5">
-                        {fmt(svc.spend, result.currency)} — {(svc.percent || 0).toFixed(1)}% of total
+                        {fmt(svc.spend, result.currency)} {(svc.percent || 0).toFixed(1)}% of total
                       </span>
                     </div>
                   </li>
@@ -208,8 +212,8 @@ export function EfficiencySnapshotModal({
         <div className="sticky bottom-0 flex flex-col gap-3 p-6 border-t border-cv-line dark:border-white/10 bg-cv-surface dark:bg-cv-surface2">
           <p className="text-[10px] text-cv-muted text-center">
             {result.providerDetected !== "Other" && result.providerDetected !== "Unknown"
-              ? `Analysis of ${result.providerDetected} environment. Estimates are directional — connect your environment for precise figures.`
-              : "Estimates are directional — connect your environment for precise figures."}
+              ? `Analysis of ${result.providerDetected} environment. Estimates are directional connect your environment for precise figures.`
+              : "Estimates are directional connect your environment for precise figures."}
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <Button

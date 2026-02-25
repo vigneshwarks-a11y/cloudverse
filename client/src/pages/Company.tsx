@@ -7,7 +7,7 @@ import { FinalCTA } from "@/components/FinalCTA";
 
 export default function Company() {
   useEffect(() => {
-    document.title = "Company — CloudVerse™";
+    document.title = "Company CloudVerse™";
   }, []);
 
   return (

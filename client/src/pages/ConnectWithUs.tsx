@@ -59,7 +59,7 @@ export default function ConnectWithUs() {
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
-    document.title = "Connect With Us — CloudVerse™";
+    document.title = "Connect With Us CloudVerse™";
   }, []);
 
   useEffect(() => {

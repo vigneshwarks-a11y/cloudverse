@@ -49,7 +49,7 @@ const deploymentOptions = [
 
 export default function Security() {
   useEffect(() => {
-    document.title = "Security — CloudVerse™";
+    document.title = "Security CloudVerse™";
   }, []);
 
   return (

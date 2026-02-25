@@ -1,10 +1,11 @@
 import { BaseLayout } from "@/layouts/BaseLayout";
 import { Button } from "@/components/Button";
 import { Link } from "wouter";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { track } from "@/lib/track";
 import { guides } from "@/data/resourcesData";
-import { blogPosts } from "@/data/blogData";
+import { resourcesFaqData } from "@/data/resourcesFaqData";
+import { blogData } from "@/pages/blog/data";
 import { FinalCTA } from "@/components/FinalCTA";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
@@ -12,7 +13,6 @@ import { apiRequest } from "@/lib/queryClient";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { subscribers } from "@shared/schema";
 
 const subscribeSchema = z.object({
   email: z.string().email("Valid email is required"),
@@ -23,9 +23,12 @@ const SHOULD_CALL_SUBSCRIBE_API = false;
 
 export default function Resources() {
   const { toast } = useToast();
+  const featuredBlogPosts = blogData.slice(0, 3);
+  const recentBlogPosts = blogData.slice(3, 9);
+  const featuredFaqs = resourcesFaqData.slice(0, 3);
 
   useEffect(() => {
-    document.title = "Resources — CloudVerse™";
+    document.title = "Resources CloudVerse™";
   }, []);
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<SubscribeFormData>({
@@ -90,7 +93,54 @@ export default function Resources() {
                   Browse Guides
                 </Button>
               </Link>
+              <Link href="/resources/faq" data-track="resources_faq_open">
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  className="w-full sm:w-auto"
+                >
+                  Browse FAQ
+                </Button>
+              </Link>
+              <Link href="/blog" data-track="resources_blog_open">
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  className="w-full sm:w-auto"
+                >
+                  Browse Blogs
+                </Button>
+              </Link>
             </div>
+          </div>
+        </div>
+      </section>
+      {/* Featured Blog Section */}
+      <section className="py-14 sm:py-16 lg:py-20 border-t border-cv-line">
+        <div className="cv-container max-w-[1000px]">
+          <h2 className="cv-h2 mb-8">Featured Blog</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredBlogPosts.map((post) => (
+              <Link
+                key={post.id}
+                href={post.path}
+                className="block rounded-xl border border-cv-line bg-cv-surface2 p-5 hover:bg-cv-line/30 transition-colors cursor-pointer"
+                data-testid={`card-featured-blog-${post.slug}`}
+              >
+                <h3 className="text-sm font-semibold text-cv-ink mb-2 line-clamp-2">
+                  {post.title}
+                </h3>
+                <p className="text-sm text-cv-muted mb-4 line-clamp-3">
+                  {post.desc}
+                </p>
+                <div className="flex items-center justify-between text-xs text-cv-muted/70">
+                  <span>{post.name || "CloudVerse Team"}</span>
+                  <div className="flex items-center gap-2">
+                    <span>{post.date}</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -99,37 +149,65 @@ export default function Resources() {
         <div className="cv-container max-w-[1000px]">
           <h2 className="cv-h2 mb-8">Blog</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogPosts.map((post) => (
-              <div
-                key={post.slug}
+            {recentBlogPosts.map((post) => (
+              <Link
+                key={post.id}
+                href={post.path}
                 className="block rounded-xl border border-cv-line bg-cv-surface2 p-5 hover:bg-cv-line/30 transition-colors cursor-pointer"
                 data-testid={`card-blog-${post.slug}`}
               >
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xs font-medium px-2 py-1 rounded border border-cv-line bg-cv-surface text-cv-muted">
-                    {post.category}
-                  </span>
-                </div>
                 <h3 className="text-sm font-semibold text-cv-ink mb-2 line-clamp-2">
                   {post.title}
                 </h3>
                 <p className="text-sm text-cv-muted mb-4 line-clamp-3">
-                  {post.summary}
+                  {post.desc}
                 </p>
                 <div className="flex items-center justify-between text-xs text-cv-muted/70">
-                  <span>{post.author}</span>
+                  <span>{post.name || "CloudVerse Team"}</span>
                   <div className="flex items-center gap-2">
-                    <span>{post.readingTime}</span>
-                    <span>·</span>
-                    <span>{new Date(post.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</span>
+                    <span>{post.date}</span>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
           <div className="mt-10 text-center">
             <Link href="/blog">
               <Button variant="secondary" data-testid="button-view-all-blog">View all posts</Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+      {/* FAQ Section */}
+      <section className="py-14 sm:py-16 lg:py-20 border-t border-cv-line">
+        <div className="cv-container max-w-[1000px]">
+          <h2 className="cv-h2 mb-8">FAQ</h2>
+          <div className="space-y-4">
+            {featuredFaqs.map((faq) => (
+              <article
+                key={faq.id}
+                className="rounded-xl border border-cv-line bg-cv-surface2 p-5 sm:p-6"
+                data-testid={`faq-preview-${faq.id}`}
+              >
+                <h3 className="text-base sm:text-lg font-semibold text-cv-ink mb-3">
+                  {faq.id}. {faq.question}
+                </h3>
+                <div className="space-y-3 mb-4">
+                  {faq.answer.split("\n").slice(0, 2).map((line, idx) => (
+                    <p key={`${faq.id}-${idx}`} className="text-sm sm:text-[15px] leading-6 text-cv-muted whitespace-pre-wrap">
+                      {line}
+                    </p>
+                  ))}
+                </div>
+                <span className="inline-flex items-center text-xs font-medium px-2 py-1 rounded border border-cv-line bg-cv-surface text-cv-muted">
+                  {faq.tag}
+                </span>
+              </article>
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Link href="/resources/faq">
+              <Button variant="secondary" data-testid="button-view-all-faq">View all FAQs</Button>
             </Link>
           </div>
         </div>
