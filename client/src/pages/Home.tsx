@@ -14,6 +14,7 @@ import { MultiTenantProviderCard } from "@/components/home/MultiTenantProviderCa
 import { EconomicDecisionLayerDiagram } from "@/components/home/EconomicDecisionLayerDiagram";
 import { Receipt, Tag, Code2, Cpu, Activity, X, Boxes, Sparkles } from "lucide-react";
 import { FinalCTA } from "@/components/FinalCTA";
+import { DemoFormSidebar } from "@/components/home/DemoFormSidebar";
 import billopsLogo from "@/assets/billops.png";
 import dataxLogo from "@/assets/datax-logo.png";
 
@@ -139,12 +140,23 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Two-Column Layout: Content + Sticky Demo Form */}
+      <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-0 lg:gap-10">
+          {/* Left Column: All content sections */}
+          <div className="min-w-0">
+
+      {/* Mobile-only Demo Form (shown above content on small screens) */}
+      <div className="lg:hidden py-8 border-b border-cv-line dark:border-white/10">
+        <DemoFormSidebar />
+      </div>
+
       {/* Invoice Efficiency Score Section */}
       <InvoiceEfficiencySection />
 
       {/* Customer Logos Section */}
       <section className="pt-6 sm:pt-8 lg:pt-10 pb-10 sm:pb-12 lg:pb-14 border-t border-cv-line dark:border-white/10 overflow-hidden">
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
+        <div className="w-full">
           <p className="text-center text-base sm:text-lg text-cv-muted mb-8 sm:mb-10">
             Used by platform and engineering teams at leading enterprises.
           </p>
@@ -207,7 +219,7 @@ export default function Home() {
 
       {/* Compute Economics Section */}
       <section className="py-8 sm:py-10 lg:py-12 border-t border-cv-line dark:border-white/10">
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
+        <div className="w-full">
           <div className="mb-10 sm:mb-12 text-center">
             <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-cv-muted mb-3">
               Compute Economics
@@ -247,7 +259,7 @@ export default function Home() {
 
       {/* Economic Decision Layer Section */}
       <section className="py-10 sm:py-14 lg:py-16 border-t border-cv-line dark:border-white/10">
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
+        <div className="w-full">
           <div className="max-w-3xl mx-auto text-center space-y-4 mb-8">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink">
               How Compute Economics Works
@@ -284,7 +296,7 @@ export default function Home() {
 
       {/* Products Section */}
       <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10">
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
+        <div className="w-full">
           <div className="mb-10 sm:mb-12 text-center">
             <p className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-cv-muted mb-3">
               CloudVerse Products
@@ -409,7 +421,7 @@ export default function Home() {
 
       {/* Multi-Tenant Section */}
       <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10">
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-20">
+        <div className="w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink">
@@ -438,7 +450,7 @@ export default function Home() {
 
       {/* Security & Compliance Section */}
       <section className="py-10 sm:py-12 lg:py-14 border-t border-cv-line dark:border-white/10">
-        <div className="cv-container text-center px-5 sm:px-6 lg:px-20">
+        <div className="w-full text-center">
           <div className="max-w-2xl mx-auto space-y-6">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink">
               Security and compliance, built in
@@ -459,6 +471,16 @@ export default function Home() {
           </div>
         </div>
       </section>
+          </div>
+          {/* Right Column: Sticky Demo Form (desktop only) */}
+          <div className="hidden lg:block">
+            <div className="sticky top-24 will-change-transform">
+              <DemoFormSidebar />
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Final CTA Section */}
       <FinalCTA location="home_final" />
       {/* Video Modal */}

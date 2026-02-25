@@ -122,3 +122,14 @@ Preferred communication style: Simple, everyday language.
 - Premium modal design showing score, snapshot, top spend chips, line items, and AI insights
 - Savings range display: "Estimated savings potential: X% – Y%"
 - Section spacing reduced by ~30-40% for tighter homepage layout
+
+### Homepage Two-Column Layout (Latest)
+- Category positioning: "Compute Economics Platform for the AI Era"
+- Two-column grid below hero: `lg:grid-cols-[1fr_340px]`
+- Left column: all content sections scroll normally
+- Right column: sticky `DemoFormSidebar` component (`position: sticky; top: 96px`)
+- Mobile/tablet: single column, demo form shown above content sections
+- DemoFormSidebar: compact form with name, email, date/time fields + CheckCircle trust signals
+- Highlights with blue border glow after 600px scroll depth
+- Inner section containers simplified (removed redundant `max-w-[1240px]` wrappers inside grid)
+- Components updated: `InvoiceEfficiencySection`, `HowItWorks`, `DeploymentOptions` containers simplified
