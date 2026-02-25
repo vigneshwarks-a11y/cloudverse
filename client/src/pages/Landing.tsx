@@ -394,11 +394,11 @@ export default function Landing() {
             </section>
 
             <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10">
-              <div className="text-center mb-12 sm:mb-14">
+              <div className="mb-12 sm:mb-14">
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink mb-4">
                   Let's explore what's possible
                 </h2>
-                <p className="text-lg sm:text-xl text-cv-muted dark:text-slate-400 max-w-2xl mx-auto">
+                <p className="text-lg sm:text-xl text-cv-muted dark:text-slate-400 max-w-2xl">
                   See how CloudVerse™ can help your team gain visibility, control costs, and unlock savings across your cloud infrastructure.
                 </p>
               </div>
