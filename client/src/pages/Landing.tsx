@@ -385,7 +385,7 @@ export default function Landing() {
                       <div className="w-9 h-9 rounded-full bg-blue-500/10 dark:bg-blue-500/20 flex items-center justify-center mb-3 group-hover:bg-blue-500/15 dark:group-hover:bg-blue-500/25 transition-colors">
                         <Icon className="w-4 h-4 text-blue-500" />
                       </div>
-                      <h4 className="text-sm font-medium text-cv-ink mb-1">{feature.title}</h4>
+                      <h4 className="font-medium text-cv-ink mb-1 text-[16px]">{feature.title}</h4>
                       <p className="text-xs text-cv-muted dark:text-slate-500 leading-relaxed">{feature.desc}</p>
                     </div>
                   );
