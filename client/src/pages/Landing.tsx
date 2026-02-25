@@ -386,7 +386,7 @@ export default function Landing() {
                         <Icon className="w-4 h-4 text-blue-500" />
                       </div>
                       <h4 className="font-medium text-cv-ink mb-1 text-[16px]">{feature.title}</h4>
-                      <p className="text-xs text-cv-muted dark:text-slate-500 leading-relaxed">{feature.desc}</p>
+                      <p className="text-cv-muted dark:text-slate-500 text-[14px]">{feature.desc}</p>
                     </div>
                   );
                 })}
