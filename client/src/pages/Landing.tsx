@@ -395,7 +395,7 @@ export default function Landing() {
 
             <section className="py-12 sm:py-16 lg:py-20 border-t border-cv-line dark:border-white/10">
               <div className="mb-12 sm:mb-14">
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink mb-4">
+                <h2 className="sm:text-4xl lg:text-5xl font-bold tracking-tight text-cv-ink mb-4 text-[30px]">
                   Let's explore what's possible
                 </h2>
                 <p className="text-lg sm:text-xl text-cv-muted dark:text-slate-400 max-w-2xl">
