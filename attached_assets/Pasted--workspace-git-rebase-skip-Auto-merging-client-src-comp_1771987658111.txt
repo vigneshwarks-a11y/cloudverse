@@ -1,0 +1,57 @@
+~/workspace$ git rebase --skip
+Auto-merging client/src/components/home/EconomicDecisionLayerDiagram.tsx
+CONFLICT (content): Merge conflict in client/src/components/home/EconomicDecisionLayerDiagram.tsx
+Auto-merging client/src/components/home/EfficiencySnapshotModal.tsx
+CONFLICT (content): Merge conflict in client/src/components/home/EfficiencySnapshotModal.tsx
+Auto-merging client/src/components/home/InvoiceEfficiencySection.tsx
+CONFLICT (content): Merge conflict in client/src/components/home/InvoiceEfficiencySection.tsx
+Auto-merging client/src/data/blogData.ts
+CONFLICT (content): Merge conflict in client/src/data/blogData.ts
+Auto-merging client/src/pages/AboutUs.tsx
+CONFLICT (content): Merge conflict in client/src/pages/AboutUs.tsx
+Auto-merging client/src/pages/BookDemo.tsx
+CONFLICT (content): Merge conflict in client/src/pages/BookDemo.tsx
+Auto-merging client/src/pages/Company.tsx
+CONFLICT (content): Merge conflict in client/src/pages/Company.tsx
+Auto-merging client/src/pages/Compare.tsx
+CONFLICT (content): Merge conflict in client/src/pages/Compare.tsx
+Auto-merging client/src/pages/ConnectWithUs.tsx
+CONFLICT (content): Merge conflict in client/src/pages/ConnectWithUs.tsx
+Auto-merging client/src/pages/Home.tsx
+CONFLICT (content): Merge conflict in client/src/pages/Home.tsx
+Auto-merging client/src/pages/Integrations.tsx
+CONFLICT (content): Merge conflict in client/src/pages/Integrations.tsx
+Auto-merging client/src/pages/Legal.tsx
+CONFLICT (content): Merge conflict in client/src/pages/Legal.tsx
+Auto-merging client/src/pages/Partners.tsx
+CONFLICT (content): Merge conflict in client/src/pages/Partners.tsx
+Auto-merging client/src/pages/Platform.tsx
+CONFLICT (content): Merge conflict in client/src/pages/Platform.tsx
+Auto-merging client/src/pages/Pricing.tsx
+CONFLICT (content): Merge conflict in client/src/pages/Pricing.tsx
+Auto-merging client/src/pages/Resources.tsx
+CONFLICT (content): Merge conflict in client/src/pages/Resources.tsx
+Auto-merging client/src/pages/ResourcesDocs.tsx
+CONFLICT (content): Merge conflict in client/src/pages/ResourcesDocs.tsx
+Auto-merging client/src/pages/ResourcesGuideDetail.tsx
+CONFLICT (content): Merge conflict in client/src/pages/ResourcesGuideDetail.tsx
+Auto-merging client/src/pages/ResourcesGuides.tsx
+CONFLICT (content): Merge conflict in client/src/pages/ResourcesGuides.tsx
+Auto-merging client/src/pages/Security.tsx
+CONFLICT (content): Merge conflict in client/src/pages/Security.tsx
+Auto-merging client/src/pages/Solutions.tsx
+CONFLICT (content): Merge conflict in client/src/pages/Solutions.tsx
+Auto-merging client/src/pages/SubscribeThankYou.tsx
+CONFLICT (content): Merge conflict in client/src/pages/SubscribeThankYou.tsx
+Auto-merging client/src/pages/Thankyou.tsx
+CONFLICT (content): Merge conflict in client/src/pages/Thankyou.tsx
+Auto-merging client/src/pages/Tour.tsx
+CONFLICT (content): Merge conflict in client/src/pages/Tour.tsx
+error: could not apply 87d5cb3... Replace em dashes with hyphens throughout the website
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+hint: Disable this message with "git config set advice.mergeConflict false"
+Could not apply 87d5cb3... # Replace em dashes with hyphens throughout the website
+~/workspace$ 
