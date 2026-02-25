@@ -2,6 +2,9 @@ import { BaseLayout } from "@/layouts/BaseLayout";
 import { InvoiceEfficiencySection } from "@/components/home/InvoiceEfficiencySection";
 import { track } from "@/lib/track";
 import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import {
   Boxes,
   BarChart3,
@@ -21,6 +24,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { THANK_YOU_URL } from "@/lib/links";
+import { isWorkEmail } from "@/lib/workEmailValidation";
 import dataxLogo from "@/assets/datax-logo.png";
 import billopsLogo from "@/assets/billops.png";
 
@@ -102,21 +106,50 @@ const timeSlots = [
   { value: "17:00", label: "5:00 PM" },
 ];
 
-function GetItDirectlySection() {
-  const initialFormData = {
-    firstName: "",
-    lastName: "",
-    workEmail: "",
-    integration: "No specific integration",
-    preferredDate: "",
-    preferredTime: "",
-  };
+const landingDemoSchema = z.object({
+  firstName: z.string().trim().min(1, "First name is required"),
+  lastName: z.string().trim().min(1, "Last name is required"),
+  workEmail: z
+    .string()
+    .trim()
+    .email("Enter a valid work email")
+    .refine(isWorkEmail, "Please use your work email, not a personal email"),
+  companyName: z.string().trim().min(1, "Company name is required"),
+  phoneNumber: z
+    .string()
+    .trim()
+    .optional()
+    .refine(
+      (value) => !value || /^[+]?[\d\s().-]{7,20}$/.test(value),
+      "Enter a valid phone number",
+    ),
+  integration: z.string().trim().min(1),
+  preferredDate: z.string().trim().min(1, "Preferred date is required"),
+  preferredTime: z.string().trim().min(1, "Preferred time is required"),
+});
 
-  const [formData, setFormData] = useState(initialFormData);
+type LandingDemoFormData = z.infer<typeof landingDemoSchema>;
+
+function GetItDirectlySection() {
   const [dateOpen, setDateOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
-  const [dateTimeError, setDateTimeError] = useState<string | null>(null);
   const [isHighlighted, setIsHighlighted] = useState(false);
+
+  const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm<LandingDemoFormData>({
+    resolver: zodResolver(landingDemoSchema),
+    mode: "onChange",
+    reValidateMode: "onChange",
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      workEmail: "",
+      companyName: "",
+      phoneNumber: "",
+      integration: "No specific integration",
+      preferredDate: "",
+      preferredTime: "",
+    },
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -126,17 +159,11 @@ function GetItDirectlySection() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.preferredDate || !formData.preferredTime) {
-      setDateTimeError("Preferred date and time are required.");
-      return;
-    }
-    track("campaign_enquiry", { ...formData });
-    setFormData(initialFormData);
+  const onSubmit = (data: LandingDemoFormData) => {
+    track("campaign_enquiry", data);
+    reset();
     setSelectedDate(undefined);
     setDateOpen(false);
-    setDateTimeError(null);
     window.location.href = THANK_YOU_URL;
   };
 
@@ -215,52 +242,83 @@ function GetItDirectlySection() {
           <div className="flex-1 h-px bg-cv-line"></div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-3" data-testid="landing-demo-form">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-3" data-testid="landing-demo-form">
           <div className="grid grid-cols-2 gap-2">
             <div className="space-y-1">
-              <label className="text-[10px] font-medium text-cv-muted uppercase tracking-wider">First Name</label>
+              <label className="text-[10px] font-medium text-cv-muted uppercase tracking-wider">First Name *</label>
               <input
                 type="text"
                 placeholder="John"
-                required
-                value={formData.firstName}
-                onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                {...register("firstName")}
                 className={inputClass}
                 data-testid="input-first-name"
+                aria-invalid={Boolean(errors.firstName)}
+                required
               />
+              {errors.firstName && <p className="text-red-500 text-[10px]">{errors.firstName.message}</p>}
             </div>
             <div className="space-y-1">
-              <label className="text-[10px] font-medium text-cv-muted uppercase tracking-wider">Last Name</label>
+              <label className="text-[10px] font-medium text-cv-muted uppercase tracking-wider">Last Name *</label>
               <input
                 type="text"
                 placeholder="Doe"
-                required
-                value={formData.lastName}
-                onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                {...register("lastName")}
                 className={inputClass}
                 data-testid="input-last-name"
+                aria-invalid={Boolean(errors.lastName)}
+                required
               />
+              {errors.lastName && <p className="text-red-500 text-[10px]">{errors.lastName.message}</p>}
             </div>
           </div>
 
           <div className="space-y-1">
-            <label className="text-[10px] font-medium text-cv-muted uppercase tracking-wider">Work Email</label>
+            <label className="text-[10px] font-medium text-cv-muted uppercase tracking-wider">Work Email *</label>
             <input
               type="email"
               placeholder="john@company.com"
-              required
-              value={formData.workEmail}
-              onChange={(e) => setFormData({ ...formData, workEmail: e.target.value })}
+              {...register("workEmail")}
               className={inputClass}
               data-testid="input-work-email"
+              aria-invalid={Boolean(errors.workEmail)}
+              required
             />
+            {errors.workEmail && <p className="text-red-500 text-[10px]">{errors.workEmail.message}</p>}
+          </div>
+
+          <div className="grid grid-cols-2 gap-2">
+            <div className="space-y-1">
+              <label className="text-[10px] font-medium text-cv-muted uppercase tracking-wider">Company Name *</label>
+              <input
+                type="text"
+                placeholder="Acme Corp"
+                {...register("companyName")}
+                className={inputClass}
+                data-testid="input-company-name"
+                aria-invalid={Boolean(errors.companyName)}
+                required
+              />
+              {errors.companyName && <p className="text-red-500 text-[10px]">{errors.companyName.message}</p>}
+            </div>
+
+            <div className="space-y-1">
+              <label className="text-[10px] font-medium text-cv-muted uppercase tracking-wider">Phone Number (Optional)</label>
+              <input
+                type="tel"
+                placeholder="+1 (555) 123-4567"
+                {...register("phoneNumber")}
+                className={inputClass}
+                data-testid="input-phone-number"
+                aria-invalid={Boolean(errors.phoneNumber)}
+              />
+              {errors.phoneNumber && <p className="text-red-500 text-[10px]">{errors.phoneNumber.message}</p>}
+            </div>
           </div>
 
           <div className="space-y-1">
             <label className="text-[10px] font-medium text-cv-muted uppercase tracking-wider">Integration?</label>
             <select
-              value={formData.integration}
-              onChange={(e) => setFormData({ ...formData, integration: e.target.value })}
+              {...register("integration")}
               className={`${inputClass} appearance-none cursor-pointer`}
               data-testid="select-integration"
             >
@@ -298,11 +356,10 @@ function GetItDirectlySection() {
                     selected={selectedDate}
                     onSelect={(date) => {
                       setSelectedDate(date);
-                      setFormData((prev) => ({
-                        ...prev,
-                        preferredDate: date ? format(date, "yyyy-MM-dd") : "",
-                      }));
-                      setDateTimeError(null);
+                      setValue("preferredDate", date ? format(date, "yyyy-MM-dd") : "", {
+                        shouldDirty: true,
+                        shouldValidate: true,
+                      });
                       setDateOpen(false);
                     }}
                     disabled={(date) => date < new Date() || date.getDay() === 0 || date.getDay() === 6}
@@ -311,14 +368,11 @@ function GetItDirectlySection() {
                   />
                 </PopoverContent>
               </Popover>
+              <input type="hidden" {...register("preferredDate")} />
 
               <div className="relative">
                 <select
-                  value={formData.preferredTime}
-                  onChange={(e) => {
-                    setFormData({ ...formData, preferredTime: e.target.value });
-                    setDateTimeError(null);
-                  }}
+                  {...register("preferredTime")}
                   className={`${inputClass} appearance-none cursor-pointer pr-8`}
                   data-testid="input-time"
                 >
@@ -330,8 +384,10 @@ function GetItDirectlySection() {
                 <Clock className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-cv-muted pointer-events-none" />
               </div>
             </div>
-            {dateTimeError && (
-              <p className="text-red-500 text-[10px]">{dateTimeError}</p>
+            {(errors.preferredDate || errors.preferredTime) && (
+              <p className="text-red-500 text-[10px]">
+                {errors.preferredDate?.message || errors.preferredTime?.message}
+              </p>
             )}
           </div>
 
