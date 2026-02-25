@@ -365,7 +365,7 @@ export default function Landing() {
     <BaseLayout>
       {/* Two-Column Layout */}
       <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_440px] gap-0 lg:gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-10">
 
           {/* Left Column: All content sections */}
           <div className="min-w-0">
