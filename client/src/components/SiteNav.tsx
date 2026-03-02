@@ -30,7 +30,7 @@ export function SiteNav() {
     { href: ROUTES.integrations, label: "Integrations", track: "nav_integrations" },
     { href: ROUTES.partners, label: "Partners", track: "nav_partners" },
     { href: ROUTES.resources, label: "Resources", track: "nav_resources" },
-    { href: ROUTES.pricing, label: "Pricing", track: "nav_pricing" },
+    // { href: ROUTES.pricing, label: "Pricing", track: "nav_pricing" },
   ];
 
   return (

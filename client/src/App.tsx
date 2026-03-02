@@ -9,7 +9,7 @@ import Home from "@/pages/Home";
 import Platform from "@/pages/Platform";
 import Solutions from "@/pages/Solutions";
 import Integrations from "@/pages/Integrations";
-import Pricing from "@/pages/Pricing";
+// import Pricing from "@/pages/Pricing";
 import Security from "@/pages/Security";
 import Company from "@/pages/Company";
 import AboutUs from "@/pages/AboutUs";
@@ -47,7 +47,7 @@ function Router() {
       <Route path="/platform" component={Platform} />
       <Route path="/solutions" component={Solutions} />
       <Route path="/integrations" component={Integrations} />
-      <Route path="/pricing" component={Pricing} />
+      {/* <Route path="/pricing" component={Pricing} /> */}
       <Route path="/security" component={Security} />
       <Route path="/company" component={Company} />
       <Route path="/about" component={AboutUs} />
