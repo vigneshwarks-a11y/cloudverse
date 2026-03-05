@@ -139,6 +139,8 @@ const routeSeoByPath: Record<string, RouteSeo> = {
   },
 };
 
+export const seoRoutePaths = Object.keys(routeSeoByPath);
+
 const escapeHtml = (value: string) =>
   value
     .replace(/&/g, "&amp;")
