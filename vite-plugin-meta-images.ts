@@ -1,15 +1,34 @@
 import type { Plugin } from 'vite';
 import fs from 'fs';
 import path from 'path';
+import { injectRouteSeo } from './server/seo';
 
 /**
  * Vite plugin that updates og:image and twitter:image meta tags
  * to point to the app's opengraph image with the correct Replit domain.
  */
 export function metaImagesPlugin(): Plugin {
+  let lastRoutePath = '/';
+
   return {
     name: 'vite-plugin-meta-images',
-    transformIndexHtml(html) {
+    configureServer(server) {
+      server.middlewares.use((req, _res, next) => {
+        const rawPath = (req.url || '/').split('?')[0];
+        if (req.method === 'GET' && isHtmlRoutePath(rawPath)) {
+          lastRoutePath = rawPath;
+        }
+        next();
+      });
+    },
+    transformIndexHtml(html, ctx) {
+      const routePath =
+        ctx?.path && ctx.path !== '/index.html' ? ctx.path : lastRoutePath;
+      if (process.env.DEBUG_ROUTE_META === '1') {
+        console.log('[meta-images] transform path:', routePath);
+      }
+      html = injectRouteSeo(html, routePath);
+
       const baseUrl = getDeploymentUrl();
       if (!baseUrl) {
         log('[meta-images] no Replit deployment domain found, skipping meta tag updates');
@@ -75,4 +94,13 @@ function log(...args: any[]): void {
   if (process.env.NODE_ENV === 'production') {
     console.log(...args);
   }
+}
+
+function isHtmlRoutePath(pathname: string): boolean {
+  if (!pathname) return false;
+  if (pathname === '/' || pathname === '/index.html') return true;
+
+  if (pathname.startsWith('/@') || pathname.startsWith('/__')) return false;
+
+  return !/\.[a-z0-9]+$/i.test(pathname);
 }

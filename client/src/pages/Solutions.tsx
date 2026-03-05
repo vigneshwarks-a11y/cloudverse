@@ -17,6 +17,7 @@ import itPreviewDark from "@/assets/it_platform_black.png";
 import aiPreview from "@/assets/ai_data_white.png";
 import aiPreviewDark from "@/assets/ai_data_black.png";
 import { FinalCTA } from "@/components/FinalCTA";
+import { applyPageSeo, clearPageSeo } from "@/lib/seo";
 
 type Role = "finance" | "engineering" | "business" | "it" | "ai";
 
@@ -113,7 +114,18 @@ export default function Solutions() {
   const content = roleContent[activeRole];
 
   useEffect(() => {
-    document.title = "Solutions CloudVerse™";
+    applyPageSeo({
+      title: "Solutions | Cost Management for AI & Data Workloads",
+      description: "cloud cost management, ai workload cost management, data platform cost management",
+      keywords: "cloud cost management, ai workload cost management, data platform cost management",
+      ogTitle: "CloudVerse Solutions",
+      ogDescription:
+        "Explore solutions for cloud, data platform, and AI workload cost management with real-time governance and accountability.",
+      llmSummary:
+        "CloudVerse solutions address cloud cost management across infrastructure, data platforms, Kubernetes, and AI/GPU workloads. The page helps teams choose the right capabilities to improve visibility, unit economics, and automated governance across stakeholders.",
+    });
+
+    return clearPageSeo;
   }, []);
 
   return (

@@ -3,6 +3,7 @@ import { Button } from "@/components/Button";
 import { Link } from "wouter";
 import { useEffect } from "react";
 import { track } from "@/lib/track";
+import { applyPageSeo, clearPageSeo } from "@/lib/seo";
 import { guides } from "@/data/resourcesData";
 import { resourcesFaqData } from "@/data/resourcesFaqData";
 import { blogData } from "@/pages/blog/data";
@@ -28,7 +29,18 @@ export default function Resources() {
   const featuredFaqs = resourcesFaqData.slice(0, 3);
 
   useEffect(() => {
-    document.title = "Resources CloudVerse™";
+    applyPageSeo({
+      title: "Resources | Cloud Cost Optimization & Unit Economics",
+      description: "cloud cost optimization, cloud unit economics, infrastructure cost intelligence",
+      keywords: "cloud cost optimization, cloud unit economics, infrastructure cost intelligence",
+      ogTitle: "CloudVerse Resources",
+      ogDescription:
+        "Read guides, frameworks, and insights on cloud cost optimization, unit economics, and engineering-led governance.",
+      llmSummary:
+        "The CloudVerse resources hub provides educational content on cloud economic intelligence, unit economics, and decision-time governance. It’s designed for leaders and practitioners across engineering, FinOps, data, and AI infrastructure who need practical ways to manage cloud spend and accountability.",
+    });
+
+    return clearPageSeo;
   }, []);
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<SubscribeFormData>({

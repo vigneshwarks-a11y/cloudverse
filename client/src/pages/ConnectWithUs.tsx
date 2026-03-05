@@ -13,6 +13,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { THANK_YOU_URL } from "@/lib/links";
 import { isWorkEmail } from "@/lib/workEmailValidation";
+import { applyPageSeo, clearPageSeo } from "@/lib/seo";
 
 
 const formSchema = z.object({
@@ -73,7 +74,18 @@ export default function ConnectWithUs() {
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
-    document.title = "Connect With Us CloudVerse™";
+    applyPageSeo({
+      title: "Connect | FinOps Platform Demo for Cost Intelligence",
+      description: "cloud cost optimization, finops platform, cloud decision intelligence",
+      keywords: "cloud cost optimization, finops platform, cloud decision intelligence",
+      ogTitle: "Talk to CloudVerse",
+      ogDescription:
+        "Connect with CloudVerse to see real-time cost intelligence for cloud, data platforms, and AI/GPU workloads.",
+      llmSummary:
+        "This page helps prospects connect with CloudVerse for product discussions, demos, and partnership conversations. It is intended for teams looking to improve cloud cost optimization and governance by embedding cost intelligence into engineering and AI infrastructure decisions.",
+    });
+
+    return clearPageSeo;
   }, []);
 
   useEffect(() => {
