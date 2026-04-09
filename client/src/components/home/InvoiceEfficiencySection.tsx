@@ -4,7 +4,7 @@ import { track } from "@/lib/track";
 import { Upload, FileText, CheckCircle, AlertCircle } from "lucide-react";
 import { EfficiencySnapshotModal, type AnalysisResult } from "./EfficiencySnapshotModal";
 
-type State = "idle" | "processing" | "result" | "error";
+type State = "idle" | "processing" | "form" | "result" | "error";
 
 async function analyzeInvoice(_file: File): Promise<AnalysisResult> {
   const formData = new FormData();
@@ -21,7 +21,6 @@ async function analyzeInvoice(_file: File): Promise<AnalysisResult> {
       const payload = (await response.json()) as { error?: string; message?: string };
       message = payload.error || payload.message || message;
     } catch {
-      // Ignore JSON parse errors and keep default message.
     }
     throw new Error(message);
   }
@@ -57,6 +56,13 @@ export function InvoiceEfficiencySection() {
   const [modalOpen, setModalOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    workEmail: "",
+    company: "",
+  });
+
   const processFile = useCallback(async (file: File) => {
     const error = validateFile(file);
     if (error) {
@@ -71,9 +77,8 @@ export function InvoiceEfficiencySection() {
 
     try {
       const analysisResult = await analyzeInvoice(file);
-      setState("result");
       setResult(analysisResult);
-      setModalOpen(true);
+      setState("form");
       track("invoice_analysis_complete", { score: analysisResult.score });
     } catch (err) {
       setErrorMessage(err instanceof Error ? err.message : "Failed to analyze invoice");
@@ -107,8 +112,18 @@ export function InvoiceEfficiencySection() {
     setResult(null);
     setErrorMessage("");
     setModalOpen(false);
+    setFormData({ firstName: "", lastName: "", workEmail: "", company: "" });
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    track("snapshot_form_submit", { ...formData });
+    setState("result");
+    setModalOpen(true);
+  };
+
+  const inputClass = "w-full bg-cv-surface2 border border-cv-line rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50";
 
   return (
     <>
@@ -123,9 +138,7 @@ export function InvoiceEfficiencySection() {
             </h2>
             <p className="text-base sm:text-lg text-cv-muted leading-relaxed max-w-xl mx-auto">Upload a cloud invoice or spend export to generate a read-only baseline: unit cost, volatility signals, and demand drivers. No credentials required.</p>
 
-            {/* Upload Card */}
             <div className="mt-8 max-w-md mx-auto">
-              {/* Idle State */}
               {state === "idle" && (
                 <div
                   onClick={() => fileInputRef.current?.click()}
@@ -162,7 +175,6 @@ export function InvoiceEfficiencySection() {
                 </div>
               )}
 
-              {/* Processing State */}
               {state === "processing" && (
                 <div className="border-2 border-cv-line rounded-2xl p-8 text-center efficiency_snapshot_success">
                   <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-blue-500/10 flex items-center justify-center">
@@ -176,7 +188,85 @@ export function InvoiceEfficiencySection() {
                 </div>
               )}
 
-              {/* Error State */}
+              {state === "form" && (
+                <div className="border-2 border-blue-500/30 rounded-2xl p-6 bg-cv-surface dark:bg-slate-900/60 text-left" data-testid="snapshot-gate-form">
+                  <div className="text-center mb-5">
+                    <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-green-500/10 flex items-center justify-center">
+                      <CheckCircle className="w-6 h-6 text-green-500" />
+                    </div>
+                    <p className="text-base font-semibold text-cv-ink">Analysis complete</p>
+                    <p className="text-sm text-cv-muted mt-1">Enter your details to view the snapshot results.</p>
+                  </div>
+
+                  <form onSubmit={handleFormSubmit} className="space-y-3" data-testid="snapshot-form">
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="space-y-1">
+                        <label className="text-[10px] font-medium text-cv-muted uppercase tracking-wider">First Name</label>
+                        <input
+                          type="text"
+                          placeholder="John"
+                          required
+                          value={formData.firstName}
+                          onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                          className={inputClass}
+                          data-testid="input-first-name"
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-[10px] font-medium text-cv-muted uppercase tracking-wider">Last Name</label>
+                        <input
+                          type="text"
+                          placeholder="Doe"
+                          required
+                          value={formData.lastName}
+                          onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                          className={inputClass}
+                          data-testid="input-last-name"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-medium text-cv-muted uppercase tracking-wider">Work Email</label>
+                      <input
+                        type="email"
+                        placeholder="john@company.com"
+                        required
+                        value={formData.workEmail}
+                        onChange={(e) => setFormData({ ...formData, workEmail: e.target.value })}
+                        className={inputClass}
+                        data-testid="input-work-email"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-medium text-cv-muted uppercase tracking-wider">Company</label>
+                      <input
+                        type="text"
+                        placeholder="Acme Corp"
+                        required
+                        value={formData.company}
+                        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                        className={inputClass}
+                        data-testid="input-company"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors text-sm mt-2"
+                      data-testid="button-view-results"
+                    >
+                      View My Snapshot
+                    </button>
+
+                    <p className="text-[10px] text-cv-muted/60 text-center">
+                      By submitting, you agree to our privacy policy.
+                    </p>
+                  </form>
+                </div>
+              )}
+
               {state === "error" && (
                 <div className="border-2 border-red-500/20 rounded-2xl p-8 text-center bg-red-500/5">
                   <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-red-500/10 flex items-center justify-center">
@@ -191,7 +281,6 @@ export function InvoiceEfficiencySection() {
                 </div>
               )}
 
-              {/* Result State - Inline Status */}
               {state === "result" && result && (
                 <div className="efficiency_snapshot_success border-2 border-green-500/30 rounded-2xl p-6 text-center bg-green-500/5">
                   <div className="flex items-center justify-center gap-3 mb-4">
