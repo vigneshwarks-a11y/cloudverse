@@ -9,7 +9,7 @@ import Home from "@/pages/Home";
 import Platform from "@/pages/Platform";
 import Solutions from "@/pages/Solutions";
 import Integrations from "@/pages/Integrations";
-import Pricing from "@/pages/Pricing";
+// import Pricing from "@/pages/Pricing";
 import Security from "@/pages/Security";
 import Company from "@/pages/Company";
 import AboutUs from "@/pages/AboutUs";
@@ -35,6 +35,7 @@ import Compare from "@/pages/Compare";
 import Landing from "@/pages/Landing";
 import ThankYou from "@/pages/Thankyou";
 import SubscribeThankYou from "@/pages/SubscribeThankYou";
+import SignUp from "@/pages/SignUp";
 import NotFound from "@/pages/not-found";
 import BlogPage from "@/pages/blog/page";
 import BlogDetailPage from "@/pages/blog/[slug]/page";
@@ -47,7 +48,7 @@ function Router() {
       <Route path="/platform" component={Platform} />
       <Route path="/solutions" component={Solutions} />
       <Route path="/integrations" component={Integrations} />
-      <Route path="/pricing" component={Pricing} />
+      {/* <Route path="/pricing" component={Pricing} /> */}
       <Route path="/security" component={Security} />
       <Route path="/company" component={Company} />
       <Route path="/about" component={AboutUs} />
@@ -74,6 +75,7 @@ function Router() {
       <Route path="/efficiency-snapshot" component={Landing} />
       <Route path="/efficiency-snapshot/thank-you" component={ThankYou} />
       <Route path="/subscribe-thankyou" component={SubscribeThankYou} />
+      <Route path="/sign-up" component={SignUp} />
       <Route path="/legal/terms" component={Legal} />
       <Route path="/legal/privacy" component={Legal} />
 

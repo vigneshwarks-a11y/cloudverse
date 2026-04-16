@@ -30,9 +30,12 @@ const clearManagedHeadTags = () => {
 const upsertMetaTag = (attribute, key, content) => {
   if (!content || typeof document === "undefined") return;
 
-  let element = document.querySelector(
-    `meta[${attribute}="${key}"][data-blog-seo="true"]`
-  );
+  const managedSelector = `meta[${attribute}="${key}"][data-blog-seo="true"]`;
+  const baseSelector = `meta[${attribute}="${key}"]:not([data-blog-seo="true"])`;
+
+  let element =
+    document.querySelector(managedSelector) ||
+    document.querySelector(baseSelector);
 
   if (!element) {
     element = document.createElement("meta");

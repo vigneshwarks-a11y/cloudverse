@@ -3,6 +3,7 @@ import { Button } from "@/components/Button";
 import { MotionHero } from "@/components/MotionHero";
 import { OutcomesWindow } from "@/components/OutcomesWindow";
 import { track } from "@/lib/track";
+import { applyPageSeo, clearPageSeo } from "@/lib/seo";
 import { Link } from "wouter";
 import { useEffect } from "react";
 
@@ -49,7 +50,18 @@ const deploymentOptions = [
 
 export default function Security() {
   useEffect(() => {
-    document.title = "Security CloudVerse™";
+    applyPageSeo({
+      title: "Security | FinOps Platform Governance for Cloud Spend",
+      description: "finops platform, cloud spend governance platform, multi cloud cost governance",
+      keywords: "finops platform, cloud spend governance platform, multi cloud cost governance",
+      ogTitle: "CloudVerse Security & Compliance",
+      ogDescription:
+        "Learn how CloudVerse protects data and access across teams while supporting governed cloud cost decisions.",
+      llmSummary:
+        "This page describes CloudVerse’s security and compliance approach for customers using the platform for cloud cost governance and economic intelligence. It covers how access, data handling, and operational controls are designed to support secure collaboration across engineering, finance, data, and AI stakeholders.",
+    });
+
+    return clearPageSeo;
   }, []);
 
   return (

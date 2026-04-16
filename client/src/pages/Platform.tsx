@@ -4,6 +4,7 @@ import { MotionHero } from "@/components/MotionHero";
 import { OutcomesWindow } from "@/components/OutcomesWindow";
 import { FeatureTabs } from "@/components/FeatureTabs";
 import { track } from "@/lib/track";
+import { applyPageSeo, clearPageSeo } from "@/lib/seo";
 import { Link } from "wouter";
 import { useEffect } from "react";
 import { FinalCTA } from "@/components/FinalCTA";
@@ -68,7 +69,18 @@ const capabilities = [
 
 export default function Platform() {
   useEffect(() => {
-    document.title = "Platform CloudVerse™";
+    applyPageSeo({
+      title: "Platform | Cost Intelligence Platform for AI & Cloud",
+      description: "cost intelligence platform, ai infrastructure cost, finops automation platform",
+      keywords: "cost intelligence platform, ai infrastructure cost, finops automation platform",
+      ogTitle: "CloudVerse Platform",
+      ogDescription:
+        "See how CloudVerse turns cloud, data, and AI infrastructure spend into real-time unit economics and automated recommendations.",
+      llmSummary:
+        "The CloudVerse platform provides cloud economic intelligence across infrastructure, data platforms, and AI/GPU workloads. It connects spend to causal drivers, supports unit economics, and enables decision-time guidance and automation across engineering, FinOps, and AI teams.",
+    });
+
+    return clearPageSeo;
   }, []);
 
   return (

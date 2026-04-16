@@ -12,12 +12,27 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { THANK_YOU_URL } from "@/lib/links";
+import { isWorkEmail } from "@/lib/workEmailValidation";
+import { applyPageSeo, clearPageSeo } from "@/lib/seo";
 
 
 const formSchema = z.object({
-  firstName: z.string().min(1, "First name is required"),
-  lastName: z.string().min(1, "Last name is required"),
-  email: z.string().email("Valid email is required"),
+  firstName: z.string().trim().min(1, "First name is required"),
+  lastName: z.string().trim().min(1, "Last name is required"),
+  email: z
+    .string()
+    .trim()
+    .email("Enter a valid work email")
+    .refine(isWorkEmail, "Please use your work email, not a personal email"),
+  companyName: z.string().trim().min(1, "Company name is required"),
+  phoneNumber: z
+    .string()
+    .trim()
+    .optional()
+    .refine(
+      (value) => !value || /^[+]?[\d\s().-]{7,20}$/.test(value),
+      "Enter a valid phone number",
+    ),
   preferredDate: z.string().min(1, "Preferred date is required"),
   preferredTime: z.string().min(1, "Preferred time is required"),
   interestedIntegration: z.string().optional(),
@@ -59,7 +74,18 @@ export default function ConnectWithUs() {
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
-    document.title = "Connect With Us CloudVerse™";
+    applyPageSeo({
+      title: "Connect | FinOps Platform Demo for Cost Intelligence",
+      description: "cloud cost optimization, finops platform, cloud decision intelligence",
+      keywords: "cloud cost optimization, finops platform, cloud decision intelligence",
+      ogTitle: "Talk to CloudVerse",
+      ogDescription:
+        "Connect with CloudVerse to see real-time cost intelligence for cloud, data platforms, and AI/GPU workloads.",
+      llmSummary:
+        "This page helps prospects connect with CloudVerse for product discussions, demos, and partnership conversations. It is intended for teams looking to improve cloud cost optimization and governance by embedding cost intelligence into engineering and AI infrastructure decisions.",
+    });
+
+    return clearPageSeo;
   }, []);
 
   useEffect(() => {
@@ -72,10 +98,14 @@ export default function ConnectWithUs() {
 
   const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm<FormData>({
     resolver: zodResolver(formSchema),
+    mode: "onChange",
+    reValidateMode: "onChange",
     defaultValues: {
       firstName: "",
       lastName: "",
       email: "",
+      companyName: "",
+      phoneNumber: "",
       preferredDate: "",
       preferredTime: "",
       interestedIntegration: integrationFromUrl
@@ -93,6 +123,8 @@ export default function ConnectWithUs() {
       firstName: data.firstName,
       lastName: data.lastName,
       email: data.email,
+      companyName: data.companyName,
+      phoneNumber: data.phoneNumber ?? "",
       preferredDate: data.preferredDate,
       preferredTime: data.preferredTime,
       interestedIntegration: data.interestedIntegration || "none",
@@ -185,7 +217,7 @@ export default function ConnectWithUs() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label htmlFor="firstName" className="text-xs font-medium text-cv-muted uppercase tracking-wider">
-                      First Name
+                      First Name *
                     </label>
                     <input 
                       id="firstName"
@@ -193,6 +225,8 @@ export default function ConnectWithUs() {
                       placeholder="John"
                       className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
                       data-testid="input-first-name"
+                      aria-invalid={Boolean(errors.firstName)}
+                      required
                     />
                     {errors.firstName && (
                       <p className="text-red-500 text-xs">{errors.firstName.message}</p>
@@ -201,7 +235,7 @@ export default function ConnectWithUs() {
                   
                   <div className="space-y-2">
                     <label htmlFor="lastName" className="text-xs font-medium text-cv-muted uppercase tracking-wider">
-                      Last Name
+                      Last Name *
                     </label>
                     <input 
                       id="lastName"
@@ -209,6 +243,8 @@ export default function ConnectWithUs() {
                       placeholder="Doe"
                       className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
                       data-testid="input-last-name"
+                      aria-invalid={Boolean(errors.lastName)}
+                      required
                     />
                     {errors.lastName && (
                       <p className="text-red-500 text-xs">{errors.lastName.message}</p>
@@ -218,7 +254,7 @@ export default function ConnectWithUs() {
 
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-xs font-medium text-cv-muted uppercase tracking-wider">
-                    Work Email
+                    Work Email *
                   </label>
                   <input 
                     id="email"
@@ -227,10 +263,50 @@ export default function ConnectWithUs() {
                     placeholder="john@company.com"
                     className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
                     data-testid="input-email"
+                    aria-invalid={Boolean(errors.email)}
+                    required
                   />
                   {errors.email && (
                     <p className="text-red-500 text-xs">{errors.email.message}</p>
                   )}
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label htmlFor="companyName" className="text-xs font-medium text-cv-muted uppercase tracking-wider">
+                      Company Name *
+                    </label>
+                    <input
+                      id="companyName"
+                      {...register("companyName")}
+                      placeholder="Acme Corp"
+                      className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
+                      data-testid="input-company-name"
+                      aria-invalid={Boolean(errors.companyName)}
+                      required
+                    />
+                    {errors.companyName && (
+                      <p className="text-red-500 text-xs">{errors.companyName.message}</p>
+                    )}
+                  </div>
+
+                  <div className="space-y-2">
+                    <label htmlFor="phoneNumber" className="text-xs font-medium text-cv-muted uppercase tracking-wider">
+                      Phone Number (Optional)
+                    </label>
+                    <input
+                      id="phoneNumber"
+                      type="tel"
+                      {...register("phoneNumber")}
+                      placeholder="+1 (555) 123-4567"
+                      className="w-full bg-cv-surface2 border border-cv-line rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-cv-ink placeholder:text-cv-muted/50"
+                      data-testid="input-phone-number"
+                      aria-invalid={Boolean(errors.phoneNumber)}
+                    />
+                    {errors.phoneNumber && (
+                      <p className="text-red-500 text-xs">{errors.phoneNumber.message}</p>
+                    )}
+                  </div>
                 </div>
 
                 <div className="space-y-2">

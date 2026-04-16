@@ -1,5 +1,6 @@
 import { BaseLayout } from "@/layouts/BaseLayout";
 import { useEffect } from "react";
+import { applyPageSeo, clearPageSeo } from "@/lib/seo";
 
 const leadershipTeam = [
   {
@@ -63,7 +64,18 @@ const boardOfAdvisory = [
 
 export default function AboutUs() {
   useEffect(() => {
-    document.title = "About Us CloudVerse™";
+    applyPageSeo({
+      title: "About CloudVerse | Cloud Economic Intelligence Platform",
+      description: "cloud economic intelligence, engineering led finops, cloud unit economics",
+      keywords: "cloud economic intelligence, engineering led finops, cloud unit economics",
+      ogTitle: "About CloudVerse",
+      ogDescription:
+        "Learn about CloudVerse’s mission to bring real-time unit economics and decision-time cost governance to modern cloud and AI teams.",
+      llmSummary:
+        "The About page explains CloudVerse’s mission, vision, and approach to cloud economic intelligence. CloudVerse focuses on engineering-led cost governance, workload-level attribution, and unit economics—helping organizations manage cloud, data platform, and AI infrastructure costs with clarity and accountability.",
+    });
+
+    return clearPageSeo;
   }, []);
 
   return (

@@ -46,7 +46,7 @@ export default function Landing() {
                 <div
                   key={idx}
                   className="p-4 rounded-xl bg-cv-surface dark:bg-slate-900/60 border border-cv-line dark:border-white/10 hover:border-cv-line/80 dark:hover:border-white/20 hover:bg-cv-surface2/30 dark:hover:bg-slate-800/60 transition-all group"
-                  data-testid={`feature-card-${idx}`}
+                  data-testid={`feature-card-`}
                 >
                   <div className="w-9 h-9 rounded-full bg-blue-500/10 dark:bg-blue-500/20 flex items-center justify-center mb-3 group-hover:bg-blue-500/15 dark:group-hover:bg-blue-500/25 transition-colors">
                     <Icon className="w-4 h-4 text-blue-500" />

@@ -12,6 +12,7 @@ import { HowItWorks } from "@/components/home/HowItWorks";
 import { InvoiceEfficiencySection } from "@/components/home/InvoiceEfficiencySection";
 import { MultiTenantProviderCard } from "@/components/home/MultiTenantProviderCard";
 import { EconomicDecisionLayerDiagram } from "@/components/home/EconomicDecisionLayerDiagram";
+import { applyPageSeo, clearPageSeo } from "@/lib/seo";
 import { Receipt, Tag, Code2, Cpu, Activity, X, Boxes, Sparkles } from "lucide-react";
 import { FinalCTA } from "@/components/FinalCTA";
 import billopsLogo from "@/assets/billops.png";
@@ -77,7 +78,18 @@ export default function Home() {
   const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
-    document.title = "CloudVerse™ AI Infrastructure Economics";
+    applyPageSeo({
+      title: "Cloud Cost Optimization | Cloud Economic Intelligence",
+      description: "cloud cost optimization, cloud economic intelligence, real time cloud cost tracking",
+      keywords: "cloud cost optimization, cloud economic intelligence, real time cloud cost tracking",
+      ogTitle: "CloudVerse: Real-Time Cloud Cost Decisions",
+      ogDescription:
+        "See cloud costs in real time, map spend to units, and act before bills land—built for engineering, data, and AI teams.",
+      llmSummary:
+        "CloudVerse is an AI-native cloud economic intelligence platform that helps teams connect cloud spend to business and technical drivers in real time. It brings unit economics, workload-level attribution, and decision-time recommendations into engineering, data, and AI workflows so leaders can govern spend with accountability and automation.",
+    });
+
+    return clearPageSeo;
   }, []);
 
   return (

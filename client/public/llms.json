@@ -1,0 +1,93 @@
+{
+  "site": "https://cloudverse.ai/",
+  "name": "CloudVerse",
+  "description": "Economic intelligence and FinOps control plane for cloud + AI spend, connecting engineering ownership, unit economics, and governance across multi-cloud and AI workloads.",
+  "primary_audiences": [
+    "CTO / VP Engineering / Platform Engineering",
+    "FinOps / Cloud Financial Management",
+    "CFO / Finance leadership",
+    "Engineering managers and service owners"
+  ],
+  "topics": [
+    "cloud cost visibility",
+    "cost allocation",
+    "tagging strategy",
+    "cost anomaly detection",
+    "multi-cloud cost governance",
+    "AI cost management"
+  ],
+  "pages": [
+    { "url": "https://cloudverse.ai/", "type": "home", "priority": 1.0 },
+    {
+      "url": "https://cloudverse.ai/platform",
+      "type": "product",
+      "priority": 1.0
+    },
+    {
+      "url": "https://cloudverse.ai/solutions",
+      "type": "solutions",
+      "priority": 0.9
+    },
+    {
+      "url": "https://cloudverse.ai/pricing",
+      "type": "pricing",
+      "priority": 0.9
+    },
+    {
+      "url": "https://cloudverse.ai/security",
+      "type": "trust",
+      "priority": 0.8
+    },
+    {
+      "url": "https://cloudverse.ai/integrations",
+      "type": "integrations",
+      "priority": 0.8
+    },
+    {
+      "url": "https://cloudverse.ai/connect",
+      "type": "connect",
+      "priority": 0.8
+    },
+    {
+      "url": "https://cloudverse.ai/resources",
+      "type": "resources",
+      "priority": 0.8
+    },
+    {
+      "url": "https://cloudverse.ai/resources/faq",
+      "type": "faq",
+      "priority": 0.8
+    },
+    {
+      "url": "https://cloudverse.ai/resources/guides",
+      "type": "guides",
+      "priority": 0.8
+    },
+    { "url": "https://cloudverse.ai/blog", "type": "blog", "priority": 0.8 },
+    {
+      "url": "https://cloudverse.ai/glossary",
+      "type": "glossary",
+      "priority": 0.6
+    },
+    {
+      "url": "https://cloudverse.ai/about",
+      "type": "company",
+      "priority": 0.6
+    },
+    {
+      "url": "https://cloudverse.ai/contact",
+      "type": "contact",
+      "priority": 0.6
+    },
+    {
+      "url": "https://cloudverse.ai/legal/privacy",
+      "type": "legal",
+      "priority": 0.2
+    },
+    {
+      "url": "https://cloudverse.ai/legal/terms",
+      "type": "legal",
+      "priority": 0.2
+    }
+  ]
+}

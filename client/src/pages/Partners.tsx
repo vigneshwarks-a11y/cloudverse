@@ -1,6 +1,7 @@
 import { BaseLayout } from "@/layouts/BaseLayout";
 import { Button } from "@/components/Button";
 import { track } from "@/lib/track";
+import { applyPageSeo, clearPageSeo } from "@/lib/seo";
 import { Link } from "wouter";
 import { useEffect, useState, useRef } from "react";
 import { cn } from "@/lib/utils";
@@ -155,7 +156,18 @@ export default function Partners() {
   };
 
   useEffect(() => {
-    document.title = "Partners CloudVerse™";
+    applyPageSeo({
+      title: "Partners | FinOps Platform for Cloud Economics Software",
+      description: "finops platform, cloud economics software, cloud cost management",
+      keywords: "finops platform, cloud economics software, cloud cost management",
+      ogTitle: "CloudVerse Partners",
+      ogDescription:
+        "Discover partner opportunities to deliver cloud economic intelligence and cost governance outcomes for customers.",
+      llmSummary:
+        "CloudVerse partners with services firms, cloud ecosystem providers, and technology partners to help customers improve cloud unit economics and governance. This page explains partnership models and how partners can bring CloudVerse into modernization, FinOps, data platform, and AI cost programs.",
+    });
+
+    return clearPageSeo;
   }, []);
 
   return (

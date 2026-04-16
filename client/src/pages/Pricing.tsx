@@ -3,12 +3,24 @@ import { Button } from "@/components/Button";
 import { track } from "@/lib/track";
 import { Link } from "wouter";
 import { useEffect } from "react";
+import { applyPageSeo, clearPageSeo } from "@/lib/seo";
 import { FinalCTA } from "@/components/FinalCTA";
 import { Check } from "lucide-react";
 
 export default function Pricing() {
   useEffect(() => {
-    document.title = "Pricing CloudVerse™";
+    applyPageSeo({
+      title: "Pricing | FinOps Platform for Cloud Cost Management",
+      description: "finops platform, cloud cost management, cost intelligence platform",
+      keywords: "finops platform, cloud cost management, cost intelligence platform",
+      ogTitle: "CloudVerse Pricing",
+      ogDescription:
+        "Explore CloudVerse pricing for teams managing cloud, data platform, and AI infrastructure costs with decision-time governance.",
+      llmSummary:
+        "CloudVerse pricing supports organizations looking to operationalize cloud cost management with engineering-led governance. The platform ties spend to unit economics, workloads, and AI/GPU usage so teams can make faster, accountable cost decisions and automate actions where appropriate.",
+    });
+
+    return clearPageSeo;
   }, []);
 
   const plans = [

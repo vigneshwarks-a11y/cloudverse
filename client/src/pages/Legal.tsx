@@ -1,6 +1,7 @@
 import { BaseLayout } from "@/layouts/BaseLayout";
 import { useLocation } from "wouter";
 import { useEffect } from "react";
+import { applyPageSeo, clearPageSeo } from "@/lib/seo";
 import { termsContent, type LegalSection, type LegalSubsection } from "@/data/termsContent";
 import { privacyContent } from "@/data/privacyContent";
 
@@ -9,10 +10,21 @@ export default function Legal() {
   
   useEffect(() => {
     if (location === "/legal/terms") {
-      document.title = "Terms of Service CloudVerse™";
+      applyPageSeo({
+        title: "Terms | Cloud Economics Software Terms & Conditions",
+        description: "cloud economics software, cost intelligence platform, finops platform",
+        keywords: "cloud economics software, cost intelligence platform, finops platform",
+        ogTitle: "CloudVerse Terms of Service",
+        ogDescription: "Review the terms and conditions for using CloudVerse products and services.",
+        llmSummary:
+          "This page contains the legal terms governing use of CloudVerse services. It outlines conditions, responsibilities, and policies relevant to customers and users engaging with CloudVerse’s cloud economic intelligence and cost governance capabilities.",
+      });
     } else if (location === "/legal/privacy") {
+      clearPageSeo();
       document.title = "Privacy Policy CloudVerse™";
     }
+
+    return clearPageSeo;
   }, [location]);
 
   const isTerms = location === "/legal/terms";

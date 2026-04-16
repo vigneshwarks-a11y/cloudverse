@@ -11,7 +11,7 @@ export function Footer() {
         { label: "Platform", href: "/platform" },
         { label: "Solutions", href: "/solutions" },
         { label: "Integrations", href: "/integrations" },
-        { label: "Pricing", href: "/pricing" },
+        // { label: "Pricing", href: "/pricing" },
         { label: "Security", href: "/security" },
       ],
     },
