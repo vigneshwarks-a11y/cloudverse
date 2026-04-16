@@ -45,7 +45,7 @@ export default function SignUp() {
   return (
     <BaseLayout>
       <div className="max-w-[1240px] mx-auto px-5 sm:px-6 lg:px-8 pt-16 sm:pt-20 lg:pt-24 pb-16 sm:pb-20 lg:pb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
 
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-500 mb-4">
