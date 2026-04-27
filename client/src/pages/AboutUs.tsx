@@ -1,6 +1,7 @@
 import { BaseLayout } from "@/layouts/BaseLayout";
 import { useEffect } from "react";
 import { applyPageSeo, clearPageSeo } from "@/lib/seo";
+import { DEMO_URL } from "@/lib/links";
 import {
   Compass,
   Gauge,
@@ -181,9 +182,7 @@ export default function AboutUs() {
               The next decade of compute will be defined by how well teams allocate scarce GPU, storage, and network capacity. CloudVerse™ is building the orchestration layer that makes those decisions automatic, auditable, and aligned with the business — across every cloud, every model, and every team.
             </p>
             <a
-              href="https://meetings.hubspot.com"
-              target="_blank"
-              rel="noopener noreferrer"
+              href={DEMO_URL}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors text-sm"
               data-testid="link-book-demo-about"
             >
