@@ -43,13 +43,6 @@ const products: { name: string; tagline: string; icon: LucideIcon; href: string 
   { name: "CloudBillOps", tagline: "Unified billing, allocation, and chargeback across clouds.", icon: Receipt, href: "https://billops.cloudverse.ai" },
 ];
 
-const stats = [
-  { value: "4", label: "Specialized products" },
-  { value: "Multi-cloud", label: "AWS, Azure, GCP, OCI" },
-  { value: "Real-time", label: "Cost telemetry" },
-  { value: "24/7", label: "Anomaly detection" },
-];
-
 export default function AboutUs() {
   useEffect(() => {
     applyPageSeo({
@@ -179,19 +172,6 @@ export default function AboutUs() {
             </div>
           </div>
 
-          <div className="mb-20 lg:mb-28">
-            <div className="rounded-2xl border border-cv-line bg-cv-surface2/30 p-8 sm:p-12">
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-                {stats.map((s, idx) => (
-                  <div key={idx} className="text-center" data-testid={`stat-${idx}`}>
-                    <div className="text-2xl sm:text-3xl font-bold text-cv-ink mb-2">{s.value}</div>
-                    <div className="text-sm text-cv-muted">{s.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
           <div className="max-w-3xl mx-auto text-center">
             <span className="inline-block text-xs uppercase tracking-widest text-blue-500 font-semibold mb-3">
               Where we're going
@@ -201,11 +181,13 @@ export default function AboutUs() {
               The next decade of compute will be defined by how well teams allocate scarce GPU, storage, and network capacity. CloudVerse™ is building the orchestration layer that makes those decisions automatic, auditable, and aligned with the business — across every cloud, every model, and every team.
             </p>
             <a
-              href="/contact"
+              href="https://meetings.hubspot.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors text-sm"
-              data-testid="link-contact-about"
+              data-testid="link-book-demo-about"
             >
-              Talk to our team →
+              Book a demo →
             </a>
           </div>
 
