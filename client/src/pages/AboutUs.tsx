@@ -36,11 +36,11 @@ const values: { title: string; desc: string; icon: LucideIcon }[] = [
   },
 ];
 
-const products: { name: string; tagline: string; icon: LucideIcon }[] = [
-  { name: "AIx", tagline: "Catch cloud cost mistakes before they hit production.", icon: Sparkles },
-  { name: "DevX", tagline: "Cut AI costs without breaking latency or quality.", icon: Boxes },
-  { name: "DataX", tagline: "Workload-level visibility and control for analytics platforms.", icon: Database },
-  { name: "CloudBillOps", tagline: "Unified billing, allocation, and chargeback across clouds.", icon: Receipt },
+const products: { name: string; tagline: string; icon: LucideIcon; href: string }[] = [
+  { name: "AIx", tagline: "Catch cloud cost mistakes before they hit production.", icon: Sparkles, href: "https://aix.cloudverse.ai" },
+  { name: "DevX", tagline: "Cut AI costs without breaking latency or quality.", icon: Boxes, href: "https://devx.cloudverse.ai" },
+  { name: "DataX", tagline: "Workload-level visibility and control for analytics platforms.", icon: Database, href: "https://datax.cloudverse.ai" },
+  { name: "CloudBillOps", tagline: "Unified billing, allocation, and chargeback across clouds.", icon: Receipt, href: "https://billops.cloudverse.ai" },
 ];
 
 const stats = [
@@ -157,17 +157,23 @@ export default function AboutUs() {
               {products.map((p, idx) => {
                 const Icon = p.icon;
                 return (
-                  <div
+                  <a
                     key={idx}
-                    className="p-6 rounded-2xl bg-cv-surface dark:bg-slate-900/60 border border-cv-line dark:border-white/10"
+                    href={p.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group p-6 rounded-2xl bg-cv-surface dark:bg-slate-900/60 border border-cv-line dark:border-white/10 hover:border-blue-500/40 hover:shadow-lg hover:shadow-blue-500/10 transition-all"
                     data-testid={`product-summary-${idx}`}
                   >
                     <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center mb-4">
                       <Icon className="w-5 h-5 text-blue-500" />
                     </div>
-                    <h3 className="text-lg font-semibold text-cv-ink mb-2">{p.name}</h3>
-                    <p className="text-cv-muted text-sm leading-relaxed">{p.tagline}</p>
-                  </div>
+                    <h3 className="text-lg font-semibold text-cv-ink mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{p.name}</h3>
+                    <p className="text-cv-muted text-sm leading-relaxed mb-3">{p.tagline}</p>
+                    <span className="inline-flex items-center gap-1 text-xs font-medium text-blue-600 dark:text-blue-400 group-hover:gap-2 transition-all">
+                      Learn more →
+                    </span>
+                  </a>
                 );
               })}
             </div>
