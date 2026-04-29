@@ -81,7 +81,7 @@ export default function AboutUs() {
               <div className="relative p-8 sm:p-12 rounded-2xl border border-cv-line bg-cv-surface2/30">
                 <h2 className="text-2xl sm:text-3xl font-bold text-cv-ink mb-6 text-center">Our Mission</h2>
                 <p className="text-lg sm:text-xl text-cv-muted leading-relaxed text-center">
-                  CloudVerse™ AI's mission is to make cloud as it was originally promised, <span className="text-cv-ink font-semibold">"Simple and Cost-Effective"</span>. As everything becomes cloud and usage-based, enterprises will need an AI enabled platform orchestrator to govern, manage and optimize their spend across diverse cloud providers & services.
+                  CloudVerse™ is building the compute economics layer the cloud era was always missing — <span className="text-cv-ink font-semibold">"Transparent, Predictable, and Profitable"</span>. As AI workloads multiply and cloud spend becomes a defining business variable, enterprises need more than dashboards. They need an intelligent platform that transforms raw compute costs into strategic financial decisions.
                 </p>
               </div>
             </div>
@@ -96,13 +96,16 @@ export default function AboutUs() {
             </div>
             <div className="space-y-5 text-cv-muted text-base sm:text-lg leading-relaxed">
               <p>
-                Cloud was supposed to be simple. Spin up what you need, pay for what you use, scale with your business. Instead, modern enterprises wake up to runaway invoices, opaque allocations, and engineering teams flying blind on the financial impact of every commit.
+                Cloud promised simplicity. What enterprises got instead was financial opacity — sprawling invoices, disconnected cost centers, and engineering teams blind to the economic weight of every deployment decision.
               </p>
               <p>
-                With AI workloads on top, the gap is widening. GPUs cost more than CPUs, throughput patterns are unpredictable, and a single misconfigured experiment can burn a month of budget overnight.
+                AI made it worse. GPU clusters, spot instances, and experimental workloads introduced spend that finance can't model and engineering can't control. One misconfigured job can erase a quarter's infrastructure budget overnight.
               </p>
               <p>
-                CloudVerse™ exists to close that gap — turning cloud and AI spend into a real economic decision layer that engineers, finance, and leadership can all trust.
+                CloudVerse™ was built to solve this at the root — giving engineers, finance, and leadership a shared, real-time view of compute value, where every infrastructure decision ties directly to business outcomes.
+              </p>
+              <p className="text-cv-ink font-semibold">
+                That's compute economics.
               </p>
             </div>
           </div>
@@ -177,9 +180,9 @@ export default function AboutUs() {
             <span className="inline-block text-xs uppercase tracking-widest text-blue-500 font-semibold mb-3">
               Where we're going
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-cv-ink mb-6">An AI-native economic layer for every enterprise</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-cv-ink mb-6">An AI-native economic decision layer for every enterprise</h2>
             <p className="text-lg text-cv-muted leading-relaxed mb-8">
-              The next decade of compute will be defined by how well teams allocate scarce GPU, storage, and network capacity. CloudVerse™ is building the orchestration layer that makes those decisions automatic, auditable, and aligned with the business — across every cloud, every model, and every team.
+              The next decade of compute will be defined by how well teams allocate scarce GPU, storage, and network capacity. CloudVerse™ is building the economic decision layer that makes those choices automatic, auditable, and aligned with business outcomes — across every cloud, every model, and every team.
             </p>
             <a
               href={DEMO_URL}
