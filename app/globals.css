@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark-default tokens (kept from current site) */
+    --cv-ink: 0 0% 98%;
+    --cv-muted: 240 3% 65%;
+    --cv-line: 240 5% 18%;
+    --cv-surface: 213 75% 5%;        /* #050F1C navy from brief */
+    --cv-surface2: 213 40% 9%;       /* slightly elevated dark band */
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cv-surface text-cv-ink font-sans antialiased;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: rgba(22, 100, 192, 0.35);
+    color: #fff;
+  }
+}
+
+@layer components {
+  .cv-container {
+    @apply max-w-cv mx-auto px-5 sm:px-6 lg:px-8;
+  }
+
+  .cv-section {
+    @apply py-14 sm:py-20 lg:py-[88px];
+  }
+
+  /* Typography per brief Section 4 */
+  .cv-h1 {
+    @apply font-display font-extrabold tracking-cv-h1;
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 1.05;
+  }
+
+  .cv-h2 {
+    @apply font-display font-bold tracking-cv-h2;
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.1;
+  }
+
+  .cv-h3 {
+    @apply font-display font-semibold;
+    font-size: clamp(20px, 2vw, 28px);
+    line-height: 1.2;
+  }
+
+  .cv-body-lg {
+    @apply font-sans font-light;
+    font-size: clamp(17px, 1.4vw, 20px);
+    line-height: 1.65;
+  }
+
+  .cv-body {
+    @apply font-sans;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .cv-label {
+    @apply font-sans font-semibold uppercase tracking-cv-label text-cv-blue-light;
+    font-size: 12px;
+  }
+
+  /* Section variants */
+  .cv-section-dark {
+    background: #050F1C;
+    color: #fff;
+  }
+
+  .cv-section-band {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  /* Hero grid + glow background */
+  .cv-hero-bg {
+    position: relative;
+    background: #050F1C;
+    overflow: hidden;
+  }
+
+  .cv-hero-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 0%, transparent 80%);
+  }
+
+  .cv-hero-bg::after {
+    content: "";
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 60%;
+    height: 70%;
+    background: radial-gradient(circle, rgba(22, 100, 192, 0.35) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* CTA primary */
+  .cv-btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-md font-medium text-sm transition-colors;
+    background: #1664C0;
+    color: #fff;
+  }
+  .cv-btn-primary:hover {
+    background: #2277E0;
+  }
+
+  .cv-btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-md font-medium text-sm transition-colors;
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  .cv-btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  /* Section break gradient line (per brief Section 4) */
+  .cv-section-break {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(22, 100, 192, 0.4), transparent);
+  }
+}

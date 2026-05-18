@@ -10,8 +10,18 @@ Preferred communication style: Simple, everyday language.
 
 ## System Architecture
 
-### Frontend Architecture
-- **Framework**: React 18 with TypeScript, built using Vite
+### Current state: Mid-migration to Next.js 15 (Brief v3.0)
+The site is being migrated from Vite/React/Wouter/Express to Next.js 15 App Router per Brief v3.0. Phase 1 complete (homepage live on new stack). See `.local/session_plan.md` for phase plan. Old `client/`, `server/`, `vite.config.ts` retained until Phase 4 ports the few preserved pages (`/contact`, `/sign-up`, `/efficiency-snapshot`).
+
+### Frontend Architecture (new — Next.js 15)
+- **Framework**: Next.js 15 App Router, React 19, TypeScript
+- **Routing**: File-based App Router (`app/` directory)
+- **Styling**: Tailwind CSS v3 with custom design tokens (dark-default theme preserved)
+- **Fonts**: Syne (display) + DM Sans (body) via `next/font/google` — zero CLS
+- **Module accents**: blue #1664C0 (FinOps), purple #6954D4 (AIX), teal #0E9E7A (DevX), amber #D97706 (DataX)
+
+### Frontend Architecture (legacy — being phased out)
+- **Framework**: React 19 with TypeScript, built using Vite
 - **Routing**: Wouter (lightweight client-side routing)
 - **Styling**: Tailwind CSS v4 with custom design tokens for CloudVerse branding
 - **Components**: Shadcn/ui components (Radix primitives) with custom CloudVerse components
