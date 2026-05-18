@@ -59,6 +59,28 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Nav />
         <main>{children}</main>
         <Footer />
+        <Script
+          id="org-jsonld"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "CloudVerse",
+              url: SITE_URL,
+              logo: `${SITE_URL}/og/default.png`,
+              description: DEFAULT_DESCRIPTION,
+              sameAs: ["https://www.linkedin.com/company/cloudverse-ai"],
+              contactPoint: [{
+                "@type": "ContactPoint",
+                contactType: "sales",
+                email: "hello@cloudverse.ai",
+                availableLanguage: ["English"],
+              }],
+            }),
+          }}
+        />
         {/* GTM placeholder — set NEXT_PUBLIC_GTM_ID to enable */}
         {process.env.NEXT_PUBLIC_GTM_ID && (
           <Script
