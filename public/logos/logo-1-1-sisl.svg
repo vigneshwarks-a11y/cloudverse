@@ -1,0 +1,27 @@
+<svg viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- SISL logo - DARK version for light background -->
+  <!-- Geometric chevron arrow in darker tones -->
+  <!-- Top-left diamond -->
+  <polygon points="20,15 40,35 20,55 0,35" fill="#CC3300"/>
+  
+  <!-- Middle-left diamond -->
+  <polygon points="45,15 65,35 45,55 25,35" fill="#BB2200"/>
+  
+  <!-- Bottom-left diamond -->
+  <polygon points="20,50 40,70 20,90 0,70" fill="#AA1100"/>
+  
+  <!-- Top-right diamond -->
+  <polygon points="50,15 70,35 50,55 30,35" fill="#DD5533"/>
+  
+  <!-- Middle-right diamond -->
+  <polygon points="75,15 95,35 75,55 55,35" fill="#CC3300"/>
+  
+  <!-- Bottom-right diamond -->
+  <polygon points="50,50 70,70 50,90 30,70" fill="#BB2200"/>
+  
+  <!-- Diagonal line -->
+  <line x1="5" y1="88" x2="70" y2="23" stroke="#1a1a1a" stroke-width="2.5"/>
+  
+  <!-- SISL text in dark -->
+  <text x="115" y="65" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="bold" fill="#1a1a1a">SISL</text>
+</svg>

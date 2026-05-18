@@ -1,0 +1,283 @@
+"use client";
+
+import { useMemo, useState, useEffect } from "react";
+import Link from "next/link";
+import { X, Search, ExternalLink, ArrowRight } from "lucide-react";
+import { integrationsData, type Integration } from "@/lib/integrationsData";
+import { IntegrationLogo } from "./IntegrationLogo";
+
+const CATEGORIES = ["All", "Cloud", "Data", "AI", "Kubernetes", "Infrastructure", "Identity", "Ticketing", "Collaboration", "Observability", "SaaS"] as const;
+const STATUSES = ["All", "Available", "Beta", "Coming soon"] as const;
+const MODULES = ["All", "AIX", "DevX", "DataX"] as const;
+
+const STATUS_STYLE: Record<Integration["status"], string> = {
+  "Available":   "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
+  "Beta":        "bg-amber-500/10 text-amber-300 border-amber-500/30",
+  "Coming soon": "bg-white/[0.04] text-white/55 border-white/15",
+};
+
+const PRODUCT_STYLE: Record<string, string> = {
+  AIX:   "border-purple-400/40 text-purple-300 bg-purple-400/10",
+  DevX:  "border-emerald-400/40 text-emerald-300 bg-emerald-400/10",
+  DataX: "border-amber-400/40 text-amber-300 bg-amber-400/10",
+};
+
+export function IntegrationsExplorer() {
+  const [q, setQ] = useState("");
+  const [cat, setCat] = useState<string>("All");
+  const [status, setStatus] = useState<string>("All");
+  const [mod, setMod] = useState<string>("All");
+  const [active, setActive] = useState<Integration | null>(null);
+
+  // Close drawer on Esc
+  useEffect(() => {
+    if (!active) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setActive(null);
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [active]);
+
+  const filtered = useMemo(() => {
+    const needle = q.toLowerCase().trim();
+    return integrationsData.filter((i) => {
+      if (cat !== "All" && i.category !== cat) return false;
+      if (status !== "All" && i.status !== status) return false;
+      if (mod !== "All" && !i.products?.includes(mod as "AIX" | "DevX" | "DataX")) return false;
+      if (!needle) return true;
+      return (
+        i.name.toLowerCase().includes(needle) ||
+        i.short.toLowerCase().includes(needle) ||
+        i.aliases?.some((a) => a.toLowerCase().includes(needle))
+      );
+    });
+  }, [q, cat, status, mod]);
+
+  return (
+    <>
+      {/* Search */}
+      <div className="relative mb-6 max-w-xl">
+        <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/45" />
+        <input
+          type="text"
+          placeholder="Search integrations…"
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+          className="w-full pl-10 pr-4 py-3 rounded-lg border border-white/10 bg-white/[0.03] text-white placeholder-white/45 focus:outline-none focus:border-cv-blue/60 transition-colors"
+          data-testid="input-search-integrations"
+        />
+      </div>
+
+      {/* Filters */}
+      <div className="flex flex-col gap-5 mb-10">
+        <FilterRow label="Module" options={MODULES as unknown as readonly string[]} value={mod} onChange={setMod} testidPrefix="filter-module" />
+        <FilterRow label="Category" options={CATEGORIES as unknown as readonly string[]} value={cat} onChange={setCat} testidPrefix="filter-category" />
+        <FilterRow label="Status" options={STATUSES as unknown as readonly string[]} value={status} onChange={setStatus} testidPrefix="filter-status" />
+      </div>
+
+      <div className="mb-4 text-xs text-white/55">
+        Showing <span className="text-white tabular-nums">{filtered.length}</span> of <span className="tabular-nums">{integrationsData.length}</span> integrations
+      </div>
+
+      {/* Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {filtered.map((i) => (
+          <button
+            key={i.id}
+            onClick={() => setActive(i)}
+            className="group text-left p-5 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] hover:border-white/20 transition-all"
+            data-testid={`card-integration-${i.id}`}
+          >
+            <div className="flex items-start justify-between gap-3 mb-3">
+              <div className="flex items-center gap-3 min-w-0">
+                <IntegrationLogo name={i.name} logo={i.logo} size={22} />
+                <h3 className="text-[15px] font-semibold text-white truncate">{i.name}</h3>
+              </div>
+              <span className={`text-[10px] font-medium px-2 py-0.5 rounded border whitespace-nowrap ${STATUS_STYLE[i.status]}`}>
+                {i.status}
+              </span>
+            </div>
+            <p className="text-sm text-white/65 line-clamp-2 leading-relaxed min-h-[40px]">{i.short}</p>
+            <div className="flex items-center gap-1.5 flex-wrap mt-4">
+              <span className="text-[11px] text-white/45 uppercase tracking-wider">{i.category}</span>
+              {i.products?.map((p) => (
+                <span key={p} className={`text-[10px] font-semibold px-1.5 py-0.5 rounded border ${PRODUCT_STYLE[p]}`}>
+                  {p}
+                </span>
+              ))}
+            </div>
+          </button>
+        ))}
+      </div>
+
+      {filtered.length === 0 && (
+        <div className="text-center py-16 rounded-xl border border-dashed border-white/10">
+          <p className="text-white/55">No integrations match those filters.</p>
+          <button
+            onClick={() => { setQ(""); setCat("All"); setStatus("All"); setMod("All"); }}
+            className="mt-3 text-sm text-cv-blue-light hover:text-white"
+          >
+            Reset filters
+          </button>
+        </div>
+      )}
+
+      {/* Drawer */}
+      {active && <Drawer integration={active} onClose={() => setActive(null)} />}
+    </>
+  );
+}
+
+function FilterRow({ label, options, value, onChange, testidPrefix }: {
+  label: string; options: readonly string[]; value: string; onChange: (v: string) => void; testidPrefix: string;
+}) {
+  return (
+    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+      <div className="text-[11px] uppercase tracking-widest text-white/50 font-medium w-20 shrink-0">{label}</div>
+      <div className="flex flex-wrap gap-1.5">
+        {options.map((o) => (
+          <button
+            key={o}
+            onClick={() => onChange(o)}
+            className={`px-3 py-1.5 text-xs rounded-md border transition-all ${
+              value === o
+                ? "bg-white text-cv-navy border-white font-medium"
+                : "bg-transparent border-white/15 text-white/70 hover:border-white/30 hover:text-white"
+            }`}
+            data-testid={`${testidPrefix}-${o.toLowerCase().replace(/\s+/g, "-")}`}
+          >
+            {o}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Drawer({ integration, onClose }: { integration: Integration; onClose: () => void }) {
+  return (
+    <>
+      <div
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 animate-in fade-in"
+        onClick={onClose}
+        data-testid="drawer-backdrop"
+      />
+      <aside
+        className="fixed right-0 top-0 bottom-0 w-full sm:w-[480px] bg-cv-navy border-l border-white/10 z-50 overflow-y-auto shadow-2xl"
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${integration.name} integration details`}
+        data-testid="drawer-integration"
+      >
+        {/* Header */}
+        <div className="sticky top-0 bg-cv-navy/95 backdrop-blur border-b border-white/10 p-5 sm:p-6 flex items-start justify-between gap-4 z-10">
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-3 mb-2">
+              <IntegrationLogo name={integration.name} logo={integration.logo} size={32} />
+              <h2 className="font-display text-xl font-semibold text-white truncate">{integration.name}</h2>
+            </div>
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className={`text-[10px] font-medium px-2 py-0.5 rounded border ${STATUS_STYLE[integration.status]}`}>
+                {integration.status}
+              </span>
+              <span className="text-[10px] uppercase tracking-wider text-white/45">{integration.category}</span>
+              {integration.products?.map((p) => (
+                <span key={p} className={`text-[10px] font-semibold px-1.5 py-0.5 rounded border ${PRODUCT_STYLE[p]}`}>
+                  {p}
+                </span>
+              ))}
+            </div>
+          </div>
+          <button
+            onClick={onClose}
+            className="text-white/55 hover:text-white shrink-0 mt-1 p-1 -m-1"
+            aria-label="Close"
+            data-testid="button-close-drawer"
+          >
+            <X size={20} />
+          </button>
+        </div>
+
+        <div className="px-5 sm:px-6 py-5">
+          <p className="text-sm text-white/75 leading-relaxed">{integration.short}</p>
+        </div>
+
+        {/* Documentation CTA (the click that goes into docs) */}
+        {integration.setup.docsUrl && (
+          <div className="px-5 sm:px-6 pb-5">
+            <Link
+              href={integration.setup.docsUrl}
+              className="flex items-center justify-between gap-3 rounded-lg border border-cv-blue/40 bg-cv-blue/10 hover:bg-cv-blue/15 transition-colors p-4"
+              data-testid={`link-docs-${integration.id}`}
+            >
+              <div>
+                <div className="text-[11px] uppercase tracking-widest text-cv-blue-light mb-1">Setup documentation</div>
+                <div className="text-sm text-white font-medium">Read the {integration.name} setup guide</div>
+              </div>
+              <ExternalLink size={18} className="text-cv-blue-light shrink-0" />
+            </Link>
+          </div>
+        )}
+
+        <div className="divide-y divide-white/10">
+          <Section title="What we ingest">
+            <BulletList items={integration.whatWeIngest.slice(0, 5)} />
+          </Section>
+          <Section title="What it unlocks">
+            <BulletList items={integration.outputs.slice(0, 5)} />
+          </Section>
+          <Section title="Setup requirements">
+            <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 sm:p-5 space-y-4">
+              <Field label="Method" value={integration.setup.method} />
+              <Field label="Time to value" value={integration.setup.timeToValue} />
+              <Field label="Permissions" value={integration.setup.permissions} />
+            </div>
+          </Section>
+          <div className="px-5 sm:px-6 py-5">
+            <Link
+              href={`/connect?integration=${encodeURIComponent(integration.name)}`}
+              className="cv-btn-primary w-full justify-center"
+              data-testid={`link-request-${integration.id}`}
+            >
+              Request {integration.name} access <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </aside>
+    </>
+  );
+}
+
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div className="px-5 sm:px-6 py-5">
+      <h3 className="text-[11px] uppercase tracking-widest text-white/50 mb-3">{title}</h3>
+      {children}
+    </div>
+  );
+}
+
+function BulletList({ items }: { items: string[] }) {
+  return (
+    <ul className="space-y-2">
+      {items.map((it, i) => (
+        <li key={i} className="flex gap-3 text-sm text-white/75 leading-6">
+          <span className="text-cv-blue-light shrink-0 mt-0.5">•</span>
+          <span>{it}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function Field({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <div className="text-[10px] uppercase tracking-widest text-white/45 mb-1">{label}</div>
+      <p className="text-sm text-white">{value}</p>
+    </div>
+  );
+}

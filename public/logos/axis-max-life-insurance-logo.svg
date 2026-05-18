@@ -1,0 +1,10 @@
+<svg viewBox="0 0 180 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Diamond shape -->
+  <polygon points="20,20 35,40 20,60 5,40" fill="#A41D5F"/>
+  
+  <!-- AXIS MAX text -->
+  <text x="50" y="35" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#A41D5F">AXIS MAX</text>
+  
+  <!-- LIFE INSURANCE text -->
+  <text x="50" y="55" font-family="Arial, sans-serif" font-size="11" fill="#1C3A70" letter-spacing="1">LIFE INSURANCE</text>
+</svg>
