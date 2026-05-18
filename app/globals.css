@@ -4,12 +4,12 @@
 
 @layer base {
   :root {
-    /* Dark-default tokens (kept from current site) */
-    --cv-ink: 0 0% 98%;
-    --cv-muted: 240 3% 65%;
-    --cv-line: 240 5% 18%;
-    --cv-surface: 213 75% 5%;        /* #050F1C navy from brief */
-    --cv-surface2: 213 40% 9%;       /* slightly elevated dark band */
+    /* Dark-default tokens (kept) */
+    --cv-ink: 0 0% 98%;             /* #f5f5f7 — off-white text (legacy) */
+    --cv-muted: 240 2% 63%;         /* #a1a1a6 — muted text (legacy) */
+    --cv-line: 240 5% 18%;          /* subtle border */
+    --cv-surface: 213 75% 5%;       /* #050F1C navy */
+    --cv-surface2: 240 4% 11%;      /* #1c1c1e card bg (legacy) */
   }
 
   html {
@@ -19,46 +19,56 @@
   body {
     @apply bg-cv-surface text-cv-ink font-sans antialiased;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Inter OpenType features for tabular numerals + alt characters */
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss01", "tnum";
   }
 
   ::selection {
-    background: rgba(22, 100, 192, 0.35);
+    background: rgba(0, 113, 227, 0.35);
     color: #fff;
   }
 }
 
 @layer components {
+  /* Container */
   .cv-container {
-    @apply max-w-cv mx-auto px-5 sm:px-6 lg:px-8;
+    @apply max-w-cv mx-auto px-5 sm:px-6 lg:px-20;
+  }
+  .cv-container-tight {
+    @apply max-w-cv-content mx-auto px-5 sm:px-6 lg:px-20;
   }
 
   .cv-section {
-    @apply py-14 sm:py-20 lg:py-[88px];
+    @apply py-14 sm:py-16 lg:py-20;
   }
 
-  /* Typography per brief Section 4 */
+  /* Typography — older responsive scale, Inter semibold + tracking-tight */
   .cv-h1 {
-    @apply font-display font-extrabold tracking-cv-h1;
-    font-size: clamp(40px, 6vw, 72px);
-    line-height: 1.05;
+    @apply font-sans font-semibold tracking-tight;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.07;
+    letter-spacing: -0.02em;
   }
 
   .cv-h2 {
-    @apply font-display font-bold tracking-cv-h2;
-    font-size: clamp(30px, 4vw, 48px);
-    line-height: 1.1;
+    @apply font-sans font-semibold tracking-tight;
+    font-size: clamp(28px, 3.5vw, 40px);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
   }
 
   .cv-h3 {
-    @apply font-display font-semibold;
-    font-size: clamp(20px, 2vw, 28px);
+    @apply font-sans font-semibold tracking-tight;
+    font-size: clamp(22px, 2vw, 28px);
     line-height: 1.2;
   }
 
   .cv-body-lg {
-    @apply font-sans font-light;
-    font-size: clamp(17px, 1.4vw, 20px);
-    line-height: 1.65;
+    @apply font-sans;
+    font-size: clamp(16px, 1.3vw, 18px);
+    line-height: 1.6;
+    font-weight: 400;
   }
 
   .cv-body {
@@ -67,9 +77,19 @@
     line-height: 1.6;
   }
 
-  .cv-label {
-    @apply font-sans font-semibold uppercase tracking-cv-label text-cv-blue-light;
+  /* Eyebrow / caption — legacy 0.25em tracking */
+  .cv-label,
+  .cv-eyebrow {
+    @apply font-sans font-semibold uppercase tracking-cv-label;
     font-size: 12px;
+    color: theme("colors.cv.blue-light");
+  }
+
+  .cv-cap {
+    @apply font-sans uppercase;
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    color: hsl(var(--cv-muted));
   }
 
   /* Section variants */
@@ -84,7 +104,7 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   }
 
-  /* Hero grid + glow background */
+  /* Hero — calmer grid + glow (current) */
   .cv-hero-bg {
     position: relative;
     background: #050F1C;
@@ -110,33 +130,84 @@
     right: -10%;
     width: 60%;
     height: 70%;
-    background: radial-gradient(circle, rgba(22, 100, 192, 0.35) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(0, 113, 227, 0.35) 0%, transparent 60%);
     pointer-events: none;
   }
 
-  /* CTA primary */
+  /* Hero — animated, opt-in (legacy "hero-motion-bg") */
+  .hero-motion-bg {
+    position: relative;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0f2e 50%, #0d0d1a 100%);
+    overflow: hidden;
+  }
+  .hero-motion-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 1200px 900px at 50% 20%,
+      rgba(59, 130, 246, 0.55) 0%,
+      rgba(139, 92, 246, 0.40) 20%,
+      rgba(79, 70, 229, 0.25) 40%,
+      transparent 70%
+    );
+    animation: hero-shift 24s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .hero-motion-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(0deg, transparent 24%, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.04) 26%, transparent 27%, transparent 74%, rgba(255,255,255,0.04) 75%, rgba(255,255,255,0.04) 76%, transparent 77%, transparent),
+      linear-gradient(90deg, transparent 24%, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.04) 26%, transparent 27%, transparent 74%, rgba(255,255,255,0.04) 75%, rgba(255,255,255,0.04) 76%, transparent 77%, transparent);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-motion-bg::before { animation: none; }
+  }
+
+  /* Buttons — Apple blue primary, generous radius */
   .cv-btn-primary {
-    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-md font-medium text-sm transition-colors;
-    background: #1664C0;
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm transition-colors;
+    background: #0071E3;
     color: #fff;
   }
   .cv-btn-primary:hover {
-    background: #2277E0;
+    background: #0A84FF;
   }
 
   .cv-btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-md font-medium text-sm transition-colors;
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm transition-colors;
     color: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.18);
   }
   .cv-btn-ghost:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.32);
   }
 
-  /* Section break gradient line (per brief Section 4) */
+  /* Section break gradient line */
   .cv-section-break {
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(22, 100, 192, 0.4), transparent);
+    background: linear-gradient(90deg, transparent, rgba(0, 113, 227, 0.4), transparent);
+  }
+
+  /* Logo pill — always-white background for vendor logo visibility */
+  .logo-pill {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    padding: 10px 14px;
+  }
+
+  /* Scrollbar hide */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }

@@ -31,13 +31,17 @@ export function IntegrationLogo({ name, logo, size = 22 }: IntegrationLogoProps)
   }
 
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={logo.src}
-      alt={logo.alt}
-      className="object-contain shrink-0 brightness-0 invert"
+    <div
+      className="shrink-0 rounded-md bg-white/95 border border-black/5 flex items-center justify-center p-1"
       style={{ height: size, width: size }}
-      onError={() => setImgFailed(true)}
-    />
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={logo.src}
+        alt={logo.alt}
+        className="object-contain max-h-full max-w-full"
+        onError={() => setImgFailed(true)}
+      />
+    </div>
   );
 }

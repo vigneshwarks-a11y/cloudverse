@@ -5,7 +5,7 @@ import { ChevronDown } from "lucide-react";
 
 export type FaqItem = { q: string; a: string };
 
-export function FaqBlock({ items, accent = "#1664C0" }: { items: FaqItem[]; accent?: string }) {
+export function FaqBlock({ items, accent = "#0071E3" }: { items: FaqItem[]; accent?: string }) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
