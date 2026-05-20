@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { ArchitectureFlow } from "@/components/ArchitectureFlow";
+import { CustomerLogos } from "@/components/CustomerLogos";
+import { InvoiceEfficiency } from "@/components/home/InvoiceEfficiency";
 import { DEMO_URL } from "@/lib/links";
 
 const LOGOS = ["Berkshire Hathaway", "SISL", "Dr. Reddy's", "Axis Max Life", "Ginesys"];
@@ -146,13 +148,19 @@ export default function HomePage() {
 
       <div className="cv-section-break" />
 
+      {/* Customer logos marquee */}
+      <CustomerLogos />
+
+      {/* Efficiency Snapshot — gated invoice upload */}
+      <InvoiceEfficiency compact />
+
       {/* Section 4 — Platform architecture flow (Pattern 1) */}
       <section className="cv-section bg-cv-surface2">
         <div className="cv-container">
           <div className="max-w-3xl mb-10">
             <div className="cv-label mb-3">Platform overview</div>
-            <h2 className="cv-h2 text-white">One control plane. Four compute surfaces.</h2>
-            <p className="cv-body-lg mt-4 text-white/70">
+            <h2 className="cv-h2 text-cv-ink">One control plane. Four compute surfaces.</h2>
+            <p className="cv-body-lg mt-4 text-cv-ink/70">
               CloudVerse connects your cloud infrastructure, AI workloads, data platforms, and engineering workflows into a single financial intelligence layer.
             </p>
           </div>
@@ -167,14 +175,14 @@ export default function HomePage() {
         <div className="cv-container">
           <div className="max-w-3xl mb-12">
             <div className="cv-label mb-3">Why now</div>
-            <h2 className="cv-h2 text-white">
+            <h2 className="cv-h2 text-cv-ink">
               The tools that governed cloud spend were built for a different era.
             </h2>
           </div>
           <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-            <div className="rounded-2xl border border-white/10 p-7 bg-white/[0.02]">
-              <div className="cv-label text-white/40 mb-3">The legacy approach</div>
-              <ul className="space-y-3 text-white/60 text-[15px]">
+            <div className="rounded-2xl border border-cv-line/10 p-7 bg-cv-ink/[0.02]">
+              <div className="cv-label text-cv-ink/40 mb-3">The legacy approach</div>
+              <ul className="space-y-3 text-cv-ink/60 text-[15px]">
                 <li>Built from ITAM roots, with FinOps tacked on later</li>
                 <li>Explains the bill weeks after it lands</li>
                 <li>Heavy implementations and long time-to-value</li>
@@ -184,7 +192,7 @@ export default function HomePage() {
             </div>
             <div className="rounded-2xl border p-7" style={{ borderColor: "rgba(22,100,192,0.35)", background: "rgba(22,100,192,0.08)" }}>
               <div className="cv-label mb-3">The CloudVerse approach</div>
-              <ul className="space-y-3 text-white/90 text-[15px]">
+              <ul className="space-y-3 text-cv-ink/90 text-[15px]">
                 <li>Built for compute economics from the ground up</li>
                 <li>Governs decisions before the bill exists</li>
                 <li>First non-obvious findings within 30 minutes of connection</li>
@@ -203,22 +211,22 @@ export default function HomePage() {
         <div className="cv-container">
           <div className="max-w-3xl mb-10">
             <div className="cv-label mb-3">Modular architecture</div>
-            <h2 className="cv-h2 text-white">Deploy what you need. Expand when ready.</h2>
+            <h2 className="cv-h2 text-cv-ink">Deploy what you need. Expand when ready.</h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
             {MODULES.map((m) => (
               <Link
                 key={m.href}
                 href={m.href}
-                className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:bg-white/[0.04] transition-colors flex flex-col"
+                className="group rounded-2xl border border-cv-line/10 bg-cv-ink/[0.02] p-6 hover:bg-cv-ink/[0.04] transition-colors flex flex-col"
                 style={{ borderTop: `3px solid ${m.color}` }}
                 data-testid={`card-module-${m.name.toLowerCase().replace(/\s+/g, "-")}`}
               >
                 <div className="cv-label mb-4" style={{ color: m.color }}>{m.name}</div>
-                <p className="text-white/80 text-sm leading-relaxed flex-1">{m.tagline}</p>
-                <div className="mt-5 pt-5 border-t border-white/10">
-                  <div className="text-white text-xl font-display font-semibold">{m.proof}</div>
-                  <div className="text-white/50 text-[11px] mt-1">{m.cite}</div>
+                <p className="text-cv-ink/80 text-sm leading-relaxed flex-1">{m.tagline}</p>
+                <div className="mt-5 pt-5 border-t border-cv-line/10">
+                  <div className="text-cv-ink text-xl font-display font-semibold">{m.proof}</div>
+                  <div className="text-cv-ink/50 text-[11px] mt-1">{m.cite}</div>
                 </div>
                 <div className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium" style={{ color: m.color }}>
                   Learn more <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
@@ -236,12 +244,12 @@ export default function HomePage() {
         <div className="cv-container">
           <div className="max-w-3xl mb-10">
             <div className="cv-label mb-3">Customer story</div>
-            <h2 className="cv-h2 text-white">
+            <h2 className="cv-h2 text-cv-ink">
               How Berkshire Hathaway HomeServices recovered $738,983
             </h2>
           </div>
-          <div className="rounded-2xl overflow-hidden border border-white/10">
-            <div className="p-7 sm:p-9 bg-cv-navy">
+          <div className="rounded-2xl overflow-hidden border border-cv-line/10">
+            <div className="p-7 sm:p-9 bg-cv-surface2">
               <div className="grid sm:grid-cols-3 gap-6">
                 <Metric value="$101,736" label="Monthly identified" />
                 <Metric value="$61,582" label="Monthly realised" />
@@ -249,26 +257,26 @@ export default function HomePage() {
               </div>
             </div>
             <div className="grid md:grid-cols-2 gap-0 bg-cv-surface2">
-              <div className="p-7 sm:p-9 md:border-r border-white/10">
-                <div className="cv-label text-white/50 mb-3">The problem</div>
-                <p className="text-white/80 text-[15px] leading-relaxed">
+              <div className="p-7 sm:p-9 md:border-r border-cv-line/10">
+                <div className="cv-label text-cv-ink/50 mb-3">The problem</div>
+                <p className="text-cv-ink/80 text-[15px] leading-relaxed">
                   A multi-cloud Azure and AWS estate growing 30%+ year over year, with no shared allocation model and limited visibility into the drivers behind monthly variance.
                 </p>
               </div>
               <div className="p-7 sm:p-9">
                 <div className="cv-label mb-3">The action</div>
-                <p className="text-white/80 text-[15px] leading-relaxed">
+                <p className="text-cv-ink/80 text-[15px] leading-relaxed">
                   CloudVerse connected both accounts in under a day, surfaced commitment gaps and stranded App Service capacity, and produced an actionable savings backlog within the first week.
                 </p>
               </div>
             </div>
-            <div className="p-7 sm:p-9 bg-cv-navy border-t border-white/10">
-              <div className="cv-label text-white/60 mb-4">Realised win bars</div>
+            <div className="p-7 sm:p-9 bg-cv-surface2 border-t border-cv-line/10">
+              <div className="cv-label text-cv-ink/60 mb-4">Realised win bars</div>
               <WinBar label="Savings Plan commitment" amount="$40,000/mo" pct={100} />
               <WinBar label="Azure Reserved Instances" amount="$14,962/mo" pct={37} />
               <WinBar label="App Services consolidation" amount="$4,000/mo" pct={10} />
             </div>
-            <div className="p-5 text-center text-white/60 text-sm border-t border-white/10 bg-cv-surface2">
+            <div className="p-5 text-center text-cv-ink/60 text-sm border-t border-cv-line/10 bg-cv-surface2">
               All proof numbers cited from Berkshire Hathaway HomeServices, 2026.
             </div>
           </div>
@@ -282,21 +290,21 @@ export default function HomePage() {
         <div className="cv-container">
           <div className="max-w-3xl mb-12">
             <div className="cv-label mb-3">Platform design</div>
-            <h2 className="cv-h2 text-white">Three stages. One control plane.</h2>
+            <h2 className="cv-h2 text-cv-ink">Three stages. One control plane.</h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-0 border-t border-b border-white/10">
+          <div className="grid md:grid-cols-3 gap-0 border-t border-b border-cv-line/10">
             {STAGES.map((s, i) => (
               <div
                 key={s.n}
-                className={`p-6 sm:p-8 ${i < STAGES.length - 1 ? "md:border-r border-white/10" : ""} ${
-                  i > 0 ? "border-t md:border-t-0 border-white/10" : ""
+                className={`p-6 sm:p-8 ${i < STAGES.length - 1 ? "md:border-r border-cv-line/10" : ""} ${
+                  i > 0 ? "border-t md:border-t-0 border-cv-line/10" : ""
                 }`}
               >
-                <div className="cv-label text-white/40">{s.n}</div>
-                <div className="font-display font-bold text-white text-2xl mt-2">{s.title}</div>
+                <div className="cv-label text-cv-ink/40">{s.n}</div>
+                <div className="font-display font-bold text-cv-ink text-2xl mt-2">{s.title}</div>
                 <ul className="mt-5 space-y-3">
                   {s.bullets.map((b) => (
-                    <li key={b} className="text-white/65 text-[13px] leading-relaxed flex gap-2">
+                    <li key={b} className="text-cv-ink/65 text-[13px] leading-relaxed flex gap-2">
                       <span className="text-cv-blue mt-1.5">•</span>
                       <span>{b}</span>
                     </li>
@@ -314,8 +322,8 @@ export default function HomePage() {
       <section className="cv-section bg-cv-surface">
         <div className="cv-container">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="cv-h2 text-white">See what's driving your cloud bill.</h2>
-            <p className="cv-body-lg mt-5 text-white/70">
+            <h2 className="cv-h2 text-cv-ink">See what's driving your cloud bill.</h2>
+            <p className="cv-body-lg mt-5 text-cv-ink/70">
               Connect your first account in under 30 minutes. Most teams have their first non-obvious finding the same day.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -350,8 +358,8 @@ export default function HomePage() {
 function OutcomeTile({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <div className="font-display font-bold text-white text-2xl tabular-nums">{value}</div>
-      <div className="text-[11px] uppercase tracking-wider text-white/50 mt-1">{label}</div>
+      <div className="font-display font-bold text-cv-ink text-2xl tabular-nums">{value}</div>
+      <div className="text-[11px] uppercase tracking-wider text-cv-ink/50 mt-1">{label}</div>
     </div>
   );
 }
@@ -359,8 +367,8 @@ function OutcomeTile({ label, value }: { label: string; value: string }) {
 function Metric({ value, label }: { value: string; label: string }) {
   return (
     <div>
-      <div className="font-display font-bold text-white text-3xl sm:text-4xl tabular-nums">{value}</div>
-      <div className="text-white/60 text-xs uppercase tracking-wider mt-2">{label}</div>
+      <div className="font-display font-bold text-cv-ink text-3xl sm:text-4xl tabular-nums">{value}</div>
+      <div className="text-cv-ink/60 text-xs uppercase tracking-wider mt-2">{label}</div>
     </div>
   );
 }
@@ -369,10 +377,10 @@ function WinBar({ label, amount, pct }: { label: string; amount: string; pct: nu
   return (
     <div className="mb-3 last:mb-0">
       <div className="flex justify-between text-sm mb-1.5">
-        <span className="text-white/80">{label}</span>
-        <span className="text-white font-medium tabular-nums">{amount}</span>
+        <span className="text-cv-ink/80">{label}</span>
+        <span className="text-cv-ink font-medium tabular-nums">{amount}</span>
       </div>
-      <div className="h-2 rounded-full bg-white/8 overflow-hidden">
+      <div className="h-2 rounded-full bg-cv-ink/8 overflow-hidden">
         <div className="h-full rounded-full" style={{ width: `${pct}%`, background: "#1664C0" }} />
       </div>
     </div>

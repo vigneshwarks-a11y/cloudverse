@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -47,11 +48,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`dark ${inter.variable}`}>
+    <html lang="en" className={inter.variable} suppressHydrationWarning data-scroll-behavior="smooth">
       <body>
-        <Nav />
-        <main>{children}</main>
-        <Footer />
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
+          <Nav />
+          <main>{children}</main>
+          <Footer />
+        </ThemeProvider>
         <Script
           id="org-jsonld"
           type="application/ld+json"
