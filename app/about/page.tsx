@@ -1,70 +1,233 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import {
+  Compass,
+  Gauge,
+  ShieldCheck,
+  Sparkles,
+  Boxes,
+  Database,
+  Receipt,
+  ArrowRight,
+  type LucideIcon,
+} from "lucide-react";
 import { CTABand } from "@/components/CTABand";
+import { DEMO_URL, PRODUCT_URLS } from "@/lib/links";
 
 export const metadata: Metadata = {
-  title: "About CloudVerse",
-  description: "We build the compute economics platform for the AI era — multi-cloud, AI, infrastructure, and warehouse spend on one control plane.",
+  title: "About CloudVerse | Cloud Economic Intelligence Platform",
+  description:
+    "Learn about CloudVerse's mission to bring real-time unit economics and decision-time cost governance to modern cloud and AI teams.",
   alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About CloudVerse",
+    description:
+      "Learn about CloudVerse's mission to bring real-time unit economics and decision-time cost governance to modern cloud and AI teams.",
+  },
 };
 
-const VALUES = [
-  { title: "Practitioner-first",  body: "Our product team is built from former platform engineers, FinOps practitioners, and infrastructure operators — not from outside-in consultants." },
-  { title: "Proof over claims",   body: "Every recommendation we surface comes with explicit payback. Every routing decision leaves an auditable trail." },
-  { title: "Read-only by default",body: "We connect to your environment in a posture you can defend in a security review. Automation is opt-in and policy-bound." },
-  { title: "One model, many clouds", body: "Multi-cloud, AI, infrastructure, and warehouse spend belong on the same allocation model — not in four separate reports." },
+const VALUES: { title: string; desc: string; icon: LucideIcon }[] = [
+  {
+    title: "Engineering-led FinOps",
+    desc: "Cost decisions belong where the code is written, not weeks later in a spreadsheet.",
+    icon: Compass,
+  },
+  {
+    title: "Decision-time visibility",
+    desc: "Surface the right signal at the right moment — before resources are provisioned, not after.",
+    icon: Gauge,
+  },
+  {
+    title: "Trust by default",
+    desc: "Enterprise-grade security, role-based access, and full audit history on every action.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Automation over toil",
+    desc: "Turn repeat optimizations into policies so teams stay fast without leaking spend.",
+    icon: Sparkles,
+  },
+];
+
+const PRODUCTS: { name: string; tagline: string; icon: LucideIcon; href: string }[] = [
+  { name: "AIX", tagline: "Catch cloud cost mistakes before they hit production.", icon: Sparkles, href: PRODUCT_URLS.aix },
+  { name: "DevX", tagline: "Cut AI costs without breaking latency or quality.", icon: Boxes, href: PRODUCT_URLS.devx },
+  { name: "DataX", tagline: "Workload-level visibility and control for analytics platforms.", icon: Database, href: PRODUCT_URLS.datax },
+  { name: "CloudBillOps", tagline: "Unified billing, allocation, and chargeback across clouds.", icon: Receipt, href: PRODUCT_URLS.billops },
 ];
 
 export default function Page() {
   return (
     <>
+      {/* Hero */}
       <section className="cv-hero-bg pt-[140px] pb-16 lg:pt-[160px] lg:pb-20 relative">
-        <div className="cv-container relative z-10">
-          <div className="cv-label mb-4">About</div>
-          <h1 className="cv-h1 text-cv-ink max-w-4xl">
-            We build the compute economics platform <span className="text-cv-blue-light">for the AI era.</span>
+        <div className="cv-container relative z-10 text-center">
+          <span className="cv-label inline-block mb-4">About CloudVerse™</span>
+          <h1 className="cv-h1 text-cv-ink max-w-4xl mx-auto">
+            Building the future of cloud financial management
           </h1>
-          <p className="cv-body-lg mt-6 text-cv-ink/75 max-w-2xl">
-            CloudVerse is the control plane for multi-cloud, AI, infrastructure, and warehouse economics — used by enterprise finance, engineering, and platform teams to govern the decisions that shape the bill.
+          <p className="cv-body-lg mt-6 text-cv-ink/75 max-w-2xl mx-auto">
+            We're the compute economics platform for the AI era — bringing real-time visibility,
+            unit economics, and automated control to every dollar your teams spend on cloud and AI
+            infrastructure.
           </p>
         </div>
       </section>
 
+      {/* Mission */}
       <section className="cv-section bg-cv-surface">
-        <div className="cv-container max-w-3xl">
-          <div className="cv-label mb-3">Our story</div>
-          <h2 className="cv-h2 text-cv-ink mb-6">Built from operating a multi-cloud estate at scale.</h2>
-          <div className="space-y-5 text-cv-ink/80 text-[17px] leading-relaxed">
-            <p>
-              CloudVerse started where most cost-governance products do not — inside the operations of a multi-cloud enterprise estate, where allocation broke down at every BU boundary and where engineering teams could not explain a 30% month-over-month swing.
-            </p>
-            <p>
-              The first version of the product was a single FinOps allocation model that worked across AWS, Azure, and GCP simultaneously. The second added the optimization and anomaly engine. Then came AIX as GPU and inference spend started reshaping the bill. Then DevX, because cost regressions are easier to prevent than to chase. Then DataX, because warehouse spend deserved the same discipline.
-            </p>
-            <p>
-              Today CloudVerse runs as one control plane across four product surfaces — one allocation model, one governance posture, one audit trail. That is the product. The rest is implementation detail.
-            </p>
+        <div className="cv-container">
+          <div className="max-w-4xl mx-auto relative">
+            <div className="absolute -inset-4 bg-gradient-to-r from-cv-blue/10 to-cv-purple/10 rounded-3xl blur-2xl opacity-50 pointer-events-none" />
+            <div className="relative p-8 sm:p-12 rounded-2xl border border-cv-line bg-cv-surface2">
+              <h2 className="cv-h2 text-cv-ink mb-6 text-center">Our Mission</h2>
+              <p className="text-lg sm:text-xl text-cv-muted leading-relaxed text-center">
+                CloudVerse™ is building the compute economics layer the cloud era was always
+                missing —{" "}
+                <span className="text-cv-ink font-semibold">
+                  &ldquo;Transparent, Predictable, and Profitable&rdquo;
+                </span>
+                . As AI workloads multiply and cloud spend becomes a defining business variable,
+                enterprises need more than dashboards. They need an intelligent platform that
+                transforms raw compute costs into strategic financial decisions.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* Story */}
       <section className="cv-section bg-cv-surface2">
         <div className="cv-container">
-          <div className="max-w-3xl mb-10">
-            <div className="cv-label mb-3">Values</div>
-            <h2 className="cv-h2 text-cv-ink">How we work.</h2>
-          </div>
-          <div className="grid sm:grid-cols-2 gap-4">
-            {VALUES.map((v) => (
-              <div key={v.title} className="rounded-xl border border-cv-line/10 bg-cv-ink/[0.02] p-6">
-                <div className="font-display font-semibold text-cv-ink text-lg">{v.title}</div>
-                <p className="text-cv-ink/70 text-sm mt-2 leading-relaxed">{v.body}</p>
-              </div>
-            ))}
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-10">
+              <span className="cv-label inline-block mb-3">Our Story</span>
+              <h2 className="cv-h2 text-cv-ink">Why we built CloudVerse™</h2>
+            </div>
+            <div className="space-y-5 text-cv-ink/80 text-base sm:text-lg leading-relaxed">
+              <p>
+                Cloud promised simplicity. What enterprises got instead was financial opacity —
+                sprawling invoices, disconnected cost centers, and engineering teams blind to the
+                economic weight of every deployment decision.
+              </p>
+              <p>
+                AI made it worse. GPU clusters, spot instances, and experimental workloads
+                introduced spend that finance can&apos;t model and engineering can&apos;t control.
+                One misconfigured job can erase a quarter&apos;s infrastructure budget overnight.
+              </p>
+              <p>
+                CloudVerse™ was built to solve this at the root — giving engineers, finance, and
+                leadership a shared, real-time view of compute value, where every infrastructure
+                decision ties directly to business outcomes.
+              </p>
+              <p className="text-cv-ink font-semibold">That&apos;s compute economics.</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <CTABand heading="Want to work with us?" sub="We're hiring practitioners across product, engineering, and customer teams." />
+      {/* Values */}
+      <section className="cv-section bg-cv-surface">
+        <div className="cv-container">
+          <div className="text-center mb-12">
+            <span className="cv-label inline-block mb-3">What we believe</span>
+            <h2 className="cv-h2 text-cv-ink mb-4">Principles that guide our platform</h2>
+            <p className="text-cv-muted max-w-2xl mx-auto">
+              Four ideas shape every product decision we make.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-4xl mx-auto">
+            {VALUES.map((v, idx) => {
+              const Icon = v.icon;
+              return (
+                <div
+                  key={idx}
+                  className="p-6 rounded-2xl bg-cv-surface2 border border-cv-line hover:border-cv-blue/40 transition-colors"
+                  data-testid={`value-card-${idx}`}
+                >
+                  <div className="w-10 h-10 rounded-xl bg-cv-blue/10 flex items-center justify-center mb-4">
+                    <Icon className="w-5 h-5 text-cv-blue" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-cv-ink mb-2">{v.title}</h3>
+                  <p className="text-cv-muted leading-relaxed">{v.desc}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Products */}
+      <section className="cv-section bg-cv-surface2">
+        <div className="cv-container">
+          <div className="text-center mb-12">
+            <span className="cv-label inline-block mb-3">What we build</span>
+            <h2 className="cv-h2 text-cv-ink mb-4">
+              One platform, four specialized products
+            </h2>
+            <p className="text-cv-muted max-w-2xl mx-auto">
+              Each module solves a specific layer of the cloud economics problem — together they
+              form an end-to-end decision layer.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {PRODUCTS.map((p, idx) => {
+              const Icon = p.icon;
+              return (
+                <a
+                  key={idx}
+                  href={p.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group p-6 rounded-2xl bg-cv-surface border border-cv-line hover:border-cv-blue/40 hover:shadow-lg hover:shadow-cv-blue/10 transition-all"
+                  data-testid={`product-summary-${idx}`}
+                >
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cv-blue/20 to-cv-purple/20 flex items-center justify-center mb-4">
+                    <Icon className="w-5 h-5 text-cv-blue" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-cv-ink mb-2 group-hover:text-cv-blue transition-colors">
+                    {p.name}
+                  </h3>
+                  <p className="text-cv-muted text-sm leading-relaxed mb-3">{p.tagline}</p>
+                  <span className="inline-flex items-center gap-1 text-xs font-medium text-cv-blue group-hover:gap-2 transition-all">
+                    Learn more <ArrowRight className="w-3 h-3" />
+                  </span>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Vision */}
+      <section className="cv-section bg-cv-surface">
+        <div className="cv-container">
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="cv-label inline-block mb-3">Where we&apos;re going</span>
+            <h2 className="cv-h2 text-cv-ink mb-6">
+              An AI-native economic decision layer for every enterprise
+            </h2>
+            <p className="text-lg text-cv-muted leading-relaxed mb-8">
+              The next decade of compute will be defined by how well teams allocate scarce GPU,
+              storage, and network capacity. CloudVerse™ is building the economic decision layer
+              that makes those choices automatic, auditable, and aligned with business outcomes —
+              across every cloud, every model, and every team.
+            </p>
+            <Link
+              href={DEMO_URL}
+              className="cv-btn-primary"
+              data-testid="link-book-demo-about"
+            >
+              Book a demo <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <CTABand
+        heading="Want to work with us?"
+        sub="We're hiring practitioners across product, engineering, and customer teams."
+      />
     </>
   );
 }
