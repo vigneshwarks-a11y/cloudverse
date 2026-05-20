@@ -114,7 +114,7 @@ export default function Page() {
         <div className="cv-container">
           <div className="max-w-3xl mb-10">
             <div className="cv-label mb-3" style={{ color: M.color }}>FAQ</div>
-            <h2 className="cv-h2 text-white">DevX questions, answered.</h2>
+            <h2 className="cv-h2 text-cv-ink">DevX questions, answered.</h2>
           </div>
           <FaqBlock items={FAQ} accent={M.color} />
         </div>
@@ -145,12 +145,12 @@ export default function Page() {
 function MockPR() {
   return (
     <div className="font-mono text-xs">
-      <div className="flex items-center gap-2 mb-3 text-white/65">
+      <div className="flex items-center gap-2 mb-3 text-cv-ink/65">
         <GitPullRequest size={14} className="text-emerald-400" />
-        <span className="text-white">#214 Bump GPU autoscaler ceiling for training cluster</span>
+        <span className="text-cv-ink">#214 Bump GPU autoscaler ceiling for training cluster</span>
       </div>
-      <div className="rounded border border-white/10 bg-black/30 p-3 mb-3">
-        <div className="text-[10px] text-white/45 uppercase tracking-wider mb-2">terraform/clusters/training.tf</div>
+      <div className="rounded border border-cv-line/10 bg-black/30 p-3 mb-3">
+        <div className="text-[10px] text-cv-ink/45 uppercase tracking-wider mb-2">terraform/clusters/training.tf</div>
         <div className="text-rose-300/85">- max_node_count = 16</div>
         <div className="text-emerald-300/90">+ max_node_count = 64</div>
         <div className="text-rose-300/85">- node_pool = "g5.4xlarge"</div>
@@ -158,8 +158,8 @@ function MockPR() {
       </div>
       <div className="rounded border border-cv-teal/40 bg-cv-teal/10 p-3">
         <div className="text-cv-teal text-[11px] font-semibold uppercase tracking-wider mb-1">CloudVerse DevX</div>
-        <div className="text-white">Estimated impact: <span className="text-cv-teal font-semibold">+$2,420 to $2,910 / month</span></div>
-        <div className="text-white/65 mt-2">Suggested: keep g5.4xlarge with 32 ceiling, schedule p3.16xlarge only during training windows.</div>
+        <div className="text-cv-ink">Estimated impact: <span className="text-cv-teal font-semibold">+$2,420 to $2,910 / month</span></div>
+        <div className="text-cv-ink/65 mt-2">Suggested: keep g5.4xlarge with 32 ceiling, schedule p3.16xlarge only during training windows.</div>
       </div>
     </div>
   );
@@ -168,13 +168,13 @@ function MockPR() {
 function MockCI() {
   return (
     <div className="font-mono text-xs space-y-1.5">
-      <div className="text-white/65"><span className="text-emerald-400">✓</span> Pricing data loaded (us-east-1, eu-west-1)</div>
-      <div className="text-white/65"><span className="text-emerald-400">✓</span> Terraform plan parsed · 42 resources</div>
-      <div className="text-white/65"><span className="text-emerald-400">✓</span> Helm chart parsed · 18 manifests</div>
-      <div className="text-white/65"><span className="text-cv-teal">!</span> Policy: gpu_max_monthly_cost_per_pool — warning</div>
-      <div className="text-white/65"><span className="text-rose-400">✗</span> Policy: region_allowlist — fail (ap-south-1)</div>
-      <div className="text-white/65"><span className="text-emerald-400">✓</span> Cost diff posted to PR</div>
-      <div className="text-white mt-3">Result: <span className="text-rose-400 font-semibold">1 fail, 1 warn</span> — merge blocked</div>
+      <div className="text-cv-ink/65"><span className="text-emerald-400">✓</span> Pricing data loaded (us-east-1, eu-west-1)</div>
+      <div className="text-cv-ink/65"><span className="text-emerald-400">✓</span> Terraform plan parsed · 42 resources</div>
+      <div className="text-cv-ink/65"><span className="text-emerald-400">✓</span> Helm chart parsed · 18 manifests</div>
+      <div className="text-cv-ink/65"><span className="text-cv-teal">!</span> Policy: gpu_max_monthly_cost_per_pool — warning</div>
+      <div className="text-cv-ink/65"><span className="text-rose-400">✗</span> Policy: region_allowlist — fail (ap-south-1)</div>
+      <div className="text-cv-ink/65"><span className="text-emerald-400">✓</span> Cost diff posted to PR</div>
+      <div className="text-cv-ink mt-3">Result: <span className="text-rose-400 font-semibold">1 fail, 1 warn</span> — merge blocked</div>
     </div>
   );
 }
@@ -182,8 +182,8 @@ function MockCI() {
 function MockPolicy() {
   return (
     <div className="font-mono text-xs">
-      <div className="rounded border border-white/10 bg-black/30 p-3 text-white/85">
-        <div className="text-white/45 text-[10px] uppercase tracking-wider mb-2">policies/cost.yaml</div>
+      <div className="rounded border border-cv-line/10 bg-black/30 p-3 text-cv-ink/85">
+        <div className="text-cv-ink/45 text-[10px] uppercase tracking-wider mb-2">policies/cost.yaml</div>
         <div><span className="text-purple-300">policy</span>: gpu_max_monthly_cost_per_pool</div>
         <div className="pl-3"><span className="text-purple-300">limit</span>: $25000</div>
         <div className="pl-3"><span className="text-purple-300">severity</span>: warning</div>
@@ -201,7 +201,7 @@ function MockPolicy() {
 function MockPrevented() {
   return (
     <div className="space-y-2">
-      <div className="text-[11px] text-white/55 uppercase tracking-wider mb-2">Prevented impact · last 30 days</div>
+      <div className="text-[11px] text-cv-ink/55 uppercase tracking-wider mb-2">Prevented impact · last 30 days</div>
       {[
         { pr: "#214 GPU autoscaler ceiling raise", val: "$2,910/mo" },
         { pr: "#198 RDS db.r6g.16xlarge upgrade", val: "$1,840/mo" },
@@ -209,8 +209,8 @@ function MockPrevented() {
         { pr: "#187 New egress-heavy region", val: "$760/mo" },
         { pr: "#172 Reserved Instance miss", val: "$540/mo" },
       ].map((p) => (
-        <div key={p.pr} className="flex justify-between items-center p-3 rounded border border-white/10 bg-white/[0.02]">
-          <span className="text-white/85 text-xs">{p.pr}</span>
+        <div key={p.pr} className="flex justify-between items-center p-3 rounded border border-cv-line/10 bg-cv-ink/[0.02]">
+          <span className="text-cv-ink/85 text-xs">{p.pr}</span>
           <span className="text-cv-teal tabular-nums text-xs font-medium">{p.val}</span>
         </div>
       ))}

@@ -27,8 +27,8 @@ export function ProductHero({
           <span className="w-1.5 h-1.5 rounded-full animate-pulse-dot" style={{ background: color }} />
           {eyebrow}
         </div>
-        <h1 className="cv-h1 mt-5 text-white max-w-4xl">{h1}</h1>
-        <p className="cv-body-lg mt-6 text-white/75 max-w-2xl">{sub}</p>
+        <h1 className="cv-h1 mt-5 text-cv-ink max-w-4xl">{h1}</h1>
+        <p className="cv-body-lg mt-6 text-cv-ink/75 max-w-2xl">{sub}</p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Link href={DEMO_URL} className="cv-btn-primary" style={{ background: color }}>
             Book a Demo <ArrowRight size={16} />
@@ -42,12 +42,12 @@ export function ProductHero({
           {stats.map((s) => (
             <div
               key={s.label}
-              className="rounded-xl border border-white/10 bg-white/[0.03] p-5"
+              className="rounded-xl border border-cv-line/10 bg-cv-ink/[0.03] p-5"
               data-testid={`proof-${s.label.toLowerCase().replace(/[^a-z]+/g, "-")}`}
             >
-              <div className="font-display font-bold text-white text-2xl tabular-nums">{s.value}</div>
-              <div className="text-white/65 text-[12px] uppercase tracking-wider mt-2">{s.label}</div>
-              {s.cite && <div className="text-white/40 text-[11px] mt-1.5">{s.cite}</div>}
+              <div className="font-display font-bold text-cv-ink text-2xl tabular-nums">{s.value}</div>
+              <div className="text-cv-ink/65 text-[12px] uppercase tracking-wider mt-2">{s.label}</div>
+              {s.cite && <div className="text-cv-ink/40 text-[11px] mt-1.5">{s.cite}</div>}
             </div>
           ))}
         </div>

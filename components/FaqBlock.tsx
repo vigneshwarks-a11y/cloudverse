@@ -10,7 +10,7 @@ export function FaqBlock({ items, accent = "#0071E3" }: { items: FaqItem[]; acce
 
   return (
     <>
-      <div className="rounded-2xl border border-white/10 bg-white/[0.02] divide-y divide-white/10">
+      <div className="rounded-2xl border border-cv-line/10 bg-cv-ink/[0.02] divide-y divide-white/10">
         {items.map((it, i) => {
           const isOpen = open === i;
           return (
@@ -23,16 +23,16 @@ export function FaqBlock({ items, accent = "#0071E3" }: { items: FaqItem[]; acce
               data-testid={`faq-item-${i}`}
             >
               <div className="flex items-start justify-between gap-4">
-                <div className="font-display text-white text-base sm:text-lg font-semibold pr-4" style={isOpen ? { color: accent } : undefined}>
+                <div className="font-display text-cv-ink text-base sm:text-lg font-semibold pr-4" style={isOpen ? { color: accent } : undefined}>
                   {it.q}
                 </div>
                 <ChevronDown
                   size={20}
-                  className={`shrink-0 mt-1 text-white/60 transition-transform ${isOpen ? "rotate-180" : ""}`}
+                  className={`shrink-0 mt-1 text-cv-ink/60 transition-transform ${isOpen ? "rotate-180" : ""}`}
                 />
               </div>
               {isOpen && (
-                <p className="text-white/70 text-[15px] leading-relaxed mt-3" data-testid={`faq-answer-${i}`}>
+                <p className="text-cv-ink/70 text-[15px] leading-relaxed mt-3" data-testid={`faq-answer-${i}`}>
                   {it.a}
                 </p>
               )}

@@ -23,8 +23,8 @@ export default function Page() {
       <section className="cv-hero-bg pt-[140px] pb-12 lg:pt-[160px] lg:pb-16 relative">
         <div className="cv-container relative z-10">
           <div className="cv-label mb-4">Solutions</div>
-          <h1 className="cv-h1 text-white max-w-3xl">Built for the teams accountable for the bill.</h1>
-          <p className="cv-body-lg mt-6 text-white/75 max-w-2xl">
+          <h1 className="cv-h1 text-cv-ink max-w-3xl">Built for the teams accountable for the bill.</h1>
+          <p className="cv-body-lg mt-6 text-cv-ink/75 max-w-2xl">
             Five persona-built solution paths backed by one control plane.
           </p>
         </div>
@@ -39,7 +39,7 @@ export default function Page() {
                 <Link
                   key={s.href}
                   href={s.href}
-                  className="group rounded-xl border border-white/10 bg-white/[0.02] p-6 hover:bg-white/[0.04] transition-colors"
+                  className="group rounded-xl border border-cv-line/10 bg-cv-ink/[0.02] p-6 hover:bg-cv-ink/[0.04] transition-colors"
                   style={{ borderTop: `3px solid ${s.color}` }}
                   data-testid={`solution-${s.label.toLowerCase().replace(/[^a-z]+/g, "-")}`}
                 >
@@ -47,8 +47,8 @@ export default function Page() {
                     style={{ background: `${s.color}1A`, color: s.color }}>
                     <Icon size={20} />
                   </div>
-                  <div className="font-display font-semibold text-white text-lg">{s.label}</div>
-                  <p className="text-white/65 text-sm mt-2 leading-relaxed">{s.desc}</p>
+                  <div className="font-display font-semibold text-cv-ink text-lg">{s.label}</div>
+                  <p className="text-cv-ink/65 text-sm mt-2 leading-relaxed">{s.desc}</p>
                   <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium" style={{ color: s.color }}>
                     Explore <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
                   </div>

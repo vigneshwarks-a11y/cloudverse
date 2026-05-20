@@ -106,7 +106,7 @@ export default function Page() {
         <div className="cv-container">
           <div className="max-w-3xl mb-10">
             <div className="cv-label mb-3" style={{ color: M.color }}>FAQ</div>
-            <h2 className="cv-h2 text-white">AIX questions, answered.</h2>
+            <h2 className="cv-h2 text-cv-ink">AIX questions, answered.</h2>
           </div>
           <FaqBlock items={FAQ} accent={M.color} />
         </div>
@@ -137,7 +137,7 @@ export default function Page() {
 function MockRoutes() {
   return (
     <div className="font-mono text-xs space-y-2">
-      <div className="text-white/55 text-[10px] uppercase tracking-wider mb-2">Live routes · last 60s</div>
+      <div className="text-cv-ink/55 text-[10px] uppercase tracking-wider mb-2">Live routes · last 60s</div>
       {[
         { req: "POST /v1/chat", route: "Anthropic Claude 3.5", cost: "$0.0042", lat: "480ms" },
         { req: "POST /v1/chat", route: "OpenAI GPT-4o-mini",   cost: "$0.0006", lat: "210ms" },
@@ -145,11 +145,11 @@ function MockRoutes() {
         { req: "POST /v1/chat", route: "Anthropic Claude 3.5", cost: "$0.0044", lat: "510ms" },
         { req: "POST /v1/chat", route: "self-hosted · vLLM",   cost: "$0.0011", lat: "320ms" },
       ].map((r, i) => (
-        <div key={i} className="grid grid-cols-[1fr_1.5fr_auto_auto] gap-3 p-2 rounded bg-white/[0.03]">
-          <span className="text-white/80">{r.req}</span>
+        <div key={i} className="grid grid-cols-[1fr_1.5fr_auto_auto] gap-3 p-2 rounded bg-cv-ink/[0.03]">
+          <span className="text-cv-ink/80">{r.req}</span>
           <span className="text-cv-blue-light">{r.route}</span>
-          <span className="text-white/85 tabular-nums">{r.cost}</span>
-          <span className="text-white/65 tabular-nums">{r.lat}</span>
+          <span className="text-cv-ink/85 tabular-nums">{r.cost}</span>
+          <span className="text-cv-ink/65 tabular-nums">{r.lat}</span>
         </div>
       ))}
     </div>
@@ -166,8 +166,8 @@ function MockGuardrails() {
         { name: "Latency · p95 ≤ 800ms (chat)", state: "Active", color: "#0E9E7A" },
         { name: "Content · no provider training opt-in", state: "Active", color: "#0E9E7A" },
       ].map((g) => (
-        <div key={g.name} className="flex items-center justify-between p-3 rounded border border-white/10 bg-white/[0.02]">
-          <span className="text-white/85 text-xs">{g.name}</span>
+        <div key={g.name} className="flex items-center justify-between p-3 rounded border border-cv-line/10 bg-cv-ink/[0.02]">
+          <span className="text-cv-ink/85 text-xs">{g.name}</span>
           <span className="inline-flex items-center gap-1.5 text-[11px] font-medium" style={{ color: g.color }}>
             <span className="w-1.5 h-1.5 rounded-full" style={{ background: g.color }} />
             {g.state}
@@ -183,15 +183,15 @@ function MockDecisions() {
     <div className="space-y-3">
       <div className="rounded border border-cv-blue/40 bg-cv-blue/10 p-4">
         <div className="text-[11px] uppercase tracking-wider text-cv-blue-light mb-1">Primary</div>
-        <div className="text-white font-medium">Anthropic Claude 3.5 Sonnet · us-east-1</div>
-        <div className="font-mono text-xs text-white/60 mt-1">$0.0042 / req · 480ms p95 · score 0.92</div>
+        <div className="text-cv-ink font-medium">Anthropic Claude 3.5 Sonnet · us-east-1</div>
+        <div className="font-mono text-xs text-cv-ink/60 mt-1">$0.0042 / req · 480ms p95 · score 0.92</div>
       </div>
-      <div className="rounded border border-white/10 p-4 bg-white/[0.02]">
-        <div className="text-[11px] uppercase tracking-wider text-white/55 mb-1">Fallback</div>
-        <div className="text-white font-medium">OpenAI GPT-4o · us-west-2</div>
-        <div className="font-mono text-xs text-white/60 mt-1">$0.0061 / req · 540ms p95 · score 0.87</div>
+      <div className="rounded border border-cv-line/10 p-4 bg-cv-ink/[0.02]">
+        <div className="text-[11px] uppercase tracking-wider text-cv-ink/55 mb-1">Fallback</div>
+        <div className="text-cv-ink font-medium">OpenAI GPT-4o · us-west-2</div>
+        <div className="font-mono text-xs text-cv-ink/60 mt-1">$0.0061 / req · 540ms p95 · score 0.87</div>
       </div>
-      <div className="text-[11px] text-white/50">Decision logged to /decisions/req_8e2f… · auditable for 90 days</div>
+      <div className="text-[11px] text-cv-ink/50">Decision logged to /decisions/req_8e2f… · auditable for 90 days</div>
     </div>
   );
 }
@@ -199,7 +199,7 @@ function MockDecisions() {
 function MockAttribution() {
   return (
     <div>
-      <div className="text-[11px] text-white/55 uppercase tracking-wider mb-3">Token spend · last 7d</div>
+      <div className="text-[11px] text-cv-ink/55 uppercase tracking-wider mb-3">Token spend · last 7d</div>
       {[
         { team: "team-search",   pct: 92, val: "$3,140" },
         { team: "team-support",  pct: 64, val: "$2,180" },
@@ -207,11 +207,11 @@ function MockAttribution() {
         { team: "team-internal", pct: 18, val: "$612" },
       ].map((t) => (
         <div key={t.team} className="flex items-center gap-3 mb-2">
-          <div className="text-white/85 text-xs w-32">{t.team}</div>
-          <div className="flex-1 h-5 rounded bg-white/8 overflow-hidden">
+          <div className="text-cv-ink/85 text-xs w-32">{t.team}</div>
+          <div className="flex-1 h-5 rounded bg-cv-ink/8 overflow-hidden">
             <div className="h-full" style={{ width: `${t.pct}%`, background: "#6954D4" }} />
           </div>
-          <div className="text-white tabular-nums text-xs w-16 text-right">{t.val}</div>
+          <div className="text-cv-ink tabular-nums text-xs w-16 text-right">{t.val}</div>
         </div>
       ))}
     </div>

@@ -22,7 +22,7 @@ export default function Page() {
       <section className="cv-hero-bg pt-[140px] pb-12 lg:pt-[160px] lg:pb-16 relative">
         <div className="cv-container relative z-10">
           <div className="cv-label mb-4">Contact</div>
-          <h1 className="cv-h1 text-white max-w-3xl">Talk to a human — we typically respond within one business day.</h1>
+          <h1 className="cv-h1 text-cv-ink max-w-3xl">Talk to a human — we typically respond within one business day.</h1>
         </div>
       </section>
 
@@ -33,12 +33,12 @@ export default function Page() {
               const Icon = c.icon;
               const isExternal = c.href.startsWith("mailto:") || c.href.startsWith("http");
               return (
-                <div key={c.label} className="rounded-xl border border-white/10 bg-white/[0.02] p-6">
+                <div key={c.label} className="rounded-xl border border-cv-line/10 bg-cv-ink/[0.02] p-6">
                   <div className="w-10 h-10 rounded-lg bg-cv-blue/15 text-cv-blue-light flex items-center justify-center mb-4">
                     <Icon size={20} />
                   </div>
                   <div className="cv-label">{c.label}</div>
-                  <p className="text-white/70 mt-2 text-sm leading-relaxed">{c.body}</p>
+                  <p className="text-cv-ink/70 mt-2 text-sm leading-relaxed">{c.body}</p>
                   {isExternal ? (
                     <a href={c.href} className="mt-5 inline-flex text-cv-blue-light text-sm font-medium" data-testid={`contact-${c.label.toLowerCase()}`}>
                       {c.action} →
@@ -53,11 +53,11 @@ export default function Page() {
             })}
           </div>
 
-          <div className="mt-12 rounded-2xl border border-white/10 bg-white/[0.02] p-7 sm:p-9">
+          <div className="mt-12 rounded-2xl border border-cv-line/10 bg-cv-ink/[0.02] p-7 sm:p-9">
             <div className="cv-label mb-3">Headquarters</div>
-            <h3 className="font-display font-semibold text-white text-xl">CloudVerse, Inc.</h3>
-            <p className="text-white/70 mt-2 text-sm">Singapore · San Francisco · Bengaluru</p>
-            <p className="text-white/55 mt-3 text-sm">General inquiries: <a className="text-cv-blue-light" href="mailto:hello@cloudverse.ai">hello@cloudverse.ai</a></p>
+            <h3 className="font-display font-semibold text-cv-ink text-xl">CloudVerse, Inc.</h3>
+            <p className="text-cv-ink/70 mt-2 text-sm">Singapore · San Francisco · Bengaluru</p>
+            <p className="text-cv-ink/55 mt-3 text-sm">General inquiries: <a className="text-cv-blue-light" href="mailto:hello@cloudverse.ai">hello@cloudverse.ai</a></p>
           </div>
         </div>
       </section>

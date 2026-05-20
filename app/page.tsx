@@ -87,11 +87,11 @@ export default function HomePage() {
                 <span className="w-1.5 h-1.5 rounded-full bg-cv-blue-light animate-pulse-dot" />
                 Compute Economics Platform
               </div>
-              <h1 className="cv-h1 mt-5 text-white">
+              <h1 className="cv-h1 mt-5 text-cv-ink">
                 The Compute Economics Platform <br className="hidden md:block" />
                 <span style={{ color: "#7CB8F8" }}>for the AI Era</span>
               </h1>
-              <p className="cv-body-lg mt-6 text-white/75 max-w-2xl">
+              <p className="cv-body-lg mt-6 text-cv-ink/75 max-w-2xl">
                 CloudVerse<sup className="text-[10px]">™</sup> gives enterprises economic control over AI, cloud, and data infrastructure — governed in one place.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
@@ -107,7 +107,7 @@ export default function HomePage() {
             {/* Outcomes card right */}
             <div className="lg:col-span-5">
               <div
-                className="rounded-2xl border border-white/10 p-5 sm:p-6 backdrop-blur-sm"
+                className="rounded-2xl border border-cv-line/10 p-5 sm:p-6 backdrop-blur-sm"
                 style={{ background: "rgba(255,255,255,0.03)" }}
                 data-testid="hero-outcomes"
               >
@@ -118,11 +118,11 @@ export default function HomePage() {
                   <OutcomeTile label="Blended compute rate" value="−24%" />
                   <OutcomeTile label="Volatility control" value="±3%" />
                 </div>
-                <div className="mt-5 pt-5 border-t border-white/10">
+                <div className="mt-5 pt-5 border-t border-cv-line/10">
                   <div className="cv-label mb-3">Across</div>
-                  <div className="flex flex-wrap gap-2 text-[11px] text-white/70">
+                  <div className="flex flex-wrap gap-2 text-[11px] text-cv-ink/70">
                     {["AWS", "Azure", "GCP", "Snowflake", "Databricks", "OpenAI", "Bedrock", "CoreWeave"].map((p) => (
-                      <span key={p} className="px-2 py-1 rounded border border-white/10 bg-white/[0.03]">
+                      <span key={p} className="px-2 py-1 rounded border border-cv-line/10 bg-cv-ink/[0.03]">
                         {p}
                       </span>
                     ))}
@@ -133,11 +133,11 @@ export default function HomePage() {
           </div>
 
           {/* Section 3 — Customer logos */}
-          <div className="mt-20 pt-10 border-t border-white/8">
-            <div className="cv-label text-white/50 mb-5 text-center">Trusted by leading enterprises</div>
+          <div className="mt-20 pt-10 border-t border-cv-line/8">
+            <div className="cv-label text-cv-ink/50 mb-5 text-center">Trusted by leading enterprises</div>
             <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5 opacity-70">
               {LOGOS.map((l) => (
-                <div key={l} className="text-white/75 text-sm tracking-wide font-medium" data-testid={`logo-${l.toLowerCase().replace(/[^a-z]+/g, "-")}`}>
+                <div key={l} className="text-cv-ink/75 text-sm tracking-wide font-medium" data-testid={`logo-${l.toLowerCase().replace(/[^a-z]+/g, "-")}`}>
                   {l}
                 </div>
               ))}

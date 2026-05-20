@@ -96,15 +96,15 @@ export default function Page() {
         <div className="cv-container">
           <div className="max-w-3xl mb-10">
             <div className="cv-label mb-3" style={{ color: M.color }}>Customer story</div>
-            <h2 className="cv-h2 text-white">How Berkshire Hathaway HomeServices recovered $738,983.</h2>
+            <h2 className="cv-h2 text-cv-ink">How Berkshire Hathaway HomeServices recovered $738,983.</h2>
           </div>
-          <div className="rounded-2xl overflow-hidden border border-white/10">
-            <div className="grid sm:grid-cols-3 gap-6 p-7 sm:p-9 bg-cv-navy">
+          <div className="rounded-2xl overflow-hidden border border-cv-line/10">
+            <div className="grid sm:grid-cols-3 gap-6 p-7 sm:p-9 bg-cv-surface2">
               <MetricBlock value="$101,736" label="Monthly identified" />
               <MetricBlock value="$61,582" label="Monthly realised" />
               <MetricBlock value="$738,984" label="Annualised savings" />
             </div>
-            <div className="p-7 sm:p-9 bg-white/[0.02] text-white/80 text-[15px] leading-relaxed">
+            <div className="p-7 sm:p-9 bg-cv-ink/[0.02] text-cv-ink/80 text-[15px] leading-relaxed">
               A growing multi-cloud Azure and AWS estate produced significant monthly variance without a shared allocation model. CloudVerse connected both accounts in under a day, surfaced commitment gaps and stranded App Service capacity, and produced an actionable savings backlog within the first week.
             </div>
           </div>
@@ -155,7 +155,7 @@ export default function Page() {
         <div className="cv-container">
           <div className="max-w-3xl mb-10">
             <div className="cv-label mb-3" style={{ color: M.color }}>FAQ</div>
-            <h2 className="cv-h2 text-white">FinOps Platform questions, answered.</h2>
+            <h2 className="cv-h2 text-cv-ink">FinOps Platform questions, answered.</h2>
           </div>
           <FaqBlock items={FAQ} accent={M.color} />
         </div>
@@ -187,8 +187,8 @@ export default function Page() {
 function MetricBlock({ value, label }: { value: string; label: string }) {
   return (
     <div>
-      <div className="font-display font-bold text-white text-3xl sm:text-4xl tabular-nums">{value}</div>
-      <div className="text-white/60 text-xs uppercase tracking-wider mt-2">{label}</div>
+      <div className="font-display font-bold text-cv-ink text-3xl sm:text-4xl tabular-nums">{value}</div>
+      <div className="text-cv-ink/60 text-xs uppercase tracking-wider mt-2">{label}</div>
     </div>
   );
 }
@@ -205,22 +205,22 @@ function MockOverview() {
   ];
   return (
     <div className="space-y-2">
-      <div className="flex justify-between text-[11px] text-white/55 uppercase tracking-wider">
+      <div className="flex justify-between text-[11px] text-cv-ink/55 uppercase tracking-wider">
         <span>Top cost drivers · last 30 days</span>
         <span>Δ vs. prior</span>
       </div>
       {bars.map((b) => (
         <div key={b.name} className="flex items-center gap-3">
-          <div className="text-white/85 text-xs w-28 shrink-0">{b.name}</div>
-          <div className="flex-1 h-6 rounded bg-white/8 overflow-hidden">
+          <div className="text-cv-ink/85 text-xs w-28 shrink-0">{b.name}</div>
+          <div className="flex-1 h-6 rounded bg-cv-ink/8 overflow-hidden">
             <div className="h-full" style={{ width: `${b.v}%`, background: "#1664C0" }} />
           </div>
-          <div className="text-white/65 text-xs tabular-nums w-12 text-right">+{Math.round(b.v / 6)}%</div>
+          <div className="text-cv-ink/65 text-xs tabular-nums w-12 text-right">+{Math.round(b.v / 6)}%</div>
         </div>
       ))}
-      <div className="mt-4 p-3 rounded border border-cv-blue/30 bg-cv-blue/10 text-xs text-white/85">
+      <div className="mt-4 p-3 rounded border border-cv-blue/30 bg-cv-blue/10 text-xs text-cv-ink/85">
         <span className="text-cv-blue-light font-medium">Anomaly detected — </span>
-        EC2 spend +37% vs. 7-day avg. Attributed to <span className="text-white font-medium">team-data-platform</span> (i-0a4e…b21).
+        EC2 spend +37% vs. 7-day avg. Attributed to <span className="text-cv-ink font-medium">team-data-platform</span> (i-0a4e…b21).
       </div>
     </div>
   );
@@ -229,19 +229,19 @@ function MockOverview() {
 function MockVariance() {
   return (
     <div>
-      <div className="text-[11px] text-white/55 uppercase tracking-wider mb-3">Period variance · Nov vs Oct</div>
+      <div className="text-[11px] text-cv-ink/55 uppercase tracking-wider mb-3">Period variance · Nov vs Oct</div>
       <div className="grid grid-cols-3 gap-3 mb-4">
         {[{ k: "Compute", v: "+$18.2k" }, { k: "Storage", v: "−$2.1k" }, { k: "Egress", v: "+$5.6k" }].map((x) => (
-          <div key={x.k} className="rounded border border-white/10 p-3">
-            <div className="text-white/55 text-[11px]">{x.k}</div>
-            <div className="text-white font-display font-semibold mt-1 tabular-nums">{x.v}</div>
+          <div key={x.k} className="rounded border border-cv-line/10 p-3">
+            <div className="text-cv-ink/55 text-[11px]">{x.k}</div>
+            <div className="text-cv-ink font-display font-semibold mt-1 tabular-nums">{x.v}</div>
           </div>
         ))}
       </div>
       <div className="space-y-2 text-xs">
-        <div className="flex justify-between p-2 rounded bg-white/[0.03]"><span className="text-white/80">team-ml-training scaled p3.16xlarge fleet</span><span className="text-white tabular-nums">+$11,420</span></div>
-        <div className="flex justify-between p-2 rounded bg-white/[0.03]"><span className="text-white/80">prod-eu egress spike (CDN failover)</span><span className="text-white tabular-nums">+$5,612</span></div>
-        <div className="flex justify-between p-2 rounded bg-white/[0.03]"><span className="text-white/80">Reserved Instance refresh applied</span><span className="text-emerald-400 tabular-nums">−$2,140</span></div>
+        <div className="flex justify-between p-2 rounded bg-cv-ink/[0.03]"><span className="text-cv-ink/80">team-ml-training scaled p3.16xlarge fleet</span><span className="text-cv-ink tabular-nums">+$11,420</span></div>
+        <div className="flex justify-between p-2 rounded bg-cv-ink/[0.03]"><span className="text-cv-ink/80">prod-eu egress spike (CDN failover)</span><span className="text-cv-ink tabular-nums">+$5,612</span></div>
+        <div className="flex justify-between p-2 rounded bg-cv-ink/[0.03]"><span className="text-cv-ink/80">Reserved Instance refresh applied</span><span className="text-emerald-400 tabular-nums">−$2,140</span></div>
       </div>
     </div>
   );
@@ -250,28 +250,28 @@ function MockVariance() {
 function MockAllocation() {
   return (
     <div>
-      <div className="text-[11px] text-white/55 uppercase tracking-wider mb-3">Chargeback · October</div>
+      <div className="text-[11px] text-cv-ink/55 uppercase tracking-wider mb-3">Chargeback · October</div>
       <table className="w-full text-xs">
-        <thead className="text-white/55">
+        <thead className="text-cv-ink/55">
           <tr><th className="text-left font-normal pb-2">Business unit</th><th className="text-right font-normal pb-2">Direct</th><th className="text-right font-normal pb-2">Shared</th><th className="text-right font-normal pb-2">Total</th></tr>
         </thead>
-        <tbody className="text-white/85">
+        <tbody className="text-cv-ink/85">
           {[
             ["Consumer apps", "$42,180", "$8,440", "$50,620"],
             ["Data platform", "$28,920", "$11,210", "$40,130"],
             ["AI / ML", "$19,440", "$6,810", "$26,250"],
             ["Internal IT", "$7,120", "$3,090", "$10,210"],
           ].map((r) => (
-            <tr key={r[0]} className="border-t border-white/10">
+            <tr key={r[0]} className="border-t border-cv-line/10">
               <td className="py-2">{r[0]}</td>
               <td className="text-right tabular-nums py-2">{r[1]}</td>
-              <td className="text-right tabular-nums py-2 text-white/55">{r[2]}</td>
+              <td className="text-right tabular-nums py-2 text-cv-ink/55">{r[2]}</td>
               <td className="text-right tabular-nums py-2 font-medium">{r[3]}</td>
             </tr>
           ))}
         </tbody>
       </table>
-      <div className="mt-4 text-[11px] text-white/50">Allocation model: tag-based with shared-service split. Reconciled to NetSuite.</div>
+      <div className="mt-4 text-[11px] text-cv-ink/50">Allocation model: tag-based with shared-service split. Reconciled to NetSuite.</div>
     </div>
   );
 }
@@ -285,11 +285,11 @@ function MockAnomalies() {
         { sev: "high", text: "S3 egress spike to ap-southeast-1 (+$3,400)", time: "3h ago", color: "#DC2626" },
         { sev: "low",  text: "Azure SQL Elastic Pool underutilised (12%)", time: "6h ago", color: "#1664C0" },
       ].map((a) => (
-        <div key={a.text} className="flex items-start gap-3 p-3 rounded border border-white/10 bg-white/[0.02]">
+        <div key={a.text} className="flex items-start gap-3 p-3 rounded border border-cv-line/10 bg-cv-ink/[0.02]">
           <span className="w-2 h-2 rounded-full mt-1.5" style={{ background: a.color }} />
           <div className="flex-1">
-            <div className="text-white text-xs">{a.text}</div>
-            <div className="text-white/45 text-[10px] mt-0.5">{a.time}</div>
+            <div className="text-cv-ink text-xs">{a.text}</div>
+            <div className="text-cv-ink/45 text-[10px] mt-0.5">{a.time}</div>
           </div>
           <button className="text-cv-blue-light text-[11px] font-medium">Investigate</button>
         </div>
@@ -307,12 +307,12 @@ function MockOptimize() {
         { name: "Consolidate App Service Plans", est: "$4,000/mo", payback: "4 weeks" },
         { name: "Right-size m5.4xlarge → m5.2xlarge ×24", est: "$2,310/mo", payback: "Immediate" },
       ].map((r) => (
-        <div key={r.name} className="flex items-center justify-between p-3 rounded border border-white/10 bg-white/[0.02]">
+        <div key={r.name} className="flex items-center justify-between p-3 rounded border border-cv-line/10 bg-cv-ink/[0.02]">
           <div>
-            <div className="text-white text-xs">{r.name}</div>
-            <div className="text-white/45 text-[10px] mt-0.5">Payback · {r.payback}</div>
+            <div className="text-cv-ink text-xs">{r.name}</div>
+            <div className="text-cv-ink/45 text-[10px] mt-0.5">Payback · {r.payback}</div>
           </div>
-          <div className="text-white tabular-nums text-sm font-medium">{r.est}</div>
+          <div className="text-cv-ink tabular-nums text-sm font-medium">{r.est}</div>
         </div>
       ))}
     </div>

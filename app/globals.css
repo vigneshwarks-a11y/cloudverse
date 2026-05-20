@@ -3,27 +3,29 @@
 @tailwind utilities;
 
 @layer base {
-  /* Light theme (default) — Apple Developer palette from legacy */
+  /* Light theme — Apple Developer palette (legacy) */
   :root {
     --cv-ink:      240 3% 12%;   /* #1d1d1f */
     --cv-muted:    240 2% 46%;   /* #86868b */
     --cv-line:     240 5% 90%;   /* #e5e5e5 */
     --cv-surface:  0 0% 100%;    /* #ffffff */
     --cv-surface2: 240 4% 98%;   /* #fbfbfd */
+    --cv-hero-glow: 211 100% 50% / 0.18;
+    --cv-grid:     240 5% 12% / 0.05;
   }
 
-  /* Dark theme — legacy Apple-developer dark + brand navy hero */
+  /* Dark theme — pure black surfaces (legacy) */
   .dark {
     --cv-ink:      0 0% 98%;     /* #f5f5f7 */
     --cv-muted:    240 2% 63%;   /* #a1a1a6 */
-    --cv-line:     240 5% 18%;   /* #2b2b2e */
-    --cv-surface:  213 75% 5%;   /* #050F1C navy */
-    --cv-surface2: 240 4% 11%;   /* #1c1c1e */
+    --cv-line:     0 0% 16%;     /* #292929 */
+    --cv-surface:  0 0% 0%;      /* #000000 — pure black */
+    --cv-surface2: 0 0% 4%;      /* #0a0a0a */
+    --cv-hero-glow: 211 100% 50% / 0.35;
+    --cv-grid:     0 0% 100% / 0.04;
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
 
   body {
     @apply bg-cv-surface text-cv-ink font-sans antialiased;
@@ -45,52 +47,44 @@
   .cv-container-tight {
     @apply max-w-cv-content mx-auto px-5 sm:px-6 lg:px-20;
   }
-
   .cv-section {
     @apply py-14 sm:py-16 lg:py-20;
   }
 
-  /* Typography — Inter semibold + tracking-tight, legacy scale */
+  /* Typography — Inter semibold + tracking-tight */
   .cv-h1 {
     @apply font-sans font-semibold tracking-tight;
     font-size: clamp(36px, 5vw, 56px);
     line-height: 1.07;
     letter-spacing: -0.02em;
   }
-
   .cv-h2 {
     @apply font-sans font-semibold tracking-tight;
     font-size: clamp(28px, 3.5vw, 40px);
     line-height: 1.15;
     letter-spacing: -0.015em;
   }
-
   .cv-h3 {
     @apply font-sans font-semibold tracking-tight;
     font-size: clamp(22px, 2vw, 28px);
     line-height: 1.2;
   }
-
   .cv-body-lg {
     @apply font-sans;
     font-size: clamp(16px, 1.3vw, 18px);
     line-height: 1.6;
     font-weight: 400;
   }
-
   .cv-body {
     @apply font-sans;
     font-size: 15px;
     line-height: 1.6;
   }
-
-  .cv-label,
-  .cv-eyebrow {
+  .cv-label, .cv-eyebrow {
     @apply font-sans font-semibold uppercase tracking-cv-label;
     font-size: 12px;
     color: theme("colors.cv.blue");
   }
-
   .cv-cap {
     @apply font-sans uppercase;
     font-size: 12px;
@@ -98,26 +92,24 @@
     color: hsl(var(--cv-muted));
   }
 
-  /* Always-dark hero band (works in both themes) */
+  /* Hero band — theme-aware. Base = surface, with subtle grid + blue radial glow. */
   .cv-hero-bg {
     position: relative;
-    background: #050F1C;
-    color: #fff;
+    background: hsl(var(--cv-surface));
+    color: hsl(var(--cv-ink));
     overflow: hidden;
   }
-
   .cv-hero-bg::before {
     content: "";
     position: absolute;
     inset: 0;
     background-image:
-      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      linear-gradient(hsl(var(--cv-grid)) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--cv-grid)) 1px, transparent 1px);
     background-size: 56px 56px;
     pointer-events: none;
     mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 0%, transparent 80%);
   }
-
   .cv-hero-bg::after {
     content: "";
     position: absolute;
@@ -125,53 +117,24 @@
     right: -10%;
     width: 60%;
     height: 70%;
-    background: radial-gradient(circle, rgba(0, 113, 227, 0.35) 0%, transparent 60%);
+    background: radial-gradient(circle, hsl(var(--cv-hero-glow)) 0%, transparent 60%);
     pointer-events: none;
   }
 
-  /* Optional animated hero (legacy) */
-  .hero-motion-bg {
-    position: relative;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a0f2e 50%, #0d0d1a 100%);
-    color: #fff;
-    overflow: hidden;
-  }
-  .hero-motion-bg::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      ellipse 1200px 900px at 50% 20%,
-      rgba(59, 130, 246, 0.55) 0%,
-      rgba(139, 92, 246, 0.40) 20%,
-      rgba(79, 70, 229, 0.25) 40%,
-      transparent 70%
-    );
-    animation: hero-shift 24s ease-in-out infinite;
-    pointer-events: none;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .hero-motion-bg::before { animation: none; }
-  }
-
-  /* Buttons — Apple blue pill */
+  /* Buttons */
   .cv-btn-primary {
     @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm transition-colors;
     background: #0071E3;
     color: #fff;
   }
-  .cv-btn-primary:hover {
-    background: #0A84FF;
-  }
+  .cv-btn-primary:hover { background: #0A84FF; }
 
   .cv-btn-ghost {
     @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm transition-colors text-cv-ink;
     border: 1px solid hsl(var(--cv-line));
     background: transparent;
   }
-  .cv-btn-ghost:hover {
-    background: hsl(var(--cv-line) / 0.5);
-  }
+  .cv-btn-ghost:hover { background: hsl(var(--cv-line) / 0.5); }
 
   .cv-section-break {
     height: 1px;

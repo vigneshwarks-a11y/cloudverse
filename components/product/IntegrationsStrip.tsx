@@ -7,7 +7,7 @@ export function IntegrationsStrip({ color, items }: { color: string; items: stri
         <div className="flex flex-col lg:flex-row gap-8 items-start lg:items-center justify-between">
           <div className="max-w-xl">
             <div className="cv-label mb-3" style={{ color }}>Integrations</div>
-            <h2 className="cv-h2 text-white">Connects to the stack your teams already use.</h2>
+            <h2 className="cv-h2 text-cv-ink">Connects to the stack your teams already use.</h2>
           </div>
           <Link href="/integrations" className="cv-btn-ghost shrink-0">
             See all integrations
@@ -17,7 +17,7 @@ export function IntegrationsStrip({ color, items }: { color: string; items: stri
           {items.map((p) => (
             <span
               key={p}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-sm border border-white/10 bg-white/[0.03] text-white/80"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-sm border border-cv-line/10 bg-cv-ink/[0.03] text-cv-ink/80"
             >
               <span className="w-1.5 h-1.5 rounded-full" style={{ background: color }} />
               {p}

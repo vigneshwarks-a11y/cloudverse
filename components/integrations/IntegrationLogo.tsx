@@ -21,7 +21,7 @@ export function IntegrationLogo({ name, logo, size = 22 }: IntegrationLogoProps)
   if (!logo?.src || imgFailed) {
     return (
       <div
-        className="rounded-md bg-white/[0.05] border border-white/10 flex items-center justify-center text-[10px] font-semibold text-white/65 shrink-0"
+        className="rounded-md bg-cv-ink/[0.05] border border-cv-line/10 flex items-center justify-center text-[10px] font-semibold text-cv-ink/65 shrink-0"
         style={{ height: size, width: size }}
         aria-label={`${name} logo`}
       >
@@ -32,7 +32,7 @@ export function IntegrationLogo({ name, logo, size = 22 }: IntegrationLogoProps)
 
   return (
     <div
-      className="shrink-0 rounded-md bg-white/95 border border-black/5 flex items-center justify-center p-1"
+      className="shrink-0 rounded-md bg-cv-ink/95 border border-black/5 flex items-center justify-center p-1"
       style={{ height: size, width: size }}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}

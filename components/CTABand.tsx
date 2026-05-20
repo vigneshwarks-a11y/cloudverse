@@ -13,8 +13,8 @@ export function CTABand({
     <section className="cv-section bg-cv-surface">
       <div className="cv-container">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="cv-h2 text-white">{heading}</h2>
-          <p className="cv-body-lg mt-5 text-white/70">{sub}</p>
+          <h2 className="cv-h2 text-cv-ink">{heading}</h2>
+          <p className="cv-body-lg mt-5 text-cv-ink/70">{sub}</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link href={DEMO_URL} className="cv-btn-primary">
               Get a Demo <ArrowRight size={16} />

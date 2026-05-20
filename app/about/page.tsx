@@ -20,10 +20,10 @@ export default function Page() {
       <section className="cv-hero-bg pt-[140px] pb-16 lg:pt-[160px] lg:pb-20 relative">
         <div className="cv-container relative z-10">
           <div className="cv-label mb-4">About</div>
-          <h1 className="cv-h1 text-white max-w-4xl">
+          <h1 className="cv-h1 text-cv-ink max-w-4xl">
             We build the compute economics platform <span className="text-cv-blue-light">for the AI era.</span>
           </h1>
-          <p className="cv-body-lg mt-6 text-white/75 max-w-2xl">
+          <p className="cv-body-lg mt-6 text-cv-ink/75 max-w-2xl">
             CloudVerse is the control plane for multi-cloud, AI, infrastructure, and warehouse economics — used by enterprise finance, engineering, and platform teams to govern the decisions that shape the bill.
           </p>
         </div>
@@ -32,8 +32,8 @@ export default function Page() {
       <section className="cv-section bg-cv-surface">
         <div className="cv-container max-w-3xl">
           <div className="cv-label mb-3">Our story</div>
-          <h2 className="cv-h2 text-white mb-6">Built from operating a multi-cloud estate at scale.</h2>
-          <div className="space-y-5 text-white/80 text-[17px] leading-relaxed">
+          <h2 className="cv-h2 text-cv-ink mb-6">Built from operating a multi-cloud estate at scale.</h2>
+          <div className="space-y-5 text-cv-ink/80 text-[17px] leading-relaxed">
             <p>
               CloudVerse started where most cost-governance products do not — inside the operations of a multi-cloud enterprise estate, where allocation broke down at every BU boundary and where engineering teams could not explain a 30% month-over-month swing.
             </p>
@@ -51,13 +51,13 @@ export default function Page() {
         <div className="cv-container">
           <div className="max-w-3xl mb-10">
             <div className="cv-label mb-3">Values</div>
-            <h2 className="cv-h2 text-white">How we work.</h2>
+            <h2 className="cv-h2 text-cv-ink">How we work.</h2>
           </div>
           <div className="grid sm:grid-cols-2 gap-4">
             {VALUES.map((v) => (
-              <div key={v.title} className="rounded-xl border border-white/10 bg-white/[0.02] p-6">
-                <div className="font-display font-semibold text-white text-lg">{v.title}</div>
-                <p className="text-white/70 text-sm mt-2 leading-relaxed">{v.body}</p>
+              <div key={v.title} className="rounded-xl border border-cv-line/10 bg-cv-ink/[0.02] p-6">
+                <div className="font-display font-semibold text-cv-ink text-lg">{v.title}</div>
+                <p className="text-cv-ink/70 text-sm mt-2 leading-relaxed">{v.body}</p>
               </div>
             ))}
           </div>

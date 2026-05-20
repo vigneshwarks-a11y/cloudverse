@@ -24,17 +24,17 @@ export function AIXArchitecture() {
       <div className="cv-container">
         <div className="max-w-3xl mb-10">
           <div className="cv-label mb-3" style={{ color: "#6954D4" }}>Decision engine</div>
-          <h2 className="cv-h2 text-white">Every AI workload, routed with policy and proof.</h2>
+          <h2 className="cv-h2 text-cv-ink">Every AI workload, routed with policy and proof.</h2>
         </div>
 
-        <div className="rounded-2xl border border-white/10 bg-white/[0.025] p-6 sm:p-8 lg:p-10">
+        <div className="rounded-2xl border border-cv-line/10 bg-cv-ink/[0.025] p-6 sm:p-8 lg:p-10">
           <div className="grid lg:grid-cols-[1fr_auto_1.4fr_auto_1fr] gap-6 lg:gap-4 items-start">
             {/* Intent */}
             <div>
               <div className="cv-label mb-4">Workload intent</div>
               <ul className="space-y-2">
                 {INTENT.map((i) => (
-                  <li key={i} className="flex items-center gap-2 text-white/85 text-sm">
+                  <li key={i} className="flex items-center gap-2 text-cv-ink/85 text-sm">
                     <span className="w-1.5 h-1.5 rounded-full bg-cv-blue-light" />
                     {i}
                   </li>
@@ -45,7 +45,7 @@ export function AIXArchitecture() {
             <Chevron />
 
             {/* Engine */}
-            <div className="rounded-xl border border-white/15 bg-white/[0.04] p-5">
+            <div className="rounded-xl border border-cv-line/15 bg-cv-ink/[0.04] p-5">
               <div className="cv-label mb-4" style={{ color: "#6954D4" }}>CloudVerse AIX</div>
               <div className="flex flex-wrap gap-2">
                 {ENGINE.map((e) => (
@@ -68,7 +68,7 @@ export function AIXArchitecture() {
               <div className="cv-label mb-4">Providers</div>
               <div className="grid grid-cols-2 gap-2">
                 {PROVIDERS.map((p) => (
-                  <div key={p} className="rounded-md border border-white/10 bg-white/[0.04] px-2.5 py-2 text-xs text-white/80 text-center">
+                  <div key={p} className="rounded-md border border-cv-line/10 bg-cv-ink/[0.04] px-2.5 py-2 text-xs text-cv-ink/80 text-center">
                     {p}
                   </div>
                 ))}
@@ -81,14 +81,14 @@ export function AIXArchitecture() {
             <div className="cv-label mb-3" style={{ color: "#7CB8F8" }}>Decision output</div>
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <div className="text-white/60 text-[11px] uppercase tracking-wider">Primary route</div>
-                <div className="text-white font-medium mt-1">Anthropic Claude (us-east-1)</div>
-                <div className="text-white/55 text-xs mt-1 font-mono">$0.0042 / req · 480ms p95</div>
+                <div className="text-cv-ink/60 text-[11px] uppercase tracking-wider">Primary route</div>
+                <div className="text-cv-ink font-medium mt-1">Anthropic Claude (us-east-1)</div>
+                <div className="text-cv-ink/55 text-xs mt-1 font-mono">$0.0042 / req · 480ms p95</div>
               </div>
               <div>
-                <div className="text-white/60 text-[11px] uppercase tracking-wider">Fallback</div>
-                <div className="text-white font-medium mt-1">OpenAI GPT-4o (us-west-2)</div>
-                <div className="text-white/55 text-xs mt-1 font-mono">$0.0061 / req · 540ms p95</div>
+                <div className="text-cv-ink/60 text-[11px] uppercase tracking-wider">Fallback</div>
+                <div className="text-cv-ink font-medium mt-1">OpenAI GPT-4o (us-west-2)</div>
+                <div className="text-cv-ink/55 text-xs mt-1 font-mono">$0.0061 / req · 540ms p95</div>
               </div>
             </div>
           </div>

@@ -50,7 +50,7 @@ export default function Page() {
         <div className="cv-container">
           <div className="max-w-3xl mb-10">
             <div className="cv-label mb-3">FAQ</div>
-            <h2 className="cv-h2 text-white">Data team questions, answered.</h2>
+            <h2 className="cv-h2 text-cv-ink">Data team questions, answered.</h2>
           </div>
           <FaqBlock items={FAQ} />
         </div>

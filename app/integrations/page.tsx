@@ -20,10 +20,10 @@ export default function Page() {
       <section className="cv-hero-bg pt-[140px] pb-12 lg:pt-[160px] lg:pb-14 relative">
         <div className="cv-container relative z-10">
           <div className="cv-label mb-4">Integrations</div>
-          <h1 className="cv-h1 text-white max-w-3xl">
+          <h1 className="cv-h1 text-cv-ink max-w-3xl">
             Connects to the stack <span className="text-cv-blue-light">your teams already use.</span>
           </h1>
-          <p className="cv-body-lg mt-6 text-white/75 max-w-2xl">
+          <p className="cv-body-lg mt-6 text-cv-ink/75 max-w-2xl">
             Click any integration for its setup guide, ingestion scope, and time-to-value. Read-only by default.
           </p>
         </div>
@@ -38,12 +38,12 @@ export default function Page() {
       <section className="cv-section bg-cv-surface2">
         <div className="cv-container">
           <div className="cv-label mb-3">Enterprise</div>
-          <h2 className="cv-h2 text-white mb-10">Built for enterprise access patterns.</h2>
+          <h2 className="cv-h2 text-cv-ink mb-10">Built for enterprise access patterns.</h2>
           <div className="grid sm:grid-cols-3 gap-4">
             {ENTERPRISE.map((c) => (
-              <div key={c.title} className="rounded-xl border border-white/10 bg-white/[0.02] p-6">
-                <div className="font-display font-semibold text-white text-lg">{c.title}</div>
-                <p className="text-white/65 text-sm mt-2 leading-relaxed">{c.body}</p>
+              <div key={c.title} className="rounded-xl border border-cv-line/10 bg-cv-ink/[0.02] p-6">
+                <div className="font-display font-semibold text-cv-ink text-lg">{c.title}</div>
+                <p className="text-cv-ink/65 text-sm mt-2 leading-relaxed">{c.body}</p>
               </div>
             ))}
           </div>

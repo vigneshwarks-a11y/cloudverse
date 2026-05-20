@@ -59,9 +59,9 @@ function Col({ title, tags }: { title: string; tags: Tag[] }) {
 function Connector() {
   return (
     <div className="flex md:flex-col items-center justify-center md:justify-start md:pt-10 gap-1.5">
-      <span className="hidden md:block w-px h-6 bg-white/15" />
+      <span className="hidden md:block w-px h-6 bg-cv-ink/15" />
       <span className="w-2 h-2 rounded-full bg-cv-blue" />
-      <span className="hidden md:block w-px h-6 bg-white/15" />
+      <span className="hidden md:block w-px h-6 bg-cv-ink/15" />
     </div>
   );
 }
@@ -69,7 +69,7 @@ function Connector() {
 export function ArchitectureFlow() {
   return (
     <div
-      className="rounded-2xl border border-white/8 p-6 sm:p-8 lg:p-10"
+      className="rounded-2xl border border-cv-line/8 p-6 sm:p-8 lg:p-10"
       style={{ background: "rgba(255,255,255,0.025)" }}
       data-testid="architecture-flow"
     >

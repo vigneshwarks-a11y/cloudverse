@@ -27,14 +27,14 @@ export function SplitMockup({
         <div className={`grid lg:grid-cols-2 gap-10 lg:gap-14 items-center ${reverse ? "lg:[&>*:first-child]:order-2" : ""}`}>
           <div>
             <div className="cv-label mb-3" style={{ color }}>{label}</div>
-            <h2 className="cv-h2 text-white">{heading}</h2>
-            <div className="cv-body-lg mt-5 text-white/75">{body}</div>
+            <h2 className="cv-h2 text-cv-ink">{heading}</h2>
+            <div className="cv-body-lg mt-5 text-cv-ink/75">{body}</div>
             {stat && (
-              <div className="mt-7 inline-block rounded-lg border border-white/10 bg-white/[0.04] px-5 py-4">
-                <div className="font-display font-semibold text-white text-2xl tabular-nums" style={{ color }}>
+              <div className="mt-7 inline-block rounded-lg border border-cv-line/10 bg-cv-ink/[0.04] px-5 py-4">
+                <div className="font-display font-semibold text-cv-ink text-2xl tabular-nums" style={{ color }}>
                   {stat.value}
                 </div>
-                <div className="text-white/55 text-[11px] uppercase tracking-wider mt-1">{stat.label}</div>
+                <div className="text-cv-ink/55 text-[11px] uppercase tracking-wider mt-1">{stat.label}</div>
               </div>
             )}
           </div>

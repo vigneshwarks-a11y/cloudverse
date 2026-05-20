@@ -13,7 +13,7 @@ const MODULES = ["All", "AIX", "DevX", "DataX"] as const;
 const STATUS_STYLE: Record<Integration["status"], string> = {
   "Available":   "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
   "Beta":        "bg-amber-500/10 text-amber-300 border-amber-500/30",
-  "Coming soon": "bg-white/[0.04] text-white/55 border-white/15",
+  "Coming soon": "bg-cv-ink/[0.04] text-cv-ink/55 border-cv-line/15",
 };
 
 const PRODUCT_STYLE: Record<string, string> = {
@@ -60,13 +60,13 @@ export function IntegrationsExplorer() {
     <>
       {/* Search */}
       <div className="relative mb-6 max-w-xl">
-        <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/45" />
+        <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-cv-ink/45" />
         <input
           type="text"
           placeholder="Search integrations…"
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          className="w-full pl-10 pr-4 py-3 rounded-lg border border-white/10 bg-white/[0.03] text-white placeholder-white/45 focus:outline-none focus:border-cv-blue/60 transition-colors"
+          className="w-full pl-10 pr-4 py-3 rounded-lg border border-cv-line/10 bg-cv-ink/[0.03] text-cv-ink placeholder-white/45 focus:outline-none focus:border-cv-blue/60 transition-colors"
           data-testid="input-search-integrations"
         />
       </div>
@@ -78,8 +78,8 @@ export function IntegrationsExplorer() {
         <FilterRow label="Status" options={STATUSES as unknown as readonly string[]} value={status} onChange={setStatus} testidPrefix="filter-status" />
       </div>
 
-      <div className="mb-4 text-xs text-white/55">
-        Showing <span className="text-white tabular-nums">{filtered.length}</span> of <span className="tabular-nums">{integrationsData.length}</span> integrations
+      <div className="mb-4 text-xs text-cv-ink/55">
+        Showing <span className="text-cv-ink tabular-nums">{filtered.length}</span> of <span className="tabular-nums">{integrationsData.length}</span> integrations
       </div>
 
       {/* Grid */}
@@ -88,21 +88,21 @@ export function IntegrationsExplorer() {
           <button
             key={i.id}
             onClick={() => setActive(i)}
-            className="group text-left p-5 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] hover:border-white/20 transition-all"
+            className="group text-left p-5 rounded-xl border border-cv-line/10 bg-cv-ink/[0.02] hover:bg-cv-ink/[0.05] hover:border-cv-line/20 transition-all"
             data-testid={`card-integration-${i.id}`}
           >
             <div className="flex items-start justify-between gap-3 mb-3">
               <div className="flex items-center gap-3 min-w-0">
                 <IntegrationLogo name={i.name} logo={i.logo} size={22} />
-                <h3 className="text-[15px] font-semibold text-white truncate">{i.name}</h3>
+                <h3 className="text-[15px] font-semibold text-cv-ink truncate">{i.name}</h3>
               </div>
               <span className={`text-[10px] font-medium px-2 py-0.5 rounded border whitespace-nowrap ${STATUS_STYLE[i.status]}`}>
                 {i.status}
               </span>
             </div>
-            <p className="text-sm text-white/65 line-clamp-2 leading-relaxed min-h-[40px]">{i.short}</p>
+            <p className="text-sm text-cv-ink/65 line-clamp-2 leading-relaxed min-h-[40px]">{i.short}</p>
             <div className="flex items-center gap-1.5 flex-wrap mt-4">
-              <span className="text-[11px] text-white/45 uppercase tracking-wider">{i.category}</span>
+              <span className="text-[11px] text-cv-ink/45 uppercase tracking-wider">{i.category}</span>
               {i.products?.map((p) => (
                 <span key={p} className={`text-[10px] font-semibold px-1.5 py-0.5 rounded border ${PRODUCT_STYLE[p]}`}>
                   {p}
@@ -114,11 +114,11 @@ export function IntegrationsExplorer() {
       </div>
 
       {filtered.length === 0 && (
-        <div className="text-center py-16 rounded-xl border border-dashed border-white/10">
-          <p className="text-white/55">No integrations match those filters.</p>
+        <div className="text-center py-16 rounded-xl border border-dashed border-cv-line/10">
+          <p className="text-cv-ink/55">No integrations match those filters.</p>
           <button
             onClick={() => { setQ(""); setCat("All"); setStatus("All"); setMod("All"); }}
-            className="mt-3 text-sm text-cv-blue-light hover:text-white"
+            className="mt-3 text-sm text-cv-blue-light hover:text-cv-ink"
           >
             Reset filters
           </button>
@@ -136,7 +136,7 @@ function FilterRow({ label, options, value, onChange, testidPrefix }: {
 }) {
   return (
     <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
-      <div className="text-[11px] uppercase tracking-widest text-white/50 font-medium w-20 shrink-0">{label}</div>
+      <div className="text-[11px] uppercase tracking-widest text-cv-ink/50 font-medium w-20 shrink-0">{label}</div>
       <div className="flex flex-wrap gap-1.5">
         {options.map((o) => (
           <button
@@ -145,7 +145,7 @@ function FilterRow({ label, options, value, onChange, testidPrefix }: {
             className={`px-3 py-1.5 text-xs rounded-md border transition-all ${
               value === o
                 ? "bg-white text-cv-navy border-white font-medium"
-                : "bg-transparent border-white/15 text-white/70 hover:border-white/30 hover:text-white"
+                : "bg-transparent border-cv-line/15 text-cv-ink/70 hover:border-cv-line/30 hover:text-cv-ink"
             }`}
             data-testid={`${testidPrefix}-${o.toLowerCase().replace(/\s+/g, "-")}`}
           >
@@ -166,24 +166,24 @@ function Drawer({ integration, onClose }: { integration: Integration; onClose: (
         data-testid="drawer-backdrop"
       />
       <aside
-        className="fixed right-0 top-0 bottom-0 w-full sm:w-[480px] bg-cv-navy border-l border-white/10 z-50 overflow-y-auto shadow-2xl"
+        className="fixed right-0 top-0 bottom-0 w-full sm:w-[480px] bg-cv-surface2 border-l border-cv-line/10 z-50 overflow-y-auto shadow-2xl"
         role="dialog"
         aria-modal="true"
         aria-label={`${integration.name} integration details`}
         data-testid="drawer-integration"
       >
         {/* Header */}
-        <div className="sticky top-0 bg-cv-navy/95 backdrop-blur border-b border-white/10 p-5 sm:p-6 flex items-start justify-between gap-4 z-10">
+        <div className="sticky top-0 bg-cv-surface2/95 backdrop-blur border-b border-cv-line/10 p-5 sm:p-6 flex items-start justify-between gap-4 z-10">
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-3 mb-2">
               <IntegrationLogo name={integration.name} logo={integration.logo} size={32} />
-              <h2 className="font-display text-xl font-semibold text-white truncate">{integration.name}</h2>
+              <h2 className="font-display text-xl font-semibold text-cv-ink truncate">{integration.name}</h2>
             </div>
             <div className="flex items-center gap-2 flex-wrap">
               <span className={`text-[10px] font-medium px-2 py-0.5 rounded border ${STATUS_STYLE[integration.status]}`}>
                 {integration.status}
               </span>
-              <span className="text-[10px] uppercase tracking-wider text-white/45">{integration.category}</span>
+              <span className="text-[10px] uppercase tracking-wider text-cv-ink/45">{integration.category}</span>
               {integration.products?.map((p) => (
                 <span key={p} className={`text-[10px] font-semibold px-1.5 py-0.5 rounded border ${PRODUCT_STYLE[p]}`}>
                   {p}
@@ -193,7 +193,7 @@ function Drawer({ integration, onClose }: { integration: Integration; onClose: (
           </div>
           <button
             onClick={onClose}
-            className="text-white/55 hover:text-white shrink-0 mt-1 p-1 -m-1"
+            className="text-cv-ink/55 hover:text-cv-ink shrink-0 mt-1 p-1 -m-1"
             aria-label="Close"
             data-testid="button-close-drawer"
           >
@@ -202,7 +202,7 @@ function Drawer({ integration, onClose }: { integration: Integration; onClose: (
         </div>
 
         <div className="px-5 sm:px-6 py-5">
-          <p className="text-sm text-white/75 leading-relaxed">{integration.short}</p>
+          <p className="text-sm text-cv-ink/75 leading-relaxed">{integration.short}</p>
         </div>
 
         {/* Documentation CTA (the click that goes into docs) */}
@@ -215,7 +215,7 @@ function Drawer({ integration, onClose }: { integration: Integration; onClose: (
             >
               <div>
                 <div className="text-[11px] uppercase tracking-widest text-cv-blue-light mb-1">Setup documentation</div>
-                <div className="text-sm text-white font-medium">Read the {integration.name} setup guide</div>
+                <div className="text-sm text-cv-ink font-medium">Read the {integration.name} setup guide</div>
               </div>
               <ExternalLink size={18} className="text-cv-blue-light shrink-0" />
             </Link>
@@ -230,7 +230,7 @@ function Drawer({ integration, onClose }: { integration: Integration; onClose: (
             <BulletList items={integration.outputs.slice(0, 5)} />
           </Section>
           <Section title="Setup requirements">
-            <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 sm:p-5 space-y-4">
+            <div className="rounded-xl border border-cv-line/10 bg-cv-ink/[0.02] p-4 sm:p-5 space-y-4">
               <Field label="Method" value={integration.setup.method} />
               <Field label="Time to value" value={integration.setup.timeToValue} />
               <Field label="Permissions" value={integration.setup.permissions} />
@@ -254,7 +254,7 @@ function Drawer({ integration, onClose }: { integration: Integration; onClose: (
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="px-5 sm:px-6 py-5">
-      <h3 className="text-[11px] uppercase tracking-widest text-white/50 mb-3">{title}</h3>
+      <h3 className="text-[11px] uppercase tracking-widest text-cv-ink/50 mb-3">{title}</h3>
       {children}
     </div>
   );
@@ -264,7 +264,7 @@ function BulletList({ items }: { items: string[] }) {
   return (
     <ul className="space-y-2">
       {items.map((it, i) => (
-        <li key={i} className="flex gap-3 text-sm text-white/75 leading-6">
+        <li key={i} className="flex gap-3 text-sm text-cv-ink/75 leading-6">
           <span className="text-cv-blue-light shrink-0 mt-0.5">•</span>
           <span>{it}</span>
         </li>
@@ -276,8 +276,8 @@ function BulletList({ items }: { items: string[] }) {
 function Field({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <div className="text-[10px] uppercase tracking-widest text-white/45 mb-1">{label}</div>
-      <p className="text-sm text-white">{value}</p>
+      <div className="text-[10px] uppercase tracking-widest text-cv-ink/45 mb-1">{label}</div>
+      <p className="text-sm text-cv-ink">{value}</p>
     </div>
   );
 }

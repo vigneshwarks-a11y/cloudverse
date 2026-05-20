@@ -114,7 +114,7 @@ export default function Page() {
         <div className="cv-container">
           <div className="max-w-3xl mb-10">
             <div className="cv-label mb-3" style={{ color: M.color }}>FAQ</div>
-            <h2 className="cv-h2 text-white">DataX questions, answered.</h2>
+            <h2 className="cv-h2 text-cv-ink">DataX questions, answered.</h2>
           </div>
           <FaqBlock items={FAQ} accent={M.color} />
         </div>
@@ -145,13 +145,13 @@ export default function Page() {
 function MockQuery() {
   return (
     <div>
-      <div className="rounded border border-white/10 bg-black/30 p-3 font-mono text-xs text-white/85 mb-3 overflow-x-auto">
+      <div className="rounded border border-cv-line/10 bg-black/30 p-3 font-mono text-xs text-cv-ink/85 mb-3 overflow-x-auto">
         <div className="text-purple-300">SELECT</div>
         <div className="pl-3">customer_id, SUM(amount) AS lifetime_value</div>
         <div className="text-purple-300">FROM</div>
         <div className="pl-3">`prod.events.orders`</div>
         <div className="text-purple-300">WHERE</div>
-        <div className="pl-3 text-rose-300/85">DATE(created_at) &gt;= '2025-01-01'  <span className="text-white/45">— bypasses partition</span></div>
+        <div className="pl-3 text-rose-300/85">DATE(created_at) &gt;= '2025-01-01'  <span className="text-cv-ink/45">— bypasses partition</span></div>
         <div className="text-purple-300">GROUP BY</div>
         <div className="pl-3">customer_id</div>
       </div>
@@ -162,7 +162,7 @@ function MockQuery() {
       </div>
       <div className="mt-3 rounded border border-cv-amber/40 bg-cv-amber/10 p-3 text-xs">
         <span className="text-cv-amber font-semibold">Total spend on this pattern: $117.16</span>
-        <div className="text-white/70 mt-1">One-click fix available: rewrite to use _PARTITIONDATE filter — reduces scan to ~3 GB / run.</div>
+        <div className="text-cv-ink/70 mt-1">One-click fix available: rewrite to use _PARTITIONDATE filter — reduces scan to ~3 GB / run.</div>
       </div>
     </div>
   );
@@ -170,9 +170,9 @@ function MockQuery() {
 
 function Stat({ label, v }: { label: string; v: string }) {
   return (
-    <div className="rounded border border-white/10 p-2.5 bg-white/[0.03]">
-      <div className="text-white/55 text-[10px] uppercase tracking-wider">{label}</div>
-      <div className="text-white font-display font-semibold mt-0.5 tabular-nums">{v}</div>
+    <div className="rounded border border-cv-line/10 p-2.5 bg-cv-ink/[0.03]">
+      <div className="text-cv-ink/55 text-[10px] uppercase tracking-wider">{label}</div>
+      <div className="text-cv-ink font-display font-semibold mt-0.5 tabular-nums">{v}</div>
     </div>
   );
 }
@@ -186,10 +186,10 @@ function MockPatterns() {
         { name: "SELECT * on warehouse vault.fact", spend: "$61/wk", calls: "104 ×" },
         { name: "Unfiltered dbt incremental run", spend: "$48/wk", calls: "14 ×" },
       ].map((p) => (
-        <div key={p.name} className="flex items-center justify-between p-3 rounded border border-white/10 bg-white/[0.02]">
-          <div className="text-white/85 text-xs">{p.name}</div>
+        <div key={p.name} className="flex items-center justify-between p-3 rounded border border-cv-line/10 bg-cv-ink/[0.02]">
+          <div className="text-cv-ink/85 text-xs">{p.name}</div>
           <div className="flex gap-4 items-center">
-            <span className="text-white/55 text-[11px]">{p.calls}</span>
+            <span className="text-cv-ink/55 text-[11px]">{p.calls}</span>
             <span className="text-cv-amber tabular-nums text-xs font-medium">{p.spend}</span>
           </div>
         </div>
@@ -201,12 +201,12 @@ function MockPatterns() {
 function MockFullScan() {
   return (
     <div className="font-mono text-xs space-y-1.5">
-      <div className="text-white/65"><span className="text-cv-amber">!</span> bigquery · prod.events.orders · 334.6 GB scanned</div>
-      <div className="text-white/65"><span className="text-cv-amber">!</span> snowflake · ANALYTICS.WH · 178 GB · no clustering used</div>
-      <div className="text-white/65"><span className="text-cv-amber">!</span> databricks · gold.transactions · 92 GB · full table read</div>
-      <div className="text-white/65"><span className="text-emerald-400">✓</span> bigquery · marts.user_events · partition pruned · 4.1 GB</div>
-      <div className="text-white/65"><span className="text-emerald-400">✓</span> snowflake · DIM_PRODUCT · micro-partition · 0.8 GB</div>
-      <div className="mt-3 text-white">Flagged 3 patterns · est. <span className="text-cv-amber font-semibold">$842/wk recoverable</span></div>
+      <div className="text-cv-ink/65"><span className="text-cv-amber">!</span> bigquery · prod.events.orders · 334.6 GB scanned</div>
+      <div className="text-cv-ink/65"><span className="text-cv-amber">!</span> snowflake · ANALYTICS.WH · 178 GB · no clustering used</div>
+      <div className="text-cv-ink/65"><span className="text-cv-amber">!</span> databricks · gold.transactions · 92 GB · full table read</div>
+      <div className="text-cv-ink/65"><span className="text-emerald-400">✓</span> bigquery · marts.user_events · partition pruned · 4.1 GB</div>
+      <div className="text-cv-ink/65"><span className="text-emerald-400">✓</span> snowflake · DIM_PRODUCT · micro-partition · 0.8 GB</div>
+      <div className="mt-3 text-cv-ink">Flagged 3 patterns · est. <span className="text-cv-amber font-semibold">$842/wk recoverable</span></div>
     </div>
   );
 }
@@ -214,13 +214,13 @@ function MockFullScan() {
 function MockSignals() {
   return (
     <div>
-      <div className="text-[11px] text-white/55 uppercase tracking-wider mb-3">Next-24h forecast · ANALYTICS_WH</div>
+      <div className="text-[11px] text-cv-ink/55 uppercase tracking-wider mb-3">Next-24h forecast · ANALYTICS_WH</div>
       <div className="flex items-end gap-1 h-32 mb-3">
         {[18, 22, 19, 24, 28, 35, 48, 62, 71, 64, 58, 52, 49, 56, 68, 82, 76, 64, 51, 38, 28, 21, 18, 16].map((h, i) => (
           <div key={i} className="flex-1 rounded-t" style={{ height: `${h}%`, background: i > 14 ? "#D97706" : "#1664C0", opacity: i > 14 ? 0.85 : 0.6 }} />
         ))}
       </div>
-      <div className="rounded border border-cv-amber/40 bg-cv-amber/10 p-3 text-xs text-white/85">
+      <div className="rounded border border-cv-amber/40 bg-cv-amber/10 p-3 text-xs text-cv-ink/85">
         <span className="text-cv-amber font-semibold">Predicted spike at 14:00 UTC</span> — pattern matches dashboard refresh cohort. Recommend warehouse SCALEUP_L → SCALEUP_M.
       </div>
     </div>
@@ -236,10 +236,10 @@ function MockAutomation() {
         { action: "Disable scheduled run `legacy_aggregates`", owner: "team-marketing", state: "Approved" },
         { action: "Add cluster key to `events.orders`", owner: "data-platform", state: "Applied · saved $612/wk" },
       ].map((a) => (
-        <div key={a.action} className="p-3 rounded border border-white/10 bg-white/[0.02]">
+        <div key={a.action} className="p-3 rounded border border-cv-line/10 bg-cv-ink/[0.02]">
           <div className="flex justify-between gap-3 mb-1">
-            <span className="text-white text-xs">{a.action}</span>
-            <span className="text-white/55 text-[11px] shrink-0">{a.owner}</span>
+            <span className="text-cv-ink text-xs">{a.action}</span>
+            <span className="text-cv-ink/55 text-[11px] shrink-0">{a.owner}</span>
           </div>
           <div className="text-cv-amber text-[11px]">{a.state}</div>
         </div>

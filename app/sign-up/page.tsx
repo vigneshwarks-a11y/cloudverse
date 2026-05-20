@@ -22,10 +22,10 @@ export default function Page() {
       <div className="cv-container relative z-10">
         <div className="max-w-2xl mx-auto text-center">
           <div className="cv-label mb-4">Get started</div>
-          <h1 className="cv-h1 text-white">
+          <h1 className="cv-h1 text-cv-ink">
             See where your cloud bill is <span className="text-cv-blue-light">actually going.</span>
           </h1>
-          <p className="cv-body-lg mt-6 text-white/75">
+          <p className="cv-body-lg mt-6 text-cv-ink/75">
             CloudVerse connects read-only and surfaces your first non-obvious finding the same day. No credit card.
           </p>
 
@@ -38,19 +38,19 @@ export default function Page() {
             </Link>
           </div>
 
-          <div className="mt-12 text-left rounded-2xl border border-white/10 bg-white/[0.02] p-7">
+          <div className="mt-12 text-left rounded-2xl border border-cv-line/10 bg-cv-ink/[0.02] p-7">
             <div className="cv-label mb-4">What happens next</div>
             <ul className="space-y-3">
               {STEPS.map((s) => (
                 <li key={s} className="flex items-start gap-3">
                   <CheckCircle2 size={18} className="shrink-0 mt-0.5 text-cv-blue-light" />
-                  <span className="text-white/80 text-[15px]">{s}</span>
+                  <span className="text-cv-ink/80 text-[15px]">{s}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          <p className="text-white/45 text-xs mt-8">
+          <p className="text-cv-ink/45 text-xs mt-8">
             By creating an account you agree to our <Link href="/legal" className="underline">Terms</Link> and <Link href="/legal" className="underline">Privacy Policy</Link>.
           </p>
         </div>
