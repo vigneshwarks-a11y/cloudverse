@@ -22,9 +22,8 @@ const config: Config = {
           surface: "hsl(var(--cv-surface))",
           surface2: "hsl(var(--cv-surface2))",
           navy: "#050F1C",
-          // Apple-style primary blue from the older site
-          blue: "#0071E3",
-          "blue-bright": "#0A84FF",
+          blue: "#1664C0",
+          "blue-bright": "#2277E0",
           "blue-light": "#7CB8F8",
           "blue-fill": "#E8F3FF",
           // Module accents (kept)

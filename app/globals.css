@@ -14,13 +14,13 @@
     --cv-grid:     240 5% 12% / 0.05;
   }
 
-  /* Dark theme — pure black surfaces (legacy) */
+  /* Dark theme — Apple Developer dark palette (legacy) */
   .dark {
     --cv-ink:      0 0% 98%;     /* #f5f5f7 */
     --cv-muted:    240 2% 63%;   /* #a1a1a6 */
-    --cv-line:     0 0% 16%;     /* #292929 */
+    --cv-line:     240 5% 26%;   /* #38383a */
     --cv-surface:  0 0% 0%;      /* #000000 — pure black */
-    --cv-surface2: 0 0% 4%;      /* #0a0a0a */
+    --cv-surface2: 240 4% 11%;   /* #1c1c1e */
     --cv-hero-glow: 211 100% 50% / 0.35;
     --cv-grid:     0 0% 100% / 0.04;
   }
@@ -35,7 +35,7 @@
   }
 
   ::selection {
-    background: rgba(0, 113, 227, 0.35);
+    background: rgba(22, 100, 192, 0.35);
     color: #fff;
   }
 }
@@ -113,21 +113,43 @@
   .cv-hero-bg::after {
     content: "";
     position: absolute;
-    top: -10%;
-    right: -10%;
-    width: 60%;
-    height: 70%;
-    background: radial-gradient(circle, hsl(var(--cv-hero-glow)) 0%, transparent 60%);
+    inset: 0;
+    background: radial-gradient(
+      ellipse 1200px 800px at 50% 20%,
+      rgba(59, 130, 246, 0.45) 0%,
+      rgba(139, 92, 246, 0.30) 25%,
+      rgba(79, 70, 229, 0.18) 45%,
+      transparent 72%
+    );
     pointer-events: none;
+    animation: heroGradientShift 24s ease-in-out infinite;
+  }
+  :root:not(.dark) .cv-hero-bg::after {
+    background: radial-gradient(
+      ellipse 1200px 800px at 50% 20%,
+      rgba(22, 100, 192, 0.18) 0%,
+      rgba(105, 84, 212, 0.12) 30%,
+      rgba(124, 184, 248, 0.08) 55%,
+      transparent 75%
+    );
+  }
+  @keyframes heroGradientShift {
+    0%,100% { filter: brightness(1); transform: translate(0, 0); }
+    25%     { filter: brightness(1.1); transform: translate(-40px, -30px); }
+    50%     { filter: brightness(1); transform: translate(0, 0); }
+    75%     { filter: brightness(1.1); transform: translate(40px, -30px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cv-hero-bg::after { animation: none; }
   }
 
   /* Buttons */
   .cv-btn-primary {
     @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm transition-colors;
-    background: #0071E3;
+    background: #1664C0;
     color: #fff;
   }
-  .cv-btn-primary:hover { background: #0A84FF; }
+  .cv-btn-primary:hover { background: #2277E0; }
 
   .cv-btn-ghost {
     @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm transition-colors text-cv-ink;
@@ -138,7 +160,7 @@
 
   .cv-section-break {
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0, 113, 227, 0.4), transparent);
+    background: linear-gradient(90deg, transparent, rgba(22, 100, 192, 0.4), transparent);
   }
 
   .logo-pill {
