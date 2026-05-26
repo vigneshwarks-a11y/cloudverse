@@ -1,0 +1,54 @@
+<svg width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="svg3441" clip-path="url(#clip0_1085_1300)">
+<g id="g3447">
+<g id="g3449">
+<g id="Clip path group">
+<mask id="mask0_1085_1300" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="58" height="58">
+<g id="clipPath3455">
+<path id="path3453" d="M0 7.62939e-06H58V58H0V7.62939e-06Z" fill="white"/>
+</g>
+</mask>
+<g mask="url(#mask0_1085_1300)">
+<g id="g3451">
+<g id="g3457">
+<path id="path3459" d="M45.5977 11.8945H40.5C38.6232 11.8945 37.1016 13.4161 37.1016 15.293C37.1016 17.1698 38.6232 18.6914 40.5 18.6914C42.3768 18.6914 43.8984 20.213 43.8984 22.0898C43.8984 23.9667 42.3768 25.4883 40.5 25.4883H35.4023" stroke="#4F4F4F" stroke-width="4.5" stroke-miterlimit="10"/>
+</g>
+<g id="g3461">
+<path id="path3463" d="M40.7021 6.79688V11.8945" stroke="#4F4F4F" stroke-width="4.5" stroke-miterlimit="10"/>
+</g>
+<g id="g3465">
+<path id="path3467" d="M40.7021 25.4883V30.5859" stroke="#4F4F4F" stroke-width="4.5" stroke-miterlimit="10"/>
+</g>
+<g id="g3469">
+<path id="path3471" d="M24.8379 9.59843C27.8513 4.85036 33.1551 1.69922 39.1949 1.69922C48.5795 1.69922 56.3004 9.30685 56.3004 18.6914C56.3004 28.076 48.5795 35.6836 39.1949 35.6836C37.0701 35.6836 35.0364 35.2936 33.1615 34.5813" stroke="#4F4F4F" stroke-width="4.5" stroke-miterlimit="10"/>
+</g>
+<g id="g3473">
+<path id="path3475" d="M23.9023 18.6914H18.8047C16.9278 18.6914 15.4062 20.213 15.4062 22.0898C15.4062 23.9667 16.9278 25.4883 18.8047 25.4883C20.6815 25.4883 22.2031 27.0099 22.2031 28.8867C22.2031 30.7636 20.6815 32.2852 18.8047 32.2852H13.707" stroke="#4F4F4F" stroke-width="4.5" stroke-miterlimit="10"/>
+</g>
+<g id="g3477">
+<path id="path3479" d="M18.8047 13.5938V18.6914" stroke="#4F4F4F" stroke-width="4.5" stroke-miterlimit="10"/>
+</g>
+<g id="g3481">
+<path id="path3483" d="M18.8047 32.2852V37.3828" stroke="#4F4F4F" stroke-width="4.5" stroke-miterlimit="10"/>
+</g>
+<g id="g3485">
+<path id="path3487" d="M35.7969 25.4883C35.7969 34.8728 28.1892 42.4805 18.8047 42.4805C9.42013 42.4805 1.69922 34.8728 1.69922 25.4883C1.69922 16.1037 9.42013 8.49609 18.8047 8.49609C28.1892 8.49609 35.7969 16.1037 35.7969 25.4883Z" stroke="#4F4F4F" stroke-width="4.5" stroke-miterlimit="10"/>
+</g>
+<g id="g3489">
+<path id="path3491" d="M43.3467 35.6836V56.3008H36.5498V35.6836" stroke="#4F4F4F" stroke-width="4.5" stroke-miterlimit="10"/>
+</g>
+<g id="g3493">
+<path id="path3495" d="M22.2031 42.4805V56.3008H15.4062V42.4805" stroke="#4F4F4F" stroke-width="4.5" stroke-miterlimit="10"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_1085_1300">
+<rect width="58" height="58" fill="white"/>
+</clipPath>
+</defs>
+</svg>

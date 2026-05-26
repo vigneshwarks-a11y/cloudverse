@@ -1,63 +1,123 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
-import { Building2, ShieldCheck, Globe2, Network } from "lucide-react";
-import { SolutionHero } from "@/components/solution/SolutionHero";
-import { Outcomes } from "@/components/solution/Outcomes";
-import { ModulesUsed } from "@/components/solution/ModulesUsed";
-import { FaqBlock } from "@/components/FaqBlock";
-import { CTABand } from "@/components/CTABand";
+import { DEMO_URL } from "@/lib/links";
 
 export const metadata: Metadata = {
-  title: "For Enterprise — CloudVerse",
-  description: "One control plane for multi-cloud, AI, infrastructure, and warehouse economics — with SSO, RBAC, audit trails, and regional residency.",
-  alternates: { canonical: "/solutions/enterprise" },
+  title: "For Enterprise — One Control Plane for Multi-Cloud, AI Infrastructure, and Data Economics | CloudVerse",
+  description: "SSO, SCIM provisioning, granular RBAC, audit logs, customer-managed encryption keys, and the procurement options the office of the CIO expects.",
 };
 
-const FAQ = [
-  { q: "What enterprise controls are included?", a: "SSO (SAML / OIDC), SCIM provisioning, granular RBAC, audit logs, customer-managed encryption keys, and regional data residency." },
-  { q: "Where is data stored?", a: "Choose between US, EU, and APAC regions. Customer-managed keys available on Enterprise plans." },
-  { q: "Do you support air-gapped or VPC deployments?", a: "Yes — private-link, VPC peering, and dedicated single-tenant deployments are available on Enterprise." },
-  { q: "What about procurement?", a: "We operate on AWS Marketplace, Azure Marketplace, and Google Cloud Marketplace — and accept committed-spend redemption on all three." },
-  { q: "Who do we work with for rollout?", a: "Every Enterprise account gets a dedicated solutions engineer, FinOps practitioner, and 24/7 support." },
+const STATS = [
+  { v: "SSO + SCIM", l: "identity-ready on day one" },
+  { v: "US / EU / APAC", l: "residency options" },
+  { v: "AWS, Azure, GCP", l: "marketplace listed" },
+  { v: "24/7", l: "enterprise support" },
 ];
 
-export default function Page() {
+const FAQ = [
+  ["What enterprise controls are included?", "SSO/SAML, OIDC, SCIM provisioning, granular RBAC, audit logs, customer-managed encryption, and regional data residency. All included."],
+  ["Where is data stored?", "Region-specific. US, EU, and APAC options available with private-link and VPC options."],
+  ["Do you support air-gapped or VPC deployments?", "Contact our enterprise team to discuss your specific requirements."],
+  ["What about procurement?", "AWS, Azure, and Google Cloud Marketplace with committed-spend redemption."],
+  ["Who do we work with for rollout?", "CloudVerse enterprise accounts include a dedicated solutions engineer for onboarding and a customer success manager post-launch."],
+];
+
+export default function EnterprisePage() {
   return (
     <>
-      <SolutionHero
-        eyebrow="For Enterprise"
-        h1={<>One control plane for <span className="text-cv-blue-light">multi-cloud, AI, infra, and data economics.</span></>}
-        sub="The compute economics platform global enterprises run on — with the SSO, RBAC, residency, and procurement options the office of the CIO expects."
-        proof={[
-          { value: "SSO + SCIM", label: "Identity ready" },
-          { value: "US / EU / APAC", label: "Residency options" },
-          { value: "AWS / Azure / GCP", label: "Marketplace listed" },
-          { value: "24/7", label: "Enterprise support" },
-        ]}
-      />
-
-      <Outcomes
-        heading="What enterprise teams operationalise on day one."
-        items={[
-          { icon: Building2,   title: "One model across the estate", body: "Cloud, AI, infrastructure, and warehouse spend on a single allocation model." },
-          { icon: ShieldCheck, title: "Identity and audit",          body: "SSO, SCIM, granular RBAC, audit logs, and customer-managed keys." },
-          { icon: Globe2,      title: "Regional residency",          body: "US, EU, and APAC regions with private-link and VPC options." },
-          { icon: Network,     title: "Marketplace + procurement",   body: "AWS, Azure, and Google Cloud Marketplace with committed-spend redemption." },
-        ]}
-      />
-
-      <ModulesUsed keys={["finops", "aix", "devx", "datax"].slice(0, 3) as ("finops" | "aix" | "devx" | "datax")[]} />
-
-      <section className="cv-section bg-cv-surface">
-        <div className="cv-container">
-          <div className="max-w-3xl mb-10">
-            <div className="cv-label mb-3">FAQ</div>
-            <h2 className="cv-h2 text-cv-ink">Enterprise questions, answered.</h2>
+      <section className="cv-hero-bg pt-[120px] pb-16 lg:pt-[160px] lg:pb-24 relative">
+        <div className="cv-container relative z-10 max-w-4xl">
+          <div className="text-xs uppercase tracking-widest text-cv-muted mb-3">For Enterprise</div>
+          <h1 className="cv-h1 text-cv-ink">One Control Plane for Multi-Cloud, AI Infrastructure, and Data Economics</h1>
+          <p className="cv-body-lg mt-6 text-cv-ink/75">
+            The compute economics platform global enterprises run on. SSO, SCIM provisioning, granular RBAC, audit logs, customer-managed encryption keys, and the procurement options the office of the CIO expects.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href="/contact" className="cv-btn-primary"><span>Talk to Our Enterprise Team</span><ArrowRight size={16} /></Link>
+            <Link href="/platform/finops" className="cv-btn-ghost">Explore the Platform</Link>
           </div>
-          <FaqBlock items={FAQ} />
         </div>
       </section>
 
-      <CTABand heading="Talk to our enterprise team." />
+      <section className="border-y border-cv-line bg-cv-surface2/40">
+        <div className="cv-container py-8 grid grid-cols-2 lg:grid-cols-4 gap-6">
+          {STATS.map((s) => (
+            <div key={s.l}>
+              <div className="text-2xl lg:text-3xl font-display font-semibold text-cv-ink">{s.v}</div>
+              <div className="text-sm text-cv-muted mt-1">{s.l}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="cv-section">
+        <div className="cv-container">
+          <div className="max-w-3xl mb-10">
+            <h2 className="cv-h2 text-cv-ink">What enterprise teams operationalise on day one</h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-5">
+            {[
+              ["One model across the estate", "Cloud, AI infrastructure, and warehouse spend on a single allocation model. One view for FinOps, one view for engineering, one view for finance. They all match."],
+              ["Identity and audit", "SSO, SCIM, granular RBAC, audit logs, customer-managed encryption keys. The access controls and audit trails your security and compliance teams require, available from the start."],
+              ["Regional residency", "US, EU, and APAC regions with private-link and VPC options. Data stays where your sovereignty requirements say it should."],
+              ["Marketplace and procurement", "AWS, Azure, and Google Cloud Marketplace listings with committed-spend redemption. Procurement through the channels your finance team already uses."],
+            ].map(([t, b]) => (
+              <div key={t} className="rounded-2xl border border-cv-line bg-cv-surface2 p-6">
+                <h3 className="cv-h3 text-cv-ink">{t}</h3>
+                <p className="text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="cv-section bg-cv-surface2">
+        <div className="cv-container">
+          <h2 className="cv-h2 text-cv-ink mb-8">Modules that power enterprise deployments</h2>
+          <div className="grid md:grid-cols-3 gap-5">
+            {[
+              ["FinOps Platform", "Multi-cloud cost intelligence", "/platform/finops"],
+              ["AIX", "GPU and LLM economics", "/platform/aix"],
+              ["DevX", "Shift-left cost intelligence", "/platform/devx"],
+            ].map(([t, b, h]) => (
+              <Link key={t} href={h as string} className="rounded-2xl border border-cv-line bg-cv-surface p-6 hover:border-cv-ink/30 transition-colors">
+                <h3 className="cv-h3 text-cv-ink">{t}</h3>
+                <p className="text-cv-ink/75 mt-2">{b}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="cv-section">
+        <div className="cv-container max-w-3xl">
+          <h2 className="cv-h2 text-cv-ink mb-8">Enterprise questions answered</h2>
+          <div className="space-y-4">
+            {FAQ.map(([q, a]) => (
+              <details key={q} className="rounded-xl border border-cv-line bg-cv-surface2 p-5">
+                <summary className="cursor-pointer font-medium text-cv-ink">{q}</summary>
+                <p className="text-cv-ink/75 mt-3 leading-relaxed">{a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="cv-section bg-cv-surface2">
+        <div className="cv-container">
+          <div className="rounded-3xl border border-cv-line bg-cv-surface p-10 lg:p-16 text-center">
+            <h2 className="cv-h2 text-cv-ink max-w-3xl mx-auto">Talk to our enterprise team.</h2>
+            <p className="cv-body-lg text-cv-ink/75 mt-5 max-w-2xl mx-auto">
+              Connect your first account in under 30 minutes. Most teams have their first non-obvious finding the same day.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight size={16} /></Link>
+              <Link href="/contact" className="cv-btn-ghost">Talk to Sales</Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

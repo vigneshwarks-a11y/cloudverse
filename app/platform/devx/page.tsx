@@ -1,219 +1,247 @@
+import Link from "next/link";
+import { ArrowRight, Check } from "lucide-react";
 import type { Metadata } from "next";
-import { GitPullRequest, ShieldCheck, FileCode2, AlertTriangle, GitBranch, Workflow, Cpu, Container, Lock } from "lucide-react";
-import { ProductHero } from "@/components/product/Hero";
-import { SplitMockup } from "@/components/product/Mockup";
-import { FeatureShowcase, type FeatureState } from "@/components/product/FeatureShowcase";
-import { Capabilities } from "@/components/product/Capabilities";
-import { Lifecycle } from "@/components/product/Lifecycle";
-import { WhoUsesIt } from "@/components/product/WhoUsesIt";
-import { IntegrationsStrip } from "@/components/product/IntegrationsStrip";
-import { ExpandInto } from "@/components/product/ExpandInto";
-import { FaqBlock } from "@/components/FaqBlock";
-import { CTABand } from "@/components/CTABand";
-import { MODULES } from "@/lib/modules";
-
-const M = MODULES.devx;
+import { DEMO_URL } from "@/lib/links";
 
 export const metadata: Metadata = {
-  title: "DevX — Shift-Left Cost Intelligence",
+  title: "DevX — Catch Cost Regressions Before They Reach Production | CloudVerse",
   description:
-    "Catch cloud cost mistakes before they reach production. PR-level cost checks surfaced +$2.9k/month in impact before merge. Free tier available.",
-  alternates: { canonical: "/platform/devx" },
+    "Every infrastructure PR gets an inline cost impact comment before reviewers see it. Engineers see what their changes cost at the moment they can still change something.",
 };
 
-const FEATURES: FeatureState[] = [
-  { title: "PR cost estimate",      desc: "Every pull request gets a cost diff before reviewers see it.", mockTitle: "github.com/cloudverse/infra/pull/214", mockBody: <MockPR /> },
-  { title: "CI scan result",        desc: "Terraform, Helm, and Kustomize plans scanned against your cost policy.", mockTitle: "ci/cloudverse/scan/2487", mockBody: <MockCI /> },
-  { title: "Governance policy",     desc: "Org-wide rules — budget ceilings, instance allowlists, region constraints — versioned in code.", mockTitle: "devx.cloudverse.ai/policy", mockBody: <MockPolicy /> },
-  { title: "Prevented regressions", desc: "Every blocked or fixed PR tracked with payback against your savings backlog.", mockTitle: "devx.cloudverse.ai/prevented", mockBody: <MockPrevented /> },
+const ACCENT = "#0E9E7A";
+
+const STATS = [
+  { v: "+$2.4k to $2.9k", l: "flagged on a single PR" },
+  { v: "Free tier", l: "available" },
+  { v: "GitHub, GitLab, Azure DevOps", l: "native integrations" },
+  { v: "7+", l: "IaC formats supported" },
 ];
+
+const DIFF = `resource "aws_nat_gateway" "this" {
+- count = 1
++ count = var.enable_nat_gateway ? 1 : 0
+   allocation_id = aws_eip.nat.id
+   subnet_id     = aws_subnet.public.id
+}
+
+resource "aws_instance" "app" {
+- instance_type = "t3.large"
++ instance_type = "t3.medium"
+}`;
 
 const FAQ = [
-  { q: "Which source control systems are supported?", a: "GitHub, GitLab, Bitbucket, and Azure DevOps. Comments and check runs work natively in each." },
-  { q: "What IaC does DevX understand?", a: "Terraform, OpenTofu, Pulumi, CloudFormation, Helm, Kustomize, and raw Kubernetes manifests. Coverage expands with each release." },
-  { q: "Is there a free tier?", a: "Yes. Open-source repos and small teams can use DevX for free — PR comments and policy checks included." },
-  { q: "How does DevX know what something costs?", a: "DevX uses live cloud pricing for every region and SKU, plus your discount and commitment context from FinOps Platform when connected." },
-  { q: "Can we enforce policies as required checks?", a: "Yes. Policies can be advisory (comment) or required (block merge). Approvals and overrides are fully audited." },
-  { q: "Where does the +$2.9k/month proof number come from?", a: "A single PR proposing an oversized GPU autoscaler increase was flagged by DevX with an estimated $2.4k–$2.9k/month impact and corrected before merge." },
+  ["Will this slow down our PR flow?", "No. DevX runs as a fast check and posts a single inline comment. No extra approval step unless you opt into required mode."],
+  ["Which IaC tools are supported?", "Terraform, OpenTofu, Pulumi, CloudFormation, Helm, Kubernetes, raw Kubernetes."],
+  ["How do we manage cost policy?", "Policies are code in your repo. Define thresholds, apply advisory or required enforcement per team or repo. Version controlled and reviewable like any other config."],
+  ["What is the path from PR comment to actual savings?", "The engineer sees the estimate, adjusts the change before merge, and the regression never reaches production. The saving is the cost of the avoided change multiplied by its lifetime."],
 ];
 
-export default function Page() {
+export default function DevXPage() {
   return (
     <>
-      <ProductHero
-        eyebrow="DevX"
-        color={M.color}
-        h1={<>Catch cost regressions <span style={{ color: M.color }}>before they reach production.</span></>}
-        sub="Pull-request-level cost checks for infrastructure changes. Free tier. GitHub, GitLab, and Azure DevOps native."
-        stats={[
-          { value: "+$2.4k–2.9k/mo", label: "From a single PR", cite: "Single pull request, 2026" },
-          { value: "Free", label: "Tier available" },
-          { value: "3", label: "Source control vendors" },
-          { value: "7+", label: "IaC formats" },
-        ]}
-      />
-
-      <SplitMockup
-        color={M.color}
-        label="PR cost check"
-        heading="Every infrastructure PR gets a cost diff before merge."
-        body="DevX reads the plan, prices it against your live cloud rates and commitments, and posts an explicit impact comment with a suggested fix when needed."
-        stat={{ value: "+$2.9k/mo", label: "Prevented in a single PR" }}
-        mockTitle="github.com/cloudverse/infra/pull/214"
-        mockBody={<MockPR />}
-      />
-
-      <FeatureShowcase
-        label="Platform"
-        heading="Shift-left from PR to policy to proof."
-        color={M.color}
-        states={FEATURES}
-      />
-
-      <Capabilities
-        label="Capabilities"
-        heading="Cost gates that engineers actually want."
-        color={M.color}
-        items={[
-          { icon: GitPullRequest, title: "PR cost diff",        desc: "Inline diff comment for every infrastructure change." },
-          { icon: ShieldCheck,    title: "Policy-as-code",      desc: "Cost guardrails versioned in your repo and applied as checks." },
-          { icon: FileCode2,      title: "Multi-IaC support",   desc: "Terraform, Helm, Kustomize, CloudFormation, Pulumi." },
-          { icon: AlertTriangle,  title: "Anomaly prevention",  desc: "Block regressions before they hit production cloud bills." },
-          { icon: GitBranch,      title: "Branch protection",   desc: "Required cost checks integrated into native branch rules." },
-          { icon: Workflow,       title: "Native CI integration", desc: "GitHub Actions, GitLab CI, Azure Pipelines, Jenkins, Argo." },
-          { icon: Cpu,            title: "GPU + AI workloads",  desc: "Aware of GPU pricing and AI provider rate cards via AIX." },
-          { icon: Container,      title: "Kubernetes-native",   desc: "Helm and Kustomize plans scored with request/limit awareness." },
-          { icon: Lock,           title: "Auditable approvals", desc: "Overrides require justification and are fully logged." },
-        ]}
-      />
-
-      <Lifecycle
-        color={M.color}
-        stages={[
-          { title: "Inform",   bullets: ["Connect GitHub / GitLab / Azure DevOps", "First PR gets a cost diff within minutes", "Read repo metadata only", "No production cloud access required"] },
-          { title: "Optimize", bullets: ["Suggested fixes inline in PR comments", "Right-size and right-region guidance pre-merge", "Commitment-aware pricing for accuracy", "Free tier for open-source and small teams"] },
-          { title: "Operate",  bullets: ["Required checks on cost-impacting paths", "Policy-as-code reviewed like any other PR", "Audited overrides with justification", "Prevented-regression reporting wired to FinOps"] },
-        ]}
-      />
-
-      <WhoUsesIt
-        color={M.color}
-        items={[
-          { team: "Engineering", role: "Platform Engineer",  desc: "Owns the IaC and gets the cost diff on every PR they review." },
-          { team: "Engineering", role: "Application Engineer", desc: "Sees the impact of their change without leaving the PR." },
-          { team: "Finance",     role: "FinOps Manager",     desc: "Sets policy, tracks prevented regressions, reports back to leadership." },
-        ]}
-      />
-
-      <IntegrationsStrip
-        color={M.color}
-        items={["GitHub", "GitLab", "Azure DevOps", "Bitbucket", "GitHub Actions", "GitLab CI", "Jenkins", "Argo CD", "Terraform"]}
-      />
-
-      <section className="cv-section bg-cv-surface2">
-        <div className="cv-container">
-          <div className="max-w-3xl mb-10">
-            <div className="cv-label mb-3" style={{ color: M.color }}>FAQ</div>
-            <h2 className="cv-h2 text-cv-ink">DevX questions, answered.</h2>
+      <section className="cv-hero-bg pt-[120px] pb-16 lg:pt-[160px] lg:pb-24 relative">
+        <div className="cv-container relative z-10 max-w-4xl">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-medium" style={{ borderColor: `${ACCENT}66`, color: "#3FD0A3" }}>
+            <span className="w-1.5 h-1.5 rounded-full" style={{ background: ACCENT }} />
+            DevX — Shift-Left Cost Intelligence
           </div>
-          <FaqBlock items={FAQ} accent={M.color} />
+          <h1 className="cv-h1 mt-6 text-cv-ink">Catch Cost Regressions Before They Reach Production</h1>
+          <p className="cv-body-lg mt-6 text-cv-ink/75">
+            Every infrastructure PR gets an inline cost impact comment before reviewers see it. Engineers see what their changes cost at the moment they can still change something.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight size={16} /></Link>
+            <Link href="#pr-example" className="cv-btn-ghost">See a Real PR Example</Link>
+          </div>
         </div>
       </section>
 
-      <ExpandInto current="devx" />
-      <CTABand heading="See DevX catch a cost regression in your repo." />
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            name: "CloudVerse DevX",
-            applicationCategory: "BusinessApplication",
-            description: metadata.description,
-            offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-          }),
-        }}
-      />
-    </>
-  );
-}
-
-/* ——— Mock UIs ——— */
-
-function MockPR() {
-  return (
-    <div className="font-mono text-xs">
-      <div className="flex items-center gap-2 mb-3 text-cv-ink/65">
-        <GitPullRequest size={14} className="text-emerald-400" />
-        <span className="text-cv-ink">#214 Bump GPU autoscaler ceiling for training cluster</span>
-      </div>
-      <div className="rounded border border-cv-line/10 bg-black/30 p-3 mb-3">
-        <div className="text-[10px] text-cv-ink/45 uppercase tracking-wider mb-2">terraform/clusters/training.tf</div>
-        <div className="text-rose-300/85">- max_node_count = 16</div>
-        <div className="text-emerald-300/90">+ max_node_count = 64</div>
-        <div className="text-rose-300/85">- node_pool = "g5.4xlarge"</div>
-        <div className="text-emerald-300/90">+ node_pool = "p3.16xlarge"</div>
-      </div>
-      <div className="rounded border border-cv-teal/40 bg-cv-teal/10 p-3">
-        <div className="text-cv-teal text-[11px] font-semibold uppercase tracking-wider mb-1">CloudVerse DevX</div>
-        <div className="text-cv-ink">Estimated impact: <span className="text-cv-teal font-semibold">+$2,420 to $2,910 / month</span></div>
-        <div className="text-cv-ink/65 mt-2">Suggested: keep g5.4xlarge with 32 ceiling, schedule p3.16xlarge only during training windows.</div>
-      </div>
-    </div>
-  );
-}
-
-function MockCI() {
-  return (
-    <div className="font-mono text-xs space-y-1.5">
-      <div className="text-cv-ink/65"><span className="text-emerald-400">✓</span> Pricing data loaded (us-east-1, eu-west-1)</div>
-      <div className="text-cv-ink/65"><span className="text-emerald-400">✓</span> Terraform plan parsed · 42 resources</div>
-      <div className="text-cv-ink/65"><span className="text-emerald-400">✓</span> Helm chart parsed · 18 manifests</div>
-      <div className="text-cv-ink/65"><span className="text-cv-teal">!</span> Policy: gpu_max_monthly_cost_per_pool — warning</div>
-      <div className="text-cv-ink/65"><span className="text-rose-400">✗</span> Policy: region_allowlist — fail (ap-south-1)</div>
-      <div className="text-cv-ink/65"><span className="text-emerald-400">✓</span> Cost diff posted to PR</div>
-      <div className="text-cv-ink mt-3">Result: <span className="text-rose-400 font-semibold">1 fail, 1 warn</span> — merge blocked</div>
-    </div>
-  );
-}
-
-function MockPolicy() {
-  return (
-    <div className="font-mono text-xs">
-      <div className="rounded border border-cv-line/10 bg-black/30 p-3 text-cv-ink/85">
-        <div className="text-cv-ink/45 text-[10px] uppercase tracking-wider mb-2">policies/cost.yaml</div>
-        <div><span className="text-purple-300">policy</span>: gpu_max_monthly_cost_per_pool</div>
-        <div className="pl-3"><span className="text-purple-300">limit</span>: $25000</div>
-        <div className="pl-3"><span className="text-purple-300">severity</span>: warning</div>
-        <div className="mt-2"><span className="text-purple-300">policy</span>: region_allowlist</div>
-        <div className="pl-3"><span className="text-purple-300">allow</span>: [us-east-1, us-west-2, eu-west-1]</div>
-        <div className="pl-3"><span className="text-purple-300">severity</span>: required</div>
-        <div className="mt-2"><span className="text-purple-300">policy</span>: instance_family_allowlist</div>
-        <div className="pl-3"><span className="text-purple-300">deny</span>: [x1, x1e, u-*]</div>
-        <div className="pl-3"><span className="text-purple-300">severity</span>: required</div>
-      </div>
-    </div>
-  );
-}
-
-function MockPrevented() {
-  return (
-    <div className="space-y-2">
-      <div className="text-[11px] text-cv-ink/55 uppercase tracking-wider mb-2">Prevented impact · last 30 days</div>
-      {[
-        { pr: "#214 GPU autoscaler ceiling raise", val: "$2,910/mo" },
-        { pr: "#198 RDS db.r6g.16xlarge upgrade", val: "$1,840/mo" },
-        { pr: "#191 Helm: requests 4× actual usage", val: "$1,120/mo" },
-        { pr: "#187 New egress-heavy region", val: "$760/mo" },
-        { pr: "#172 Reserved Instance miss", val: "$540/mo" },
-      ].map((p) => (
-        <div key={p.pr} className="flex justify-between items-center p-3 rounded border border-cv-line/10 bg-cv-ink/[0.02]">
-          <span className="text-cv-ink/85 text-xs">{p.pr}</span>
-          <span className="text-cv-teal tabular-nums text-xs font-medium">{p.val}</span>
+      <section className="border-y border-cv-line bg-cv-surface2/40">
+        <div className="cv-container py-8 grid grid-cols-2 lg:grid-cols-4 gap-6">
+          {STATS.map((s) => (
+            <div key={s.l}>
+              <div className="text-2xl lg:text-3xl font-display font-semibold text-cv-ink">{s.v}</div>
+              <div className="text-sm text-cv-muted mt-1">{s.l}</div>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+      </section>
+
+      <section className="cv-section">
+        <div className="cv-container max-w-4xl">
+          <h2 className="cv-h2 text-cv-ink">Infrastructure cost mistakes do not look like mistakes.</h2>
+          <p className="cv-body-lg text-cv-ink/80 mt-6">
+            Infrastructure decisions that cause cost regressions look like correct Terraform. The NAT gateway goes in because someone needed it for one sprint. Nobody removes it. The always-on compute instance gets sized for peak load. Load normalises. The instance stays.
+          </p>
+          <p className="cv-body-lg text-cv-ink/80 mt-4">
+            Cost reports land three weeks after the deployment. The engineer who wrote the change has moved on to four other things. Nobody changes anything.
+          </p>
+          <p className="cv-body-lg text-cv-ink font-medium mt-4">
+            DevX puts a cost estimate on every PR before it merges. Engineers see impact at the moment they still have context on what they built and why.
+          </p>
+        </div>
+      </section>
+
+      {/* PR EXAMPLE */}
+      <section id="pr-example" className="cv-section bg-cv-surface2">
+        <div className="cv-container">
+          <div className="max-w-3xl mb-8">
+            <h2 className="cv-h2 text-cv-ink">This is what a DevX PR comment looks like.</h2>
+            <p className="text-cv-ink/75 mt-4">
+              This is a real DevX output. An infrastructure change that looked routine. NAT gateway flag and a compute resize.
+            </p>
+          </div>
+          <pre className="rounded-2xl border border-cv-line bg-cv-surface p-6 text-xs text-cv-ink/85 overflow-x-auto font-mono leading-relaxed">{DIFF}</pre>
+          <div className="grid md:grid-cols-2 gap-5 mt-8">
+            <div className="rounded-2xl border p-6" style={{ borderColor: `${ACCENT}66`, background: `${ACCENT}14` }}>
+              <div className="cv-label mb-2" style={{ color: "#3FD0A3" }}>DevX cost estimate</div>
+              <div className="text-2xl font-display font-semibold text-cv-ink">+$1.1k to $1.4k</div>
+              <div className="text-sm text-cv-muted">per month</div>
+              <div className="cv-label mt-5 mb-2">Primary drivers</div>
+              <ul className="text-sm text-cv-ink/80 space-y-1">
+                <li>• NAT Gateway hourly + data processing charges</li>
+                <li>• Over-provisioned compute for observed utilisation</li>
+              </ul>
+            </div>
+            <div className="rounded-2xl border border-cv-line bg-cv-surface p-6">
+              <div className="cv-label mb-2">Why this matters</div>
+              <ul className="text-sm text-cv-ink/80 space-y-1">
+                <li>• Always-on NAT in non-prod is a recurring cost with no production benefit</li>
+                <li>• Instance size exceeds observed utilisation</li>
+              </ul>
+              <div className="cv-label mt-5 mb-2">Suggested fix</div>
+              <ul className="text-sm text-cv-ink/80 space-y-1">
+                <li>• Disable NAT Gateway in non-prod environments</li>
+                <li>• Use VPC endpoints for S3 and DynamoDB access</li>
+                <li>• Right-size compute for non-prod workloads</li>
+              </ul>
+            </div>
+          </div>
+          <p className="text-xs text-cv-muted mt-6 italic">
+            Estimates are directional. They do not affect billing. They inform decisions before billing happens.
+          </p>
+        </div>
+      </section>
+
+      {/* WHAT PLATFORM TEAMS SHIP */}
+      <section className="cv-section">
+        <div className="cv-container">
+          <div className="max-w-3xl mb-10">
+            <h2 className="cv-h2 text-cv-ink">Cost gates engineers actually want to use.</h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-5">
+            {[
+              ["PR cost diff", "Every infra PR gets an inline cost impact estimate before reviewers see it. The engineer sees what their change costs. Their reviewer sees it too. The conversation happens in the PR, not in a cost review meeting three weeks later."],
+              ["Policy-as-code", "Cost guardrails versioned in your repo. Applied as advisory or required checks. Advisory mode: the PR gets an estimate, the engineer decides. Required mode: PRs over a defined cost threshold need explicit approval before merge. Both modes live in your repo as code: version controlled, reviewable, auditable."],
+              ["Native CI integration", "GitHub Actions, GitLab CI, Azure Pipelines, Jenkins, Argo. No new pipeline required. DevX slots into what your teams already use."],
+              ["Multi-IaC support", "Terraform, OpenTofu, Pulumi, CloudFormation, Helm, Kubernetes, raw Kubernetes manifests. 7+ formats supported."],
+            ].map(([t, b]) => (
+              <div key={t} className="rounded-2xl border border-cv-line bg-cv-surface2 p-7">
+                <h3 className="cv-h3 text-cv-ink">{t}</h3>
+                <p className="text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* WHO DEVX IS FOR */}
+      <section className="cv-section bg-cv-surface2">
+        <div className="cv-container">
+          <h2 className="cv-h2 text-cv-ink mb-10">Who DevX is for</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              ["Platform engineers", "Stop cost governance from being a retrospective exercise. Policies live in the repo. Every PR gets a signal before it ships. Governance happens where the work happens."],
+              ["Application engineers", "Catch costly code patterns early. Expensive loops, chatty APIs, and inefficient resource usage flagged in context before production. The estimate arrives with a suggested fix."],
+              ["FinOps teams", "Shift cost accountability into the delivery workflow. Surface cost risks where decisions are made, before infrastructure or code ships. Stop chasing post-production waste."],
+              ["Data teams", "Detect expensive queries, inefficient scans, and over-provisioned compute in PRs and CI jobs. Catch the problem before the data platform gets blamed."],
+            ].map(([t, b]) => (
+              <div key={t} className="rounded-2xl border border-cv-line bg-cv-surface p-6">
+                <h3 className="font-display font-semibold text-cv-ink">{t}</h3>
+                <p className="text-sm text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PRICING */}
+      <section className="cv-section">
+        <div className="cv-container">
+          <div className="max-w-3xl mb-10">
+            <h2 className="cv-h2 text-cv-ink">Most customers recover the cost of DevX from a single prevented regression.</h2>
+            <p className="cv-body-lg text-cv-ink/75 mt-5">
+              A missed NAT gateway cleanup runs $800 per month minimum. A misconfigured always-on instance in non-prod runs higher. DevX catches these before they merge.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5">
+            <div className="rounded-2xl border border-cv-line bg-cv-surface2 p-7">
+              <div className="text-sm text-cv-muted">Free</div>
+              <div className="text-3xl font-display font-semibold text-cv-ink mt-1">$0<span className="text-base text-cv-muted">/month</span></div>
+              <ul className="space-y-2 text-sm text-cv-ink/80 mt-5">
+                <li>• Unlimited public repos</li>
+                <li>• Standard PR cost estimates</li>
+                <li>• Basic CI scan</li>
+                <li>• Weekly reports</li>
+              </ul>
+            </div>
+            <div className="rounded-2xl border-2 p-7" style={{ borderColor: ACCENT, background: `${ACCENT}10` }}>
+              <div className="text-sm" style={{ color: "#3FD0A3" }}>Business</div>
+              <div className="text-3xl font-display font-semibold text-cv-ink mt-1">$900<span className="text-base text-cv-muted">/month</span></div>
+              <ul className="space-y-2 text-sm text-cv-ink/85 mt-5">
+                <li>• Everything in Free</li>
+                <li>• Private repos</li>
+                <li>• Priority CI scans</li>
+                <li>• Advanced PR policy engine</li>
+                <li>• SSO (GitHub, Okta, and others)</li>
+                <li>• Includes 1,000 units per month. $0.50 per additional unit.</li>
+              </ul>
+            </div>
+            <div className="rounded-2xl border border-cv-line bg-cv-surface2 p-7">
+              <div className="text-sm text-cv-muted">Enterprise</div>
+              <div className="text-3xl font-display font-semibold text-cv-ink mt-1">Custom</div>
+              <ul className="space-y-2 text-sm text-cv-ink/80 mt-5">
+                <li>• Everything in Business</li>
+                <li>• Custom allowance and unlimited scale</li>
+                <li>• Dedicated success manager</li>
+                <li>• SLA and premium support</li>
+                <li>• On-prem deployment options</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="cv-section bg-cv-surface2">
+        <div className="cv-container max-w-3xl">
+          <h2 className="cv-h2 text-cv-ink mb-8">FAQ</h2>
+          <div className="space-y-4">
+            {FAQ.map(([q, a]) => (
+              <details key={q} className="rounded-xl border border-cv-line bg-cv-surface p-5">
+                <summary className="cursor-pointer font-medium text-cv-ink">{q}</summary>
+                <p className="text-cv-ink/75 mt-3 leading-relaxed">{a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="cv-section">
+        <div className="cv-container">
+          <div className="rounded-3xl border border-cv-line bg-cv-surface2 p-10 lg:p-16 text-center">
+            <h2 className="cv-h2 text-cv-ink max-w-3xl mx-auto">See DevX catch a cost regression in your repo.</h2>
+            <p className="cv-body-lg text-cv-ink/75 mt-5 max-w-2xl mx-auto">
+              Connect your first account in under 30 minutes. Most teams find their first cost regression the same day.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight size={16} /></Link>
+              <Link href="/contact" className="cv-btn-ghost">Talk to Sales</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

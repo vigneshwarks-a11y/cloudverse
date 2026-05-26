@@ -1,320 +1,199 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
-import { BarChart3, Layers, AlertTriangle, TrendingUp, FileCheck2, Network, Tag, Wallet, LineChart } from "lucide-react";
-import { ProductHero } from "@/components/product/Hero";
-import { SplitMockup } from "@/components/product/Mockup";
-import { FeatureShowcase, type FeatureState } from "@/components/product/FeatureShowcase";
-import { Capabilities } from "@/components/product/Capabilities";
-import { Lifecycle } from "@/components/product/Lifecycle";
-import { WhoUsesIt } from "@/components/product/WhoUsesIt";
-import { IntegrationsStrip } from "@/components/product/IntegrationsStrip";
-import { ExpandInto } from "@/components/product/ExpandInto";
-import { FaqBlock } from "@/components/FaqBlock";
-import { CTABand } from "@/components/CTABand";
-import { MODULES } from "@/lib/modules";
-
-const M = MODULES.finops;
+import { DEMO_URL } from "@/lib/links";
 
 export const metadata: Metadata = {
-  title: "FinOps Platform — Multi-Cloud Cost Intelligence",
+  title: "FinOps Platform — Multi-Cloud Cost Intelligence for Every Team | CloudVerse",
   description:
-    "Unified cost visibility, allocation, anomaly detection, and optimization across AWS, Azure, GCP, and more. Berkshire Hathaway realised $738,983 in annualised savings.",
-  alternates: { canonical: "/platform/finops" },
+    "See every dollar by team, product, and provider. One model that reconciles to finance and explains itself to engineering.",
 };
 
-const FEATURES: FeatureState[] = [
-  {
-    title: "Cost variance explanation",
-    desc: "Every spike attributed to a team, service, or change — within hours, not weeks.",
-    mockTitle: "cloudverse.ai/finops/variance",
-    mockBody: <MockVariance />,
-  },
-  {
-    title: "Allocation & chargeback",
-    desc: "Shared services, tag governance, and chargeback that finance and engineering both agree on.",
-    mockTitle: "cloudverse.ai/finops/allocation",
-    mockBody: <MockAllocation />,
-  },
-  {
-    title: "Anomaly detection",
-    desc: "Spend anomalies surfaced with full attribution and recommended actions.",
-    mockTitle: "cloudverse.ai/finops/anomalies",
-    mockBody: <MockAnomalies />,
-  },
-  {
-    title: "Optimization",
-    desc: "Right-sizing, commitment guidance, and savings plan modeling with payback proof.",
-    mockTitle: "cloudverse.ai/finops/optimize",
-    mockBody: <MockOptimize />,
-  },
+const ACCENT = "#1664C0";
+
+const STATS = [
+  { v: "$738,983", l: "recovered — Berkshire Hathaway HomeServices" },
+  { v: "$101,736", l: "saved annually" },
+  { v: "$61,582", l: "recovered in a single month" },
+  { v: "5+", l: "cloud providers unified" },
 ];
 
 const FAQ = [
-  { q: "Which clouds does FinOps Platform support?", a: "AWS, Microsoft Azure, Google Cloud, Alibaba Cloud, Huawei Cloud, plus VMware and Kubernetes for hybrid estates. All connections are read-only by default." },
-  { q: "How long does it take to connect an account?", a: "Most teams connect their first cloud account in under 30 minutes. Initial findings — anomalies, commitment gaps, untagged spend — typically surface the same day." },
-  { q: "How is CloudVerse different from a legacy FinOps tool?", a: "Legacy tools explain the invoice after it lands. CloudVerse governs the decisions that create it. Allocation, optimization, AI/GPU economics, PR-level cost checks, and warehouse query attribution all run on a single shared control plane." },
-  { q: "Can we run our own allocation model?", a: "Yes. You can express any allocation logic — tags, accounts, namespaces, business units, shared service splits — and reconcile it back to finance reporting without engineering changes." },
-  { q: "Do you handle commitments and savings plans?", a: "We model coverage, utilisation, and break-even payback across Reserved Instances, Savings Plans, Compute Savings Plans, and Azure RIs — with explicit recommendations and ownership trails." },
-  { q: "What about multi-currency and chargeback to business units?", a: "Multi-currency reporting, showback, and chargeback are first-class. Tax and discount layers can be applied per account or per business unit." },
-  { q: "Where does Berkshire Hathaway's $738,983 number come from?", a: "Berkshire Hathaway HomeServices (2026): $101,736/month identified, $61,582/month realised, $738,984 annualised. Numbers tracked in CloudVerse and reconciled against cloud invoices." },
+  ["How is this different from cost explorer dashboards?", "Dashboards explain the invoice. CloudVerse governs the decisions that shape it: PR-level checks, AI/GPU economics, and warehouse query attribution on one model."],
+  ["Can we keep our current allocation logic?", "Yes. CloudVerse imports existing tag structures and cost allocation rules as a starting point."],
+  ["How long until we are using it day to day?", "Most teams have a working allocation model within the first account connection. Meaningful depth takes two to four weeks of iteration depending on tagging maturity."],
+  ["Do you support multi-currency and tax?", "Yes."],
 ];
 
-export default function Page() {
+export default function FinOpsPage() {
   return (
     <>
-      <ProductHero
-        eyebrow="FinOps Platform"
-        color={M.color}
-        h1={<>Multi-cloud cost intelligence <span style={{ color: M.color }}>for every team.</span></>}
-        sub="Unified cost, allocation, and optimization across AWS, Azure, GCP, and the rest of your estate — governed in one place."
-        stats={[
-          { value: "$738,983", label: "Annualised savings", cite: "Berkshire Hathaway HomeServices, 2026" },
-          { value: "$61,582", label: "Realised / month", cite: "Berkshire Hathaway, 2026" },
-          { value: "$101,736", label: "Identified / month", cite: "Berkshire Hathaway, 2026" },
-          { value: "5+", label: "Cloud providers" },
-        ]}
-      />
-
-      <SplitMockup
-        color={M.color}
-        label="Cost overview"
-        heading="See every dollar by team, product, and provider."
-        body="A live cost overview that ties every line item back to the team, environment, or product driving it — with explicit anomaly attribution when something changes."
-        stat={{ value: "$101,736 / mo", label: "Identified savings" }}
-        mockTitle="cloudverse.ai/finops/overview"
-        mockBody={<MockOverview />}
-      />
-
-      <FeatureShowcase
-        label="Platform"
-        heading="Four product surfaces. One unified view."
-        color={M.color}
-        states={FEATURES}
-      />
-
-      {/* Berkshire case study */}
-      <section className="cv-section bg-cv-surface2">
-        <div className="cv-container">
-          <div className="max-w-3xl mb-10">
-            <div className="cv-label mb-3" style={{ color: M.color }}>Customer story</div>
-            <h2 className="cv-h2 text-cv-ink">How Berkshire Hathaway HomeServices recovered $738,983.</h2>
+      <section className="cv-hero-bg pt-[120px] pb-16 lg:pt-[160px] lg:pb-24 relative">
+        <div className="cv-container relative z-10 max-w-4xl">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-medium" style={{ borderColor: `${ACCENT}66`, color: "#7CB8F8" }}>
+            <span className="w-1.5 h-1.5 rounded-full" style={{ background: ACCENT }} />
+            FinOps Platform
           </div>
-          <div className="rounded-2xl overflow-hidden border border-cv-line/10">
-            <div className="grid sm:grid-cols-3 gap-6 p-7 sm:p-9 bg-cv-surface2">
-              <MetricBlock value="$101,736" label="Monthly identified" />
-              <MetricBlock value="$61,582" label="Monthly realised" />
-              <MetricBlock value="$738,984" label="Annualised savings" />
-            </div>
-            <div className="p-7 sm:p-9 bg-cv-ink/[0.02] text-cv-ink/80 text-[15px] leading-relaxed">
-              A growing multi-cloud Azure and AWS estate produced significant monthly variance without a shared allocation model. CloudVerse connected both accounts in under a day, surfaced commitment gaps and stranded App Service capacity, and produced an actionable savings backlog within the first week.
-            </div>
+          <h1 className="cv-h1 mt-6 text-cv-ink">Multi-Cloud Cost Intelligence for Every Team</h1>
+          <p className="cv-body-lg mt-6 text-cv-ink/75">
+            See every dollar by team, product, and provider. One model that reconciles to finance and explains itself to engineering.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight size={16} /></Link>
+            <Link href="/integrations" className="cv-btn-ghost">Explore the Platform</Link>
           </div>
         </div>
       </section>
 
-      <Capabilities
-        label="Capabilities"
-        heading="Everything finance and engineering need on day one."
-        color={M.color}
-        items={[
-          { icon: Layers,        title: "Allocation",        desc: "Express any model — tags, accounts, BU, shared services — reconciled to finance." },
-          { icon: AlertTriangle, title: "Anomaly detection", desc: "Spend anomalies surfaced with attribution and recommended remediation." },
-          { icon: TrendingUp,    title: "Forecasting",       desc: "Run-rate forecasts by team, env, and product — explained, not just charted." },
-          { icon: BarChart3,     title: "Unit economics",    desc: "Cost per customer, per request, per workload — tied to revenue signals." },
-          { icon: Wallet,        title: "Commitments",       desc: "RI, SP, CSP coverage and utilisation modelling with payback proof." },
-          { icon: Tag,           title: "Tag governance",    desc: "Untagged spend ownership, enforcement policies, and remediation paths." },
-          { icon: FileCheck2,    title: "Showback / chargeback", desc: "Finance-ready reports with multi-currency, tax, and discount logic." },
-          { icon: Network,       title: "Multi-cloud",       desc: "AWS, Azure, GCP, Alibaba, Huawei, Kubernetes, and VMware on one model." },
-          { icon: LineChart,     title: "Variance reporting",desc: "Period-over-period variance with attribution, not just colour-coded cells." },
-        ]}
-      />
-
-      <Lifecycle
-        color={M.color}
-        stages={[
-          { title: "Inform",   bullets: ["Connect AWS, Azure, GCP in under 30 minutes", "Cost, usage, and unit views per team / product", "Anomalies with attribution within hours", "Read-only by default — no production access"] },
-          { title: "Optimize", bullets: ["Right-size, schedule, and commit with proof", "Modelled payback per recommendation", "Tag and ownership remediation playbooks", "Approval workflows with audit logs"] },
-          { title: "Operate",  bullets: ["Policy-bound automation as workloads evolve", "Chargeback and showback wired to BU reporting", "Multi-cloud variance reporting", "Continuous governance, not one-time clean-up"] },
-        ]}
-      />
-
-      <WhoUsesIt
-        color={M.color}
-        items={[
-          { team: "FinOps",        role: "FinOps Manager",  desc: "Owns allocation, anomaly response, and the savings backlog across providers." },
-          { team: "Engineering",   role: "Cloud Engineer",  desc: "Acts on right-sizing, commitment, and waste recommendations without breaking workloads." },
-          { team: "Finance",       role: "CFO / VP Finance",desc: "Gets accurate showback, predictable run-rate forecasts, and audit-ready reporting." },
-        ]}
-      />
-
-      <IntegrationsStrip
-        color={M.color}
-        items={["AWS", "Microsoft Azure", "Google Cloud", "Alibaba Cloud", "Huawei Cloud", "Kubernetes", "VMware / vCenter", "Datadog", "OpenTelemetry"]}
-      />
-
-      <section className="cv-section bg-cv-surface2">
-        <div className="cv-container">
-          <div className="max-w-3xl mb-10">
-            <div className="cv-label mb-3" style={{ color: M.color }}>FAQ</div>
-            <h2 className="cv-h2 text-cv-ink">FinOps Platform questions, answered.</h2>
-          </div>
-          <FaqBlock items={FAQ} accent={M.color} />
-        </div>
-      </section>
-
-      <ExpandInto current="finops" />
-      <CTABand
-        heading="See where your cloud bill is actually going."
-        sub="Connect your first account in under 30 minutes. Most teams have their first non-obvious finding the same day."
-      />
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            name: "CloudVerse FinOps Platform",
-            applicationCategory: "BusinessApplication",
-            description: metadata.description,
-            offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-          }),
-        }}
-      />
-    </>
-  );
-}
-
-function MetricBlock({ value, label }: { value: string; label: string }) {
-  return (
-    <div>
-      <div className="font-display font-bold text-cv-ink text-3xl sm:text-4xl tabular-nums">{value}</div>
-      <div className="text-cv-ink/60 text-xs uppercase tracking-wider mt-2">{label}</div>
-    </div>
-  );
-}
-
-/* ——— Mock UIs ——— */
-
-function MockOverview() {
-  const bars = [
-    { name: "AWS · EC2", v: 92 },
-    { name: "Azure · VMs", v: 71 },
-    { name: "Snowflake", v: 54 },
-    { name: "AWS · S3", v: 38 },
-    { name: "Databricks", v: 28 },
-  ];
-  return (
-    <div className="space-y-2">
-      <div className="flex justify-between text-[11px] text-cv-ink/55 uppercase tracking-wider">
-        <span>Top cost drivers · last 30 days</span>
-        <span>Δ vs. prior</span>
-      </div>
-      {bars.map((b) => (
-        <div key={b.name} className="flex items-center gap-3">
-          <div className="text-cv-ink/85 text-xs w-28 shrink-0">{b.name}</div>
-          <div className="flex-1 h-6 rounded bg-cv-ink/8 overflow-hidden">
-            <div className="h-full" style={{ width: `${b.v}%`, background: "#1664C0" }} />
-          </div>
-          <div className="text-cv-ink/65 text-xs tabular-nums w-12 text-right">+{Math.round(b.v / 6)}%</div>
-        </div>
-      ))}
-      <div className="mt-4 p-3 rounded border border-cv-blue/30 bg-cv-blue/10 text-xs text-cv-ink/85">
-        <span className="text-cv-blue-light font-medium">Anomaly detected — </span>
-        EC2 spend +37% vs. 7-day avg. Attributed to <span className="text-cv-ink font-medium">team-data-platform</span> (i-0a4e…b21).
-      </div>
-    </div>
-  );
-}
-
-function MockVariance() {
-  return (
-    <div>
-      <div className="text-[11px] text-cv-ink/55 uppercase tracking-wider mb-3">Period variance · Nov vs Oct</div>
-      <div className="grid grid-cols-3 gap-3 mb-4">
-        {[{ k: "Compute", v: "+$18.2k" }, { k: "Storage", v: "−$2.1k" }, { k: "Egress", v: "+$5.6k" }].map((x) => (
-          <div key={x.k} className="rounded border border-cv-line/10 p-3">
-            <div className="text-cv-ink/55 text-[11px]">{x.k}</div>
-            <div className="text-cv-ink font-display font-semibold mt-1 tabular-nums">{x.v}</div>
-          </div>
-        ))}
-      </div>
-      <div className="space-y-2 text-xs">
-        <div className="flex justify-between p-2 rounded bg-cv-ink/[0.03]"><span className="text-cv-ink/80">team-ml-training scaled p3.16xlarge fleet</span><span className="text-cv-ink tabular-nums">+$11,420</span></div>
-        <div className="flex justify-between p-2 rounded bg-cv-ink/[0.03]"><span className="text-cv-ink/80">prod-eu egress spike (CDN failover)</span><span className="text-cv-ink tabular-nums">+$5,612</span></div>
-        <div className="flex justify-between p-2 rounded bg-cv-ink/[0.03]"><span className="text-cv-ink/80">Reserved Instance refresh applied</span><span className="text-emerald-400 tabular-nums">−$2,140</span></div>
-      </div>
-    </div>
-  );
-}
-
-function MockAllocation() {
-  return (
-    <div>
-      <div className="text-[11px] text-cv-ink/55 uppercase tracking-wider mb-3">Chargeback · October</div>
-      <table className="w-full text-xs">
-        <thead className="text-cv-ink/55">
-          <tr><th className="text-left font-normal pb-2">Business unit</th><th className="text-right font-normal pb-2">Direct</th><th className="text-right font-normal pb-2">Shared</th><th className="text-right font-normal pb-2">Total</th></tr>
-        </thead>
-        <tbody className="text-cv-ink/85">
-          {[
-            ["Consumer apps", "$42,180", "$8,440", "$50,620"],
-            ["Data platform", "$28,920", "$11,210", "$40,130"],
-            ["AI / ML", "$19,440", "$6,810", "$26,250"],
-            ["Internal IT", "$7,120", "$3,090", "$10,210"],
-          ].map((r) => (
-            <tr key={r[0]} className="border-t border-cv-line/10">
-              <td className="py-2">{r[0]}</td>
-              <td className="text-right tabular-nums py-2">{r[1]}</td>
-              <td className="text-right tabular-nums py-2 text-cv-ink/55">{r[2]}</td>
-              <td className="text-right tabular-nums py-2 font-medium">{r[3]}</td>
-            </tr>
+      <section className="border-y border-cv-line bg-cv-surface2/40">
+        <div className="cv-container py-8 grid grid-cols-2 lg:grid-cols-4 gap-6">
+          {STATS.map((s) => (
+            <div key={s.l}>
+              <div className="text-2xl lg:text-3xl font-display font-semibold text-cv-ink">{s.v}</div>
+              <div className="text-sm text-cv-muted mt-1">{s.l}</div>
+            </div>
           ))}
-        </tbody>
-      </table>
-      <div className="mt-4 text-[11px] text-cv-ink/50">Allocation model: tag-based with shared-service split. Reconciled to NetSuite.</div>
-    </div>
-  );
-}
-
-function MockAnomalies() {
-  return (
-    <div className="space-y-2">
-      {[
-        { sev: "high", text: "Snowflake — warehouse SCALEUP_L burning $1,920/day", time: "12m ago", color: "#DC2626" },
-        { sev: "med",  text: "EKS prod-east — pod requests 4.2× actual usage", time: "1h ago", color: "#D97706" },
-        { sev: "high", text: "S3 egress spike to ap-southeast-1 (+$3,400)", time: "3h ago", color: "#DC2626" },
-        { sev: "low",  text: "Azure SQL Elastic Pool underutilised (12%)", time: "6h ago", color: "#1664C0" },
-      ].map((a) => (
-        <div key={a.text} className="flex items-start gap-3 p-3 rounded border border-cv-line/10 bg-cv-ink/[0.02]">
-          <span className="w-2 h-2 rounded-full mt-1.5" style={{ background: a.color }} />
-          <div className="flex-1">
-            <div className="text-cv-ink text-xs">{a.text}</div>
-            <div className="text-cv-ink/45 text-[10px] mt-0.5">{a.time}</div>
-          </div>
-          <button className="text-cv-blue-light text-[11px] font-medium">Investigate</button>
         </div>
-      ))}
-    </div>
-  );
-}
+      </section>
 
-function MockOptimize() {
-  return (
-    <div className="space-y-2">
-      {[
-        { name: "Savings Plan — Compute, 1yr no-upfront", est: "$40,000/mo", payback: "Immediate" },
-        { name: "Azure Reserved Instances refresh", est: "$14,962/mo", payback: "2 months" },
-        { name: "Consolidate App Service Plans", est: "$4,000/mo", payback: "4 weeks" },
-        { name: "Right-size m5.4xlarge → m5.2xlarge ×24", est: "$2,310/mo", payback: "Immediate" },
-      ].map((r) => (
-        <div key={r.name} className="flex items-center justify-between p-3 rounded border border-cv-line/10 bg-cv-ink/[0.02]">
-          <div>
-            <div className="text-cv-ink text-xs">{r.name}</div>
-            <div className="text-cv-ink/45 text-[10px] mt-0.5">Payback · {r.payback}</div>
-          </div>
-          <div className="text-cv-ink tabular-nums text-sm font-medium">{r.est}</div>
+      <section className="cv-section">
+        <div className="cv-container max-w-4xl">
+          <h2 className="cv-h2 text-cv-ink">Most FinOps tools show dashboards. This one changes what happens next.</h2>
+          <p className="cv-body-lg text-cv-ink/80 mt-6">
+            Most organisations already have a FinOps tool. Most of those tools show dashboards that look correct and generate recommendations that go unactioned. The problem is not visibility. It is that the intelligence stops at the dashboard.
+          </p>
+          <p className="cv-body-lg text-cv-ink/80 mt-4">
+            CloudVerse FinOps Platform connects spend data to the teams and decisions that drive it. What the bill says, what changed, who owns it, and what to do next.
+          </p>
         </div>
-      ))}
-    </div>
+      </section>
+
+      <section className="cv-section bg-cv-surface2">
+        <div className="cv-container">
+          <div className="max-w-3xl mb-10">
+            <h2 className="cv-h2 text-cv-ink">Four product surfaces. One unified view.</h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-5">
+            {[
+              ["Workload mapping", "Allocation that sticks. Every tag, account, BU, and shared-service split reconciled to the finance model. Teams see the spend they own. Leaders have a view that matches the finance report."],
+              ["Anomaly detection", "Identify the team, environment, and charge that drove the anomaly within hours of it happening, not in the next billing cycle review. The alert arrives with attribution, not just a number."],
+              ["Commitments with payback proof", "RI, SP, and CSP coverage modelled with explicit payback before you commit. Commitment planning that shows the math, not just the recommendation. No surprises."],
+              ["Audit-ready chargeback", "Showback and chargeback wired to BU reporting with multi-currency and tax support. The finance team gets a report they can use. The engineering team gets a model they can trust."],
+            ].map(([t, b]) => (
+              <div key={t} className="rounded-2xl border border-cv-line bg-cv-surface p-7">
+                <h3 className="cv-h3 text-cv-ink">{t}</h3>
+                <p className="text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CASE STUDY */}
+      <section className="cv-section">
+        <div className="cv-container">
+          <div className="rounded-3xl border border-cv-line bg-cv-surface2 p-8 lg:p-12">
+            <h2 className="cv-h2 text-cv-ink max-w-3xl">How Berkshire Hathaway HomeServices recovered $738,983</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 mb-8">
+              {[
+                ["$101,736", "recovered annually"],
+                ["$61,582", "recovered in a single month"],
+                ["$738,984", "total recovery"],
+              ].map(([v, l]) => (
+                <div key={l} className="rounded-xl border border-cv-line bg-cv-surface p-6">
+                  <div className="text-3xl lg:text-4xl font-display font-semibold text-cv-ink">{v}</div>
+                  <div className="text-sm text-cv-muted mt-2">{l}</div>
+                </div>
+              ))}
+            </div>
+            <p className="text-cv-ink/80 leading-relaxed max-w-3xl">
+              A growing mid-market cloud and AWS environment. Fragmented tagging, no team-level attribution, and a FinOps process that depended on manual variance reviews.
+            </p>
+            <p className="text-cv-ink/80 leading-relaxed max-w-3xl mt-4">
+              CloudVerse FinOps Platform connected spend to teams, surfaced the highest-impact anomalies, and gave the team an allocation model that held up to finance scrutiny. The waste was always there. It just had no address.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="cv-section bg-cv-surface2">
+        <div className="cv-container">
+          <div className="max-w-3xl mb-10">
+            <h2 className="cv-h2 text-cv-ink">Inform. Optimise. Operate.</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5">
+            {[
+              ["Inform", "Allocation, tagging, attribution, and variance reporting. Understand what is happening, who owns it, and what changed since last month."],
+              ["Optimise", "Rightsizing, commitment coverage, and waste identification. Prioritised by impact. Engineering-grade signals alongside finance reporting."],
+              ["Operate", "Automated recommendations, chargeback, budget alerts, and governance controls. Automation paths with approval workflows and full audit logs."],
+            ].map(([t, b], i) => (
+              <div key={t} className="rounded-2xl border border-cv-line bg-cv-surface p-7">
+                <div className="text-xs uppercase tracking-widest text-cv-muted">Stage 0{i + 1}</div>
+                <h3 className="cv-h3 text-cv-ink mt-2">{t}</h3>
+                <p className="text-cv-ink/75 mt-4 leading-relaxed">{b}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="cv-section">
+        <div className="cv-container">
+          <h2 className="cv-h2 text-cv-ink mb-10">Built for the teams accountable for the bill</h2>
+          <div className="grid md:grid-cols-3 gap-5">
+            {[
+              ["FinOps Manager", "One model that covers cloud, data platforms, and AI workloads. Everything reconciles to finance. Automation reduces the manual review cycle."],
+              ["Cloud Engineer", "Clear cost signals without leaving your workflow. See what changed, what it costs, and what to do. No more cost governance as a separate process."],
+              ["CFO / VP Finance", "Spend accountability at team and product level. The bill explained in terms of business decisions, not infrastructure line items."],
+            ].map(([t, b]) => (
+              <div key={t} className="rounded-2xl border border-cv-line bg-cv-surface2 p-7">
+                <h3 className="font-display font-semibold text-cv-ink">{t}</h3>
+                <p className="text-sm text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="cv-section bg-cv-surface2">
+        <div className="cv-container max-w-3xl">
+          <h2 className="cv-h2 text-cv-ink mb-8">FAQ</h2>
+          <div className="space-y-4">
+            {FAQ.map(([q, a]) => (
+              <details key={q} className="rounded-xl border border-cv-line bg-cv-surface p-5">
+                <summary className="cursor-pointer font-medium text-cv-ink">{q}</summary>
+                <p className="text-cv-ink/75 mt-3 leading-relaxed">{a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CONNECTS TO STACK */}
+      <section className="cv-section">
+        <div className="cv-container max-w-4xl">
+          <h2 className="cv-h3 text-cv-ink mb-4">Connects to the stack</h2>
+          <p className="text-cv-ink/75 leading-relaxed">
+            AWS, Azure, Google Cloud, plus AIX for AI workload economics, DataX for warehouse intelligence, and DevX for shift-left cost intelligence.
+          </p>
+        </div>
+      </section>
+
+      <section className="cv-section bg-cv-surface2">
+        <div className="cv-container">
+          <div className="rounded-3xl border border-cv-line bg-cv-surface p-10 lg:p-16 text-center">
+            <h2 className="cv-h2 text-cv-ink max-w-3xl mx-auto">Bring your FinOps program onto one control plane.</h2>
+            <p className="cv-body-lg text-cv-ink/75 mt-5 max-w-2xl mx-auto">
+              Connect your first account in under 30 minutes. Most teams have their first non-obvious finding the same day.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight size={16} /></Link>
+              <Link href="/contact" className="cv-btn-ghost">Talk to Sales</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
