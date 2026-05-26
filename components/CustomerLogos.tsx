@@ -40,11 +40,8 @@ export function CustomerLogos() {
   const isDark = mounted ? resolvedTheme === "dark" : true;
 
   return (
-    <section className="py-12 sm:py-14 lg:py-16 border-t border-cv-line overflow-hidden bg-cv-surface" data-testid="section-customer-logos">
+    <section className="py-10 sm:py-12 lg:py-14 overflow-hidden bg-cv-surface" data-testid="section-customer-logos">
       <div className="cv-container">
-        <p className="text-center text-sm sm:text-base text-cv-muted mb-8 sm:mb-10">
-          Used by platform and engineering teams at leading enterprises.
-        </p>
         <div className="relative overflow-hidden" suppressHydrationWarning>
           <div className="flex">
             <Strip isDark={isDark} grayscale={!isDark} />

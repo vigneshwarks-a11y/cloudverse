@@ -132,21 +132,8 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Section 3 — Customer logos */}
-          <div className="mt-20 pt-10 border-t border-cv-line/8">
-            <div className="cv-label text-cv-ink/50 mb-5 text-center">Trusted by leading enterprises</div>
-            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5 opacity-70">
-              {LOGOS.map((l) => (
-                <div key={l} className="text-cv-ink/75 text-sm tracking-wide font-medium" data-testid={`logo-${l.toLowerCase().replace(/[^a-z]+/g, "-")}`}>
-                  {l}
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
-
-      <div className="cv-section-break" />
 
       {/* Customer logos marquee */}
       <CustomerLogos />
