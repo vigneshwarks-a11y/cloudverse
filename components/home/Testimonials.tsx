@@ -108,7 +108,7 @@ export function Testimonials() {
               className="pointer-events-none absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(160deg, rgba(22,100,192,0.55) 0%, rgba(124,60,180,0.35) 28%, rgba(190,40,60,0.28) 46%, rgba(8,8,12,0.9) 72%, #000 100%)",
+                  "linear-gradient(160deg, rgba(22,100,192,0.6) 0%, rgba(22,100,192,0.32) 30%, rgba(8,8,12,0.9) 68%, #000 100%)",
               }}
             />
             {/* Subtle grid overlay */}
