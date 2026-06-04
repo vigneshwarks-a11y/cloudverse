@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+
+const CYCLE_MS = 5000;
 
 type Surface = {
   name: string;
@@ -45,6 +47,38 @@ const SURFACES: Surface[] = [
 
 export function PlatformSurfaces() {
   const [active, setActive] = useState(0);
+  const [cycle, setCycle] = useState(0);
+  const barRef = useRef<HTMLSpanElement>(null);
+  const runIdRef = useRef(0);
+
+  const select = (i: number) => {
+    runIdRef.current += 1;
+    setActive(i);
+    setCycle((c) => c + 1);
+  };
+
+  useEffect(() => {
+    const bar = barRef.current;
+    if (bar) bar.style.width = "0%";
+
+    const myRun = runIdRef.current;
+    let raf = 0;
+    const start = performance.now();
+
+    const tick = (now: number) => {
+      if (myRun !== runIdRef.current) return;
+      const p = Math.min((now - start) / CYCLE_MS, 1);
+      if (bar) bar.style.width = `${p * 100}%`;
+      if (p >= 1) {
+        setActive((a) => (a + 1) % SURFACES.length);
+        return;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [active, cycle]);
 
   return (
     <section className="cv-section bg-cv-surface2" data-testid="section-platform-surfaces">
@@ -64,7 +98,7 @@ export function PlatformSurfaces() {
                 <div key={s.name} className="relative border-b border-cv-line">
                   <button
                     type="button"
-                    onClick={() => setActive(i)}
+                    onClick={() => select(i)}
                     className={`flex w-full items-center gap-3 py-5 text-left transition-colors ${
                       isActive ? "" : "hover:opacity-80"
                     }`}
@@ -102,15 +136,18 @@ export function PlatformSurfaces() {
                     </div>
                   </div>
 
-                  {/* Glowing underline for active item */}
-                  <span
-                    className="pointer-events-none absolute bottom-[-1px] left-0 h-[2px] transition-all duration-500 ease-out"
-                    style={{
-                      width: isActive ? "100%" : "0%",
-                      background: "#0066CC",
-                      boxShadow: isActive ? "0 0 12px 1px rgba(0, 102, 204, 0.6)" : "none",
-                    }}
-                  />
+                  {/* Animated blue progress bar under the active item */}
+                  {isActive && (
+                    <span
+                      ref={barRef}
+                      className="pointer-events-none absolute bottom-[-1px] left-0 h-[3px] rounded-full"
+                      style={{
+                        width: "0%",
+                        background: "#0066CC",
+                        boxShadow: "0 0 12px 1px rgba(0, 102, 204, 0.6)",
+                      }}
+                    />
+                  )}
                 </div>
               );
             })}
