@@ -118,7 +118,7 @@ export function PlatformSurfaces() {
 
           {/* RIGHT — floating dashboard */}
           <div className="relative min-h-[320px] lg:min-h-0">
-            <div className="relative h-full rounded-2xl border border-white/10 bg-[#070710] p-3 shadow-[0_30px_80px_-30px_rgba(34,119,224,0.45),inset_0_1px_0_0_rgba(255,255,255,0.08)]">
+            <div className="relative h-full rounded-2xl border border-white/10 bg-[#070710] p-3 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.08)]">
               <div className="relative h-full min-h-[280px] overflow-hidden rounded-xl bg-[#0a0a0f]">
                 {SURFACES.map((s, i) => (
                   // eslint-disable-next-line @next/next/no-img-element
