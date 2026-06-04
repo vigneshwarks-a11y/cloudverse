@@ -1,0 +1,1 @@
+- [Next.js stale .next cache crash](next-stale-cache-crash.md) — client runtime crash while dev server returns 200; fix is `rm -rf .next` + restart, not a code change.
