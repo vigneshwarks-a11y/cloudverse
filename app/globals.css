@@ -161,3 +161,34 @@
   .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
   .scrollbar-hide::-webkit-scrollbar { display: none; }
 }
+
+/* Rotating conic gradient border for ProductVideo */
+@property --cv-ring-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes cv-ring-spin {
+  to { --cv-ring-angle: 360deg; }
+}
+.cv-video-ring {
+  background: conic-gradient(
+    from var(--cv-ring-angle),
+    #2277e0,
+    #6954d4,
+    #22d3ee,
+    #2277e0
+  );
+  animation: cv-ring-spin 6s linear infinite;
+}
+@keyframes cv-video-rise {
+  from { opacity: 0; transform: translateY(48px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.cv-video-rise {
+  animation: cv-video-rise 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cv-video-ring { animation: none; }
+  .cv-video-rise { animation: none; opacity: 1; transform: none; }
+}

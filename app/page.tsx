@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { CustomerLogos } from "@/components/CustomerLogos";
 import { InvoiceEfficiency } from "@/components/home/InvoiceEfficiency";
+import { ProductVideo } from "@/components/home/ProductVideo";
 import { DEMO_URL } from "@/lib/links";
 
 const STATS = [
@@ -89,6 +90,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* PRODUCT VIDEO */}
+      <ProductVideo />
 
       {/* STATS STRIP */}
       <section className="border-y border-cv-line bg-cv-surface2/40">
