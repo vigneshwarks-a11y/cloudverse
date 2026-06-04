@@ -17,14 +17,17 @@ const STATS = [
 const STAGES = [
   {
     n: "Inform",
+    icon: "/legacy/icons/stage-inform.svg",
     body: "Full cost attribution across cloud, data, and AI workloads. Down to the query, request, or deployment. Allocation that maps spend to the teams and systems that created it.",
   },
   {
     n: "Optimize",
+    icon: "/legacy/icons/stage-optimize.svg",
     body: "Recommendations with quantified expected savings. Cost-quality tradeoffs modelled before you commit. Engineering-grade signals, not finance reports.",
   },
   {
     n: "Operate",
+    icon: "/legacy/icons/stage-operate.svg",
     body: "Automation paths with approval workflows, full audit logs, and rollback readiness. Budgets enforced at the routing layer. Governance that engineers don't route around.",
   },
 ];
@@ -148,10 +151,9 @@ export default function HomePage() {
                   <span className="inline-flex items-center rounded-full border border-[#1664C0] bg-[#1664C0]/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-[#7C9BFF]">
                     Stage 0{i + 1}
                   </span>
-                  <div
-                    aria-hidden
-                    className="h-12 w-12 shrink-0 rounded-lg border border-[#1664C0]/40 bg-[#1664C0]/10"
-                  />
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-[#1664C0]/40 bg-[#1664C0]/10">
+                    <img src={s.icon} alt="" aria-hidden className="h-6 w-6" />
+                  </div>
                 </div>
                 <h3 className="mt-6 font-display text-2xl font-bold text-white">{s.n}</h3>
                 <p className="text-cv-ink/75 leading-relaxed mt-4">{s.body}</p>
