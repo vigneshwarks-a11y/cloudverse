@@ -46,24 +46,22 @@ export function ProductVideo() {
             }}
           />
 
-          {/* Video window with rotating gradient ring */}
+          {/* Video window */}
           <div
-            className={`relative rounded-2xl p-[2px] cv-video-ring border-2 border-white/10 shadow-[0_20px_50px_-30px_rgba(34,119,224,0.28)] ${
+            className={`relative overflow-hidden rounded-2xl border border-white/10 bg-[#070710] shadow-[0_20px_50px_-30px_rgba(0,0,0,0.6)] ring-1 ring-inset ring-white/5 ${
               visible ? "cv-video-rise" : "opacity-0"
             }`}
           >
-            <div className="overflow-hidden rounded-[14px] bg-[#070710]">
-              <video
-                className="block h-auto w-full"
-                src="/product-video.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-                data-testid="video-product"
-              />
-            </div>
+            <video
+              className="block h-auto w-full"
+              src="/product-video.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              data-testid="video-product"
+            />
           </div>
         </div>
       </div>
