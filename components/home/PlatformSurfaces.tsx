@@ -102,13 +102,13 @@ export function PlatformSurfaces() {
                     </div>
                   </div>
 
-                  {/* Glowing cyan underline for active item */}
+                  {/* Glowing underline for active item */}
                   <span
                     className="pointer-events-none absolute bottom-[-1px] left-0 h-[2px] transition-all duration-500 ease-out"
                     style={{
                       width: isActive ? "100%" : "0%",
-                      background: "linear-gradient(90deg, #22d3ee, #2277e0)",
-                      boxShadow: isActive ? "0 0 12px 1px rgba(34, 211, 238, 0.6)" : "none",
+                      background: "#0066CC",
+                      boxShadow: isActive ? "0 0 12px 1px rgba(0, 102, 204, 0.6)" : "none",
                     }}
                   />
                 </div>
