@@ -4,6 +4,7 @@ import { CustomerLogos } from "@/components/CustomerLogos";
 import { InvoiceEfficiency } from "@/components/home/InvoiceEfficiency";
 import { ProductVideo } from "@/components/home/ProductVideo";
 import { PlatformSurfaces } from "@/components/home/PlatformSurfaces";
+import { Testimonials } from "@/components/home/Testimonials";
 import { DEMO_URL } from "@/lib/links";
 
 const STATS = [
@@ -126,6 +127,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* TESTIMONIALS */}
+      <Testimonials />
 
       {/* HOW IT WORKS — lifecycle */}
       <section className="cv-section bg-[#0B0B0F]">
