@@ -24,11 +24,18 @@ export function ProductVideo() {
 
   return (
     <section
-      className="relative overflow-hidden bg-[#0a0a0f] pt-10 pb-24 sm:pt-12 sm:pb-28 lg:pt-16 lg:pb-36"
+      className="relative overflow-hidden pb-24 sm:pb-28 lg:pb-36"
+      style={{
+        background:
+          "linear-gradient(to bottom, hsl(var(--cv-surface)) 0%, #08080d 45%, #0a0a0f 100%)",
+      }}
       data-testid="section-product-video"
     >
       <div className="cv-container">
-        <div ref={ref} className="relative mx-auto max-w-4xl">
+        <div
+          ref={ref}
+          className="relative mx-auto max-w-4xl -mt-24 lg:-mt-40"
+        >
           {/* Soft blue glow underneath */}
           <div
             aria-hidden
@@ -41,7 +48,7 @@ export function ProductVideo() {
 
           {/* Video window with rotating gradient ring */}
           <div
-            className={`relative rounded-2xl p-[2px] shadow-2xl shadow-cv-blue/20 cv-video-ring ${
+            className={`relative rounded-2xl p-[2px] cv-video-ring border border-white/10 shadow-[0_40px_120px_-30px_rgba(34,119,224,0.55)] ${
               visible ? "cv-video-rise" : "opacity-0"
             }`}
           >
