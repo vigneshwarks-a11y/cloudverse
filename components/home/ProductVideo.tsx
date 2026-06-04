@@ -24,7 +24,7 @@ export function ProductVideo() {
 
   return (
     <section
-      className="relative overflow-hidden pb-24 sm:pb-28 lg:pb-36"
+      className="relative overflow-x-clip pb-24 sm:pb-28 lg:pb-36"
       style={{
         background:
           "linear-gradient(to bottom, hsl(var(--cv-surface)) 0%, #08080d 45%, #0a0a0f 100%)",
