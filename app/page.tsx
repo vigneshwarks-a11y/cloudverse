@@ -147,15 +147,29 @@ export default function HomePage() {
       </section>
 
       {/* INTEGRATION STRIP */}
-      <section className="cv-section">
-        <div className="cv-container">
-          <div className="max-w-3xl mb-10">
-            <div className="cv-label mb-3">Integrations</div>
-            <h2 className="cv-h2 text-cv-ink">Connects to the stack your teams already use.</h2>
-          </div>
+      <section className="cv-section relative overflow-hidden">
+        {/* Dotted coordinate grid backdrop */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage:
+              "radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px), radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px)",
+            backgroundPosition: "0 0, 22px 22px",
+            backgroundSize: "44px 44px",
+            maskImage:
+              "radial-gradient(ellipse 75% 65% at 50% 45%, #000 35%, transparent 100%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 75% 65% at 50% 45%, #000 35%, transparent 100%)",
+          }}
+        />
 
-          {/* Logo grid */}
-          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3 mb-10">
+        <div className="cv-container relative z-10 text-center">
+          <div className="cv-label mb-3">Integrations</div>
+          <h2 className="cv-h2 text-cv-ink max-w-3xl mx-auto">Connects to the stack your teams already use.</h2>
+
+          {/* Logo + name cards */}
+          <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {[
               { name: "AWS", src: "/legacy/integration/awstop.svg" },
               { name: "Azure", src: "/legacy/integration/Azuretop.svg" },
@@ -172,15 +186,16 @@ export default function HomePage() {
             ].map((l) => (
               <div
                 key={l.name}
-                className="h-20 rounded-xl border border-cv-line bg-cv-surface2 flex items-center justify-center p-4"
+                className="flex items-center gap-3 rounded-xl border border-white/[0.08] bg-[#070710] px-5 py-4 shadow-[inset_0_0_24px_rgba(255,255,255,0.035),0_1px_0_0_rgba(255,255,255,0.02)]"
                 data-testid={`integration-${l.name.toLowerCase().replace(/\s+/g, "-")}`}
               >
-                <img src={l.src} alt={l.name} className="max-h-10 max-w-full object-contain opacity-90" loading="lazy" />
+                <img src={l.src} alt="" aria-hidden className="h-8 w-8 shrink-0 object-contain opacity-90" loading="lazy" />
+                <span className="text-sm font-medium text-cv-ink/90 text-left">{l.name}</span>
               </div>
             ))}
           </div>
 
-          <p className="text-cv-ink/75 max-w-3xl text-sm">
+          <p className="text-cv-ink/75 max-w-3xl mx-auto text-sm mt-10">
             Plus {INTEGRATIONS.join(", ")}, and more.
           </p>
           <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cv-line bg-cv-surface2 text-sm text-cv-ink/85">
