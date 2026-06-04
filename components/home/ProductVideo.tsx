@@ -46,22 +46,25 @@ export function ProductVideo() {
             }}
           />
 
-          {/* Video window */}
+          {/* Outer frame */}
           <div
-            className={`relative overflow-hidden rounded-2xl border border-white/15 bg-[#070710] shadow-[0_20px_50px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.12)] ${
+            className={`relative rounded-[20px] border border-white/10 bg-white/[0.02] p-2 shadow-[0_20px_50px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.08)] ${
               visible ? "cv-video-rise" : "opacity-0"
             }`}
           >
-            <video
-              className="block h-auto w-full"
-              src="/product-video.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="auto"
-              data-testid="video-product"
-            />
+            {/* Video window */}
+            <div className="relative overflow-hidden rounded-xl border border-white/15 bg-[#070710] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12)]">
+              <video
+                className="block h-auto w-full"
+                src="/product-video.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                data-testid="video-product"
+              />
+            </div>
           </div>
         </div>
       </div>
