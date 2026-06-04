@@ -128,17 +128,28 @@ export default function HomePage() {
       </section>
 
       {/* HOW IT WORKS — lifecycle */}
-      <section className="cv-section bg-cv-surface2">
+      <section className="cv-section bg-[#0B0B0F]">
         <div className="cv-container">
           <div className="max-w-3xl mb-12">
             <div className="cv-label mb-3">Lifecycle</div>
             <h2 className="cv-h2 text-cv-ink">Three stages. One control plane.</h2>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {STAGES.map((s, i) => (
-              <div key={s.n} className="rounded-2xl border border-cv-line bg-cv-surface p-7">
-                <div className="text-xs uppercase tracking-widest text-cv-muted">Stage 0{i + 1}</div>
-                <h3 className="cv-h3 text-cv-ink mt-2">{s.n}</h3>
+              <div
+                key={s.n}
+                className="relative rounded-2xl border border-[#1039C2] bg-[#0E0E14] p-7 shadow-[0_0_24px_-4px_rgba(16,57,194,0.55),inset_0_0_20px_-8px_rgba(16,57,194,0.4)]"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <span className="inline-flex items-center rounded-full border border-[#1039C2] bg-[#1039C2]/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-[#7C9BFF]">
+                    Stage 0{i + 1}
+                  </span>
+                  <div
+                    aria-hidden
+                    className="h-12 w-12 shrink-0 rounded-lg border border-[#1039C2]/40 bg-[#1039C2]/10"
+                  />
+                </div>
+                <h3 className="mt-6 font-display text-2xl font-bold text-white">{s.n}</h3>
                 <p className="text-cv-ink/75 leading-relaxed mt-4">{s.body}</p>
               </div>
             ))}
