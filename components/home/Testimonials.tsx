@@ -80,7 +80,9 @@ export function Testimonials() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
-      onBlurCapture={() => setPaused(false)}
+      onBlurCapture={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setPaused(false);
+      }}
     >
       {/* Soft blue glow */}
       <div
@@ -90,19 +92,19 @@ export function Testimonials() {
       />
 
       <div className="cv-container relative z-10">
-        <div className="max-w-3xl mb-12">
-          <div className="cv-label mb-3">Testimonials</div>
-          <h2 className="cv-h2 text-cv-ink">Trusted by the teams who own the spend.</h2>
+        <div className="mb-6 flex items-baseline gap-3">
+          <span className="cv-label">Testimonials</span>
+          <span className="text-sm text-cv-muted">Trusted by the teams who own the spend.</span>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_72px] gap-5">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-stretch">
           {/* Active cinematic card */}
           <div
             key={active}
-            className="relative flex min-h-[440px] flex-col overflow-hidden rounded-3xl border border-white/10 shadow-[0_0_60px_-20px_rgba(22,100,192,0.5)] animate-fade-up"
+            className="relative flex min-h-[440px] flex-col overflow-hidden rounded-3xl border border-white/10 shadow-[0_0_60px_-20px_rgba(22,100,192,0.5)] animate-fade-up lg:w-[78%]"
             data-testid="testimonial-active"
           >
-            {/* Blue-to-red gradient fading into black */}
+            {/* Blue fading into black */}
             <div
               aria-hidden
               className="pointer-events-none absolute inset-0"
@@ -132,7 +134,7 @@ export function Testimonials() {
                   <span
                     key={i}
                     className={`h-1.5 rounded-full transition-all duration-300 ${
-                      i === active ? "w-7 bg-[#3B82F6]" : "w-1.5 bg-white/30"
+                      i === active ? "w-7 bg-[#1664C0]" : "w-1.5 bg-white/30"
                     }`}
                   />
                 ))}
@@ -173,8 +175,8 @@ export function Testimonials() {
             </div>
           </div>
 
-          {/* Slim vertical side cards */}
-          <div className="flex flex-row gap-3 lg:flex-col">
+          {/* Slim vertical side cards — same row, same height */}
+          <div className="flex flex-row gap-3 lg:flex-1">
             {TESTIMONIALS.map((t, i) => {
               const isActive = i === active;
               return (
@@ -185,16 +187,16 @@ export function Testimonials() {
                   aria-pressed={isActive}
                   aria-label={`Show testimonial from ${t.name}`}
                   data-testid={`testimonial-card-${i}`}
-                  className={`group relative flex flex-1 items-end justify-center overflow-hidden rounded-2xl border transition-all duration-300 lg:flex-none lg:min-h-[140px] ${
+                  className={`group relative flex flex-1 items-end justify-center overflow-hidden rounded-2xl border transition-all duration-300 ${
                     isActive
-                      ? "border-[#1664C0]/60 bg-[#1664C0]/12 shadow-[0_0_24px_-8px_rgba(22,100,192,0.6)]"
+                      ? "border-[#1664C0]/60 bg-gradient-to-b from-[#1664C0]/20 to-black shadow-[0_0_24px_-8px_rgba(22,100,192,0.6)]"
                       : "border-white/[0.08] bg-white/[0.03] hover:border-white/25 hover:bg-white/[0.06]"
                   }`}
                 >
-                  <div className="flex h-full w-full flex-col items-center justify-between py-4">
+                  <div className="flex h-full w-full flex-col items-center justify-between py-5">
                     {/* Rotated name (desktop) */}
                     <span
-                      className={`hidden flex-1 items-center text-[11px] font-semibold uppercase tracking-widest lg:flex lg:[writing-mode:vertical-rl] lg:rotate-180 ${
+                      className={`hidden flex-1 items-center text-xs font-semibold uppercase tracking-widest lg:flex lg:[writing-mode:vertical-rl] lg:rotate-180 ${
                         isActive ? "text-[#7C9BFF]" : "text-cv-muted group-hover:text-cv-ink/80"
                       }`}
                     >
@@ -202,7 +204,7 @@ export function Testimonials() {
                     </span>
                     {/* Avatar at the bottom */}
                     <div
-                      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-semibold transition-colors ${
+                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xs font-semibold transition-colors ${
                         isActive
                           ? "border border-[#1664C0]/60 bg-[#1664C0]/25 text-[#7C9BFF]"
                           : "border border-white/10 bg-white/[0.06] text-cv-muted"
