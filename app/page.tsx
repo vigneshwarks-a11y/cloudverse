@@ -138,15 +138,15 @@ export default function HomePage() {
             {STAGES.map((s, i) => (
               <div
                 key={s.n}
-                className="relative rounded-2xl border border-[#1039C2]/40 bg-[#0E0E14] p-7"
+                className="relative rounded-2xl border border-[#1664C0]/40 bg-[#0E0E14] p-7"
               >
                 <div className="flex items-start justify-between gap-4">
-                  <span className="inline-flex items-center rounded-full border border-[#1039C2] bg-[#1039C2]/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-[#7C9BFF]">
+                  <span className="inline-flex items-center rounded-full border border-[#1664C0] bg-[#1664C0]/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-[#7C9BFF]">
                     Stage 0{i + 1}
                   </span>
                   <div
                     aria-hidden
-                    className="h-12 w-12 shrink-0 rounded-lg border border-[#1039C2]/40 bg-[#1039C2]/10"
+                    className="h-12 w-12 shrink-0 rounded-lg border border-[#1664C0]/40 bg-[#1664C0]/10"
                   />
                 </div>
                 <h3 className="mt-6 font-display text-2xl font-bold text-white">{s.n}</h3>
