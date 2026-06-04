@@ -34,7 +34,7 @@ export function ProductVideo() {
       <div className="cv-container">
         <div
           ref={ref}
-          className="relative max-w-4xl -mt-24 lg:-mt-40"
+          className="relative -mt-24 lg:-mt-40"
         >
           {/* Soft blue glow underneath */}
           <div
