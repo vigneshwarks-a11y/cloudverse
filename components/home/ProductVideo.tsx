@@ -48,7 +48,7 @@ export function ProductVideo() {
 
           {/* Video window with rotating gradient ring */}
           <div
-            className={`relative rounded-2xl p-[2px] cv-video-ring border-2 border-white/5 shadow-[0_20px_50px_-30px_rgba(34,119,224,0.28)] ${
+            className={`relative rounded-2xl p-[2px] cv-video-ring border-2 border-white/10 shadow-[0_20px_50px_-30px_rgba(34,119,224,0.28)] ${
               visible ? "cv-video-rise" : "opacity-0"
             }`}
           >
