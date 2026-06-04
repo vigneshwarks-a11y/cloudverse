@@ -3,6 +3,7 @@ import { ArrowRight, Check } from "lucide-react";
 import { CustomerLogos } from "@/components/CustomerLogos";
 import { InvoiceEfficiency } from "@/components/home/InvoiceEfficiency";
 import { ProductVideo } from "@/components/home/ProductVideo";
+import { PlatformSurfaces } from "@/components/home/PlatformSurfaces";
 import { DEMO_URL } from "@/lib/links";
 
 const STATS = [
@@ -10,33 +11,6 @@ const STATS = [
   { v: "Live", label: "Cost-quality routing" },
   { v: "Policy-bound", label: "At execution" },
   { v: "$738,983", label: "Recovered by a single customer" },
-];
-
-const MODULES = [
-  {
-    name: "AIX",
-    href: "/platform/aix",
-    color: "#6954D4",
-    body: "Routes every AI request to the lowest-cost model that meets your quality and latency requirements. Budget caps applied before spend occurs. Full decision trace on every request.",
-  },
-  {
-    name: "DataX",
-    href: "/platform/datax",
-    color: "#D97706",
-    body: "Finds the queries running up your warehouse bill. Attributes cost to the query, pipeline, and team that ran it. Suggests the fix. Automates it when you're ready.",
-  },
-  {
-    name: "DevX",
-    href: "/platform/devx",
-    color: "#0E9E7A",
-    body: "Catches infrastructure cost regressions in pull requests before they reach production. Engineers see what their changes cost at the moment they can still change something.",
-  },
-  {
-    name: "FinOps Platform",
-    href: "/platform/finops",
-    color: "#1664C0",
-    body: "Multi-cloud cost intelligence across AWS, Azure, and GCP. Allocation, anomaly detection, commitment planning, and variance reporting on one model that reconciles to finance.",
-  },
 ];
 
 const STAGES = [
@@ -121,33 +95,7 @@ export default function HomePage() {
       </section>
 
       {/* PRODUCTS */}
-      <section className="cv-section bg-cv-surface2">
-        <div className="cv-container">
-          <div className="max-w-3xl mb-12">
-            <div className="cv-label mb-3">Platform overview</div>
-            <h2 className="cv-h2 text-cv-ink">One control plane. Four compute surfaces.</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {MODULES.map((m) => (
-              <Link
-                key={m.name}
-                href={m.href}
-                className="group rounded-2xl border border-cv-line bg-cv-surface p-7 hover:border-cv-ink/30 transition-colors"
-                data-testid={`card-module-${m.name.toLowerCase().replace(/\s+/g, "-")}`}
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="w-2.5 h-2.5 rounded-full" style={{ background: m.color }} />
-                  <h3 className="cv-h3 text-cv-ink">{m.name}</h3>
-                </div>
-                <p className="text-cv-ink/75 leading-relaxed">{m.body}</p>
-                <div className="mt-5 inline-flex items-center gap-1 text-sm text-cv-blue-light group-hover:gap-2 transition-all">
-                  Learn more <ArrowRight size={14} />
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <PlatformSurfaces />
 
       {/* BHHS CASE STUDY */}
       <section className="cv-section">
