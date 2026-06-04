@@ -115,7 +115,7 @@ export function Testimonials() {
             tabIndex={-1}
             aria-live="polite"
             aria-label={`Testimonial from ${current.name}`}
-            className="relative flex min-h-[440px] flex-col overflow-hidden rounded-3xl border border-white/10 shadow-[0_0_60px_-20px_rgba(22,100,192,0.5)] animate-fade-up focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1664C0] focus-visible:ring-offset-2 focus-visible:ring-offset-black lg:w-[78%]"
+            className="relative flex min-h-[440px] flex-col overflow-hidden rounded-3xl border border-white/10 animate-fade-up focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1664C0] focus-visible:ring-offset-2 focus-visible:ring-offset-black lg:w-[78%]"
             data-testid="testimonial-active"
           >
             {/* Blue fading into black */}
