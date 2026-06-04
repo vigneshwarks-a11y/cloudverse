@@ -191,4 +191,9 @@
 @media (prefers-reduced-motion: reduce) {
   .cv-video-ring { animation: none; }
   .cv-video-rise { animation: none; opacity: 1; transform: none; }
+  .cv-testimonials,
+  .cv-testimonials * {
+    animation: none !important;
+    transition: none !important;
+  }
 }

@@ -8,36 +8,37 @@ type Testimonial = {
   name: string;
   title: string;
   initials: string;
+  product: string;
   tags: string[];
 };
 
 const TESTIMONIALS: Testimonial[] = [
   {
     slot: "Testimonial slot 1",
-    quote:
-      "[TESTIMONIAL SLOT 1 — FinOps leader, financial services or tech]",
+    quote: "[TESTIMONIAL SLOT 1 — FinOps leader, financial services or tech]",
     name: "FinOps Leader",
     title: "Financial services / tech",
     initials: "F1",
-    tags: ["FinOps", "Cost attribution"],
+    product: "FinOps",
+    tags: ["Cost attribution", "Anomaly detection", "Finance-grade reporting"],
   },
   {
     slot: "Testimonial slot 2",
-    quote:
-      "[TESTIMONIAL SLOT 2 — Engineering leader, platform or cloud team]",
+    quote: "[TESTIMONIAL SLOT 2 — Engineering leader, platform or cloud team]",
     name: "Engineering Leader",
     title: "Platform / cloud team",
     initials: "E2",
-    tags: ["Platform", "Automation"],
+    product: "DevX",
+    tags: ["Automation paths", "Policy guardrails", "Rollback readiness"],
   },
   {
     slot: "Testimonial slot 3",
-    quote:
-      "[TESTIMONIAL SLOT 3 — Data team or analytics engineering]",
+    quote: "[TESTIMONIAL SLOT 3 — Data team or analytics engineering]",
     name: "Data Leader",
     title: "Analytics engineering",
     initials: "D3",
-    tags: ["DataX", "Warehouse spend"],
+    product: "DataX",
+    tags: ["Warehouse spend", "Query attribution", "Workload tuning"],
   },
 ];
 
@@ -75,31 +76,17 @@ export function Testimonials() {
 
   return (
     <section
-      className="cv-section relative overflow-hidden bg-[#08080C]"
+      className="cv-testimonials cv-section relative overflow-hidden bg-black"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
-      {/* Subtle grid overlay */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-          maskImage:
-            "radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 100%)",
-          WebkitMaskImage:
-            "radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 100%)",
-        }}
-      />
       {/* Soft blue glow */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-24 left-1/4 h-72 w-72 rounded-full blur-3xl"
-        style={{ background: "radial-gradient(circle, rgba(22,100,192,0.22), transparent 70%)" }}
+        className="pointer-events-none absolute -top-24 left-1/3 h-72 w-[40rem] rounded-full blur-3xl"
+        style={{ background: "radial-gradient(circle, rgba(22,100,192,0.20), transparent 70%)" }}
       />
 
       <div className="cv-container relative z-10">
@@ -108,43 +95,76 @@ export function Testimonials() {
           <h2 className="cv-h2 text-cv-ink">Trusted by the teams who own the spend.</h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-6">
-          {/* Active large card */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_72px] gap-5">
+          {/* Active cinematic card */}
           <div
             key={active}
-            className="relative rounded-3xl border border-white/[0.08] p-8 lg:p-12 overflow-hidden animate-fade-up"
-            style={{
-              background:
-                "linear-gradient(135deg, rgba(22,100,192,0.16), rgba(8,8,12,0.4) 55%, rgba(8,8,12,0.2))",
-            }}
+            className="relative flex min-h-[440px] flex-col overflow-hidden rounded-3xl border border-white/10 shadow-[0_0_60px_-20px_rgba(22,100,192,0.5)] animate-fade-up"
             data-testid="testimonial-active"
           >
+            {/* Blue-to-red gradient fading into black */}
             <div
               aria-hidden
-              className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full blur-3xl"
-              style={{ background: "radial-gradient(circle, rgba(22,100,192,0.25), transparent 70%)" }}
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(160deg, rgba(22,100,192,0.55) 0%, rgba(124,60,180,0.35) 28%, rgba(190,40,60,0.28) 46%, rgba(8,8,12,0.9) 72%, #000 100%)",
+              }}
             />
-            <div className="relative">
-              <div className="text-[#7C9BFF] text-6xl leading-none font-display select-none">&ldquo;</div>
-              <blockquote className="mt-2 text-xl lg:text-2xl leading-relaxed text-white font-display max-w-2xl">
+            {/* Subtle grid overlay */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0"
+              style={{
+                backgroundImage:
+                  "linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)",
+                backgroundSize: "44px 44px",
+                maskImage: "linear-gradient(to bottom, #000 0%, transparent 75%)",
+                WebkitMaskImage: "linear-gradient(to bottom, #000 0%, transparent 75%)",
+              }}
+            />
+
+            {/* Top row: logo + progress indicator */}
+            <div className="relative flex items-center justify-between p-8 lg:px-10">
+              <img src="/legacy/logo/whitelogo.svg" alt="CloudVerse" className="h-7 w-auto opacity-90" />
+              <div className="flex items-center gap-2" aria-hidden>
+                {TESTIMONIALS.map((_, i) => (
+                  <span
+                    key={i}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      i === active ? "w-7 bg-[#3B82F6]" : "w-1.5 bg-white/30"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Quote */}
+            <div className="relative flex flex-1 items-center px-8 lg:px-10">
+              <blockquote className="font-display text-2xl lg:text-4xl leading-snug text-white max-w-3xl">
                 {current.quote}
               </blockquote>
+            </div>
 
-              <div className="mt-10 flex items-center gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#1664C0]/50 bg-[#1664C0]/15 text-sm font-semibold text-[#7C9BFF]">
+            {/* Bottom strip */}
+            <div className="relative mt-6 flex flex-col gap-4 border-t border-white/10 bg-black/40 p-6 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between lg:px-10">
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#1664C0]/50 bg-[#1664C0]/20 text-sm font-semibold text-[#7C9BFF]">
                   {current.initials}
                 </div>
                 <div>
                   <div className="font-semibold text-white">{current.name}</div>
                   <div className="text-sm text-cv-muted">{current.title}</div>
                 </div>
+                <span className="ml-2 hidden items-center rounded-full border border-[#1664C0]/50 bg-[#1664C0]/15 px-3 py-1 text-xs font-medium text-[#7C9BFF] sm:inline-flex">
+                  {current.product}
+                </span>
               </div>
-
-              <div className="mt-6 flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2">
                 {current.tags.map((t) => (
                   <span
                     key={t}
-                    className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-cv-ink/80"
+                    className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs text-cv-ink/80"
                   >
                     {t}
                   </span>
@@ -153,8 +173,8 @@ export function Testimonials() {
             </div>
           </div>
 
-          {/* Slim side cards */}
-          <div className="flex flex-row lg:flex-col gap-4">
+          {/* Slim vertical side cards */}
+          <div className="flex flex-row gap-3 lg:flex-col">
             {TESTIMONIALS.map((t, i) => {
               const isActive = i === active;
               return (
@@ -163,31 +183,37 @@ export function Testimonials() {
                   type="button"
                   onClick={() => select(i)}
                   aria-pressed={isActive}
+                  aria-label={`Show testimonial from ${t.name}`}
                   data-testid={`testimonial-card-${i}`}
-                  className={`group relative flex-1 lg:flex-none overflow-hidden rounded-2xl border p-4 text-left transition-all duration-300 ${
+                  className={`group relative flex flex-1 items-end justify-center overflow-hidden rounded-2xl border transition-all duration-300 lg:flex-none lg:min-h-[140px] ${
                     isActive
-                      ? "border-[#1664C0]/60 bg-[#1664C0]/10"
-                      : "border-white/[0.08] bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.05]"
+                      ? "border-[#1664C0]/60 bg-[#1664C0]/12 shadow-[0_0_24px_-8px_rgba(22,100,192,0.6)]"
+                      : "border-white/[0.08] bg-white/[0.03] hover:border-white/25 hover:bg-white/[0.06]"
                   }`}
                 >
-                  <div className="flex items-center gap-3 lg:h-28">
-                    <div
-                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xs font-semibold transition-colors ${
-                        isActive
-                          ? "border border-[#1664C0]/60 bg-[#1664C0]/20 text-[#7C9BFF]"
-                          : "border border-white/10 bg-white/[0.05] text-cv-muted"
-                      }`}
-                    >
-                      {t.initials}
-                    </div>
+                  <div className="flex h-full w-full flex-col items-center justify-between py-4">
+                    {/* Rotated name (desktop) */}
                     <span
-                      className={`hidden lg:block text-[11px] font-semibold uppercase tracking-widest lg:[writing-mode:vertical-rl] lg:rotate-180 ${
-                        isActive ? "text-[#7C9BFF]" : "text-cv-muted"
+                      className={`hidden flex-1 items-center text-[11px] font-semibold uppercase tracking-widest lg:flex lg:[writing-mode:vertical-rl] lg:rotate-180 ${
+                        isActive ? "text-[#7C9BFF]" : "text-cv-muted group-hover:text-cv-ink/80"
                       }`}
                     >
                       {t.name}
                     </span>
-                    <span className="lg:hidden text-sm font-medium text-cv-ink/85">{t.name}</span>
+                    {/* Avatar at the bottom */}
+                    <div
+                      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-semibold transition-colors ${
+                        isActive
+                          ? "border border-[#1664C0]/60 bg-[#1664C0]/25 text-[#7C9BFF]"
+                          : "border border-white/10 bg-white/[0.06] text-cv-muted"
+                      }`}
+                    >
+                      {t.initials}
+                    </div>
+                    {/* Name fallback (mobile) */}
+                    <span className="mt-2 text-center text-[11px] font-medium text-cv-ink/80 lg:hidden">
+                      {t.name}
+                    </span>
                   </div>
                 </button>
               );
