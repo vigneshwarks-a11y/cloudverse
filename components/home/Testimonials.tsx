@@ -49,13 +49,23 @@ export function Testimonials() {
   const [cycle, setCycle] = useState(0);
   const [paused, setPaused] = useState(false);
   const genRef = useRef(0);
+  const mainCardRef = useRef<HTMLDivElement>(null);
+  const focusMainRef = useRef(false);
   const len = TESTIMONIALS.length;
 
   function select(i: number) {
     genRef.current += 1;
+    focusMainRef.current = true;
     setActive(i);
     setCycle((c) => c + 1);
   }
+
+  useEffect(() => {
+    if (focusMainRef.current) {
+      focusMainRef.current = false;
+      mainCardRef.current?.focus();
+    }
+  }, [active]);
 
   useEffect(() => {
     if (paused) return;
@@ -101,7 +111,11 @@ export function Testimonials() {
           {/* Active cinematic card */}
           <div
             key={active}
-            className="relative flex min-h-[440px] flex-col overflow-hidden rounded-3xl border border-white/10 shadow-[0_0_60px_-20px_rgba(22,100,192,0.5)] animate-fade-up lg:w-[78%]"
+            ref={mainCardRef}
+            tabIndex={-1}
+            aria-live="polite"
+            aria-label={`Testimonial from ${current.name}`}
+            className="relative flex min-h-[440px] flex-col overflow-hidden rounded-3xl border border-white/10 shadow-[0_0_60px_-20px_rgba(22,100,192,0.5)] animate-fade-up focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1664C0] focus-visible:ring-offset-2 focus-visible:ring-offset-black lg:w-[78%]"
             data-testid="testimonial-active"
           >
             {/* Blue fading into black */}
@@ -178,38 +192,23 @@ export function Testimonials() {
           {/* Slim vertical side cards — same row, same height */}
           <div className="flex flex-row gap-3 lg:flex-1">
             {TESTIMONIALS.map((t, i) => {
-              const isActive = i === active;
+              if (i === active) return null;
               return (
                 <button
                   key={t.slot}
                   type="button"
                   onClick={() => select(i)}
-                  aria-pressed={isActive}
                   aria-label={`Show testimonial from ${t.name}`}
                   data-testid={`testimonial-card-${i}`}
-                  className={`group relative flex flex-1 items-end justify-center overflow-hidden rounded-2xl border transition-all duration-300 ${
-                    isActive
-                      ? "border-[#1664C0]/60 bg-gradient-to-b from-[#1664C0]/20 to-black shadow-[0_0_24px_-8px_rgba(22,100,192,0.6)]"
-                      : "border-white/[0.08] bg-white/[0.03] hover:border-white/25 hover:bg-white/[0.06]"
-                  }`}
+                  className="group relative flex flex-1 items-end justify-center overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] transition-all duration-300 hover:border-white/25 hover:bg-white/[0.06]"
                 >
                   <div className="flex h-full w-full flex-col items-center justify-between py-5">
                     {/* Rotated name (desktop) */}
-                    <span
-                      className={`hidden flex-1 items-center text-xs font-semibold uppercase tracking-widest lg:flex lg:[writing-mode:vertical-rl] lg:rotate-180 ${
-                        isActive ? "text-[#7C9BFF]" : "text-cv-muted group-hover:text-cv-ink/80"
-                      }`}
-                    >
+                    <span className="hidden flex-1 items-center text-xs font-semibold uppercase tracking-widest text-cv-muted group-hover:text-cv-ink/80 lg:flex lg:[writing-mode:vertical-rl] lg:rotate-180">
                       {t.name}
                     </span>
                     {/* Avatar at the bottom */}
-                    <div
-                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xs font-semibold transition-colors ${
-                        isActive
-                          ? "border border-[#1664C0]/60 bg-[#1664C0]/25 text-[#7C9BFF]"
-                          : "border border-white/10 bg-white/[0.06] text-cv-muted"
-                      }`}
-                    >
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.06] text-xs font-semibold text-cv-muted transition-colors group-hover:text-cv-ink/80">
                       {t.initials}
                     </div>
                     {/* Name fallback (mobile) */}
