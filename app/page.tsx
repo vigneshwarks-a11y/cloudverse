@@ -88,7 +88,7 @@ export default function HomePage() {
 
       {/* THE PROBLEM (no header) */}
       <section className="cv-section">
-        <div className="cv-container max-w-4xl">
+        <div className="cv-container">
           <p className="text-xl lg:text-2xl leading-relaxed text-cv-ink/85 font-light">
             AI compute gets expensive by default. Data warehouse costs don&apos;t explain themselves. Cloud infrastructure spend grows faster than the teams managing it. The organizations that control this are the ones who ship cost intelligence into engineering workflows before the bill arrives, not after.
           </p>
