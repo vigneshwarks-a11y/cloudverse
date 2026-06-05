@@ -34,3 +34,14 @@ recurring, verify the already-tracked `.next` files have actually been untracked
 files that git is already tracking; that needs `git rm -r --cached .next`, which is
 a destructive git op (delegate it, don't run it inline). Build artifacts must never
 be committed.
+
+**Untracking is NOT doable by the agent in this repl — confirmed.** Every git
+index-modifying command is hard-blocked for the agent ("Destructive git operations
+are not allowed in the main agent"): `git rm --cached`, `git update-index
+--force-remove`, all of them. Deleting `.next` from disk does NOT help either —
+Next.js dev regenerates the *same* tracked file paths on the next build, so the
+checkpoint sees them as modifications (still tracked), not deletions. The only
+reliable fixes: (a) the USER runs `git rm -r --cached .next` in the Replit Shell
+(not subject to agent git restrictions; safe — keeps files on disk, app stays up),
+or (b) a genuinely isolated background task agent performs it. Give the user the
+Shell one-liner; don't keep band-aiding with `rm -rf .next` + restart.
