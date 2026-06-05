@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import { CountUpStat } from "@/components/CountUpStat";
 import GovernanceBento from "@/components/product/GovernanceBento";
+import NoBlackBoxes from "@/components/product/NoBlackBoxes";
 
 export const metadata: Metadata = {
   title: "AIX — The AI Control Plane for Enterprise AI Compute | CloudVerse",
@@ -407,20 +408,7 @@ export default function AIXPage() {
       </section>
 
       {/* NO BLACK BOXES */}
-      <section className="cv-section">
-        <div className="cv-container">
-          <div className="max-w-3xl mb-8">
-            <h2 className="cv-h2 text-cv-ink">No black boxes.</h2>
-            <p className="cv-body-lg text-cv-ink/75 mt-5">
-              Every routing decision includes an evidence summary: constraints active, routes evaluated, route selected, reason for selection, cost and latency outcome. Incident response, finance reviews, and compliance audits all work from the same traceable record.
-            </p>
-          </div>
-          <pre className="rounded-2xl border border-cv-line bg-cv-surface2 p-6 text-xs text-cv-ink/85 overflow-x-auto font-mono leading-relaxed">{TRACE_JSON}</pre>
-          <p className="text-cv-ink/75 mt-6 max-w-4xl">
-            SOC2 and ISO-aligned architecture. Audit trails, access controls, and policy enforcement structured to support compliance documentation. Specific certification status confirmed during your evaluation.
-          </p>
-        </div>
-      </section>
+      <NoBlackBoxes traceJson={TRACE_JSON} />
 
       {/* USE CASES */}
       <section className="cv-section bg-cv-surface2">

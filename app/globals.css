@@ -181,6 +181,18 @@
   );
   animation: cv-ring-spin 6s linear infinite;
 }
+/* Blue-only rotating ring (CloudVerse blue) */
+.cv-ring-blue {
+  background: conic-gradient(
+    from var(--cv-ring-angle),
+    rgba(0, 124, 255, 0.05),
+    #007cff,
+    rgba(0, 124, 255, 0.05),
+    #007cff,
+    rgba(0, 124, 255, 0.05)
+  );
+  animation: cv-ring-spin 6s linear infinite;
+}
 @keyframes cv-video-rise {
   from { opacity: 0; transform: translateY(48px); }
   to { opacity: 1; transform: translateY(0); }
@@ -194,6 +206,7 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .cv-video-ring { animation: none; }
+  .cv-ring-blue { animation: none; }
   .cv-video-rise { animation: none; opacity: 1; transform: none; }
   .cv-testimonials,
   .cv-testimonials * {
