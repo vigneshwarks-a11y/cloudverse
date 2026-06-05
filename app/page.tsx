@@ -259,13 +259,7 @@ export default function HomePage() {
       {/* FINAL CTA */}
       <section className="cv-section bg-[#0B0B0F]">
         <div className="cv-container">
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#06070A] px-6 py-16 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_0_90px_-30px_rgba(22,100,192,0.5)] sm:px-10 lg:py-20">
-            {/* Deep navy-to-black glow */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute left-1/2 top-0 h-[28rem] w-[44rem] -translate-x-1/2 -translate-y-1/3 rounded-full blur-3xl"
-              style={{ background: "radial-gradient(circle, rgba(22,100,192,0.20), transparent 65%)" }}
-            />
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#06070A] px-6 py-9 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:px-10 lg:py-12">
             {/* Subtle grid */}
             <div
               aria-hidden
@@ -281,23 +275,23 @@ export default function HomePage() {
 
             <div className="relative">
               {/* Orbit visual */}
-              <div className="relative mx-auto mb-10 h-52 w-52 sm:h-60 sm:w-60">
+              <div className="relative mx-auto mb-6 h-36 w-36 sm:h-40 sm:w-40">
                 {/* Orbit rings */}
                 <div className="absolute inset-0 rounded-full border border-white/[0.08]" />
-                <div className="absolute inset-7 rounded-full border border-white/[0.06]" />
-                <div className="absolute inset-14 rounded-full border border-[#1664C0]/15" />
+                <div className="absolute inset-5 rounded-full border border-white/[0.06]" />
+                <div className="absolute inset-10 rounded-full border border-[#1664C0]/15" />
                 {/* Faded orbit nodes */}
-                <span className="absolute left-1/2 top-0 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-[#1664C0]/70 shadow-[0_0_12px_2px_rgba(22,100,192,0.5)]" />
-                <span className="absolute right-3 top-1/3 h-2 w-2 rounded-full bg-[#7C9BFF]/50" />
-                <span className="absolute bottom-4 left-6 h-1.5 w-1.5 rounded-full bg-white/30" />
-                <span className="absolute bottom-8 right-8 h-2 w-2 rounded-full bg-[#1664C0]/40" />
+                <span className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 rounded-full bg-[#1664C0]/70" />
+                <span className="absolute right-2 top-1/3 h-1.5 w-1.5 rounded-full bg-[#7C9BFF]/50" />
+                <span className="absolute bottom-3 left-5 h-1.5 w-1.5 rounded-full bg-white/30" />
+                <span className="absolute bottom-6 right-6 h-1.5 w-1.5 rounded-full bg-[#1664C0]/40" />
                 <span className="absolute left-0 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-white/20" />
                 {/* Center CloudVerse logo */}
-                <div className="absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-3xl border border-[#1664C0]/30 bg-[#0B0E18] shadow-[0_0_50px_-8px_rgba(22,100,192,0.65)]">
+                <div className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-2xl border border-[#1664C0]/30 bg-[#0B0E18]">
                   <img
                     src="/legacy/logo/cloudverse-icon.png"
                     alt="CloudVerse"
-                    className="h-12 w-auto"
+                    className="h-8 w-auto"
                   />
                 </div>
               </div>
