@@ -104,29 +104,52 @@ export default function HomePage() {
       {/* BHHS CASE STUDY */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="rounded-3xl border border-cv-line bg-cv-surface2 p-8 lg:p-12">
-            <div className="cv-label mb-3">Case study — Berkshire Hathaway HomeServices</div>
-            <h2 className="cv-h2 text-cv-ink max-w-3xl">
-              How Berkshire Hathaway HomeServices recovered $738,983
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 mb-10">
-              {[
-                { v: "$101,736", l: "annual recovery" },
-                { v: "$61,582", l: "single month recovery" },
-                { v: "$738,984", l: "total recovered" },
-              ].map((s) => (
-                <div key={s.l} className="rounded-xl border border-cv-line p-6 bg-cv-surface">
-                  <div className="text-3xl lg:text-4xl font-display font-semibold text-cv-ink">{s.v}</div>
-                  <div className="text-sm text-cv-muted mt-2">{s.l}</div>
-                </div>
-              ))}
+          <div className="relative overflow-hidden rounded-3xl border border-[#1664C0]/30 bg-[#0A0C14] p-8 shadow-[0_0_80px_-30px_rgba(22,100,192,0.5)] lg:p-14">
+            {/* Subtle grid */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0"
+              style={{
+                backgroundImage:
+                  "linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px)",
+                backgroundSize: "48px 48px",
+                maskImage: "radial-gradient(ellipse at 0% 0%, #000 0%, transparent 70%)",
+                WebkitMaskImage: "radial-gradient(ellipse at 0% 0%, #000 0%, transparent 70%)",
+              }}
+            />
+            {/* Soft blue glow */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -top-32 right-0 h-72 w-[36rem] rounded-full blur-3xl"
+              style={{ background: "radial-gradient(circle, rgba(22,100,192,0.22), transparent 70%)" }}
+            />
+
+            <div className="relative">
+              <div className="cv-label mb-4 text-[#7C9BFF]">Case study — Berkshire Hathaway HomeServices</div>
+              <h2 className="cv-h2 max-w-3xl text-white">
+                How Berkshire Hathaway HomeServices recovered $738,983
+              </h2>
+
+              <div className="mt-12 mb-12 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-[#1664C0]/25 bg-[#1664C0]/15 md:grid-cols-3">
+                {[
+                  { v: "$101,736", l: "annual recovery" },
+                  { v: "$61,582", l: "single month recovery" },
+                  { v: "$738,984", l: "total recovered" },
+                ].map((s) => (
+                  <div key={s.l} className="bg-[#0B0E18] p-8">
+                    <div className="font-display text-4xl font-semibold text-white lg:text-5xl">{s.v}</div>
+                    <div className="mt-3 text-sm uppercase tracking-widest text-cv-muted">{s.l}</div>
+                  </div>
+                ))}
+              </div>
+
+              <p className="max-w-3xl leading-relaxed text-cv-ink/80">
+                A growing mid-market AWS environment with fragmented tagging and no team-level attribution. CloudVerse connected spend to teams, surfaced the highest-impact anomalies, and gave the FinOps team a model that held up to finance review.
+              </p>
+              <p className="mt-6 max-w-3xl border-l-2 border-[#1664C0] pl-5 text-lg italic text-white/95">
+                The waste was always there. It just had no address.
+              </p>
             </div>
-            <p className="text-cv-ink/80 leading-relaxed max-w-3xl">
-              A growing mid-market AWS environment with fragmented tagging and no team-level attribution. CloudVerse connected spend to teams, surfaced the highest-impact anomalies, and gave the FinOps team a model that held up to finance review.
-            </p>
-            <p className="text-cv-ink/95 italic mt-4 max-w-3xl">
-              The waste was always there. It just had no address.
-            </p>
           </div>
         </div>
       </section>
