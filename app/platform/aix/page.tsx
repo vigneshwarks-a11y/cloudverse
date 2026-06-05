@@ -5,6 +5,7 @@ import { DEMO_URL } from "@/lib/links";
 import { CountUpStat } from "@/components/CountUpStat";
 import GovernanceBento from "@/components/product/GovernanceBento";
 import NoBlackBoxes from "@/components/product/NoBlackBoxes";
+import UseCaseBento from "@/components/product/UseCaseBento";
 
 export const metadata: Metadata = {
   title: "AIX — The AI Control Plane for Enterprise AI Compute | CloudVerse",
@@ -416,22 +417,7 @@ export default function AIXPage() {
           <div className="max-w-3xl mb-12">
             <h2 className="cv-h2 text-cv-ink">Four problems AIX fixes.</h2>
           </div>
-          <div className="space-y-6">
-            {USE_CASES.map((uc) => (
-              <div key={uc.n} className="rounded-2xl border border-cv-line bg-cv-surface p-7">
-                <div className="flex items-baseline gap-3">
-                  <span className="text-2xl font-display font-semibold" style={{ color: ACCENT }}>{uc.n}.</span>
-                  <h3 className="cv-h3 text-cv-ink">{uc.title}</h3>
-                </div>
-                <div className="grid md:grid-cols-2 gap-x-8 gap-y-4 mt-6">
-                  <div><div className="cv-label mb-1">Situation</div><p className="text-cv-ink/80 text-sm leading-relaxed">{uc.sit}</p></div>
-                  <div><div className="cv-label mb-1">The problem</div><p className="text-cv-ink/80 text-sm leading-relaxed">{uc.prob}</p></div>
-                  <div><div className="cv-label mb-1">How AIX solves it</div><p className="text-cv-ink/80 text-sm leading-relaxed">{uc.how}</p></div>
-                  <div><div className="cv-label mb-1" style={{ color: "#A99CE8" }}>After AIX</div><p className="text-cv-ink/90 text-sm leading-relaxed">{uc.after}</p></div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <UseCaseBento useCases={USE_CASES} />
         </div>
       </section>
 
