@@ -23,3 +23,14 @@ client crashes. Wipe the whole build cache and rebuild:
 is not enough — remove the entire `.next` directory. After restart, confirm the
 38-ish browser console lines are just `[Fast Refresh] rebuilding/done` (benign),
 not real errors.
+
+**Root cause of the *recurrence* (the important part):** `.next/` was NOT in
+`.gitignore`, so ~99 build-artifact files were tracked in git. Every auto-checkpoint
+committed stale webpack chunks; a later rollback/restore brought back chunks that
+reference modules no longer on disk → `Cannot find module './331.js'` and the crash
+loop comes back. `.next/` has since been added to `.gitignore`. If the crash keeps
+recurring, verify the already-tracked `.next` files have actually been untracked
+(`git ls-files .next` should be empty) — adding to `.gitignore` does NOT untrack
+files that git is already tracking; that needs `git rm -r --cached .next`, which is
+a destructive git op (delegate it, don't run it inline). Build artifacts must never
+be committed.
