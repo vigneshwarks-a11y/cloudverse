@@ -74,17 +74,158 @@ export default function FinOpsPage() {
             <h2 className="cv-h2 text-cv-ink">Four product surfaces. One unified view.</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-5">
-            {[
-              ["Workload mapping", "Allocation that sticks. Every tag, account, BU, and shared-service split reconciled to the finance model. Teams see the spend they own. Leaders have a view that matches the finance report."],
-              ["Anomaly detection", "Identify the team, environment, and charge that drove the anomaly within hours of it happening, not in the next billing cycle review. The alert arrives with attribution, not just a number."],
-              ["Commitments with payback proof", "RI, SP, and CSP coverage modelled with explicit payback before you commit. Commitment planning that shows the math, not just the recommendation. No surprises."],
-              ["Audit-ready chargeback", "Showback and chargeback wired to BU reporting with multi-currency and tax support. The finance team gets a report they can use. The engineering team gets a model they can trust."],
-            ].map(([t, b]) => (
-              <div key={t} className="rounded-2xl border border-cv-line bg-cv-surface p-7">
-                <h3 className="cv-h3 text-cv-ink">{t}</h3>
-                <p className="text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
+            {/* Workload mapping */}
+            <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#080B14] p-7">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0"
+                style={{ background: "radial-gradient(ellipse 85% 60% at 0% 0%, rgba(22,100,192,0.10), transparent 60%)" }}
+              />
+              <div className="relative">
+                <h3 className="cv-h3 text-white">Workload mapping</h3>
+                <p className="text-cv-ink/70 mt-3 leading-relaxed">Allocation that sticks. Every tag, account, BU, and shared-service split reconciled to the finance model. Teams see the spend they own. Leaders have a view that matches the finance report.</p>
+                {/* Allocation interface */}
+                <div className="mt-6 rounded-xl border border-white/10 bg-[#06070A] p-4">
+                  <div className="mb-4 flex items-center justify-between">
+                    <span className="text-xs font-medium text-cv-ink/80">Allocation by team</span>
+                    <span className="rounded-full border border-[#1664C0]/40 bg-[#1664C0]/10 px-2 py-0.5 text-[10px] font-medium text-[#7C9BFF]">Reconciled · 100%</span>
+                  </div>
+                  <div className="space-y-3">
+                    {[
+                      ["Platform Eng", 42, "$214k"],
+                      ["Data Science", 28, "$142k"],
+                      ["Shared Services", 18, "$91k"],
+                      ["Frontend", 12, "$61k"],
+                    ].map(([name, pct, amt]) => (
+                      <div key={name as string}>
+                        <div className="mb-1 flex items-center justify-between text-[11px]">
+                          <span className="text-cv-ink/80">{name}</span>
+                          <span className="font-mono text-cv-muted">{pct}% · {amt}</span>
+                        </div>
+                        <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/[0.06]">
+                          <div className="h-full rounded-full bg-gradient-to-r from-[#1664C0] to-[#7C9BFF]" style={{ width: `${pct}%` }} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
-            ))}
+            </div>
+
+            {/* Anomaly detection */}
+            <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#080B14] p-7">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0"
+                style={{ background: "radial-gradient(ellipse 85% 60% at 100% 0%, rgba(22,100,192,0.10), transparent 60%)" }}
+              />
+              <div className="relative">
+                <h3 className="cv-h3 text-white">Anomaly detection</h3>
+                <p className="text-cv-ink/70 mt-3 leading-relaxed">Identify the team, environment, and charge that drove the anomaly within hours of it happening, not in the next billing cycle review. The alert arrives with attribution, not just a number.</p>
+                {/* Anomaly chart */}
+                <div className="mt-6 rounded-xl border border-white/10 bg-[#06070A] p-4">
+                  <div className="mb-3 flex items-center justify-between">
+                    <span className="text-xs font-medium text-cv-ink/80">Daily spend · prod-emr</span>
+                    <span className="font-mono text-[11px] text-[#7C9BFF]">+$4,812</span>
+                  </div>
+                  <div className="flex h-24 items-end gap-1.5">
+                    {[34, 30, 38, 32, 36, 33, 40, 35, 92, 41].map((h, i) => (
+                      <div key={i} className="flex-1 rounded-t-sm" style={{ height: `${h}%`, background: i === 8 ? "linear-gradient(to top, #1664C0, #7C9BFF)" : "rgba(255,255,255,0.10)" }} />
+                    ))}
+                  </div>
+                  <div className="mt-4 flex items-center gap-3 rounded-lg border border-[#1664C0]/30 bg-[#1664C0]/[0.08] p-3">
+                    <span className="h-2 w-2 shrink-0 rounded-full bg-[#7C9BFF]" />
+                    <div className="text-[11px] leading-tight">
+                      <div className="font-medium text-cv-ink/90">Anomaly · Data Science · prod-emr</div>
+                      <div className="text-cv-muted">3.1× baseline · detected 2h ago</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Commitments with payback proof */}
+            <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#080B14] p-7">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0"
+                style={{ background: "radial-gradient(ellipse 85% 60% at 0% 100%, rgba(22,100,192,0.10), transparent 60%)" }}
+              />
+              <div className="relative">
+                <h3 className="cv-h3 text-white">Commitments with payback proof</h3>
+                <p className="text-cv-ink/70 mt-3 leading-relaxed">RI, SP, and CSP coverage modelled with explicit payback before you commit. Commitment planning that shows the math, not just the recommendation. No surprises.</p>
+                {/* Commitment planning */}
+                <div className="mt-6 rounded-xl border border-white/10 bg-[#06070A] p-4">
+                  <div className="mb-4 grid grid-cols-2 gap-3">
+                    {[
+                      ["Est. savings", "$128k/yr"],
+                      ["Payback", "4.2 mo"],
+                    ].map(([l, v]) => (
+                      <div key={l} className="rounded-lg border border-white/10 bg-white/[0.03] p-3">
+                        <div className="text-[10px] uppercase tracking-wider text-cv-muted">{l}</div>
+                        <div className="mt-1 font-display text-xl font-semibold text-white">{v}</div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="space-y-3">
+                    {[
+                      ["RI coverage", 78],
+                      ["Savings Plan", 64],
+                      ["CSP coverage", 51],
+                    ].map(([l, pct]) => (
+                      <div key={l as string}>
+                        <div className="mb-1 flex items-center justify-between text-[11px]">
+                          <span className="text-cv-ink/80">{l}</span>
+                          <span className="font-mono text-cv-muted">{pct}%</span>
+                        </div>
+                        <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/[0.06]">
+                          <div className="h-full rounded-full bg-gradient-to-r from-[#1664C0] to-[#7C9BFF]" style={{ width: `${pct}%` }} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Audit-ready chargeback */}
+            <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#080B14] p-7">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0"
+                style={{ background: "radial-gradient(ellipse 85% 60% at 100% 100%, rgba(22,100,192,0.10), transparent 60%)" }}
+              />
+              <div className="relative">
+                <h3 className="cv-h3 text-white">Audit-ready chargeback</h3>
+                <p className="text-cv-ink/70 mt-3 leading-relaxed">Showback and chargeback wired to BU reporting with multi-currency and tax support. The finance team gets a report they can use. The engineering team gets a model they can trust.</p>
+                {/* Chargeback dashboard */}
+                <div className="mt-6 rounded-xl border border-white/10 bg-[#06070A] p-4">
+                  <div className="mb-3 flex items-center justify-between">
+                    <span className="text-xs font-medium text-cv-ink/80">Chargeback · Q2</span>
+                    <span className="rounded-full border border-[#1664C0]/40 bg-[#1664C0]/10 px-2 py-0.5 text-[10px] font-medium text-[#7C9BFF]">USD · EUR · GBP</span>
+                  </div>
+                  <div className="grid grid-cols-[1fr_auto_auto] gap-x-4 text-[11px]">
+                    <div className="border-b border-white/10 pb-2 text-[10px] uppercase tracking-wider text-cv-muted">Business unit</div>
+                    <div className="border-b border-white/10 pb-2 text-right text-[10px] uppercase tracking-wider text-cv-muted">Tax</div>
+                    <div className="border-b border-white/10 pb-2 text-right text-[10px] uppercase tracking-wider text-cv-muted">Total</div>
+                    {[
+                      ["Retail", "$3,140", "$48,210"],
+                      ["Mortgage", "$2,015", "$31,540"],
+                      ["Insurance", "$1,260", "$19,880"],
+                    ].map(([bu, tax, total]) => (
+                      <div key={bu} className="contents">
+                        <div className="border-b border-white/[0.06] py-2 text-cv-ink/80">{bu}</div>
+                        <div className="border-b border-white/[0.06] py-2 text-right font-mono text-cv-muted">{tax}</div>
+                        <div className="border-b border-white/[0.06] py-2 text-right font-mono text-cv-ink/90">{total}</div>
+                      </div>
+                    ))}
+                    <div className="py-2 font-medium text-cv-ink/90">Total</div>
+                    <div className="py-2 text-right font-mono text-cv-muted">$6,415</div>
+                    <div className="py-2 text-right font-mono font-semibold text-[#7C9BFF]">$99,630</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
