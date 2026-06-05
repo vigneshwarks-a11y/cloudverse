@@ -80,18 +80,6 @@ export function Testimonials() {
         if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setFocusWithin(false);
       }}
     >
-      {/* Subtle grid backdrop */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-          maskImage: "radial-gradient(ellipse at 50% 0%, #000 0%, transparent 80%)",
-          WebkitMaskImage: "radial-gradient(ellipse at 50% 0%, #000 0%, transparent 80%)",
-        }}
-      />
       {/* Soft blue glow */}
       <div
         aria-hidden
