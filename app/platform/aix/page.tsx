@@ -153,7 +153,8 @@ export default function AIXPage() {
 
       {/* PROBLEM */}
       <section className="cv-section">
-        <div className="cv-container max-w-4xl">
+        <div className="cv-container">
+          <div className="max-w-4xl">
           <h2 className="cv-h2 text-cv-ink">AI compute is becoming too expensive to hardcode.</h2>
           <p className="cv-body-lg text-cv-ink/80 mt-6">
             Most teams make AI infrastructure decisions once. Model endpoint, provider, region, failover logic, cost assumptions. These get buried in application code. Six months later, a cheaper model handles 70% of those requests at equivalent quality. Nobody knows.
@@ -215,6 +216,7 @@ export default function AIXPage() {
                 </ul>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </section>
