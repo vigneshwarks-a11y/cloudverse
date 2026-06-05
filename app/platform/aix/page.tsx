@@ -3,6 +3,7 @@ import { ArrowRight, Check, X, Plug, ShieldCheck, Target, Split, Scale, Eye } fr
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import { CountUpStat } from "@/components/CountUpStat";
+import GovernanceBento from "@/components/product/GovernanceBento";
 
 export const metadata: Metadata = {
   title: "AIX — The AI Control Plane for Enterprise AI Compute | CloudVerse",
@@ -393,7 +394,7 @@ export default function AIXPage() {
       </section>
 
       {/* GOVERNANCE */}
-      <section className="cv-section bg-cv-surface2">
+      <section className="cv-section bg-[#0A0B0E]">
         <div className="cv-container">
           <div className="max-w-3xl mb-10">
             <h2 className="cv-h2 text-cv-ink">Built for enterprise AI governance.</h2>
@@ -401,21 +402,7 @@ export default function AIXPage() {
               Every routing decision AIX makes is recorded, auditable, and explainable. Compliance controls are enforced at the routing layer, not bolted on after.
             </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-5">
-            {[
-              ["Multi-tenant isolation", "Each team's workloads, policies, and cost data are separated."],
-              ["Data residency controls", "Route requests by region based on sovereignty requirements. EU, US, APAC per workload."],
-              ["PII handling rules", "PII detection enforced before provider selection. Sensitive requests never reach unapproved endpoints."],
-              ["Budget caps", "Hard spend ceilings applied before a request goes out."],
-              ["Org/team policy scopes", "Different teams run under different constraint sets. One platform, multiple policies."],
-              ["Full execution trace logs", "Every decision logged with constraints, candidates, selection, outcome."],
-            ].map(([t, b]) => (
-              <div key={t} className="rounded-2xl border border-cv-line bg-cv-surface p-6">
-                <h4 className="font-display font-semibold text-cv-ink">{t}</h4>
-                <p className="text-sm text-cv-ink/75 mt-2 leading-relaxed">{b}</p>
-              </div>
-            ))}
-          </div>
+          <GovernanceBento />
         </div>
       </section>
 
