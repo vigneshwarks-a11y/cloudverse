@@ -259,7 +259,13 @@ export default function HomePage() {
       {/* FINAL CTA */}
       <section className="cv-section bg-[#0B0B0F]">
         <div className="cv-container">
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#06070A] px-6 py-9 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:px-10 lg:py-12">
+          <div className="relative overflow-hidden rounded-[2rem] border border-[#1664C0]/20 bg-[#080B14] px-6 py-7 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:px-10 lg:py-10">
+            {/* Soft blue tint */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0"
+              style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(22,100,192,0.14), transparent 60%)" }}
+            />
             {/* Subtle grid */}
             <div
               aria-hidden
@@ -275,7 +281,7 @@ export default function HomePage() {
 
             <div className="relative">
               {/* Orbit visual */}
-              <div className="relative mx-auto mb-6 h-36 w-36 sm:h-40 sm:w-40">
+              <div className="relative mx-auto mb-5 h-28 w-28 sm:h-32 sm:w-32">
                 {/* Orbit rings */}
                 <div className="absolute inset-0 rounded-full border border-white/[0.08]" />
                 <div className="absolute inset-5 rounded-full border border-white/[0.06]" />
