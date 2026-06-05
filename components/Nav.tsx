@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { NAV, DEMO_URL } from "@/lib/links";
 import { ModeToggle } from "./ModeToggle";
@@ -32,8 +32,8 @@ export function Nav() {
           CloudVerse<sup className="text-[10px] ml-0.5">™</sup>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-1" onMouseLeave={() => setOpenDrop(null)}>
-          <DropTrigger label="Platform" open={openDrop === "platform"} onHover={() => setOpenDrop("platform")}>
+        <nav className="hidden lg:flex items-center gap-1">
+          <DropTrigger label="Platform" value="platform" openDrop={openDrop} setOpenDrop={setOpenDrop}>
             <div className="grid gap-1 p-2 w-[300px]">
               {NAV.platform.map((it) => (
                 <Link
@@ -52,7 +52,7 @@ export function Nav() {
             </div>
           </DropTrigger>
 
-          <DropTrigger label="Solutions" open={openDrop === "solutions"} onHover={() => setOpenDrop("solutions")}>
+          <DropTrigger label="Solutions" value="solutions" openDrop={openDrop} setOpenDrop={setOpenDrop}>
             <div className="grid gap-1 p-2 w-[240px]">
               {NAV.solutions.map((it) => (
                 <Link
@@ -130,21 +130,64 @@ export function Nav() {
   );
 }
 
-function DropTrigger({ label, open, onHover, children }: { label: string; open: boolean; onHover: () => void; children: React.ReactNode }) {
+function DropTrigger({
+  label,
+  value,
+  openDrop,
+  setOpenDrop,
+  children,
+}: {
+  label: string;
+  value: string;
+  openDrop: string | null;
+  setOpenDrop: React.Dispatch<React.SetStateAction<string | null>>;
+  children: React.ReactNode;
+}) {
+  const open = openDrop === value;
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const cancelClose = () => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+  };
+
+  const handleEnter = () => {
+    cancelClose();
+    setOpenDrop(value);
+  };
+
+  const handleLeave = () => {
+    cancelClose();
+    closeTimer.current = setTimeout(() => {
+      setOpenDrop((cur) => (cur === value ? null : cur));
+    }, 120);
+  };
+
+  useEffect(() => () => cancelClose(), []);
+
   return (
-    <div className="relative" onMouseEnter={onHover}>
+    <div className="relative" onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
       <button
-        className="px-3 py-2 text-sm text-cv-ink/80 hover:text-cv-ink inline-flex items-center gap-1"
+        className={`px-3 py-2 text-sm inline-flex items-center gap-1 transition-colors ${
+          open ? "text-cv-blue" : "text-cv-ink/80 hover:text-cv-ink"
+        }`}
         data-testid={`nav-trigger-${label.toLowerCase()}`}
       >
         {label}
-        <ChevronDown size={14} className={`transition-transform ${open ? "rotate-180" : ""}`} />
+        <ChevronDown size={14} className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
       </button>
-      {open && (
-        <div className="absolute top-full left-0 mt-1 bg-cv-surface border border-cv-line rounded-lg shadow-2xl">
-          {children}
-        </div>
-      )}
+      {/* Kept mounted so close animates; pt-2 bridges the gap to prevent flicker */}
+      <div
+        className={`absolute top-full left-0 pt-2 transition-all duration-200 ease-out ${
+          open
+            ? "opacity-100 translate-y-0 visible"
+            : "pointer-events-none invisible -translate-y-1 opacity-0"
+        }`}
+      >
+        <div className="bg-cv-surface border border-cv-line rounded-lg shadow-2xl">{children}</div>
+      </div>
     </div>
   );
 }
