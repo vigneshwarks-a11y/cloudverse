@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Check, X } from "lucide-react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
+import { CountUpStat } from "@/components/CountUpStat";
 
 export const metadata: Metadata = {
   title: "AIX — The AI Control Plane for Enterprise AI Compute | CloudVerse",
@@ -141,7 +142,7 @@ export default function AIXPage() {
         <div className="cv-container py-8 grid grid-cols-2 lg:grid-cols-4 gap-6">
           {STATS.map((s) => (
             <div key={s.l}>
-              <div className="text-2xl lg:text-3xl font-display font-semibold text-cv-ink">{s.v}</div>
+              <CountUpStat value={s.v} className="text-2xl lg:text-3xl font-display font-semibold text-cv-ink" />
               <div className="text-sm text-cv-muted mt-1">{s.l}</div>
             </div>
           ))}
