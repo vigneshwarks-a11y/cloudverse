@@ -257,22 +257,65 @@ export default function HomePage() {
       <InvoiceEfficiency compact />
 
       {/* FINAL CTA */}
-      <section className="cv-section bg-cv-surface2">
+      <section className="cv-section bg-[#0B0B0F]">
         <div className="cv-container">
-          <div className="rounded-3xl border border-cv-line bg-cv-surface p-10 lg:p-16 text-center">
-            <h2 className="cv-h2 text-cv-ink max-w-3xl mx-auto">
-              Connect your first account in under 30 minutes.
-            </h2>
-            <p className="cv-body-lg text-cv-ink/75 mt-5 max-w-2xl mx-auto">
-              Most teams have their first non-obvious finding the same day.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-final-demo">
-                Book a Demo <ArrowRight size={16} />
-              </Link>
-              <Link href="/contact" className="cv-btn-ghost" data-testid="link-final-sales">
-                Talk to Sales
-              </Link>
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#06070A] px-6 py-16 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_0_90px_-30px_rgba(22,100,192,0.5)] sm:px-10 lg:py-20">
+            {/* Deep navy-to-black glow */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute left-1/2 top-0 h-[28rem] w-[44rem] -translate-x-1/2 -translate-y-1/3 rounded-full blur-3xl"
+              style={{ background: "radial-gradient(circle, rgba(22,100,192,0.20), transparent 65%)" }}
+            />
+            {/* Subtle grid */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0"
+              style={{
+                backgroundImage:
+                  "linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)",
+                backgroundSize: "48px 48px",
+                maskImage: "radial-gradient(ellipse at 50% 0%, #000 0%, transparent 70%)",
+                WebkitMaskImage: "radial-gradient(ellipse at 50% 0%, #000 0%, transparent 70%)",
+              }}
+            />
+
+            <div className="relative">
+              {/* Orbit visual */}
+              <div className="relative mx-auto mb-10 h-52 w-52 sm:h-60 sm:w-60">
+                {/* Orbit rings */}
+                <div className="absolute inset-0 rounded-full border border-white/[0.08]" />
+                <div className="absolute inset-7 rounded-full border border-white/[0.06]" />
+                <div className="absolute inset-14 rounded-full border border-[#1664C0]/15" />
+                {/* Faded orbit nodes */}
+                <span className="absolute left-1/2 top-0 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-[#1664C0]/70 shadow-[0_0_12px_2px_rgba(22,100,192,0.5)]" />
+                <span className="absolute right-3 top-1/3 h-2 w-2 rounded-full bg-[#7C9BFF]/50" />
+                <span className="absolute bottom-4 left-6 h-1.5 w-1.5 rounded-full bg-white/30" />
+                <span className="absolute bottom-8 right-8 h-2 w-2 rounded-full bg-[#1664C0]/40" />
+                <span className="absolute left-0 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-white/20" />
+                {/* Center CloudVerse logo */}
+                <div className="absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-3xl border border-[#1664C0]/30 bg-[#0B0E18] shadow-[0_0_50px_-8px_rgba(22,100,192,0.65)]">
+                  <img
+                    src="/legacy/logo/cloudverse-icon.png"
+                    alt="CloudVerse"
+                    className="h-12 w-auto"
+                  />
+                </div>
+              </div>
+
+              <h2 className="cv-h2 mx-auto max-w-3xl text-white">
+                Connect your first account in under 30 minutes.
+              </h2>
+              <p className="cv-body-lg mx-auto mt-5 max-w-2xl text-cv-ink/75">
+                Most teams have their first non-obvious finding the same day.
+              </p>
+              <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+                <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-final-demo">
+                  Book a Demo <ArrowRight size={16} />
+                </Link>
+                <Link href="/contact" className="cv-btn-ghost" data-testid="link-final-sales">
+                  Talk to Sales
+                </Link>
+              </div>
             </div>
           </div>
         </div>
