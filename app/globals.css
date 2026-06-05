@@ -188,6 +188,10 @@
 .cv-video-rise {
   animation: cv-video-rise 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+@keyframes cv-loader-fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
 @media (prefers-reduced-motion: reduce) {
   .cv-video-ring { animation: none; }
   .cv-video-rise { animation: none; opacity: 1; transform: none; }
