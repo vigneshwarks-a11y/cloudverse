@@ -104,7 +104,7 @@ export default function HomePage() {
       {/* BHHS CASE STUDY */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="relative overflow-hidden rounded-3xl border border-[#1664C0]/30 bg-[#0A0C14] p-8 shadow-[0_0_80px_-30px_rgba(22,100,192,0.5)] lg:p-14">
+          <div className="relative overflow-hidden rounded-3xl border border-[#1664C0]/30 bg-[#0A0C14] p-8 lg:p-14">
             {/* Subtle grid */}
             <div
               aria-hidden
