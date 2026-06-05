@@ -162,25 +162,58 @@ export default function AIXPage() {
             Hardcoded decisions don&apos;t update when pricing shifts. They don&apos;t reroute when a provider degrades. They don&apos;t flag when a smaller model meets quality requirements at a third of the cost. That gap is where most AI infrastructure spend goes unmanaged.
           </p>
           <div className="grid md:grid-cols-2 gap-5 mt-10">
-            <div className="rounded-2xl border border-cv-line bg-cv-surface p-6">
-              <div className="cv-label mb-3">Before AIX (hardcoded)</div>
-              <ul className="space-y-2 text-sm text-cv-ink/80">
-                <li>• Model: Claude Sonnet</li>
-                <li>• Provider: Anthropic</li>
-                <li>• Region: us-east-1</li>
-                <li>• Routing: static</li>
-                <li>• Cost assumptions: set at launch, never revisited</li>
-              </ul>
+            {/* Before — legacy / inactive */}
+            <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#15171B] p-6">
+              {/* Faint static node pattern */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 opacity-70"
+                style={{
+                  backgroundImage: "radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px)",
+                  backgroundSize: "18px 18px",
+                }}
+              />
+              <div className="relative">
+                <div className="cv-label mb-3 text-cv-muted">Before AIX (hardcoded)</div>
+                <ul className="space-y-2 text-sm text-cv-ink/70">
+                  <li>• Model: Claude Sonnet</li>
+                  <li>• Provider: Anthropic</li>
+                  <li>• Region: us-east-1</li>
+                  <li>• Routing: static</li>
+                  <li>• Cost assumptions: set at launch, never revisited</li>
+                </ul>
+              </div>
             </div>
-            <div className="rounded-2xl border p-6" style={{ borderColor: `${ACCENT}66`, background: `${ACCENT}14` }}>
-              <div className="cv-label mb-3" style={{ color: "#A99CE8" }}>After AIX (dynamic)</div>
-              <ul className="space-y-2 text-sm text-cv-ink/90">
-                <li>• Model: evaluated per request against constraints</li>
-                <li>• Provider: scored across all connected providers</li>
-                <li>• Region: applied per data residency policy</li>
-                <li>• Routing: live signal evaluation on every request</li>
-                <li>• Cost: attributed per request, per feature, per tenant</li>
-              </ul>
+            {/* After — premium / active */}
+            <div className="relative overflow-hidden rounded-2xl border border-[#007CFF]/40 bg-[#0A1422] p-6 shadow-[0_0_55px_-15px_rgba(0,124,255,0.55)]">
+              {/* Dynamic blue grid pattern */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(rgba(0,124,255,0.13) 1px, transparent 1px), linear-gradient(90deg, rgba(0,124,255,0.13) 1px, transparent 1px)",
+                  backgroundSize: "26px 26px",
+                  maskImage: "radial-gradient(ellipse 85% 80% at 75% 0%, #000 10%, transparent 75%)",
+                  WebkitMaskImage: "radial-gradient(ellipse 85% 80% at 75% 0%, #000 10%, transparent 75%)",
+                }}
+              />
+              {/* Blue blend glow */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -top-16 right-0 h-48 w-72 rounded-full blur-3xl"
+                style={{ background: "radial-gradient(circle, rgba(0,124,255,0.28), transparent 70%)" }}
+              />
+              <div className="relative">
+                <div className="cv-label mb-3" style={{ color: "#4DA3FF" }}>After AIX (dynamic)</div>
+                <ul className="space-y-2 text-sm text-cv-ink/90">
+                  <li>• Model: evaluated per request against constraints</li>
+                  <li>• Provider: scored across all connected providers</li>
+                  <li>• Region: applied per data residency policy</li>
+                  <li>• Routing: live signal evaluation on every request</li>
+                  <li>• Cost: attributed per request, per feature, per tenant</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
