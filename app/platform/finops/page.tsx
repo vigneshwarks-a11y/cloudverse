@@ -12,7 +12,6 @@ export const metadata: Metadata = {
 const ACCENT = "#1664C0";
 
 const STATS = [
-  { v: "$738,983", l: "recovered — Berkshire Hathaway HomeServices" },
   { v: "$101,736", l: "saved annually" },
   { v: "$61,582", l: "recovered in a single month" },
   { v: "5+", l: "cloud providers unified" },
@@ -46,7 +45,7 @@ export default function FinOpsPage() {
       </section>
 
       <section className="border-y border-cv-line bg-cv-surface2/40">
-        <div className="cv-container py-8 grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="cv-container py-8 grid grid-cols-2 lg:grid-cols-3 gap-6">
           {STATS.map((s) => (
             <div key={s.l}>
               <div className="text-2xl lg:text-3xl font-display font-semibold text-cv-ink">{s.v}</div>
@@ -226,33 +225,6 @@ export default function FinOpsPage() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CASE STUDY */}
-      <section className="cv-section">
-        <div className="cv-container">
-          <div className="rounded-3xl border border-cv-line bg-cv-surface2 p-8 lg:p-12">
-            <h2 className="cv-h2 text-cv-ink max-w-3xl">How Berkshire Hathaway HomeServices recovered $738,983</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 mb-8">
-              {[
-                ["$101,736", "recovered annually"],
-                ["$61,582", "recovered in a single month"],
-                ["$738,984", "total recovery"],
-              ].map(([v, l]) => (
-                <div key={l} className="rounded-xl border border-cv-line bg-cv-surface p-6">
-                  <div className="text-3xl lg:text-4xl font-display font-semibold text-cv-ink">{v}</div>
-                  <div className="text-sm text-cv-muted mt-2">{l}</div>
-                </div>
-              ))}
-            </div>
-            <p className="text-cv-ink/80 leading-relaxed max-w-3xl">
-              A growing mid-market cloud and AWS environment. Fragmented tagging, no team-level attribution, and a FinOps process that depended on manual variance reviews.
-            </p>
-            <p className="text-cv-ink/80 leading-relaxed max-w-3xl mt-4">
-              CloudVerse FinOps Platform connected spend to teams, surfaced the highest-impact anomalies, and gave the team an allocation model that held up to finance scrutiny. The waste was always there. It just had no address.
-            </p>
           </div>
         </div>
       </section>
