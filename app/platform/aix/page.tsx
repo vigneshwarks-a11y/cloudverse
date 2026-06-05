@@ -112,10 +112,9 @@ const TRACE_JSON = `{
   }
 }`;
 
-function Cell({ v }: { v: string }) {
-  if (v === "Yes") return <span className="inline-flex items-center gap-1 text-cv-teal"><Check size={14} /> Yes</span>;
-  if (v === "No") return <span className="inline-flex items-center gap-1 text-cv-muted"><X size={14} /> No</span>;
-  return <span className="text-cv-ink/75">{v}</span>;
+function CompCell({ v }: { v: string }) {
+  if (v === "No") return <span className="inline-flex items-center gap-1 text-gray-500"><X size={14} /> No</span>;
+  return <span className="text-gray-500">{v}</span>;
 }
 
 export default function AIXPage() {
@@ -262,25 +261,41 @@ export default function AIXPage() {
           <div className="max-w-3xl mb-10">
             <h2 className="cv-h2 text-cv-ink">A gateway executes a rule you wrote. AIX decides what the rule should be.</h2>
           </div>
-          <div className="overflow-x-auto rounded-2xl border border-cv-line">
+          <div className="overflow-x-auto rounded-2xl border border-white/10 bg-[#111318] shadow-[0_0_60px_-20px_rgba(0,124,255,0.25)]">
             <table className="w-full text-sm">
-              <thead className="bg-cv-surface2">
-                <tr className="text-left">
+              <thead>
+                <tr className="text-left border-b border-white/10">
                   <th className="p-4 text-cv-ink font-medium">Capability</th>
-                  <th className="p-4 text-cv-muted font-medium">Gateway / proxy</th>
-                  <th className="p-4 text-cv-muted font-medium">LLM gateway</th>
-                  <th className="p-4 text-cv-muted font-medium">Observability tool</th>
-                  <th className="p-4 font-medium" style={{ color: ACCENT }}>AIX</th>
+                  <th className="p-4 text-gray-400 font-medium">Gateway / Proxy</th>
+                  <th className="p-4 text-gray-400 font-medium">LLM Gateway</th>
+                  <th className="p-4 text-gray-400 font-medium">Observability Tool</th>
+                  <th
+                    className="p-4 font-semibold"
+                    style={{
+                      color: "#007CFF",
+                      background: "rgba(0,124,255,0.08)",
+                      textShadow: "0 0 16px rgba(0,124,255,0.55)",
+                    }}
+                  >
+                    AIX
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {COMPARE.map((row, i) => (
-                  <tr key={i} className="border-t border-cv-line">
+                  <tr key={i} className="border-t border-white/[0.06]">
                     <td className="p-4 text-cv-ink/90">{row[0]}</td>
-                    <td className="p-4"><Cell v={row[1]} /></td>
-                    <td className="p-4"><Cell v={row[2]} /></td>
-                    <td className="p-4"><Cell v={row[3]} /></td>
-                    <td className="p-4"><Cell v={row[4]} /></td>
+                    <td className="p-4"><CompCell v={row[1]} /></td>
+                    <td className="p-4"><CompCell v={row[2]} /></td>
+                    <td className="p-4"><CompCell v={row[3]} /></td>
+                    <td className="p-4 font-semibold" style={{ background: "rgba(0,124,255,0.08)" }}>
+                      <span
+                        className="inline-flex items-center gap-1.5"
+                        style={{ color: "#007CFF", textShadow: "0 0 14px rgba(0,124,255,0.6)" }}
+                      >
+                        <Check size={15} /> Yes
+                      </span>
+                    </td>
                   </tr>
                 ))}
               </tbody>
