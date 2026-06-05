@@ -110,7 +110,7 @@ export function Testimonials() {
             const isActive = i === active;
             const cardClass = `group relative overflow-hidden rounded-3xl border text-left transition-[flex-grow,flex-basis] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
               isActive
-                ? "border-white/[0.12] shadow-[0_0_60px_-18px_rgba(22,100,192,0.55)]"
+                ? "border-white/[0.12]"
                 : "cursor-pointer border-white/[0.08] bg-white/[0.03] hover:border-white/25 hover:bg-white/[0.06]"
             }`;
             const cardStyle = isActive
