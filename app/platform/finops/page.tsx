@@ -271,12 +271,19 @@ export default function FinOpsPage() {
       {/* FAQ */}
       <section className="cv-section bg-cv-surface2">
         <div className="cv-container max-w-3xl">
-          <h2 className="cv-h2 text-cv-ink mb-8">FAQ</h2>
+          <h2 className="font-display font-semibold tracking-tight text-cv-ink text-center text-3xl sm:text-4xl lg:text-5xl mb-12 lg:mb-16">
+            Frequently Asked Questions
+          </h2>
           <div className="space-y-4">
             {FAQ.map(([q, a]) => (
-              <details key={q} className="rounded-xl border border-cv-line bg-cv-surface p-5">
-                <summary className="cursor-pointer font-medium text-cv-ink">{q}</summary>
-                <p className="text-cv-ink/75 mt-3 leading-relaxed">{a}</p>
+              <details
+                key={q}
+                className="group rounded-2xl border border-cv-line bg-cv-surface p-6 sm:p-7 transition-colors hover:border-cv-line/80 open:border-cv-line/80"
+              >
+                <summary className="cursor-pointer text-base sm:text-lg font-medium text-cv-ink leading-snug">
+                  {q}
+                </summary>
+                <p className="text-cv-ink/75 mt-4 leading-relaxed">{a}</p>
               </details>
             ))}
           </div>
