@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Check, X } from "lucide-react";
+import { ArrowRight, Check, X, Plug, ShieldCheck, Target, Split, Scale, Eye } from "lucide-react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import { CountUpStat } from "@/components/CountUpStat";
@@ -18,6 +18,8 @@ const STATS = [
   { v: "96.8%", l: "lower cost vs hardcoded Claude Sonnet (benchmarked)" },
   { v: "28.5%", l: "faster vs same hardcoded baseline" },
 ];
+
+const STEP_ICONS = [Plug, ShieldCheck, Target, Split, Scale, Eye];
 
 const STEPS = [
   { n: "Connect", body: "Add provider API keys and endpoints. Minutes per provider. No application changes required." },
@@ -185,23 +187,38 @@ export default function AIXPage() {
       </section>
 
       {/* WHAT AIX DOES */}
-      <section className="cv-section bg-cv-surface2">
-        <div className="cv-container">
+      <section className="cv-section relative overflow-hidden bg-[#08090C]">
+        {/* Top-center brand radial gradient */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-[28rem]"
+          style={{ background: "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(0,124,255,0.16), transparent 70%)" }}
+        />
+        <div className="cv-container relative">
           <div className="max-w-3xl mb-10">
-            <h2 className="cv-h2 text-cv-ink">How AIX controls every AI request.</h2>
-            <p className="cv-body-lg text-cv-ink/75 mt-5">
+            <h2 className="cv-h2 text-white">How AIX controls every AI request.</h2>
+            <p className="cv-body-lg text-gray-400 mt-5">
               AIX sits between your application and every AI provider you use. On every request, it evaluates all available routes against the constraints your team has defined, and returns the best one, with a fallback and a full decision log.
             </p>
-            <p className="text-cv-ink/70 mt-4 italic">A gateway executes a routing rule you wrote. AIX evaluates whether that rule is still the right one.</p>
+            <p className="text-gray-400 mt-4 italic">A gateway executes a routing rule you wrote. AIX evaluates whether that rule is still the right one.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {STEPS.map((s, i) => (
-              <div key={s.n} className="rounded-2xl border border-cv-line bg-cv-surface p-6">
-                <div className="text-xs text-cv-muted">Step 0{i + 1}</div>
-                <h3 className="font-display font-semibold text-cv-ink text-lg mt-1" style={{ color: i === 0 ? ACCENT : undefined }}>{s.n}</h3>
-                <p className="text-sm text-cv-ink/75 leading-relaxed mt-3">{s.body}</p>
-              </div>
-            ))}
+            {STEPS.map((s, i) => {
+              const Icon = STEP_ICONS[i];
+              return (
+                <div
+                  key={s.n}
+                  className="group rounded-2xl border border-white/10 bg-[#111318] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#007CFF]/40 hover:bg-[#15171D]"
+                >
+                  <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-[#007CFF]/25 bg-[#007CFF]/10 text-[#007CFF] transition-colors duration-300 group-hover:bg-[#007CFF]/15">
+                    <Icon size={20} strokeWidth={1.5} />
+                  </div>
+                  <div className="text-xs text-gray-500">Step 0{i + 1}</div>
+                  <h3 className="font-display font-semibold text-white text-lg mt-1">{s.n}</h3>
+                  <p className="text-sm text-gray-400 leading-relaxed mt-3">{s.body}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
