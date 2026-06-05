@@ -188,6 +188,12 @@ export default function HomePage() {
 
       {/* INTEGRATION STRIP */}
       <section className="cv-section relative overflow-hidden">
+        {/* Soft blue tint */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{ background: "radial-gradient(ellipse 70% 60% at 50% 45%, rgba(22,100,192,0.12), transparent 70%)" }}
+        />
         {/* Dotted coordinate grid backdrop */}
         <div
           aria-hidden
