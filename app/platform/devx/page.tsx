@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 
@@ -169,27 +169,45 @@ export default function DevXPage() {
       {/* PRICING */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="max-w-3xl mb-10">
-            <h2 className="cv-h2 text-cv-ink">Most customers recover the cost of DevX from a single prevented regression.</h2>
-            <p className="cv-body-lg text-cv-ink/75 mt-5">
-              A missed NAT gateway cleanup runs $800 per month minimum. A misconfigured always-on instance in non-prod runs higher. DevX catches these before they merge.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-5">
-            <div className="rounded-2xl border border-cv-line bg-cv-surface2 p-7">
-              <div className="text-sm text-cv-muted">Free</div>
-              <div className="text-3xl font-display font-semibold text-cv-ink mt-1">$0<span className="text-base text-cv-muted">/month</span></div>
-              <ul className="space-y-2 text-sm text-cv-ink/80 mt-5">
+          <div className="grid gap-6 lg:grid-cols-4 lg:items-stretch">
+            {/* Intro column */}
+            <div className="flex flex-col justify-center lg:pr-4">
+              <h2 className="cv-h2 text-cv-ink">Most customers recover the cost of DevX from a single prevented regression.</h2>
+              <p className="cv-body-lg text-cv-ink/75 mt-5">
+                A missed NAT gateway cleanup runs $800 per month minimum. A misconfigured always-on instance in non-prod runs higher. DevX catches these before they merge.
+              </p>
+            </div>
+
+            {/* Free */}
+            <div className="flex h-full flex-col rounded-2xl border border-cv-line bg-cv-surface2 p-8">
+              <div className="text-xs uppercase tracking-widest font-medium text-cv-muted">Free</div>
+              <div className="mt-3 text-4xl lg:text-5xl font-display font-semibold text-cv-ink leading-none">
+                $0<span className="text-base font-normal text-cv-muted">/month</span>
+              </div>
+              <ul className="space-y-3 text-sm text-cv-ink/80 mt-7 leading-relaxed">
                 <li>• Unlimited public repos</li>
                 <li>• Standard PR cost estimates</li>
                 <li>• Basic CI scan</li>
                 <li>• Weekly reports</li>
               </ul>
             </div>
-            <div className="rounded-2xl border-2 p-7" style={{ borderColor: ACCENT, background: `${ACCENT}10` }}>
-              <div className="text-sm" style={{ color: "#3FD0A3" }}>Business</div>
-              <div className="text-3xl font-display font-semibold text-cv-ink mt-1">$900<span className="text-base text-cv-muted">/month</span></div>
-              <ul className="space-y-2 text-sm text-cv-ink/85 mt-5">
+
+            {/* Business — highlighted */}
+            <div
+              className="relative flex h-full flex-col rounded-2xl border-2 p-8 shadow-[0_0_40px_-12px_rgba(63,208,163,0.25)]"
+              style={{ borderColor: ACCENT, background: `${ACCENT}10` }}
+            >
+              <span
+                className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-cv-navy"
+                style={{ background: "#3FD0A3" }}
+              >
+                Most popular
+              </span>
+              <div className="text-xs uppercase tracking-widest font-medium" style={{ color: "#3FD0A3" }}>Business</div>
+              <div className="mt-3 text-4xl lg:text-5xl font-display font-semibold text-cv-ink leading-none">
+                $900<span className="text-base font-normal text-cv-muted">/month</span>
+              </div>
+              <ul className="space-y-3 text-sm text-cv-ink/85 mt-7 leading-relaxed">
                 <li>• Everything in Free</li>
                 <li>• Private repos</li>
                 <li>• Priority CI scans</li>
@@ -198,10 +216,12 @@ export default function DevXPage() {
                 <li>• Includes 1,000 units per month. $0.50 per additional unit.</li>
               </ul>
             </div>
-            <div className="rounded-2xl border border-cv-line bg-cv-surface2 p-7">
-              <div className="text-sm text-cv-muted">Enterprise</div>
-              <div className="text-3xl font-display font-semibold text-cv-ink mt-1">Custom</div>
-              <ul className="space-y-2 text-sm text-cv-ink/80 mt-5">
+
+            {/* Enterprise */}
+            <div className="flex h-full flex-col rounded-2xl border border-cv-line bg-cv-surface2 p-8">
+              <div className="text-xs uppercase tracking-widest font-medium text-cv-muted">Enterprise</div>
+              <div className="mt-3 text-4xl lg:text-5xl font-display font-semibold text-cv-ink leading-none">Custom</div>
+              <ul className="space-y-3 text-sm text-cv-ink/80 mt-7 leading-relaxed">
                 <li>• Everything in Business</li>
                 <li>• Custom allowance and unlimited scale</li>
                 <li>• Dedicated success manager</li>
