@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 };
 
 const ACCENT = "#0E9E7A";
+const BRAND = "#2277E0";
 
 const STATS = [
   { v: "+$2.4k to $2.9k", l: "flagged on a single PR" },
@@ -169,22 +170,24 @@ export default function DevXPage() {
       {/* PRICING */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="grid gap-6 lg:grid-cols-4 lg:items-stretch">
-            {/* Intro column */}
-            <div className="flex flex-col justify-center lg:pr-4">
-              <h2 className="cv-h2 text-cv-ink">Most customers recover the cost of DevX from a single prevented regression.</h2>
-              <p className="cv-body-lg text-cv-ink/75 mt-5">
-                A missed NAT gateway cleanup runs $800 per month minimum. A misconfigured always-on instance in non-prod runs higher. DevX catches these before they merge.
-              </p>
-            </div>
+          {/* Header above cards */}
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="cv-h2 text-cv-ink">Most customers recover the cost of DevX from a single prevented regression.</h2>
+            <p className="cv-body-lg text-cv-ink/75 mt-5">
+              A missed NAT gateway cleanup runs $800 per month minimum. A misconfigured always-on instance in non-prod runs higher. DevX catches these before they merge.
+            </p>
+          </div>
 
+          {/* Pricing cards */}
+          <div className="mt-14 lg:mt-20 grid gap-6 lg:gap-8 lg:grid-cols-3 items-stretch">
             {/* Free */}
-            <div className="flex h-full flex-col rounded-2xl border border-cv-line bg-cv-surface2 p-8">
-              <div className="text-xs uppercase tracking-widest font-medium text-cv-muted">Free</div>
-              <div className="mt-3 text-4xl lg:text-5xl font-display font-semibold text-cv-ink leading-none">
-                $0<span className="text-base font-normal text-cv-muted">/month</span>
+            <div className="flex h-full flex-col rounded-3xl border border-cv-line bg-cv-surface2 p-8 lg:p-10">
+              <div className="text-xs uppercase tracking-[0.18em] font-semibold text-cv-muted">Free</div>
+              <div className="mt-5 text-5xl lg:text-6xl font-display font-semibold text-cv-ink leading-none tracking-tight">
+                $0<span className="text-lg font-normal text-cv-muted">/month</span>
               </div>
-              <ul className="space-y-3 text-sm text-cv-ink/80 mt-7 leading-relaxed">
+              <div className="mt-8 h-px bg-cv-line" />
+              <ul className="space-y-3.5 text-sm text-cv-ink/80 mt-8 leading-relaxed">
                 <li>• Unlimited public repos</li>
                 <li>• Standard PR cost estimates</li>
                 <li>• Basic CI scan</li>
@@ -192,22 +195,27 @@ export default function DevXPage() {
               </ul>
             </div>
 
-            {/* Business — highlighted */}
+            {/* Business — primary focal point (CloudVerse brand blue) */}
             <div
-              className="relative flex h-full flex-col rounded-2xl border-2 p-8 shadow-[0_0_40px_-12px_rgba(63,208,163,0.25)]"
-              style={{ borderColor: ACCENT, background: `${ACCENT}10` }}
+              className="relative flex h-full flex-col rounded-3xl border-2 p-8 lg:p-10 lg:z-10"
+              style={{
+                borderColor: BRAND,
+                background: `linear-gradient(180deg, ${BRAND}1F 0%, ${BRAND}0A 100%)`,
+                boxShadow: `0 0 0 1px ${BRAND}33, 0 24px 70px -24px ${BRAND}80`,
+              }}
             >
               <span
-                className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-cv-navy"
-                style={{ background: "#3FD0A3" }}
+                className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full px-4 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-white"
+                style={{ background: `linear-gradient(90deg, ${BRAND}, #1664C0)`, boxShadow: `0 10px 26px -8px ${BRAND}99` }}
               >
                 Most popular
               </span>
-              <div className="text-xs uppercase tracking-widest font-medium" style={{ color: "#3FD0A3" }}>Business</div>
-              <div className="mt-3 text-4xl lg:text-5xl font-display font-semibold text-cv-ink leading-none">
-                $900<span className="text-base font-normal text-cv-muted">/month</span>
+              <div className="text-xs uppercase tracking-[0.18em] font-semibold" style={{ color: "#7CB8F8" }}>Business</div>
+              <div className="mt-5 text-5xl lg:text-6xl font-display font-semibold text-cv-ink leading-none tracking-tight">
+                $900<span className="text-lg font-normal text-cv-muted">/month</span>
               </div>
-              <ul className="space-y-3 text-sm text-cv-ink/85 mt-7 leading-relaxed">
+              <div className="mt-8 h-px" style={{ background: `${BRAND}40` }} />
+              <ul className="space-y-3.5 text-sm text-cv-ink/90 mt-8 leading-relaxed">
                 <li>• Everything in Free</li>
                 <li>• Private repos</li>
                 <li>• Priority CI scans</li>
@@ -218,10 +226,11 @@ export default function DevXPage() {
             </div>
 
             {/* Enterprise */}
-            <div className="flex h-full flex-col rounded-2xl border border-cv-line bg-cv-surface2 p-8">
-              <div className="text-xs uppercase tracking-widest font-medium text-cv-muted">Enterprise</div>
-              <div className="mt-3 text-4xl lg:text-5xl font-display font-semibold text-cv-ink leading-none">Custom</div>
-              <ul className="space-y-3 text-sm text-cv-ink/80 mt-7 leading-relaxed">
+            <div className="flex h-full flex-col rounded-3xl border border-cv-line bg-cv-surface2 p-8 lg:p-10">
+              <div className="text-xs uppercase tracking-[0.18em] font-semibold text-cv-muted">Enterprise</div>
+              <div className="mt-5 text-5xl lg:text-6xl font-display font-semibold text-cv-ink leading-none tracking-tight">Custom</div>
+              <div className="mt-8 h-px bg-cv-line" />
+              <ul className="space-y-3.5 text-sm text-cv-ink/80 mt-8 leading-relaxed">
                 <li>• Everything in Business</li>
                 <li>• Custom allowance and unlimited scale</li>
                 <li>• Dedicated success manager</li>
