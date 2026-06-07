@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
+import WhoDevxFor from "@/components/product/WhoDevxFor";
 
 export const metadata: Metadata = {
   title: "DevX — Catch Cost Regressions Before They Reach Production | CloudVerse",
@@ -148,24 +149,7 @@ export default function DevXPage() {
       </section>
 
       {/* WHO DEVX IS FOR */}
-      <section className="cv-section bg-cv-surface2">
-        <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-10">Who DevX is for</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {[
-              ["Platform engineers", "Stop cost governance from being a retrospective exercise. Policies live in the repo. Every PR gets a signal before it ships. Governance happens where the work happens."],
-              ["Application engineers", "Catch costly code patterns early. Expensive loops, chatty APIs, and inefficient resource usage flagged in context before production. The estimate arrives with a suggested fix."],
-              ["FinOps teams", "Shift cost accountability into the delivery workflow. Surface cost risks where decisions are made, before infrastructure or code ships. Stop chasing post-production waste."],
-              ["Data teams", "Detect expensive queries, inefficient scans, and over-provisioned compute in PRs and CI jobs. Catch the problem before the data platform gets blamed."],
-            ].map(([t, b]) => (
-              <div key={t} className="rounded-2xl border border-cv-line bg-cv-surface p-6">
-                <h3 className="font-display font-semibold text-cv-ink">{t}</h3>
-                <p className="text-sm text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <WhoDevxFor />
 
       {/* PRICING */}
       <section className="cv-section">
