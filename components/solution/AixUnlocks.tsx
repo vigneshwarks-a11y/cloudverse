@@ -41,7 +41,7 @@ const CARDS: Card[] = [
     title: "Model registry",
     body: "Track model versions, provider options, and performance benchmarks. Multi-region failover built in. Primary and fallback routes generated on every request.",
     Icon: Database,
-    span: "md:col-span-3",
+    span: "md:col-span-2",
   },
 ];
 
@@ -76,7 +76,7 @@ export default function AixUnlocks() {
         <div className="max-w-3xl mb-10">
           <h2 className="cv-h2 text-cv-ink">What AIX unlocks for AI engineering teams</h2>
         </div>
-        <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
+        <div ref={ref} className="grid grid-cols-1 md:grid-cols-4 gap-5 lg:gap-6">
           {CARDS.map(({ title, body, Icon, span }, i) => (
             <div
               key={title}
