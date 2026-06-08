@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { NAV, DEMO_URL } from "@/lib/links";
@@ -28,8 +29,15 @@ export function Nav() {
       data-testid="site-nav"
     >
       <div className="cv-container flex items-center justify-between h-[60px]">
-        <Link href="/" className="font-display font-bold text-cv-ink text-lg tracking-tight" data-testid="link-logo">
-          CloudVerse<sup className="text-[10px] ml-0.5">™</sup>
+        <Link href="/" className="flex items-center" data-testid="link-logo">
+          <Image
+            src="/cv-logo.png"
+            alt="CloudVerse"
+            width={45}
+            height={28}
+            priority
+            className="h-7 w-auto"
+          />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">
