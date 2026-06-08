@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import { PlatformCards } from "@/components/solution/PlatformCards";
+import { FinopsShips } from "@/components/solution/FinopsShips";
 
 export const metadata: Metadata = {
   title: "For FinOps Teams — The Control Plane Your Finance and Engineering Teams Both Trust | CloudVerse",
@@ -68,19 +69,14 @@ export default function FinOpsTeamsPage() {
           <div className="max-w-3xl mb-10">
             <h2 className="cv-h2 text-cv-ink">What FinOps teams ship faster with CloudVerse</h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-5">
-            {[
+          <FinopsShips
+            items={[
               ["Allocation everyone agrees on", "One model with tags, accounts, BUs, and shared-service splits, reconciled to finance. The finance team gets the report they need. The engineering team gets a view that matches their cost centres."],
               ["Anomalies with attribution", "Identify the team, environment, and charge that drove the anomaly within hours of it happening. The alert arrives with context, not just a number. No more spending half the week explaining what spiked."],
               ["Commitments with payback proof", "RI, SP, and CSP coverage modelled with explicit payback before you commit. The decision gets made with the full math visible, not retrospectively justified."],
               ["Audit-ready chargeback", "Showback and chargeback wired to BU reporting with multi-currency and tax support. The report your finance team can actually use."],
-            ].map(([t, b]) => (
-              <div key={t} className="rounded-2xl border border-cv-line bg-cv-surface p-6">
-                <h3 className="cv-h3 text-cv-ink">{t}</h3>
-                <p className="text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
-              </div>
-            ))}
-          </div>
+            ]}
+          />
         </div>
       </section>
 
