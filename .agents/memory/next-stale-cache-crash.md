@@ -5,6 +5,15 @@ description: Client-side runtime crash while the dev server returns 200 — caus
 
 # Stale `.next` cache → client runtime crash
 
+**DURABLE FIX APPLIED (prefer this):** the `dev` script in `package.json` now runs
+`rm -rf .next && next dev ...`, so every workflow start/restart begins from a clean
+build. This neutralizes the recurring stale-cache crash even while `.next` stays
+tracked in git — no manual `rm -rf .next` + restart band-aid needed each time. If
+the crash recurs, first check the `dev` script still has the `rm -rf .next &&`
+prefix. The user-run `git rm -r --cached .next` is still the cleanest end-state, but
+the dev-script guard makes it non-blocking.
+
+
 Symptom: the "Start application" workflow is reported as crashed with a runtime
 error, and the browser shows a flood of console logs, **yet** the dev server keeps
 returning `GET / 200` and SSR HTML is intact. All routes 200, no server-side
