@@ -33,13 +33,9 @@ export default function DevxPrExample({ diff }: { diff: string }) {
             </p>
           </div>
 
-          {/* Code block in glowing animated blue border with Mac chrome */}
+          {/* Code block in animated blue border with Mac chrome */}
           <div className="relative rounded-2xl p-[1.5px]">
             <div aria-hidden className="cv-ring-blue absolute inset-0 rounded-2xl" />
-            <div
-              aria-hidden
-              className="cv-ring-blue pointer-events-none absolute inset-0 rounded-2xl opacity-60 blur-md"
-            />
             <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#070710]">
               {/* Mac chrome */}
               <div className="flex items-center gap-2 border-b border-white/10 bg-white/[0.03] px-4 py-3">
@@ -67,13 +63,10 @@ export default function DevxPrExample({ diff }: { diff: string }) {
               </ul>
             </div>
 
-            {/* Right: dark background, blue glowing border */}
+            {/* Right: dark background, blue border */}
             <div
               className="rounded-2xl border bg-cv-surface p-6"
-              style={{
-                borderColor: "#007CFF",
-                boxShadow: "0 0 24px rgba(0,124,255,0.35), inset 0 0 16px rgba(0,124,255,0.08)",
-              }}
+              style={{ borderColor: "#007CFF" }}
             >
               <div className="cv-label mb-2">Why this matters</div>
               <ul className="text-sm text-cv-ink/80 space-y-1">
