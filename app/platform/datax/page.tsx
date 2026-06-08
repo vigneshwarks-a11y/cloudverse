@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
+import WarehouseIntel from "@/components/product/WarehouseIntel";
 
 export const metadata: Metadata = {
   title: "DataX — Find the Queries Quietly Running Up Your Bill | CloudVerse",
@@ -104,26 +105,7 @@ export default function DataXPage() {
       </section>
 
       {/* WHAT DATA TEAMS UNLOCK */}
-      <section className="cv-section">
-        <div className="cv-container">
-          <div className="max-w-3xl mb-10">
-            <h2 className="cv-h2 text-cv-ink">Warehouse cost intelligence, not just dashboards.</h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-5">
-            {[
-              ["Query attribution", "Every query tied to the user, role, dashboard, model, or job that ran it. When the data team gets blamed, they can show exactly which workload and which team owns the cost."],
-              ["Pattern detection", "Repeated expensive patterns surfaced with rewrite suggestions. The problem is usually a handful of query patterns running hundreds of times, not one catastrophic scan. DataX finds the pattern, not just the instance."],
-              ["Predictive signals", "Detect warehouse cost spikes from queue depth and pattern shifts before they hit the bill. Most regressions are visible in telemetry before they become a finance conversation. DataX flags them before they do."],
-              ["Safe automation", "One-click partition, cluster, and right-size fixes. Fully policy-bound and auditable. Automation in DataX controls when recommendations may be applied, and provides a complete audit trail of every decision and action. Opt-in, scoped, reversible."],
-            ].map(([t, b]) => (
-              <div key={t} className="rounded-2xl border border-cv-line bg-cv-surface2 p-7">
-                <h3 className="cv-h3 text-cv-ink">{t}</h3>
-                <p className="text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <WarehouseIntel />
 
       {/* PRICING PHILOSOPHY */}
       <section className="cv-section bg-cv-surface2">
