@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import { PlatformCards } from "@/components/solution/PlatformCards";
+import { DataXUnlocks } from "@/components/solution/DataXUnlocks";
 
 export const metadata: Metadata = {
   title: "For Data Teams — Find the Queries Quietly Running Up Your Bill | CloudVerse",
@@ -68,19 +69,14 @@ export default function DataTeamsPage() {
           <div className="max-w-3xl mb-10">
             <h2 className="cv-h2 text-cv-ink">What data teams unlock with DataX</h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-5">
-            {[
+          <DataXUnlocks
+            items={[
               ["Query attribution", "Every query tied to the user, role, dashboard, model, or job that ran it. When the data team gets blamed for the bill, they can show exactly which workload and which team owns the cost."],
               ["Pattern detection", "Repeated expensive patterns surfaced with rewrite suggestions. DataX groups queries into cost-amplifying patterns, not one-off executions. The problem is usually a handful of patterns running hundreds of times."],
               ["Predictive signals", "Predict warehouse cost spikes from queue depth and pattern shifts before they hit the bill. Most regressions are visible in telemetry before they become a finance conversation."],
               ["Safe automation", "One-click partition, cluster, and right-size fixes. Policy-bound. Auditable. Reversible. Automation in DataX is opt-in, scoped, and logged in full."],
-            ].map(([t, b]) => (
-              <div key={t} className="rounded-2xl border border-cv-line bg-cv-surface p-6">
-                <h3 className="cv-h3 text-cv-ink">{t}</h3>
-                <p className="text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
-              </div>
-            ))}
-          </div>
+            ]}
+          />
         </div>
       </section>
 
