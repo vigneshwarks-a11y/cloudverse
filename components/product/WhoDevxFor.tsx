@@ -59,7 +59,7 @@ export default function WhoDevxFor() {
           {PERSONAS.map(({ title, body, Icon, color }, i) => (
             <div
               key={title}
-              className="relative rounded-3xl border p-8 lg:p-10 text-center transition-all duration-700 ease-out"
+              className="relative rounded-3xl border p-8 lg:p-10 text-left transition-all duration-700 ease-out"
               style={{
                 background: `linear-gradient(160deg, #0A1018 0%, ${color}14 100%)`,
                 borderColor: `${color}80`,
@@ -69,7 +69,7 @@ export default function WhoDevxFor() {
               }}
             >
               <div
-                className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl"
+                className="flex h-14 w-14 items-center justify-center rounded-2xl"
                 style={{
                   background: `${color}1F`,
                   boxShadow: `inset 0 0 0 1px ${color}40`,
