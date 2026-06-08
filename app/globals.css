@@ -204,9 +204,29 @@
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
 }
+/* Cost-spike chart: gentle line-draw + anomaly pulse */
+@keyframes cv-cost-draw {
+  from { stroke-dashoffset: 620; }
+  to { stroke-dashoffset: 0; }
+}
+.cv-cost-line {
+  stroke-dasharray: 620;
+  animation: cv-cost-draw 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes cv-cost-pulse {
+  0% { opacity: 0.45; transform: scale(1); }
+  70%, 100% { opacity: 0; transform: scale(2.4); }
+}
+.cv-cost-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: cv-cost-pulse 2.4s ease-out infinite;
+}
 @media (prefers-reduced-motion: reduce) {
   .cv-video-ring { animation: none; }
   .cv-ring-blue { animation: none; }
+  .cv-cost-line { animation: none; stroke-dashoffset: 0; }
+  .cv-cost-pulse { animation: none; opacity: 0; }
   .cv-video-rise { animation: none; opacity: 1; transform: none; }
   .cv-testimonials,
   .cv-testimonials * {

@@ -89,57 +89,55 @@ export default function DevXPage() {
             <div className="flex justify-center lg:justify-end">
               <div
                 aria-hidden
-                style={{ filter: "drop-shadow(0 0 22px rgba(0,124,255,0.22))" }}
+                className="w-full max-w-md rounded-2xl border bg-cv-surface/60 p-6"
+                style={{ borderColor: "#007CFF66" }}
               >
                 <svg
-                  width="240"
-                  height="240"
-                  viewBox="0 0 200 200"
+                  viewBox="0 0 320 220"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-48 h-48 sm:w-60 sm:h-60"
+                  className="w-full h-auto"
                 >
                   <defs>
-                    <linearGradient id="cubeTop" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0" stopColor="#007CFF" stopOpacity="0.42" />
-                      <stop offset="1" stopColor="#007CFF" stopOpacity="0.28" />
-                    </linearGradient>
-                    <linearGradient id="cubeLeft" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0" stopColor="#007CFF" stopOpacity="0.16" />
-                      <stop offset="1" stopColor="#007CFF" stopOpacity="0.08" />
-                    </linearGradient>
-                    <linearGradient id="cubeRight" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0" stopColor="#007CFF" stopOpacity="0.26" />
-                      <stop offset="1" stopColor="#007CFF" stopOpacity="0.14" />
+                    <linearGradient id="costFill" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stopColor="#0F46C2" stopOpacity="0.35" />
+                      <stop offset="1" stopColor="#0F46C2" stopOpacity="0" />
                     </linearGradient>
                   </defs>
-                  {/* left face */}
-                  <polygon
-                    points="30,70 100,110 100,190 30,150"
-                    fill="url(#cubeLeft)"
+
+                  {/* grid lines */}
+                  <g stroke="#007CFF" strokeOpacity="0.10" strokeWidth="1">
+                    <line x1="40" y1="40" x2="300" y2="40" />
+                    <line x1="40" y1="90" x2="300" y2="90" />
+                    <line x1="40" y1="140" x2="300" y2="140" />
+                  </g>
+
+                  {/* axes */}
+                  <g stroke="#0F46C2" strokeOpacity="0.6" strokeWidth="1.5" strokeLinecap="round">
+                    <line x1="40" y1="20" x2="40" y2="186" />
+                    <line x1="40" y1="186" x2="300" y2="186" />
+                  </g>
+
+                  {/* area under the cost curve */}
+                  <path
+                    d="M48 162 L96 152 L144 146 L192 136 L236 122 L266 98 L292 34 L292 186 L48 186 Z"
+                    fill="url(#costFill)"
+                  />
+
+                  {/* cost curve — gentle rise then sharp spike */}
+                  <path
+                    className="cv-cost-line"
+                    d="M48 162 L96 152 L144 146 L192 136 L236 122 L266 98 L292 34"
+                    fill="none"
                     stroke="#007CFF"
-                    strokeWidth="1.5"
-                    strokeOpacity="0.85"
+                    strokeWidth="3"
+                    strokeLinecap="round"
                     strokeLinejoin="round"
                   />
-                  {/* right face */}
-                  <polygon
-                    points="170,70 100,110 100,190 170,150"
-                    fill="url(#cubeRight)"
-                    stroke="#007CFF"
-                    strokeWidth="1.5"
-                    strokeOpacity="0.85"
-                    strokeLinejoin="round"
-                  />
-                  {/* top face */}
-                  <polygon
-                    points="100,30 170,70 100,110 30,70"
-                    fill="url(#cubeTop)"
-                    stroke="#007CFF"
-                    strokeWidth="1.5"
-                    strokeOpacity="0.95"
-                    strokeLinejoin="round"
-                  />
+
+                  {/* anomaly highlight at the spike */}
+                  <circle className="cv-cost-pulse" cx="292" cy="34" r="7" fill="#007CFF" fillOpacity="0.35" />
+                  <circle cx="292" cy="34" r="5" fill="#007CFF" stroke="#0F46C2" strokeWidth="1.5" />
                 </svg>
               </div>
             </div>
