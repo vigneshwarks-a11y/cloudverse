@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import { PlatformCards } from "@/components/solution/PlatformCards";
+import { PlatformShips } from "@/components/solution/PlatformShips";
 
 export const metadata: Metadata = {
   title: "For Platform Engineering — Cost Gates Engineers Actually Want to Use | CloudVerse",
@@ -71,19 +72,14 @@ export default function PlatformEngPage() {
           <div className="max-w-3xl mb-10">
             <h2 className="cv-h2 text-cv-ink">What platform teams ship with CloudVerse</h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-5">
-            {[
+          <PlatformShips
+            items={[
               ["PR cost diff", "Every infra PR gets an inline cost impact estimate before reviewers see it. Advisory or required, your choice. The governance happens where the work happens."],
               ["Policy-as-code", "Cost guardrails versioned in your repo. Advisory mode posts an estimate. Required mode blocks PRs above your defined cost threshold until explicitly approved. Both modes are code, not configuration buried in a third-party portal."],
               ["Native CI integration", "GitHub Actions, GitLab CI, Azure Pipelines, Jenkins, Argo. No new pipeline. DevX slots into what your teams already use."],
               ["Multi-IaC support", "Terraform, OpenTofu, Pulumi, CloudFormation, Helm, Kubernetes. Seven-plus formats. One integration."],
-            ].map(([t, b]) => (
-              <div key={t} className="rounded-2xl border border-cv-line bg-cv-surface p-6">
-                <h3 className="cv-h3 text-cv-ink">{t}</h3>
-                <p className="text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
-              </div>
-            ))}
-          </div>
+            ]}
+          />
         </div>
       </section>
 
