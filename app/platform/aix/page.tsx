@@ -340,7 +340,7 @@ export default function AIXPage() {
 
       {/* FOR FINOPS */}
       <section className="cv-section">
-        <div className="cv-container max-w-4xl">
+        <div className="cv-container">
           <h2 className="cv-h2 text-cv-ink">From cloud cost reporting to AI compute economics.</h2>
           <p className="cv-body-lg text-cv-ink/75 mt-5">
             AIX gives you cost-per-request, cost-per-feature, and cost-per-tenant allocation. Budget caps are enforced at the routing layer before spend occurs. No spreadsheet reconstruction after the fact.
