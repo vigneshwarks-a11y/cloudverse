@@ -72,76 +72,17 @@ export default function DevXPage() {
       </section>
 
       <section className="cv-section">
-        <div className="cv-container">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            <div className="max-w-2xl">
-              <h2 className="cv-h2 text-cv-ink">Infrastructure cost mistakes do not look like mistakes.</h2>
-              <p className="cv-body-lg text-cv-ink/80 mt-6">
-                Infrastructure decisions that cause cost regressions look like correct Terraform. The NAT gateway goes in because someone needed it for one sprint. Nobody removes it. The always-on compute instance gets sized for peak load. Load normalises. The instance stays.
-              </p>
-              <p className="cv-body-lg text-cv-ink/80 mt-4">
-                Cost reports land three weeks after the deployment. The engineer who wrote the change has moved on to four other things. Nobody changes anything.
-              </p>
-              <p className="cv-body-lg text-cv-ink font-medium mt-4">
-                DevX puts a cost estimate on every PR before it merges. Engineers see impact at the moment they still have context on what they built and why.
-              </p>
-            </div>
-            <div className="flex justify-center lg:justify-end">
-              <div
-                aria-hidden
-                className="w-full max-w-md rounded-2xl border bg-cv-surface/60 p-6"
-                style={{ borderColor: "#007CFF66" }}
-              >
-                <svg
-                  viewBox="0 0 320 220"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-full h-auto"
-                >
-                  <defs>
-                    <linearGradient id="costFill" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0" stopColor="#0F46C2" stopOpacity="0.35" />
-                      <stop offset="1" stopColor="#0F46C2" stopOpacity="0" />
-                    </linearGradient>
-                  </defs>
-
-                  {/* grid lines */}
-                  <g stroke="#007CFF" strokeOpacity="0.10" strokeWidth="1">
-                    <line x1="40" y1="40" x2="300" y2="40" />
-                    <line x1="40" y1="90" x2="300" y2="90" />
-                    <line x1="40" y1="140" x2="300" y2="140" />
-                  </g>
-
-                  {/* axes */}
-                  <g stroke="#0F46C2" strokeOpacity="0.6" strokeWidth="1.5" strokeLinecap="round">
-                    <line x1="40" y1="20" x2="40" y2="186" />
-                    <line x1="40" y1="186" x2="300" y2="186" />
-                  </g>
-
-                  {/* area under the cost curve */}
-                  <path
-                    d="M48 162 L96 152 L144 146 L192 136 L236 122 L266 98 L292 34 L292 186 L48 186 Z"
-                    fill="url(#costFill)"
-                  />
-
-                  {/* cost curve — gentle rise then sharp spike */}
-                  <path
-                    className="cv-cost-line"
-                    d="M48 162 L96 152 L144 146 L192 136 L236 122 L266 98 L292 34"
-                    fill="none"
-                    stroke="#007CFF"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-
-                  {/* anomaly highlight at the spike */}
-                  <circle className="cv-cost-pulse" cx="292" cy="34" r="7" fill="#007CFF" fillOpacity="0.35" />
-                  <circle cx="292" cy="34" r="5" fill="#007CFF" stroke="#0F46C2" strokeWidth="1.5" />
-                </svg>
-              </div>
-            </div>
-          </div>
+        <div className="cv-container max-w-4xl">
+          <h2 className="cv-h2 text-cv-ink">Infrastructure cost mistakes do not look like mistakes.</h2>
+          <p className="cv-body-lg text-cv-ink/80 mt-6">
+            Infrastructure decisions that cause cost regressions look like correct Terraform. The NAT gateway goes in because someone needed it for one sprint. Nobody removes it. The always-on compute instance gets sized for peak load. Load normalises. The instance stays.
+          </p>
+          <p className="cv-body-lg text-cv-ink/80 mt-4">
+            Cost reports land three weeks after the deployment. The engineer who wrote the change has moved on to four other things. Nobody changes anything.
+          </p>
+          <p className="cv-body-lg text-cv-ink font-medium mt-4">
+            DevX puts a cost estimate on every PR before it merges. Engineers see impact at the moment they still have context on what they built and why.
+          </p>
         </div>
       </section>
 
