@@ -5,6 +5,10 @@ const nextConfig = {
   allowedDevOrigins: ["*.replit.dev", "*.repl.co", "*.kirk.replit.dev"],
   experimental: {
     optimizePackageImports: ["lucide-react"],
+    // Disable the Next dev "Segment Explorer" devtool. Its RSC client
+    // manifest gets corrupted during repeated HMR edits, causing recurring
+    // dev-server crashes (segment-explorer-node.js#SegmentViewNode not found).
+    devtoolSegmentExplorer: false,
   },
   async redirects() {
     return [

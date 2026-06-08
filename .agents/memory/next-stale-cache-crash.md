@@ -5,13 +5,22 @@ description: Client-side runtime crash while the dev server returns 200 — caus
 
 # Stale `.next` cache → client runtime crash
 
-**DURABLE FIX APPLIED (prefer this):** the `dev` script in `package.json` now runs
+**ROOT-CAUSE FIX APPLIED (prefer this above all):** the recurring dev crash on
+Next 15.5.x is the dev "Segment Explorer" devtool, not a generic cache problem. Its
+symptom is server-log errors `Could not find the module ".../next-devtools/.../
+segment-explorer-node.js#SegmentViewNode" in the React Client Manifest` followed by
+`__webpack_modules__[moduleId] is not a function`, a one-off `500`, then recovery to
+`200`. It corrupts during repeated HMR edits. Disable it in `next.config.mjs`:
+`experimental.devtoolSegmentExplorer: false`. (The flag is real — it's in Next's
+`config-shared.d.ts`, default `true`. In the dev banner it prints as `⨯
+devtoolSegmentExplorer`, where `⨯`=boolean-false/disabled, `✓`=true; NOT an error.)
+This removes the trigger so the crash stops recurring after edits.
+
+**SECONDARY GUARD (also in place):** the `dev` script in `package.json` runs
 `rm -rf .next && next dev ...`, so every workflow start/restart begins from a clean
-build. This neutralizes the recurring stale-cache crash even while `.next` stays
-tracked in git — no manual `rm -rf .next` + restart band-aid needed each time. If
-the crash recurs, first check the `dev` script still has the `rm -rf .next &&`
-prefix. The user-run `git rm -r --cached .next` is still the cleanest end-state, but
-the dev-script guard makes it non-blocking.
+build. Keeps a single restart sufficient if any stale cache ever appears. If a crash
+recurs, check (1) `devtoolSegmentExplorer: false` is still in next.config.mjs, then
+(2) the `dev` script still has the `rm -rf .next &&` prefix.
 
 
 Symptom: the "Start application" workflow is reported as crashed with a runtime
