@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
+import AixUnlocks from "@/components/solution/AixUnlocks";
 
 export const metadata: Metadata = {
   title: "For AI Engineering — Run Every AI Workload Where It Costs Least and Runs Best | CloudVerse",
@@ -63,27 +64,7 @@ export default function AIEngineeringPage() {
         </div>
       </section>
 
-      <section className="cv-section bg-cv-surface2">
-        <div className="cv-container">
-          <div className="max-w-3xl mb-10">
-            <h2 className="cv-h2 text-cv-ink">What AIX unlocks for AI engineering teams</h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-5">
-            {[
-              ["Multi-provider routing", "Score every request across OpenAI, Anthropic, Bedrock, Vertex, Cohere, Groq, HuggingFace, and self-hosted infrastructure. Route to the best fit based on cost, latency, and quality requirements for that specific task type. Automatically."],
-              ["Policy guardrails", "Compliance, content, latency, and budget guardrails enforced before execution. PII handling rules, data residency constraints, and provider allowlists applied at the routing layer, not retrofitted in application code."],
-              ["Right-sized GPU economics", "Move workloads between hosted and dedicated GPU pools without rewriting code. AIX handles the routing logic. Your engineers handle the model."],
-              ["Token and GPU attribution", "Spend tied back to team, product, and unit revenue. Automatic. No separate AI cost report reconstructed from billing data after the fact."],
-              ["Model registry", "Track model versions, provider options, and performance benchmarks. Multi-region failover built in. Primary and fallback routes generated on every request."],
-            ].map(([t, b]) => (
-              <div key={t} className="rounded-2xl border border-cv-line bg-cv-surface p-6">
-                <h3 className="cv-h3 text-cv-ink">{t}</h3>
-                <p className="text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <AixUnlocks />
 
       <section className="cv-section">
         <div className="cv-container max-w-4xl">
