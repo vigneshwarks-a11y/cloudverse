@@ -1,0 +1,77 @@
+Redesign the "Four problems AIX fixes" section.
+
+LAYOUT:
+Change to a perfect 2x2 grid layout with 4 equal-sized cards.
+All cards must have EQUAL HEIGHT and EQUAL WIDTH.
+
+Grid structure:
+- Row 1: 2 cards (50% width each)
+- Row 2: 2 cards (50% width each)
+- All 4 cards same height
+
+CARD STYLING:
+- Dark background with thin blue border (#007CFF)
+- Rounded corners (12px)
+- Generous padding inside
+- Number badge at top-left (1, 2, 3, 4)
+- Title: bold white text
+- All cards identical in size
+
+INTERNAL STRUCTURE - ALL CARDS MUST BE IDENTICAL:
+
+Every card layout:
+
+NUMBER BADGE (top-left) - FIXED
+- Circular badge with number (1, 2, 3, 4)
+- Same size in all cards
+- Same position in all cards
+
+TITLE (top) - FIXED, EQUAL SIZE IN ALL CARDS
+- Font size: same across all 4 cards
+- Line height: same across all 4 cards
+- Padding: same in all cards
+
+CONTENT (bottom) - FIXED, EQUAL SIZE IN ALL CARDS
+Sections in consistent order:
+- SITUATION (cyan label + text)
+- THE PROBLEM (red label + text)
+- HOW AIX SOLVES IT (cyan label + text)
+- AFTER AIX (red label + text)
+
+All sections have:
+- Same font sizes across all cards
+- Same label sizes and colors
+- Same padding and spacing
+- Takes remaining space below title
+- All content aligns properly
+
+SIZING - BALANCED AND EQUAL:
+- All 4 cards: 50% width (2 columns)
+- All 4 cards: same height
+- No card should be taller or wider than another
+- Perfect 2x2 grid alignment
+
+CARDS - Keep all content exactly the same:
+
+Card 1: Multi-provider cost arbitrage [Keep exact same content]
+Card 2: Compliance-bound routing [Keep exact same content]
+Card 3: GPU cost control for AI agents [Keep exact same content]
+Card 4: Multi-model AI product infrastructure [Keep exact same content]
+
+SPACING:
+- Equal left and right margins: 60px (desktop), 40px (tablet), 16px (mobile)
+- Equal gap between all cards: consistent spacing
+- Responsive: adjusts for tablet/mobile
+
+ANIMATIONS:
+- Cards fade in and slide up on scroll
+- Stagger animation so cards appear one after another
+
+Mobile:
+- Stack to single column
+- Cards maintain styling
+- All cards same width (100%)
+- Consistent height behavior
+
+Keep ALL text content and structure exactly the same - ONLY adjust grid 
+layout so all 4 cards have EQUAL HEIGHT and EQUAL WIDTH in a perfect 2x2 grid.

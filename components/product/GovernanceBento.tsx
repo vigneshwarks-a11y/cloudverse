@@ -12,7 +12,7 @@ function Card({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm">
+    <div className="relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-black p-6 backdrop-blur-sm">
       {/* soft radial blue glow */}
       <div
         aria-hidden
