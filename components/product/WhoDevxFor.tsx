@@ -21,7 +21,7 @@ const PERSONAS: Persona[] = [
     title: "Application engineers",
     body: "Catch costly code patterns early. Expensive loops, chatty APIs, and inefficient resource usage flagged in context before production. The estimate arrives with a suggested fix.",
     Icon: Code2,
-    color: "#0E9E7A",
+    color: "#007CFF",
   },
   {
     title: "FinOps teams",
