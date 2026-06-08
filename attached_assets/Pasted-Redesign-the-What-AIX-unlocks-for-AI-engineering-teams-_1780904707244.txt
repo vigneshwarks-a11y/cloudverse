@@ -1,0 +1,64 @@
+Redesign the "What AIX unlocks for AI engineering teams" section.
+
+LAYOUT:
+Change to a BENTO GRID layout with 2 rows for all 5 cards.
+Cards have varying sizes to create visual hierarchy and interest.
+
+Bento structure:
+- Row 1: Large card (2 columns) + Medium card (1 column) + Medium card (1 column)
+- Row 2: Medium card (1 column) + Medium card (1 column) + Large card (2 columns)
+
+CARD STYLING:
+- Dark background with thin blue border (#007CFF)
+- Rounded corners (12px)
+- Generous padding inside
+- Title: bold white text, larger font
+- Description: light gray text below title
+- Visual content inside the card at the top
+
+CARDS - Keep all content exactly the same, only change layout and add visuals:
+
+Card 1: Multi-provider routing (LARGE - 2 columns, Row 1)
+Visual inside card: Icon + mini routing diagram showing multiple provider options
+[Keep exact same title and description]
+
+Card 2: Policy guardrails (MEDIUM - 1 column, Row 1)
+Visual inside card: Shield icon + visual representation of guardrails
+[Keep exact same title and description]
+
+Card 3: Right-sized GPU economics (MEDIUM - 1 column, Row 1)
+Visual inside card: GPU/chip icon + visual showing GPU allocation
+[Keep exact same title and description]
+
+Card 4: Token and GPU attribution (MEDIUM - 1 column, Row 2)
+Visual inside card: Tag/tracking icon + mini cost breakdown visualization
+[Keep exact same title and description]
+
+Card 5: Model registry (LARGE - 2 columns, Row 2)
+Visual inside card: Database icon + visual showing model versions
+[Keep exact same title and description]
+
+VISUAL SPECIFICATIONS:
+- Each card contains a small visual/UI mockup at the top
+- Icons are part of the visual, not separate
+- Visuals should be simple, clean, and represent the feature
+- Colors: Use CloudVerse blue (#007CFF) for highlights
+- Keep visuals minimal but meaningful
+
+SPACING:
+- Equal left and right margins: 60px (desktop), 40px (tablet), 16px (mobile)
+- Gap between cards: consistent spacing
+- Responsive: bento grid adjusts for tablet/mobile
+
+ANIMATIONS:
+- Cards fade in and slide up on scroll
+- Stagger animation so cards appear one after another
+
+Mobile:
+- Stack to single column
+- Cards maintain same styling
+- Visuals remain visible
+- Full-width with consistent margins
+
+Keep ALL text content exactly the same - ONLY change layout to bento grid 
+and add visuals inside each card.
