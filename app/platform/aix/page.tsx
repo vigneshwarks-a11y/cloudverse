@@ -362,7 +362,7 @@ export default function AIXPage() {
       </section>
 
       {/* GOVERNANCE */}
-      <section className="cv-section bg-[#0A0B0E]">
+      <section className="cv-section bg-[#1B1B1D]">
         <div className="cv-container">
           <div className="max-w-3xl mb-10">
             <h2 className="cv-h2 text-cv-ink">Built for enterprise AI governance.</h2>
