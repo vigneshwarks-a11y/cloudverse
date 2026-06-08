@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import WhoDevxFor from "@/components/product/WhoDevxFor";
 import DevxPrExample from "@/components/product/DevxPrExample";
+import CostGates from "@/components/product/CostGates";
 
 export const metadata: Metadata = {
   title: "DevX — Catch Cost Regressions Before They Reach Production | CloudVerse",
@@ -90,26 +91,7 @@ export default function DevXPage() {
       <DevxPrExample diff={DIFF} />
 
       {/* WHAT PLATFORM TEAMS SHIP */}
-      <section className="cv-section">
-        <div className="cv-container">
-          <div className="max-w-3xl mb-10">
-            <h2 className="cv-h2 text-cv-ink">Cost gates engineers actually want to use.</h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-5">
-            {[
-              ["PR cost diff", "Every infra PR gets an inline cost impact estimate before reviewers see it. The engineer sees what their change costs. Their reviewer sees it too. The conversation happens in the PR, not in a cost review meeting three weeks later."],
-              ["Policy-as-code", "Cost guardrails versioned in your repo. Applied as advisory or required checks. Advisory mode: the PR gets an estimate, the engineer decides. Required mode: PRs over a defined cost threshold need explicit approval before merge. Both modes live in your repo as code: version controlled, reviewable, auditable."],
-              ["Native CI integration", "GitHub Actions, GitLab CI, Azure Pipelines, Jenkins, Argo. No new pipeline required. DevX slots into what your teams already use."],
-              ["Multi-IaC support", "Terraform, OpenTofu, Pulumi, CloudFormation, Helm, Kubernetes, raw Kubernetes manifests. 7+ formats supported."],
-            ].map(([t, b]) => (
-              <div key={t} className="rounded-2xl border border-cv-line bg-cv-surface2 p-7">
-                <h3 className="cv-h3 text-cv-ink">{t}</h3>
-                <p className="text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CostGates />
 
       {/* WHO DEVX IS FOR */}
       <WhoDevxFor />
