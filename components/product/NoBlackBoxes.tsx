@@ -46,31 +46,30 @@ export default function NoBlackBoxes({ traceJson }: { traceJson: string }) {
         }}
       />
       <div className="cv-container relative">
-        <div ref={ref} className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
-          {/* LEFT: code window with Mac chrome + blue glowing border */}
-          <div className="h-full" style={rise(0)}>
-            <div className="relative h-full rounded-2xl p-[1.5px]">
-              <div aria-hidden className="cv-ring-blue absolute inset-0 rounded-2xl" />
-              <div
-                aria-hidden
-                className="cv-ring-blue pointer-events-none absolute inset-0 rounded-2xl opacity-60 blur-md"
-              />
-              <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#070710]">
-                {/* Mac chrome */}
-                <div className="flex items-center gap-2 border-b border-white/10 bg-white/[0.03] px-4 py-3">
-                  <span className="h-3 w-3 rounded-full bg-[#ff5f56]" />
-                  <span className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
-                  <span className="h-3 w-3 rounded-full bg-[#27c93f]" />
-                </div>
-                <pre className="flex-1 overflow-auto p-6 font-mono text-xs leading-relaxed text-cv-ink/85">
-                  {traceJson}
-                </pre>
+        <div
+          ref={ref}
+          className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-12 lg:gap-20"
+        >
+          {/* LEFT (≈42%): compact code window with Mac chrome + clean blue border, no glow */}
+          <div className="h-full lg:col-span-5" style={rise(0)}>
+            <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-[#007CFF] bg-[#070710]">
+              {/* Mac chrome */}
+              <div className="flex items-center gap-2 border-b border-white/10 bg-white/[0.03] px-4 py-3">
+                <span className="h-3 w-3 rounded-full bg-[#ff5f56]" />
+                <span className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
+                <span className="h-3 w-3 rounded-full bg-[#27c93f]" />
               </div>
+              <pre className="flex-1 overflow-auto p-6 font-mono text-xs leading-relaxed text-cv-ink/85">
+                {traceJson}
+              </pre>
             </div>
           </div>
 
-          {/* RIGHT: headline + description + bottom text */}
-          <div className="flex flex-col" style={rise(1)}>
+          {/* RIGHT (≈58%): headline + description + bottom text, generous padding, centered to code */}
+          <div
+            className="flex flex-col justify-center lg:col-span-7 lg:pl-8"
+            style={rise(1)}
+          >
             <h2 className="cv-h2 text-cv-ink">No black boxes.</h2>
             <p className="cv-body-lg text-cv-ink/75 mt-5">
               Every routing decision includes an evidence summary: constraints active, routes evaluated, route selected, reason for selection, cost and latency outcome. Incident response, finance reviews, and compliance audits all work from the same traceable record.
