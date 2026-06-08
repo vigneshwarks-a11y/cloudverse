@@ -183,25 +183,25 @@ const CARDS: Card[] = [
     title: "Policy guardrails",
     body: "Compliance, content, latency, and budget guardrails enforced before execution. PII handling rules, data residency constraints, and provider allowlists applied at the routing layer, not retrofitted in application code.",
     visual: <GuardrailsVisual />,
-    span: "md:col-span-1",
+    span: "md:col-span-2",
   },
   {
     title: "Right-sized GPU economics",
     body: "Move workloads between hosted and dedicated GPU pools without rewriting code. AIX handles the routing logic. Your engineers handle the model.",
     visual: <GpuVisual />,
-    span: "md:col-span-1",
+    span: "md:col-span-2",
   },
   {
     title: "Token and GPU attribution",
     body: "Spend tied back to team, product, and unit revenue. Automatic. No separate AI cost report reconstructed from billing data after the fact.",
     visual: <AttributionVisual />,
-    span: "md:col-span-2",
+    span: "md:col-span-3",
   },
   {
     title: "Model registry",
     body: "Track model versions, provider options, and performance benchmarks. Multi-region failover built in. Primary and fallback routes generated on every request.",
     visual: <RegistryVisual />,
-    span: "md:col-span-2",
+    span: "md:col-span-3",
   },
 ];
 
@@ -236,7 +236,7 @@ export default function AixUnlocks() {
         <div className="max-w-3xl mb-10">
           <h2 className="cv-h2 text-cv-ink">What AIX unlocks for AI engineering teams</h2>
         </div>
-        <div ref={ref} className="grid grid-cols-1 md:grid-cols-4 gap-5 lg:gap-6">
+        <div ref={ref} className="grid grid-cols-1 md:grid-cols-6 gap-5 lg:gap-6">
           {CARDS.map(({ title, body, visual, span }, i) => (
             <div
               key={title}
