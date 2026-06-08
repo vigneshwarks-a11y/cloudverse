@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
+import { EnterpriseDayOne } from "@/components/solution/EnterpriseDayOne";
 
 export const metadata: Metadata = {
   title: "For Enterprise — One Control Plane for Multi-Cloud, AI Infrastructure, and Data Economics | CloudVerse",
@@ -56,19 +57,14 @@ export default function EnterprisePage() {
           <div className="max-w-3xl mb-10">
             <h2 className="cv-h2 text-cv-ink">What enterprise teams operationalise on day one</h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-5">
-            {[
+          <EnterpriseDayOne
+            items={[
               ["One model across the estate", "Cloud, AI infrastructure, and warehouse spend on a single allocation model. One view for FinOps, one view for engineering, one view for finance. They all match."],
               ["Identity and audit", "SSO, SCIM, granular RBAC, audit logs, customer-managed encryption keys. The access controls and audit trails your security and compliance teams require, available from the start."],
               ["Regional residency", "US, EU, and APAC regions with private-link and VPC options. Data stays where your sovereignty requirements say it should."],
               ["Marketplace and procurement", "AWS, Azure, and Google Cloud Marketplace listings with committed-spend redemption. Procurement through the channels your finance team already uses."],
-            ].map(([t, b]) => (
-              <div key={t} className="rounded-2xl border border-cv-line bg-cv-surface2 p-6">
-                <h3 className="cv-h3 text-cv-ink">{t}</h3>
-                <p className="text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
-              </div>
-            ))}
-          </div>
+            ]}
+          />
         </div>
       </section>
 
