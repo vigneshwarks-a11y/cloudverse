@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import WhoDevxFor from "@/components/product/WhoDevxFor";
+import DevxPrExample from "@/components/product/DevxPrExample";
 
 export const metadata: Metadata = {
   title: "DevX — Catch Cost Regressions Before They Reach Production | CloudVerse",
@@ -86,45 +87,7 @@ export default function DevXPage() {
       </section>
 
       {/* PR EXAMPLE */}
-      <section id="pr-example" className="cv-section bg-cv-surface2">
-        <div className="cv-container">
-          <div className="max-w-3xl mb-8">
-            <h2 className="cv-h2 text-cv-ink">This is what a DevX PR comment looks like.</h2>
-            <p className="text-cv-ink/75 mt-4">
-              This is a real DevX output. An infrastructure change that looked routine. NAT gateway flag and a compute resize.
-            </p>
-          </div>
-          <pre className="rounded-2xl border border-cv-line bg-cv-surface p-6 text-xs text-cv-ink/85 overflow-x-auto font-mono leading-relaxed">{DIFF}</pre>
-          <div className="grid md:grid-cols-2 gap-5 mt-8">
-            <div className="rounded-2xl border p-6" style={{ borderColor: `${ACCENT}66`, background: `${ACCENT}14` }}>
-              <div className="cv-label mb-2" style={{ color: "#3FD0A3" }}>DevX cost estimate</div>
-              <div className="text-2xl font-display font-semibold text-cv-ink">+$1.1k to $1.4k</div>
-              <div className="text-sm text-cv-muted">per month</div>
-              <div className="cv-label mt-5 mb-2">Primary drivers</div>
-              <ul className="text-sm text-cv-ink/80 space-y-1">
-                <li>• NAT Gateway hourly + data processing charges</li>
-                <li>• Over-provisioned compute for observed utilisation</li>
-              </ul>
-            </div>
-            <div className="rounded-2xl border border-cv-line bg-cv-surface p-6">
-              <div className="cv-label mb-2">Why this matters</div>
-              <ul className="text-sm text-cv-ink/80 space-y-1">
-                <li>• Always-on NAT in non-prod is a recurring cost with no production benefit</li>
-                <li>• Instance size exceeds observed utilisation</li>
-              </ul>
-              <div className="cv-label mt-5 mb-2">Suggested fix</div>
-              <ul className="text-sm text-cv-ink/80 space-y-1">
-                <li>• Disable NAT Gateway in non-prod environments</li>
-                <li>• Use VPC endpoints for S3 and DynamoDB access</li>
-                <li>• Right-size compute for non-prod workloads</li>
-              </ul>
-            </div>
-          </div>
-          <p className="text-xs text-cv-muted mt-6 italic">
-            Estimates are directional. They do not affect billing. They inform decisions before billing happens.
-          </p>
-        </div>
-      </section>
+      <DevxPrExample diff={DIFF} />
 
       {/* WHAT PLATFORM TEAMS SHIP */}
       <section className="cv-section">
