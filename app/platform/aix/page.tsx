@@ -6,6 +6,7 @@ import { CountUpStat } from "@/components/CountUpStat";
 import GovernanceBento from "@/components/product/GovernanceBento";
 import NoBlackBoxes from "@/components/product/NoBlackBoxes";
 import UseCaseBento from "@/components/product/UseCaseBento";
+import AixRoiSplit from "@/components/product/AixRoiSplit";
 
 export const metadata: Metadata = {
   title: "AIX — The AI Control Plane for Enterprise AI Compute | CloudVerse",
@@ -319,43 +320,7 @@ export default function AIXPage() {
               Every hardcoded model endpoint is spending money without making a decision. AIX makes the decision explicitly. The saving is the difference.
             </p>
           </div>
-          <div className="cv-label mb-4">At scale (monthly)</div>
-          <div className="overflow-x-auto rounded-2xl border border-cv-line">
-            <table className="w-full text-sm">
-              <thead className="bg-cv-surface">
-                <tr className="text-left">
-                  <th className="p-4 text-cv-ink font-medium">Monthly volume</th>
-                  <th className="p-4 text-cv-muted font-medium">Hardcoded spend</th>
-                  <th className="p-4 text-cv-muted font-medium">With AIX</th>
-                  <th className="p-4 font-medium" style={{ color: ACCENT }}>Monthly saving</th>
-                </tr>
-              </thead>
-              <tbody>
-                {ROI.map((row, i) => (
-                  <tr key={i} className="border-t border-cv-line">
-                    <td className="p-4 text-cv-ink/90">{row[0]}</td>
-                    <td className="p-4 text-cv-ink/75">{row[1]}</td>
-                    <td className="p-4 text-cv-ink/75">{row[2]}</td>
-                    <td className="p-4 font-semibold text-cv-ink">{row[3]}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p className="text-xs text-cv-muted mt-3 italic">
-            Assumptions: 40–90% cost reduction applied at 89% average. Hardcoded baseline is Claude Sonnet at $0.00298/request.
-          </p>
-          <div className="grid md:grid-cols-2 gap-5 mt-10">
-            <div className="rounded-2xl border border-cv-line bg-cv-surface p-6">
-              <div className="cv-label mb-3">Without AIX</div>
-              <p className="text-cv-ink/85">Claude Sonnet, 5,537ms latency, $0.00298/req</p>
-            </div>
-            <div className="rounded-2xl border p-6" style={{ borderColor: `${ACCENT}66`, background: `${ACCENT}14` }}>
-              <div className="cv-label mb-3" style={{ color: "#A99CE8" }}>With AIX</div>
-              <p className="text-cv-ink/95">GPT-4o-mini, 3,962ms latency, $0.00010/req</p>
-              <p className="text-cv-ink font-medium mt-3">Result: 96.8% lower cost. 28.5% faster.</p>
-            </div>
-          </div>
+          <AixRoiSplit roi={ROI} />
           <h3 className="cv-h3 text-cv-ink mt-14 mb-6">Three mechanisms</h3>
           <div className="grid md:grid-cols-3 gap-5">
             {[
