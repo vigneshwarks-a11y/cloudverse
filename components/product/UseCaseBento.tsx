@@ -1,5 +1,9 @@
-const BLUE = "#2E86FF";
-const PURPLE = "#6954D4";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
+const BLUE = "#007CFF";
+const CYAN = "#38BDF8";
 const RED = "#E5484D";
 
 type UseCase = {
@@ -15,125 +19,95 @@ function Block({
   label,
   text,
   accent,
-  highlight,
 }: {
   label: string;
   text: string;
-  accent?: string;
-  highlight?: boolean;
+  accent: string;
 }) {
   return (
     <div>
-      <div className="cv-label mb-1.5" style={accent ? { color: accent } : undefined}>
+      <div className="cv-label mb-1.5" style={{ color: accent }}>
         {label}
       </div>
-      <p className={`text-sm leading-relaxed ${highlight ? "text-cv-ink/90" : "text-cv-ink/75"}`}>
-        {text}
-      </p>
+      <p className="text-sm leading-relaxed text-cv-ink/75">{text}</p>
     </div>
   );
 }
 
-function CardShell({
-  n,
-  title,
-  glow,
-  glowCorner,
-  className,
-  children,
-}: {
-  n: string;
-  title: string;
-  glow: string;
-  glowCorner: string;
-  className?: string;
-  children: React.ReactNode;
-}) {
+function Card({ uc }: { uc: UseCase }) {
   return (
     <div
-      className={`relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] p-7 sm:p-8 ${className ?? ""}`}
+      className="relative flex h-full flex-col overflow-hidden rounded-xl border bg-black p-7 sm:p-8"
+      style={{ borderColor: `${BLUE}66` }}
     >
-      {/* soft ambient glow */}
+      {/* soft ambient blue glow (identical across all cards) */}
       <div
         aria-hidden
-        className={`pointer-events-none absolute h-64 w-64 rounded-full blur-3xl ${glowCorner}`}
-        style={{ background: `radial-gradient(circle, ${glow}33, transparent 70%)` }}
+        className="pointer-events-none absolute -top-16 -left-16 h-64 w-64 rounded-full blur-3xl"
+        style={{ background: `radial-gradient(circle, ${BLUE}26, transparent 70%)` }}
       />
-      <div className="relative">
+      <div className="relative flex h-full flex-col">
+        {/* number badge + title */}
         <div className="mb-6 flex items-center gap-3">
           <span
-            className="flex h-8 w-8 items-center justify-center rounded-lg font-display text-sm font-semibold"
-            style={{ color: glow, background: `${glow}1a`, border: `1px solid ${glow}40` }}
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full font-display text-sm font-semibold"
+            style={{ color: BLUE, background: `${BLUE}1a`, border: `1px solid ${BLUE}59` }}
           >
-            {n}
+            {uc.n}
           </span>
-          <h3 className="cv-h3 text-cv-ink">{title}</h3>
+          <h3 className="cv-h3 font-semibold text-cv-ink">{uc.title}</h3>
         </div>
-        {children}
+        {/* content fills remaining space */}
+        <div className="flex flex-1 flex-col gap-5">
+          <Block label="Situation" text={uc.sit} accent={CYAN} />
+          <Block label="The problem" text={uc.prob} accent={RED} />
+          <Block label="How AIX solves it" text={uc.how} accent={CYAN} />
+          <Block label="After AIX" text={uc.after} accent={RED} />
+        </div>
       </div>
     </div>
   );
 }
 
-/* ---------- Section ---------- */
-
 export default function UseCaseBento({ useCases }: { useCases: UseCase[] }) {
-  const [c1, c2, c3, c4] = useCases;
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
 
-  const blocks = (uc: UseCase) => (
-    <>
-      <Block label="Situation" text={uc.sit} />
-      <Block label="The problem" text={uc.prob} accent={RED} />
-      <Block label="How AIX solves it" text={uc.how} accent={BLUE} />
-      <Block label="After AIX" text={uc.after} accent="#A99CE8" highlight />
-    </>
-  );
+  useEffect(() => {
+    setReduceMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }, []);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.15 },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  const rise = (i: number): React.CSSProperties => ({
+    opacity: visible || reduceMotion ? 1 : 0,
+    transform: reduceMotion || visible ? "translateY(0)" : "translateY(24px)",
+    transition: "opacity 700ms ease-out, transform 700ms ease-out",
+    transitionDelay: reduceMotion ? "0ms" : `${i * 120}ms`,
+  });
 
   return (
-    <div className="grid gap-6 lg:grid-cols-12">
-      {/* Card 1 — large feature */}
-      <CardShell
-        n={c1.n}
-        title={c1.title}
-        glow={BLUE}
-        glowCorner="-top-16 -left-16"
-        className="lg:col-span-6"
-      >
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">{blocks(c1)}</div>
-      </CardShell>
-
-      {/* Card 2 — large feature (mirrored) */}
-      <CardShell
-        n={c2.n}
-        title={c2.title}
-        glow={PURPLE}
-        glowCorner="-top-16 -right-16"
-        className="lg:col-span-6"
-      >
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">{blocks(c2)}</div>
-      </CardShell>
-
-      {/* Card 3 — narrower */}
-      <CardShell
-        n={c3.n}
-        title={c3.title}
-        glow={RED}
-        glowCorner="-bottom-16 -left-16"
-        className="lg:col-span-5"
-      >
-        <div className="grid gap-5">{blocks(c3)}</div>
-      </CardShell>
-
-      {/* Card 4 — wider */}
-      <CardShell
-        n={c4.n}
-        title={c4.title}
-        glow={BLUE}
-        glowCorner="-bottom-16 -right-16"
-        className="lg:col-span-7"
-      >
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">{blocks(c4)}</div>
-      </CardShell>
+    <div ref={ref} className="grid auto-rows-fr gap-6 md:grid-cols-2">
+      {useCases.map((uc, i) => (
+        <div key={uc.n} style={rise(i)}>
+          <Card uc={uc} />
+        </div>
+      ))}
     </div>
   );
 }
