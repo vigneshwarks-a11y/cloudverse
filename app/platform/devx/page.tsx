@@ -72,17 +72,78 @@ export default function DevXPage() {
       </section>
 
       <section className="cv-section">
-        <div className="cv-container max-w-4xl">
-          <h2 className="cv-h2 text-cv-ink">Infrastructure cost mistakes do not look like mistakes.</h2>
-          <p className="cv-body-lg text-cv-ink/80 mt-6">
-            Infrastructure decisions that cause cost regressions look like correct Terraform. The NAT gateway goes in because someone needed it for one sprint. Nobody removes it. The always-on compute instance gets sized for peak load. Load normalises. The instance stays.
-          </p>
-          <p className="cv-body-lg text-cv-ink/80 mt-4">
-            Cost reports land three weeks after the deployment. The engineer who wrote the change has moved on to four other things. Nobody changes anything.
-          </p>
-          <p className="cv-body-lg text-cv-ink font-medium mt-4">
-            DevX puts a cost estimate on every PR before it merges. Engineers see impact at the moment they still have context on what they built and why.
-          </p>
+        <div className="cv-container">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            <div className="max-w-2xl">
+              <h2 className="cv-h2 text-cv-ink">Infrastructure cost mistakes do not look like mistakes.</h2>
+              <p className="cv-body-lg text-cv-ink/80 mt-6">
+                Infrastructure decisions that cause cost regressions look like correct Terraform. The NAT gateway goes in because someone needed it for one sprint. Nobody removes it. The always-on compute instance gets sized for peak load. Load normalises. The instance stays.
+              </p>
+              <p className="cv-body-lg text-cv-ink/80 mt-4">
+                Cost reports land three weeks after the deployment. The engineer who wrote the change has moved on to four other things. Nobody changes anything.
+              </p>
+              <p className="cv-body-lg text-cv-ink font-medium mt-4">
+                DevX puts a cost estimate on every PR before it merges. Engineers see impact at the moment they still have context on what they built and why.
+              </p>
+            </div>
+            <div className="flex justify-center lg:justify-end">
+              <div
+                aria-hidden
+                style={{ filter: "drop-shadow(0 0 22px rgba(0,124,255,0.22))" }}
+              >
+                <svg
+                  width="240"
+                  height="240"
+                  viewBox="0 0 200 200"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-48 h-48 sm:w-60 sm:h-60"
+                >
+                  <defs>
+                    <linearGradient id="cubeTop" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stopColor="#007CFF" stopOpacity="0.42" />
+                      <stop offset="1" stopColor="#007CFF" stopOpacity="0.28" />
+                    </linearGradient>
+                    <linearGradient id="cubeLeft" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stopColor="#007CFF" stopOpacity="0.16" />
+                      <stop offset="1" stopColor="#007CFF" stopOpacity="0.08" />
+                    </linearGradient>
+                    <linearGradient id="cubeRight" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stopColor="#007CFF" stopOpacity="0.26" />
+                      <stop offset="1" stopColor="#007CFF" stopOpacity="0.14" />
+                    </linearGradient>
+                  </defs>
+                  {/* left face */}
+                  <polygon
+                    points="30,70 100,110 100,190 30,150"
+                    fill="url(#cubeLeft)"
+                    stroke="#007CFF"
+                    strokeWidth="1.5"
+                    strokeOpacity="0.85"
+                    strokeLinejoin="round"
+                  />
+                  {/* right face */}
+                  <polygon
+                    points="170,70 100,110 100,190 170,150"
+                    fill="url(#cubeRight)"
+                    stroke="#007CFF"
+                    strokeWidth="1.5"
+                    strokeOpacity="0.85"
+                    strokeLinejoin="round"
+                  />
+                  {/* top face */}
+                  <polygon
+                    points="100,30 170,70 100,110 30,70"
+                    fill="url(#cubeTop)"
+                    stroke="#007CFF"
+                    strokeWidth="1.5"
+                    strokeOpacity="0.95"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
