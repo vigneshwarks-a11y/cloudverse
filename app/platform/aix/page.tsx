@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Check, X, Plug, ShieldCheck, Target, Split, Scale, Eye } from "lucide-react";
+import { ArrowRight, Check, X, Plug, ShieldCheck, Target, Split, Scale, Eye, Zap, Trash2, type LucideIcon } from "lucide-react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import { CountUpStat } from "@/components/CountUpStat";
@@ -323,13 +323,14 @@ export default function AIXPage() {
           <AixRoiSplit roi={ROI} />
           <h3 className="cv-h3 text-cv-ink mt-14 mb-6">Three mechanisms</h3>
           <div className="grid md:grid-cols-3 gap-5">
-            {[
-              ["Cost arbitrage", "AIX routes to the lowest-cost model that meets your quality floor. Prices change constantly. AIX adjusts automatically."],
-              ["Latency wins", "Faster routing reduces infrastructure overhead on time-sensitive workloads. Smaller models are often faster too."],
-              ["Waste elimination", "Stops premium model usage on tasks a smaller model handles equally well. Most applications have multiple task types. Few need the flagship model for all of them."],
-            ].map(([t, b]) => (
+            {([
+              ["Cost arbitrage", "AIX routes to the lowest-cost model that meets your quality floor. Prices change constantly. AIX adjusts automatically.", Scale],
+              ["Latency wins", "Faster routing reduces infrastructure overhead on time-sensitive workloads. Smaller models are often faster too.", Zap],
+              ["Waste elimination", "Stops premium model usage on tasks a smaller model handles equally well. Most applications have multiple task types. Few need the flagship model for all of them.", Trash2],
+            ] as [string, string, LucideIcon][]).map(([t, b, Icon]) => (
               <div key={t} className="rounded-2xl border border-cv-line bg-cv-surface p-6">
-                <h4 className="font-display font-semibold text-cv-ink">{t}</h4>
+                <Icon className="h-9 w-9" strokeWidth={1.75} style={{ color: "#007CFF" }} aria-hidden />
+                <h4 className="font-display font-semibold text-cv-ink mt-4">{t}</h4>
                 <p className="text-sm text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
               </div>
             ))}
