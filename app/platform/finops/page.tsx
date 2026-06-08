@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
+import { WhoUsesItCards } from "@/components/product/WhoUsesItCards";
 
 export const metadata: Metadata = {
   title: "FinOps Platform — Multi-Cloud Cost Intelligence for Every Team | CloudVerse",
@@ -253,18 +254,13 @@ export default function FinOpsPage() {
       <section className="cv-section">
         <div className="cv-container">
           <h2 className="cv-h2 text-cv-ink mb-10">Built for the teams accountable for the bill</h2>
-          <div className="grid md:grid-cols-3 gap-5">
-            {[
+          <WhoUsesItCards
+            items={[
               ["FinOps Manager", "One model that covers cloud, data platforms, and AI workloads. Everything reconciles to finance. Automation reduces the manual review cycle."],
               ["Cloud Engineer", "Clear cost signals without leaving your workflow. See what changed, what it costs, and what to do. No more cost governance as a separate process."],
               ["CFO / VP Finance", "Spend accountability at team and product level. The bill explained in terms of business decisions, not infrastructure line items."],
-            ].map(([t, b]) => (
-              <div key={t} className="rounded-2xl border border-cv-line bg-cv-surface2 p-7">
-                <h3 className="font-display font-semibold text-cv-ink">{t}</h3>
-                <p className="text-sm text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
-              </div>
-            ))}
-          </div>
+            ]}
+          />
         </div>
       </section>
 

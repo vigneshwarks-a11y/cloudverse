@@ -1,0 +1,88 @@
+Redesign the "Built for the teams accountable for the bill" section.
+
+LAYOUT:
+Keep the 3-column card layout.
+Add icons and styling to match the design reference (Image 2 style).
+
+CARD STYLING:
+- Dark background with blue tinted border
+- Rounded corners (12px)
+- Generous padding inside
+- Icon at top in small rounded square container
+- Title: bold white text below icon
+- Description: light gray text below title
+
+INTERNAL STRUCTURE - ALL CARDS MUST BE IDENTICAL:
+
+Every card layout:
+
+ICON (top) - FIXED, EQUAL SIZE IN ALL CARDS
+- Icon inside small rounded square container
+- Container has blue tinted background
+- Icon color: CloudVerse blue (#007CFF)
+- Size: 32-48px icon
+- Same position and styling in all cards
+- Padding: same in all cards
+
+TITLE (middle) - FIXED, EQUAL SIZE IN ALL CARDS
+- Font size: same across all 3 cards
+- Bold white text
+- Padding above and below: same in all cards
+- All titles aligned at same height
+
+DESCRIPTION (bottom) - FIXED, EQUAL SIZE IN ALL CARDS
+- Font size: same across all 3 cards
+- Light gray text
+- Padding: same in all cards
+- Takes remaining space below title
+- All descriptions align properly
+
+Card 1: FinOps Manager
+Icon: Allocation/settings icon (representing unified model)
+Title: "FinOps Manager"
+Description: "One model that covers cloud, data platforms, and AI workloads. Everything 
+reconciles to finance. Automation reduces the manual review cycle."
+
+Card 2: Cloud Engineer
+Icon: Code/developer icon (representing engineering workflows)
+Title: "Cloud Engineer"
+Description: "Clear cost signals without leaving your workflow. See what changed, what it costs, 
+and what to do. No more cost governance as a separate process."
+
+Card 3: CFO / VP Finance
+Icon: Document/report icon (representing financial reporting)
+Title: "CFO / VP Finance"
+Description: "Spend accountability at team and product level. The bill explained in terms of 
+business decisions, not infrastructure line items."
+
+SIZING - BALANCED AND EQUAL:
+- All 3 cards: equal width (33.3% each)
+- All 3 cards: same height
+- No card should be taller or wider than another
+- Perfect 3-column grid alignment
+
+ICON SPECIFICATIONS:
+- Simple line-art style icons
+- All icons same size
+- All icons same color (CloudVerse blue #007CFF)
+- All icons in matching rounded square containers
+- Blue-tinted background in container
+- Minimal and recognizable
+
+SPACING:
+- Equal left and right margins: 60px (desktop), 40px (tablet), 16px (mobile)
+- Equal gap between all cards: consistent spacing
+- Responsive: adjusts for tablet/mobile
+
+ANIMATIONS:
+- Cards fade in and slide up on scroll
+- Stagger animation so cards appear one after another
+
+Mobile:
+- Stack to single column
+- Cards maintain styling
+- All cards same width (100%)
+- Consistent height behavior
+
+Keep ALL text content from Image 1 exactly the same - ONLY add icons in rounded 
+square containers at top of each card using the design style from Image 2.
