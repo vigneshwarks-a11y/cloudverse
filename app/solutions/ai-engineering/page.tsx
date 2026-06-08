@@ -3,6 +3,7 @@ import { ArrowRight, Check } from "lucide-react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import AixUnlocks from "@/components/solution/AixUnlocks";
+import { PlatformCards } from "@/components/solution/PlatformCards";
 
 export const metadata: Metadata = {
   title: "For AI Engineering — Run Every AI Workload Where It Costs Least and Runs Best | CloudVerse",
@@ -87,18 +88,13 @@ export default function AIEngineeringPage() {
       <section className="cv-section bg-cv-surface2">
         <div className="cv-container">
           <h2 className="cv-h2 text-cv-ink mb-8">Platform that powers this solution</h2>
-          <div className="grid md:grid-cols-3 gap-5">
-            {[
+          <PlatformCards
+            items={[
               ["AIX", "GPU and LLM economics", "/platform/aix"],
               ["FinOps Platform", "Multi-cloud cost intelligence", "/platform/finops"],
               ["DevX", "Shift-left cost intelligence", "/platform/devx"],
-            ].map(([t, b, h]) => (
-              <Link key={t} href={h as string} className="rounded-2xl border border-cv-line bg-cv-surface p-6 hover:border-cv-ink/30 transition-colors">
-                <h3 className="cv-h3 text-cv-ink">{t}</h3>
-                <p className="text-cv-ink/75 mt-2">{b}</p>
-              </Link>
-            ))}
-          </div>
+            ]}
+          />
         </div>
       </section>
 
