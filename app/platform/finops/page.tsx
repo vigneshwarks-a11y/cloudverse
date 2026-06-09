@@ -3,14 +3,13 @@ import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import { WhoUsesItCards } from "@/components/product/WhoUsesItCards";
+import { FinOpsHero } from "@/components/product/FinOpsHero";
 
 export const metadata: Metadata = {
   title: "FinOps Platform — Multi-Cloud Cost Intelligence for Every Team | CloudVerse",
   description:
     "See every dollar by team, product, and provider. One model that reconciles to finance and explains itself to engineering.",
 };
-
-const ACCENT = "#1664C0";
 
 const STATS = [
   { v: "$101,736", l: "saved annually" },
@@ -28,22 +27,7 @@ const FAQ = [
 export default function FinOpsPage() {
   return (
     <>
-      <section className="cv-hero-bg pt-[120px] pb-16 lg:pt-[160px] lg:pb-24 relative">
-        <div className="cv-container relative z-10 max-w-4xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-medium" style={{ borderColor: `${ACCENT}66`, color: "#7CB8F8" }}>
-            <span className="w-1.5 h-1.5 rounded-full" style={{ background: ACCENT }} />
-            FinOps Platform
-          </div>
-          <h1 className="cv-h1 mt-6 text-cv-ink">Multi-Cloud Cost Intelligence for Every Team</h1>
-          <p className="cv-body-lg mt-6 text-cv-ink/75">
-            See every dollar by team, product, and provider. One model that reconciles to finance and explains itself to engineering.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight size={16} /></Link>
-            <Link href="/integrations" className="cv-btn-ghost">Explore the Platform</Link>
-          </div>
-        </div>
-      </section>
+      <FinOpsHero />
 
       <section className="border-y border-cv-line bg-cv-surface2/40">
         <div className="cv-container py-8 grid grid-cols-2 lg:grid-cols-3 gap-6">

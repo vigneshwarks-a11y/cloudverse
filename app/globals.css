@@ -200,6 +200,13 @@
 .cv-video-rise {
   animation: cv-video-rise 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+@keyframes cv-hero-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.cv-hero-fade {
+  animation: cv-hero-fade 420ms ease-out both;
+}
 @keyframes cv-loader-fill {
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
@@ -208,6 +215,7 @@
   .cv-video-ring { animation: none; }
   .cv-ring-blue { animation: none; }
   .cv-video-rise { animation: none; opacity: 1; transform: none; }
+  .cv-hero-fade { animation: none; opacity: 1; }
   .cv-testimonials,
   .cv-testimonials * {
     animation: none !important;
