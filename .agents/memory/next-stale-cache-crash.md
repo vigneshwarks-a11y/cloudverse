@@ -1,65 +1,36 @@
 ---
 name: Next.js stale .next cache crash
-description: Client-side runtime crash while the dev server returns 200 — caused by an inconsistent .next build cache.
+description: Recurring dev crash from the platform restoring a tracked/stale build dir under a running server, and why the fix is distDir (not untracking).
 ---
 
-# Stale `.next` cache → client runtime crash
+# Stale build-dir → client runtime crash
 
-**ROOT-CAUSE FIX APPLIED (prefer this above all):** the recurring dev crash on
-Next 15.5.x is the dev "Segment Explorer" devtool, not a generic cache problem. Its
-symptom is server-log errors `Could not find the module ".../next-devtools/.../
-segment-explorer-node.js#SegmentViewNode" in the React Client Manifest` followed by
-`__webpack_modules__[moduleId] is not a function`, a one-off `500`, then recovery to
-`200`. It corrupts during repeated HMR edits. Disable it in `next.config.mjs`:
-`experimental.devtoolSegmentExplorer: false`. (The flag is real — it's in Next's
-`config-shared.d.ts`, default `true`. In the dev banner it prints as `⨯
-devtoolSegmentExplorer`, where `⨯`=boolean-false/disabled, `✓`=true; NOT an error.)
-This removes the trigger so the crash stops recurring after edits.
+**Crash signature (the durable diagnostic):** the dev server keeps returning `200`
+and SSR HTML is intact, but the browser console floods with
+`__webpack_modules__[moduleId] is not a function` / `Cannot find module './331.js'`.
+When server logs are clean but only the client crashes, do NOT chase a code bug — it
+is a build-cache mismatch, not application logic.
 
-**SECONDARY GUARD (also in place):** the `dev` script in `package.json` runs
-`rm -rf .next && next dev ...`, so every workflow start/restart begins from a clean
-build. Keeps a single restart sufficient if any stale cache ever appears. If a crash
-recurs, check (1) `devtoolSegmentExplorer: false` is still in next.config.mjs, then
-(2) the `dev` script still has the `rm -rf .next &&` prefix.
+**Why it recurs here:** Next's build dir was committed to git before it was
+gitignored, so it stayed *tracked*. The platform checkpoint/rollback system keeps
+capturing it and a rollback restores stale chunks under the running dev server →
+crash loop. Gitignore alone never untracks an already-tracked dir.
 
+**Decision / fix:** move Next's live build output OFF the default `.next` to a
+gitignored `distDir` (in `next.config.mjs`). The runtime then reads a dir the
+checkpoint system never captures or restores, so rollbacks cannot crash it.
+**Why this over untracking:** the main agent is hard-blocked from every git index
+op *and* from deleting tracked files ("Destructive git operations are not allowed in
+the main agent"), so `git rm --cached .next` is impossible from here — but changing
+distDir needs no git and fixes the runtime cause directly. Untracking the old dir,
+if still wanted, must run in an isolated/background task (or the user's Shell).
 
-Symptom: the "Start application" workflow is reported as crashed with a runtime
-error, and the browser shows a flood of console logs, **yet** the dev server keeps
-returning `GET / 200` and SSR HTML is intact. All routes 200, no server-side
-stack traces in the workflow logs.
+**Also relevant:** committed Next build artifacts include preview/signing material
+(prerender-manifest, server-reference-manifest, .rscinfo) — build output should
+never be versioned. And `experimental.devtoolSegmentExplorer: false` is kept on:
+the Next 15.5.x dev Segment Explorer devtool corrupts its RSC manifest during heavy
+HMR and produces a similar one-off 500→200 blip (`⨯` in the dev banner = disabled,
+not an error).
 
-**Why:** when part of the Next.js build cache is cleared out from under a running
-dev server (e.g. the Replit platform rotates preview keys / removes webpack cache
-files mid-run — shows up as an auto-checkpoint like "clear build cache"), the
-server-rendered HTML references client chunk hashes that no longer match what's on
-disk. The server responds fine, but the browser loads mismatched/stale chunks and
-throws a client-side runtime error loop.
-
-**How to apply / fix:** don't chase a code bug when server logs are clean but the
-client crashes. Wipe the whole build cache and rebuild:
-`rm -rf .next` then restart the `Start application` workflow. A partial cache clear
-is not enough — remove the entire `.next` directory. After restart, confirm the
-38-ish browser console lines are just `[Fast Refresh] rebuilding/done` (benign),
-not real errors.
-
-**Root cause of the *recurrence* (the important part):** `.next/` was NOT in
-`.gitignore`, so ~99 build-artifact files were tracked in git. Every auto-checkpoint
-committed stale webpack chunks; a later rollback/restore brought back chunks that
-reference modules no longer on disk → `Cannot find module './331.js'` and the crash
-loop comes back. `.next/` has since been added to `.gitignore`. If the crash keeps
-recurring, verify the already-tracked `.next` files have actually been untracked
-(`git ls-files .next` should be empty) — adding to `.gitignore` does NOT untrack
-files that git is already tracking; that needs `git rm -r --cached .next`, which is
-a destructive git op (delegate it, don't run it inline). Build artifacts must never
-be committed.
-
-**Untracking is NOT doable by the agent in this repl — confirmed.** Every git
-index-modifying command is hard-blocked for the agent ("Destructive git operations
-are not allowed in the main agent"): `git rm --cached`, `git update-index
---force-remove`, all of them. Deleting `.next` from disk does NOT help either —
-Next.js dev regenerates the *same* tracked file paths on the next build, so the
-checkpoint sees them as modifications (still tracked), not deletions. The only
-reliable fixes: (a) the USER runs `git rm -r --cached .next` in the Replit Shell
-(not subject to agent git restrictions; safe — keeps files on disk, app stays up),
-or (b) a genuinely isolated background task agent performs it. Give the user the
-Shell one-liner; don't keep band-aiding with `rm -rf .next` + restart.
+**If it recurs, a single workflow restart clears transient cache; then verify the
+distDir is still gitignored and the dev script still clears the old dir on start.**

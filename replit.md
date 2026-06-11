@@ -88,9 +88,10 @@ lib/
 - Demo booking: handled in-app at `/connect` (was previously HubSpot)
 
 ### Build & dev
-- Dev: `npm run dev` → `next dev -H 0.0.0.0 -p 5000`
+- Dev: `npm run dev` → `rm -rf .next .next-build && next dev -H 0.0.0.0 -p 5000`
 - Build: `npm run build`
 - Start: `npm run start` → `next start -H 0.0.0.0 -p 5000`
+- **Build output dir**: `distDir` is set to `.next-build` (gitignored), NOT the default `.next`. The platform checkpoint/rollback system was capturing the tracked `.next` folder and restoring stale build chunks under the running dev server, causing recurring crashes (`__webpack_modules__[moduleId] is not a function` / `Cannot find module './331.js'`). Keeping live build output in a gitignored dir prevents this. The dev script also clears any stale `.next` on each start.
 
 ### Required env
 - `OPENAI_API_KEY` — invoice analyzer

@@ -1,5 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Build output goes to a gitignored dir (NOT the default ".next"). The
+  // platform checkpoint/rollback system was capturing the tracked ".next"
+  // folder and restoring stale build chunks under the running dev server,
+  // causing recurring crashes (__webpack_modules__[moduleId] is not a
+  // function / Cannot find module './331.js'). Writing to ".next-build"
+  // keeps the live build output out of version control entirely.
+  distDir: ".next-build",
   reactStrictMode: true,
   eslint: { ignoreDuringBuilds: true },
   allowedDevOrigins: ["*.replit.dev", "*.repl.co", "*.kirk.replit.dev"],
