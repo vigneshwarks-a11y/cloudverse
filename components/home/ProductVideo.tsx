@@ -54,16 +54,12 @@ export function ProductVideo() {
           >
             {/* Video window */}
             <div className="relative overflow-hidden rounded-xl border border-white/15 bg-[#070710] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.12)]">
-              <video
-                className="block h-auto w-full"
-                src="/product-video.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
+              <div
+                className="flex aspect-video w-full items-center justify-center"
                 data-testid="video-product"
-              />
+              >
+                <span className="text-sm text-white/30">Product video coming soon</span>
+              </div>
             </div>
           </div>
         </div>
