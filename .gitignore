@@ -3,9 +3,12 @@ dist
 .next
 .next-build
 .DS_Store
-server/public
-vite.config.ts.*
 *.tar.gz
+
+# Agent / tooling working dirs (not part of the website)
+.agents
+.claude
+.local
 
 # Large files (exceed GitHub 100MB limit)
 zirfsNuE
@@ -13,3 +16,4 @@ source_code.zip
 *.zip
 
 *.env
+*.tsbuildinfo

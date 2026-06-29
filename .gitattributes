@@ -1,3 +1,1 @@
-.next/cache/webpack/server-production/0.pack filter=lfs diff=lfs merge=lfs -text
-attached_assets/CloudVerse_Product_Video_Upscaled_1780568249930.mp4 filter=lfs diff=lfs merge=lfs -text
 public/product-video.mp4 filter=lfs diff=lfs merge=lfs -text

@@ -1,11 +1,5 @@
 [build]
   command = "npm run build"
-  publish = "dist/public"
-
-[functions]
-  directory = "netlify/functions"
-  node_bundler = "esbuild"
-  external_node_modules = ["pdfjs-dist"]
 
 [[edge_functions]]
 function = "googlebotBypass"
@@ -22,73 +16,3 @@ path = "/solutions"
 [[edge_functions]]
 function = "googlebotBypass"
 path = "/solutions/*"
-
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/api/:splat"
-  status = 200
-
-[[redirects]]
-  from = "/security"
-  to = "/security/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/pricing"
-  to = "/pricing/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/partners"
-  to = "/partners/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/resources"
-  to = "/resources/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/connect"
-  to = "/connect/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/platform"
-  to = "/platform/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/legal/terms"
-  to = "/legal/terms/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/about"
-  to = "/about/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog"
-  to = "/blog/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/why-cloud-cost-optimization-tools-fail-without-engineering-ownership"
-  to = "/blog/why-cloud-cost-optimization-tools-fail-without-engineering-ownership/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/why-cloud-cost-transparency-is-critical-for-executive-decision-making"
-  to = "/blog/why-cloud-cost-transparency-is-critical-for-executive-decision-making/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/solutions"
-  to = "/solutions/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200

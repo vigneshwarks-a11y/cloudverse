@@ -1,1 +1,0 @@
-- [Next.js stale .next cache crash](next-stale-cache-crash.md) — recurring client crash (200 from server) from platform restoring tracked stale `.next`; fix = `distDir: ".next-build"` (gitignored), agent can't untrack `.next` via git.
