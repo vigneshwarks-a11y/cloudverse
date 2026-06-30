@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { NAV, DEMO_URL } from "@/lib/links";
+import { NAV, DEMO_URL, SIGNIN_URL } from "@/lib/links";
 import { ModeToggle } from "./ModeToggle";
 
 export function Nav() {
@@ -42,21 +42,30 @@ export function Nav() {
 
         <nav className="hidden lg:flex items-center gap-1">
           <DropTrigger label="Platform" value="platform" openDrop={openDrop} setOpenDrop={setOpenDrop}>
-            <div className="grid gap-1 p-2 w-[300px]">
+            <div className="p-2 w-[320px]">
               {NAV.platform.map((it) => (
                 <Link
                   key={it.href}
                   href={it.href}
-                  className="flex items-start gap-3 p-3 rounded-md hover:bg-cv-ink/5"
+                  className={`flex items-start gap-3 p-3 rounded-md mb-1 last:mb-0 ${
+                    (it as typeof it & { featured?: boolean }).featured
+                      ? "border border-[#6954D4]/30 bg-[#6954D4]/8 hover:bg-[#6954D4]/12"
+                      : "hover:bg-cv-ink/5"
+                  }`}
                   data-testid={`nav-link-${it.label.toLowerCase().replace(/\s+/g, "-")}`}
                 >
                   <span className="mt-1.5 w-2 h-2 rounded-full shrink-0" style={{ background: it.color }} />
                   <div>
-                    <div className="text-cv-ink text-sm font-medium">{it.label}</div>
-                    <div className="text-cv-muted text-xs">{it.desc}</div>
+                    <div className={`text-sm font-medium ${(it as typeof it & { featured?: boolean }).featured ? "text-[#A99CE8]" : "text-cv-ink"}`}>{it.label}</div>
+                    <div className="text-cv-muted text-xs mt-0.5">{it.desc}</div>
                   </div>
                 </Link>
               ))}
+              <div className="mt-2 pt-2 border-t border-cv-line">
+                <Link href="/platform" className="block px-3 py-2 text-xs text-cv-muted hover:text-cv-ink">
+                  See the whole platform →
+                </Link>
+              </div>
             </div>
           </DropTrigger>
 
@@ -89,8 +98,11 @@ export function Nav() {
 
         <div className="hidden lg:flex items-center gap-2">
           <ModeToggle />
+          <Link href={SIGNIN_URL} className="cv-btn-ghost" data-testid="link-sign-in">
+            Sign in
+          </Link>
           <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-get-demo">
-            Get a Demo
+            Book a Demo
           </Link>
         </div>
 
@@ -128,8 +140,11 @@ export function Nav() {
                 {it.label}
               </Link>
             ))}
-            <Link href={DEMO_URL} className="cv-btn-primary mt-3 w-full" onClick={() => setOpen(false)}>
-              Get a Demo
+            <Link href={SIGNIN_URL} className="cv-btn-ghost mt-2 w-full text-center" onClick={() => setOpen(false)}>
+              Sign in
+            </Link>
+            <Link href={DEMO_URL} className="cv-btn-primary mt-2 w-full" onClick={() => setOpen(false)}>
+              Book a Demo
             </Link>
           </div>
         </div>

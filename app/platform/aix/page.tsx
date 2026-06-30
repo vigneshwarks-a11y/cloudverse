@@ -9,9 +9,9 @@ import UseCaseBento from "@/components/product/UseCaseBento";
 import AixRoiSplit from "@/components/product/AixRoiSplit";
 
 export const metadata: Metadata = {
-  title: "AIX — The AI Control Plane for Enterprise AI Compute | CloudVerse",
+  title: "AIX — The Control Plane for Enterprise AI | CloudVerse",
   description:
-    "Route, govern, audit, and optimize every AI request across models, clouds, GPUs, and private inference endpoints. Cost decisions happen at the routing layer.",
+    "Route, govern, and meter every AI request across models, clouds, GPUs, and private endpoints. Cut AI cost 40–90%. The decision happens before the request, not after the bill.",
 };
 
 const ACCENT = "#6954D4";
@@ -127,14 +127,15 @@ export default function AIXPage() {
       {/* HERO */}
       <section className="cv-hero-bg pt-[120px] pb-16 lg:pt-[160px] lg:pb-24 relative">
         <div className="cv-container relative z-10 max-w-4xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-medium" style={{ borderColor: `${ACCENT}66`, color: "#A99CE8" }}>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-medium uppercase tracking-widest" style={{ borderColor: `${ACCENT}66`, color: "#A99CE8" }}>
             <span className="w-1.5 h-1.5 rounded-full" style={{ background: ACCENT }} />
             AIX — AI Control Plane
           </div>
-          <h1 className="cv-h1 mt-6 text-cv-ink">The AI Control Plane for Enterprise AI Compute</h1>
+          <h1 className="cv-h1 mt-6 text-cv-ink">The control plane for enterprise AI.</h1>
           <p className="cv-body-lg mt-6 text-cv-ink/75">
-            Route, govern, audit, and optimize every AI request across models, clouds, GPUs, and private inference endpoints. Cost decisions happen at the routing layer, not in spreadsheets after the bill arrives.
+            Route, govern, and meter every AI request across your models, clouds, GPUs, and private endpoints. The cost decision gets made before the request goes out, not in a spreadsheet after the bill lands.
           </p>
+          <p className="mt-4 text-sm text-cv-muted italic">Optimizing the future of enterprise AI consumption.</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight size={16} /></Link>
             <Link href="/integrations" className="cv-btn-ghost">Explore the Platform</Link>

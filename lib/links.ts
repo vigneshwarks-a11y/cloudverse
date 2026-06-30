@@ -12,8 +12,8 @@ export const PRODUCT_URLS = {
 
 export const NAV = {
   platform: [
+    { label: "AIX", href: "/platform/aix", desc: "Optimizing the future of enterprise AI consumption.", color: "#6954D4", featured: true },
     { label: "FinOps Platform", href: "/platform/finops", desc: "Multi-cloud cost intelligence", color: "#1664C0" },
-    { label: "AIX", href: "/platform/aix", desc: "GPU & LLM economics", color: "#6954D4" },
     { label: "DevX", href: "/platform/devx", desc: "Shift-left cost checks", color: "#0E9E7A" },
     { label: "DataX", href: "/platform/datax", desc: "Warehouse intelligence", color: "#D97706" },
   ],
