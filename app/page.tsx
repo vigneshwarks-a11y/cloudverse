@@ -113,29 +113,29 @@ export default function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="cv-hero-bg pt-[120px] pb-32 lg:pt-[160px] lg:pb-48 relative">
+      <section className="cv-hero-bg pt-[120px] pb-32 lg:pt-[160px] lg:pb-48 relative" style={{ background: "#0B0B0F" }}>
         <div className="cv-container relative z-10">
           <div className="max-w-4xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cv-blue/40 text-cv-blue-light text-xs font-medium uppercase tracking-widest">
               <span className="w-1.5 h-1.5 rounded-full bg-cv-blue-light animate-pulse-dot" />
               The Control Plane for Enterprise AI
             </div>
-            <h1 className="cv-h1 mt-6 text-cv-ink">
+            <h1 className="cv-h1 mt-6 text-white">
               Run your AI like you run <br className="hidden md:block" />
               <span style={{ color: "#7CB8F8" }}>the business.</span>
             </h1>
-            <p className="cv-body-lg mt-6 text-cv-ink/75 max-w-3xl">
+            <p className="cv-body-lg mt-6 text-white/70 max-w-3xl">
               Most companies can&apos;t tell you what their AI costs, who&apos;s running it, or whether it&apos;s any good. CloudVerse can. AIX puts every model and agent on one record: what ran, who owned it, what it cost, what it came back with. It runs on the same platform we already use for cloud, data, and engineering spend at companies like Berkshire Hathaway.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-hero-demo">
                 Book a Demo <ArrowRight size={16} />
               </Link>
-              <Link href="/platform/aix" className="cv-btn-ghost" data-testid="link-hero-explore">
+              <Link href="/platform/aix" className="cv-btn-ghost !text-white !border-white/20 hover:!bg-white/10" data-testid="link-hero-explore">
                 See how AIX works
               </Link>
             </div>
-            <p className="mt-4 text-sm text-cv-muted">
+            <p className="mt-4 text-sm text-white/40">
               Connect your first account in under 30 minutes. No-fee proof of value in two to four weeks.
             </p>
           </div>
@@ -146,9 +146,9 @@ export default function HomePage() {
       <ProductVideo />
 
       {/* CUSTOMER LOGOS */}
-      <section className="border-y border-cv-line py-10">
+      <section className="border-y border-white/[0.06] bg-[#0B0B0F] py-10">
         <div className="cv-container">
-          <p className="text-xs uppercase tracking-widest text-cv-muted text-center mb-8">
+          <p className="text-xs uppercase tracking-widest text-white/40 text-center mb-8">
             The teams trusting us with their cloud and AI spend
           </p>
           <CustomerLogos />
@@ -156,13 +156,13 @@ export default function HomePage() {
       </section>
 
       {/* STATS STRIP */}
-      <section className="border-b border-cv-line bg-cv-surface2/40">
+      <section className="border-b border-white/[0.06] bg-[#0B0B0F]">
         <div className="cv-container py-10">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
             {STATS.map((s) => (
               <div key={s.label}>
-                <CountUpStat value={s.v} className="text-2xl lg:text-3xl font-display font-semibold text-cv-ink" />
-                <div className="text-sm text-cv-muted mt-1">{s.label}</div>
+                <CountUpStat value={s.v} className="text-2xl lg:text-3xl font-display font-semibold text-white" />
+                <div className="text-sm text-white/50 mt-1">{s.label}</div>
               </div>
             ))}
           </div>
@@ -170,12 +170,12 @@ export default function HomePage() {
       </section>
 
       {/* THE PROBLEM */}
-      <section className="cv-section">
+      <section className="cv-section bg-[#0B0B0F]">
         <div className="cv-container">
-          <p className="text-xl lg:text-2xl leading-relaxed text-cv-ink/85 font-light max-w-4xl">
+          <p className="text-xl lg:text-2xl leading-relaxed text-white/75 font-light max-w-4xl">
             AI got into everything before anyone set up the controls. Research agents, copilots, a dozen model subscriptions, GPU jobs nobody tracks. The bill shows up on time every month. The answer to what it was, who ran it, and whether it earned its money never does.
           </p>
-          <p className="mt-6 text-xl lg:text-2xl leading-relaxed text-cv-ink font-medium">
+          <p className="mt-6 text-xl lg:text-2xl leading-relaxed text-white font-medium">
             CloudVerse is where that answer lives.
           </p>
         </div>
@@ -211,13 +211,13 @@ export default function HomePage() {
       </section>
 
       {/* AIX — WHAT IT DOES */}
-      <section className="cv-section">
+      <section className="cv-section bg-[#0B0B0F]">
         <div className="cv-container">
           <div className="max-w-3xl mb-4">
             <div className="cv-label mb-3" style={{ color: "#A99CE8" }}>AIX</div>
-            <h2 className="cv-h2 text-cv-ink">AIX is the operating system for your AI.</h2>
+            <h2 className="cv-h2 text-white">AIX is the operating system for your AI.</h2>
           </div>
-          <p className="text-cv-ink/70 max-w-3xl mb-12 leading-relaxed">
+          <p className="text-white/55 max-w-3xl mb-12 leading-relaxed">
             An HRMS holds the record for every employee. AIX holds it for every model and agent. Onboard it, route it, budget it, review it, audit it.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -226,17 +226,17 @@ export default function HomePage() {
                 key={c.title}
                 className={`rounded-2xl border p-6 ${
                   i === 0
-                    ? "border-[#6954D4]/40 bg-[#6954D4]/6 md:col-span-2 lg:col-span-1"
-                    : "border-cv-line bg-cv-surface2"
+                    ? "border-[#6954D4]/40 bg-[#6954D4]/10 md:col-span-2 lg:col-span-1"
+                    : "border-white/[0.08] bg-[#111318]"
                 }`}
               >
-                <h3 className="font-display font-semibold text-cv-ink text-lg">{c.title}</h3>
-                <p className="text-cv-ink/70 text-[15px] leading-relaxed mt-3">{c.body}</p>
+                <h3 className="font-display font-semibold text-white text-lg">{c.title}</h3>
+                <p className="text-white/60 text-[15px] leading-relaxed mt-3">{c.body}</p>
               </div>
             ))}
           </div>
           <div className="mt-8">
-            <Link href="/platform/aix" className="cv-btn-ghost" data-testid="link-aix-deeper">
+            <Link href="/platform/aix" className="cv-btn-ghost !text-white !border-white/20 hover:!bg-white/10" data-testid="link-aix-deeper">
               Go deeper on AIX <ArrowRight size={16} />
             </Link>
           </div>
@@ -247,7 +247,7 @@ export default function HomePage() {
       <PlatformSurfaces />
 
       {/* BHHS CASE STUDY */}
-      <section className="cv-section">
+      <section className="cv-section bg-[#0B0B0F]">
         <div className="cv-container">
           <div className="relative overflow-hidden rounded-3xl border border-[#1664C0]/30 bg-[#0A0C14] p-8 lg:p-14">
             <div
@@ -323,7 +323,7 @@ export default function HomePage() {
       </section>
 
       {/* INTEGRATIONS */}
-      <section className="cv-section relative overflow-hidden">
+      <section className="cv-section bg-[#0B0B0F] relative overflow-hidden">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0"
@@ -343,8 +343,8 @@ export default function HomePage() {
         />
 
         <div className="cv-container relative z-10 text-center">
-          <div className="cv-label mb-3">Integrations</div>
-          <h2 className="cv-h2 text-cv-ink max-w-3xl mx-auto">Connects to the stack your teams already run.</h2>
+          <div className="cv-label mb-3 text-white/40">Integrations</div>
+          <h2 className="cv-h2 text-white max-w-3xl mx-auto">Connects to the stack your teams already run.</h2>
 
           <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {INTEGRATIONS_LOGOS.map((l) => (
@@ -359,12 +359,12 @@ export default function HomePage() {
             ))}
           </div>
 
-          <div className="mt-8 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cv-line bg-cv-surface2 text-sm text-cv-ink/85">
+          <div className="mt-8 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/[0.12] bg-white/[0.05] text-sm text-white/75">
             <Check size={14} className="text-cv-teal" />
             Read-only by default. Automation is opt-in, scoped, and logged.
           </div>
           <div className="mt-6">
-            <Link href="/integrations" className="cv-btn-ghost" data-testid="link-integrations">
+            <Link href="/integrations" className="cv-btn-ghost !text-white !border-white/20 hover:!bg-white/10" data-testid="link-integrations">
               View all integrations <ArrowRight size={16} />
             </Link>
           </div>
@@ -375,10 +375,10 @@ export default function HomePage() {
       <InvoiceEfficiency compact />
 
       {/* FAQ */}
-      <section className="cv-section">
+      <section className="cv-section bg-[#0B0B0F]">
         <div className="cv-container max-w-3xl">
-          <div className="cv-label mb-3">Common questions</div>
-          <h2 className="cv-h2 text-cv-ink mb-10">What people ask before the demo.</h2>
+          <div className="cv-label mb-3 text-white/40">Common questions</div>
+          <h2 className="cv-h2 text-white mb-10">What people ask before the demo.</h2>
           <FaqBlock items={HOME_FAQS} accent="#1664C0" />
         </div>
       </section>

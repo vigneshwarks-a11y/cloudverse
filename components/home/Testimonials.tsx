@@ -72,7 +72,7 @@ export function Testimonials() {
 
   return (
     <section
-      className="cv-testimonials cv-section relative overflow-hidden bg-[#1B1B1D]"
+      className="cv-testimonials cv-section relative overflow-hidden bg-[#0B0B0F]"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onFocusCapture={() => setFocusWithin(true)}
