@@ -8,7 +8,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-inter",
   display: "swap",
 });
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    siteName: "CloudVerse",
+    siteName: "cloudverse",
     url: SITE_URL,
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
@@ -63,7 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "CloudVerse",
+              name: "cloudverse",
               url: SITE_URL,
               logo: `${SITE_URL}/og/default.png`,
               description: DEFAULT_DESCRIPTION,

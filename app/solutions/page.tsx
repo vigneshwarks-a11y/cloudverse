@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Users, Cpu, GitPullRequest, Database, Building2 } from "lucide-react";
+import { IconArrowRight, IconUsers, IconCpu, IconGitPullRequest, IconDatabase, IconBuilding } from "@tabler/icons-react";
 import { CTABand } from "@/components/CTABand";
 
 export const metadata: Metadata = {
-  title: "Solutions — CloudVerse",
+  title: "Solutions. CloudVerse",
   description: "Persona-built solutions for FinOps, AI Engineering, Platform Engineering, Data teams, and Enterprise.",
   alternates: { canonical: "/solutions" },
 };
 
 const SOLUTIONS = [
-  { href: "/solutions/finops-teams",   icon: Users,          label: "FinOps Teams",          desc: "Allocation, anomaly response, commitments, and chargeback on one model.", color: "#1664C0" },
-  { href: "/solutions/ai-engineering", icon: Cpu,            label: "AI Engineering",        desc: "Live cost-quality routing across 8+ GPU and LLM providers.", color: "#6954D4" },
-  { href: "/solutions/platform-eng",   icon: GitPullRequest, label: "Platform Engineering", desc: "PR-level cost diffs, policy-as-code, native CI integration.", color: "#0E9E7A" },
-  { href: "/solutions/data-teams",     icon: Database,       label: "Data Teams",            desc: "Query-level attribution and safe automation across 6 warehouses.", color: "#D97706" },
-  { href: "/solutions/enterprise",     icon: Building2,      label: "Enterprise",            desc: "One control plane across the estate, with SSO, RBAC, and residency.", color: "#1664C0" },
+  { href: "/solutions/finops-teams",   icon: IconUsers,          label: "FinOps Teams",          desc: "Allocation, anomaly response, commitments, and chargeback on one model.", color: "#1664C0" },
+  { href: "/solutions/ai-engineering", icon: IconCpu,            label: "AI Engineering",        desc: "Live cost-quality routing across 8+ GPU and LLM providers.", color: "#6954D4" },
+  { href: "/solutions/platform-eng",   icon: IconGitPullRequest, label: "Platform Engineering", desc: "PR-level cost diffs, policy-as-code, native CI integration.", color: "#0E9E7A" },
+  { href: "/solutions/data-teams",     icon: IconDatabase,       label: "Data Teams",            desc: "Query-level attribution and safe automation across 6 warehouses.", color: "#D97706" },
+  { href: "/solutions/enterprise",     icon: IconBuilding,      label: "Enterprise",            desc: "One control plane across the estate, with SSO, RBAC, and residency.", color: "#1664C0" },
 ];
 
 export default function Page() {
@@ -45,12 +45,12 @@ export default function Page() {
                 >
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-4"
                     style={{ background: `${s.color}1A`, color: s.color }}>
-                    <Icon size={20} />
+                    <Icon size={20} stroke={1} />
                   </div>
                   <div className="font-display font-semibold text-cv-ink text-lg">{s.label}</div>
                   <p className="text-cv-ink/65 text-sm mt-2 leading-relaxed">{s.desc}</p>
                   <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium" style={{ color: s.color }}>
-                    Explore <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                    Explore <IconArrowRight size={14} stroke={1} className="group-hover:translate-x-0.5 transition-transform" />
                   </div>
                 </Link>
               );
@@ -59,7 +59,7 @@ export default function Page() {
         </div>
       </section>
 
-      <CTABand heading="Not sure which fits?" sub="Book a 20-minute call — we'll route you to the right starting point." />
+      <CTABand heading="Not sure which fits?" sub="Book a 20-minute call. we'll route you to the right starting point." />
     </>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { IconArrowRight } from "@tabler/icons-react";
 
 const CYCLE_MS = 5000;
 
@@ -81,7 +81,7 @@ export function PlatformSurfaces() {
   }, [active, cycle]);
 
   return (
-    <section className="cv-section bg-cv-surface2" data-testid="section-platform-surfaces">
+    <section className="cv-section bg-cv-surface" data-testid="section-platform-surfaces">
       <div className="cv-container">
         <div className="max-w-3xl mb-12">
           <div className="cv-label mb-3">Platform overview</div>
@@ -89,7 +89,7 @@ export function PlatformSurfaces() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[40%_1fr] gap-8 lg:gap-12 items-stretch">
-          {/* LEFT — interactive menu */}
+          {/* LEFT interactive menu */}
           <div className="flex flex-col">
             {SURFACES.map((s, i) => {
               const isActive = i === active;
@@ -128,10 +128,10 @@ export function PlatformSurfaces() {
                       <p className="text-cv-ink/75 leading-relaxed pl-[22px] pb-1">{s.body}</p>
                       <Link
                         href={s.href}
-                        className="mt-4 mb-5 ml-[22px] inline-flex items-center gap-1.5 text-sm text-cv-blue-light hover:gap-2.5 transition-all"
+                        className="mt-4 mb-5 ml-[22px] inline-flex items-center gap-1.5 text-sm text-[#1664C0] dark:text-[#7CB8F8] hover:gap-2.5 transition-all"
                         data-testid={`surface-link-${slug}`}
                       >
-                        Learn more <ArrowRight size={14} />
+                        Learn more <IconArrowRight size={14} stroke={1} />
                       </Link>
                     </div>
                   </div>
@@ -153,10 +153,10 @@ export function PlatformSurfaces() {
             })}
           </div>
 
-          {/* RIGHT — floating dashboard */}
+          {/* RIGHT floating dashboard */}
           <div className="relative min-h-[320px] lg:min-h-0">
-            <div className="relative h-full rounded-2xl border border-white/10 bg-[#070710] p-3 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.08)]">
-              <div className="relative h-full min-h-[280px] overflow-hidden rounded-xl bg-[#0a0a0f]">
+            <div className="relative h-full rounded-2xl border border-cv-line bg-cv-card p-3 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.08)]">
+              <div className="relative h-full min-h-[280px] overflow-hidden rounded-xl bg-cv-card">
                 {SURFACES.map((s, i) => (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img

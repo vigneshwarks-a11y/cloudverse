@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { IconArrowRight } from "@tabler/icons-react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import { PlatformCards } from "@/components/solution/PlatformCards";
@@ -35,7 +35,7 @@ export default function PlatformEngPage() {
             PR-level cost diffs, policy-as-code, and right-sizing recommendations in your IaC pipeline. Quantified savings rolled into FinOps.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight size={16} /></Link>
+            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><IconArrowRight size={16} stroke={1} /></Link>
             <Link href="/platform/devx" className="cv-btn-ghost">Explore the Platform</Link>
           </div>
         </div>
@@ -70,7 +70,7 @@ export default function PlatformEngPage() {
       <section className="cv-section bg-cv-surface2">
         <div className="cv-container">
           <div className="max-w-3xl mb-10">
-            <h2 className="cv-h2 text-cv-ink">What platform teams ship with CloudVerse</h2>
+            <h2 className="cv-h2 text-cv-ink">What platform teams ship with cloudverse</h2>
           </div>
           <PlatformShips
             items={[
@@ -115,7 +115,7 @@ export default function PlatformEngPage() {
           <div className="rounded-3xl border border-cv-line bg-cv-surface2 p-10 lg:p-16 text-center">
             <h2 className="cv-h2 text-cv-ink max-w-3xl mx-auto">See DevX catch a cost regression in your repo.</h2>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight size={16} /></Link>
+              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><IconArrowRight size={16} stroke={1} /></Link>
               <Link href="/contact" className="cv-btn-ghost">Talk to Sales</Link>
             </div>
           </div>

@@ -1,18 +1,18 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Check } from "lucide-react";
+import { IconCheck } from "@tabler/icons-react";
 
 const BLUE = "#007CFF";
 
 function Card1Visual() {
   return (
-    <div className="mt-5 rounded-xl border border-white/10 bg-[#070710] p-4 font-mono text-xs">
+    <div className="mt-5 rounded-xl border border-cv-line bg-cv-card p-4 font-mono text-xs">
       <div className="flex items-center justify-between text-cv-ink/50">
         <span>instance_type</span>
         <span>monthly</span>
       </div>
-      <div className="mt-2 flex items-center justify-between rounded px-2 py-1 bg-white/[0.04] text-cv-ink/60">
+      <div className="mt-2 flex items-center justify-between rounded px-2 py-1 bg-cv-ink/[0.05] text-cv-ink/60">
         <span>- t3.large</span>
         <span>$2,400</span>
       </div>
@@ -35,15 +35,15 @@ function Card1Visual() {
 
 function Card2Visual() {
   return (
-    <div className="mt-5 overflow-hidden rounded-xl border border-white/10 bg-[#070710]">
+    <div className="mt-5 overflow-hidden rounded-xl border border-cv-line bg-cv-card">
       <div className="grid grid-cols-[1fr_1.4fr] text-xs">
-        <div className="border-b border-white/10 px-3 py-2 font-medium text-cv-ink/50">Mode</div>
-        <div className="border-b border-white/10 px-3 py-2 font-medium text-cv-ink/50">Trigger</div>
+        <div className="border-b border-cv-line px-3 py-2 font-medium text-cv-ink/50">Mode</div>
+        <div className="border-b border-cv-line px-3 py-2 font-medium text-cv-ink/50">Trigger</div>
 
-        <div className="border-b border-white/5 px-3 py-2">
-          <span className="rounded-full bg-white/[0.06] px-2 py-0.5 text-cv-ink/70">advisory</span>
+        <div className="border-b border-cv-line px-3 py-2">
+          <span className="rounded-full bg-cv-ink/[0.06] px-2 py-0.5 text-cv-ink/70">advisory</span>
         </div>
-        <div className="border-b border-white/5 px-3 py-2 text-cv-ink/70">estimate only</div>
+        <div className="border-b border-cv-line px-3 py-2 text-cv-ink/70">estimate only</div>
 
         <div className="px-3 py-2">
           <span
@@ -87,7 +87,7 @@ function Card4Visual() {
               className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full"
               style={{ background: `${BLUE}26` }}
             >
-              <Check className="h-2.5 w-2.5" style={{ color: "#7CB8F8" }} strokeWidth={3} />
+              <IconCheck className="h-2.5 w-2.5" style={{ color: "#7CB8F8" }} stroke={1} />
             </span>
             {t}
           </div>
@@ -162,14 +162,14 @@ export default function CostGates() {
               key={title}
               className="flex flex-col rounded-2xl border p-7 transition-all duration-700 ease-out"
               style={{
-                background: `linear-gradient(160deg, #0A1018 0%, ${BLUE}10 100%)`,
+                background: `linear-gradient(160deg, hsl(var(--cv-card)) 0%, ${BLUE}10 100%)`,
                 borderColor: `${BLUE}80`,
                 opacity: visible || reduceMotion ? 1 : 0,
                 transform: reduceMotion || visible ? "translateY(0)" : "translateY(24px)",
                 transitionDelay: reduceMotion ? "0ms" : `${i * 110}ms`,
               }}
             >
-              <h3 className="cv-h3 text-white">{title}</h3>
+              <h3 className="cv-h3 text-cv-ink">{title}</h3>
               <p className="text-cv-ink/75 mt-3 leading-relaxed">{body}</p>
               <div aria-hidden className="mt-auto">{visual}</div>
             </div>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { IconArrowRight, IconCheck } from "@tabler/icons-react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import AixUnlocks from "@/components/solution/AixUnlocks";
@@ -35,7 +35,7 @@ export default function AIEngineeringPage() {
             Live cost-quality routing across 8+ GPU and LLM providers. Policy-bound at execution. FinOps attribution included.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight size={16} /></Link>
+            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><IconArrowRight size={16} stroke={1} /></Link>
             <Link href="/platform/aix" className="cv-btn-ghost">Explore the Platform</Link>
           </div>
         </div>
@@ -78,7 +78,7 @@ export default function AIEngineeringPage() {
               "Spend variance drops from 3x to under 15% for agent workloads after AIX",
             ].map((b) => (
               <li key={b} className="flex items-start gap-3 text-cv-ink/85">
-                <Check size={18} className="text-cv-teal mt-0.5 shrink-0" /> {b}
+                <IconCheck size={18} stroke={1} className="text-cv-teal mt-0.5 shrink-0" /> {b}
               </li>
             ))}
           </ul>
@@ -120,7 +120,7 @@ export default function AIEngineeringPage() {
               Connect your first account in under 30 minutes. Most teams have their first non-obvious finding the same day.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight size={16} /></Link>
+              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><IconArrowRight size={16} stroke={1} /></Link>
               <Link href="/contact" className="cv-btn-ghost">Talk to Sales</Link>
             </div>
           </div>

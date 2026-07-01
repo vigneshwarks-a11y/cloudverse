@@ -1,4 +1,4 @@
-// Pattern 4 — Two-column split: copy + product mockup
+// Pattern 4 Two-column split: copy + product mockup
 
 import { BrowserFrame } from "@/components/product/FeatureShowcase";
 

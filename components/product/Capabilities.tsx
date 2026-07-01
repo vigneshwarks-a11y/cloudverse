@@ -1,6 +1,6 @@
-import type { LucideIcon } from "lucide-react";
+import { Icon as TablerIcon } from "@tabler/icons-react";
 
-export type Capability = { icon: LucideIcon; title: string; desc: string };
+export type Capability = { icon: TablerIcon; title: string; desc: string };
 
 export function Capabilities({
   label,
@@ -29,7 +29,7 @@ export function Capabilities({
                   className="w-10 h-10 rounded-lg flex items-center justify-center mb-4"
                   style={{ background: `${color}1A`, color }}
                 >
-                  <Icon size={20} />
+                  <Icon size={20} stroke={1} />
                 </div>
                 <div className="font-display font-semibold text-cv-ink text-lg">{c.title}</div>
                 <p className="text-cv-ink/65 text-sm mt-2 leading-relaxed">{c.desc}</p>

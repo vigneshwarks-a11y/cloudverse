@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { IconArrowRight, IconCheck } from "@tabler/icons-react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import WarehouseIntel from "@/components/product/WarehouseIntel";
@@ -50,7 +50,7 @@ export default function DataXPage() {
             Query, dashboard, and dbt-model-level attribution across Snowflake, Databricks, BigQuery, Microsoft Fabric, and Synapse. Safe automation when you want it.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight size={16} /></Link>
+            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><IconArrowRight size={16} stroke={1} /></Link>
             <Link href="/integrations" className="cv-btn-ghost">Explore the Platform</Link>
           </div>
         </div>
@@ -251,7 +251,7 @@ export default function DataXPage() {
               Connect your first account in under 30 minutes. Most teams have their first non-obvious finding the same day.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight size={16} /></Link>
+              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><IconArrowRight size={16} stroke={1} /></Link>
               <Link href="/contact" className="cv-btn-ghost">Talk to Sales</Link>
             </div>
           </div>

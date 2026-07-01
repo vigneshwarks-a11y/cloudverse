@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { IconArrowRight } from "@tabler/icons-react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import { EnterpriseDayOne } from "@/components/solution/EnterpriseDayOne";
@@ -35,7 +35,7 @@ export default function EnterprisePage() {
             The compute economics platform global enterprises run on. SSO, SCIM provisioning, granular RBAC, audit logs, customer-managed encryption keys, and the procurement options the office of the CIO expects.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/contact" className="cv-btn-primary"><span>Talk to Our Enterprise Team</span><ArrowRight size={16} /></Link>
+            <Link href="/contact" className="cv-btn-primary"><span>Talk to Our Enterprise Team</span><IconArrowRight size={16} stroke={1} /></Link>
             <Link href="/platform/finops" className="cv-btn-ghost">Explore the Platform</Link>
           </div>
         </div>
@@ -108,7 +108,7 @@ export default function EnterprisePage() {
               Connect your first account in under 30 minutes. Most teams have their first non-obvious finding the same day.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight size={16} /></Link>
+              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><IconArrowRight size={16} stroke={1} /></Link>
               <Link href="/contact" className="cv-btn-ghost">Talk to Sales</Link>
             </div>
           </div>

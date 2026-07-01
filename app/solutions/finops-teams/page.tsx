@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { IconArrowRight } from "@tabler/icons-react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import { PlatformCards } from "@/components/solution/PlatformCards";
@@ -35,7 +35,7 @@ export default function FinOpsTeamsPage() {
             Allocation, anomaly response, commitments, and chargeback on one model. Reconciles to finance. Explains itself to engineering.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight size={16} /></Link>
+            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><IconArrowRight size={16} stroke={1} /></Link>
             <Link href="/platform/finops" className="cv-btn-ghost">Explore the Platform</Link>
           </div>
         </div>
@@ -59,7 +59,7 @@ export default function FinOpsTeamsPage() {
             The dashboards are accurate. The recommendations are ignored. Engineering says the tool does not understand their workloads. Finance says the numbers do not match the invoice. Leadership wants automation. You are running manual variance reports to bridge the gap.
           </p>
           <p className="cv-body-lg text-cv-ink/85 mt-4">
-            CloudVerse gives you one model that covers cloud infrastructure, data platforms, and AI workloads. Attribution that holds up to finance scrutiny. Recommendations that engineering actually acts on.
+            cloudverse gives you one model that covers cloud infrastructure, data platforms, and AI workloads. Attribution that holds up to finance scrutiny. Recommendations that engineering actually acts on.
           </p>
         </div>
       </section>
@@ -67,7 +67,7 @@ export default function FinOpsTeamsPage() {
       <section className="cv-section bg-cv-surface2">
         <div className="cv-container">
           <div className="max-w-3xl mb-10">
-            <h2 className="cv-h2 text-cv-ink">What FinOps teams ship faster with CloudVerse</h2>
+            <h2 className="cv-h2 text-cv-ink">What FinOps teams ship faster with cloudverse</h2>
           </div>
           <FinopsShips
             items={[
@@ -133,7 +133,7 @@ export default function FinOpsTeamsPage() {
           <div className="rounded-3xl border border-cv-line bg-cv-surface2 p-10 lg:p-16 text-center">
             <h2 className="cv-h2 text-cv-ink max-w-3xl mx-auto">Bring your FinOps program onto one control plane.</h2>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight size={16} /></Link>
+              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><IconArrowRight size={16} stroke={1} /></Link>
               <Link href="/contact" className="cv-btn-ghost">Talk to Sales</Link>
             </div>
           </div>

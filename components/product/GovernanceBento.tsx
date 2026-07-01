@@ -1,4 +1,4 @@
-import { Check } from "lucide-react";
+import { IconCheck } from "@tabler/icons-react";
 
 const BLUE = "#007CFF";
 
@@ -12,7 +12,7 @@ function Card({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-black p-6 backdrop-blur-sm">
+    <div className="relative flex flex-col overflow-hidden rounded-2xl border border-cv-line bg-cv-surface p-6 backdrop-blur-sm">
       {/* soft radial blue glow */}
       <div
         aria-hidden
@@ -20,7 +20,7 @@ function Card({
         style={{ background: "radial-gradient(circle, rgba(0,124,255,0.22), transparent 70%)" }}
       />
       <div className="relative">
-        <h4 className="font-display font-semibold text-white">{title}</h4>
+        <h4 className="font-display font-semibold text-cv-ink">{title}</h4>
         <p className="mt-2 text-sm leading-relaxed text-gray-400">{desc}</p>
       </div>
       <div className="relative mt-6 flex-1">{children}</div>
@@ -28,7 +28,7 @@ function Card({
   );
 }
 
-/* 1. Multi-tenant isolation — workspace selector + resource allocation table */
+/* 1. Multi-tenant isolation workspace selector + resource allocation table */
 function TenantViz() {
   const workspaces = ["Acme AI", "Beta Labs", "Core Eng"];
   const rows: [string, number][] = [
@@ -45,7 +45,7 @@ function TenantViz() {
             className={
               i === 0
                 ? "rounded-md border px-2.5 py-1 text-xs"
-                : "rounded-md border border-white/10 px-2.5 py-1 text-xs text-gray-500"
+                : "rounded-md border border-cv-line px-2.5 py-1 text-xs text-gray-500"
             }
             style={i === 0 ? { color: BLUE, borderColor: `${BLUE}80`, background: `${BLUE}1a` } : undefined}
           >
@@ -53,15 +53,15 @@ function TenantViz() {
           </span>
         ))}
       </div>
-      <div className="overflow-hidden rounded-lg border border-white/10">
-        <div className="flex items-center justify-between border-b border-white/10 px-3 py-2 text-[10px] uppercase tracking-wide text-gray-500">
+      <div className="overflow-hidden rounded-lg border border-cv-line">
+        <div className="flex items-center justify-between border-b border-cv-line px-3 py-2 text-[10px] uppercase tracking-wide text-gray-500">
           <span>Workspace</span>
           <span>GPU allocation</span>
         </div>
         {rows.map(([t, pct]) => (
           <div key={t} className="flex items-center gap-3 px-3 py-2 text-xs">
             <span className="w-16 text-gray-300">{t}</span>
-            <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10">
+            <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-cv-ink/10">
               <div
                 className="h-full rounded-full"
                 style={{ width: `${pct}%`, background: BLUE, boxShadow: `0 0 10px ${BLUE}99` }}
@@ -77,7 +77,7 @@ function TenantViz() {
   );
 }
 
-/* 2. Data residency controls — dark map with blue regions + rule toggles */
+/* 2. Data residency controls dark map with blue regions + rule toggles */
 function ResidencyViz() {
   const markers = [
     { left: "26%", top: "38%" }, // US
@@ -92,7 +92,7 @@ function ResidencyViz() {
   return (
     <div>
       <div
-        className="relative mb-3 h-24 overflow-hidden rounded-lg border border-white/10"
+        className="relative mb-3 h-24 overflow-hidden rounded-lg border border-cv-line"
         style={{
           backgroundColor: "#0B0D11",
           backgroundImage:
@@ -112,7 +112,7 @@ function ResidencyViz() {
         {toggles.map(([region, on]) => (
           <div
             key={region}
-            className="flex items-center justify-between rounded-md border border-white/10 px-3 py-1.5 text-xs"
+            className="flex items-center justify-between rounded-md border border-cv-line px-3 py-1.5 text-xs"
           >
             <span className="text-gray-300">{region} routing</span>
             <span
@@ -132,7 +132,7 @@ function ResidencyViz() {
   );
 }
 
-/* 3. PII handling rules — config table with redacted samples */
+/* 3. PII handling rules config table with redacted samples */
 function PiiViz() {
   const rows: [string, string, string][] = [
     ["Email", "Mask", "a•••@•••.io"],
@@ -141,8 +141,8 @@ function PiiViz() {
     ["Card no.", "Block", "•••• •••• 4•2"],
   ];
   return (
-    <div className="overflow-hidden rounded-lg border border-white/10 text-xs">
-      <div className="grid grid-cols-[1fr_auto_1.2fr] gap-2 border-b border-white/10 px-3 py-2 text-[10px] uppercase tracking-wide text-gray-500">
+    <div className="overflow-hidden rounded-lg border border-cv-line text-xs">
+      <div className="grid grid-cols-[1fr_auto_1.2fr] gap-2 border-b border-cv-line px-3 py-2 text-[10px] uppercase tracking-wide text-gray-500">
         <span>Field</span>
         <span>Rule</span>
         <span>Sample</span>
@@ -150,7 +150,7 @@ function PiiViz() {
       {rows.map(([field, rule, sample]) => (
         <div
           key={field}
-          className="grid grid-cols-[1fr_auto_1.2fr] items-center gap-2 border-t border-white/[0.06] px-3 py-2"
+          className="grid grid-cols-[1fr_auto_1.2fr] items-center gap-2 border-t border-cv-line px-3 py-2"
         >
           <span className="text-gray-300">{field}</span>
           <span
@@ -166,7 +166,7 @@ function PiiViz() {
   );
 }
 
-/* 4. Budget caps — horizontal blue spend meters */
+/* 4. Budget caps horizontal blue spend meters */
 function BudgetViz() {
   const meters: [string, string, string, number][] = [
     ["Research", "$8.2k", "$10k", 82],
@@ -183,7 +183,7 @@ function BudgetViz() {
               <span style={{ color: BLUE }}>{used}</span> / {cap}
             </span>
           </div>
-          <div className="h-2 overflow-hidden rounded-full bg-white/10">
+          <div className="h-2 overflow-hidden rounded-full bg-cv-ink/10">
             <div
               className="h-full rounded-full"
               style={{ width: `${pct}%`, background: BLUE, boxShadow: `0 0 12px ${BLUE}aa` }}
@@ -195,7 +195,7 @@ function BudgetViz() {
   );
 }
 
-/* 5. Org/team policy scopes — hierarchical assignment tree */
+/* 5. Org/team policy scopes hierarchical assignment tree */
 function PolicyTreeViz() {
   const teams: [string, string][] = [
     ["Platform Eng", "Strict-Prod"],
@@ -203,12 +203,12 @@ function PolicyTreeViz() {
     ["Data Team", "Residency-EU"],
   ];
   return (
-    <div className="rounded-lg border border-white/10 p-3 text-xs">
+    <div className="rounded-lg border border-cv-line p-3 text-xs">
       <div className="flex items-center gap-2">
         <span className="h-2 w-2 rounded-full" style={{ background: BLUE, boxShadow: `0 0 10px ${BLUE}` }} />
         <span className="font-medium text-gray-200">Organization</span>
       </div>
-      <div className="ml-1 mt-1 border-l border-white/15 pl-4">
+      <div className="ml-1 mt-1 border-l border-cv-line pl-4">
         {teams.map(([team, policy]) => (
           <div key={team} className="relative flex items-center justify-between py-1.5">
             <span
@@ -230,7 +230,7 @@ function PolicyTreeViz() {
   );
 }
 
-/* 6. Full execution trace logs — node-based chronological waterfall */
+/* 6. Full execution trace logs node-based chronological waterfall */
 function TraceViz() {
   const stages: [string, number, number, string][] = [
     ["Intake", 0, 16, "8ms"],
@@ -254,7 +254,7 @@ function TraceViz() {
             <span className="tabular-nums text-gray-500">{dur}</span>
           </div>
           <div className="relative h-1.5 w-full">
-            <div className="absolute inset-0 rounded-full bg-white/[0.06]" />
+            <div className="absolute inset-0 rounded-full bg-cv-ink/[0.06]" />
             <div
               className="absolute h-1.5 rounded-full"
               style={{
@@ -269,7 +269,7 @@ function TraceViz() {
         </div>
       ))}
       <div className="flex items-center gap-1.5 pt-1 text-[11px]" style={{ color: BLUE }}>
-        <Check size={13} /> Trace committed to audit log
+        <IconCheck size={13} stroke={1} /> Trace committed to audit log
       </div>
     </div>
   );

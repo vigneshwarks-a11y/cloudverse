@@ -3,7 +3,7 @@ import { NAV, DEMO_URL } from "@/lib/links";
 
 export function Footer() {
   return (
-    <footer className="bg-cv-surface2 border-t border-cv-line pt-14 pb-8" data-testid="site-footer">
+    <footer className="bg-cv-surface border-t border-cv-line pt-14 pb-8" data-testid="site-footer">
       <div className="cv-container">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
           <div className="col-span-2 md:col-span-2">
@@ -11,7 +11,7 @@ export function Footer() {
               CloudVerse<sup className="text-[10px] ml-0.5">™</sup>
             </div>
             <p className="text-cv-muted text-sm mt-3 max-w-xs">
-              The compute economics platform for the AI era. Cloud, AI, data, and engineering spend — governed in one place.
+              The compute economics platform for the AI era. Cloud, AI, data, and engineering spend governed in one place.
             </p>
             <Link href={DEMO_URL} className="cv-btn-primary mt-5">
               Get a Demo
@@ -32,7 +32,7 @@ export function Footer() {
         </div>
 
         <div className="mt-14 pt-6 border-t border-cv-line flex flex-col sm:flex-row justify-between gap-3 text-xs text-cv-muted">
-          <div>© {new Date().getFullYear()} CloudVerse, Inc. All rights reserved.</div>
+          <div>© {new Date().getFullYear()} cloudverse, Inc. All rights reserved.</div>
           <div className="flex gap-5">
             <Link href="/legal/privacy" className="hover:text-cv-ink">Privacy</Link>
             <Link href="/legal/terms" className="hover:text-cv-ink">Terms</Link>

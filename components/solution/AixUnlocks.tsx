@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState, type ComponentType, type ReactNode } from "react";
-import { Route, ShieldCheck, Cpu, Tag, Database, Check } from "lucide-react";
+import { IconRoute, IconShieldCheck, IconCpu, IconTag, IconDatabase, IconCheck, Icon as TablerIcon } from "@tabler/icons-react";
 
 const BLUE = "#007CFF";
 const VALUE = "#7CB8F8";
 
-type IconType = ComponentType<{ className?: string; strokeWidth?: number; style?: React.CSSProperties }>;
+type IconType = TablerIcon;
 
 function VHead({ Icon, label }: { Icon: IconType; label: string }) {
   return (
@@ -15,7 +15,7 @@ function VHead({ Icon, label }: { Icon: IconType; label: string }) {
         className="inline-flex h-8 w-8 items-center justify-center rounded-lg"
         style={{ background: `${BLUE}1A`, border: `1px solid ${BLUE}33` }}
       >
-        <Icon className="h-[18px] w-[18px]" strokeWidth={1.75} style={{ color: BLUE }} />
+        <Icon className="h-[18px] w-[18px]" stroke={1} style={{ color: BLUE }} />
       </span>
       <span className="text-xs font-medium uppercase tracking-wide text-cv-ink/50">{label}</span>
     </div>
@@ -23,7 +23,7 @@ function VHead({ Icon, label }: { Icon: IconType; label: string }) {
 }
 
 function Panel({ children }: { children: ReactNode }) {
-  return <div className="rounded-lg border border-white/10 bg-[#070710] p-4">{children}</div>;
+  return <div className="rounded-lg border border-cv-line bg-cv-card p-4">{children}</div>;
 }
 
 function RoutingVisual() {
@@ -35,7 +35,7 @@ function RoutingVisual() {
   ];
   return (
     <Panel>
-      <VHead Icon={Route} label="Cost-aware routing" />
+      <VHead Icon={IconRoute} label="Cost-aware routing" />
       <div className="flex items-center gap-3">
         <div
           className="shrink-0 rounded-md px-2.5 py-1.5 text-[11px] font-medium"
@@ -73,12 +73,12 @@ function GuardrailsVisual() {
   const rules = ["PII handling", "Data residency", "Provider allowlist"];
   return (
     <Panel>
-      <VHead Icon={ShieldCheck} label="Pre-execution" />
+      <VHead Icon={IconShieldCheck} label="Pre-execution" />
       <div className="space-y-1.5">
         {rules.map((r) => (
           <div key={r} className="flex items-center gap-2 text-[11px] text-cv-ink/70">
             <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full" style={{ background: `${BLUE}26` }}>
-              <Check className="h-2.5 w-2.5" strokeWidth={3} style={{ color: VALUE }} />
+              <IconCheck className="h-2.5 w-2.5" stroke={1} style={{ color: VALUE }} />
             </span>
             {r}
           </div>
@@ -95,7 +95,7 @@ function GpuVisual() {
   ];
   return (
     <Panel>
-      <VHead Icon={Cpu} label="GPU pools" />
+      <VHead Icon={IconCpu} label="GPU pools" />
       <div className="space-y-2.5">
         {pools.map(([name, pct]) => (
           <div key={name}>
@@ -103,7 +103,7 @@ function GpuVisual() {
               <span className="text-cv-ink/60">{name}</span>
               <span className="font-medium" style={{ color: VALUE }}>{pct}%</span>
             </div>
-            <div className="h-2 w-full rounded-full bg-white/[0.06]">
+            <div className="h-2 w-full rounded-full bg-cv-ink/[0.06]">
               <div className="h-full rounded-full" style={{ width: `${pct}%`, background: BLUE }} />
             </div>
           </div>
@@ -121,7 +121,7 @@ function AttributionVisual() {
   ];
   return (
     <Panel>
-      <VHead Icon={Tag} label="Spend attribution" />
+      <VHead Icon={IconTag} label="Spend attribution" />
       <div className="flex h-2.5 w-full overflow-hidden rounded-full">
         {segments.map(([name, pct, color]) => (
           <div key={name} style={{ width: `${pct}%`, background: color }} />
@@ -148,7 +148,7 @@ function RegistryVisual() {
   ];
   return (
     <Panel>
-      <VHead Icon={Database} label="Model registry" />
+      <VHead Icon={IconDatabase} label="Model registry" />
       <div className="grid grid-cols-[1.4fr_0.8fr_1fr] gap-x-3 text-[10px] font-medium uppercase tracking-wide text-cv-ink/40">
         <span>Model</span>
         <span>Version</span>
@@ -175,7 +175,7 @@ type Card = { title: string; body: string; visual: ReactNode; span: string };
 const CARDS: Card[] = [
   {
     title: "Multi-provider routing",
-    body: "Score every request across OpenAI, Anthropic, Bedrock, Vertex, Cohere, Groq, HuggingFace, and self-hosted infrastructure. Route to the best fit based on cost, latency, and quality requirements for that specific task type. Automatically.",
+    body: "Score every request across OpenAI, Anthropic, Bedrock, Vertex, Cohere, Groq, HuggingFace, and self-hosted infrastructure. Path to the best fit based on cost, latency, and quality requirements for that specific task type. Automatically.",
     visual: <RoutingVisual />,
     span: "md:col-span-2",
   },
@@ -249,7 +249,7 @@ export default function AixUnlocks() {
               }}
             >
               <div aria-hidden className="mb-5">{visual}</div>
-              <h3 className="text-xl md:text-2xl font-bold text-white">{title}</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-cv-ink">{title}</h3>
               <p className="text-cv-ink/75 mt-3 leading-relaxed">{body}</p>
             </div>
           ))}

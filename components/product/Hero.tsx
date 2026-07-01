@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { IconArrowRight } from "@tabler/icons-react";
 import { DEMO_URL } from "@/lib/links";
 
 export type ProofStat = { value: string; label: string; cite?: string };
@@ -21,8 +21,8 @@ export function ProductHero({
     <section className="cv-hero-bg pt-[140px] pb-16 lg:pt-[160px] lg:pb-20 relative">
       <div className="cv-container relative z-10">
         <div
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-semibold uppercase tracking-[0.14em]"
-          style={{ borderColor: `${color}55`, color }}
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-[0.14em]"
+          style={{ color, background: `${color}20` }}
         >
           <span className="w-1.5 h-1.5 rounded-full animate-pulse-dot" style={{ background: color }} />
           {eyebrow}
@@ -31,7 +31,7 @@ export function ProductHero({
         <p className="cv-body-lg mt-6 text-cv-ink/75 max-w-2xl">{sub}</p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Link href={DEMO_URL} className="cv-btn-primary" style={{ background: color }}>
-            Book a Demo <ArrowRight size={16} />
+            Book a Demo <IconArrowRight size={16} stroke={1} />
           </Link>
           <Link href="#features" className="cv-btn-ghost">
             See it in action

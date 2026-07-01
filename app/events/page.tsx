@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Calendar, MapPin, Video, ArrowRight } from "lucide-react";
+import { IconCalendar, IconMapPin, IconVideo, IconArrowRight } from "@tabler/icons-react";
 import { DEMO_URL } from "@/lib/links";
 import { CTABand } from "@/components/CTABand";
 
@@ -26,16 +26,16 @@ const PAST: Event[] = [
 ];
 
 function Card({ e }: { e: Event }) {
-  const Icon = e.mode === "virtual" ? Video : MapPin;
+  const Icon = e.mode === "virtual" ? IconVideo : IconMapPin;
   return (
     <div className="rounded-xl border border-cv-line/10 bg-cv-ink/[0.02] p-6 hover:bg-cv-ink/[0.04] transition-colors">
       <div className="flex flex-wrap items-center gap-3 text-xs text-cv-ink/55 mb-3">
         <span className="inline-flex items-center gap-1.5">
-          <Calendar size={12} /> {e.date}
+          <IconCalendar size={12} stroke={1} /> {e.date}
         </span>
         <span className="w-1 h-1 rounded-full bg-cv-ink/30" />
         <span className="inline-flex items-center gap-1.5">
-          <Icon size={12} /> {e.venue}
+          <Icon size={12} stroke={1} /> {e.venue}
         </span>
         <span className="ml-auto inline-flex items-center px-2 py-0.5 rounded-full bg-cv-ink/[0.06] border border-cv-line/10 text-[10px] uppercase tracking-wider">
           {e.tag}
@@ -46,7 +46,7 @@ function Card({ e }: { e: Event }) {
         href={e.href || DEMO_URL}
         className="mt-4 inline-flex items-center gap-1.5 text-sm text-cv-blue-light font-medium"
       >
-        Register <ArrowRight size={14} />
+        Register <IconArrowRight size={14} stroke={1} />
       </Link>
     </div>
   );

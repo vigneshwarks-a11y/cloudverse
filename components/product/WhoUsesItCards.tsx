@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { SlidersHorizontal, Code2, FileText, LayoutGrid, type LucideIcon } from "lucide-react";
+import { IconAdjustmentsHorizontal, IconCode, IconFileText, IconLayoutGrid, Icon as TablerIcon } from "@tabler/icons-react";
 
 const BLUE = "#007CFF";
 
-const ICONS: Record<string, LucideIcon> = {
-  "FinOps Manager": SlidersHorizontal,
-  "Cloud Engineer": Code2,
-  "CFO / VP Finance": FileText,
+const ICONS: Record<string, TablerIcon> = {
+  "FinOps Manager": IconAdjustmentsHorizontal,
+  "Cloud Engineer": IconCode,
+  "CFO / VP Finance": IconFileText,
 };
 
 export type WhoUsesItItem = [title: string, desc: string];
@@ -48,18 +48,18 @@ export function WhoUsesItCards({ items }: { items: WhoUsesItItem[] }) {
   return (
     <div ref={ref} className="grid auto-rows-fr gap-5 md:grid-cols-3">
       {items.map(([t, b], i) => {
-        const Icon = ICONS[t] ?? LayoutGrid;
+        const Icon = ICONS[t] ?? IconLayoutGrid;
         return (
           <div key={t} style={rise(i)}>
             <div
-              className="flex h-full flex-col rounded-xl border bg-black p-7"
+              className="flex h-full flex-col rounded-xl border bg-cv-surface p-7"
               style={{ borderColor: `${BLUE}66` }}
             >
               <span
                 className="flex h-11 w-11 items-center justify-center rounded-lg"
                 style={{ background: `${BLUE}1a`, border: `1px solid ${BLUE}40` }}
               >
-                <Icon size={22} style={{ color: BLUE }} />
+                <Icon size={22} stroke={1} style={{ color: BLUE }} />
               </span>
               <h3 className="font-display font-semibold text-cv-ink mt-5">{t}</h3>
               <p className="text-sm text-cv-ink/75 mt-3 flex-1 leading-relaxed">{b}</p>

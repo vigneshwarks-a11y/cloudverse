@@ -17,7 +17,7 @@ function VizFrame({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* 1. Query attribution — workload → owner → cost rows */
+/* 1. Query attribution workload → owner → cost rows */
 function AttributionViz() {
   const rows: [string, string, number][] = [
     ["dash_revenue", "Analytics", 82],
@@ -30,7 +30,7 @@ function AttributionViz() {
         {rows.map(([q, owner, pct]) => (
           <div key={q} className="flex items-center gap-2 text-[11px]">
             <span className="w-20 truncate font-mono text-cv-ink/70">{q}</span>
-            <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10">
+            <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-cv-ink/10">
               <div
                 className="h-full rounded-full"
                 style={{ width: `${pct}%`, background: BLUE, boxShadow: `0 0 8px ${BLUE}99` }}
@@ -44,7 +44,7 @@ function AttributionViz() {
   );
 }
 
-/* 2. Pattern detection — grouped patterns with run counts */
+/* 2. Pattern detection grouped patterns with run counts */
 function PatternViz() {
   const rows: [string, string][] = [
     ["full-scan", "×127"],
@@ -74,7 +74,7 @@ function PatternViz() {
   );
 }
 
-/* 3. Predictive signals — sparkline with a forecast spike */
+/* 3. Predictive signals sparkline with a forecast spike */
 function PredictiveViz() {
   return (
     <VizFrame>
@@ -107,7 +107,7 @@ function PredictiveViz() {
   );
 }
 
-/* 4. Safe automation — scoped fixes with toggles */
+/* 4. Safe automation scoped fixes with toggles */
 function AutomationViz() {
   const fixes = ["Partition prune", "Right-size cluster", "Reversible · audited"];
   return (
@@ -181,7 +181,7 @@ export function DataXUnlocks({ items }: { items: UnlockItem[] }) {
         return (
           <div key={t} style={rise(i)}>
             <div
-              className="flex h-full flex-col rounded-xl border bg-black p-7"
+              className="flex h-full flex-col rounded-xl border bg-cv-surface p-7"
               style={{ borderColor: `${BLUE}59` }}
             >
               <h3 className="cv-h3 font-semibold text-cv-ink">{t}</h3>

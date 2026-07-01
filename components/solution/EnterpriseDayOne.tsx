@@ -17,7 +17,7 @@ function VizFrame({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* 1. One model — single allocation feeding three matching views */
+/* 1. One model single allocation feeding three matching views */
 function ModelViz() {
   const views = ["FinOps", "Engineering", "Finance"];
   return (
@@ -43,7 +43,7 @@ function ModelViz() {
   );
 }
 
-/* 2. Identity and audit — security control checklist */
+/* 2. Identity and audit security control checklist */
 function IdentityViz() {
   const items = ["SSO", "SCIM", "RBAC", "Audit logs", "Encryption keys"];
   return (
@@ -61,7 +61,7 @@ function IdentityViz() {
   );
 }
 
-/* 3. Regional residency — region pills with deployment options */
+/* 3. Regional residency region pills with deployment options */
 function RegionViz() {
   const regions = ["US", "EU", "APAC"];
   return (
@@ -92,7 +92,7 @@ function RegionViz() {
   );
 }
 
-/* 4. Marketplace and procurement — cloud provider listings */
+/* 4. Marketplace and procurement cloud provider listings */
 function MarketplaceViz() {
   const providers = ["AWS", "Azure", "Google Cloud"];
   return (
@@ -163,7 +163,7 @@ export function EnterpriseDayOne({ items }: { items: EnterpriseItem[] }) {
         const Viz = VISUALS[t];
         return (
           <div key={t} style={rise(i)}>
-            <div className="flex h-full flex-col rounded-xl border border-white/10 bg-black p-7">
+            <div className="flex h-full flex-col rounded-xl border border-cv-line bg-cv-surface p-7">
               <h3 className="cv-h3 font-semibold text-cv-ink">{t}</h3>
               <p className="text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
               {Viz ? (

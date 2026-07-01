@@ -15,7 +15,7 @@ type Testimonial = {
 const TESTIMONIALS: Testimonial[] = [
   {
     slot: "Testimonial slot 1",
-    quote: "[TESTIMONIAL SLOT 1 — FinOps leader, financial services or tech]",
+    quote: "[TESTIMONIAL SLOT 1 FinOps leader, financial services or tech]",
     name: "FinOps Leader",
     title: "Financial services / tech",
     initials: "F1",
@@ -24,7 +24,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     slot: "Testimonial slot 2",
-    quote: "[TESTIMONIAL SLOT 2 — Engineering leader, platform or cloud team]",
+    quote: "[TESTIMONIAL SLOT 2 Engineering leader, platform or cloud team]",
     name: "Engineering Leader",
     title: "Platform / cloud team",
     initials: "E2",
@@ -33,7 +33,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
   {
     slot: "Testimonial slot 3",
-    quote: "[TESTIMONIAL SLOT 3 — Data team or analytics engineering]",
+    quote: "[TESTIMONIAL SLOT 3 Data team or analytics engineering]",
     name: "Data Leader",
     title: "Analytics engineering",
     initials: "D3",
@@ -72,7 +72,7 @@ export function Testimonials() {
 
   return (
     <section
-      className="cv-testimonials cv-section relative overflow-hidden bg-[#0B0B0F]"
+      className="cv-testimonials cv-section relative overflow-hidden bg-cv-surface"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onFocusCapture={() => setFocusWithin(true)}
@@ -98,8 +98,8 @@ export function Testimonials() {
             const isActive = i === active;
             const cardClass = `group relative overflow-hidden rounded-3xl border text-left transition-[flex-grow,flex-basis] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
               isActive
-                ? "border-white/[0.12]"
-                : "cursor-pointer border-white/[0.08] bg-white/[0.03] hover:border-white/25 hover:bg-white/[0.06]"
+                ? "border-cv-line"
+                : "cursor-pointer border-cv-line bg-cv-ink/[0.03] hover:border-cv-line hover:bg-cv-ink/[0.06]"
             }`;
             const cardStyle = isActive
               ? { flexGrow: 1, flexBasis: 0, minWidth: 0 }
@@ -119,7 +119,7 @@ export function Testimonials() {
                     className="pointer-events-none absolute inset-0"
                     style={{
                       background:
-                        "linear-gradient(160deg, rgba(22,100,192,0.55) 0%, rgba(22,100,192,0.28) 30%, rgba(10,12,20,0.92) 66%, #0A0C14 100%)",
+                        "linear-gradient(160deg, rgba(22,100,192,0.55) 0%, rgba(22,100,192,0.28) 30%, hsl(var(--cv-card) / 0.92) 66%, hsl(var(--cv-card)) 100%)",
                     }}
                   />
                   {/* Subtle grid overlay */}
@@ -128,7 +128,7 @@ export function Testimonials() {
                     className="pointer-events-none absolute inset-0"
                     style={{
                       backgroundImage:
-                        "linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)",
+                        "linear-gradient(to right, hsl(var(--cv-ink) / 0.05) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--cv-ink) / 0.05) 1px, transparent 1px)",
                       backgroundSize: "44px 44px",
                       maskImage: "linear-gradient(to bottom, #000 0%, transparent 75%)",
                       WebkitMaskImage: "linear-gradient(to bottom, #000 0%, transparent 75%)",
@@ -139,11 +139,11 @@ export function Testimonials() {
                   <div className="relative flex items-center justify-between p-6 sm:p-8 lg:px-10">
                     <img
                       src="/legacy/logo/whitelogo.svg"
-                      alt="CloudVerse"
+                      alt="cloudverse"
                       className="h-6 w-auto opacity-90 sm:h-7"
                     />
                     <div
-                      className="h-1.5 w-20 overflow-hidden rounded-full bg-white/15 sm:w-28"
+                      className="h-1.5 w-20 overflow-hidden rounded-full bg-cv-ink/15 sm:w-28"
                       aria-hidden
                     >
                       {isActive && (
@@ -163,19 +163,19 @@ export function Testimonials() {
 
                   {/* Quote */}
                   <div className="relative flex flex-1 items-center overflow-hidden px-6 sm:px-8 lg:px-10">
-                    <blockquote className="max-w-3xl font-display text-xl leading-snug text-white sm:text-2xl lg:text-4xl">
+                    <blockquote className="max-w-3xl font-display text-xl leading-snug text-cv-ink sm:text-2xl lg:text-4xl">
                       {t.quote}
                     </blockquote>
                   </div>
 
                   {/* Bottom strip */}
-                  <div className="relative mt-4 flex flex-col gap-4 border-t border-white/10 bg-black/40 p-5 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between sm:p-6 lg:px-10">
+                  <div className="relative mt-4 flex flex-col gap-4 border-t border-cv-line bg-cv-surface/40 p-5 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between sm:p-6 lg:px-10">
                     <div className="flex items-center gap-4">
                       <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#1664C0]/50 bg-[#1664C0]/20 text-sm font-semibold text-[#7C9BFF]">
                         {t.initials}
                       </div>
                       <div>
-                        <div className="font-semibold text-white">{t.name}</div>
+                        <div className="font-semibold text-cv-ink">{t.name}</div>
                         <div className="text-sm text-cv-muted">{t.title}</div>
                       </div>
                       <span className="ml-2 hidden items-center rounded-full border border-[#1664C0]/50 bg-[#1664C0]/15 px-3 py-1 text-xs font-medium text-[#7C9BFF] sm:inline-flex">
@@ -186,7 +186,7 @@ export function Testimonials() {
                       {t.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs text-cv-ink/80"
+                          className="inline-flex items-center rounded-full border border-cv-line bg-cv-ink/[0.05] px-3 py-1 text-xs text-cv-ink/80"
                         >
                           {tag}
                         </span>
@@ -197,14 +197,14 @@ export function Testimonials() {
 
                 {/* INACTIVE layer */}
                 <div
-                  className={`absolute inset-0 flex flex-col items-center justify-between py-5 transition-opacity duration-300 ${
+                  className={`absolute inset-0 flex flex-col items-center justify-between gap-4 py-5 transition-opacity duration-300 ${
                     isActive ? "pointer-events-none opacity-0" : "opacity-100"
                   }`}
                 >
                   <span className="flex flex-1 items-center text-xs font-semibold uppercase tracking-widest text-cv-muted group-hover:text-cv-ink/80 [writing-mode:vertical-rl] rotate-180">
                     {t.name}
                   </span>
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.06] text-xs font-semibold text-cv-muted transition-colors group-hover:text-cv-ink/80">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-cv-line bg-cv-ink/[0.06] text-xs font-semibold text-cv-muted transition-colors group-hover:text-cv-ink/80">
                     {t.initials}
                   </div>
                 </div>
@@ -219,7 +219,7 @@ export function Testimonials() {
                 aria-live="polite"
                 aria-label={`Testimonial from ${t.name}`}
                 data-testid="testimonial-active"
-                className={`${cardClass} bg-[#0A0C14] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1664C0] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0B0F]`}
+                className={`${cardClass} bg-cv-card focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1664C0] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0B0F]`}
                 style={cardStyle}
               >
                 {content}

@@ -1,6 +1,6 @@
 "use client";
 
-// Pattern 2 — Feature list + UI mockup with tabbed states
+// Pattern 2 Feature list + UI mockup with tabbed states
 
 import { useState } from "react";
 

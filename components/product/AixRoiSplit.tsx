@@ -71,16 +71,16 @@ export default function AixRoiSplit({ roi }: { roi: string[][] }) {
 
       {/* RIGHT: two stacked cards, equal combined height to the table */}
       <div className="flex h-full flex-col gap-6">
-        {/* TOP: Without AIX — dark, thin border */}
+        {/* TOP: Without AIX dark, thin border */}
         <div className="rounded-2xl border border-cv-line bg-cv-surface p-6" style={rise(1)}>
           <div className="cv-label mb-3" style={{ color: CYAN }}>Without AIX</div>
           <p className="text-cv-ink/85">Claude Sonnet, 5,537ms latency, $0.00298/req</p>
         </div>
 
-        {/* BOTTOM: With AIX — dark, blue glowing border */}
+        {/* BOTTOM: With AIX dark, blue glowing border */}
         <div className="relative flex-1 rounded-2xl p-[1.5px]" style={rise(2)}>
           <div aria-hidden className="cv-ring-blue absolute inset-0 rounded-2xl" />
-          <div className="relative flex h-full flex-col rounded-2xl border border-white/10 bg-cv-surface p-6">
+          <div className="relative flex h-full flex-col rounded-2xl border border-cv-line bg-cv-surface p-6">
             <div className="cv-label mb-3" style={{ color: CYAN }}>With AIX</div>
             <p className="text-cv-ink/95">GPT-4o-mini, 3,962ms latency, $0.00010/req</p>
             <p className="text-cv-ink font-medium mt-3">Result: 96.8% lower cost. 28.5% faster.</p>

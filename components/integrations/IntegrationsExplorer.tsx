@@ -2,7 +2,7 @@
 
 import { useMemo, useState, useEffect } from "react";
 import Link from "next/link";
-import { X, Search, ExternalLink, ArrowRight } from "lucide-react";
+import { IconX, IconSearch, IconExternalLink, IconArrowRight } from "@tabler/icons-react";
 import { integrationsData, type Integration } from "@/lib/integrationsData";
 import { IntegrationLogo } from "./IntegrationLogo";
 
@@ -58,12 +58,12 @@ export function IntegrationsExplorer() {
 
   return (
     <>
-      {/* Search */}
+      {/* MagnifyingGlass */}
       <div className="relative mb-6 max-w-xl">
-        <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-cv-ink/45" />
+        <IconSearch size={16} stroke={1} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-cv-ink/45" />
         <input
           type="text"
-          placeholder="Search integrations…"
+          placeholder="MagnifyingGlass integrations…"
           value={q}
           onChange={(e) => setQ(e.target.value)}
           className="w-full pl-10 pr-4 py-3 rounded-lg border border-cv-line/10 bg-cv-ink/[0.03] text-cv-ink placeholder-white/45 focus:outline-none focus:border-cv-blue/60 transition-colors"
@@ -161,7 +161,7 @@ function Drawer({ integration, onClose }: { integration: Integration; onClose: (
   return (
     <>
       <div
-        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 animate-in fade-in"
+        className="fixed inset-0 bg-cv-surface/60 backdrop-blur-sm z-40 animate-in fade-in"
         onClick={onClose}
         data-testid="drawer-backdrop"
       />
@@ -197,7 +197,7 @@ function Drawer({ integration, onClose }: { integration: Integration; onClose: (
             aria-label="Close"
             data-testid="button-close-drawer"
           >
-            <X size={20} />
+            <IconX size={20} stroke={1} />
           </button>
         </div>
 
@@ -217,7 +217,7 @@ function Drawer({ integration, onClose }: { integration: Integration; onClose: (
                 <div className="text-[11px] uppercase tracking-widest text-cv-blue-light mb-1">Setup documentation</div>
                 <div className="text-sm text-cv-ink font-medium">Read the {integration.name} setup guide</div>
               </div>
-              <ExternalLink size={18} className="text-cv-blue-light shrink-0" />
+              <IconExternalLink size={18} stroke={1} className="text-cv-blue-light shrink-0" />
             </Link>
           </div>
         )}
@@ -242,7 +242,7 @@ function Drawer({ integration, onClose }: { integration: Integration; onClose: (
               className="cv-btn-primary w-full justify-center"
               data-testid={`link-request-${integration.id}`}
             >
-              Request {integration.name} access <ArrowRight size={16} />
+              Request {integration.name} access <IconArrowRight size={16} stroke={1} />
             </Link>
           </div>
         </div>

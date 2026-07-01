@@ -2,15 +2,15 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { Wallet, Code2, Database, Cpu, LayoutGrid, type LucideIcon } from "lucide-react";
+import { IconWallet, IconCode, IconDatabase, IconCpu, IconLayoutGrid, Icon as TablerIcon } from "@tabler/icons-react";
 
 const BLUE = "#007CFF";
 
-const ICONS: Record<string, LucideIcon> = {
-  "FinOps Platform": Wallet,
-  DevX: Code2,
-  DataX: Database,
-  AIX: Cpu,
+const ICONS: Record<string, TablerIcon> = {
+  "FinOps Platform": IconWallet,
+  DevX: IconCode,
+  DataX: IconDatabase,
+  AIX: IconCpu,
 };
 
 export type PlatformItem = [title: string, blurb: string, href: string];
@@ -50,12 +50,12 @@ export function PlatformCards({ items }: { items: PlatformItem[] }) {
   return (
     <div ref={ref} className="grid auto-rows-fr gap-5 md:grid-cols-3">
       {items.map(([t, b, h], i) => {
-        const Icon = ICONS[t] ?? LayoutGrid;
+        const Icon = ICONS[t] ?? IconLayoutGrid;
         return (
           <div key={t} style={rise(i)}>
             <Link
               href={h}
-              className="group flex h-full flex-col rounded-xl border bg-black p-7 transition-colors hover:border-[#007CFF]"
+              className="group flex h-full flex-col rounded-xl border bg-cv-surface p-7 transition-colors hover:border-[#007CFF]"
               style={{ borderColor: `${BLUE}66` }}
               data-testid={`module-card-${t.toLowerCase().replace(/\s+/g, "-")}`}
             >
@@ -63,7 +63,7 @@ export function PlatformCards({ items }: { items: PlatformItem[] }) {
                 className="flex h-11 w-11 items-center justify-center rounded-lg"
                 style={{ background: `${BLUE}1a`, border: `1px solid ${BLUE}40` }}
               >
-                <Icon size={22} style={{ color: BLUE }} />
+                <Icon size={22} stroke={1} style={{ color: BLUE }} />
               </span>
               <h3 className="cv-h3 font-semibold text-cv-ink mt-5">{t}</h3>
               <p className="text-cv-ink/75 mt-2 flex-1">{b}</p>

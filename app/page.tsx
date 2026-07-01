@@ -1,17 +1,20 @@
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { IconArrowRight, IconCheck } from "@tabler/icons-react";
 import type { Metadata } from "next";
 import { CustomerLogos } from "@/components/CustomerLogos";
-import { InvoiceEfficiency } from "@/components/home/InvoiceEfficiency";
 import { ProductVideo } from "@/components/home/ProductVideo";
 import { PlatformSurfaces } from "@/components/home/PlatformSurfaces";
 import { Testimonials } from "@/components/home/Testimonials";
 import { CountUpStat } from "@/components/CountUpStat";
 import { FaqBlock } from "@/components/FaqBlock";
+import { AixGovernance } from "@/components/home/AixGovernance";
+import { AixOrchestration } from "@/components/home/AixOrchestration";
+import { TestimonialsCarousel } from "@/components/home/TestimonialsCarousel";
 import { DEMO_URL } from "@/lib/links";
+import { ClosingCTA } from "@/components/home/ClosingCTA";
 
 export const metadata: Metadata = {
-  title: "CloudVerse — The Control Plane for Enterprise AI",
+  title: "CloudVerse The Control Plane for Enterprise AI",
   description:
     "Put every AI model, agent, and dollar on one record. Route, govern, and meter your AI, and prove the ROI. Built on the FinOps platform enterprises already trust.",
 };
@@ -85,7 +88,7 @@ const HOME_FAQS = [
     a: "Observability tells you what a request cost after it ran. AIX settles that before it does, and enforces budget and policy in real time.",
   },
   {
-    q: "Does CloudVerse only do AI, or cloud cost too?",
+    q: "Does cloudverse only do AI, or cloud cost too?",
     a: "Both. AIX runs the AI. FinOps, DevX, and DataX run cloud, engineering, and data on the same platform.",
   },
   {
@@ -112,331 +115,160 @@ const INTEGRATIONS_LOGOS = [
 export default function HomePage() {
   return (
     <>
-      {/* HERO */}
-      <section className="cv-hero-bg pt-[120px] pb-32 lg:pt-[160px] lg:pb-48 relative" style={{ background: "#0B0B0F" }}>
-        <div className="cv-container relative z-10">
-          <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cv-blue/40 text-cv-blue-light text-xs font-medium uppercase tracking-widest">
-              <span className="w-1.5 h-1.5 rounded-full bg-cv-blue-light animate-pulse-dot" />
-              The Control Plane for Enterprise AI
-            </div>
-            <h1 className="cv-h1 mt-6 text-white">
-              Run your AI like you run <br className="hidden md:block" />
-              <span style={{ color: "#7CB8F8" }}>the business.</span>
-            </h1>
-            <p className="cv-body-lg mt-6 text-white/70 max-w-3xl">
-              Most companies can&apos;t tell you what their AI costs, who&apos;s running it, or whether it&apos;s any good. CloudVerse can. AIX puts every model and agent on one record: what ran, who owned it, what it cost, what it came back with. It runs on the same platform we already use for cloud, data, and engineering spend at companies like Berkshire Hathaway.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-hero-demo">
-                Book a Demo <ArrowRight size={16} />
-              </Link>
-              <Link href="/platform/aix" className="cv-btn-ghost !text-white !border-white/20 hover:!bg-white/10" data-testid="link-hero-explore">
-                See how AIX works
-              </Link>
-            </div>
-            <p className="mt-4 text-sm text-white/40">
-              Connect your first account in under 30 minutes. No-fee proof of value in two to four weeks.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* PRODUCT VIDEO */}
-      <ProductVideo />
-
-      {/* CUSTOMER LOGOS */}
-      <section className="border-y border-white/[0.06] bg-[#0B0B0F] py-10">
-        <div className="cv-container">
-          <p className="text-xs uppercase tracking-widest text-white/40 text-center mb-8">
-            The teams trusting us with their cloud and AI spend
-          </p>
-          <CustomerLogos />
-        </div>
-      </section>
-
-      {/* STATS STRIP */}
-      <section className="border-b border-white/[0.06] bg-[#0B0B0F]">
-        <div className="cv-container py-10">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
-            {STATS.map((s) => (
-              <div key={s.label}>
-                <CountUpStat value={s.v} className="text-2xl lg:text-3xl font-display font-semibold text-white" />
-                <div className="text-sm text-white/50 mt-1">{s.label}</div>
+      {/* HERO + VIDEO wrapper shares the same gradient background */}
+      <div className="cv-hero-bg">
+        {/* HERO */}
+        <section className="pt-[160px] pb-8 lg:pt-[220px] lg:pb-10 relative">
+          <div className="cv-container relative z-10">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
+              {/* Left: headline + CTAs */}
+              <div className="flex-1 min-w-0 lg:max-w-xl xl:max-w-2xl">
+                <h1 className="cv-h1 text-cv-ink">
+                  <span className="block whitespace-nowrap">Run your AI like you run</span>
+                  <span className="block text-[#1664C0] dark:text-[#7CB8F8]">the business.</span>
+                </h1>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-hero-demo">
+                    Book a Demo
+                  </Link>
+                  <Link href="/platform/aix" className="cv-btn-ghost !text-cv-ink !border-cv-ink/30 hover:!border-cv-ink/60 hover:!bg-cv-ink/10 dark:!text-white dark:!border-white/40 dark:hover:!border-white/70 dark:hover:!bg-white/10" data-testid="link-hero-explore">
+                    See how AIX works
+                  </Link>
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* THE PROBLEM */}
-      <section className="cv-section bg-[#0B0B0F]">
-        <div className="cv-container">
-          <p className="text-xl lg:text-2xl leading-relaxed text-white/75 font-light max-w-4xl">
-            AI got into everything before anyone set up the controls. Research agents, copilots, a dozen model subscriptions, GPU jobs nobody tracks. The bill shows up on time every month. The answer to what it was, who ran it, and whether it earned its money never does.
-          </p>
-          <p className="mt-6 text-xl lg:text-2xl leading-relaxed text-white font-medium">
-            CloudVerse is where that answer lives.
-          </p>
-        </div>
-      </section>
-
-      {/* BEFORE / DURING / AFTER */}
-      <section className="cv-section bg-[#0B0B0F]">
-        <div className="cv-container">
-          <div className="max-w-3xl mb-4">
-            <div className="cv-label mb-3 text-[#7C9BFF]">How it works</div>
-            <h2 className="cv-h2 text-white">One place to decide, run, and account for every AI request.</h2>
+              {/* Right: description + sub-links */}
+              <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-sm shrink-0">
+                <p className="cv-body-lg text-cv-ink/70">
+                  Most companies can&apos;t tell you what their AI costs, who&apos;s running it, or whether it&apos;s any good. cloudverse can. AIX puts every model and agent on one record what ran, who owned it, what it cost, what it came back with.
+                </p>
+              </div>
+            </div>
           </div>
-          <p className="text-cv-ink/70 max-w-3xl mb-12 leading-relaxed">
-            An AI control plane is the system that governs, routes, and meters every AI request across your models and providers. CloudVerse is the only one that works in all three windows: before a request runs, while it runs, and after.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-cv-line/20 rounded-2xl overflow-hidden">
-            {EXECUTION_STAGES.map((s, i) => (
+        </section>
+
+        {/* PRODUCT VIDEO */}
+        <ProductVideo />
+
+        {/* STATS CARDS */}
+        <section className="pt-8 pb-12 lg:pt-10 lg:pb-16">
+        <div className="cv-container">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+            {[
+              { v: "40–90%", label: "less AI spend on production" },
+              { v: "$738,983", label: "recovered by one customer" },
+              { v: "10–100×", label: "cost gap from the wrong model" },
+            ].map((s) => (
               <div
                 key={s.label}
-                className={`p-8 ${i < 2 ? "md:border-r border-cv-line/20" : ""} ${i > 0 ? "border-t md:border-t-0 border-cv-line/20" : ""}`}
+                className="flex flex-col items-center justify-center rounded-2xl border border-cv-ink/10 dark:border-white/10 px-8 py-12 text-center bg-white/40 dark:bg-white/5 backdrop-blur-sm"
               >
-                <div
-                  className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold uppercase tracking-widest mb-5"
-                  style={{ background: `${s.accent}22`, color: s.accent }}
-                >
-                  {s.label}
-                </div>
-                <p className="text-cv-ink/80 leading-relaxed text-[15px]">{s.body}</p>
+                <CountUpStat value={s.v} className="font-mono text-5xl lg:text-6xl font-bold text-cv-ink tracking-tight" />
+                <p className="mt-4 text-sm font-medium text-cv-muted tracking-wide">{s.label}</p>
               </div>
             ))}
           </div>
         </div>
-      </section>
+        </section>
+      </div>
 
-      {/* AIX — WHAT IT DOES */}
-      <section className="cv-section bg-[#0B0B0F]">
-        <div className="cv-container">
-          <div className="max-w-3xl mb-4">
-            <div className="cv-label mb-3" style={{ color: "#A99CE8" }}>AIX</div>
-            <h2 className="cv-h2 text-white">AIX is the operating system for your AI.</h2>
-          </div>
-          <p className="text-white/55 max-w-3xl mb-12 leading-relaxed">
-            An HRMS holds the record for every employee. AIX holds it for every model and agent. Onboard it, route it, budget it, review it, audit it.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {AIX_CAPABILITIES.map((c, i) => (
-              <div
-                key={c.title}
-                className={`rounded-2xl border p-6 ${
-                  i === 0
-                    ? "border-[#6954D4]/40 bg-[#6954D4]/10 md:col-span-2 lg:col-span-1"
-                    : "border-white/[0.08] bg-[#111318]"
-                }`}
-              >
-                <h3 className="font-display font-semibold text-white text-lg">{c.title}</h3>
-                <p className="text-white/60 text-[15px] leading-relaxed mt-3">{c.body}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-8">
-            <Link href="/platform/aix" className="cv-btn-ghost !text-white !border-white/20 hover:!bg-white/10" data-testid="link-aix-deeper">
-              Go deeper on AIX <ArrowRight size={16} />
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* CUSTOMER LOGOS */}
+      <CustomerLogos />
 
-      {/* PLATFORM SURFACES */}
-      <PlatformSurfaces />
+      {/* AIX GOVERNANCE */}
+      <AixGovernance />
 
-      {/* BHHS CASE STUDY */}
-      <section className="cv-section bg-[#0B0B0F]">
-        <div className="cv-container">
-          <div className="relative overflow-hidden rounded-3xl border border-[#1664C0]/30 bg-[#0A0C14] p-8 lg:p-14">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0"
-              style={{
-                backgroundImage:
-                  "linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px)",
-                backgroundSize: "48px 48px",
-                maskImage: "radial-gradient(ellipse at 0% 0%, #000 0%, transparent 70%)",
-                WebkitMaskImage: "radial-gradient(ellipse at 0% 0%, #000 0%, transparent 70%)",
-              }}
-            />
-            <div
-              aria-hidden
-              className="pointer-events-none absolute -top-32 right-0 h-72 w-[36rem] rounded-full blur-3xl"
-              style={{ background: "radial-gradient(circle, rgba(22,100,192,0.22), transparent 70%)" }}
-            />
+      {/* AIX ORCHESTRATION */}
+      <AixOrchestration />
 
-            <div className="relative">
-              <div className="cv-label mb-4 text-[#7C9BFF]">Case study — Berkshire Hathaway HomeServices</div>
-              <h2 className="cv-h2 max-w-3xl text-white">
-                How Berkshire Hathaway HomeServices recovered $738,983
-              </h2>
 
-              <div className="mt-12 mb-12 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-[#1664C0]/25 bg-[#1664C0]/15 md:grid-cols-3">
-                {[
-                  { v: "$101,736", l: "annual recovery" },
-                  { v: "$61,582", l: "single month recovery" },
-                  { v: "$738,984", l: "total recovered" },
-                ].map((s) => (
-                  <div key={s.l} className="bg-[#0B0E18] p-8">
-                    <div className="font-display text-4xl font-semibold text-white lg:text-5xl">{s.v}</div>
-                    <div className="mt-3 text-sm uppercase tracking-widest text-cv-muted">{s.l}</div>
-                  </div>
-                ))}
-              </div>
 
-              <p className="max-w-3xl leading-relaxed text-cv-ink/80">
-                A growing AWS environment, fragmented tagging, no team-level attribution. CloudVerse tied spend to teams, surfaced the anomalies that mattered most, and gave finance a model that held up under review.
-              </p>
-              <p className="mt-6 max-w-3xl border-l-2 border-[#1664C0] pl-5 text-lg italic text-white/95">
-                The waste was always there. It just had no address.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* TESTIMONIALS */}
-      <Testimonials />
-
-      {/* HOW YOU RUN IT */}
-      <section className="cv-section bg-[#0B0B0F]">
-        <div className="cv-container">
-          <div className="max-w-3xl mb-12">
-            <div className="cv-label mb-3 text-[#7C9BFF]">How you run it</div>
-            <h2 className="cv-h2 text-white">Connect. Govern. Route. Measure.</h2>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-5">
-            {LIFECYCLE_STEPS.map((s) => (
-              <div
-                key={s.n}
-                className="relative rounded-2xl border border-[#1664C0]/30 bg-[#0E0E14] p-7"
-              >
-                <span className="text-[11px] font-semibold uppercase tracking-widest text-[#7C9BFF]">{s.n}</span>
-                <h3 className="mt-3 font-display text-xl font-bold text-white">{s.title}</h3>
-                <p className="text-cv-ink/70 leading-relaxed mt-3 text-[14px]">{s.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TestimonialsCarousel />
 
       {/* INTEGRATIONS */}
-      <section className="cv-section bg-[#0B0B0F] relative overflow-hidden">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0"
-          style={{ background: "radial-gradient(ellipse 70% 60% at 50% 45%, rgba(22,100,192,0.12), transparent 70%)" }}
-        />
+      <section className="cv-section bg-cv-surface relative overflow-hidden">
+        {/* Subtle dot texture */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0"
           style={{
-            backgroundImage:
-              "radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px), radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px)",
-            backgroundPosition: "0 0, 22px 22px",
-            backgroundSize: "44px 44px",
-            maskImage: "radial-gradient(ellipse 75% 65% at 50% 45%, #000 35%, transparent 100%)",
-            WebkitMaskImage: "radial-gradient(ellipse 75% 65% at 50% 45%, #000 35%, transparent 100%)",
+            backgroundImage: "radial-gradient(hsl(var(--cv-ink) / 0.06) 1px, transparent 1px)",
+            backgroundSize: "24px 24px",
+            maskImage: "radial-gradient(ellipse 80% 70% at 50% 50%, #000 20%, transparent 100%)",
+            WebkitMaskImage: "radial-gradient(ellipse 80% 70% at 50% 50%, #000 20%, transparent 100%)",
           }}
         />
+        {/* Blue center glow */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{ background: "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(22,100,192,0.10), transparent 70%)" }}
+        />
 
-        <div className="cv-container relative z-10 text-center">
-          <div className="cv-label mb-3 text-white/40">Integrations</div>
-          <h2 className="cv-h2 text-white max-w-3xl mx-auto">Connects to the stack your teams already run.</h2>
+        <div className="cv-container relative z-10 flex flex-col items-center text-center">
+          {/* Eyebrow */}
+          <div className="cv-label mb-4 text-cv-muted">Integrations</div>
 
-          <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          {/* Heading */}
+          <h2 className="cv-h2 text-cv-ink max-w-2xl">
+            Connects to the stack<br className="hidden sm:block" /> your teams already run.
+          </h2>
+
+          {/* Cards grid */}
+          <div className="mt-12 w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {INTEGRATIONS_LOGOS.map((l) => (
               <div
                 key={l.name}
-                className="flex items-center gap-3 rounded-xl border border-white/[0.08] bg-[#070710] px-5 py-4 shadow-[inset_0_0_24px_rgba(255,255,255,0.035),0_1px_0_0_rgba(255,255,255,0.02)]"
+                className="group flex items-center gap-4 rounded-xl border border-cv-line bg-cv-card px-5 py-4 text-left transition-colors hover:border-cv-line/80 hover:bg-cv-ink/[0.06] cursor-default"
                 data-testid={`integration-${l.name.toLowerCase().replace(/\s+/g, "-")}`}
               >
-                <img src={l.src} alt="" aria-hidden className="h-8 w-8 shrink-0 object-contain opacity-90" loading="lazy" />
-                <span className="text-sm font-medium text-cv-ink/90 text-left">{l.name}</span>
+                <img
+                  src={l.src}
+                  alt=""
+                  aria-hidden
+                  className="h-8 w-8 shrink-0 object-contain"
+                  loading="lazy"
+                />
+                <span className="text-sm font-medium text-cv-ink/85 truncate">{l.name}</span>
               </div>
             ))}
           </div>
 
-          <div className="mt-8 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/[0.12] bg-white/[0.05] text-sm text-white/75">
-            <Check size={14} className="text-cv-teal" />
+          {/* Trust badge */}
+          <div className="mt-10 inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-cv-line bg-cv-card text-sm text-cv-ink/70">
+            <IconCheck size={13} stroke={1.5} className="text-cv-teal shrink-0" />
             Read-only by default. Automation is opt-in, scoped, and logged.
           </div>
-          <div className="mt-6">
-            <Link href="/integrations" className="cv-btn-ghost !text-white !border-white/20 hover:!bg-white/10" data-testid="link-integrations">
-              View all integrations <ArrowRight size={16} />
+
+          {/* CTA button */}
+          <div className="mt-5">
+            <Link
+              href="/integrations"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-cv-line text-sm font-medium text-cv-ink hover:bg-cv-ink/[0.06] hover:border-cv-line/80 transition-colors"
+              data-testid="link-integrations"
+            >
+              View all integrations <IconArrowRight size={15} stroke={1} />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Efficiency Snapshot */}
-      <InvoiceEfficiency compact />
 
       {/* FAQ */}
-      <section className="cv-section bg-[#0B0B0F]">
-        <div className="cv-container max-w-3xl">
-          <div className="cv-label mb-3 text-white/40">Common questions</div>
-          <h2 className="cv-h2 text-white mb-10">What people ask before the demo.</h2>
+      <section className="cv-section bg-cv-surface">
+        <div className="cv-container">
+          <div className="text-center mb-10">
+            <h2 className="cv-h2 text-cv-ink">Frequently Asked Questions</h2>
+            <p className="mt-3 cv-body text-cv-muted">Common questions we get asked the most</p>
+          </div>
           <FaqBlock items={HOME_FAQS} accent="#1664C0" />
         </div>
       </section>
 
       {/* FINAL CTA */}
-      <section className="cv-section bg-[#0B0B0F]">
-        <div className="cv-container">
-          <div className="relative overflow-hidden rounded-[2rem] border border-[#1664C0]/20 bg-[#080B14] px-6 py-7 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:px-10 lg:py-10">
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0"
-              style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(22,100,192,0.14), transparent 60%)" }}
-            />
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0"
-              style={{
-                backgroundImage:
-                  "linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)",
-                backgroundSize: "48px 48px",
-                maskImage: "radial-gradient(ellipse at 50% 0%, #000 0%, transparent 70%)",
-                WebkitMaskImage: "radial-gradient(ellipse at 50% 0%, #000 0%, transparent 70%)",
-              }}
-            />
-
-            <div className="relative">
-              <div className="relative mx-auto mb-5 h-28 w-28 sm:h-32 sm:w-32">
-                <div className="absolute inset-0 rounded-full border border-white/[0.08]" />
-                <div className="absolute inset-5 rounded-full border border-white/[0.06]" />
-                <div className="absolute inset-10 rounded-full border border-[#1664C0]/15" />
-                <span className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 rounded-full bg-[#1664C0]/70" />
-                <span className="absolute right-2 top-1/3 h-1.5 w-1.5 rounded-full bg-[#7C9BFF]/50" />
-                <span className="absolute bottom-3 left-5 h-1.5 w-1.5 rounded-full bg-white/30" />
-                <span className="absolute bottom-6 right-6 h-1.5 w-1.5 rounded-full bg-[#1664C0]/40" />
-                <span className="absolute left-0 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-white/20" />
-                <div className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-2xl border border-[#1664C0]/30 bg-[#0B0E18]">
-                  <img src="/legacy/logo/cloudverse-icon.png" alt="CloudVerse" className="h-8 w-auto" />
-                </div>
-              </div>
-
-              <h2 className="cv-h2 mx-auto max-w-3xl text-white">
-                Connect your first account in under 30 minutes.
-              </h2>
-              <p className="cv-body-lg mx-auto mt-5 max-w-2xl text-cv-ink/75">
-                Most teams find something they didn&apos;t expect the same day. No-fee proof of value, two to four weeks.
-              </p>
-              <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-                <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-final-demo">
-                  Book a Demo <ArrowRight size={16} />
-                </Link>
-                <Link href="/contact" className="cv-btn-ghost" data-testid="link-final-sales">
-                  Talk to Sales
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ClosingCTA />
     </>
   );
 }

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { IconArrowRight } from "@tabler/icons-react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import { PlatformCards } from "@/components/solution/PlatformCards";
@@ -35,7 +35,7 @@ export default function DataTeamsPage() {
             Query, dashboard, and dbt-model-level attribution across Snowflake, Databricks, BigQuery, Microsoft Fabric, and Synapse. Safe automation when you want it.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight size={16} /></Link>
+            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><IconArrowRight size={16} stroke={1} /></Link>
             <Link href="/platform/datax" className="cv-btn-ghost">Explore the Platform</Link>
           </div>
         </div>
@@ -133,7 +133,7 @@ export default function DataTeamsPage() {
           <div className="rounded-3xl border border-cv-line bg-cv-surface p-10 lg:p-16 text-center">
             <h2 className="cv-h2 text-cv-ink max-w-3xl mx-auto">See DataX find a $117 query in your warehouse.</h2>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight size={16} /></Link>
+              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><IconArrowRight size={16} stroke={1} /></Link>
               <Link href="/contact" className="cv-btn-ghost">Talk to Sales</Link>
             </div>
           </div>

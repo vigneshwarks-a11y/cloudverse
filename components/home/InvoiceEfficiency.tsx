@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback, useEffect } from "react";
-import { Upload, FileText, CheckCircle, AlertCircle, Sparkles, X } from "lucide-react";
+import { IconUpload, IconFileText, IconCircleCheck, IconAlertTriangle, IconSparkles, IconX } from "@tabler/icons-react";
 import Link from "next/link";
 
 type Result = {
@@ -93,18 +93,7 @@ export function InvoiceEfficiency({ compact = false }: { compact?: boolean }) {
   return (
     <section className={`${compact ? "py-12 sm:py-16" : "py-14 sm:py-20 lg:py-24"} bg-cv-surface`} data-testid="section-invoice-efficiency">
       <div className="cv-container">
-        <div className="max-w-2xl mx-auto text-center space-y-5">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-cv-muted">
-            Compute Economics Snapshot
-          </p>
-          <h2 className={`${compact ? "text-3xl sm:text-4xl" : "text-3xl sm:text-4xl lg:text-5xl"} font-semibold tracking-tight text-cv-ink leading-tight`}>
-            Get an instant Compute Economics Snapshot
-          </h2>
-          <p className="text-base sm:text-lg text-cv-muted leading-relaxed">
-            Upload a cloud invoice (CSV or TXT) to generate a read-only baseline: unit cost, volatility signals, and savings opportunities. No credentials required.
-          </p>
-
-          <div className="mt-8 max-w-md mx-auto">
+        <div className="max-w-md mx-auto">
             {state === "idle" && (
               <div
                 onClick={() => fileRef.current?.click()}
@@ -127,7 +116,7 @@ export function InvoiceEfficiency({ compact = false }: { compact?: boolean }) {
                 }`}
                 data-testid="upload-dropzone"
               >
-                <Upload className="w-10 h-10 mx-auto mb-4 text-cv-muted" />
+                <IconUpload className="w-10 h-10 mx-auto mb-4 text-cv-muted" stroke={1} />
                 <p className="text-base font-medium text-cv-ink mb-1">
                   Drop invoice here or click to upload
                 </p>
@@ -146,7 +135,7 @@ export function InvoiceEfficiency({ compact = false }: { compact?: boolean }) {
             {state === "processing" && (
               <div className="border-2 border-cv-line rounded-2xl p-8 text-center">
                 <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-cv-blue/10 flex items-center justify-center">
-                  <FileText className="w-7 h-7 text-cv-blue animate-pulse" />
+                  <IconFileText className="w-7 h-7 text-[#1664C0] dark:text-[#7CB8F8] animate-pulse" stroke={1} />
                 </div>
                 <p className="text-base font-medium text-cv-ink mb-4">Analyzing invoice…</p>
                 <div className="w-48 h-2 mx-auto bg-cv-line rounded-full overflow-hidden">
@@ -162,7 +151,7 @@ export function InvoiceEfficiency({ compact = false }: { compact?: boolean }) {
               <div className="border-2 border-cv-blue/30 rounded-2xl p-6 bg-cv-surface2 text-left" data-testid="gate-form">
                 <div className="text-center mb-5">
                   <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-emerald-500/15 flex items-center justify-center">
-                    <CheckCircle className="w-6 h-6 text-emerald-500" />
+                    <IconCircleCheck className="w-6 h-6 text-emerald-500" stroke={1} />
                   </div>
                   <p className="text-base font-semibold text-cv-ink">Analysis complete</p>
                   <p className="text-sm text-cv-muted mt-1">Enter your details to view the snapshot.</p>
@@ -187,7 +176,7 @@ export function InvoiceEfficiency({ compact = false }: { compact?: boolean }) {
             {state === "error" && (
               <div className="border-2 border-rose-500/30 rounded-2xl p-8 text-center bg-rose-500/5">
                 <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-rose-500/10 flex items-center justify-center">
-                  <AlertCircle className="w-7 h-7 text-rose-500" />
+                  <IconAlertTriangle className="w-7 h-7 text-rose-500" stroke={1} />
                 </div>
                 <p className="text-sm font-medium text-rose-500 mb-4" data-testid="error-message">{error}</p>
                 <button onClick={reset} className="cv-btn-ghost" data-testid="button-try-again">Try again</button>
@@ -198,7 +187,7 @@ export function InvoiceEfficiency({ compact = false }: { compact?: boolean }) {
               <div className="border-2 border-emerald-500/30 rounded-2xl p-6 bg-emerald-500/5">
                 <div className="flex items-center justify-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                    <CheckCircle className="w-5 h-5 text-emerald-500" />
+                    <IconCircleCheck className="w-5 h-5 text-emerald-500" stroke={1} />
                   </div>
                   <div>
                     <p className="text-base font-medium text-cv-ink">Snapshot ready</p>
@@ -207,7 +196,7 @@ export function InvoiceEfficiency({ compact = false }: { compact?: boolean }) {
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <button onClick={() => setModal(true)} className="cv-btn-primary flex-1 justify-center" data-testid="button-view-snapshot-again">
-                    <Sparkles size={16} /> View snapshot
+                    <IconSparkles size={16} stroke={1} /> View snapshot
                   </button>
                   <button onClick={reset} className="cv-btn-ghost flex-1 justify-center" data-testid="button-upload-another">
                     Upload another
@@ -215,11 +204,6 @@ export function InvoiceEfficiency({ compact = false }: { compact?: boolean }) {
                 </div>
               </div>
             )}
-          </div>
-
-          <p className="text-xs text-cv-muted/80 pt-4">
-            Read-only analysis · processed in memory · file discarded after analysis.
-          </p>
         </div>
       </div>
 
@@ -267,7 +251,7 @@ function ResultsModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 animate-in fade-in"
+      className="fixed inset-0 z-50 bg-cv-surface/70 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 animate-in fade-in"
       onClick={onClose}
       data-testid="modal-results"
       role="dialog"
@@ -291,7 +275,7 @@ function ResultsModal({
             aria-label="Close snapshot"
             className="p-2 text-cv-muted hover:text-cv-ink rounded-md focus:outline-none focus:ring-2 focus:ring-cv-blue/50"
           >
-            <X size={20} />
+            <IconX size={20} stroke={1} />
           </button>
         </div>
 
@@ -302,7 +286,7 @@ function ResultsModal({
           </div>
 
           <div className="rounded-xl border border-cv-blue/40 bg-cv-blue/10 p-5">
-            <p className="text-[11px] uppercase tracking-[0.25em] text-cv-blue mb-1">Estimated savings potential</p>
+            <p className="text-[11px] uppercase tracking-[0.25em] text-[#1664C0] dark:text-[#7CB8F8] mb-1">Estimated savings potential</p>
             <p className="text-2xl font-semibold text-cv-ink tabular-nums">
               {result.optimizationPotentialMin}% – {result.optimizationPotentialMax}%
             </p>
@@ -331,7 +315,7 @@ function ResultsModal({
                   <div key={o.service} className="rounded-lg border border-cv-line bg-cv-surface2 p-4">
                     <div className="flex justify-between gap-3 mb-2">
                       <div className="text-cv-ink font-medium">{o.service}</div>
-                      <div className="text-cv-blue tabular-nums font-medium text-sm shrink-0">
+                      <div className="text-[#1664C0] dark:text-[#7CB8F8] tabular-nums font-medium text-sm shrink-0">
                         ~{fmt(o.estimatedSavingsAmount, result.currency)} / {o.estimatedSavingsPercent}%
                       </div>
                     </div>
@@ -347,7 +331,7 @@ function ResultsModal({
               <ul className="space-y-3">
                 {result.insights.map((i, idx) => (
                   <li key={idx} className="flex items-start gap-3">
-                    <CheckCircle size={18} className="text-cv-blue shrink-0 mt-0.5" />
+                    <IconCircleCheck size={18} stroke={1} className="text-[#1664C0] dark:text-[#7CB8F8] shrink-0 mt-0.5" />
                     <span className="text-cv-ink/85 text-[15px]">{i}</span>
                   </li>
                 ))}

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRef, useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { IconArrowRight } from "@tabler/icons-react";
 import { DEMO_URL } from "@/lib/links";
 
 const ACCENT = "#1664C0";
@@ -81,7 +81,7 @@ export function FinOpsHero() {
         <div className="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row">
           <Link href={DEMO_URL} className="cv-btn-primary w-full sm:w-auto">
             <span>Book a Demo</span>
-            <ArrowRight size={16} />
+            <IconArrowRight size={16} stroke={1} />
           </Link>
           <Link href="/integrations" className="cv-btn-ghost w-full sm:w-auto">
             Explore the Platform
@@ -121,7 +121,7 @@ export function FinOpsHero() {
 
             {/* Inner video frame */}
             <div
-              className="relative overflow-hidden rounded-[16px] border bg-[#05070E] sm:rounded-[23px]"
+              className="relative overflow-hidden rounded-[16px] border bg-cv-card sm:rounded-[23px]"
               style={{ aspectRatio: "16 / 9", borderColor: "rgba(255,255,255,0.08)" }}
             >
               <video
@@ -140,10 +140,10 @@ export function FinOpsHero() {
             </div>
           </div>
 
-          {/* Tabs — overlap bottom of the video */}
+          {/* Tabs overlap bottom of the video */}
           <div className="relative z-20 -mt-[18px] flex justify-center px-2 sm:-mt-[28px]">
             <div
-              className="flex max-w-full gap-1 overflow-x-auto rounded-full border border-white/10 p-1.5 backdrop-blur-md"
+              className="flex max-w-full gap-1 overflow-x-auto rounded-full border border-cv-line p-1.5 backdrop-blur-md"
               style={{ background: "rgba(8,11,20,0.85)", scrollbarWidth: "none" }}
             >
               {TABS.map((t, i) => {

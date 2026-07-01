@@ -17,7 +17,7 @@ function VizFrame({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* 1. Allocation — 100% stacked split by team/BU */
+/* 1. Allocation 100% stacked split by team/BU */
 function AllocationViz() {
   const segs: [string, number][] = [
     ["Engineering", 46],
@@ -46,7 +46,7 @@ function AllocationViz() {
   );
 }
 
-/* 2. Anomalies — trend line with a flagged spike */
+/* 2. Anomalies trend line with a flagged spike */
 function AnomalyViz() {
   return (
     <svg viewBox="0 0 200 56" className="h-full w-full" preserveAspectRatio="none">
@@ -65,7 +65,7 @@ function AnomalyViz() {
   );
 }
 
-/* 3. Commitments — coverage bars with payback proof */
+/* 3. Commitments coverage bars with payback proof */
 function CommitmentViz() {
   const rows: [string, number][] = [
     ["RI", 72],
@@ -77,7 +77,7 @@ function CommitmentViz() {
       {rows.map(([label, pct]) => (
         <div key={label} className="flex items-center gap-2 text-[11px]">
           <span className="w-8 font-mono text-cv-ink/70">{label}</span>
-          <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10">
+          <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-cv-ink/10">
             <div
               className="h-full rounded-full"
               style={{ width: `${pct}%`, background: BLUE, boxShadow: `0 0 8px ${BLUE}99` }}
@@ -93,7 +93,7 @@ function CommitmentViz() {
   );
 }
 
-/* 4. Chargeback — multi-currency BU report rows */
+/* 4. Chargeback multi-currency BU report rows */
 function ChargebackViz() {
   const rows: [string, string][] = [
     ["EMEA", "€12.4k"],
@@ -172,7 +172,7 @@ export function FinopsShips({ items }: { items: ShipItem[] }) {
         const Viz = VISUALS[t];
         return (
           <div key={t} style={rise(i)}>
-            <div className="flex h-full flex-col rounded-xl border border-white/10 bg-black p-7">
+            <div className="flex h-full flex-col rounded-xl border border-cv-line bg-cv-surface p-7">
               <h3 className="cv-h3 font-semibold text-cv-ink">{t}</h3>
               <p className="text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
               {Viz ? (

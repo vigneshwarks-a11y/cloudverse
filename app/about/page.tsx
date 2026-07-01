@@ -1,59 +1,59 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
-  Compass,
-  Gauge,
-  ShieldCheck,
-  Sparkles,
-  Boxes,
-  Database,
-  Receipt,
-  ArrowRight,
-  type LucideIcon,
-} from "lucide-react";
+  IconCompass,
+  IconGauge,
+  IconShieldCheck,
+  IconSparkles,
+  IconPackage,
+  IconDatabase,
+  IconReceipt,
+  IconArrowRight,
+  type Icon as TablerIcon,
+} from "@tabler/icons-react";
 import { CTABand } from "@/components/CTABand";
 import { DEMO_URL, PRODUCT_URLS } from "@/lib/links";
 
 export const metadata: Metadata = {
   title: "About CloudVerse | Cloud Economic Intelligence Platform",
   description:
-    "Learn about CloudVerse's mission to bring real-time unit economics and decision-time cost governance to modern cloud and AI teams.",
+    "Learn about cloudverse's mission to bring real-time unit economics and decision-time cost governance to modern cloud and AI teams.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About CloudVerse",
     description:
-      "Learn about CloudVerse's mission to bring real-time unit economics and decision-time cost governance to modern cloud and AI teams.",
+      "Learn about cloudverse's mission to bring real-time unit economics and decision-time cost governance to modern cloud and AI teams.",
   },
 };
 
-const VALUES: { title: string; desc: string; icon: LucideIcon }[] = [
+const VALUES: { title: string; desc: string; icon: TablerIcon }[] = [
   {
     title: "Engineering-led FinOps",
     desc: "Cost decisions belong where the code is written, not weeks later in a spreadsheet.",
-    icon: Compass,
+    icon: IconCompass,
   },
   {
     title: "Decision-time visibility",
-    desc: "Surface the right signal at the right moment — before resources are provisioned, not after.",
-    icon: Gauge,
+    desc: "Surface the right signal at the right moment. before resources are provisioned, not after.",
+    icon: IconGauge,
   },
   {
     title: "Trust by default",
     desc: "Enterprise-grade security, role-based access, and full audit history on every action.",
-    icon: ShieldCheck,
+    icon: IconShieldCheck,
   },
   {
     title: "Automation over toil",
     desc: "Turn repeat optimizations into policies so teams stay fast without leaking spend.",
-    icon: Sparkles,
+    icon: IconSparkles,
   },
 ];
 
-const PRODUCTS: { name: string; tagline: string; icon: LucideIcon; href: string }[] = [
-  { name: "AIX", tagline: "Catch cloud cost mistakes before they hit production.", icon: Sparkles, href: PRODUCT_URLS.aix },
-  { name: "DevX", tagline: "Cut AI costs without breaking latency or quality.", icon: Boxes, href: PRODUCT_URLS.devx },
-  { name: "DataX", tagline: "Workload-level visibility and control for analytics platforms.", icon: Database, href: PRODUCT_URLS.datax },
-  { name: "CloudBillOps", tagline: "Unified billing, allocation, and chargeback across clouds.", icon: Receipt, href: PRODUCT_URLS.billops },
+const PRODUCTS: { name: string; tagline: string; icon: TablerIcon; href: string }[] = [
+  { name: "AIX", tagline: "Catch cloud cost mistakes before they hit production.", icon: IconSparkles, href: PRODUCT_URLS.aix },
+  { name: "DevX", tagline: "Cut AI costs without breaking latency or quality.", icon: IconPackage, href: PRODUCT_URLS.devx },
+  { name: "DataX", tagline: "Workload-level visibility and control for analytics platforms.", icon: IconDatabase, href: PRODUCT_URLS.datax },
+  { name: "CloudBillOps", tagline: "Unified billing, allocation, and chargeback across clouds.", icon: IconReceipt, href: PRODUCT_URLS.billops },
 ];
 
 export default function Page() {
@@ -67,7 +67,7 @@ export default function Page() {
             Building the future of cloud financial management
           </h1>
           <p className="cv-body-lg mt-6 text-cv-ink/75 max-w-2xl mx-auto">
-            We're the compute economics platform for the AI era — bringing real-time visibility,
+            We're the compute economics platform for the AI era. bringing real-time visibility,
             unit economics, and automated control to every dollar your teams spend on cloud and AI
             infrastructure.
           </p>
@@ -116,7 +116,7 @@ export default function Page() {
                 One misconfigured job can erase a quarter&apos;s infrastructure budget overnight.
               </p>
               <p>
-                CloudVerse™ was built to solve this at the root — giving engineers, finance, and
+                CloudVerse™ was built to solve this at the root. giving engineers, finance, and
                 leadership a shared, real-time view of compute value, where every infrastructure
                 decision ties directly to business outcomes.
               </p>
@@ -166,7 +166,7 @@ export default function Page() {
               One platform, four specialized products
             </h2>
             <p className="text-cv-muted max-w-2xl mx-auto">
-              Each module solves a specific layer of the cloud economics problem — together they
+              Each module solves a specific layer of the cloud economics problem. together they
               form an end-to-end decision layer.
             </p>
           </div>
@@ -190,7 +190,7 @@ export default function Page() {
                   </h3>
                   <p className="text-cv-muted text-sm leading-relaxed mb-3">{p.tagline}</p>
                   <span className="inline-flex items-center gap-1 text-xs font-medium text-cv-blue group-hover:gap-2 transition-all">
-                    Learn more <ArrowRight className="w-3 h-3" />
+                    Learn more <IconArrowRight size={12} stroke={1} />
                   </span>
                 </a>
               );
@@ -218,7 +218,7 @@ export default function Page() {
               className="cv-btn-primary"
               data-testid="link-book-demo-about"
             >
-              Book a demo <ArrowRight className="w-4 h-4" />
+              Book a demo <IconArrowRight size={16} stroke={1} />
             </Link>
           </div>
         </div>

@@ -1,0 +1,192 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { IconArrowRight, IconEye, IconShield, IconCpu, IconBolt, IconGitBranch } from "@tabler/icons-react";
+import { LoaderBar } from "@/components/ui/LoaderBar";
+
+const CYCLE_MS = 5000;
+
+const FEATURES = [
+  {
+    id: "unified-access",
+    title: "Stop wasting time integrating models",
+    body: "cloudverse gives you access to 200+ LLMs via a unified API, so you can focus on building, not managing provider SDKs.",
+    href: "/platform/aix",
+    color: "#1664C0",
+    icon: IconCpu,
+  },
+  {
+    id: "routing",
+    title: "Eliminate the guesswork",
+    body: "AIX scores every request live on cost, latency, quality, and compliance. The best-fit model wins automatically.",
+    href: "/platform/aix",
+    color: "#6954D4",
+    icon: IconGitBranch,
+  },
+  {
+    id: "guardrails",
+    title: "Keep AI outputs in check",
+    body: "Policy guardrails enforced at the gateway level. Content filters, PII redaction, and budget caps run before a response returns.",
+    href: "/platform/aix",
+    color: "#0E9E7A",
+    icon: IconShield,
+  },
+  {
+    id: "prompts",
+    title: "No need to hard-code prompts",
+    body: "Version, test, and deploy prompts from a central registry. Roll back in one click. No redeploys.",
+    href: "/platform/aix",
+    color: "#D97706",
+    icon: IconEye,
+  },
+  {
+    id: "agents",
+    title: "Production-ready agent workflows",
+    body: "Orchestrate multi-step AI agents with full observability, cost attribution, and audit trails on every run.",
+    href: "/platform/aix",
+    color: "#E05A2B",
+    icon: IconBolt,
+  },
+];
+
+const PROVIDERS = [
+  { name: "OpenAI",      logo: "OA",  color: "#10A37F", cost: "$12.99", desc: "Safe and innovative AI solutions for everyone.",          latency: "300–500ms", score: 94 },
+  { name: "Deepseek",   logo: "DS",  color: "#4C6EF5", cost: "$8.99",  desc: "AI-driven insights for deeper data exploration.",         latency: "200–400ms", score: 89 },
+  { name: "Anthropic",  logo: "AN",  color: "#C96442", cost: "$15.49", desc: "AI research prioritising safety and alignment.",           latency: "350–600ms", score: 91 },
+  { name: "Azure AI",   logo: "AZ",  color: "#0078D4", cost: "$11.49", desc: "Powerful AI services seamlessly integrated with Azure.",   latency: "250–450ms", score: 88 },
+  { name: "Gemini",     logo: "GM",  color: "#4285F4", cost: "$14.99", desc: "Dual-natured, curious, adaptable, witty, and energetic.", latency: "300–500ms", score: 87 },
+  { name: "Cohere",     logo: "CO",  color: "#D95B5B", cost: "$17.49", desc: "Cohere empowers enterprise-grade language AI.",           latency: "280–480ms", score: 85 },
+];
+
+function ModelCatalog({ activeColor }: { activeColor: string }) {
+  return (
+    <div className="rounded-2xl border border-cv-line bg-cv-card overflow-hidden">
+      {/* Header */}
+      <div className="border-b border-cv-line px-5 py-4">
+        <div className="text-sm font-semibold text-cv-ink mb-3">Model Catalog</div>
+        <div className="flex items-center gap-4 text-xs">
+          <button className="text-cv-ink font-medium pb-1" style={{ borderBottom: `2px solid ${activeColor}` }}>AI Providers</button>
+          <button className="text-cv-muted">Models</button>
+        </div>
+      </div>
+
+      {/* Cards grid */}
+      <div className="grid grid-cols-3 divide-x divide-y divide-cv-line">
+        {PROVIDERS.map((p, i) => (
+          <div
+            key={p.name}
+            className={`p-4 text-xs flex flex-col gap-2 ${i >= 3 ? "opacity-40" : ""}`}
+          >
+            {/* Top row */}
+            <div className="flex items-start justify-between">
+              <div
+                className="flex h-9 w-9 items-center justify-center rounded-xl text-white text-xs font-bold"
+                style={{ background: p.color }}
+              >
+                {p.logo}
+              </div>
+              <div className="flex items-center gap-1 rounded-full border border-[#0E9E7A]/40 bg-[#0E9E7A]/10 px-2 py-0.5 text-[10px] text-[#4ADE80]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#4ADE80]" />
+                Active
+              </div>
+            </div>
+
+            {/* Name + cost */}
+            <div className="flex items-center gap-2 mt-1">
+              <span className="font-semibold text-cv-ink text-[13px]">{p.name}</span>
+              <span className="rounded-full border border-cv-line px-1.5 py-0.5 text-[10px] text-cv-muted">{p.cost}</span>
+            </div>
+
+            {/* Desc */}
+            <p className="text-cv-muted leading-snug line-clamp-2">{p.desc}</p>
+
+            {/* Stats */}
+            <div className="mt-1 space-y-1 text-[10px]">
+              <div className="flex justify-between text-cv-muted/70">
+                <span>Safety Score</span>
+                <span className="text-cv-ink/70">{p.score}%</span>
+              </div>
+              <div className="flex justify-between text-cv-muted/70">
+                <span>Latency</span>
+                <span className="text-cv-ink/70">{p.latency}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export function AixOrchestration() {
+  const [active, setActive] = useState(0);
+  const current = FEATURES[active];
+
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setActive((a) => (a + 1) % FEATURES.length);
+    }, CYCLE_MS);
+    return () => clearTimeout(t);
+  }, [active]);
+
+  return (
+    <section className="cv-section bg-cv-surface">
+      <div className="cv-container">
+
+        {/* Section heading */}
+        <h2 className="cv-h2 text-cv-ink mb-12 max-w-2xl">
+          End-to-end AI Orchestration
+        </h2>
+
+        <div
+          className="flex flex-col lg:flex-row lg:items-start lg:gap-16"
+        >
+
+          {/* Left: accordion */}
+          <div className="lg:w-[42%] shrink-0">
+            {FEATURES.map((f, i) => {
+              const isActive = i === active;
+              return (
+                <button
+                  key={f.id}
+                  onClick={() => setActive(i)}
+                  className="w-full text-left"
+                >
+                  <div className={`py-5 transition-colors ${isActive ? "" : "hover:opacity-80"}`}>
+                    <h3 className={`text-base font-semibold tracking-tight transition-colors ${isActive ? "text-cv-ink" : "text-cv-ink/50"}`}>
+                      {f.title}
+                    </h3>
+
+                    {/* Expanded content */}
+                    <div className={`overflow-hidden transition-all duration-300 ${isActive ? "max-h-40 opacity-100 mt-3" : "max-h-0 opacity-0"}`}>
+                      <p className="text-sm text-cv-ink/60 leading-relaxed">{f.body}</p>
+                      <Link
+                        href={f.href}
+                        className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-[#1664C0] hover:text-[#0e4fa0] dark:text-[#7CB8F8] dark:hover:text-[#A9C8F8] transition-colors"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        Learn More <IconArrowRight size={12} stroke={1} />
+                      </Link>
+                    </div>
+
+                    {/* Progress bar — track always visible, fill only on active */}
+                    <LoaderBar animKey={isActive ? active : undefined} duration={CYCLE_MS} active={isActive} />
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Right: mock UI */}
+          <div className="mt-10 lg:mt-0 flex-1 min-w-0">
+            <div className="rounded-2xl border border-cv-line bg-cv-card overflow-hidden aspect-[4/3] flex items-center justify-center">
+              <span className="text-sm text-cv-muted">Image coming soon</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}

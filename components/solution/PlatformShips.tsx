@@ -17,7 +17,7 @@ function VizFrame({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* 1. PR cost diff — diff lines with an inline cost delta */
+/* 1. PR cost diff diff lines with an inline cost delta */
 function PrDiffViz() {
   return (
     <div className="font-mono text-[11px] leading-relaxed">
@@ -42,7 +42,7 @@ function PrDiffViz() {
   );
 }
 
-/* 2. Policy-as-code — versioned rule with advisory/required modes */
+/* 2. Policy-as-code versioned rule with advisory/required modes */
 function PolicyViz() {
   return (
     <div className="font-mono text-[11px] leading-relaxed">
@@ -82,12 +82,12 @@ function Chips({ items }: { items: string[] }) {
   );
 }
 
-/* 3. Native CI integration — pipeline providers */
+/* 3. Native CI integration pipeline providers */
 function CiViz() {
   return <Chips items={["GitHub Actions", "GitLab CI", "Azure Pipelines", "Jenkins", "Argo"]} />;
 }
 
-/* 4. Multi-IaC support — supported formats */
+/* 4. Multi-IaC support supported formats */
 function IacViz() {
   return <Chips items={["Terraform", "OpenTofu", "Pulumi", "CloudFormation", "Helm", "Kubernetes"]} />;
 }
@@ -139,7 +139,7 @@ export function PlatformShips({ items }: { items: PlatformShipItem[] }) {
         const Viz = VISUALS[t];
         return (
           <div key={t} style={rise(i)}>
-            <div className="flex h-full flex-col rounded-xl border border-white/10 bg-black p-7">
+            <div className="flex h-full flex-col rounded-xl border border-cv-line bg-cv-surface p-7">
               <h3 className="cv-h3 font-semibold text-cv-ink">{t}</h3>
               <p className="text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
               {Viz ? (

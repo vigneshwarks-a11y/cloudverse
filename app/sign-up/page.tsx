@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { IconArrowRight, IconCircleCheck } from "@tabler/icons-react";
 import { SIGNIN_URL, DEMO_URL } from "@/lib/links";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Get started with CloudVerse",
+  title: "Get started with cloudverse",
   description: "Connect your first cloud account in under 30 minutes. Read-only by default. Free tier available for DevX.",
   alternates: { canonical: "/sign-up" },
 };
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const STEPS = [
   "Connect AWS, Azure, or GCP in read-only mode",
   "See cost, allocation, and anomalies the same day",
-  "Invite finance and engineering — RBAC included",
+  "Invite finance and engineering. RBAC included",
   "Get a payback-quantified backlog inside week one",
 ];
 
@@ -31,7 +31,7 @@ export default function Page() {
 
           <div className="mt-10 grid sm:grid-cols-2 gap-3">
             <Link href={SIGNIN_URL} className="cv-btn-primary justify-center text-center" data-testid="link-create-account">
-              Create your account <ArrowRight size={16} />
+              Create your account <IconArrowRight size={16} stroke={1} />
             </Link>
             <Link href={DEMO_URL} className="cv-btn-ghost justify-center text-center" data-testid="link-book-demo">
               Book a guided demo
@@ -43,7 +43,7 @@ export default function Page() {
             <ul className="space-y-3">
               {STEPS.map((s) => (
                 <li key={s} className="flex items-start gap-3">
-                  <CheckCircle2 size={18} className="shrink-0 mt-0.5 text-cv-blue-light" />
+                  <IconCircleCheck size={18} stroke={1} className="shrink-0 mt-0.5 text-cv-blue-light" />
                   <span className="text-cv-ink/80 text-[15px]">{s}</span>
                 </li>
               ))}

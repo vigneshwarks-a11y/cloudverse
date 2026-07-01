@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { IconArrowRight, IconCheck } from "@tabler/icons-react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 
@@ -39,7 +39,7 @@ export default function IntegrationsPage() {
             Add your integration once. CloudVerse handles routing, attribution, and cost tracking across all of them. No code changes when you add a new provider.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={DEMO_URL} className="cv-btn-primary"><span>Set up your integrations</span><ArrowRight size={16} /></Link>
+            <Link href={DEMO_URL} className="cv-btn-primary"><span>Set up your integrations</span><IconArrowRight size={16} stroke={1} /></Link>
           </div>
         </div>
       </section>
@@ -62,7 +62,7 @@ export default function IntegrationsPage() {
               ["Least-privilege scripts", "provided for your security team to review before connection."],
             ].map(([t, b]) => (
               <li key={t} className="flex items-start gap-3 text-cv-ink/85">
-                <Check size={18} className="text-cv-teal mt-1 shrink-0" />
+                <IconCheck size={18} stroke={1} className="text-cv-teal mt-1 shrink-0" />
                 <span><strong className="text-cv-ink">{t}:</strong> {b}</span>
               </li>
             ))}
@@ -131,7 +131,7 @@ export default function IntegrationsPage() {
               "On-premises infrastructure: your own inference hardware",
             ].map((b) => (
               <li key={b} className="flex items-start gap-3 text-cv-ink/85">
-                <Check size={18} className="text-cv-teal mt-0.5 shrink-0" /> {b}
+                <IconCheck size={18} stroke={1} className="text-cv-teal mt-0.5 shrink-0" /> {b}
               </li>
             ))}
           </ul>
@@ -192,7 +192,7 @@ export default function IntegrationsPage() {
               Talk to us. We add integrations based on customer demand.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href="/contact" className="cv-btn-primary"><span>Talk to Us</span><ArrowRight size={16} /></Link>
+              <Link href="/contact" className="cv-btn-primary"><span>Talk to Us</span><IconArrowRight size={16} stroke={1} /></Link>
               <Link href="/resources" className="cv-btn-ghost">View Documentation</Link>
             </div>
           </div>

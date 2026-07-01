@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { IconArrowRight } from "@tabler/icons-react";
 import { DEMO_URL } from "@/lib/links";
 
 export function SolutionHero({
@@ -16,7 +16,7 @@ export function SolutionHero({
   return (
     <section className="cv-hero-bg pt-[140px] pb-16 lg:pt-[160px] lg:pb-20 relative">
       <div className="cv-container relative z-10">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cv-line/20 text-cv-ink/85 text-xs font-semibold uppercase tracking-[0.14em]">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1664C0]/15 dark:bg-[#7CB8F8]/15 text-[#1664C0] dark:text-[#7CB8F8] text-xs font-semibold uppercase tracking-[0.14em]">
           <span className="w-1.5 h-1.5 rounded-full bg-cv-blue-light animate-pulse-dot" />
           {eyebrow}
         </div>
@@ -24,7 +24,7 @@ export function SolutionHero({
         <p className="cv-body-lg mt-6 text-cv-ink/75 max-w-2xl">{sub}</p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Link href={DEMO_URL} className="cv-btn-primary">
-            Book a Demo <ArrowRight size={16} />
+            Book a Demo <IconArrowRight size={16} stroke={1} />
           </Link>
           <Link href="/platform/finops" className="cv-btn-ghost">
             Explore the platform

@@ -1,6 +1,6 @@
-import type { LucideIcon } from "lucide-react";
+import { Icon as TablerIcon } from "@tabler/icons-react";
 
-export type Outcome = { icon: LucideIcon; title: string; body: string; metric?: string };
+export type Outcome = { icon: TablerIcon; title: string; body: string; metric?: string };
 
 export function Outcomes({
   label = "Outcomes",
@@ -24,7 +24,7 @@ export function Outcomes({
             return (
               <div key={o.title} className="rounded-xl border border-cv-line/10 bg-cv-ink/[0.02] p-6">
                 <div className="w-10 h-10 rounded-lg bg-cv-blue/15 text-cv-blue-light flex items-center justify-center mb-4">
-                  <Icon size={20} />
+                  <Icon size={20} stroke={1} />
                 </div>
                 <div className="font-display font-semibold text-cv-ink text-lg">{o.title}</div>
                 <p className="text-cv-ink/65 text-sm mt-2 leading-relaxed">{o.body}</p>

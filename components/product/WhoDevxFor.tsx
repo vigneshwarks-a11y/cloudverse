@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { SlidersHorizontal, Code2, FileText, type LucideIcon } from "lucide-react";
+import { IconAdjustmentsHorizontal, IconCode, IconFileText, Icon as TablerIcon } from "@tabler/icons-react";
 
 type Persona = {
   title: string;
   body: string;
-  Icon: LucideIcon;
+  Icon: TablerIcon;
   color: string;
 };
 
@@ -14,19 +14,19 @@ const PERSONAS: Persona[] = [
   {
     title: "Platform engineers",
     body: "Stop cost governance from being a retrospective exercise. Policies live in the repo. Every PR gets a signal before it ships. Governance happens where the work happens.",
-    Icon: SlidersHorizontal,
+    Icon: IconAdjustmentsHorizontal,
     color: "#007CFF",
   },
   {
     title: "Application engineers",
     body: "Catch costly code patterns early. Expensive loops, chatty APIs, and inefficient resource usage flagged in context before production. The estimate arrives with a suggested fix.",
-    Icon: Code2,
+    Icon: IconCode,
     color: "#007CFF",
   },
   {
     title: "FinOps teams",
     body: "Shift cost accountability into the delivery workflow. Surface cost risks where decisions are made, before infrastructure or code ships. Stop chasing post-production waste.",
-    Icon: FileText,
+    Icon: IconFileText,
     color: "#007CFF",
   },
 ];
@@ -61,7 +61,7 @@ export default function WhoDevxFor() {
               key={title}
               className="relative rounded-3xl border p-8 lg:p-10 text-left transition-all duration-700 ease-out"
               style={{
-                background: `linear-gradient(160deg, #0A1018 0%, ${color}14 100%)`,
+                background: `linear-gradient(160deg, hsl(var(--cv-card)) 0%, ${color}14 100%)`,
                 borderColor: `${color}80`,
                 opacity: visible ? 1 : 0,
                 transform: visible ? "translateY(0)" : "translateY(24px)",
@@ -75,9 +75,9 @@ export default function WhoDevxFor() {
                   boxShadow: `inset 0 0 0 1px ${color}40`,
                 }}
               >
-                <Icon className="h-7 w-7 text-white" strokeWidth={1.75} aria-hidden />
+                <Icon className="h-7 w-7 text-cv-ink" stroke={1} aria-hidden />
               </div>
-              <h3 className="mt-6 font-display font-semibold text-lg text-white">{title}</h3>
+              <h3 className="mt-6 font-display font-semibold text-lg text-cv-ink">{title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-cv-ink/70">{body}</p>
             </div>
           ))}

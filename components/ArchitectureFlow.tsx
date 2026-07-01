@@ -1,4 +1,4 @@
-// Pattern 1 — Three-column platform architecture flow
+// Pattern 1 Three-column platform architecture flow
 // Per brief Section 5
 
 type Tag = { label: string; color: string };
@@ -76,7 +76,7 @@ export function ArchitectureFlow() {
       <div className="flex flex-col md:flex-row gap-6 md:gap-4">
         <Col title="Connect your stack" tags={LEFT} />
         <Connector />
-        <Col title="CloudVerse platform" tags={MIDDLE} />
+        <Col title="cloudverse platform" tags={MIDDLE} />
         <Connector />
         <Col title="Aligned to your teams" tags={RIGHT} />
       </div>

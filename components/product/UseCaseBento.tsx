@@ -37,7 +37,7 @@ function Block({
 function Card({ uc }: { uc: UseCase }) {
   return (
     <div
-      className="relative flex h-full flex-col overflow-hidden rounded-xl border bg-black p-7 sm:p-8"
+      className="relative flex h-full flex-col overflow-hidden rounded-xl border bg-cv-surface p-7 sm:p-8"
       style={{ borderColor: `${BLUE}66` }}
     >
       {/* soft ambient blue glow (identical across all cards) */}

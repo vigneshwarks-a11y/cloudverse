@@ -5,7 +5,7 @@ const VALUE = "#7CB8F8";
 
 function Bar({ pct }: { pct: number }) {
   return (
-    <div className="h-2 flex-1 rounded-full bg-white/[0.06]">
+    <div className="h-2 flex-1 rounded-full bg-cv-ink/[0.06]">
       <div className="h-full rounded-full" style={{ width: `${pct}%`, background: BLUE }} />
     </div>
   );
@@ -26,7 +26,7 @@ function Toggle({ on }: { on: boolean }) {
 }
 
 function Panel({ children }: { children: ReactNode }) {
-  return <div className="mt-5 rounded-xl border border-white/10 bg-[#070710] p-4">{children}</div>;
+  return <div className="mt-5 rounded-xl border border-cv-line bg-cv-card p-4">{children}</div>;
 }
 
 function QueryAttributionVisual() {
@@ -84,12 +84,12 @@ function PatternDetectionVisual() {
   ];
   return (
     <Panel>
-      <div className="relative mb-4 h-20 overflow-hidden rounded-lg border border-white/5 bg-[#04040A]">
+      <div className="relative mb-4 h-20 overflow-hidden rounded-lg border border-cv-line bg-cv-card">
         <div
           className="absolute inset-0 opacity-40"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)",
+              "linear-gradient(hsl(var(--cv-ink) / 0.05) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--cv-ink) / 0.05) 1px, transparent 1px)",
             backgroundSize: "20px 20px",
           }}
         />

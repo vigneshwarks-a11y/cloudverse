@@ -21,6 +21,7 @@ const config: Config = {
           line: "hsl(var(--cv-line))",
           surface: "hsl(var(--cv-surface))",
           surface2: "hsl(var(--cv-surface2))",
+          card: "hsl(var(--cv-card))",
           navy: "#050F1C",
           blue: "#1664C0",
           "blue-bright": "#2277E0",
@@ -33,9 +34,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        // Inter everywhere — display = sans, per older site
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
         display: ["var(--font-inter)", "system-ui", "sans-serif"],
+        mono: ["var(--font-inter)", "system-ui", "sans-serif"],
       },
       maxWidth: {
         cv: "1240px",

@@ -1,6 +1,6 @@
 "use client";
 
-import { Moon, Sun } from "lucide-react";
+import { IconMoon, IconSun } from "@tabler/icons-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
@@ -20,7 +20,7 @@ export function ModeToggle() {
       type="button"
       suppressHydrationWarning
     >
-      {isDark ? <Sun size={18} /> : <Moon size={18} />}
+      {isDark ? <IconSun size={18} stroke={1} /> : <IconMoon size={18} stroke={1} />}
     </button>
   );
 }
