@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import { IconHeart, IconStack2, IconCurrencyDollar, IconSettings } from "@tabler/icons-react";
+import { BranchingPathsUp, DollarMinimalistic, Eye, Heart, Shield } from "@solar-icons/react";
 
 const CYCLE_MS = 6000;
 const EXPAND_MS = 420; // parallel expand/collapse duration
@@ -23,48 +23,48 @@ type Testimonial = {
 
 const TESTIMONIALS: Testimonial[] = [
   {
-    company: "Perficient",
-    companyInitial: "P",
+    company: "SE Asian Telco Group",
+    companyInitial: "T",
     accentColor: "#1664C0",
-    quote: '"We\'re looking at what our engineers are doing, monitoring model usage and cost characteristics. cloudverse centralises governance so we can isolate workloads, enforce logging rules, and scale AI reliably across every client engagement."',
-    name: "Enterprise Customer",
-    title: "VP of AI Data Platforms Strategy",
-    initials: "VP",
+    quote: '"129 applications and Rp8.77B in cloud spend, across four clouds, with no reliable owner. CloudVerse mapped spend to the way the business actually works and surfaced Rp964.80M in savings before any optimization work began."',
+    name: "Southeast Asian digital & telecommunications group",
+    title: "Multi-cloud estate — AWS, Huawei, Google Cloud, Cloudflare",
+    initials: "TG",
     whyLabel: "cloudverse",
     tags: [
-      { icon: <IconStack2 size={11} stroke={1} />, label: "Governance" },
-      { icon: <IconCurrencyDollar size={11} stroke={1} />, label: "Cost Control" },
-      { icon: <IconSettings size={11} stroke={1} />, label: "Easy Set-Up" },
+      { icon: <BranchingPathsUp weight="Linear" size={11} />, label: "Routing" },
+      { icon: <Eye weight="Linear" size={11} />, label: "Visibility" },
+      { icon: <Shield weight="Linear" size={11} />, label: "Governance" },
     ],
   },
   {
-    company: "Enterprise",
-    companyInitial: "E",
+    company: "Tencent Cloud",
+    companyInitial: "TC",
     accentColor: "#6954D4",
-    quote: '"One of the things I really appreciate about cloudverse is how quickly it helps you scale reliably. It centralizes governance and includes built-in observability and metrics, which makes monitoring and optimization much easier."',
-    name: "Enterprise Leader",
-    title: "Director of R&D to AI",
-    initials: "EL",
+    quote: '"Before CloudVerse we could see the bill. We couldn\'t say who owned it, which applications drove it, or whether the architecture under it was worth the cost."',
+    name: "Head of FinOps",
+    title: "Large Southeast Asian digital & telecommunications group",
+    initials: "TC",
     whyLabel: "cloudverse",
     tags: [
-      { icon: <IconStack2 size={11} stroke={1} />, label: "Observability" },
-      { icon: <IconCurrencyDollar size={11} stroke={1} />, label: "Clear ROI" },
-      { icon: <IconSettings size={11} stroke={1} />, label: "Scalability" },
+      { icon: <Eye weight="Linear" size={11} />, label: "Visibility" },
+      { icon: <Shield weight="Linear" size={11} />, label: "Governance" },
+      { icon: <DollarMinimalistic weight="Linear" size={11} />, label: "Cost Control" },
     ],
   },
   {
-    company: "FinOps Team",
-    companyInitial: "F",
+    company: "Dr. Reddy's",
+    companyInitial: "DR",
     accentColor: "#0E9E7A",
-    quote: '"cloudverse gave us one place to see every dollar we were spending on AI — by model, by team, by workload. We cut wasteful spend in the first week and now every budget review starts with the cloudverse dashboard."',
-    name: "FinOps Leader",
-    title: "Head of Cloud Economics",
-    initials: "FL",
+    quote: '"The teams responsible for governance were reconciling provider invoices by hand and arriving at numbers finance and engineering both questioned. That\'s gone now."',
+    name: "FinOps Lead",
+    title: "Multi-cloud digital services group (AWS, Huawei, Google Cloud, Cloudflare)",
+    initials: "DR",
     whyLabel: "cloudverse",
     tags: [
-      { icon: <IconCurrencyDollar size={11} stroke={1} />, label: "Spend Visibility" },
-      { icon: <IconStack2 size={11} stroke={1} />, label: "Attribution" },
-      { icon: <IconSettings size={11} stroke={1} />, label: "Reporting" },
+      { icon: <Shield weight="Linear" size={11} />, label: "Governance" },
+      { icon: <BranchingPathsUp weight="Linear" size={11} />, label: "Routing" },
+      { icon: <Eye weight="Linear" size={11} />, label: "Visibility" },
     ],
   },
 ];
@@ -103,9 +103,9 @@ function SingleProgress({ active, running, duration }: {
   }, [running, duration, active]);
 
   return (
-    <div className="h-0.5 w-24 rounded-full bg-white/20 overflow-hidden">
+    <div className="h-0.5 w-24 rounded-full bg-cv-ink/15 overflow-hidden">
       <div
-        className="h-full rounded-full bg-white/80"
+        className="h-full rounded-full bg-cv-ink/70"
         style={{ width: `${fillPct}%`, transition: "none" }}
       />
     </div>
@@ -177,7 +177,9 @@ export function TestimonialsCarousel() {
   return (
     <section className="cv-section bg-cv-surface" ref={sectionRef}>
       <div className="cv-container">
-        <div className="cv-label mb-4 text-cv-muted">Customer Stories</div>
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 dark:bg-[#7CB8F8]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8] mb-4">
+          Customer Stories
+        </span>
         <h2 className="cv-h2 text-cv-ink mb-10 max-w-2xl">
           Trusted by teams running AI at scale.
         </h2>
@@ -221,8 +223,8 @@ export function TestimonialsCarousel() {
                     background: contentVisible
                       ? `radial-gradient(ellipse 80% 60% at 20% 0%, #1664C055 0%, transparent 60%),
                          radial-gradient(ellipse 60% 80% at 80% 100%, #2278E030 0%, transparent 55%),
-                         #000`
-                      : "#000",
+                         hsl(var(--cv-surface))`
+                      : "hsl(var(--cv-surface))",
                   }}
                 />
 
@@ -312,12 +314,12 @@ export function TestimonialsCarousel() {
                     </div>
                     <div className="flex items-center gap-3 flex-wrap">
                       <span className="flex items-center gap-1 text-xs font-mono text-cv-muted whitespace-nowrap">
-                        Why {ct.whyLabel} <IconHeart size={11} stroke={1} className="text-red-400 ml-0.5" />
+                        Why {ct.whyLabel} <Heart weight="Linear" size={11} className="text-red-400 ml-0.5" />
                       </span>
                       {ct.tags.map((tag) => (
                         <span
                           key={tag.label}
-                          className="flex items-center gap-1.5 text-xs font-mono text-cv-ink/60 border border-cv-line rounded-full px-2.5 py-1 whitespace-nowrap"
+                          className="flex items-center gap-1.5 text-xs font-mono text-cv-ink/60 border border-cv-blue/30 bg-cv-blue/10 rounded-full px-2.5 py-1 whitespace-nowrap"
                         >
                           {tag.icon} {tag.label}
                         </span>

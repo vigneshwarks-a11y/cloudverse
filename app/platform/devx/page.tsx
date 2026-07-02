@@ -1,5 +1,8 @@
 import Link from "next/link";
-import { IconArrowRight } from "@tabler/icons-react";
+import { ArrowRight, CodeSquare, DollarMinimalistic, ShieldCheck, Chart } from "@solar-icons/react";
+import { FaqBlock } from "@/components/FaqBlock";
+import { ClosingCTA } from "@/components/home/ClosingCTA";
+import { PlatformHeroMockup } from "@/components/product/PlatformHeroMockup";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import WhoDevxFor from "@/components/product/WhoDevxFor";
@@ -14,6 +17,13 @@ export const metadata: Metadata = {
 
 const ACCENT = "#0E9E7A";
 const BRAND = "#2277E0";
+
+const DEVX_TABS = [
+  { id: "pr-estimate", label: "PR Cost Estimate", copy: "Every infrastructure PR gets an inline cost estimate before reviewers see it. Engineers see impact at the moment they can still change something.", icon: CodeSquare },
+  { id: "cost-gates", label: "Cost Gates", copy: "Define thresholds per team or repo. Advisory or required enforcement. Policy as code, version controlled alongside your infrastructure.", icon: DollarMinimalistic },
+  { id: "ci-scan", label: "CI Scan", copy: "Automated cost scan runs on every push. Regressions flagged before merge. No manual review step required.", icon: Chart },
+  { id: "policy", label: "Policy Engine", copy: "Policies live in your repo. Enforce cost budgets per PR, per team, or per environment. Reviewable and auditable like any other config.", icon: ShieldCheck },
+];
 
 const STATS = [
   { v: "+$2.4k to $2.9k", l: "flagged on a single PR" },
@@ -44,31 +54,45 @@ const FAQ = [
 export default function DevXPage() {
   return (
     <>
-      <section className="cv-hero-bg pt-[120px] pb-16 lg:pt-[160px] lg:pb-24 relative">
-        <div className="cv-container relative z-10 max-w-4xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-medium" style={{ borderColor: `${ACCENT}66`, color: "#3FD0A3" }}>
-            <span className="w-1.5 h-1.5 rounded-full" style={{ background: ACCENT }} />
-            DevX — Shift-Left Cost Intelligence
-          </div>
-          <h1 className="cv-h1 mt-6 text-cv-ink">Catch Cost Regressions Before They Reach Production</h1>
-          <p className="cv-body-lg mt-6 text-cv-ink/75">
-            Every infrastructure PR gets an inline cost impact comment before reviewers see it. Engineers see what their changes cost at the moment they can still change something.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><IconArrowRight size={16} stroke={1} /></Link>
-            <Link href="#pr-example" className="cv-btn-ghost">See a Real PR Example</Link>
-          </div>
-        </div>
-      </section>
+      <div className="cv-hero-bg">
+        <section className="pt-[240px] pb-16 lg:pt-[240px] lg:pb-20 relative">
+          <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
+              <div className="flex-1 min-w-0 lg:max-w-xl xl:max-w-2xl">
+                <span className="block text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8]">
+                  DevX
+                </span>
+                <h1 className="cv-h1 mt-6 leading-[1.25] text-cv-ink">Catch Cost Regressions Before They Reach Production</h1>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
+                  <Link href="#pr-example" className="cv-btn-ghost">See a Real PR Example</Link>
+                </div>
+              </div>
 
-      <section className="border-y border-cv-line bg-cv-surface2/40">
-        <div className="cv-container py-8 grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {STATS.map((s) => (
-            <div key={s.l}>
-              <div className="text-2xl lg:text-3xl font-display font-semibold text-cv-ink">{s.v}</div>
-              <div className="text-sm text-cv-muted mt-1">{s.l}</div>
+              <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-sm shrink-0">
+                <p className="cv-body text-cv-ink/70">
+                  Every infrastructure PR gets an inline cost impact comment before reviewers see it. Engineers see what their changes cost at the moment they can still change something.
+                </p>
+              </div>
             </div>
-          ))}
+          </div>
+        </section>
+        <PlatformHeroMockup tabs={DEVX_TABS} />
+      </div>
+
+      <section className="pt-8 pb-12 lg:pt-10 lg:pb-16">
+        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
+            {STATS.map((s) => (
+              <div
+                key={s.l}
+                className="flex flex-col items-center justify-center rounded-2xl border border-cv-ink/10 dark:border-white/10 px-6 py-10 text-center bg-white/40 dark:bg-[#0D0D0D] backdrop-blur-sm"
+              >
+                <div className="font-mono text-2xl lg:text-3xl font-bold text-cv-ink tracking-tight">{s.v}</div>
+                <p className="mt-3 text-sm font-medium text-cv-muted tracking-wide max-w-[160px] line-clamp-2">{s.l}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -110,7 +134,7 @@ export default function DevXPage() {
           {/* Pricing cards */}
           <div className="mt-14 lg:mt-20 grid gap-6 lg:gap-8 lg:grid-cols-3 items-stretch">
             {/* Free */}
-            <div className="flex h-full flex-col rounded-3xl border border-cv-line bg-cv-surface2 p-8 lg:p-10">
+            <div className="flex h-full flex-col rounded-3xl border border-cv-line/40 bg-cv-surface2 dark:bg-[#0D0D0D] p-8 lg:p-10">
               <div className="text-xs uppercase tracking-[0.18em] font-semibold text-cv-muted">Free</div>
               <div className="mt-5 text-5xl lg:text-6xl font-display font-semibold text-cv-ink leading-none tracking-tight">
                 $0<span className="text-lg font-normal text-cv-muted">/month</span>
@@ -155,7 +179,7 @@ export default function DevXPage() {
             </div>
 
             {/* Enterprise */}
-            <div className="flex h-full flex-col rounded-3xl border border-cv-line bg-cv-surface2 p-8 lg:p-10">
+            <div className="flex h-full flex-col rounded-3xl border border-cv-line/40 bg-cv-surface2 dark:bg-[#0D0D0D] p-8 lg:p-10">
               <div className="text-xs uppercase tracking-[0.18em] font-semibold text-cv-muted">Enterprise</div>
               <div className="mt-5 text-5xl lg:text-6xl font-display font-semibold text-cv-ink leading-none tracking-tight">Custom</div>
               <div className="mt-8 h-px bg-cv-line" />
@@ -172,34 +196,16 @@ export default function DevXPage() {
       </section>
 
       {/* FAQ */}
-      <section className="cv-section bg-cv-surface2">
-        <div className="cv-container max-w-3xl">
-          <h2 className="cv-h2 text-cv-ink mb-8">FAQ</h2>
-          <div className="space-y-4">
-            {FAQ.map(([q, a]) => (
-              <details key={q} className="rounded-xl border border-cv-line bg-cv-surface p-5">
-                <summary className="cursor-pointer font-medium text-cv-ink">{q}</summary>
-                <p className="text-cv-ink/75 mt-3 leading-relaxed">{a}</p>
-              </details>
-            ))}
+      <section className="cv-section">
+        <div className="cv-container">
+          <div className="text-center mb-10">
+            <h2 className="cv-h2 text-cv-ink">Frequently Asked Questions</h2>
           </div>
+          <FaqBlock items={FAQ.map(([q, a]) => ({ q, a }))} accent="#1664C0" />
         </div>
       </section>
 
-      <section className="cv-section">
-        <div className="cv-container">
-          <div className="rounded-3xl border border-cv-line bg-cv-surface2 p-10 lg:p-16 text-center">
-            <h2 className="cv-h2 text-cv-ink max-w-3xl mx-auto">See DevX catch a cost regression in your repo.</h2>
-            <p className="cv-body-lg text-cv-ink/75 mt-5 max-w-2xl mx-auto">
-              Connect your first account in under 30 minutes. Most teams find their first cost regression the same day.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><IconArrowRight size={16} stroke={1} /></Link>
-              <Link href="/contact" className="cv-btn-ghost">Talk to Sales</Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ClosingCTA />
     </>
   );
 }

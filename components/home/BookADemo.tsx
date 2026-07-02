@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { IconArrowRight, IconCalendar } from "@tabler/icons-react";
+import { ArrowRight, Calendar } from "@solar-icons/react";
 import { DEMO_URL } from "@/lib/links";
 
 // Scattered logo bubbles — [src, size, top%, left%, opacity, delay]
@@ -64,7 +64,7 @@ export function BookADemo() {
           >
             {/* Eyebrow */}
             <div className="flex items-center gap-2 mb-6">
-              <IconCalendar size={15} stroke={1.5} className="text-cv-muted" />
+              <Calendar weight="Linear" size={15} className="text-cv-muted" />
               <span className="cv-label text-cv-muted">Book a Demo</span>
             </div>
 
@@ -81,7 +81,7 @@ export function BookADemo() {
             {/* CTA */}
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-demo-cta">
-                Book a Demo <IconArrowRight size={16} stroke={1} />
+                Book a Demo <ArrowRight weight="Linear" size={16} />
               </Link>
               <Link href="/sign-up" className="cv-btn-ghost" data-testid="link-signup-cta">
                 Get started free

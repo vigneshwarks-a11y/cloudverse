@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { IconArrowRight, IconShield, IconLock } from "@tabler/icons-react";
+import { ArrowRight, Lock, Shield } from "@solar-icons/react";
 
 function MockRBACVisual() {
   return (
@@ -22,7 +22,7 @@ function MockRBACVisual() {
         </div>
       ))}
       <div className="mt-3 flex items-center gap-2 rounded-lg border border-[#1664C0]/30 bg-[#1664C0]/10 px-3 py-2">
-        <IconShield size={12} stroke={1} className="text-[#1664C0] dark:text-[#7CB8F8]" />
+        <Shield weight="Linear" size={12} className="text-[#1664C0] dark:text-[#7CB8F8]" />
         <span className="text-[#1664C0] dark:text-[#7CB8F8]">Role-Based Access Control active</span>
       </div>
     </div>
@@ -64,7 +64,7 @@ function MockPIIVisual() {
         <div className="text-cv-ink/70">My card ends in <span className="rounded bg-red-500/20 px-1 text-red-400 line-through">4521</span> and CVV <span className="rounded bg-red-500/20 px-1 text-red-400 line-through">392</span></div>
       </div>
       <div className="flex items-center justify-center gap-1 text-cv-muted py-1">
-        <IconLock size={10} stroke={1} />
+        <Lock weight="Linear" size={10} />
         <span>PII redacted before LLM</span>
       </div>
       <div className="rounded-lg border border-[#0E9E7A]/30 bg-[#0E9E7A]/10 p-3 space-y-1.5">
@@ -129,13 +129,13 @@ function MockSSOVisual() {
 
 const TOP_FEATURES = [
   {
-    title: "Collaborate while staying secure",
-    body: "Manage your resources with a clear hierarchy to ensure seamless collaboration with Role-Based Access Control (RBAC).",
+    title: "Govern AI before the spend happens",
+    body: "Policy, access controls, data residency, and vendor oversight sit in one place and apply before a request runs. Not a separate exception process bolted on at month-end.",
     Visual: MockRBACVisual,
   },
   {
-    title: "Cut costs, not corners",
-    body: "Monitor performance and costs in real time. Set budget limits and optimize model allocation to reduce AI expenses.",
+    title: "Every decision logged and traceable",
+    body: "Every model call, agent run, and workflow is on the record: who owned it, what it used, what it cost, what it returned. The same account finance, security, and the board can all read.",
     Visual: MockCostVisual,
   },
 ];
@@ -153,7 +153,7 @@ const BOTTOM_FEATURES = [
   },
 ];
 
-const CELL = "bg-cv-card p-6 lg:p-8 flex flex-col";
+const CELL = "bg-cv-surface p-6 lg:p-8 flex flex-col";
 
 export function AixGovernance() {
   return (
@@ -170,22 +170,22 @@ export function AixGovernance() {
               Take the driver's seat<br className="hidden lg:block" /> with AI Governance
             </h2>
             <p className="mt-4 lg:mt-1 text-cv-ink/60 leading-relaxed lg:max-w-sm xl:max-w-md shrink-0">
-              cloudverse gives every team a production-ready platform to manage, observe, and govern AI spend with full audit trails, budget controls, and access policies enforced before a single token leaves.
+              Policy, access controls, and full audit trails enforced before a single token leaves. Not a month-end reconciliation — governance that runs live, at the point of every decision.
             </p>
           </div>
         </div>
 
         {/* Outer border container */}
-        <div className="border border-cv-line divide-y divide-cv-line">
+        <div className="border border-cv-line/30 divide-y divide-cv-line/30">
 
           {/* Row 1 2 cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-cv-line">
+          <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-cv-line/30">
             {TOP_FEATURES.map(({ title, body, Visual }) => (
               <div key={title} className={CELL}>
                 <h3 className="text-base font-semibold text-cv-ink">{title}</h3>
                 <p className="mt-2 text-sm text-cv-ink/55 leading-relaxed">{body}</p>
                 <Link href="/platform/aix" className="mt-3 inline-flex items-center gap-1 text-xs text-[#1664C0] hover:text-[#0e4fa0] dark:text-[#7CB8F8] dark:hover:text-[#A9C8F8] transition-colors font-medium">
-                  Learn More <IconArrowRight size={12} stroke={1} />
+                  Learn More <ArrowRight weight="Linear" size={12} />
                 </Link>
                 <div className="mt-auto"><Visual /></div>
               </div>
@@ -193,24 +193,24 @@ export function AixGovernance() {
           </div>
 
           {/* Quote strip warm left border accent */}
-          <div className="bg-cv-card p-8 lg:p-10">
+          <div className="bg-cv-surface p-8 lg:p-10">
             <blockquote className="text-lg lg:text-xl leading-relaxed text-cv-ink/80 max-w-4xl">
-              "We're looking at what our engineers are doing, monitoring model usage and cost characteristics. cloudverse centralises governance so we can isolate workloads, enforce logging rules, and scale AI reliably across every client engagement."
+              "Before CloudVerse we could see the bill. We couldn&apos;t say who owned it, which applications drove it, or whether the architecture under it was worth the cost."
             </blockquote>
             <div className="mt-6">
-              <div className="font-semibold text-cv-ink text-sm">Enterprise Customer</div>
-              <div className="text-cv-muted text-sm">VP of AI Data Platforms Strategy, <span className="text-[#D64C2C]">Perficient</span></div>
+              <div className="font-semibold text-cv-ink text-sm">Head of FinOps</div>
+              <div className="text-cv-muted text-sm">Large Southeast Asian digital &amp; telecommunications group</div>
             </div>
           </div>
 
           {/* Row 2 2 cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-cv-line">
+          <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-cv-line/30">
             {BOTTOM_FEATURES.map(({ title, body, Visual }) => (
               <div key={title} className={CELL}>
                 <h3 className="text-base font-semibold text-cv-ink">{title}</h3>
                 <p className="mt-2 text-sm text-cv-ink/55 leading-relaxed">{body}</p>
                 <Link href="/platform/aix" className="mt-3 inline-flex items-center gap-1 text-xs text-[#1664C0] hover:text-[#0e4fa0] dark:text-[#7CB8F8] dark:hover:text-[#A9C8F8] transition-colors font-medium">
-                  Learn More <IconArrowRight size={12} stroke={1} />
+                  Learn More <ArrowRight weight="Linear" size={12} />
                 </Link>
                 <div className="mt-auto"><Visual /></div>
               </div>
@@ -218,19 +218,13 @@ export function AixGovernance() {
           </div>
 
           {/* Bottom full-width split card 40/60 */}
-          <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] divide-y md:divide-y-0 md:divide-x divide-cv-line">
+          <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] divide-y md:divide-y-0 md:divide-x divide-cv-line/30">
             {/* Left ~40%: logo + warm glow + testimonial */}
-            <div className="relative flex flex-col justify-between bg-cv-card p-8 lg:p-10 overflow-hidden min-h-[320px]">
-              {/* Dark mode: warm red glow */}
+            <div className="relative flex flex-col justify-between bg-cv-surface p-8 lg:p-10 overflow-hidden min-h-[320px]">
+              {/* Blue glow — both modes */}
               <div
-                className="pointer-events-none absolute inset-0 hidden dark:block"
-                style={{ background: "radial-gradient(ellipse 90% 70% at 20% 80%, rgba(180,40,20,0.35) 0%, rgba(100,20,10,0.15) 50%, transparent 75%)" }}
-                aria-hidden
-              />
-              {/* Light mode: soft blue tint instead */}
-              <div
-                className="pointer-events-none absolute inset-0 block dark:hidden"
-                style={{ background: "radial-gradient(ellipse 90% 70% at 20% 80%, rgba(22,100,192,0.10) 0%, rgba(22,100,192,0.04) 50%, transparent 75%)" }}
+                className="pointer-events-none absolute inset-0"
+                style={{ background: "radial-gradient(ellipse 90% 70% at 20% 80%, rgba(22,100,192,0.30) 0%, rgba(22,100,192,0.12) 50%, transparent 75%)" }}
                 aria-hidden
               />
               <div className="relative inline-flex items-center gap-2">
@@ -239,21 +233,21 @@ export function AixGovernance() {
               </div>
               <div className="relative mt-auto pt-10">
                 <p className="text-cv-ink/70 text-sm leading-relaxed">
-                  "One of the things I really appreciate about cloudverse is how quickly it helps you scale reliably. It centralizes governance and includes built-in observability and metrics, which makes monitoring and optimization much easier."
+                  "The teams responsible for governance were reconciling provider invoices by hand and arriving at numbers finance and engineering both questioned. That&apos;s gone now."
                 </p>
                 <div className="mt-4">
-                  <div className="font-semibold text-cv-ink text-sm">Enterprise Leader</div>
-                  <div className="text-cv-muted text-xs">Director of R&D to AI</div>
+                  <div className="font-semibold text-cv-ink text-sm">FinOps Lead</div>
+                  <div className="text-cv-muted text-xs">Multi-cloud digital services group (AWS, Huawei, Google Cloud, Cloudflare)</div>
                 </div>
               </div>
             </div>
 
             {/* Right ~60%: SSO feature */}
-            <div className="bg-cv-card flex flex-col p-8 lg:p-10">
-              <h3 className="text-base font-semibold text-cv-ink">Single Sign-On</h3>
-              <p className="mt-2 text-sm text-cv-ink/55 leading-relaxed">Onboard your teams instantly and have cloudverse follow your governance rules from day 0.</p>
+            <div className="bg-cv-surface flex flex-col p-8 lg:p-10">
+              <h3 className="text-base font-semibold text-cv-ink">Single sign-on, scoped from day one</h3>
+              <p className="mt-2 text-sm text-cv-ink/55 leading-relaxed">Onboard teams instantly and have CloudVerse follow your access rules from the start. Read-only by default. Automation is opt-in and logged.</p>
               <Link href="/platform/aix" className="mt-3 inline-flex items-center gap-1 text-xs text-[#1664C0] hover:text-[#0e4fa0] dark:text-[#7CB8F8] dark:hover:text-[#A9C8F8] transition-colors font-medium">
-                Learn More <IconArrowRight size={12} stroke={1} />
+                Learn More <ArrowRight weight="Linear" size={12} />
               </Link>
               <div className="mt-auto"><MockSSOVisual /></div>
             </div>

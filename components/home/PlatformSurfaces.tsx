@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { IconArrowRight } from "@tabler/icons-react";
+import { ArrowRight } from "@solar-icons/react";
 
 const CYCLE_MS = 5000;
 
@@ -131,7 +131,7 @@ export function PlatformSurfaces() {
                         className="mt-4 mb-5 ml-[22px] inline-flex items-center gap-1.5 text-sm text-[#1664C0] dark:text-[#7CB8F8] hover:gap-2.5 transition-all"
                         data-testid={`surface-link-${slug}`}
                       >
-                        Learn more <IconArrowRight size={14} stroke={1} />
+                        Learn more <ArrowRight weight="Linear" size={14} />
                       </Link>
                     </div>
                   </div>

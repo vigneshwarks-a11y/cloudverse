@@ -2,7 +2,7 @@
 
 import { useMemo, useState, useEffect } from "react";
 import Link from "next/link";
-import { IconX, IconSearch, IconExternalLink, IconArrowRight } from "@tabler/icons-react";
+import { ArrowRight, CloseCircle, Magnifer, SquareArrowRightUp } from "@solar-icons/react";
 import { integrationsData, type Integration } from "@/lib/integrationsData";
 import { IntegrationLogo } from "./IntegrationLogo";
 
@@ -60,7 +60,7 @@ export function IntegrationsExplorer() {
     <>
       {/* MagnifyingGlass */}
       <div className="relative mb-6 max-w-xl">
-        <IconSearch size={16} stroke={1} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-cv-ink/45" />
+        <Magnifer weight="Linear" size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-cv-ink/45" />
         <input
           type="text"
           placeholder="MagnifyingGlass integrations…"
@@ -197,7 +197,7 @@ function Drawer({ integration, onClose }: { integration: Integration; onClose: (
             aria-label="Close"
             data-testid="button-close-drawer"
           >
-            <IconX size={20} stroke={1} />
+            <CloseCircle weight="Linear" size={20} />
           </button>
         </div>
 
@@ -217,7 +217,7 @@ function Drawer({ integration, onClose }: { integration: Integration; onClose: (
                 <div className="text-[11px] uppercase tracking-widest text-cv-blue-light mb-1">Setup documentation</div>
                 <div className="text-sm text-cv-ink font-medium">Read the {integration.name} setup guide</div>
               </div>
-              <IconExternalLink size={18} stroke={1} className="text-cv-blue-light shrink-0" />
+              <SquareArrowRightUp weight="Linear" size={18} className="text-cv-blue-light shrink-0" />
             </Link>
           </div>
         )}
@@ -242,7 +242,7 @@ function Drawer({ integration, onClose }: { integration: Integration; onClose: (
               className="cv-btn-primary w-full justify-center"
               data-testid={`link-request-${integration.id}`}
             >
-              Request {integration.name} access <IconArrowRight size={16} stroke={1} />
+              Request {integration.name} access <ArrowRight weight="Linear" size={16} />
             </Link>
           </div>
         </div>

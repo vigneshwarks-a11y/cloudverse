@@ -37,7 +37,7 @@ export default function DevxPrExample({ diff }: { diff: string }) {
   });
 
   return (
-    <section id="pr-example" className="cv-section bg-cv-surface2">
+    <section id="pr-example" className="cv-section bg-cv-surface2 dark:bg-black">
       <div className="cv-container">
         <div ref={ref}>
           <div className="max-w-3xl mb-8" style={rise(0)}>
@@ -53,7 +53,7 @@ export default function DevxPrExample({ diff }: { diff: string }) {
             <div className="h-full" style={rise(1)}>
               <div className="relative h-full rounded-2xl p-[1.5px]">
                 <div aria-hidden className="cv-ring-blue absolute inset-0 rounded-2xl" />
-                <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-cv-line bg-cv-card">
+                <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-cv-line bg-cv-card dark:bg-[#050505]">
                   {/* Mac chrome */}
                   <div className="flex items-center gap-2 border-b border-cv-line bg-cv-ink/[0.03] px-4 py-3">
                     <span className="h-3 w-3 rounded-full bg-[#ff5f56]" />
@@ -70,7 +70,7 @@ export default function DevxPrExample({ diff }: { diff: string }) {
             {/* RIGHT: two stacked cards, equal combined height to code window */}
             <div className="flex h-full flex-col gap-6">
               {/* TOP: DevX cost estimate dark, thin border */}
-              <div className="rounded-2xl border border-cv-line bg-cv-surface p-6" style={rise(2)}>
+              <div className="rounded-2xl border border-cv-line bg-cv-surface dark:bg-[#050505] p-6" style={rise(2)}>
                 <div className="cv-label mb-2" style={{ color: CYAN }}>DevX cost estimate</div>
                 <div className="text-3xl font-display font-semibold text-cv-ink">+$1.1k to $1.4k</div>
                 <div className="text-sm text-cv-muted">per month</div>
@@ -84,7 +84,7 @@ export default function DevxPrExample({ diff }: { diff: string }) {
               {/* BOTTOM: why this matters dark, blue glowing border */}
               <div className="relative flex-1 rounded-2xl p-[1.5px]" style={rise(3)}>
                 <div aria-hidden className="cv-ring-blue absolute inset-0 rounded-2xl" />
-                <div className="relative h-full rounded-2xl border border-cv-line bg-cv-surface p-6">
+                <div className="relative h-full rounded-2xl border border-cv-line bg-cv-surface dark:bg-[#050505] p-6">
                   <div className="cv-label mb-2" style={{ color: CYAN }}>Why this matters</div>
                   <ul className="text-sm text-cv-ink/80 space-y-1">
                     <li>• Always-on NAT in non-prod is a recurring cost with no production benefit</li>

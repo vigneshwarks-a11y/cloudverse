@@ -3,23 +3,23 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
-import { IconMenu2, IconX, IconChevronDown, IconChevronRight, IconCpu, IconChartBar, IconGitPullRequest, IconDatabase, IconUsers, IconRobot, IconStack, IconLayoutGrid, IconBuilding } from "@tabler/icons-react";
+import { AltArrowDown, AltArrowRight, Buildings, Chart, CloseCircle, Code2, Cpu, Database, HamburgerMenu, Layers, UsersGroupRounded, Widget2 } from "@solar-icons/react";
 import { NAV, DEMO_URL, SIGNIN_URL } from "@/lib/links";
 import { ModeToggle } from "./ModeToggle";
 
 const PLATFORM_ICONS: Record<string, React.ReactNode> = {
-  aix: <IconCpu size={22} stroke={1} />,
-  finops: <IconChartBar size={22} stroke={1} />,
-  devx: <IconGitPullRequest size={22} stroke={1} />,
-  datax: <IconDatabase size={22} stroke={1} />,
+  aix: <Cpu weight="Linear" size={22} />,
+  finops: <Chart weight="Linear" size={22} />,
+  devx: <Code2 weight="Linear" size={22} />,
+  datax: <Database weight="Linear" size={22} />,
 };
 
 const SOLUTION_ICONS: Record<string, React.ReactNode> = {
-  "finops-teams": <IconChartBar size={22} stroke={1} />,
-  "ai-eng": <IconRobot size={22} stroke={1} />,
-  "platform-eng": <IconStack size={22} stroke={1} />,
-  "data-teams": <IconDatabase size={22} stroke={1} />,
-  "enterprise": <IconBuilding size={22} stroke={1} />,
+  "finops-teams": <Chart weight="Linear" size={22} />,
+  "ai-eng": <Cpu weight="Linear" size={22} />,
+  "platform-eng": <Layers weight="Linear" size={22} />,
+  "data-teams": <Database weight="Linear" size={22} />,
+  "enterprise": <Buildings weight="Linear" size={22} />,
 };
 
 export function Nav() {
@@ -90,7 +90,7 @@ export function Nav() {
                     <div className="text-sm font-semibold text-cv-ink leading-snug tracking-wide">{it.label}</div>
                     <div className="text-cv-muted text-xs mt-0.5 leading-snug tracking-wide">{it.desc}</div>
                   </div>
-                  <IconChevronRight size={14} stroke={1} className="shrink-0 text-cv-muted opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <AltArrowRight weight="Linear" size={14} className="shrink-0 text-cv-muted opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
               ))}
             </div>
@@ -135,7 +135,7 @@ export function Nav() {
           aria-label="Toggle menu"
           data-testid="button-mobile-menu"
         >
-          {open ? <IconX size={22} stroke={1} /> : <IconMenu2 size={22} stroke={1} />}
+          {open ? <CloseCircle weight="Linear" size={22} /> : <HamburgerMenu weight="Linear" size={22} />}
         </button>
       </div>
 
@@ -228,7 +228,7 @@ function DropTrigger({
         data-testid={`nav-trigger-${label.toLowerCase()}`}
       >
         {label}
-        <IconChevronDown size={13} stroke={1} className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
+        <AltArrowDown weight="Linear" size={13} className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
       </button>
       <div
         className={`absolute top-full left-0 pt-2 transition-all duration-200 ease-out ${

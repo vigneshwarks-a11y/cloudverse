@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { IconPlus, IconMinus } from "@tabler/icons-react";
 
 export type FaqItem = { q: string; a: string };
 
@@ -13,8 +12,8 @@ function FaqCard({ item, isOpen, onToggle, index }: {
 }) {
   return (
     <div
-      className={`rounded-2xl border transition-colors duration-200 ${
-        isOpen ? "border-cv-line/80 bg-cv-ink/[0.04]" : "border-cv-line bg-cv-card"
+      className={`rounded-2xl border bg-cv-card dark:bg-black transition-colors duration-200 ${
+        isOpen ? "border-cv-line/80" : "border-cv-line"
       }`}
     >
       <button
@@ -26,11 +25,8 @@ function FaqCard({ item, isOpen, onToggle, index }: {
         <span className="text-sm font-medium text-cv-ink leading-snug">
           {item.q}
         </span>
-        <span className="shrink-0 flex items-center justify-center w-6 h-6 rounded-full border border-cv-line/60 text-cv-muted">
-          {isOpen
-            ? <IconMinus size={13} stroke={1.5} />
-            : <IconPlus size={13} stroke={1.5} />
-          }
+        <span className="shrink-0 flex items-center justify-center w-6 h-6 text-cv-muted text-lg leading-none font-normal">
+          {isOpen ? "−" : "+"}
         </span>
       </button>
 

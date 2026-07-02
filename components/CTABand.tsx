@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { IconArrowRight } from "@tabler/icons-react";
+import { ArrowRight } from "@solar-icons/react";
 import { DEMO_URL } from "@/lib/links";
 
 export function CTABand({
@@ -17,7 +17,7 @@ export function CTABand({
           <p className="cv-body-lg mt-5 text-cv-ink/70">{sub}</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link href={DEMO_URL} className="cv-btn-primary">
-              Get a Demo <IconArrowRight size={16} stroke={1} />
+              Get a Demo <ArrowRight weight="Linear" size={16} />
             </Link>
             <Link href="/contact" className="cv-btn-ghost">
               Talk to Sales

@@ -1,8 +1,11 @@
 import Link from "next/link";
-import { IconArrowRight, IconCheck } from "@tabler/icons-react";
+import { ArrowRight, CheckCircle, ChartSquare, Database, MagicStick, ShieldCheck } from "@solar-icons/react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import WarehouseIntel from "@/components/product/WarehouseIntel";
+import { FaqBlock } from "@/components/FaqBlock";
+import { ClosingCTA } from "@/components/home/ClosingCTA";
+import { PlatformHeroMockup } from "@/components/product/PlatformHeroMockup";
 
 export const metadata: Metadata = {
   title: "DataX — Find the Queries Quietly Running Up Your Bill | CloudVerse",
@@ -11,6 +14,13 @@ export const metadata: Metadata = {
 };
 
 const ACCENT = "#D97706";
+
+const DATAX_TABS = [
+  { id: "attribution", label: "Query Attribution", copy: "Every dollar of warehouse spend attributed to the query, pipeline, dashboard, and team that ran it.", icon: ChartSquare },
+  { id: "warehouse", label: "Warehouse Intel", copy: "Full scan detection, spillage, clustering, and caching analysis across all connected warehouses.", icon: Database },
+  { id: "anomaly", label: "Anomaly Detection", copy: "Cost-amplifying patterns detected automatically. Frequency, scan rate, and total cost explained.", icon: MagicStick },
+  { id: "automation", label: "Safe Automation", copy: "Approved optimisations applied within your policies. Every action logged, auditable, and reversible.", icon: ShieldCheck },
+];
 
 const STATS = [
   { v: "$117.16", l: "full scan detected on a single query pattern" },
@@ -39,31 +49,46 @@ const FAQ = [
 export default function DataXPage() {
   return (
     <>
-      <section className="cv-hero-bg pt-[120px] pb-16 lg:pt-[160px] lg:pb-24 relative">
-        <div className="cv-container relative z-10 max-w-4xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-medium" style={{ borderColor: `${ACCENT}66`, color: "#F0B254" }}>
-            <span className="w-1.5 h-1.5 rounded-full" style={{ background: ACCENT }} />
-            DataX — Warehouse Intelligence
-          </div>
-          <h1 className="cv-h1 mt-6 text-cv-ink">Find the Queries Quietly Running Up Your Bill</h1>
-          <p className="cv-body-lg mt-6 text-cv-ink/75">
-            Query, dashboard, and dbt-model-level attribution across Snowflake, Databricks, BigQuery, Microsoft Fabric, and Synapse. Safe automation when you want it.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><IconArrowRight size={16} stroke={1} /></Link>
-            <Link href="/integrations" className="cv-btn-ghost">Explore the Platform</Link>
-          </div>
-        </div>
-      </section>
+      <div className="cv-hero-bg">
+        <section className="pt-[240px] pb-16 lg:pt-[240px] lg:pb-20 relative">
 
-      <section className="border-y border-cv-line bg-cv-surface2/40">
-        <div className="cv-container py-8 grid grid-cols-2 lg:grid-cols-5 gap-6">
-          {STATS.map((s) => (
-            <div key={s.l}>
-              <div className="text-2xl lg:text-3xl font-display font-semibold text-cv-ink">{s.v}</div>
-              <div className="text-sm text-cv-muted mt-1">{s.l}</div>
+          <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
+              <div className="flex-1 min-w-0 lg:max-w-xl xl:max-w-2xl">
+                <span className="block text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8]">
+                  DataX
+                </span>
+                <h1 className="cv-h1 mt-6 leading-[1.25] text-cv-ink">Find the Queries Quietly Running Up Your Bill</h1>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
+                  <Link href="/integrations" className="cv-btn-ghost">Explore the Platform</Link>
+                </div>
+              </div>
+
+              <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-sm shrink-0">
+                <p className="cv-body text-cv-ink/70">
+                  Query, dashboard, and dbt-model-level attribution across Snowflake, Databricks, BigQuery, Microsoft Fabric, and Synapse. Safe automation when you want it.
+                </p>
+              </div>
             </div>
-          ))}
+          </div>
+        </section>
+        <PlatformHeroMockup tabs={DATAX_TABS} />
+      </div>
+
+      <section className="pt-8 pb-12 lg:pt-10 lg:pb-16">
+        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-2">
+            {STATS.map((s) => (
+              <div
+                key={s.l}
+                className="flex flex-col items-center justify-center rounded-2xl border border-cv-ink/10 dark:border-white/10 px-6 py-10 text-center bg-white/40 dark:bg-[#0D0D0D] backdrop-blur-sm"
+              >
+                <div className="font-mono text-2xl lg:text-3xl font-bold text-cv-ink tracking-tight">{s.v}</div>
+                <p className="mt-3 text-sm font-medium text-cv-muted tracking-wide max-w-[160px] line-clamp-2">{s.l}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -83,19 +108,19 @@ export default function DataXPage() {
       </section>
 
       {/* $117 FINDING */}
-      <section className="cv-section bg-cv-surface2">
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
           <div className="max-w-3xl mb-10">
             <h2 className="cv-h2 text-cv-ink">We find the leaks billing dashboards miss.</h2>
             <p className="text-cv-ink/70 mt-4 italic">This is a real DataX finding. Not a mock. Not an illustration.</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-3 gap-3">
             {[
               ["The $117 full scan", "A BigQuery SELECT scanning 334.6 GB per query due to missing partition pruning. Zero cache hit rate. $117.16 in real cost. Fix: one-click partition pruning."],
               ["The pattern view billing never shows", "DataX groups queries into cost-amplifying patterns, not one-off executions. This query ran 77 times at $1.52 average cost for $117.16 total. 100% scan rate. Tagged full-scan, spiky, fan-out. This is where hidden spend actually lives."],
               ["The high-frequency amplifier", "A query running 77 times a month does not look expensive until the repetition multiplies the cost. DataX detects this automatically. Exact SQL available. Frequency plus cost math explained. Cache and materialisation fixes suggested."],
             ].map(([t, b]) => (
-              <div key={t} className="rounded-2xl border border-cv-line bg-cv-surface p-6">
+              <div key={t} className="rounded-2xl border border-cv-line/40 bg-cv-surface dark:bg-[#0D0D0D] p-6">
                 <h3 className="font-display font-semibold text-cv-ink text-lg" style={{ color: ACCENT }}>{t}</h3>
                 <p className="text-sm text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
               </div>
@@ -108,21 +133,21 @@ export default function DataXPage() {
       <WarehouseIntel />
 
       {/* PRICING PHILOSOPHY */}
-      <section className="cv-section bg-cv-surface2">
+      <section className="cv-section bg-cv-surface">
         <div className="cv-container max-w-4xl">
           <h2 className="cv-h2 text-cv-ink">DataX does not profit from your inefficiency.</h2>
           <p className="cv-body-lg text-cv-ink/75 mt-6">
             DataX prices on the structural drivers of your data platform cost, not on billing noise.
           </p>
           <div className="grid md:grid-cols-2 gap-5 mt-8">
-            <div className="rounded-2xl border border-cv-line bg-cv-surface p-6">
+            <div className="rounded-2xl border border-cv-line/40 bg-cv-surface dark:bg-[#0D0D0D] p-6">
               <div className="cv-label mb-3">What pricing reflects</div>
               <ul className="space-y-2 text-cv-ink/85 text-sm">
                 <li>• Analytics compute footprint: warehouses, clusters, slots, capacities</li>
                 <li>• Analytics storage footprint: tables, partitions, datasets</li>
               </ul>
             </div>
-            <div className="rounded-2xl border border-cv-line bg-cv-surface p-6">
+            <div className="rounded-2xl border border-cv-line/40 bg-cv-surface dark:bg-[#0D0D0D] p-6">
               <div className="cv-label mb-3">What does not affect pricing</div>
               <ul className="space-y-2 text-cv-ink/80 text-sm">
                 <li>• Sudden cost spikes or anomalies</li>
@@ -172,7 +197,7 @@ export default function DataXPage() {
               </ul>
             </div>
           </div>
-          <div className="rounded-2xl border border-cv-line bg-cv-surface2 p-6 mt-10">
+          <div className="rounded-2xl border border-cv-line/40 bg-cv-surface2 dark:bg-[#0D0D0D] p-6 mt-10">
             <div className="cv-label mb-3">Example audit event</div>
             <p className="text-sm text-cv-ink/85 font-mono leading-relaxed">
               <span className="text-cv-ink/95">Detected:</span> Warehouse Oversizing (Snowflake).<br />
@@ -186,7 +211,7 @@ export default function DataXPage() {
       </section>
 
       {/* SUPPORTED PLATFORMS */}
-      <section className="cv-section bg-cv-surface2">
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
           <div className="max-w-3xl mb-10">
             <h2 className="cv-h2 text-cv-ink">Enterprise integrations built for least privilege.</h2>
@@ -196,7 +221,7 @@ export default function DataXPage() {
           </div>
           <div className="overflow-x-auto rounded-2xl border border-cv-line">
             <table className="w-full text-sm">
-              <thead className="bg-cv-surface">
+              <thead className="bg-cv-surface dark:bg-[#0D0D0D]">
                 <tr className="text-left">
                   <th className="p-4 text-cv-ink font-medium">Platform</th>
                   <th className="p-4 text-cv-ink font-medium">What DataX covers</th>
@@ -229,34 +254,17 @@ export default function DataXPage() {
       </section>
 
       {/* FAQ */}
+      {/* FAQ */}
       <section className="cv-section">
-        <div className="cv-container max-w-3xl">
-          <h2 className="cv-h2 text-cv-ink mb-8">FAQ</h2>
-          <div className="space-y-4">
-            {FAQ.map(([q, a]) => (
-              <details key={q} className="rounded-xl border border-cv-line bg-cv-surface2 p-5 group">
-                <summary className="cursor-pointer font-medium text-cv-ink">{q}</summary>
-                <p className="text-cv-ink/75 mt-3 leading-relaxed">{a}</p>
-              </details>
-            ))}
+        <div className="cv-container">
+          <div className="text-center mb-10">
+            <h2 className="cv-h2 text-cv-ink">Frequently Asked Questions</h2>
           </div>
+          <FaqBlock items={FAQ.map(([q, a]) => ({ q, a }))} accent="#1664C0" />
         </div>
       </section>
 
-      <section className="cv-section bg-cv-surface2">
-        <div className="cv-container">
-          <div className="rounded-3xl border border-cv-line bg-cv-surface p-10 lg:p-16 text-center">
-            <h2 className="cv-h2 text-cv-ink max-w-3xl mx-auto">See DataX find a $117 query in your warehouse.</h2>
-            <p className="cv-body-lg text-cv-ink/75 mt-5 max-w-2xl mx-auto">
-              Connect your first account in under 30 minutes. Most teams have their first non-obvious finding the same day.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><IconArrowRight size={16} stroke={1} /></Link>
-              <Link href="/contact" className="cv-btn-ghost">Talk to Sales</Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ClosingCTA />
     </>
   );
 }

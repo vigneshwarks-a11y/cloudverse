@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { IconArrowRight } from "@tabler/icons-react";
+import { ArrowRight } from "@solar-icons/react";
+import { FaqBlock } from "@/components/FaqBlock";
+import { ClosingCTA } from "@/components/home/ClosingCTA";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import { WhoUsesItCards } from "@/components/product/WhoUsesItCards";
@@ -29,14 +31,19 @@ export default function FinOpsPage() {
     <>
       <FinOpsHero />
 
-      <section className="border-y border-cv-line bg-cv-surface2/40">
-        <div className="cv-container py-8 grid grid-cols-2 lg:grid-cols-3 gap-6">
-          {STATS.map((s) => (
-            <div key={s.l}>
-              <div className="text-2xl lg:text-3xl font-display font-semibold text-cv-ink">{s.v}</div>
-              <div className="text-sm text-cv-muted mt-1">{s.l}</div>
-            </div>
-          ))}
+      <section className="pt-8 pb-12 lg:pt-10 lg:pb-16">
+        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
+            {STATS.map((s) => (
+              <div
+                key={s.l}
+                className="flex flex-col items-center justify-center rounded-2xl border border-cv-ink/10 dark:border-white/10 px-6 py-10 text-center bg-white/40 dark:bg-[#0D0D0D] backdrop-blur-sm"
+              >
+                <div className="font-mono text-2xl lg:text-3xl font-bold text-cv-ink tracking-tight">{s.v}</div>
+                <p className="mt-3 text-sm font-medium text-cv-muted tracking-wide whitespace-nowrap">{s.l}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -52,14 +59,14 @@ export default function FinOpsPage() {
         </div>
       </section>
 
-      <section className="cv-section bg-cv-surface2">
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
           <div className="max-w-3xl mb-10">
             <h2 className="cv-h2 text-cv-ink">Four product surfaces. One unified view.</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-5">
             {/* Workload mapping */}
-            <div className="relative overflow-hidden rounded-2xl border border-cv-line bg-cv-card p-7">
+            <div className="relative overflow-hidden rounded-2xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-7">
               <div
                 aria-hidden
                 className="pointer-events-none absolute inset-0"
@@ -69,7 +76,7 @@ export default function FinOpsPage() {
                 <h3 className="cv-h3 text-cv-ink">Workload mapping</h3>
                 <p className="text-cv-ink/70 mt-3 leading-relaxed">Allocation that sticks. Every tag, account, BU, and shared-service split reconciled to the finance model. Teams see the spend they own. Leaders have a view that matches the finance report.</p>
                 {/* Allocation interface */}
-                <div className="mt-6 rounded-xl border border-cv-line bg-cv-card p-4">
+                <div className="mt-6 rounded-xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-4">
                   <div className="mb-4 flex items-center justify-between">
                     <span className="text-xs font-medium text-cv-ink/80">Allocation by team</span>
                     <span className="rounded-full border border-[#1664C0]/40 bg-[#1664C0]/10 px-2 py-0.5 text-[10px] font-medium text-[#7C9BFF]">Reconciled · 100%</span>
@@ -97,7 +104,7 @@ export default function FinOpsPage() {
             </div>
 
             {/* Anomaly detection */}
-            <div className="relative overflow-hidden rounded-2xl border border-cv-line bg-cv-card p-7">
+            <div className="relative overflow-hidden rounded-2xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-7">
               <div
                 aria-hidden
                 className="pointer-events-none absolute inset-0"
@@ -107,7 +114,7 @@ export default function FinOpsPage() {
                 <h3 className="cv-h3 text-cv-ink">Anomaly detection</h3>
                 <p className="text-cv-ink/70 mt-3 leading-relaxed">Identify the team, environment, and charge that drove the anomaly within hours of it happening, not in the next billing cycle review. The alert arrives with attribution, not just a number.</p>
                 {/* Anomaly chart */}
-                <div className="mt-6 rounded-xl border border-cv-line bg-cv-card p-4">
+                <div className="mt-6 rounded-xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-4">
                   <div className="mb-3 flex items-center justify-between">
                     <span className="text-xs font-medium text-cv-ink/80">Daily spend · prod-emr</span>
                     <span className="font-mono text-[11px] text-[#7C9BFF]">+$4,812</span>
@@ -129,7 +136,7 @@ export default function FinOpsPage() {
             </div>
 
             {/* Commitments with payback proof */}
-            <div className="relative overflow-hidden rounded-2xl border border-cv-line bg-cv-card p-7">
+            <div className="relative overflow-hidden rounded-2xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-7">
               <div
                 aria-hidden
                 className="pointer-events-none absolute inset-0"
@@ -139,7 +146,7 @@ export default function FinOpsPage() {
                 <h3 className="cv-h3 text-cv-ink">Commitments with payback proof</h3>
                 <p className="text-cv-ink/70 mt-3 leading-relaxed">RI, SP, and CSP coverage modelled with explicit payback before you commit. Commitment planning that shows the math, not just the recommendation. No surprises.</p>
                 {/* Commitment planning */}
-                <div className="mt-6 rounded-xl border border-cv-line bg-cv-card p-4">
+                <div className="mt-6 rounded-xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-4">
                   <div className="mb-4 grid grid-cols-2 gap-3">
                     {[
                       ["Est. savings", "$128k/yr"],
@@ -173,7 +180,7 @@ export default function FinOpsPage() {
             </div>
 
             {/* Audit-ready chargeback */}
-            <div className="relative overflow-hidden rounded-2xl border border-cv-line bg-cv-card p-7">
+            <div className="relative overflow-hidden rounded-2xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-7">
               <div
                 aria-hidden
                 className="pointer-events-none absolute inset-0"
@@ -183,7 +190,7 @@ export default function FinOpsPage() {
                 <h3 className="cv-h3 text-cv-ink">Audit-ready chargeback</h3>
                 <p className="text-cv-ink/70 mt-3 leading-relaxed">Showback and chargeback wired to BU reporting with multi-currency and tax support. The finance team gets a report they can use. The engineering team gets a model they can trust.</p>
                 {/* Chargeback dashboard */}
-                <div className="mt-6 rounded-xl border border-cv-line bg-cv-card p-4">
+                <div className="mt-6 rounded-xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-4">
                   <div className="mb-3 flex items-center justify-between">
                     <span className="text-xs font-medium text-cv-ink/80">Chargeback · Q2</span>
                     <span className="rounded-full border border-[#1664C0]/40 bg-[#1664C0]/10 px-2 py-0.5 text-[10px] font-medium text-[#7C9BFF]">USD · EUR · GBP</span>
@@ -214,7 +221,7 @@ export default function FinOpsPage() {
         </div>
       </section>
 
-      <section className="cv-section bg-cv-surface2">
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
           <div className="max-w-3xl mb-10">
             <h2 className="cv-h2 text-cv-ink">Inform. Optimise. Operate.</h2>
@@ -225,7 +232,7 @@ export default function FinOpsPage() {
               ["Optimise", "Rightsizing, commitment coverage, and waste identification. Prioritised by impact. Engineering-grade signals alongside finance reporting."],
               ["Operate", "Automated recommendations, chargeback, budget alerts, and governance controls. Automation paths with approval workflows and full audit logs."],
             ].map(([t, b], i) => (
-              <div key={t} className="rounded-2xl border border-cv-line bg-cv-surface p-7">
+              <div key={t} className="rounded-2xl border border-cv-line/40 bg-cv-surface dark:bg-[#0D0D0D] p-7">
                 <div className="text-xs uppercase tracking-widest text-cv-muted">Stage 0{i + 1}</div>
                 <h3 className="cv-h3 text-cv-ink mt-2">{t}</h3>
                 <p className="text-cv-ink/75 mt-4 leading-relaxed">{b}</p>
@@ -249,24 +256,12 @@ export default function FinOpsPage() {
       </section>
 
       {/* FAQ */}
-      <section className="cv-section bg-cv-surface2">
-        <div className="cv-container max-w-3xl">
-          <h2 className="font-display font-semibold tracking-tight text-cv-ink text-center text-3xl sm:text-4xl lg:text-5xl mb-12 lg:mb-16">
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-4">
-            {FAQ.map(([q, a]) => (
-              <details
-                key={q}
-                className="group rounded-2xl border border-cv-line bg-cv-surface p-6 sm:p-7 transition-colors hover:border-cv-line/80 open:border-cv-line/80"
-              >
-                <summary className="cursor-pointer text-base sm:text-lg font-medium text-cv-ink leading-snug">
-                  {q}
-                </summary>
-                <p className="text-cv-ink/75 mt-4 leading-relaxed">{a}</p>
-              </details>
-            ))}
+      <section className="cv-section">
+        <div className="cv-container">
+          <div className="text-center mb-10">
+            <h2 className="cv-h2 text-cv-ink">Frequently Asked Questions</h2>
           </div>
+          <FaqBlock items={FAQ.map(([q, a]) => ({ q, a }))} accent="#1664C0" />
         </div>
       </section>
 
@@ -280,20 +275,7 @@ export default function FinOpsPage() {
         </div>
       </section>
 
-      <section className="cv-section bg-cv-surface2">
-        <div className="cv-container">
-          <div className="rounded-3xl border border-cv-line bg-cv-surface p-10 lg:p-16 text-center">
-            <h2 className="cv-h2 text-cv-ink max-w-3xl mx-auto">Bring your FinOps program onto one control plane.</h2>
-            <p className="cv-body-lg text-cv-ink/75 mt-5 max-w-2xl mx-auto">
-              Connect your first account in under 30 minutes. Most teams have their first non-obvious finding the same day.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><IconArrowRight size={16} stroke={1} /></Link>
-              <Link href="/contact" className="cv-btn-ghost">Talk to Sales</Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ClosingCTA />
     </>
   );
 }

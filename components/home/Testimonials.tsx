@@ -186,7 +186,7 @@ export function Testimonials() {
                       {t.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="inline-flex items-center rounded-full border border-cv-line bg-cv-ink/[0.05] px-3 py-1 text-xs text-cv-ink/80"
+                          className="inline-flex items-center rounded-full border border-cv-blue/30 bg-cv-blue/10 px-3 py-1 text-xs text-cv-ink/80"
                         >
                           {tag}
                         </span>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { IconArrowRight } from "@tabler/icons-react";
+import { ArrowRight } from "@solar-icons/react";
 import { GUIDES, DOCS, FAQS, BLOG_POSTS } from "@/lib/resources";
 import { DEMO_URL } from "@/lib/links";
 
@@ -37,11 +37,11 @@ export default function ResourcesPage() {
   return (
     <>
       {/* HERO */}
-      <section className="cv-hero-bg pt-[140px] pb-12 lg:pt-[160px] lg:pb-16 relative">
+      <section className="cv-hero-bg pt-[240px] pb-12 lg:pt-[240px] lg:pb-16 relative">
         <div className="cv-container relative z-10 max-w-4xl">
           <span className="cv-label inline-block mb-4">CloudVerse&trade; Resources</span>
           <h1 className="cv-h1 text-cv-ink mb-4">
-            Guides and documentation for infrastructure economics
+            Guides and Documentation for Infrastructure Economics
           </h1>
           <p className="cv-body-lg text-cv-ink/75 mb-8 max-w-2xl">
             Practical guidance on visibility, allocation, anomalies, and automation across cloud, data, and AI platforms.
@@ -101,7 +101,7 @@ export default function ResourcesPage() {
                 </span>
                 <div className="font-display font-semibold text-cv-ink text-base leading-snug">{d.title}</div>
                 <div className="mt-4 inline-flex items-center gap-1.5 text-sm text-cv-blue-light">
-                  Read doc <IconArrowRight size={14} stroke={1} />
+                  Read doc <ArrowRight weight="Linear" size={14} />
                 </div>
               </Link>
             ))}
@@ -181,7 +181,7 @@ export default function ResourcesPage() {
               We work with practitioners on customer stories, joint research, and guest pieces.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><IconArrowRight size={16} stroke={1} /></Link>
+              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
               <Link href="/contact" className="cv-btn-ghost">Talk to Us</Link>
             </div>
           </div>
@@ -213,7 +213,7 @@ function ResourceCard({ r, accent }: { r: import("@/lib/resources").Resource; ac
         <p className="text-cv-muted text-sm mt-3 leading-relaxed flex-1 line-clamp-3">{r.seo.description}</p>
       ) : null}
       <div className="mt-5 inline-flex items-center gap-1.5 text-sm text-cv-blue-light font-medium">
-        Read guide <IconArrowRight size={14} stroke={1} className="group-hover:translate-x-0.5 transition-transform" />
+        Read guide <ArrowRight weight="Linear" size={14} className="group-hover:translate-x-0.5 transition-transform" />
       </div>
     </Link>
   );

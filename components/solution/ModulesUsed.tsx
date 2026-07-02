@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { IconArrowRight } from "@tabler/icons-react";
+import { ArrowRight } from "@solar-icons/react";
 import { MODULES, type ModuleKey } from "@/lib/modules";
 
 export function ModulesUsed({
@@ -30,7 +30,7 @@ export function ModulesUsed({
                 <div className="cv-label" style={{ color: m.color }}>{m.name}</div>
                 <p className="text-cv-ink/75 text-sm mt-4 leading-relaxed">{m.tagline}.</p>
                 <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium" style={{ color: m.color }}>
-                  Learn more <IconArrowRight size={14} stroke={1} className="group-hover:translate-x-0.5 transition-transform" />
+                  Learn more <ArrowRight weight="Linear" size={14} className="group-hover:translate-x-0.5 transition-transform" />
                 </div>
               </Link>
             );

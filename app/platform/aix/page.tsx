@@ -1,12 +1,17 @@
 import Link from "next/link";
-import { IconArrowRight, IconCheck, IconX, IconPlug, IconShieldCheck, IconTarget, IconGitFork, IconScale, IconEye, IconBolt, IconTrash, Icon as TablerIcon } from "@tabler/icons-react";
+import { ArrowRight, Bolt, BranchingPathsDown, CheckCircle, CloseCircle, Eye, PlugCircle, Route, Scale, ShieldCheck, Target, TrashBin2, DollarMinimalistic, FileText, type IconProps } from "@solar-icons/react";
 import type { Metadata } from "next";
+import type { ComponentType } from "react";
+
+type Icon = ComponentType<IconProps>;
 import { DEMO_URL } from "@/lib/links";
 import { CountUpStat } from "@/components/CountUpStat";
 import GovernanceBento from "@/components/product/GovernanceBento";
 import NoBlackBoxes from "@/components/product/NoBlackBoxes";
 import UseCaseBento from "@/components/product/UseCaseBento";
 import AixRoiSplit from "@/components/product/AixRoiSplit";
+import { ClosingCTA } from "@/components/home/ClosingCTA";
+import { PlatformHeroMockup, type MockupTab } from "@/components/product/PlatformHeroMockup";
 
 export const metadata: Metadata = {
   title: "AIX — The Control Plane for Enterprise AI | CloudVerse",
@@ -16,14 +21,21 @@ export const metadata: Metadata = {
 
 const ACCENT = "#6954D4";
 
-const STATS = [
-  { v: "40–90%", l: "cost reduction across production workloads" },
-  { v: "<15ms", l: "routing overhead added by AIX" },
-  { v: "96.8%", l: "lower cost vs hardcoded Claude Sonnet (benchmarked)" },
-  { v: "28.5%", l: "faster vs same hardcoded baseline" },
+const AIX_TABS: MockupTab[] = [
+  { id: "routing", label: "Routing", copy: "Every request scored live on cost, latency, and quality. Best-fit route wins, with a fallback attached.", icon: Route },
+  { id: "governance", label: "Governance", copy: "Budget caps, provider allowlists, and residency rules enforced at the routing layer, before a request goes out.", icon: ShieldCheck },
+  { id: "attribution", label: "Cost Attribution", copy: "Cost lands against the request, the feature, and the tenant automatically. No spreadsheet reconstruction.", icon: DollarMinimalistic },
+  { id: "audit", label: "Audit Trail", copy: "Every routing decision logged: constraints active, routes evaluated, route selected, and why.", icon: FileText },
 ];
 
-const STEP_ICONS = [IconPlug, IconShieldCheck, IconTarget, IconGitFork, IconScale, IconEye];
+const STATS = [
+  { v: "40–90%", l: "cost reduction on production workloads" },
+  { v: "<15ms", l: "routing overhead per request" },
+  { v: "96.8%", l: "lower cost vs hardcoded Claude" },
+  { v: "28.5%", l: "faster vs hardcoded baseline" },
+];
+
+const STEP_ICONS = [PlugCircle, ShieldCheck, Target, BranchingPathsDown, Scale, Eye];
 
 const STEPS = [
   { n: "Connect", body: "Add provider API keys and endpoints. Minutes per provider. No application changes required." },
@@ -117,47 +129,65 @@ const TRACE_JSON = `{
 }`;
 
 function CompCell({ v }: { v: string }) {
-  if (v === "No") return <span className="inline-flex items-center gap-1 text-gray-500"><IconX size={14} stroke={1} /> No</span>;
-  return <span className="text-gray-500">{v}</span>;
+  if (v === "No") return <span className="inline-flex items-center gap-1 text-cv-muted"><CloseCircle weight="Linear" size={14} /> No</span>;
+  return <span className="text-cv-muted">{v}</span>;
 }
 
 export default function AIXPage() {
   return (
     <>
       {/* HERO */}
-      <section className="cv-hero-bg pt-[120px] pb-16 lg:pt-[160px] lg:pb-24 relative">
-        <div className="cv-container relative z-10 max-w-4xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-medium uppercase tracking-widest" style={{ borderColor: `${ACCENT}66`, color: "#A99CE8" }}>
-            <span className="w-1.5 h-1.5 rounded-full" style={{ background: ACCENT }} />
-            AIX — AI Control Plane
+      <div className="cv-hero-bg">
+        <section className="pt-[240px] pb-16 lg:pt-[240px] lg:pb-20 relative">
+          <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
+              {/* Left: badge + headline + CTAs */}
+              <div className="flex-1 min-w-0 lg:max-w-xl xl:max-w-2xl">
+                <span className="block text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8]">
+                  AIX
+                </span>
+                <h1 className="cv-h1 mt-6 leading-[1.25] text-cv-ink">The Control Plane for Enterprise AI.</h1>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
+                  <Link href="/integrations" className="cv-btn-ghost">Explore the Platform</Link>
+                </div>
+              </div>
+
+              {/* Right: description */}
+              <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-sm shrink-0">
+                <p className="cv-body text-cv-ink/70">
+                  Route, govern, and meter every AI request across your models, clouds, GPUs, and private endpoints. The cost decision gets made before the request goes out, not in a spreadsheet after the bill lands.
+                </p>
+                <p className="mt-4 text-sm text-cv-muted italic">Optimizing the future of enterprise AI consumption.</p>
+              </div>
+            </div>
           </div>
-          <h1 className="cv-h1 mt-6 text-cv-ink">The control plane for enterprise AI.</h1>
-          <p className="cv-body-lg mt-6 text-cv-ink/75">
-            Route, govern, and meter every AI request across your models, clouds, GPUs, and private endpoints. The cost decision gets made before the request goes out, not in a spreadsheet after the bill lands.
-          </p>
-          <p className="mt-4 text-sm text-cv-muted italic">Optimizing the future of enterprise AI consumption.</p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><IconArrowRight size={16} stroke={1} /></Link>
-            <Link href="/integrations" className="cv-btn-ghost">Explore the Platform</Link>
-          </div>
-        </div>
-      </section>
+        </section>
+
+        {/* HERO MOCKUP */}
+        <PlatformHeroMockup tabs={AIX_TABS} />
+      </div>
 
       {/* STATS */}
-      <section className="border-y border-cv-line bg-cv-surface2/40">
-        <div className="cv-container py-8 grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {STATS.map((s) => (
-            <div key={s.l}>
-              <CountUpStat value={s.v} className="text-2xl lg:text-3xl font-display font-semibold text-cv-ink" />
-              <div className="text-sm text-cv-muted mt-1">{s.l}</div>
-            </div>
-          ))}
+      <section className="pt-8 pb-12 lg:pt-10 lg:pb-16">
+        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-3">
+            {STATS.map((s) => (
+              <div
+                key={s.l}
+                className="flex flex-col items-center justify-center rounded-2xl border border-cv-ink/10 dark:border-white/10 px-6 py-10 text-center bg-white/40 dark:bg-[#0D0D0D] backdrop-blur-sm"
+              >
+                <CountUpStat value={s.v} className="font-mono text-3xl lg:text-4xl font-bold text-cv-ink tracking-tight" />
+                <p className="mt-3 text-sm font-medium text-cv-muted tracking-wide max-w-[160px] line-clamp-2">{s.l}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* PROBLEM */}
       <section className="cv-section">
-        <div className="cv-container">
+        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
           <h2 className="cv-h2 text-cv-ink">AI compute is becoming too expensive to hardcode.</h2>
           <p className="cv-body-lg text-cv-ink/80 mt-6">
             Most teams make AI infrastructure decisions once. Model endpoint, provider, region, failover logic, cost assumptions. These get buried in application code. Six months later, a cheaper model handles 70% of those requests at equivalent quality. Nobody knows.
@@ -167,7 +197,7 @@ export default function AIXPage() {
           </p>
           <div className="grid md:grid-cols-2 gap-5 mt-10">
             {/* Before — legacy / inactive */}
-            <div className="relative overflow-hidden rounded-2xl border border-cv-line bg-cv-card p-6">
+            <div className="relative overflow-hidden rounded-2xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-6">
               {/* Faint static node pattern */}
               <div
                 aria-hidden
@@ -189,14 +219,14 @@ export default function AIXPage() {
               </div>
             </div>
             {/* After — premium / active */}
-            <div className="relative overflow-hidden rounded-2xl border border-[#007CFF]/40 bg-cv-card p-6 shadow-[0_0_55px_-15px_rgba(0,124,255,0.55)]">
+            <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-cv-card dark:bg-[#0D0D0D] p-6">
               {/* Dynamic blue grid pattern */}
               <div
                 aria-hidden
                 className="pointer-events-none absolute inset-0"
                 style={{
                   backgroundImage:
-                    "linear-gradient(rgba(0,124,255,0.13) 1px, transparent 1px), linear-gradient(90deg, rgba(0,124,255,0.13) 1px, transparent 1px)",
+                    "linear-gradient(rgba(34,120,224,0.13) 1px, transparent 1px), linear-gradient(90deg, rgba(34,120,224,0.13) 1px, transparent 1px)",
                   backgroundSize: "26px 26px",
                   maskImage: "radial-gradient(ellipse 85% 80% at 75% 0%, #000 10%, transparent 75%)",
                   WebkitMaskImage: "radial-gradient(ellipse 85% 80% at 75% 0%, #000 10%, transparent 75%)",
@@ -206,10 +236,10 @@ export default function AIXPage() {
               <div
                 aria-hidden
                 className="pointer-events-none absolute -top-16 right-0 h-48 w-72 rounded-full blur-3xl"
-                style={{ background: "radial-gradient(circle, rgba(0,124,255,0.28), transparent 70%)" }}
+                style={{ background: "radial-gradient(circle, rgba(34,120,224,0.28), transparent 70%)" }}
               />
               <div className="relative">
-                <div className="cv-label mb-3" style={{ color: "#4DA3FF" }}>After AIX (dynamic)</div>
+                <div className="cv-label mb-3" style={{ color: "#4D9AEF" }}>After AIX (dynamic)</div>
                 <ul className="space-y-2 text-sm text-cv-ink/90">
                   <li>• Model: evaluated per request against constraints</li>
                   <li>• Provider: scored across all connected providers</li>
@@ -229,30 +259,30 @@ export default function AIXPage() {
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 h-[28rem]"
-          style={{ background: "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(0,124,255,0.16), transparent 70%)" }}
+          style={{ background: "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(34,120,224,0.16), transparent 70%)" }}
         />
-        <div className="cv-container relative">
+        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative">
           <div className="max-w-3xl mb-10">
             <h2 className="cv-h2 text-cv-ink">How AIX controls every AI request.</h2>
-            <p className="cv-body-lg text-gray-400 mt-5">
+            <p className="cv-body-lg text-cv-muted mt-5">
               AIX sits between your application and every AI provider you use. On every request, it evaluates all available routes against the constraints your team has defined, and returns the best one, with a fallback and a full decision log.
             </p>
-            <p className="text-gray-400 mt-4 italic">A gateway executes a routing rule you wrote. AIX evaluates whether that rule is still the right one.</p>
+            <p className="text-cv-muted mt-4 italic">A gateway executes a routing rule you wrote. AIX evaluates whether that rule is still the right one.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {STEPS.map((s, i) => {
               const Icon = STEP_ICONS[i];
               return (
                 <div
                   key={s.n}
-                  className="group rounded-2xl border border-cv-line bg-cv-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#007CFF]/40 hover:bg-cv-card"
+                  className="group rounded-2xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-6 transition-all duration-300 hover:-translate-y-1"
                 >
-                  <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-[#007CFF]/25 bg-[#007CFF]/10 text-[#007CFF] transition-colors duration-300 group-hover:bg-[#007CFF]/15">
-                    <Icon size={20} stroke={1} />
+                  <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-[#2278E0]/25 bg-[#2278E0]/10 text-[#2278E0] transition-colors duration-300 group-hover:bg-[#2278E0]/15">
+                    <Icon size={20} />
                   </div>
-                  <div className="text-xs text-gray-500">Step 0{i + 1}</div>
+                  <div className="text-xs text-cv-muted">Step 0{i + 1}</div>
                   <h3 className="font-display font-semibold text-cv-ink text-lg mt-1">{s.n}</h3>
-                  <p className="text-sm text-gray-400 leading-relaxed mt-3">{s.body}</p>
+                  <p className="text-sm text-cv-muted leading-relaxed mt-3">{s.body}</p>
                 </div>
               );
             })}
@@ -262,24 +292,24 @@ export default function AIXPage() {
 
       {/* WHAT AIX IS NOT — comparison */}
       <section className="cv-section">
-        <div className="cv-container">
+        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-10">
             <h2 className="cv-h2 text-cv-ink">A gateway executes a rule you wrote. AIX decides what the rule should be.</h2>
           </div>
-          <div className="overflow-x-auto rounded-2xl border border-cv-line bg-cv-card shadow-[0_0_60px_-20px_rgba(0,124,255,0.25)]">
+          <div className="overflow-x-auto rounded-2xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] shadow-[0_0_60px_-20px_rgba(34,120,224,0.25)]">
             <table className="w-full text-sm">
               <thead>
                 <tr className="text-left border-b border-cv-line">
                   <th className="p-4 text-cv-ink font-medium">Capability</th>
-                  <th className="p-4 text-gray-400 font-medium">Gateway / Proxy</th>
-                  <th className="p-4 text-gray-400 font-medium">LLM Gateway</th>
-                  <th className="p-4 text-gray-400 font-medium">Observability Tool</th>
+                  <th className="p-4 text-cv-muted font-medium">Gateway / Proxy</th>
+                  <th className="p-4 text-cv-muted font-medium">LLM Gateway</th>
+                  <th className="p-4 text-cv-muted font-medium">Observability Tool</th>
                   <th
                     className="p-4 font-semibold"
                     style={{
-                      color: "#007CFF",
-                      background: "rgba(0,124,255,0.08)",
-                      textShadow: "0 0 16px rgba(0,124,255,0.55)",
+                      color: "#2278E0",
+                      background: "rgba(34,120,224,0.08)",
+                      textShadow: "0 0 16px rgba(34,120,224,0.55)",
                     }}
                   >
                     AIX
@@ -293,12 +323,12 @@ export default function AIXPage() {
                     <td className="p-4"><CompCell v={row[1]} /></td>
                     <td className="p-4"><CompCell v={row[2]} /></td>
                     <td className="p-4"><CompCell v={row[3]} /></td>
-                    <td className="p-4 font-semibold" style={{ background: "rgba(0,124,255,0.08)" }}>
+                    <td className="p-4 font-semibold" style={{ background: "rgba(34,120,224,0.08)" }}>
                       <span
                         className="inline-flex items-center gap-1.5"
-                        style={{ color: "#007CFF", textShadow: "0 0 14px rgba(0,124,255,0.6)" }}
+                        style={{ color: "#2278E0", textShadow: "0 0 14px rgba(34,120,224,0.6)" }}
                       >
-                        <IconCheck size={15} stroke={1} /> Yes
+                        <CheckCircle weight="Linear" size={15} /> Yes
                       </span>
                     </td>
                   </tr>
@@ -313,8 +343,8 @@ export default function AIXPage() {
       </section>
 
       {/* ROI */}
-      <section className="cv-section bg-cv-surface2">
-        <div className="cv-container">
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
+        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-10">
             <h2 className="cv-h2 text-cv-ink">The cost of not routing.</h2>
             <p className="cv-body-lg text-cv-ink/75 mt-5">
@@ -323,14 +353,14 @@ export default function AIXPage() {
           </div>
           <AixRoiSplit roi={ROI} />
           <h3 className="cv-h3 text-cv-ink mt-14 mb-6">Three mechanisms</h3>
-          <div className="grid md:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-3 gap-3">
             {([
-              ["Cost arbitrage", "AIX routes to the lowest-cost model that meets your quality floor. Prices change constantly. AIX adjusts automatically.", IconScale],
-              ["Latency wins", "Faster routing reduces infrastructure overhead on time-sensitive workloads. Smaller models are often faster too.", IconBolt],
-              ["Waste elimination", "Stops premium model usage on tasks a smaller model handles equally well. Most applications have multiple task types. Few need the flagship model for all of them.", IconTrash],
-            ] as [string, string, TablerIcon][]).map(([t, b, Icon]) => (
-              <div key={t} className="rounded-2xl border border-cv-line bg-cv-surface p-6">
-                <Icon className="h-9 w-9" stroke={1} style={{ color: "#007CFF" }} aria-hidden />
+              ["Cost arbitrage", "AIX routes to the lowest-cost model that meets your quality floor. Prices change constantly. AIX adjusts automatically.", Scale],
+              ["Latency wins", "Faster routing reduces infrastructure overhead on time-sensitive workloads. Smaller models are often faster too.", Bolt],
+              ["Waste elimination", "Stops premium model usage on tasks a smaller model handles equally well. Most applications have multiple task types. Few need the flagship model for all of them.", TrashBin2],
+            ] as [string, string, Icon][]).map(([t, b, Icon]) => (
+              <div key={t} className="rounded-2xl border border-cv-line/40 bg-cv-surface dark:bg-[#0D0D0D] p-6">
+                <Icon className="h-9 w-9" style={{ color: "#2278E0" }} aria-hidden />
                 <h4 className="font-display font-semibold text-cv-ink mt-4">{t}</h4>
                 <p className="text-sm text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
               </div>
@@ -341,7 +371,7 @@ export default function AIXPage() {
 
       {/* FOR FINOPS */}
       <section className="cv-section">
-        <div className="cv-container">
+        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
           <h2 className="cv-h2 text-cv-ink">From cloud cost reporting to AI compute economics.</h2>
           <p className="cv-body-lg text-cv-ink/75 mt-5">
             AIX gives you cost-per-request, cost-per-feature, and cost-per-tenant allocation. Budget caps are enforced at the routing layer before spend occurs. No spreadsheet reconstruction after the fact.
@@ -355,7 +385,7 @@ export default function AIXPage() {
               "Spend attribution: know which feature, tenant, or workload is driving AI cost",
             ].map((b) => (
               <li key={b} className="flex items-start gap-3 text-cv-ink/85">
-                <IconCheck size={18} stroke={1} className="text-cv-teal mt-0.5 shrink-0" /> {b}
+                <CheckCircle weight="Linear" size={18} className="text-cv-teal mt-0.5 shrink-0" /> {b}
               </li>
             ))}
           </ul>
@@ -363,8 +393,8 @@ export default function AIXPage() {
       </section>
 
       {/* GOVERNANCE */}
-      <section className="cv-section bg-cv-surface2">
-        <div className="cv-container">
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
+        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-10">
             <h2 className="cv-h2 text-cv-ink">Built for enterprise AI governance.</h2>
             <p className="cv-body-lg text-cv-ink/75 mt-5">
@@ -379,8 +409,8 @@ export default function AIXPage() {
       <NoBlackBoxes traceJson={TRACE_JSON} />
 
       {/* USE CASES */}
-      <section className="cv-section bg-cv-surface2">
-        <div className="cv-container">
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
+        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
             <h2 className="cv-h2 text-cv-ink">Four problems AIX fixes.</h2>
           </div>
@@ -390,7 +420,7 @@ export default function AIXPage() {
 
       {/* INTEGRATIONS */}
       <section className="cv-section">
-        <div className="cv-container">
+        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-10">
             <h2 className="cv-h2 text-cv-ink">Connect once. Route everywhere.</h2>
             <p className="cv-body-lg text-cv-ink/75 mt-5">
@@ -398,9 +428,9 @@ export default function AIXPage() {
             </p>
           </div>
           <h3 className="cv-label mb-4">Supported model providers</h3>
-          <div className="overflow-x-auto rounded-2xl border border-cv-line">
+          <div className="overflow-x-auto rounded-2xl border border-cv-line/40">
             <table className="w-full text-sm">
-              <thead className="bg-cv-surface2">
+              <thead className="bg-cv-surface2 dark:bg-[#0D0D0D]">
                 <tr className="text-left">
                   <th className="p-4 text-cv-ink font-medium w-1/4">Provider</th>
                   <th className="p-4 text-cv-ink font-medium">Models and notes</th>
@@ -416,7 +446,7 @@ export default function AIXPage() {
               </tbody>
             </table>
           </div>
-          <div className="rounded-2xl border border-cv-line bg-cv-surface2 p-7 mt-10">
+          <div className="rounded-2xl border border-cv-line/40 bg-cv-surface2 dark:bg-[#0D0D0D] p-7 mt-10">
             <h3 className="cv-h3 text-cv-ink mb-3">Private deployments and GPU infrastructure</h3>
             <p className="text-cv-ink/75 mb-4">
               AIX treats private GPU capacity as a first-class routing target alongside managed APIs. If you run models on dedicated hardware or a NeoCloud provider, AIX routes to them with the same cost and policy logic.
@@ -431,8 +461,8 @@ export default function AIXPage() {
       </section>
 
       {/* WHY AIX */}
-      <section className="cv-section bg-cv-surface2">
-        <div className="cv-container max-w-4xl">
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
+        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
           <h2 className="cv-h2 text-cv-ink">Most tools route traffic. AIX decides where it should go.</h2>
           <p className="cv-body-lg text-cv-ink/75 mt-6">
             A gateway executes whatever rule you gave it. If you told it to send traffic to Provider A, that is where it goes, even when Provider B is 90% cheaper and just as capable. A gateway has no scoring engine and no live signal evaluation. It is plumbing.
@@ -449,27 +479,14 @@ export default function AIXPage() {
               "Your team hardcoded model endpoints and has not revisited them",
               "You want cost-aware routing without rebuilding your application",
             ].map((b) => (
-              <li key={b} className="flex items-start gap-3"><IconCheck size={16} stroke={1} className="text-cv-teal mt-1 shrink-0" /> {b}</li>
+              <li key={b} className="flex items-start gap-3"><CheckCircle weight="Linear" size={16} className="text-cv-teal mt-1 shrink-0" /> {b}</li>
             ))}
           </ul>
         </div>
       </section>
 
       {/* FINAL CTA */}
-      <section className="cv-section">
-        <div className="cv-container">
-          <div className="rounded-3xl border border-cv-line bg-cv-surface2 p-10 lg:p-16 text-center">
-            <h2 className="cv-h2 text-cv-ink max-w-3xl mx-auto">See AIX route your AI workloads end to end.</h2>
-            <p className="cv-body-lg text-cv-ink/75 mt-5 max-w-2xl mx-auto">
-              Connect your first account in under 30 minutes. Most teams have their first non-obvious finding the same day.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href={DEMO_URL} className="cv-btn-primary"><span>Get a Demo</span><IconArrowRight size={16} stroke={1} /></Link>
-              <Link href="/contact" className="cv-btn-ghost">Talk to Sales</Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ClosingCTA />
     </>
   );
 }

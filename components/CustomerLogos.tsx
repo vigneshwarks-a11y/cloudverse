@@ -20,21 +20,25 @@ const LOGOS = [
 export function CustomerLogos() {
   return (
     <section className="bg-cv-surface py-14 lg:py-20" data-testid="section-customer-logos">
-      <div className="cv-container">
+      <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
         <p className="text-center text-sm text-cv-muted mb-12 tracking-wide">
           The teams trusting us with their cloud and AI spend
         </p>
-        <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-10 lg:gap-x-16 lg:gap-y-12">
+        <div className="grid grid-cols-4 sm:grid-cols-7 gap-px border border-cv-line/20 overflow-hidden rounded-xl">
           {LOGOS.map((l) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
+            <div
               key={l.name}
-              src={l.src}
-              alt={l.name}
-              loading="lazy"
-              decoding="async"
-              className="h-8 w-auto max-h-8 object-contain brightness-0 dark:invert opacity-60 hover:opacity-100 transition-opacity"
-            />
+              className="flex items-center justify-center px-3 py-6 border-cv-line/20 bg-cv-surface hover:bg-cv-ink/[0.03] transition-colors"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={l.src}
+                alt={l.name}
+                loading="lazy"
+                decoding="async"
+                className="h-8 w-auto max-w-[110px] object-contain brightness-0 dark:invert opacity-50 hover:opacity-80 transition-opacity"
+              />
+            </div>
           ))}
         </div>
       </div>

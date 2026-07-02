@@ -42,9 +42,9 @@ export default function AixRoiSplit({ roi }: { roi: string[][] }) {
       {/* LEFT: label + table + assumptions */}
       <div className="flex flex-col" style={rise(0)}>
         <div className="cv-label mb-4" style={{ color: CYAN }}>At scale (monthly)</div>
-        <div className="flex-1 overflow-x-auto rounded-2xl border border-cv-line">
+        <div className="flex-1 overflow-x-auto rounded-2xl border border-cv-line/40">
           <table className="w-full text-sm">
-            <thead className="bg-cv-surface">
+            <thead className="bg-cv-surface dark:bg-[#1a1a1a]">
               <tr className="text-left">
                 <th className="p-4 text-cv-ink font-medium">Monthly volume</th>
                 <th className="p-4 text-cv-muted font-medium">Hardcoded spend</th>
@@ -72,7 +72,7 @@ export default function AixRoiSplit({ roi }: { roi: string[][] }) {
       {/* RIGHT: two stacked cards, equal combined height to the table */}
       <div className="flex h-full flex-col gap-6">
         {/* TOP: Without AIX dark, thin border */}
-        <div className="rounded-2xl border border-cv-line bg-cv-surface p-6" style={rise(1)}>
+        <div className="rounded-2xl border border-cv-line/40 bg-cv-surface dark:bg-[#1a1a1a] p-6" style={rise(1)}>
           <div className="cv-label mb-3" style={{ color: CYAN }}>Without AIX</div>
           <p className="text-cv-ink/85">Claude Sonnet, 5,537ms latency, $0.00298/req</p>
         </div>
@@ -80,7 +80,7 @@ export default function AixRoiSplit({ roi }: { roi: string[][] }) {
         {/* BOTTOM: With AIX dark, blue glowing border */}
         <div className="relative flex-1 rounded-2xl p-[1.5px]" style={rise(2)}>
           <div aria-hidden className="cv-ring-blue absolute inset-0 rounded-2xl" />
-          <div className="relative flex h-full flex-col rounded-2xl border border-cv-line bg-cv-surface p-6">
+          <div className="relative flex h-full flex-col rounded-2xl border border-cv-line bg-cv-surface dark:bg-[#1a1a1a] p-6">
             <div className="cv-label mb-3" style={{ color: CYAN }}>With AIX</div>
             <p className="text-cv-ink/95">GPT-4o-mini, 3,962ms latency, $0.00010/req</p>
             <p className="text-cv-ink font-medium mt-3">Result: 96.8% lower cost. 28.5% faster.</p>

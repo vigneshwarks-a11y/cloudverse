@@ -1,21 +1,21 @@
 "use client";
 
 import { useEffect, useRef, useState, type ComponentType, type ReactNode } from "react";
-import { IconRoute, IconShieldCheck, IconCpu, IconTag, IconDatabase, IconCheck, Icon as TablerIcon } from "@tabler/icons-react";
+import { CheckCircle, Cpu, Database, Route, ShieldCheck, Tag, type IconProps } from "@solar-icons/react";
 
 const BLUE = "#007CFF";
 const VALUE = "#7CB8F8";
 
-type IconType = TablerIcon;
+type Text = ComponentType<IconProps>;
 
-function VHead({ Icon, label }: { Icon: IconType; label: string }) {
+function VHead({ Icon, label }: { Icon: Text; label: string }) {
   return (
     <div className="mb-3 flex items-center gap-2">
       <span
         className="inline-flex h-8 w-8 items-center justify-center rounded-lg"
         style={{ background: `${BLUE}1A`, border: `1px solid ${BLUE}33` }}
       >
-        <Icon className="h-[18px] w-[18px]" stroke={1} style={{ color: BLUE }} />
+        <Icon weight="Linear" className="h-[18px] w-[18px]" style={{ color: BLUE }} />
       </span>
       <span className="text-xs font-medium uppercase tracking-wide text-cv-ink/50">{label}</span>
     </div>
@@ -35,7 +35,7 @@ function RoutingVisual() {
   ];
   return (
     <Panel>
-      <VHead Icon={IconRoute} label="Cost-aware routing" />
+      <VHead Icon={Route} label="Cost-aware routing" />
       <div className="flex items-center gap-3">
         <div
           className="shrink-0 rounded-md px-2.5 py-1.5 text-[11px] font-medium"
@@ -73,12 +73,12 @@ function GuardrailsVisual() {
   const rules = ["PII handling", "Data residency", "Provider allowlist"];
   return (
     <Panel>
-      <VHead Icon={IconShieldCheck} label="Pre-execution" />
+      <VHead Icon={ShieldCheck} label="Pre-execution" />
       <div className="space-y-1.5">
         {rules.map((r) => (
           <div key={r} className="flex items-center gap-2 text-[11px] text-cv-ink/70">
             <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full" style={{ background: `${BLUE}26` }}>
-              <IconCheck className="h-2.5 w-2.5" stroke={1} style={{ color: VALUE }} />
+              <CheckCircle weight="Linear" className="h-2.5 w-2.5" style={{ color: VALUE }} />
             </span>
             {r}
           </div>
@@ -95,7 +95,7 @@ function GpuVisual() {
   ];
   return (
     <Panel>
-      <VHead Icon={IconCpu} label="GPU pools" />
+      <VHead Icon={Cpu} label="GPU pools" />
       <div className="space-y-2.5">
         {pools.map(([name, pct]) => (
           <div key={name}>
@@ -121,7 +121,7 @@ function AttributionVisual() {
   ];
   return (
     <Panel>
-      <VHead Icon={IconTag} label="Spend attribution" />
+      <VHead Icon={Tag} label="Spend attribution" />
       <div className="flex h-2.5 w-full overflow-hidden rounded-full">
         {segments.map(([name, pct, color]) => (
           <div key={name} style={{ width: `${pct}%`, background: color }} />
@@ -148,7 +148,7 @@ function RegistryVisual() {
   ];
   return (
     <Panel>
-      <VHead Icon={IconDatabase} label="Model registry" />
+      <VHead Icon={Database} label="Model registry" />
       <div className="grid grid-cols-[1.4fr_0.8fr_1fr] gap-x-3 text-[10px] font-medium uppercase tracking-wide text-cv-ink/40">
         <span>Model</span>
         <span>Version</span>

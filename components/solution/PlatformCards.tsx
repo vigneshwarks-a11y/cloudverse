@@ -1,16 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { IconWallet, IconCode, IconDatabase, IconCpu, IconLayoutGrid, Icon as TablerIcon } from "@tabler/icons-react";
+import { useEffect, useRef, useState, type ComponentType } from "react";
+import { Code, Cpu, Database, Wallet, Widget2, type IconProps } from "@solar-icons/react";
+
+type Icon = ComponentType<IconProps>;
 
 const BLUE = "#007CFF";
 
-const ICONS: Record<string, TablerIcon> = {
-  "FinOps Platform": IconWallet,
-  DevX: IconCode,
-  DataX: IconDatabase,
-  AIX: IconCpu,
+const ICONS: Record<string, Icon> = {
+  "FinOps Platform": Wallet,
+  DevX: Code,
+  DataX: Database,
+  AIX: Cpu,
 };
 
 export type PlatformItem = [title: string, blurb: string, href: string];
@@ -50,7 +52,7 @@ export function PlatformCards({ items }: { items: PlatformItem[] }) {
   return (
     <div ref={ref} className="grid auto-rows-fr gap-5 md:grid-cols-3">
       {items.map(([t, b, h], i) => {
-        const Icon = ICONS[t] ?? IconLayoutGrid;
+        const Icon = ICONS[t] ?? Widget2;
         return (
           <div key={t} style={rise(i)}>
             <Link
@@ -63,7 +65,7 @@ export function PlatformCards({ items }: { items: PlatformItem[] }) {
                 className="flex h-11 w-11 items-center justify-center rounded-lg"
                 style={{ background: `${BLUE}1a`, border: `1px solid ${BLUE}40` }}
               >
-                <Icon size={22} stroke={1} style={{ color: BLUE }} />
+                <Icon size={22} weight="Linear" style={{ color: BLUE }} />
               </span>
               <h3 className="cv-h3 font-semibold text-cv-ink mt-5">{t}</h3>
               <p className="text-cv-ink/75 mt-2 flex-1">{b}</p>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { IconArrowRight } from "@tabler/icons-react";
+import { ArrowRight } from "@solar-icons/react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import { EnterpriseDayOne } from "@/components/solution/EnterpriseDayOne";
@@ -27,15 +27,15 @@ const FAQ = [
 export default function EnterprisePage() {
   return (
     <>
-      <section className="cv-hero-bg pt-[120px] pb-16 lg:pt-[160px] lg:pb-24 relative">
+      <section className="cv-hero-bg pt-[240px] pb-16 lg:pt-[240px] lg:pb-24 relative">
         <div className="cv-container relative z-10 max-w-4xl">
           <div className="text-xs uppercase tracking-widest text-cv-muted mb-3">For Enterprise</div>
           <h1 className="cv-h1 text-cv-ink">One Control Plane for Multi-Cloud, AI Infrastructure, and Data Economics</h1>
-          <p className="cv-body-lg mt-6 text-cv-ink/75">
+          <p className="cv-body mt-6 text-cv-ink/75">
             The compute economics platform global enterprises run on. SSO, SCIM provisioning, granular RBAC, audit logs, customer-managed encryption keys, and the procurement options the office of the CIO expects.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/contact" className="cv-btn-primary"><span>Talk to Our Enterprise Team</span><IconArrowRight size={16} stroke={1} /></Link>
+            <Link href="/contact" className="cv-btn-primary"><span>Talk to Our Enterprise Team</span><ArrowRight weight="Linear" size={16} /></Link>
             <Link href="/platform/finops" className="cv-btn-ghost">Explore the Platform</Link>
           </div>
         </div>
@@ -108,7 +108,7 @@ export default function EnterprisePage() {
               Connect your first account in under 30 minutes. Most teams have their first non-obvious finding the same day.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><IconArrowRight size={16} stroke={1} /></Link>
+              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
               <Link href="/contact" className="cv-btn-ghost">Talk to Sales</Link>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IconArrowRight, IconCircleCheck } from "@tabler/icons-react";
+import { ArrowRight, CheckCircle } from "@solar-icons/react";
 import { SIGNIN_URL, DEMO_URL } from "@/lib/links";
 import Link from "next/link";
 
@@ -18,12 +18,12 @@ const STEPS = [
 
 export default function Page() {
   return (
-    <section className="cv-hero-bg pt-[140px] pb-16 lg:pt-[160px] lg:pb-24 relative min-h-[80vh]">
+    <section className="cv-hero-bg pt-[240px] pb-16 lg:pt-[240px] lg:pb-24 relative min-h-[80vh]">
       <div className="cv-container relative z-10">
         <div className="max-w-2xl mx-auto text-center">
           <div className="cv-label mb-4">Get started</div>
           <h1 className="cv-h1 text-cv-ink">
-            See where your cloud bill is <span className="text-cv-blue-light">actually going.</span>
+            See Where Your Cloud Bill Is <span className="text-cv-blue-light">Actually Going.</span>
           </h1>
           <p className="cv-body-lg mt-6 text-cv-ink/75">
             CloudVerse connects read-only and surfaces your first non-obvious finding the same day. No credit card.
@@ -31,7 +31,7 @@ export default function Page() {
 
           <div className="mt-10 grid sm:grid-cols-2 gap-3">
             <Link href={SIGNIN_URL} className="cv-btn-primary justify-center text-center" data-testid="link-create-account">
-              Create your account <IconArrowRight size={16} stroke={1} />
+              Create your account <ArrowRight weight="Linear" size={16} />
             </Link>
             <Link href={DEMO_URL} className="cv-btn-ghost justify-center text-center" data-testid="link-book-demo">
               Book a guided demo
@@ -43,7 +43,7 @@ export default function Page() {
             <ul className="space-y-3">
               {STEPS.map((s) => (
                 <li key={s} className="flex items-start gap-3">
-                  <IconCircleCheck size={18} stroke={1} className="shrink-0 mt-0.5 text-cv-blue-light" />
+                  <CheckCircle weight="Linear" size={18} className="shrink-0 mt-0.5 text-cv-blue-light" />
                   <span className="text-cv-ink/80 text-[15px]">{s}</span>
                 </li>
               ))}

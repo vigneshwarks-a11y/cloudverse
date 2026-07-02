@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback, useEffect } from "react";
-import { IconUpload, IconFileText, IconCircleCheck, IconAlertTriangle, IconSparkles, IconX } from "@tabler/icons-react";
+import { CheckCircle, CloseCircle, DangerTriangle, FileText, MagicStick2, Upload } from "@solar-icons/react";
 import Link from "next/link";
 
 type Result = {
@@ -116,7 +116,7 @@ export function InvoiceEfficiency({ compact = false }: { compact?: boolean }) {
                 }`}
                 data-testid="upload-dropzone"
               >
-                <IconUpload className="w-10 h-10 mx-auto mb-4 text-cv-muted" stroke={1} />
+                <Upload weight="Linear" className="w-10 h-10 mx-auto mb-4 text-cv-muted" />
                 <p className="text-base font-medium text-cv-ink mb-1">
                   Drop invoice here or click to upload
                 </p>
@@ -135,7 +135,7 @@ export function InvoiceEfficiency({ compact = false }: { compact?: boolean }) {
             {state === "processing" && (
               <div className="border-2 border-cv-line rounded-2xl p-8 text-center">
                 <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-cv-blue/10 flex items-center justify-center">
-                  <IconFileText className="w-7 h-7 text-[#1664C0] dark:text-[#7CB8F8] animate-pulse" stroke={1} />
+                  <FileText weight="Linear" className="w-7 h-7 text-[#1664C0] dark:text-[#7CB8F8] animate-pulse" />
                 </div>
                 <p className="text-base font-medium text-cv-ink mb-4">Analyzing invoice…</p>
                 <div className="w-48 h-2 mx-auto bg-cv-line rounded-full overflow-hidden">
@@ -151,7 +151,7 @@ export function InvoiceEfficiency({ compact = false }: { compact?: boolean }) {
               <div className="border-2 border-cv-blue/30 rounded-2xl p-6 bg-cv-surface2 text-left" data-testid="gate-form">
                 <div className="text-center mb-5">
                   <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-emerald-500/15 flex items-center justify-center">
-                    <IconCircleCheck className="w-6 h-6 text-emerald-500" stroke={1} />
+                    <CheckCircle weight="Linear" className="w-6 h-6 text-emerald-500" />
                   </div>
                   <p className="text-base font-semibold text-cv-ink">Analysis complete</p>
                   <p className="text-sm text-cv-muted mt-1">Enter your details to view the snapshot.</p>
@@ -176,7 +176,7 @@ export function InvoiceEfficiency({ compact = false }: { compact?: boolean }) {
             {state === "error" && (
               <div className="border-2 border-rose-500/30 rounded-2xl p-8 text-center bg-rose-500/5">
                 <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-rose-500/10 flex items-center justify-center">
-                  <IconAlertTriangle className="w-7 h-7 text-rose-500" stroke={1} />
+                  <DangerTriangle weight="Linear" className="w-7 h-7 text-rose-500" />
                 </div>
                 <p className="text-sm font-medium text-rose-500 mb-4" data-testid="error-message">{error}</p>
                 <button onClick={reset} className="cv-btn-ghost" data-testid="button-try-again">Try again</button>
@@ -187,7 +187,7 @@ export function InvoiceEfficiency({ compact = false }: { compact?: boolean }) {
               <div className="border-2 border-emerald-500/30 rounded-2xl p-6 bg-emerald-500/5">
                 <div className="flex items-center justify-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                    <IconCircleCheck className="w-5 h-5 text-emerald-500" stroke={1} />
+                    <CheckCircle weight="Linear" className="w-5 h-5 text-emerald-500" />
                   </div>
                   <div>
                     <p className="text-base font-medium text-cv-ink">Snapshot ready</p>
@@ -196,7 +196,7 @@ export function InvoiceEfficiency({ compact = false }: { compact?: boolean }) {
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <button onClick={() => setModal(true)} className="cv-btn-primary flex-1 justify-center" data-testid="button-view-snapshot-again">
-                    <IconSparkles size={16} stroke={1} /> View snapshot
+                    <MagicStick2 weight="Linear" size={16} /> View snapshot
                   </button>
                   <button onClick={reset} className="cv-btn-ghost flex-1 justify-center" data-testid="button-upload-another">
                     Upload another
@@ -275,7 +275,7 @@ function ResultsModal({
             aria-label="Close snapshot"
             className="p-2 text-cv-muted hover:text-cv-ink rounded-md focus:outline-none focus:ring-2 focus:ring-cv-blue/50"
           >
-            <IconX size={20} stroke={1} />
+            <CloseCircle weight="Linear" size={20} />
           </button>
         </div>
 
@@ -331,7 +331,7 @@ function ResultsModal({
               <ul className="space-y-3">
                 {result.insights.map((i, idx) => (
                   <li key={idx} className="flex items-start gap-3">
-                    <IconCircleCheck size={18} stroke={1} className="text-[#1664C0] dark:text-[#7CB8F8] shrink-0 mt-0.5" />
+                    <CheckCircle weight="Linear" size={18} className="text-[#1664C0] dark:text-[#7CB8F8] shrink-0 mt-0.5" />
                     <span className="text-cv-ink/85 text-[15px]">{i}</span>
                   </li>
                 ))}

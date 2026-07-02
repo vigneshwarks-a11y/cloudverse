@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
+import { ArrowLeft, ArrowRight } from "@solar-icons/react";
 import { RESOURCES, getResource } from "@/lib/resources";
 import { DEMO_URL } from "@/lib/links";
 
@@ -46,10 +46,10 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
   return (
     <>
-      <article className="pt-[140px] pb-12 lg:pt-[160px] lg:pb-16">
+      <article className="pt-[240px] pb-12 lg:pt-[240px] lg:pb-16">
         <div className="cv-container max-w-3xl">
           <Link href="/resources" className="inline-flex items-center gap-1.5 text-sm text-cv-ink/65 hover:text-cv-ink mb-6" data-testid="link-back-resources">
-            <IconArrowLeft size={14} stroke={1} /> Resources
+            <ArrowLeft weight="Linear" size={14} /> Resources
           </Link>
           <div className="flex items-center gap-3 text-[12px] text-cv-ink/55 mb-5 flex-wrap">
             <span
@@ -108,7 +108,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           <div className="rounded-3xl border border-cv-line bg-cv-surface2 p-10 lg:p-16 text-center">
             <h2 className="cv-h2 text-cv-ink max-w-3xl mx-auto">See cloudverse in your environment.</h2>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><IconArrowRight size={16} stroke={1} /></Link>
+              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
               <Link href="/resources" className="cv-btn-ghost">More resources</Link>
             </div>
           </div>

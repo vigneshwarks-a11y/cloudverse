@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { IconArrowRight } from "@tabler/icons-react";
+import { ArrowRight } from "@solar-icons/react";
 import { DEMO_URL } from "@/lib/links";
 
 export function SolutionHero({
@@ -21,10 +21,10 @@ export function SolutionHero({
           {eyebrow}
         </div>
         <h1 className="cv-h1 mt-5 text-cv-ink max-w-4xl">{h1}</h1>
-        <p className="cv-body-lg mt-6 text-cv-ink/75 max-w-2xl">{sub}</p>
+        <p className="cv-body mt-6 text-cv-ink/75 max-w-2xl">{sub}</p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Link href={DEMO_URL} className="cv-btn-primary">
-            Book a Demo <IconArrowRight size={16} stroke={1} />
+            Book a Demo <ArrowRight weight="Linear" size={16} />
           </Link>
           <Link href="/platform/finops" className="cv-btn-ghost">
             Explore the platform

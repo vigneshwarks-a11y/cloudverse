@@ -1,6 +1,6 @@
-import { IconCheck } from "@tabler/icons-react";
+import { CheckCircle } from "@solar-icons/react";
 
-const BLUE = "#007CFF";
+const BLUE = "#2278E0";
 
 function Card({
   title,
@@ -12,16 +12,16 @@ function Card({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex flex-col overflow-hidden rounded-2xl border border-cv-line bg-cv-surface p-6 backdrop-blur-sm">
+    <div className="relative flex flex-col overflow-hidden rounded-2xl border border-cv-line/40 bg-cv-surface dark:bg-[#0D0D0D] p-6 backdrop-blur-sm">
       {/* soft radial blue glow */}
       <div
         aria-hidden
         className="pointer-events-none absolute -right-16 -top-20 h-48 w-48 rounded-full blur-3xl"
-        style={{ background: "radial-gradient(circle, rgba(0,124,255,0.22), transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, rgba(34,120,224,0.22), transparent 70%)" }}
       />
       <div className="relative">
         <h4 className="font-display font-semibold text-cv-ink">{title}</h4>
-        <p className="mt-2 text-sm leading-relaxed text-gray-400">{desc}</p>
+        <p className="mt-2 text-sm leading-relaxed text-cv-muted">{desc}</p>
       </div>
       <div className="relative mt-6 flex-1">{children}</div>
     </div>
@@ -45,7 +45,7 @@ function TenantViz() {
             className={
               i === 0
                 ? "rounded-md border px-2.5 py-1 text-xs"
-                : "rounded-md border border-cv-line px-2.5 py-1 text-xs text-gray-500"
+                : "rounded-md border border-cv-line px-2.5 py-1 text-xs text-cv-muted"
             }
             style={i === 0 ? { color: BLUE, borderColor: `${BLUE}80`, background: `${BLUE}1a` } : undefined}
           >
@@ -54,13 +54,13 @@ function TenantViz() {
         ))}
       </div>
       <div className="overflow-hidden rounded-lg border border-cv-line">
-        <div className="flex items-center justify-between border-b border-cv-line px-3 py-2 text-[10px] uppercase tracking-wide text-gray-500">
+        <div className="flex items-center justify-between border-b border-cv-line px-3 py-2 text-[10px] uppercase tracking-wide text-cv-muted">
           <span>Workspace</span>
           <span>GPU allocation</span>
         </div>
         {rows.map(([t, pct]) => (
           <div key={t} className="flex items-center gap-3 px-3 py-2 text-xs">
-            <span className="w-16 text-gray-300">{t}</span>
+            <span className="w-16 text-cv-ink/70">{t}</span>
             <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-cv-ink/10">
               <div
                 className="h-full rounded-full"
@@ -96,7 +96,7 @@ function ResidencyViz() {
         style={{
           backgroundColor: "#0B0D11",
           backgroundImage:
-            "radial-gradient(rgba(0,124,255,0.18) 1px, transparent 1px)",
+            "radial-gradient(rgba(34,120,224,0.18) 1px, transparent 1px)",
           backgroundSize: "12px 12px",
         }}
       >
@@ -114,11 +114,11 @@ function ResidencyViz() {
             key={region}
             className="flex items-center justify-between rounded-md border border-cv-line px-3 py-1.5 text-xs"
           >
-            <span className="text-gray-300">{region} routing</span>
+            <span className="text-cv-ink/70">{region} routing</span>
             <span
-              className="flex h-4 w-7 items-center rounded-full p-0.5 transition-colors"
+              className={`flex h-4 w-7 items-center rounded-full p-0.5 transition-colors ${on ? "" : "bg-cv-ink/15"}`}
               style={{
-                background: on ? BLUE : "rgba(255,255,255,0.12)",
+                background: on ? BLUE : undefined,
                 boxShadow: on ? `0 0 10px ${BLUE}80` : undefined,
                 justifyContent: on ? "flex-end" : "flex-start",
               }}
@@ -142,7 +142,7 @@ function PiiViz() {
   ];
   return (
     <div className="overflow-hidden rounded-lg border border-cv-line text-xs">
-      <div className="grid grid-cols-[1fr_auto_1.2fr] gap-2 border-b border-cv-line px-3 py-2 text-[10px] uppercase tracking-wide text-gray-500">
+      <div className="grid grid-cols-[1fr_auto_1.2fr] gap-2 border-b border-cv-line px-3 py-2 text-[10px] uppercase tracking-wide text-cv-muted">
         <span>Field</span>
         <span>Rule</span>
         <span>Sample</span>
@@ -152,14 +152,14 @@ function PiiViz() {
           key={field}
           className="grid grid-cols-[1fr_auto_1.2fr] items-center gap-2 border-t border-cv-line px-3 py-2"
         >
-          <span className="text-gray-300">{field}</span>
+          <span className="text-cv-ink/70">{field}</span>
           <span
             className="justify-self-start rounded px-1.5 py-0.5 text-[10px]"
             style={{ color: BLUE, background: `${BLUE}1a`, border: `1px solid ${BLUE}40` }}
           >
             {rule}
           </span>
-          <span className="font-mono text-gray-500">{sample}</span>
+          <span className="font-mono text-cv-muted">{sample}</span>
         </div>
       ))}
     </div>
@@ -178,8 +178,8 @@ function BudgetViz() {
       {meters.map(([team, used, cap, pct]) => (
         <div key={team}>
           <div className="mb-1 flex items-center justify-between text-xs">
-            <span className="text-gray-300">{team}</span>
-            <span className="tabular-nums text-gray-500">
+            <span className="text-cv-ink/70">{team}</span>
+            <span className="tabular-nums text-cv-muted">
               <span style={{ color: BLUE }}>{used}</span> / {cap}
             </span>
           </div>
@@ -206,17 +206,16 @@ function PolicyTreeViz() {
     <div className="rounded-lg border border-cv-line p-3 text-xs">
       <div className="flex items-center gap-2">
         <span className="h-2 w-2 rounded-full" style={{ background: BLUE, boxShadow: `0 0 10px ${BLUE}` }} />
-        <span className="font-medium text-gray-200">Organization</span>
+        <span className="font-medium text-cv-ink/85">Organization</span>
       </div>
       <div className="ml-1 mt-1 border-l border-cv-line pl-4">
         {teams.map(([team, policy]) => (
           <div key={team} className="relative flex items-center justify-between py-1.5">
             <span
               aria-hidden
-              className="absolute -left-4 top-1/2 h-px w-3"
-              style={{ background: "rgba(255,255,255,0.15)" }}
+              className="absolute -left-4 top-1/2 h-px w-3 bg-cv-ink/15"
             />
-            <span className="text-gray-300">{team}</span>
+            <span className="text-cv-ink/70">{team}</span>
             <span
               className="rounded px-1.5 py-0.5 text-[10px]"
               style={{ color: BLUE, background: `${BLUE}1a`, border: `1px solid ${BLUE}40` }}
@@ -243,7 +242,7 @@ function TraceViz() {
     <div className="space-y-2">
       {stages.map(([label, offset, width, dur], i) => (
         <div key={label} className="text-[11px]">
-          <div className="mb-1 flex items-center justify-between text-gray-400">
+          <div className="mb-1 flex items-center justify-between text-cv-muted">
             <span className="flex items-center gap-1.5">
               <span
                 className="h-1.5 w-1.5 rounded-full"
@@ -251,7 +250,7 @@ function TraceViz() {
               />
               {label}
             </span>
-            <span className="tabular-nums text-gray-500">{dur}</span>
+            <span className="tabular-nums text-cv-muted">{dur}</span>
           </div>
           <div className="relative h-1.5 w-full">
             <div className="absolute inset-0 rounded-full bg-cv-ink/[0.06]" />
@@ -269,7 +268,7 @@ function TraceViz() {
         </div>
       ))}
       <div className="flex items-center gap-1.5 pt-1 text-[11px]" style={{ color: BLUE }}>
-        <IconCheck size={13} stroke={1} /> Trace committed to audit log
+        <CheckCircle weight="Linear" size={13} /> Trace committed to audit log
       </div>
     </div>
   );
@@ -277,7 +276,7 @@ function TraceViz() {
 
 export default function GovernanceBento() {
   return (
-    <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
       <Card
         title="Multi-tenant isolation"
         desc="Each team's workloads, policies, and cost data are separated."

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { IconArrowRight, IconCheck } from "@tabler/icons-react";
+import { ArrowRight, CheckCircle } from "@solar-icons/react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 
@@ -32,14 +32,14 @@ const PROVIDERS = [
 export default function IntegrationsPage() {
   return (
     <>
-      <section className="cv-hero-bg pt-[120px] pb-16 lg:pt-[160px] lg:pb-24 relative">
+      <section className="cv-hero-bg pt-[240px] pb-16 lg:pt-[240px] lg:pb-24 relative">
         <div className="cv-container relative z-10 max-w-4xl">
           <h1 className="cv-h1 text-cv-ink">Connects to the Stack Your Teams Already Use</h1>
           <p className="cv-body-lg mt-6 text-cv-ink/75">
             Add your integration once. CloudVerse handles routing, attribution, and cost tracking across all of them. No code changes when you add a new provider.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={DEMO_URL} className="cv-btn-primary"><span>Set up your integrations</span><IconArrowRight size={16} stroke={1} /></Link>
+            <Link href={DEMO_URL} className="cv-btn-primary"><span>Set up your integrations</span><ArrowRight weight="Linear" size={16} /></Link>
           </div>
         </div>
       </section>
@@ -62,7 +62,7 @@ export default function IntegrationsPage() {
               ["Least-privilege scripts", "provided for your security team to review before connection."],
             ].map(([t, b]) => (
               <li key={t} className="flex items-start gap-3 text-cv-ink/85">
-                <IconCheck size={18} stroke={1} className="text-cv-teal mt-1 shrink-0" />
+                <CheckCircle weight="Linear" size={18} className="text-cv-teal mt-1 shrink-0" />
                 <span><strong className="text-cv-ink">{t}:</strong> {b}</span>
               </li>
             ))}
@@ -131,7 +131,7 @@ export default function IntegrationsPage() {
               "On-premises infrastructure: your own inference hardware",
             ].map((b) => (
               <li key={b} className="flex items-start gap-3 text-cv-ink/85">
-                <IconCheck size={18} stroke={1} className="text-cv-teal mt-0.5 shrink-0" /> {b}
+                <CheckCircle weight="Linear" size={18} className="text-cv-teal mt-0.5 shrink-0" /> {b}
               </li>
             ))}
           </ul>
@@ -192,7 +192,7 @@ export default function IntegrationsPage() {
               Talk to us. We add integrations based on customer demand.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href="/contact" className="cv-btn-primary"><span>Talk to Us</span><IconArrowRight size={16} stroke={1} /></Link>
+              <Link href="/contact" className="cv-btn-primary"><span>Talk to Us</span><ArrowRight weight="Linear" size={16} /></Link>
               <Link href="/resources" className="cv-btn-ghost">View Documentation</Link>
             </div>
           </div>

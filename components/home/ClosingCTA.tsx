@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { IconArrowRight } from "@tabler/icons-react";
+import { ArrowRight } from "@solar-icons/react";
 import { DEMO_URL } from "@/lib/links";
 
 
@@ -24,7 +24,7 @@ export function ClosingCTA() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-cv-surface py-24 lg:py-32"
+      className="relative overflow-hidden bg-cv-surface py-16 lg:py-24"
     >
       {/* Center content */}
       <div
@@ -35,39 +35,21 @@ export function ClosingCTA() {
           transition: "opacity 600ms ease 150ms, transform 600ms cubic-bezier(0.22,1,0.36,1) 150ms",
         }}
       >
-        {/* Eyebrow chip */}
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 dark:bg-[#7CB8F8]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8] mb-6">
-          Get started
-        </span>
-
         {/* Headline */}
-        <h2 className="cv-h1 text-cv-ink">
-          See what cloudverse<br />can do for your team.
+        <h2 className="text-cv-ink font-bold tracking-tight" style={{ fontSize: "clamp(32px, 4vw, 52px)", lineHeight: 1.1 }}>
+          <span className="whitespace-nowrap">Your Cloud and AI Spend is Growing.</span>{" "}
+          <span className="whitespace-nowrap">Find Out Exactly Where.</span>
         </h2>
-
-        {/* Description */}
-        <p className="mt-5 cv-body-lg text-cv-muted max-w-md">
-          Connect your first account in under 30 minutes and find savings you didn&apos;t know existed.
-        </p>
 
         {/* Buttons */}
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-closing-demo">
-            Book a Demo <IconArrowRight size={15} stroke={1} />
+            Book a Demo <ArrowRight weight="Linear" size={15} />
           </Link>
-          <Link href="/contact" className="cv-btn-ghost" data-testid="link-closing-sales">
-            Talk to Sales
+          <Link href="/contact" className="cv-btn-ghost" data-testid="link-closing-audit">
+            Request a free AI cost audit
           </Link>
         </div>
-
-        {/* Sub-link */}
-        <Link
-          href="/platform/aix"
-          className="mt-6 flex items-center gap-1 text-sm text-cv-muted hover:text-cv-ink transition-colors"
-        >
-          Are you an enterprise? See how AIX works
-          <IconArrowRight size={13} stroke={1.5} />
-        </Link>
       </div>
     </section>
   );

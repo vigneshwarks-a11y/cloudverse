@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { IconArrowRight, IconCircleCheck } from "@tabler/icons-react";
+import { ArrowRight, CheckCircle } from "@solar-icons/react";
 
 export const metadata: Metadata = {
   title: "Get a Demo",
@@ -20,13 +20,13 @@ const PROOF = [
 
 export default function ConnectPage() {
   return (
-    <section className="cv-hero-bg pt-[140px] pb-24 min-h-[80vh]">
+    <section className="cv-hero-bg pt-[240px] pb-24 min-h-[80vh]">
       <div className="cv-container relative z-10">
         <div className="grid lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-6">
             <div className="cv-label mb-3">Get a Demo</div>
             <h1 className="cv-h1 text-cv-ink">
-              See what's driving your cloud bill.
+              See What's Driving Your Cloud Bill.
             </h1>
             <p className="cv-body-lg mt-6 text-cv-ink/75 max-w-xl">
               A 30-minute working session with our solutions team. We connect a sample account live and walk you through your first findings.
@@ -34,7 +34,7 @@ export default function ConnectPage() {
             <ul className="mt-8 space-y-3">
               {PROOF.map((p) => (
                 <li key={p} className="flex gap-3 text-cv-ink/85 text-[15px]">
-                  <IconCircleCheck size={18} stroke={1} className="shrink-0 mt-0.5 text-cv-blue-light" />
+                  <CheckCircle weight="Linear" size={18} className="shrink-0 mt-0.5 text-cv-blue-light" />
                   <span>{p}</span>
                 </li>
               ))}
@@ -42,7 +42,7 @@ export default function ConnectPage() {
             <div className="mt-10 pt-8 border-t border-cv-line/10">
               <div className="cv-label mb-3 text-cv-ink/50">Prefer to talk to sales?</div>
               <Link href="/contact" className="cv-btn-ghost">
-                Contact sales <IconArrowRight size={14} stroke={1} />
+                Contact sales <ArrowRight weight="Linear" size={14} />
               </Link>
             </div>
           </div>
@@ -65,7 +65,7 @@ export default function ConnectPage() {
                 className="cv-btn-primary w-full justify-center"
                 data-testid="link-hubspot-booking"
               >
-                Open booking calendar <IconArrowRight size={16} stroke={1} />
+                Open booking calendar <ArrowRight weight="Linear" size={16} />
               </a>
               <div className="mt-6 pt-6 border-t border-cv-line/10 text-cv-ink/55 text-xs">
                 CloudVerse™ never sells your data. Connections are read-only by default and can be revoked at any time.

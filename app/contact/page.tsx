@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { IconMail, IconMessageCircle, IconMapPin, IconBuilding } from "@tabler/icons-react";
+import { Buildings, ChatRound, Letter, MapPoint } from "@solar-icons/react";
 import { DEMO_URL } from "@/lib/links";
 
 export const metadata: Metadata = {
@@ -10,19 +10,19 @@ export const metadata: Metadata = {
 };
 
 const CHANNELS = [
-  { icon: IconBuilding,    label: "Sales",        body: "Multi-cloud, AI, or warehouse economics. talk to a practitioner.", action: "Book a demo", href: DEMO_URL },
-  { icon: IconMessageCircle,label: "Support",      body: "Existing customer with a question or issue.", action: "support@cloudverse.ai", href: "mailto:support@cloudverse.ai" },
-  { icon: IconMail,         label: "Partnerships", body: "Marketplace, technology, or solution partner inquiries.", action: "partners@cloudverse.ai", href: "mailto:partners@cloudverse.ai" },
-  { icon: IconMapPin,       label: "Press",        body: "Media, analyst, or speaking engagements.", action: "press@cloudverse.ai", href: "mailto:press@cloudverse.ai" },
+  { icon: Buildings,   label: "Sales",        body: "Multi-cloud, AI, or warehouse economics. talk to a practitioner.", action: "Book a demo", href: DEMO_URL },
+  { icon: ChatRound,   label: "Support",      body: "Existing customer with a question or issue.", action: "support@cloudverse.ai", href: "mailto:support@cloudverse.ai" },
+  { icon: Letter,      label: "Partnerships", body: "Marketplace, technology, or solution partner inquiries.", action: "partners@cloudverse.ai", href: "mailto:partners@cloudverse.ai" },
+  { icon: MapPoint,    label: "Press",        body: "Media, analyst, or speaking engagements.", action: "press@cloudverse.ai", href: "mailto:press@cloudverse.ai" },
 ];
 
 export default function Page() {
   return (
     <>
-      <section className="cv-hero-bg pt-[140px] pb-12 lg:pt-[160px] lg:pb-16 relative">
+      <section className="cv-hero-bg pt-[240px] pb-12 lg:pt-[240px] lg:pb-16 relative">
         <div className="cv-container relative z-10">
           <div className="cv-label mb-4">Contact</div>
-          <h1 className="cv-h1 text-cv-ink max-w-3xl">Talk to a human. we typically respond within one business day.</h1>
+          <h1 className="cv-h1 text-cv-ink max-w-3xl">Talk to a Human. We Typically Respond Within One Business Day.</h1>
         </div>
       </section>
 
@@ -35,7 +35,7 @@ export default function Page() {
               return (
                 <div key={c.label} className="rounded-xl border border-cv-line/10 bg-cv-ink/[0.02] p-6">
                   <div className="w-10 h-10 rounded-lg bg-cv-blue/15 text-cv-blue-light flex items-center justify-center mb-4">
-                    <Icon size={20} stroke={1} />
+                    <Icon size={20} weight="Linear" />
                   </div>
                   <div className="cv-label">{c.label}</div>
                   <p className="text-cv-ink/70 mt-2 text-sm leading-relaxed">{c.body}</p>

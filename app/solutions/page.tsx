@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { IconArrowRight, IconUsers, IconCpu, IconGitPullRequest, IconDatabase, IconBuilding } from "@tabler/icons-react";
+import { ArrowRight, Buildings, Code2, Cpu, Database, UsersGroupRounded } from "@solar-icons/react";
 import { CTABand } from "@/components/CTABand";
 
 export const metadata: Metadata = {
@@ -10,21 +10,21 @@ export const metadata: Metadata = {
 };
 
 const SOLUTIONS = [
-  { href: "/solutions/finops-teams",   icon: IconUsers,          label: "FinOps Teams",          desc: "Allocation, anomaly response, commitments, and chargeback on one model.", color: "#1664C0" },
-  { href: "/solutions/ai-engineering", icon: IconCpu,            label: "AI Engineering",        desc: "Live cost-quality routing across 8+ GPU and LLM providers.", color: "#6954D4" },
-  { href: "/solutions/platform-eng",   icon: IconGitPullRequest, label: "Platform Engineering", desc: "PR-level cost diffs, policy-as-code, native CI integration.", color: "#0E9E7A" },
-  { href: "/solutions/data-teams",     icon: IconDatabase,       label: "Data Teams",            desc: "Query-level attribution and safe automation across 6 warehouses.", color: "#D97706" },
-  { href: "/solutions/enterprise",     icon: IconBuilding,      label: "Enterprise",            desc: "One control plane across the estate, with SSO, RBAC, and residency.", color: "#1664C0" },
+  { href: "/solutions/finops-teams",   icon: UsersGroupRounded,          label: "FinOps Teams",          desc: "Allocation, anomaly response, commitments, and chargeback on one model.", color: "#1664C0" },
+  { href: "/solutions/ai-engineering", icon: Cpu,            label: "AI Engineering",        desc: "Live cost-quality routing across 8+ GPU and LLM providers.", color: "#6954D4" },
+  { href: "/solutions/platform-eng",   icon: Code2, label: "Platform Engineering", desc: "PR-level cost diffs, policy-as-code, native CI integration.", color: "#0E9E7A" },
+  { href: "/solutions/data-teams",     icon: Database,       label: "Data Teams",            desc: "Query-level attribution and safe automation across 6 warehouses.", color: "#D97706" },
+  { href: "/solutions/enterprise",     icon: Buildings,      label: "Enterprise",            desc: "One control plane across the estate, with SSO, RBAC, and residency.", color: "#1664C0" },
 ];
 
 export default function Page() {
   return (
     <>
-      <section className="cv-hero-bg pt-[140px] pb-12 lg:pt-[160px] lg:pb-16 relative">
+      <section className="cv-hero-bg pt-[240px] pb-12 lg:pt-[240px] lg:pb-16 relative">
         <div className="cv-container relative z-10">
           <div className="cv-label mb-4">Solutions</div>
-          <h1 className="cv-h1 text-cv-ink max-w-3xl">Built for the teams accountable for the bill.</h1>
-          <p className="cv-body-lg mt-6 text-cv-ink/75 max-w-2xl">
+          <h1 className="cv-h1 text-cv-ink max-w-3xl">Built for the Teams Accountable for the Bill.</h1>
+          <p className="cv-body mt-6 text-cv-ink/75 max-w-2xl">
             Five persona-built solution paths backed by one control plane.
           </p>
         </div>
@@ -45,12 +45,12 @@ export default function Page() {
                 >
                   <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-4"
                     style={{ background: `${s.color}1A`, color: s.color }}>
-                    <Icon size={20} stroke={1} />
+                    <Icon size={20} />
                   </div>
                   <div className="font-display font-semibold text-cv-ink text-lg">{s.label}</div>
                   <p className="text-cv-ink/65 text-sm mt-2 leading-relaxed">{s.desc}</p>
                   <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium" style={{ color: s.color }}>
-                    Explore <IconArrowRight size={14} stroke={1} className="group-hover:translate-x-0.5 transition-transform" />
+                    Explore <ArrowRight weight="Linear" size={14} className="group-hover:translate-x-0.5 transition-transform" />
                   </div>
                 </Link>
               );

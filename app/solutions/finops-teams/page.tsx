@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { IconArrowRight } from "@tabler/icons-react";
+import { ArrowRight } from "@solar-icons/react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import { PlatformCards } from "@/components/solution/PlatformCards";
@@ -27,15 +27,15 @@ const FAQ = [
 export default function FinOpsTeamsPage() {
   return (
     <>
-      <section className="cv-hero-bg pt-[120px] pb-16 lg:pt-[160px] lg:pb-24 relative">
+      <section className="cv-hero-bg pt-[240px] pb-16 lg:pt-[240px] lg:pb-24 relative">
         <div className="cv-container relative z-10 max-w-4xl">
           <div className="text-xs uppercase tracking-widest text-cv-muted mb-3">For FinOps Teams</div>
           <h1 className="cv-h1 text-cv-ink">The Control Plane Your Finance and Engineering Teams Both Trust</h1>
-          <p className="cv-body-lg mt-6 text-cv-ink/75">
+          <p className="cv-body mt-6 text-cv-ink/75">
             Allocation, anomaly response, commitments, and chargeback on one model. Reconciles to finance. Explains itself to engineering.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><IconArrowRight size={16} stroke={1} /></Link>
+            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
             <Link href="/platform/finops" className="cv-btn-ghost">Explore the Platform</Link>
           </div>
         </div>
@@ -133,7 +133,7 @@ export default function FinOpsTeamsPage() {
           <div className="rounded-3xl border border-cv-line bg-cv-surface2 p-10 lg:p-16 text-center">
             <h2 className="cv-h2 text-cv-ink max-w-3xl mx-auto">Bring your FinOps program onto one control plane.</h2>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><IconArrowRight size={16} stroke={1} /></Link>
+              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
               <Link href="/contact" className="cv-btn-ghost">Talk to Sales</Link>
             </div>
           </div>

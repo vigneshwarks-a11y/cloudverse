@@ -1,6 +1,6 @@
 "use client";
 
-import { IconMoon, IconSun } from "@tabler/icons-react";
+import { Moon, Sun } from "@solar-icons/react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
@@ -20,7 +20,7 @@ export function ModeToggle() {
       type="button"
       suppressHydrationWarning
     >
-      {isDark ? <IconSun size={18} stroke={1} /> : <IconMoon size={18} stroke={1} />}
+      {isDark ? <Sun weight="Linear" size={18} /> : <Moon weight="Linear" size={18} />}
     </button>
   );
 }

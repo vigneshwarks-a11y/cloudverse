@@ -29,6 +29,9 @@
 
   html { scroll-behavior: smooth; }
 
+  a { text-decoration: none; }
+  a:hover { text-decoration: none; }
+
   body {
     @apply bg-cv-surface text-cv-ink font-sans antialiased;
     -webkit-font-smoothing: antialiased;
@@ -45,13 +48,13 @@
 
 @layer components {
   .cv-container {
-    @apply max-w-cv mx-auto px-5 sm:px-6 lg:px-20;
+    @apply max-w-cv mx-auto px-5 sm:px-6 lg:px-6;
   }
   .cv-container-tight {
-    @apply max-w-cv-content mx-auto px-5 sm:px-6 lg:px-20;
+    @apply max-w-cv-content mx-auto px-5 sm:px-6 lg:px-6;
   }
   .cv-section {
-    @apply py-14 sm:py-16 lg:py-20;
+    @apply py-10 sm:py-12 lg:py-16;
   }
 
   /* Typography — Manrope */
@@ -102,7 +105,7 @@
   /* Hero band — theme-aware. Base = surface, with subtle grid + blue radial glow. */
   .cv-hero-bg {
     position: relative;
-    background: linear-gradient(180deg, rgba(7, 144, 213, 0.00) 0%, rgba(7, 144, 213, 0.30) 100%), #000;
+    background: linear-gradient(180deg, rgba(7, 144, 213, 0.00) 0%, rgba(7, 144, 213, 0.50) 100%), #000;
     color: hsl(var(--cv-ink));
     overflow: hidden;
   }
@@ -114,7 +117,7 @@
 
   /* Light mode */
   :root:not(.dark) .cv-hero-bg {
-    background: linear-gradient(180deg, rgba(7, 144, 213, 0.00) 0%, rgba(7, 144, 213, 0.30) 100%), #FFF;
+    background: linear-gradient(180deg, rgba(7, 144, 213, 0.00) 0%, rgba(7, 144, 213, 0.50) 100%), #FFF;
   }
 
   /* All content sits above background */
@@ -223,6 +226,16 @@
 @keyframes cv-fade-up {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
+}
+/* Travelling light sweep along the top border of mockup frames */
+@keyframes cv-border-sweep {
+  0%   { left: 0%; opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { left: 70%; opacity: 0; }
+}
+.cv-border-sweep {
+  animation: cv-border-sweep 3.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 @media (prefers-reduced-motion: reduce) {
   .cv-video-ring { animation: none; }

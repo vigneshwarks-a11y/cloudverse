@@ -2,51 +2,51 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { IconArrowRight, IconEye, IconShield, IconCpu, IconBolt, IconGitBranch } from "@tabler/icons-react";
+import { ArrowRight, Bolt, BranchingPathsUp, Cpu, Eye, Shield } from "@solar-icons/react";
 import { LoaderBar } from "@/components/ui/LoaderBar";
 
 const CYCLE_MS = 5000;
 
 const FEATURES = [
   {
-    id: "unified-access",
-    title: "Stop wasting time integrating models",
-    body: "cloudverse gives you access to 200+ LLMs via a unified API, so you can focus on building, not managing provider SDKs.",
+    id: "visibility",
+    title: "See every model, token, team, and agent in one view",
+    body: "One view of all of it: models, tokens, teams, projects, agents, subscriptions, APIs.",
     href: "/platform/aix",
     color: "#1664C0",
-    icon: IconCpu,
+    icon: Eye,
   },
   {
     id: "routing",
-    title: "Eliminate the guesswork",
+    title: "Route each workload to the right model automatically",
     body: "AIX scores every request live on cost, latency, quality, and compliance. The best-fit model wins automatically.",
     href: "/platform/aix",
     color: "#6954D4",
-    icon: IconGitBranch,
+    icon: BranchingPathsUp,
   },
   {
-    id: "guardrails",
-    title: "Keep AI outputs in check",
-    body: "Policy guardrails enforced at the gateway level. Content filters, PII redaction, and budget caps run before a response returns.",
+    id: "optimization",
+    title: "Catch oversized models, wasteful prompts, and duplicate subscriptions",
+    body: "Find the oversized model, the wasteful prompt, the subscription you're paying for twice. See the saving before you commit.",
     href: "/platform/aix",
     color: "#0E9E7A",
-    icon: IconShield,
+    icon: Shield,
   },
   {
-    id: "prompts",
-    title: "No need to hard-code prompts",
-    body: "Version, test, and deploy prompts from a central registry. Roll back in one click. No redeploys.",
+    id: "unit-economics",
+    title: "Cost per request, per feature, per tenant",
+    body: "AIX gives AI its own unit economics instead of numbers borrowed from infrastructure. Every run lands against a team, a feature, and a use case, so “is this worth it?” has an answer you can defend.",
     href: "/platform/aix",
-    color: "#D97706",
-    icon: IconEye,
+    color: "#1664C0",
+    icon: Cpu,
   },
   {
-    id: "agents",
-    title: "Production-ready agent workflows",
-    body: "Orchestrate multi-step AI agents with full observability, cost attribution, and audit trails on every run.",
+    id: "no-code-change",
+    title: "No code change when prices or providers move",
+    body: "Every route is scored live on cost, latency, quality, and compliance. When prices shift or a provider goes down, AIX reroutes automatically.",
     href: "/platform/aix",
     color: "#E05A2B",
-    icon: IconBolt,
+    icon: Bolt,
   },
 ];
 
@@ -95,7 +95,7 @@ function ModelCatalog({ activeColor }: { activeColor: string }) {
             {/* Name + cost */}
             <div className="flex items-center gap-2 mt-1">
               <span className="font-semibold text-cv-ink text-[13px]">{p.name}</span>
-              <span className="rounded-full border border-cv-line px-1.5 py-0.5 text-[10px] text-cv-muted">{p.cost}</span>
+              <span className="rounded-full border border-cv-blue/30 bg-cv-blue/10 px-1.5 py-0.5 text-[10px] text-cv-muted">{p.cost}</span>
             </div>
 
             {/* Desc */}
@@ -136,7 +136,7 @@ export function AixOrchestration() {
 
         {/* Section heading */}
         <h2 className="cv-h2 text-cv-ink mb-12 max-w-2xl">
-          End-to-end AI Orchestration
+          Enterprise AI is fragmented. AIX makes it one system.
         </h2>
 
         <div
@@ -166,7 +166,7 @@ export function AixOrchestration() {
                         className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-[#1664C0] hover:text-[#0e4fa0] dark:text-[#7CB8F8] dark:hover:text-[#A9C8F8] transition-colors"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        Learn More <IconArrowRight size={12} stroke={1} />
+                        Learn More <ArrowRight weight="Linear" size={12} />
                       </Link>
                     </div>
 

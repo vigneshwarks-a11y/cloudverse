@@ -1,16 +1,9 @@
 import type { Metadata } from "next";
+import type { ComponentType } from "react";
 import Link from "next/link";
-import {
-  IconCompass,
-  IconGauge,
-  IconShieldCheck,
-  IconSparkles,
-  IconPackage,
-  IconDatabase,
-  IconReceipt,
-  IconArrowRight,
-  type Icon as TablerIcon,
-} from "@tabler/icons-react";
+import { ArrowRight, Bill, Box, Compass, Database, MagicStick2, ShieldCheck, SpeedometerMax, type IconProps } from "@solar-icons/react";
+
+type Icon = ComponentType<IconProps>;
 import { CTABand } from "@/components/CTABand";
 import { DEMO_URL, PRODUCT_URLS } from "@/lib/links";
 
@@ -26,45 +19,45 @@ export const metadata: Metadata = {
   },
 };
 
-const VALUES: { title: string; desc: string; icon: TablerIcon }[] = [
+const VALUES: { title: string; desc: string; icon: Icon }[] = [
   {
     title: "Engineering-led FinOps",
     desc: "Cost decisions belong where the code is written, not weeks later in a spreadsheet.",
-    icon: IconCompass,
+    icon: Compass,
   },
   {
     title: "Decision-time visibility",
     desc: "Surface the right signal at the right moment. before resources are provisioned, not after.",
-    icon: IconGauge,
+    icon: SpeedometerMax,
   },
   {
     title: "Trust by default",
     desc: "Enterprise-grade security, role-based access, and full audit history on every action.",
-    icon: IconShieldCheck,
+    icon: ShieldCheck,
   },
   {
     title: "Automation over toil",
     desc: "Turn repeat optimizations into policies so teams stay fast without leaking spend.",
-    icon: IconSparkles,
+    icon: MagicStick2,
   },
 ];
 
-const PRODUCTS: { name: string; tagline: string; icon: TablerIcon; href: string }[] = [
-  { name: "AIX", tagline: "Catch cloud cost mistakes before they hit production.", icon: IconSparkles, href: PRODUCT_URLS.aix },
-  { name: "DevX", tagline: "Cut AI costs without breaking latency or quality.", icon: IconPackage, href: PRODUCT_URLS.devx },
-  { name: "DataX", tagline: "Workload-level visibility and control for analytics platforms.", icon: IconDatabase, href: PRODUCT_URLS.datax },
-  { name: "CloudBillOps", tagline: "Unified billing, allocation, and chargeback across clouds.", icon: IconReceipt, href: PRODUCT_URLS.billops },
+const PRODUCTS: { name: string; tagline: string; icon: Icon; href: string }[] = [
+  { name: "AIX", tagline: "Catch cloud cost mistakes before they hit production.", icon: MagicStick2, href: PRODUCT_URLS.aix },
+  { name: "DevX", tagline: "Cut AI costs without breaking latency or quality.", icon: Box, href: PRODUCT_URLS.devx },
+  { name: "DataX", tagline: "Workload-level visibility and control for analytics platforms.", icon: Database, href: PRODUCT_URLS.datax },
+  { name: "CloudBillOps", tagline: "Unified billing, allocation, and chargeback across clouds.", icon: Bill, href: PRODUCT_URLS.billops },
 ];
 
 export default function Page() {
   return (
     <>
       {/* Hero */}
-      <section className="cv-hero-bg pt-[140px] pb-16 lg:pt-[160px] lg:pb-20 relative">
+      <section className="cv-hero-bg pt-[240px] pb-16 lg:pt-[240px] lg:pb-20 relative">
         <div className="cv-container relative z-10 text-center">
           <span className="cv-label inline-block mb-4">About CloudVerse™</span>
           <h1 className="cv-h1 text-cv-ink max-w-4xl mx-auto">
-            Building the future of cloud financial management
+            Building the Future of Cloud Financial Management
           </h1>
           <p className="cv-body-lg mt-6 text-cv-ink/75 max-w-2xl mx-auto">
             We're the compute economics platform for the AI era. bringing real-time visibility,
@@ -146,7 +139,7 @@ export default function Page() {
                   data-testid={`value-card-${idx}`}
                 >
                   <div className="w-10 h-10 rounded-xl bg-cv-blue/10 flex items-center justify-center mb-4">
-                    <Icon className="w-5 h-5 text-cv-blue" />
+                    <Icon weight="Linear" className="w-5 h-5 text-cv-blue" />
                   </div>
                   <h3 className="text-lg font-semibold text-cv-ink mb-2">{v.title}</h3>
                   <p className="text-cv-muted leading-relaxed">{v.desc}</p>
@@ -183,14 +176,14 @@ export default function Page() {
                   data-testid={`product-summary-${idx}`}
                 >
                   <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cv-blue/20 to-cv-purple/20 flex items-center justify-center mb-4">
-                    <Icon className="w-5 h-5 text-cv-blue" />
+                    <Icon weight="Linear" className="w-5 h-5 text-cv-blue" />
                   </div>
                   <h3 className="text-lg font-semibold text-cv-ink mb-2 group-hover:text-cv-blue transition-colors">
                     {p.name}
                   </h3>
                   <p className="text-cv-muted text-sm leading-relaxed mb-3">{p.tagline}</p>
                   <span className="inline-flex items-center gap-1 text-xs font-medium text-cv-blue group-hover:gap-2 transition-all">
-                    Learn more <IconArrowRight size={12} stroke={1} />
+                    Learn more <ArrowRight weight="Linear" size={12} />
                   </span>
                 </a>
               );
@@ -218,7 +211,7 @@ export default function Page() {
               className="cv-btn-primary"
               data-testid="link-book-demo-about"
             >
-              Book a demo <IconArrowRight size={16} stroke={1} />
+              Book a demo <ArrowRight weight="Linear" size={16} />
             </Link>
           </div>
         </div>

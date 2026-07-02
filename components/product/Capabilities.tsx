@@ -1,6 +1,9 @@
-import { Icon as TablerIcon } from "@tabler/icons-react";
+import type { IconProps } from "@solar-icons/react";
+import type { ComponentType } from "react";
 
-export type Capability = { icon: TablerIcon; title: string; desc: string };
+type Icon = ComponentType<IconProps>;
+
+export type Capability = { icon: Icon; title: string; desc: string };
 
 export function Capabilities({
   label,
@@ -29,7 +32,7 @@ export function Capabilities({
                   className="w-10 h-10 rounded-lg flex items-center justify-center mb-4"
                   style={{ background: `${color}1A`, color }}
                 >
-                  <Icon size={20} stroke={1} />
+                  <Icon size={20} weight="Linear" />
                 </div>
                 <div className="font-display font-semibold text-cv-ink text-lg">{c.title}</div>
                 <p className="text-cv-ink/65 text-sm mt-2 leading-relaxed">{c.desc}</p>

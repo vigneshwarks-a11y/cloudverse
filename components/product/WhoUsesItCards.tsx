@@ -1,14 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { IconAdjustmentsHorizontal, IconCode, IconFileText, IconLayoutGrid, Icon as TablerIcon } from "@tabler/icons-react";
+import { useEffect, useRef, useState, type ComponentType } from "react";
+import { Code, FileText, Tuning2, Widget2, type IconProps } from "@solar-icons/react";
+
+type Icon = ComponentType<IconProps>;
 
 const BLUE = "#007CFF";
 
-const ICONS: Record<string, TablerIcon> = {
-  "FinOps Manager": IconAdjustmentsHorizontal,
-  "Cloud Engineer": IconCode,
-  "CFO / VP Finance": IconFileText,
+const ICONS: Record<string, Icon> = {
+  "FinOps Manager": Tuning2,
+  "Cloud Engineer": Code,
+  "CFO / VP Finance": FileText,
 };
 
 export type WhoUsesItItem = [title: string, desc: string];
@@ -48,18 +50,18 @@ export function WhoUsesItCards({ items }: { items: WhoUsesItItem[] }) {
   return (
     <div ref={ref} className="grid auto-rows-fr gap-5 md:grid-cols-3">
       {items.map(([t, b], i) => {
-        const Icon = ICONS[t] ?? IconLayoutGrid;
+        const Icon = ICONS[t] ?? Widget2;
         return (
           <div key={t} style={rise(i)}>
             <div
-              className="flex h-full flex-col rounded-xl border bg-cv-surface p-7"
-              style={{ borderColor: `${BLUE}66` }}
+              className="flex h-full flex-col rounded-xl border bg-cv-surface dark:bg-[#0D0D0D] p-7"
+              style={{ borderColor: "rgba(255,255,255,0.10)" }}
             >
               <span
                 className="flex h-11 w-11 items-center justify-center rounded-lg"
                 style={{ background: `${BLUE}1a`, border: `1px solid ${BLUE}40` }}
               >
-                <Icon size={22} stroke={1} style={{ color: BLUE }} />
+                <Icon size={22} weight="Linear" style={{ color: BLUE }} />
               </span>
               <h3 className="font-display font-semibold text-cv-ink mt-5">{t}</h3>
               <p className="text-sm text-cv-ink/75 mt-3 flex-1 leading-relaxed">{b}</p>

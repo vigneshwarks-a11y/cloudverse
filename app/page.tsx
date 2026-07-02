@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { IconArrowRight, IconCheck } from "@tabler/icons-react";
+import { ArrowRight, CheckCircle } from "@solar-icons/react";
 import type { Metadata } from "next";
 import { CustomerLogos } from "@/components/CustomerLogos";
 import { ProductVideo } from "@/components/home/ProductVideo";
@@ -12,6 +12,7 @@ import { AixOrchestration } from "@/components/home/AixOrchestration";
 import { TestimonialsCarousel } from "@/components/home/TestimonialsCarousel";
 import { DEMO_URL } from "@/lib/links";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
+import { GuidesResources } from "@/components/home/GuidesResources";
 
 export const metadata: Metadata = {
   title: "CloudVerse The Control Plane for Enterprise AI",
@@ -118,30 +119,38 @@ export default function HomePage() {
       {/* HERO + VIDEO wrapper shares the same gradient background */}
       <div className="cv-hero-bg">
         {/* HERO */}
-        <section className="pt-[160px] pb-8 lg:pt-[220px] lg:pb-10 relative">
+        <section className="pt-[240px] pb-6 lg:pt-[240px] lg:pb-8 relative">
           <div className="cv-container relative z-10">
             <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
-              {/* Left: headline + CTAs */}
+              {/* Left: eyebrow + headline + CTAs */}
               <div className="flex-1 min-w-0 lg:max-w-xl xl:max-w-2xl">
-                <h1 className="cv-h1 text-cv-ink">
-                  <span className="block whitespace-nowrap">Run your AI like you run</span>
-                  <span className="block text-[#1664C0] dark:text-[#7CB8F8]">the business.</span>
+                <p className="cv-label mb-5">The AI-Native FinOps Platform</p>
+                <h1 className="cv-h1 text-cv-ink max-w-xl">
+                  Every Dollar of Cloud, Data, and AI Spend. Owned.
                 </h1>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-hero-demo">
                     Book a Demo
                   </Link>
-                  <Link href="/platform/aix" className="cv-btn-ghost !text-cv-ink !border-cv-ink/30 hover:!border-cv-ink/60 hover:!bg-cv-ink/10 dark:!text-white dark:!border-white/40 dark:hover:!border-white/70 dark:hover:!bg-white/10" data-testid="link-hero-explore">
-                    See how AIX works
+                  <Link href="/contact" className="cv-btn-ghost !text-cv-ink !border-cv-ink/30 hover:!border-cv-ink/60 hover:!bg-cv-ink/10 dark:!text-white dark:!border-white/40 dark:hover:!border-white/70 dark:hover:!bg-white/10" data-testid="link-hero-audit">
+                    Request a free AI cost audit
                   </Link>
                 </div>
               </div>
 
-              {/* Right: description + sub-links */}
+              {/* Right: subhead + utility links */}
               <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-sm shrink-0">
-                <p className="cv-body-lg text-cv-ink/70">
-                  Most companies can&apos;t tell you what their AI costs, who&apos;s running it, or whether it&apos;s any good. cloudverse can. AIX puts every model and agent on one record what ran, who owned it, what it cost, what it came back with.
+                <p className="cv-body text-cv-ink/70">
+                  Most teams can see their cloud bill. Few can explain it, and fewer can act on it fast enough to matter. CloudVerse ties every dollar to the decision that caused it, across cloud, data, AI, and engineering.
                 </p>
+                <div className="mt-5 flex flex-col gap-2">
+                  <Link href="/platform/aix" className="text-sm text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-2 transition-colors flex items-center gap-1" data-testid="link-hero-platform">
+                    See the platform <ArrowRight weight="Linear" size={13} />
+                  </Link>
+                  <Link href="/connect" className="text-sm text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-2 transition-colors flex items-center gap-1" data-testid="link-hero-walkthrough">
+                    Walkthrough on your own data, in 30 minutes <ArrowRight weight="Linear" size={13} />
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -151,13 +160,13 @@ export default function HomePage() {
         <ProductVideo />
 
         {/* STATS CARDS */}
-        <section className="pt-8 pb-12 lg:pt-10 lg:pb-16">
+        <section className="pt-6 pb-10 lg:pt-8 lg:pb-12">
         <div className="cv-container">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             {[
-              { v: "40–90%", label: "less AI spend on production" },
-              { v: "$738,983", label: "recovered by one customer" },
-              { v: "10–100×", label: "cost gap from the wrong model" },
+              { v: "$739K+", label: "Annualized cloud savings at one customer" },
+              { v: "40–90%", label: "AI cost cut across production workloads" },
+              { v: "96.8%", label: "Lower inference cost than a hardcoded model setup" },
             ].map((s) => (
               <div
                 key={s.label}
@@ -187,6 +196,9 @@ export default function HomePage() {
       {/* TESTIMONIALS */}
       <TestimonialsCarousel />
 
+      {/* GUIDES & RESOURCES */}
+      <GuidesResources />
+
       {/* INTEGRATIONS */}
       <section className="cv-section bg-cv-surface relative overflow-hidden">
         {/* Subtle dot texture */}
@@ -209,7 +221,9 @@ export default function HomePage() {
 
         <div className="cv-container relative z-10 flex flex-col items-center text-center">
           {/* Eyebrow */}
-          <div className="cv-label mb-4 text-cv-muted">Integrations</div>
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 dark:bg-[#7CB8F8]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8] mb-4">
+            Integrations
+          </span>
 
           {/* Heading */}
           <h2 className="cv-h2 text-cv-ink max-w-2xl">
@@ -221,24 +235,25 @@ export default function HomePage() {
             {INTEGRATIONS_LOGOS.map((l) => (
               <div
                 key={l.name}
-                className="group flex items-center gap-4 rounded-xl border border-cv-line bg-cv-card px-5 py-4 text-left transition-colors hover:border-cv-line/80 hover:bg-cv-ink/[0.06] cursor-default"
+                className="group relative flex items-center gap-4 rounded-xl border border-cv-line/40 bg-cv-card dark:bg-black px-5 py-4 text-left transition-colors hover:border-cv-line/60 cursor-default"
                 data-testid={`integration-${l.name.toLowerCase().replace(/\s+/g, "-")}`}
               >
+                <span className="pointer-events-none absolute inset-0 rounded-xl bg-cv-ink/[0.06] opacity-0 transition-opacity group-hover:opacity-100" />
                 <img
                   src={l.src}
                   alt=""
                   aria-hidden
-                  className="h-8 w-8 shrink-0 object-contain"
+                  className="relative h-8 w-8 shrink-0 object-contain"
                   loading="lazy"
                 />
-                <span className="text-sm font-medium text-cv-ink/85 truncate">{l.name}</span>
+                <span className="relative text-sm font-medium text-cv-ink/85 truncate">{l.name}</span>
               </div>
             ))}
           </div>
 
           {/* Trust badge */}
-          <div className="mt-10 inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-cv-line bg-cv-card text-sm text-cv-ink/70">
-            <IconCheck size={13} stroke={1.5} className="text-cv-teal shrink-0" />
+          <div className="mt-10 inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-cv-blue/40 bg-cv-blue/10 text-sm text-cv-ink/70">
+            <CheckCircle weight="Linear" size={13} className="text-cv-teal shrink-0" />
             Read-only by default. Automation is opt-in, scoped, and logged.
           </div>
 
@@ -249,7 +264,7 @@ export default function HomePage() {
               className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-cv-line text-sm font-medium text-cv-ink hover:bg-cv-ink/[0.06] hover:border-cv-line/80 transition-colors"
               data-testid="link-integrations"
             >
-              View all integrations <IconArrowRight size={15} stroke={1} />
+              View all integrations <ArrowRight weight="Linear" size={15} />
             </Link>
           </div>
         </div>

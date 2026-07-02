@@ -37,8 +37,7 @@ function Block({
 function Card({ uc }: { uc: UseCase }) {
   return (
     <div
-      className="relative flex h-full flex-col overflow-hidden rounded-xl border bg-cv-surface p-7 sm:p-8"
-      style={{ borderColor: `${BLUE}66` }}
+      className="relative flex h-full flex-col overflow-hidden rounded-xl border border-cv-line/40 bg-cv-surface dark:bg-[#0D0D0D] p-7 sm:p-8"
     >
       {/* soft ambient blue glow (identical across all cards) */}
       <div
@@ -102,7 +101,7 @@ export default function UseCaseBento({ useCases }: { useCases: UseCase[] }) {
   });
 
   return (
-    <div ref={ref} className="grid auto-rows-fr gap-6 md:grid-cols-2">
+    <div ref={ref} className="grid auto-rows-fr gap-3 md:grid-cols-2">
       {useCases.map((uc, i) => (
         <div key={uc.n} style={rise(i)}>
           <Card uc={uc} />
