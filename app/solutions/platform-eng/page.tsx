@@ -1,13 +1,30 @@
 import Link from "next/link";
-import { ArrowRight } from "@solar-icons/react";
+import { ArrowRight, Code2 } from "@solar-icons/react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import { PlatformCards } from "@/components/solution/PlatformCards";
 import { PlatformShips } from "@/components/solution/PlatformShips";
+import { SolutionHero } from "@/components/solution/SolutionHero";
+import { FaqBlock } from "@/components/FaqBlock";
+import { ClosingCTA } from "@/components/home/ClosingCTA";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "For Platform Engineering — Cost Gates Engineers Actually Want to Use | CloudVerse",
   description: "PR-level cost diffs, policy-as-code, and right-sizing recommendations in your IaC pipeline. Quantified savings rolled into FinOps.",
+  keywords: ["platform engineering FinOps", "IaC cost management", "policy-as-code cost", "infrastructure right-sizing", "cloud cost gates", "PR cost diff"],
+  alternates: { canonical: "/solutions/platform-eng" },
+  openGraph: {
+    title: "For Platform Engineering — Cost Gates Engineers Actually Want to Use",
+    description: "PR-level cost diffs, policy-as-code, and right-sizing recommendations in your IaC pipeline.",
+    url: "/solutions/platform-eng",
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse for Platform Engineering" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "For Platform Engineering — Cost Gates Engineers Want to Use",
+    description: "PR-level cost diffs, policy-as-code, and right-sizing recommendations in your IaC pipeline.",
+  },
 };
 
 const STATS = [
@@ -27,33 +44,34 @@ const FAQ = [
 export default function PlatformEngPage() {
   return (
     <>
-      <section className="cv-hero-bg pt-[240px] pb-16 lg:pt-[240px] lg:pb-24 relative">
-        <div className="cv-container relative z-10 max-w-4xl">
-          <div className="text-xs uppercase tracking-widest text-cv-muted mb-3">For Platform Engineering</div>
-          <h1 className="cv-h1 text-cv-ink">Cost Gates Engineers Actually Want to Use</h1>
-          <p className="cv-body mt-6 text-cv-ink/75">
-            PR-level cost diffs, policy-as-code, and right-sizing recommendations in your IaC pipeline. Quantified savings rolled into FinOps.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
-            <Link href="/platform/devx" className="cv-btn-ghost">Explore the Platform</Link>
+      <SolutionHero
+        eyebrow="For Platform Engineering"
+        h1="Cost Gates Engineers Actually Want to Use"
+        sub="PR-level cost diffs, policy-as-code, and right-sizing recommendations in your IaC pipeline. Quantified savings rolled into FinOps."
+        accent="#0E9E7A"
+        icon={Code2}
+        platformHref="/platform/devx"
+        badges={["PR-Level Diffs", "Policy-as-Code", "CI Native", "Cost Gates", "Shift-Left", "7+ IaC Formats"]}
+      />
+
+      <section className="pt-8 pb-12 lg:pt-10 lg:pb-16">
+        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
+            {STATS.map((s) => (
+              <div
+                key={s.l}
+                className="flex flex-col items-center justify-center rounded-2xl border border-cv-ink/10 dark:border-white/10 px-6 py-10 text-center bg-white/40 dark:bg-[#0D0D0D] backdrop-blur-sm"
+              >
+                <div className="font-mono text-2xl lg:text-3xl font-bold text-cv-ink tracking-tight">{s.v}</div>
+                <p className="mt-3 text-sm font-medium text-cv-muted tracking-wide max-w-[160px] line-clamp-2">{s.l}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="border-y border-cv-line bg-cv-surface2/40">
-        <div className="cv-container py-8 grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {STATS.map((s) => (
-            <div key={s.l}>
-              <div className="text-2xl lg:text-3xl font-display font-semibold text-cv-ink">{s.v}</div>
-              <div className="text-sm text-cv-muted mt-1">{s.l}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       <section className="cv-section">
-        <div className="cv-container max-w-4xl">
+        <div className="cv-container">
           <h2 className="cv-h2 text-cv-ink">The situation platform engineering teams are in</h2>
           <p className="cv-body-lg text-cv-ink/80 mt-6">
             You have tried sending cost reports to engineering teams. The response is silence or confusion. The numbers do not connect to anything engineers can act on at the moment they are making decisions.
@@ -67,11 +85,9 @@ export default function PlatformEngPage() {
         </div>
       </section>
 
-      <section className="cv-section bg-cv-surface2">
+      <section className="cv-section bg-cv-surface dark:bg-black">
         <div className="cv-container">
-          <div className="max-w-3xl mb-10">
-            <h2 className="cv-h2 text-cv-ink">What platform teams ship with cloudverse</h2>
-          </div>
+          <h2 className="cv-h2 text-cv-ink mb-10">What platform teams ship with cloudverse</h2>
           <PlatformShips
             items={[
               ["PR cost diff", "Every infra PR gets an inline cost impact estimate before reviewers see it. Advisory or required, your choice. The governance happens where the work happens."],
@@ -96,31 +112,17 @@ export default function PlatformEngPage() {
         </div>
       </section>
 
-      <section className="cv-section bg-cv-surface2">
-        <div className="cv-container max-w-3xl">
-          <h2 className="cv-h2 text-cv-ink mb-8">Platform engineering questions answered</h2>
-          <div className="space-y-4">
-            {FAQ.map(([q, a]) => (
-              <details key={q} className="rounded-xl border border-cv-line bg-cv-surface p-5">
-                <summary className="cursor-pointer font-medium text-cv-ink">{q}</summary>
-                <p className="text-cv-ink/75 mt-3 leading-relaxed">{a}</p>
-              </details>
-            ))}
+      <section className="cv-section">
+        <div className="cv-container">
+          <div className="text-center mb-10">
+            <h2 className="cv-h2 text-cv-ink">Platform Engineering Questions Answered</h2>
           </div>
+          <FaqBlock items={FAQ.map(([q, a]) => ({ q, a }))} accent="#1664C0" />
         </div>
       </section>
 
-      <section className="cv-section">
-        <div className="cv-container">
-          <div className="rounded-3xl border border-cv-line bg-cv-surface2 p-10 lg:p-16 text-center">
-            <h2 className="cv-h2 text-cv-ink max-w-3xl mx-auto">See DevX catch a cost regression in your repo.</h2>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
-              <Link href="/contact" className="cv-btn-ghost">Talk to Sales</Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ClosingCTA />
+      <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Solutions", href: "/solutions" }, { name: "Platform Engineering", href: "/solutions/platform-eng" }]} />
     </>
   );
 }

@@ -5,8 +5,8 @@ export function Footer() {
   return (
     <footer className="bg-cv-surface border-t border-cv-line pt-14 pb-8" data-testid="site-footer">
       <div className="cv-container">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
-          <div className="col-span-2 md:col-span-2">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 sm:gap-8">
+          <div className="col-span-2 sm:col-span-3 md:col-span-2">
             <div className="font-display font-bold text-cv-ink text-lg">
               CloudVerse<sup className="text-[10px] ml-0.5">™</sup>
             </div>

@@ -8,7 +8,7 @@ export function Lifecycle({ color, stages }: { color: string; stages: [Lifecycle
           <div className="cv-label mb-3" style={{ color }}>Lifecycle</div>
           <h2 className="cv-h2 text-cv-ink">Inform. Optimize. Operate.</h2>
         </div>
-        <div className="grid md:grid-cols-3 gap-0 border-t border-b border-cv-line/10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-b border-cv-line/10">
           {stages.map((s, i) => (
             <div
               key={s.title}

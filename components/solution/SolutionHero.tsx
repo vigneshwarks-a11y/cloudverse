@@ -1,44 +1,101 @@
 import Link from "next/link";
-import { ArrowRight } from "@solar-icons/react";
+import { ArrowRight, CheckCircle } from "@solar-icons/react";
+import type { ComponentType } from "react";
+import type { IconProps } from "@solar-icons/react";
 import { DEMO_URL } from "@/lib/links";
+
+type Icon = ComponentType<IconProps>;
 
 export function SolutionHero({
   eyebrow,
   h1,
   sub,
-  proof,
+  accent,
+  icon: Icon,
+  badges,
+  platformHref,
+  primaryLabel = "Book a Demo",
+  primaryHref = DEMO_URL,
+  secondaryLabel = "Explore the Platform",
 }: {
   eyebrow: string;
   h1: React.ReactNode;
   sub: string;
-  proof?: { value: string; label: string; cite?: string }[];
+  accent: string;
+  icon: Icon;
+  badges: string[];
+  platformHref: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
 }) {
   return (
-    <section className="cv-hero-bg pt-[140px] pb-16 lg:pt-[160px] lg:pb-20 relative">
+    <section className="cv-hero-bg pt-[120px] sm:pt-[160px] pb-16 lg:pt-[240px] lg:pb-20 relative overflow-hidden">
       <div className="cv-container relative z-10">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1664C0]/15 dark:bg-[#7CB8F8]/15 text-[#1664C0] dark:text-[#7CB8F8] text-xs font-semibold uppercase tracking-[0.14em]">
-          <span className="w-1.5 h-1.5 rounded-full bg-cv-blue-light animate-pulse-dot" />
-          {eyebrow}
-        </div>
-        <h1 className="cv-h1 mt-5 text-cv-ink max-w-4xl">{h1}</h1>
-        <p className="cv-body mt-6 text-cv-ink/75 max-w-2xl">{sub}</p>
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link href={DEMO_URL} className="cv-btn-primary">
-            Book a Demo <ArrowRight weight="Linear" size={16} />
-          </Link>
-          <Link href="/platform/finops" className="cv-btn-ghost">
-            Explore the platform
-          </Link>
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-8 items-center">
+          {/* Left: eyebrow + headline + copy + CTAs */}
+          <div>
+            <span className="block text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8]">
+              {eyebrow}
+            </span>
+            <h1 className="mt-6 font-display font-extrabold tracking-tight text-cv-ink" style={{ fontSize: "clamp(34px, 4.6vw, 64px)", lineHeight: 1.05 }}>
+              {h1}
+            </h1>
+            <p className="cv-body mt-6 text-cv-muted max-w-lg">{sub}</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href={primaryHref} className="cv-btn-primary">
+                <span>{primaryLabel}</span> <ArrowRight weight="Linear" size={16} />
+              </Link>
+              <Link href={platformHref} className="cv-btn-ghost">
+                {secondaryLabel}
+              </Link>
+            </div>
+          </div>
+
+          {/* Right: icon graphic with spinning ring + orbit */}
+          <div className="relative mx-auto aspect-square w-full max-w-[340px]">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 blur-3xl"
+              style={{ background: `radial-gradient(ellipse 70% 70% at 50% 50%, ${accent}40 0%, transparent 70%)` }}
+            />
+            {/* orbit ring */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-[6%] rounded-full border"
+              style={{ borderColor: `${accent}30` }}
+            >
+              <span className="absolute h-2 w-2 rounded-full -top-1 left-[20%]" style={{ background: accent, boxShadow: `0 0 10px ${accent}` }} />
+              <span className="absolute h-1.5 w-1.5 rounded-full -bottom-0.5 right-[12%]" style={{ background: accent, boxShadow: `0 0 8px ${accent}` }} />
+            </div>
+            {/* spinning conic ring */}
+            <div className="absolute inset-[16%] rounded-[32%] p-[2px]">
+              <div
+                aria-hidden
+                className="absolute inset-0 rounded-[32%]"
+                style={{
+                  background: `conic-gradient(from var(--cv-ring-angle), ${accent}00, ${accent}, ${accent}00 60%)`,
+                  animation: "cv-ring-spin 6s linear infinite",
+                }}
+              />
+              <div className="relative flex h-full w-full items-center justify-center rounded-[30%] border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D]">
+                <Icon size={64} weight="Linear" style={{ color: accent }} />
+              </div>
+            </div>
+          </div>
         </div>
 
-        {proof && proof.length > 0 && (
-          <div className="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {proof.map((p) => (
-              <div key={p.label} className="rounded-xl border border-cv-line/10 bg-cv-ink/[0.03] p-5">
-                <div className="font-display font-bold text-cv-ink text-2xl tabular-nums">{p.value}</div>
-                <div className="text-cv-ink/65 text-[12px] uppercase tracking-wider mt-2">{p.label}</div>
-                {p.cite && <div className="text-cv-ink/40 text-[11px] mt-1.5">{p.cite}</div>}
-              </div>
+        {/* Feature badges */}
+        {badges.length > 0 && (
+          <div className="mt-12 flex flex-wrap gap-2.5">
+            {badges.map((b) => (
+              <span
+                key={b}
+                className="inline-flex items-center gap-1.5 rounded-full border border-cv-line/40 bg-cv-ink/[0.03] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-cv-ink/70"
+              >
+                <CheckCircle weight="Linear" size={12} style={{ color: accent }} />
+                {b}
+              </span>
             ))}
           </div>
         )}

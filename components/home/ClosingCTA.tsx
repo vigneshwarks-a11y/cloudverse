@@ -37,8 +37,8 @@ export function ClosingCTA() {
       >
         {/* Headline */}
         <h2 className="text-cv-ink font-bold tracking-tight" style={{ fontSize: "clamp(32px, 4vw, 52px)", lineHeight: 1.1 }}>
-          <span className="whitespace-nowrap">Your Cloud and AI Spend is Growing.</span>{" "}
-          <span className="whitespace-nowrap">Find Out Exactly Where.</span>
+          <span className="lg:whitespace-nowrap">Your Cloud and AI Spend is Growing.</span>{" "}
+          <span className="lg:whitespace-nowrap">Find Out Exactly Where.</span>
         </h2>
 
         {/* Buttons */}

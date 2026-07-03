@@ -48,7 +48,7 @@ export default function DevxPrExample({ diff }: { diff: string }) {
           </div>
 
           {/* Equal-height left/right split */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             {/* LEFT: code window with Mac chrome + blue glowing border */}
             <div className="h-full" style={rise(1)}>
               <div className="relative h-full rounded-2xl p-[1.5px]">

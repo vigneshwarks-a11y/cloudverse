@@ -240,9 +240,9 @@ export default function AixUnlocks() {
           {CARDS.map(({ title, body, visual, span }, i) => (
             <div
               key={title}
-              className={`${span} flex flex-col rounded-xl border bg-cv-surface p-7 md:p-8 transition-all duration-700 ease-out`}
+              className={`${span} flex flex-col rounded-xl border border-cv-line p-7 md:p-8 transition-all duration-700 ease-out`}
               style={{
-                borderColor: `${BLUE}80`,
+                background: "#0a0a0a",
                 opacity: visible || reduceMotion ? 1 : 0,
                 transform: reduceMotion || visible ? "translateY(0)" : "translateY(24px)",
                 transitionDelay: reduceMotion ? "0ms" : `${i * 100}ms`,

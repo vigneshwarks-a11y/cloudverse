@@ -7,6 +7,13 @@ export const metadata: Metadata = {
   title: "Contact CloudVerse",
   description: "Talk to sales, support, partnerships, or press. We typically respond within one business day.",
   alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact CloudVerse",
+    description: "Talk to sales, support, partnerships, or press. We typically respond within one business day.",
+    url: "/contact",
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "Contact CloudVerse" }],
+  },
+  twitter: { card: "summary_large_image", title: "Contact CloudVerse", description: "Talk to sales, support, or partnerships. We typically respond within one business day." },
 };
 
 const CHANNELS = [
@@ -19,7 +26,7 @@ const CHANNELS = [
 export default function Page() {
   return (
     <>
-      <section className="cv-hero-bg pt-[240px] pb-12 lg:pt-[240px] lg:pb-16 relative">
+      <section className="cv-hero-bg pt-[120px] sm:pt-[160px] pb-12 lg:pt-[240px] lg:pb-16 relative">
         <div className="cv-container relative z-10">
           <div className="cv-label mb-4">Contact</div>
           <h1 className="cv-h1 text-cv-ink max-w-3xl">Talk to a Human. We Typically Respond Within One Business Day.</h1>

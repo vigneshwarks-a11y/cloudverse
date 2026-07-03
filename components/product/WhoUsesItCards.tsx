@@ -48,7 +48,7 @@ export function WhoUsesItCards({ items }: { items: WhoUsesItItem[] }) {
   });
 
   return (
-    <div ref={ref} className="grid auto-rows-fr gap-5 md:grid-cols-3">
+    <div ref={ref} className="grid auto-rows-fr gap-4 sm:gap-5 sm:grid-cols-2 md:grid-cols-3">
       {items.map(([t, b], i) => {
         const Icon = ICONS[t] ?? Widget2;
         return (

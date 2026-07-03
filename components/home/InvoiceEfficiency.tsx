@@ -88,7 +88,7 @@ export function InvoiceEfficiency({ compact = false }: { compact?: boolean }) {
   const fmt = (n: number, c: string) =>
     new Intl.NumberFormat("en-US", { style: "currency", currency: c || "USD", maximumFractionDigits: 0 }).format(n);
 
-  const input = "w-full bg-cv-surface2 border border-cv-line rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-cv-blue/40 focus:border-cv-blue transition-all text-cv-ink placeholder:text-cv-muted/60";
+  const input = "w-full bg-cv-surface2 dark:bg-[#0D0D0D] border border-cv-line rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-cv-blue/40 focus:border-cv-blue transition-all text-cv-ink placeholder:text-cv-muted/60";
 
   return (
     <section className={`${compact ? "py-12 sm:py-16" : "py-14 sm:py-20 lg:py-24"} bg-cv-surface`} data-testid="section-invoice-efficiency">
@@ -148,7 +148,7 @@ export function InvoiceEfficiency({ compact = false }: { compact?: boolean }) {
             )}
 
             {state === "gate" && (
-              <div className="border-2 border-cv-blue/30 rounded-2xl p-6 bg-cv-surface2 text-left" data-testid="gate-form">
+              <div className="border-2 border-cv-blue/30 rounded-2xl p-6 bg-cv-surface2 dark:bg-[#0D0D0D] text-left" data-testid="gate-form">
                 <div className="text-center mb-5">
                   <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-emerald-500/15 flex items-center justify-center">
                     <CheckCircle weight="Linear" className="w-6 h-6 text-emerald-500" />
@@ -312,7 +312,7 @@ function ResultsModal({
             <Block title="Savings opportunities">
               <div className="space-y-3">
                 {result.savingsOpportunities.map((o) => (
-                  <div key={o.service} className="rounded-lg border border-cv-line bg-cv-surface2 p-4">
+                  <div key={o.service} className="rounded-lg border border-cv-line bg-cv-surface2 dark:bg-[#0D0D0D] p-4">
                     <div className="flex justify-between gap-3 mb-2">
                       <div className="text-cv-ink font-medium">{o.service}</div>
                       <div className="text-[#1664C0] dark:text-[#7CB8F8] tabular-nums font-medium text-sm shrink-0">
@@ -353,7 +353,7 @@ function ResultsModal({
 
 function Stat({ label, value, sub, big = false }: { label: string; value: string; sub?: string; big?: boolean }) {
   return (
-    <div className="rounded-xl border border-cv-line bg-cv-surface2 p-4 sm:p-5">
+    <div className="rounded-xl border border-cv-line bg-cv-surface2 dark:bg-[#0D0D0D] p-4 sm:p-5">
       <p className="text-[10px] uppercase tracking-[0.25em] text-cv-muted mb-1.5">{label}</p>
       <p className={`${big ? "text-3xl sm:text-4xl" : "text-xl"} font-semibold text-cv-ink tabular-nums`}>{value}</p>
       {sub && <p className="text-xs text-cv-muted mt-1">{sub}</p>}

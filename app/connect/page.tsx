@@ -3,10 +3,17 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle } from "@solar-icons/react";
 
 export const metadata: Metadata = {
-  title: "Get a Demo",
+  title: "Book a Demo — CloudVerse",
   description:
     "Connect your first cloud account in under 30 minutes. Most teams have their first non-obvious finding the same day.",
   alternates: { canonical: "/connect" },
+  openGraph: {
+    title: "Book a CloudVerse Demo",
+    description: "Connect your first cloud account in under 30 minutes. Most teams find something non-obvious the same day.",
+    url: "/connect",
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "Book a CloudVerse Demo" }],
+  },
+  twitter: { card: "summary_large_image", title: "Book a CloudVerse Demo", description: "Connect your first cloud account in under 30 minutes. Non-obvious findings the same day." },
 };
 
 const HUBSPOT_URL = "https://meetings.hubspot.com";
@@ -20,7 +27,7 @@ const PROOF = [
 
 export default function ConnectPage() {
   return (
-    <section className="cv-hero-bg pt-[240px] pb-24 min-h-[80vh]">
+    <section className="cv-hero-bg pt-[120px] sm:pt-[160px] lg:pt-[240px] pb-24 min-h-[80vh]">
       <div className="cv-container relative z-10">
         <div className="grid lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-6">

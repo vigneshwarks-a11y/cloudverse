@@ -175,14 +175,14 @@ export function DataXUnlocks({ items }: { items: UnlockItem[] }) {
   });
 
   return (
-    <div ref={ref} className="grid auto-rows-fr gap-5 md:grid-cols-2">
+    <div ref={ref} className="grid auto-rows-fr gap-4 sm:gap-5 sm:grid-cols-2">
       {items.map(([t, b], i) => {
         const Viz = VISUALS[t];
         return (
           <div key={t} style={rise(i)}>
             <div
-              className="flex h-full flex-col rounded-xl border bg-cv-surface p-7"
-              style={{ borderColor: `${BLUE}59` }}
+              className="flex h-full flex-col rounded-xl border border-cv-line p-7"
+              style={{ background: "#0a0a0a" }}
             >
               <h3 className="cv-h3 font-semibold text-cv-ink">{t}</h3>
               <p className="text-cv-ink/75 mt-3 leading-relaxed">{b}</p>

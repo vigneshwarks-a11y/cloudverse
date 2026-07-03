@@ -21,16 +21,18 @@
     --cv-muted:    240 2% 63%;   /* #a1a1a6 */
     --cv-line:     240 5% 26%;   /* #38383a */
     --cv-surface:  0 0% 0%;      /* #000000 — pure black */
-    --cv-surface2: 240 4% 11%;   /* #1c1c1e */
+    --cv-surface2: 0 0% 0%;      /* #000000 — pure black (matches surface) */
     --cv-hero-glow: 211 100% 50% / 0.35;
     --cv-grid:     0 0% 100% / 0.04;
     --cv-card:     240 40% 4%;   /* #070710 — dark card surface */
   }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; color-scheme: light dark; }
 
   a { text-decoration: none; }
   a:hover { text-decoration: none; }
+
+  button, [role="button"] { touch-action: manipulation; }
 
   body {
     @apply bg-cv-surface text-cv-ink font-sans antialiased;
@@ -63,17 +65,20 @@
     font-size: clamp(28px, 3.8vw, 56px);
     line-height: 1.07;
     letter-spacing: -0.02em;
+    text-wrap: balance;
   }
   .cv-h2 {
     @apply font-sans font-semibold tracking-tight;
     font-size: clamp(28px, 3.5vw, 40px);
     line-height: 1.15;
     letter-spacing: -0.02em;
+    text-wrap: balance;
   }
   .cv-h3 {
     @apply font-sans font-semibold tracking-tight;
     font-size: clamp(22px, 2vw, 28px);
     line-height: 1.2;
+    text-wrap: balance;
   }
   .cv-body-lg {
     @apply font-sans;

@@ -21,7 +21,7 @@ export function Outcomes({
           <div className="cv-label mb-3">{label}</div>
           <h2 className="cv-h2 text-cv-ink">{heading}</h2>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {items.map((o) => {
             const Icon = o.icon;
             return (

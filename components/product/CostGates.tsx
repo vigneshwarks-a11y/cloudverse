@@ -154,7 +154,7 @@ export default function CostGates() {
     <section className="cv-section">
       <div className="cv-container">
         <div className="mb-10">
-          <h2 className="cv-h2 text-cv-ink whitespace-nowrap">Cost gates engineers actually want to use.</h2>
+          <h2 className="cv-h2 text-cv-ink lg:whitespace-nowrap">Cost gates engineers actually want to use.</h2>
         </div>
         <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
           {CARDS.map(({ title, body, visual }, i) => (

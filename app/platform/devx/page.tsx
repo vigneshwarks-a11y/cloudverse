@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, CodeSquare, DollarMinimalistic, ShieldCheck, Chart } from "@solar-icons/react";
 import { FaqBlock } from "@/components/FaqBlock";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { PlatformHeroMockup } from "@/components/product/PlatformHeroMockup";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
@@ -13,6 +14,19 @@ export const metadata: Metadata = {
   title: "DevX — Catch Cost Regressions Before They Reach Production | CloudVerse",
   description:
     "Every infrastructure PR gets an inline cost impact comment before reviewers see it. Engineers see what their changes cost at the moment they can still change something.",
+  keywords: ["infrastructure cost review", "PR cost analysis", "cloud cost drift", "FinOps developer tools", "shift-left cost governance", "IaC cost"],
+  alternates: { canonical: "/platform/devx" },
+  openGraph: {
+    title: "DevX — Catch Cost Regressions Before They Reach Production",
+    description: "Every infrastructure PR gets an inline cost impact comment before reviewers see it. Engineers see costs when they can still change something.",
+    url: "/platform/devx",
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse DevX — Developer-First Cost Governance" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DevX — Catch Cost Regressions Before They Reach Production",
+    description: "Every infrastructure PR gets an inline cost impact comment. See costs before they hit production.",
+  },
 };
 
 const ACCENT = "#0E9E7A";
@@ -55,7 +69,7 @@ export default function DevXPage() {
   return (
     <>
       <div className="cv-hero-bg">
-        <section className="pt-[240px] pb-16 lg:pt-[240px] lg:pb-20 relative">
+        <section className="pt-[120px] sm:pt-[160px] pb-16 lg:pt-[240px] lg:pb-20 relative">
           <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
             <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
               <div className="flex-1 min-w-0 lg:max-w-xl xl:max-w-2xl">
@@ -86,10 +100,10 @@ export default function DevXPage() {
             {STATS.map((s) => (
               <div
                 key={s.l}
-                className="flex flex-col items-center justify-center rounded-2xl border border-cv-ink/10 dark:border-white/10 px-6 py-10 text-center bg-white/40 dark:bg-[#0D0D0D] backdrop-blur-sm"
+                className="flex flex-col items-center justify-center rounded-2xl border border-cv-ink/10 dark:border-white/10 px-4 py-8 sm:px-6 sm:py-10 text-center bg-white/40 dark:bg-[#0D0D0D] backdrop-blur-sm min-h-[120px] sm:min-h-[140px]"
               >
-                <div className="font-mono text-2xl lg:text-3xl font-bold text-cv-ink tracking-tight">{s.v}</div>
-                <p className="mt-3 text-sm font-medium text-cv-muted tracking-wide max-w-[160px] line-clamp-2">{s.l}</p>
+                <div className="font-mono text-base sm:text-xl lg:text-3xl font-bold text-cv-ink tracking-tight leading-snug">{s.v}</div>
+                <p className="mt-2 sm:mt-3 text-xs sm:text-sm font-medium text-cv-muted tracking-wide leading-snug">{s.l}</p>
               </div>
             ))}
           </div>
@@ -97,17 +111,19 @@ export default function DevXPage() {
       </section>
 
       <section className="cv-section">
-        <div className="cv-container max-w-4xl">
+        <div className="cv-container">
           <h2 className="cv-h2 text-cv-ink">Infrastructure cost mistakes do not look like mistakes.</h2>
-          <p className="cv-body-lg text-cv-ink/80 mt-6">
-            Infrastructure decisions that cause cost regressions look like correct Terraform. The NAT gateway goes in because someone needed it for one sprint. Nobody removes it. The always-on compute instance gets sized for peak load. Load normalises. The instance stays.
-          </p>
-          <p className="cv-body-lg text-cv-ink/80 mt-4">
-            Cost reports land three weeks after the deployment. The engineer who wrote the change has moved on to four other things. Nobody changes anything.
-          </p>
-          <p className="cv-body-lg text-cv-ink font-medium mt-4">
-            DevX puts a cost estimate on every PR before it merges. Engineers see impact at the moment they still have context on what they built and why.
-          </p>
+          <div className="mt-6 space-y-4">
+            <p className="cv-body-lg text-cv-ink/80">
+              Infrastructure decisions that cause cost regressions look like correct Terraform. The NAT gateway goes in because someone needed it for one sprint. Nobody removes it. The always-on compute instance gets sized for peak load. Load normalises. The instance stays.
+            </p>
+            <p className="cv-body-lg text-cv-ink/80">
+              Cost reports land three weeks after the deployment. The engineer who wrote the change has moved on to four other things. Nobody changes anything.
+            </p>
+            <p className="cv-body-lg text-cv-ink font-medium">
+              DevX puts a cost estimate on every PR before it merges. Engineers see impact at the moment they still have context on what they built and why.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -206,6 +222,7 @@ export default function DevXPage() {
       </section>
 
       <ClosingCTA />
+      <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Platform", href: "/platform/finops" }, { name: "DevX", href: "/platform/devx" }]} />
     </>
   );
 }

@@ -112,7 +112,7 @@ export function BookADemo() {
                 }}
               >
                 <div
-                  className="rounded-full flex items-center justify-center bg-cv-surface border border-cv-line shadow-sm"
+                  className="rounded-full flex items-center justify-center bg-cv-surface dark:bg-[#0D0D0D] border border-cv-line shadow-sm"
                   style={{ width: size, height: size }}
                 >
                   <img

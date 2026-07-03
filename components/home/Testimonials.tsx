@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 type Testimonial = {
   slot: string;
@@ -93,7 +94,7 @@ export function Testimonials() {
           <span className="text-sm text-cv-muted">Trusted by the teams who own the spend.</span>
         </div>
 
-        <div className="flex h-[440px] items-stretch gap-3 lg:h-[480px]">
+        <div className="flex h-[280px] items-stretch gap-3 sm:h-[380px] lg:h-[480px]">
           {TESTIMONIALS.map((t, i) => {
             const isActive = i === active;
             const cardClass = `group relative overflow-hidden rounded-3xl border text-left transition-[flex-grow,flex-basis] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
@@ -136,11 +137,14 @@ export function Testimonials() {
                   />
 
                   {/* Top row: logo + loader */}
-                  <div className="relative flex items-center justify-between p-6 sm:p-8 lg:px-10">
-                    <img
+                  <div className="relative flex items-center justify-between p-4 sm:p-8 lg:px-10">
+                    <Image
                       src="/legacy/logo/whitelogo.svg"
-                      alt="cloudverse"
+                      alt="CloudVerse"
+                      width={120}
+                      height={28}
                       className="h-6 w-auto opacity-90 sm:h-7"
+                      priority={false}
                     />
                     <div
                       className="h-1.5 w-20 overflow-hidden rounded-full bg-cv-ink/15 sm:w-28"
@@ -162,14 +166,14 @@ export function Testimonials() {
                   </div>
 
                   {/* Quote */}
-                  <div className="relative flex flex-1 items-center overflow-hidden px-6 sm:px-8 lg:px-10">
-                    <blockquote className="max-w-3xl font-display text-xl leading-snug text-cv-ink sm:text-2xl lg:text-4xl">
+                  <div className="relative flex flex-1 items-center overflow-hidden px-4 sm:px-8 lg:px-10">
+                    <blockquote className="max-w-3xl font-display text-base leading-snug text-cv-ink sm:text-2xl lg:text-4xl">
                       {t.quote}
                     </blockquote>
                   </div>
 
                   {/* Bottom strip */}
-                  <div className="relative mt-4 flex flex-col gap-4 border-t border-cv-line bg-cv-surface/40 p-5 backdrop-blur-sm sm:flex-row sm:items-center sm:justify-between sm:p-6 lg:px-10">
+                  <div className="relative mt-2 flex flex-col gap-3 border-t border-cv-line bg-cv-surface/40 p-4 backdrop-blur-sm sm:mt-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:p-6 lg:px-10">
                     <div className="flex items-center gap-4">
                       <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#1664C0]/50 bg-[#1664C0]/20 text-sm font-semibold text-[#7C9BFF]">
                         {t.initials}

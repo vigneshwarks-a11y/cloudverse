@@ -72,7 +72,7 @@ function ModelCatalog({ activeColor }: { activeColor: string }) {
       </div>
 
       {/* Cards grid */}
-      <div className="grid grid-cols-3 divide-x divide-y divide-cv-line">
+      <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-x sm:divide-y divide-cv-line">
         {PROVIDERS.map((p, i) => (
           <div
             key={p.name}
@@ -179,7 +179,7 @@ export function AixOrchestration() {
           </div>
 
           {/* Right: mock UI */}
-          <div className="mt-10 lg:mt-0 flex-1 min-w-0">
+          <div className="mt-8 lg:mt-0 flex-1 min-w-0 overflow-hidden">
             <div className="rounded-2xl border border-cv-line bg-cv-card overflow-hidden aspect-[4/3] flex items-center justify-center">
               <span className="text-sm text-cv-muted">Image coming soon</span>
             </div>

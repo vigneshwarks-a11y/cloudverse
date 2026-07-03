@@ -166,14 +166,14 @@ function Drawer({ integration, onClose }: { integration: Integration; onClose: (
         data-testid="drawer-backdrop"
       />
       <aside
-        className="fixed right-0 top-0 bottom-0 w-full sm:w-[480px] bg-cv-surface2 border-l border-cv-line/10 z-50 overflow-y-auto shadow-2xl"
+        className="fixed right-0 top-0 bottom-0 w-full sm:w-[480px] bg-cv-surface2 dark:bg-[#0D0D0D] border-l border-cv-line/10 z-50 overflow-y-auto shadow-2xl"
         role="dialog"
         aria-modal="true"
         aria-label={`${integration.name} integration details`}
         data-testid="drawer-integration"
       >
         {/* Header */}
-        <div className="sticky top-0 bg-cv-surface2/95 backdrop-blur border-b border-cv-line/10 p-5 sm:p-6 flex items-start justify-between gap-4 z-10">
+        <div className="sticky top-0 bg-cv-surface2/95 dark:bg-[#0D0D0D]/95 backdrop-blur border-b border-cv-line/10 p-5 sm:p-6 flex items-start justify-between gap-4 z-10">
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-3 mb-2">
               <IntegrationLogo name={integration.name} logo={integration.logo} size={32} />

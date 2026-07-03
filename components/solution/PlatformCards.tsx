@@ -57,8 +57,7 @@ export function PlatformCards({ items }: { items: PlatformItem[] }) {
           <div key={t} style={rise(i)}>
             <Link
               href={h}
-              className="group flex h-full flex-col rounded-xl border bg-cv-surface p-7 transition-colors hover:border-[#007CFF]"
-              style={{ borderColor: `${BLUE}66` }}
+              className="group flex h-full flex-col rounded-xl border border-cv-line/40 bg-cv-surface dark:bg-[#0D0D0D] p-7 transition-colors hover:border-white/20"
               data-testid={`module-card-${t.toLowerCase().replace(/\s+/g, "-")}`}
             >
               <span

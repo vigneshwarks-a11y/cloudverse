@@ -46,7 +46,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
   return (
     <>
-      <article className="pt-[240px] pb-12 lg:pt-[240px] lg:pb-16">
+      <article className="pt-[120px] sm:pt-[160px] pb-12 lg:pt-[240px] lg:pb-16">
         <div className="cv-container max-w-3xl">
           <Link href="/resources" className="inline-flex items-center gap-1.5 text-sm text-cv-ink/65 hover:text-cv-ink mb-6" data-testid="link-back-resources">
             <ArrowLeft weight="Linear" size={14} /> Resources
@@ -89,7 +89,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                 <Link
                   key={rel.slug}
                   href={`/resources/${rel.slug}`}
-                  className="rounded-xl border border-cv-line bg-cv-surface p-5 hover:border-cv-blue/40 transition-colors"
+                  className="rounded-xl border border-cv-line bg-cv-surface dark:bg-[#0D0D0D] p-5 hover:border-cv-blue/40 transition-colors"
                   data-testid={`related-${rel.slug}`}
                 >
                   <div className="font-display font-semibold text-cv-ink leading-snug">{rel.title}</div>
@@ -105,7 +105,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
       <section className="cv-section">
         <div className="cv-container">
-          <div className="rounded-3xl border border-cv-line bg-cv-surface2 p-10 lg:p-16 text-center">
+          <div className="rounded-3xl border border-cv-line/40 bg-cv-surface2 dark:bg-[#0D0D0D] p-10 lg:p-16 text-center">
             <h2 className="cv-h2 text-cv-ink max-w-3xl mx-auto">See cloudverse in your environment.</h2>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>

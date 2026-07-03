@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 interface IntegrationLogoProps {
   name: string;
@@ -35,12 +36,14 @@ export function IntegrationLogo({ name, logo, size = 22 }: IntegrationLogoProps)
       className="shrink-0 rounded-md bg-cv-ink/95 border border-black/5 flex items-center justify-center p-1"
       style={{ height: size, width: size }}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <Image
         src={logo.src}
         alt={logo.alt}
+        width={size}
+        height={size}
         className="object-contain max-h-full max-w-full"
         onError={() => setImgFailed(true)}
+        unoptimized={logo.src.endsWith(".svg")}
       />
     </div>
   );

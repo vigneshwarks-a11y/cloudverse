@@ -1,13 +1,30 @@
 import Link from "next/link";
-import { ArrowRight } from "@solar-icons/react";
+import { ArrowRight, UsersGroupRounded } from "@solar-icons/react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import { PlatformCards } from "@/components/solution/PlatformCards";
 import { FinopsShips } from "@/components/solution/FinopsShips";
+import { SolutionHero } from "@/components/solution/SolutionHero";
+import { FaqBlock } from "@/components/FaqBlock";
+import { ClosingCTA } from "@/components/home/ClosingCTA";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "For FinOps Teams — The Control Plane Your Finance and Engineering Teams Both Trust | CloudVerse",
   description: "Allocation, anomaly response, commitments, and chargeback on one model. Reconciles to finance. Explains itself to engineering.",
+  keywords: ["FinOps team platform", "cloud chargeback", "cloud cost allocation", "anomaly detection cloud", "cloud commitment management"],
+  alternates: { canonical: "/solutions/finops-teams" },
+  openGraph: {
+    title: "For FinOps Teams — The Platform Finance and Engineering Both Trust",
+    description: "Allocation, anomaly response, commitments, and chargeback on one model. Reconciles to finance. Explains itself to engineering.",
+    url: "/solutions/finops-teams",
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse for FinOps Teams" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "For FinOps Teams — The Platform Finance and Engineering Both Trust",
+    description: "Allocation, anomaly response, commitments, and chargeback. Reconciles to finance.",
+  },
 };
 
 const STATS = [
@@ -27,33 +44,34 @@ const FAQ = [
 export default function FinOpsTeamsPage() {
   return (
     <>
-      <section className="cv-hero-bg pt-[240px] pb-16 lg:pt-[240px] lg:pb-24 relative">
-        <div className="cv-container relative z-10 max-w-4xl">
-          <div className="text-xs uppercase tracking-widest text-cv-muted mb-3">For FinOps Teams</div>
-          <h1 className="cv-h1 text-cv-ink">The Control Plane Your Finance and Engineering Teams Both Trust</h1>
-          <p className="cv-body mt-6 text-cv-ink/75">
-            Allocation, anomaly response, commitments, and chargeback on one model. Reconciles to finance. Explains itself to engineering.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
-            <Link href="/platform/finops" className="cv-btn-ghost">Explore the Platform</Link>
+      <SolutionHero
+        eyebrow="For FinOps Teams"
+        h1="The Control Plane Your Finance and Engineering Teams Both Trust"
+        sub="Allocation, anomaly response, commitments, and chargeback on one model. Reconciles to finance. Explains itself to engineering."
+        accent="#1664C0"
+        icon={UsersGroupRounded}
+        platformHref="/platform/finops"
+        badges={["Allocation", "Anomaly Detection", "Commitments", "Chargeback", "Forecasting", "5+ Cloud Providers"]}
+      />
+
+      <section className="pt-8 pb-12 lg:pt-10 lg:pb-16">
+        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
+            {STATS.map((s) => (
+              <div
+                key={s.l}
+                className="flex flex-col items-center justify-center rounded-2xl border border-cv-ink/10 dark:border-white/10 px-6 py-10 text-center bg-white/40 dark:bg-[#0D0D0D] backdrop-blur-sm"
+              >
+                <div className="font-mono text-2xl lg:text-3xl font-bold text-cv-ink tracking-tight">{s.v}</div>
+                <p className="mt-3 text-sm font-medium text-cv-muted tracking-wide max-w-[160px] line-clamp-2">{s.l}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="border-y border-cv-line bg-cv-surface2/40">
-        <div className="cv-container py-8 grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {STATS.map((s) => (
-            <div key={s.l}>
-              <div className="text-2xl lg:text-3xl font-display font-semibold text-cv-ink">{s.v}</div>
-              <div className="text-sm text-cv-muted mt-1">{s.l}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       <section className="cv-section">
-        <div className="cv-container max-w-4xl">
+        <div className="cv-container">
           <h2 className="cv-h2 text-cv-ink">The situation FinOps teams are in</h2>
           <p className="cv-body-lg text-cv-ink/80 mt-6">
             The dashboards are accurate. The recommendations are ignored. Engineering says the tool does not understand their workloads. Finance says the numbers do not match the invoice. Leadership wants automation. You are running manual variance reports to bridge the gap.
@@ -64,11 +82,9 @@ export default function FinOpsTeamsPage() {
         </div>
       </section>
 
-      <section className="cv-section bg-cv-surface2">
+      <section className="cv-section bg-cv-surface dark:bg-black">
         <div className="cv-container">
-          <div className="max-w-3xl mb-10">
-            <h2 className="cv-h2 text-cv-ink">What FinOps teams ship faster with cloudverse</h2>
-          </div>
+          <h2 className="cv-h2 text-cv-ink mb-10">What FinOps teams ship faster with cloudverse</h2>
           <FinopsShips
             items={[
               ["Allocation everyone agrees on", "One model with tags, accounts, BUs, and shared-service splits, reconciled to finance. The finance team gets the report they need. The engineering team gets a view that matches their cost centres."],
@@ -82,7 +98,7 @@ export default function FinOpsTeamsPage() {
 
       <section className="cv-section">
         <div className="cv-container">
-          <div className="rounded-3xl border border-cv-line bg-cv-surface2 p-8 lg:p-12">
+          <div className="rounded-3xl border border-cv-line/40 dark:bg-[#0D0D0D] p-8 lg:p-12">
             <h2 className="cv-h2 text-cv-ink max-w-3xl">How Berkshire Hathaway HomeServices recovered $738,983</h2>
             <p className="text-cv-ink/85 mt-5 text-lg">$101,736 annual recovery. $61,582 in a single month. $738,984 total.</p>
             <p className="text-cv-ink/80 leading-relaxed max-w-3xl mt-6">
@@ -92,8 +108,8 @@ export default function FinOpsTeamsPage() {
         </div>
       </section>
 
-      <section className="cv-section bg-cv-surface2">
-        <div className="cv-container max-w-4xl">
+      <section className="cv-section bg-cv-surface dark:bg-black">
+        <div className="cv-container">
           <h2 className="cv-h2 text-cv-ink">How this is different</h2>
           <p className="cv-body-lg text-cv-ink/80 mt-6">
             Dashboards explain the invoice. CloudVerse governs the decisions that shape it: PR-level checks in engineering workflows, AI and GPU economics, and warehouse query attribution. All on one model.
@@ -114,31 +130,17 @@ export default function FinOpsTeamsPage() {
         </div>
       </section>
 
-      <section className="cv-section bg-cv-surface2">
-        <div className="cv-container max-w-3xl">
-          <h2 className="cv-h2 text-cv-ink mb-8">FinOps team questions answered</h2>
-          <div className="space-y-4">
-            {FAQ.map(([q, a]) => (
-              <details key={q} className="rounded-xl border border-cv-line bg-cv-surface p-5">
-                <summary className="cursor-pointer font-medium text-cv-ink">{q}</summary>
-                <p className="text-cv-ink/75 mt-3 leading-relaxed">{a}</p>
-              </details>
-            ))}
+      <section className="cv-section">
+        <div className="cv-container">
+          <div className="text-center mb-10">
+            <h2 className="cv-h2 text-cv-ink">FinOps Team Questions Answered</h2>
           </div>
+          <FaqBlock items={FAQ.map(([q, a]) => ({ q, a }))} accent="#1664C0" />
         </div>
       </section>
 
-      <section className="cv-section">
-        <div className="cv-container">
-          <div className="rounded-3xl border border-cv-line bg-cv-surface2 p-10 lg:p-16 text-center">
-            <h2 className="cv-h2 text-cv-ink max-w-3xl mx-auto">Bring your FinOps program onto one control plane.</h2>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
-              <Link href="/contact" className="cv-btn-ghost">Talk to Sales</Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ClosingCTA />
+      <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Solutions", href: "/solutions" }, { name: "FinOps Teams", href: "/solutions/finops-teams" }]} />
     </>
   );
 }

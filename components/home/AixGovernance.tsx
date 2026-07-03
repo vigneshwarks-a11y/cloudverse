@@ -153,7 +153,7 @@ const BOTTOM_FEATURES = [
   },
 ];
 
-const CELL = "bg-cv-surface p-6 lg:p-8 flex flex-col";
+const CELL = "bg-cv-surface dark:bg-[#0D0D0D] p-6 lg:p-8 flex flex-col";
 
 export function AixGovernance() {
   return (

@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 const LOGOS = [
   { name: "Dr. Reddy's",        src: "/logos/dr-reddys.svg" },
   { name: "Infogain",           src: "/logos/infogain.svg" },
@@ -24,20 +26,23 @@ export function CustomerLogos() {
         <p className="text-center text-sm text-cv-muted mb-12 tracking-wide">
           The teams trusting us with their cloud and AI spend
         </p>
-        <div className="grid grid-cols-4 sm:grid-cols-7 gap-px border border-cv-line/20 overflow-hidden rounded-xl">
+        <div className="grid grid-cols-2 lg:grid-cols-7 gap-px border border-cv-line/20 overflow-hidden rounded-2xl bg-cv-line/20">
           {LOGOS.map((l) => (
             <div
               key={l.name}
-              className="flex items-center justify-center px-3 py-6 border-cv-line/20 bg-cv-surface hover:bg-cv-ink/[0.03] transition-colors"
+              className="flex items-center justify-center p-6 lg:p-7 bg-cv-surface hover:bg-cv-ink/[0.03] transition-colors"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={l.src}
-                alt={l.name}
-                loading="lazy"
-                decoding="async"
-                className="h-8 w-auto max-w-[110px] object-contain brightness-0 dark:invert opacity-50 hover:opacity-80 transition-opacity"
-              />
+              <div className="relative w-[96px] h-[30px]">
+                <Image
+                  src={l.src}
+                  alt={l.name}
+                  fill
+                  sizes="96px"
+                  loading="lazy"
+                  className="object-contain brightness-0 dark:invert opacity-50 hover:opacity-80 transition-opacity"
+                  unoptimized={l.src.endsWith(".svg")}
+                />
+              </div>
             </div>
           ))}
         </div>

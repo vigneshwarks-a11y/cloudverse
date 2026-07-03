@@ -1,13 +1,30 @@
 import Link from "next/link";
-import { ArrowRight } from "@solar-icons/react";
+import { ArrowRight, Database } from "@solar-icons/react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import { PlatformCards } from "@/components/solution/PlatformCards";
 import { DataXUnlocks } from "@/components/solution/DataXUnlocks";
+import { SolutionHero } from "@/components/solution/SolutionHero";
+import { FaqBlock } from "@/components/FaqBlock";
+import { ClosingCTA } from "@/components/home/ClosingCTA";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "For Data Teams — Find the Queries Quietly Running Up Your Bill | CloudVerse",
   description: "Query, dashboard, and dbt-model-level attribution across Snowflake, Databricks, BigQuery, Microsoft Fabric, and Synapse.",
+  keywords: ["data team cost optimization", "warehouse cost visibility", "dbt cost attribution", "Snowflake FinOps", "Databricks cost management"],
+  alternates: { canonical: "/solutions/data-teams" },
+  openGraph: {
+    title: "For Data Teams — Find the Queries Running Up Your Bill",
+    description: "Query, dashboard, and dbt-model-level attribution across Snowflake, Databricks, BigQuery, and Synapse.",
+    url: "/solutions/data-teams",
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse for Data Teams" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "For Data Teams — Find the Queries Running Up Your Bill",
+    description: "Attribution across Snowflake, Databricks, BigQuery, Microsoft Fabric, and Synapse.",
+  },
 };
 
 const STATS = [
@@ -27,33 +44,34 @@ const FAQ = [
 export default function DataTeamsPage() {
   return (
     <>
-      <section className="cv-hero-bg pt-[240px] pb-16 lg:pt-[240px] lg:pb-24 relative">
-        <div className="cv-container relative z-10 max-w-4xl">
-          <div className="text-xs uppercase tracking-widest text-cv-muted mb-3">For Data Teams</div>
-          <h1 className="cv-h1 text-cv-ink">Find the Queries Quietly Running Up Your Bill</h1>
-          <p className="cv-body mt-6 text-cv-ink/75">
-            Query, dashboard, and dbt-model-level attribution across Snowflake, Databricks, BigQuery, Microsoft Fabric, and Synapse. Safe automation when you want it.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
-            <Link href="/platform/datax" className="cv-btn-ghost">Explore the Platform</Link>
+      <SolutionHero
+        eyebrow="For Data Teams"
+        h1="Find the Queries Quietly Running Up Your Bill"
+        sub="Query, dashboard, and dbt-model-level attribution across Snowflake, Databricks, BigQuery, Microsoft Fabric, and Synapse. Safe automation when you want it."
+        accent="#D97706"
+        icon={Database}
+        platformHref="/platform/datax"
+        badges={["Query Attribution", "Pattern Detection", "Predictive Signals", "Safe Automation", "6 Warehouses", "Read-Only by Default"]}
+      />
+
+      <section className="pt-8 pb-12 lg:pt-10 lg:pb-16">
+        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
+            {STATS.map((s) => (
+              <div
+                key={s.l}
+                className="flex flex-col items-center justify-center rounded-2xl border border-cv-ink/10 dark:border-white/10 px-6 py-10 text-center bg-white/40 dark:bg-[#0D0D0D] backdrop-blur-sm"
+              >
+                <div className="font-mono text-2xl lg:text-3xl font-bold text-cv-ink tracking-tight">{s.v}</div>
+                <p className="mt-3 text-sm font-medium text-cv-muted tracking-wide max-w-[160px] line-clamp-2">{s.l}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="border-y border-cv-line bg-cv-surface2/40">
-        <div className="cv-container py-8 grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {STATS.map((s) => (
-            <div key={s.l}>
-              <div className="text-2xl lg:text-3xl font-display font-semibold text-cv-ink">{s.v}</div>
-              <div className="text-sm text-cv-muted mt-1">{s.l}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       <section className="cv-section">
-        <div className="cv-container max-w-4xl">
+        <div className="cv-container">
           <h2 className="cv-h2 text-cv-ink">The situation data teams are in</h2>
           <p className="cv-body-lg text-cv-ink/80 mt-6">
             Snowflake costs went up again. The data team got a Slack message asking what happened. Forty minutes of log diving later, someone found a query running 334 GB of full table scans 77 times a month. No partition filter. $117 in one query pattern. Nobody knew.
@@ -64,11 +82,9 @@ export default function DataTeamsPage() {
         </div>
       </section>
 
-      <section className="cv-section bg-cv-surface2">
+      <section className="cv-section bg-cv-surface dark:bg-black">
         <div className="cv-container">
-          <div className="max-w-3xl mb-10">
-            <h2 className="cv-h2 text-cv-ink">What data teams unlock with DataX</h2>
-          </div>
+          <h2 className="cv-h2 text-cv-ink mb-10">What data teams unlock with DataX</h2>
           <DataXUnlocks
             items={[
               ["Query attribution", "Every query tied to the user, role, dashboard, model, or job that ran it. When the data team gets blamed for the bill, they can show exactly which workload and which team owns the cost."],
@@ -82,7 +98,7 @@ export default function DataTeamsPage() {
 
       <section className="cv-section">
         <div className="cv-container">
-          <div className="rounded-3xl border border-cv-line bg-cv-surface2 p-8 lg:p-12 max-w-4xl">
+          <div className="rounded-3xl border border-cv-line/40 dark:bg-[#0D0D0D] p-8 lg:p-12 max-w-4xl">
             <h2 className="cv-h2 text-cv-ink">The $117 finding (real DataX output)</h2>
             <p className="text-cv-ink/80 mt-6">
               A BigQuery SELECT scanning 334.6 GB per query due to missing partition pruning.
@@ -101,7 +117,7 @@ export default function DataTeamsPage() {
         </div>
       </section>
 
-      <section className="cv-section bg-cv-surface2">
+      <section className="cv-section bg-cv-surface dark:bg-black">
         <div className="cv-container">
           <h2 className="cv-h2 text-cv-ink mb-8">Platform that powers this solution</h2>
           <PlatformCards
@@ -115,30 +131,16 @@ export default function DataTeamsPage() {
       </section>
 
       <section className="cv-section">
-        <div className="cv-container max-w-3xl">
-          <h2 className="cv-h2 text-cv-ink mb-8">Data team questions answered</h2>
-          <div className="space-y-4">
-            {FAQ.map(([q, a]) => (
-              <details key={q} className="rounded-xl border border-cv-line bg-cv-surface2 p-5">
-                <summary className="cursor-pointer font-medium text-cv-ink">{q}</summary>
-                <p className="text-cv-ink/75 mt-3 leading-relaxed">{a}</p>
-              </details>
-            ))}
+        <div className="cv-container">
+          <div className="text-center mb-10">
+            <h2 className="cv-h2 text-cv-ink">Data Team Questions Answered</h2>
           </div>
+          <FaqBlock items={FAQ.map(([q, a]) => ({ q, a }))} accent="#1664C0" />
         </div>
       </section>
 
-      <section className="cv-section bg-cv-surface2">
-        <div className="cv-container">
-          <div className="rounded-3xl border border-cv-line bg-cv-surface p-10 lg:p-16 text-center">
-            <h2 className="cv-h2 text-cv-ink max-w-3xl mx-auto">See DataX find a $117 query in your warehouse.</h2>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
-              <Link href="/contact" className="cv-btn-ghost">Talk to Sales</Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ClosingCTA />
+      <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Solutions", href: "/solutions" }, { name: "Data Teams", href: "/solutions/data-teams" }]} />
     </>
   );
 }

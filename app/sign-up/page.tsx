@@ -4,9 +4,16 @@ import { SIGNIN_URL, DEMO_URL } from "@/lib/links";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Get started with cloudverse",
+  title: "Get Started with CloudVerse",
   description: "Connect your first cloud account in under 30 minutes. Read-only by default. Free tier available for DevX.",
   alternates: { canonical: "/sign-up" },
+  openGraph: {
+    title: "Get Started with CloudVerse",
+    description: "Connect your first cloud account in under 30 minutes. Read-only by default. Free tier available for DevX.",
+    url: "/sign-up",
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "Get Started with CloudVerse" }],
+  },
+  twitter: { card: "summary_large_image", title: "Get Started with CloudVerse", description: "Connect your first cloud account in under 30 minutes. Read-only by default." },
 };
 
 const STEPS = [
@@ -18,7 +25,7 @@ const STEPS = [
 
 export default function Page() {
   return (
-    <section className="cv-hero-bg pt-[240px] pb-16 lg:pt-[240px] lg:pb-24 relative min-h-[80vh]">
+    <section className="cv-hero-bg pt-[120px] sm:pt-[160px] pb-16 lg:pt-[240px] lg:pb-24 relative min-h-[80vh]">
       <div className="cv-container relative z-10">
         <div className="max-w-2xl mx-auto text-center">
           <div className="cv-label mb-4">Get started</div>

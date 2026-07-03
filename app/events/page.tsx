@@ -8,6 +8,13 @@ export const metadata: Metadata = {
   title: "Events & Webinars — CloudVerse",
   description: "Live workshops, webinars, and conferences where CloudVerse is speaking on cloud, AI, and data economics.",
   alternates: { canonical: "/events" },
+  openGraph: {
+    title: "CloudVerse Events & Webinars",
+    description: "Live workshops, webinars, and conferences on cloud, AI, and data economics.",
+    url: "/events",
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse Events and Webinars" }],
+  },
+  twitter: { card: "summary_large_image", title: "CloudVerse Events & Webinars", description: "Workshops, webinars, and conferences on cloud, AI, and data economics." },
 };
 
 type Event = { date: string; title: string; venue: string; mode: "in-person" | "virtual"; href?: string; tag: string };
@@ -55,7 +62,7 @@ function Card({ e }: { e: Event }) {
 export default function Page() {
   return (
     <>
-      <section className="cv-hero-bg pt-[240px] pb-12 lg:pt-[240px] lg:pb-16 relative">
+      <section className="cv-hero-bg pt-[120px] sm:pt-[160px] pb-12 lg:pt-[240px] lg:pb-16 relative">
         <div className="cv-container relative z-10">
           <div className="cv-label mb-4">Events</div>
           <h1 className="cv-h1 text-cv-ink max-w-3xl">Where to Meet Us, Learn Live, and Ask Hard Questions.</h1>
@@ -69,7 +76,7 @@ export default function Page() {
         <div className="cv-container">
           <div className="cv-label mb-3">Upcoming</div>
           <h2 className="cv-h2 text-cv-ink mb-8">Live and in person.</h2>
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             {UPCOMING.map((e) => <Card key={e.title} e={e} />)}
           </div>
         </div>

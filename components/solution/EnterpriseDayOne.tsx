@@ -158,12 +158,12 @@ export function EnterpriseDayOne({ items }: { items: EnterpriseItem[] }) {
   });
 
   return (
-    <div ref={ref} className="grid auto-rows-fr gap-5 md:grid-cols-2">
+    <div ref={ref} className="grid auto-rows-fr gap-4 sm:gap-5 sm:grid-cols-2">
       {items.map(([t, b], i) => {
         const Viz = VISUALS[t];
         return (
           <div key={t} style={rise(i)}>
-            <div className="flex h-full flex-col rounded-xl border border-cv-line bg-cv-surface p-7">
+            <div className="flex h-full flex-col rounded-xl border border-cv-line bg-cv-surface dark:bg-[#0D0D0D] p-7">
               <h3 className="cv-h3 font-semibold text-cv-ink">{t}</h3>
               <p className="text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
               {Viz ? (

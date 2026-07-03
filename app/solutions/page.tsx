@@ -1,12 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Buildings, Code2, Cpu, Database, UsersGroupRounded } from "@solar-icons/react";
-import { CTABand } from "@/components/CTABand";
+import { ArrowRight, Buildings, Code2, Cpu, Database, UsersGroupRounded, Widget2 } from "@solar-icons/react";
+import { SolutionHero } from "@/components/solution/SolutionHero";
+import { ClosingCTA } from "@/components/home/ClosingCTA";
 
 export const metadata: Metadata = {
-  title: "Solutions. CloudVerse",
+  title: "Solutions — CloudVerse",
   description: "Persona-built solutions for FinOps, AI Engineering, Platform Engineering, Data teams, and Enterprise.",
+  keywords: ["cloud cost solutions", "FinOps solutions", "AI cost management", "platform engineering cost", "enterprise cloud economics"],
   alternates: { canonical: "/solutions" },
+  openGraph: {
+    title: "CloudVerse Solutions — Built for Every Team",
+    description: "Persona-built solutions for FinOps, AI Engineering, Platform Engineering, Data teams, and Enterprise.",
+    url: "/solutions",
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse Solutions" }],
+  },
+  twitter: { card: "summary_large_image", title: "CloudVerse Solutions — Built for Every Team", description: "Solutions for FinOps, AI Engineering, Platform Engineering, Data teams, and Enterprise." },
 };
 
 const SOLUTIONS = [
@@ -20,17 +29,17 @@ const SOLUTIONS = [
 export default function Page() {
   return (
     <>
-      <section className="cv-hero-bg pt-[240px] pb-12 lg:pt-[240px] lg:pb-16 relative">
-        <div className="cv-container relative z-10">
-          <div className="cv-label mb-4">Solutions</div>
-          <h1 className="cv-h1 text-cv-ink max-w-3xl">Built for the Teams Accountable for the Bill.</h1>
-          <p className="cv-body mt-6 text-cv-ink/75 max-w-2xl">
-            Five persona-built solution paths backed by one control plane.
-          </p>
-        </div>
-      </section>
+      <SolutionHero
+        eyebrow="Solutions"
+        h1="Built for the Teams Accountable for the Bill."
+        sub="Five persona-built solution paths backed by one control plane."
+        accent="#1664C0"
+        icon={Widget2}
+        platformHref="/platform/finops"
+        badges={["Cost Attribution", "Policy Enforcement", "Live Routing", "Audit Trails", "Multi-Cloud", "Read-Only by Default"]}
+      />
 
-      <section className="cv-section bg-cv-surface">
+      <section className="cv-section bg-cv-surface dark:bg-black">
         <div className="cv-container">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {SOLUTIONS.map((s) => {
@@ -39,7 +48,7 @@ export default function Page() {
                 <Link
                   key={s.href}
                   href={s.href}
-                  className="group rounded-xl border border-cv-line/10 bg-cv-ink/[0.02] p-6 hover:bg-cv-ink/[0.04] transition-colors"
+                  className="group rounded-xl border border-cv-line/40 dark:bg-[#0D0D0D] p-6 hover:border-white/20 transition-colors"
                   style={{ borderTop: `3px solid ${s.color}` }}
                   data-testid={`solution-${s.label.toLowerCase().replace(/[^a-z]+/g, "-")}`}
                 >
@@ -59,7 +68,7 @@ export default function Page() {
         </div>
       </section>
 
-      <CTABand heading="Not sure which fits?" sub="Book a 20-minute call. we'll route you to the right starting point." />
+      <ClosingCTA />
     </>
   );
 }

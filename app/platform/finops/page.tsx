@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "@solar-icons/react";
 import { FaqBlock } from "@/components/FaqBlock";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import { WhoUsesItCards } from "@/components/product/WhoUsesItCards";
@@ -11,6 +12,19 @@ export const metadata: Metadata = {
   title: "FinOps Platform — Multi-Cloud Cost Intelligence for Every Team | CloudVerse",
   description:
     "See every dollar by team, product, and provider. One model that reconciles to finance and explains itself to engineering.",
+  keywords: ["FinOps platform", "cloud cost management", "multi-cloud cost visibility", "cloud allocation", "chargeback", "cloud unit economics"],
+  alternates: { canonical: "/platform/finops" },
+  openGraph: {
+    title: "FinOps Platform — Multi-Cloud Cost Intelligence for Every Team",
+    description: "See every dollar by team, product, and provider. One model that reconciles to finance and explains itself to engineering.",
+    url: "/platform/finops",
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse FinOps Platform — Multi-Cloud Cost Intelligence" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FinOps Platform — Multi-Cloud Cost Intelligence",
+    description: "See every dollar by team, product, and provider. Reconciles to finance. Explains itself to engineering.",
+  },
 };
 
 const STATS = [
@@ -34,13 +48,13 @@ export default function FinOpsPage() {
       <section className="pt-8 pb-12 lg:pt-10 lg:pb-16">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
-            {STATS.map((s) => (
+            {STATS.map((s, i) => (
               <div
                 key={s.l}
-                className="flex flex-col items-center justify-center rounded-2xl border border-cv-ink/10 dark:border-white/10 px-6 py-10 text-center bg-white/40 dark:bg-[#0D0D0D] backdrop-blur-sm"
+                className={`flex flex-col items-center justify-center rounded-2xl border border-cv-ink/10 dark:border-white/10 px-6 py-10 text-center bg-white/40 dark:bg-[#0D0D0D] backdrop-blur-sm${i === STATS.length - 1 && STATS.length % 2 !== 0 ? " col-span-2 lg:col-span-1" : ""}`}
               >
                 <div className="font-mono text-2xl lg:text-3xl font-bold text-cv-ink tracking-tight">{s.v}</div>
-                <p className="mt-3 text-sm font-medium text-cv-muted tracking-wide whitespace-nowrap">{s.l}</p>
+                <p className="mt-3 text-sm font-medium text-cv-muted tracking-wide">{s.l}</p>
               </div>
             ))}
           </div>
@@ -48,22 +62,22 @@ export default function FinOpsPage() {
       </section>
 
       <section className="cv-section">
-        <div className="cv-container max-w-4xl">
+        <div className="cv-container">
           <h2 className="cv-h2 text-cv-ink">Most FinOps tools show dashboards. This one changes what happens next.</h2>
-          <p className="cv-body-lg text-cv-ink/80 mt-6">
-            Most organisations already have a FinOps tool. Most of those tools show dashboards that look correct and generate recommendations that go unactioned. The problem is not visibility. It is that the intelligence stops at the dashboard.
-          </p>
-          <p className="cv-body-lg text-cv-ink/80 mt-4">
-            CloudVerse FinOps Platform connects spend data to the teams and decisions that drive it. What the bill says, what changed, who owns it, and what to do next.
-          </p>
+          <div className="mt-6 space-y-4">
+            <p className="cv-body-lg text-cv-ink/80">
+              Most organisations already have a FinOps tool. Most of those tools show dashboards that look correct and generate recommendations that go unactioned. The problem is not visibility. It is that the intelligence stops at the dashboard.
+            </p>
+            <p className="cv-body-lg text-cv-ink/80">
+              CloudVerse FinOps Platform connects spend data to the teams and decisions that drive it. What the bill says, what changed, who owns it, and what to do next.
+            </p>
+          </div>
         </div>
       </section>
 
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="max-w-3xl mb-10">
-            <h2 className="cv-h2 text-cv-ink">Four product surfaces. One unified view.</h2>
-          </div>
+          <h2 className="cv-h2 text-cv-ink mb-10">Four product surfaces. One unified view.</h2>
           <div className="grid md:grid-cols-2 gap-5">
             {/* Workload mapping */}
             <div className="relative overflow-hidden rounded-2xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-7">
@@ -223,9 +237,7 @@ export default function FinOpsPage() {
 
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="max-w-3xl mb-10">
-            <h2 className="cv-h2 text-cv-ink">Inform. Optimise. Operate.</h2>
-          </div>
+          <h2 className="cv-h2 text-cv-ink mb-10">Inform. Optimise. Operate.</h2>
           <div className="grid md:grid-cols-3 gap-5">
             {[
               ["Inform", "Allocation, tagging, attribution, and variance reporting. Understand what is happening, who owns it, and what changed since last month."],
@@ -267,8 +279,8 @@ export default function FinOpsPage() {
 
       {/* CONNECTS TO STACK */}
       <section className="cv-section">
-        <div className="cv-container max-w-4xl">
-          <h2 className="cv-h3 text-cv-ink mb-4">Connects to the stack</h2>
+        <div className="cv-container">
+          <h2 className="cv-h3 text-cv-ink mb-5">Connects to the stack</h2>
           <p className="text-cv-ink/75 leading-relaxed">
             AWS, Azure, Google Cloud, plus AIX for AI workload economics, DataX for warehouse intelligence, and DevX for shift-left cost intelligence.
           </p>
@@ -276,6 +288,7 @@ export default function FinOpsPage() {
       </section>
 
       <ClosingCTA />
+      <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Platform", href: "/platform/finops" }, { name: "FinOps", href: "/platform/finops" }]} />
     </>
   );
 }

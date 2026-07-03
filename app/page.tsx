@@ -15,9 +15,22 @@ import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { GuidesResources } from "@/components/home/GuidesResources";
 
 export const metadata: Metadata = {
-  title: "CloudVerse The Control Plane for Enterprise AI",
+  title: "CloudVerse — The Control Plane for Enterprise AI",
   description:
     "Put every AI model, agent, and dollar on one record. Route, govern, and meter your AI, and prove the ROI. Built on the FinOps platform enterprises already trust.",
+  keywords: ["cloud cost management", "AI cost optimization", "FinOps", "compute economics", "enterprise AI governance", "cloud spend", "LLM cost"],
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "CloudVerse — The Control Plane for Enterprise AI",
+    description: "Put every AI model, agent, and dollar on one record. Route, govern, and meter your AI, and prove the ROI.",
+    url: "/",
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse — Compute Economics Platform" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CloudVerse — The Control Plane for Enterprise AI",
+    description: "Route, govern, and meter your AI. Prove the ROI. Built on the FinOps platform enterprises trust.",
+  },
 };
 
 const STATS = [
@@ -119,7 +132,7 @@ export default function HomePage() {
       {/* HERO + VIDEO wrapper shares the same gradient background */}
       <div className="cv-hero-bg">
         {/* HERO */}
-        <section className="pt-[240px] pb-6 lg:pt-[240px] lg:pb-8 relative">
+        <section className="pt-[120px] sm:pt-[160px] pb-6 lg:pt-[240px] lg:pb-8 relative">
           <div className="cv-container relative z-10">
             <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
               {/* Left: eyebrow + headline + CTAs */}

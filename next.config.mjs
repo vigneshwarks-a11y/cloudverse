@@ -6,11 +6,16 @@ const nextConfig = {
   reactStrictMode: true,
   eslint: { ignoreDuringBuilds: true },
   experimental: {
-    optimizePackageImports: ["lucide-react"],
+    optimizePackageImports: ["lucide-react", "@solar-icons/react"],
     // Disable the Next dev "Segment Explorer" devtool. Its RSC client
     // manifest gets corrupted during repeated HMR edits, causing recurring
     // dev-server crashes (segment-explorer-node.js#SegmentViewNode not found).
     devtoolSegmentExplorer: false,
+  },
+  images: {
+    formats: ["image/avif", "image/webp"],
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   async redirects() {
     return [

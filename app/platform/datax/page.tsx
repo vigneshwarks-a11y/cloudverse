@@ -5,12 +5,26 @@ import { DEMO_URL } from "@/lib/links";
 import WarehouseIntel from "@/components/product/WarehouseIntel";
 import { FaqBlock } from "@/components/FaqBlock";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { PlatformHeroMockup } from "@/components/product/PlatformHeroMockup";
 
 export const metadata: Metadata = {
   title: "DataX — Find the Queries Quietly Running Up Your Bill | CloudVerse",
   description:
     "Query, dashboard, and dbt-model-level attribution across Snowflake, Databricks, BigQuery, Microsoft Fabric, and Synapse. Safe automation when you want it.",
+  keywords: ["Snowflake cost optimization", "Databricks cost management", "BigQuery cost attribution", "warehouse FinOps", "data platform cost", "query cost analysis"],
+  alternates: { canonical: "/platform/datax" },
+  openGraph: {
+    title: "DataX — Find the Queries Quietly Running Up Your Bill",
+    description: "Query, dashboard, and dbt-model-level attribution across Snowflake, Databricks, BigQuery, and more. Safe automation when you want it.",
+    url: "/platform/datax",
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse DataX — Warehouse Cost Intelligence" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DataX — Find the Queries Running Up Your Bill",
+    description: "Query-level attribution across Snowflake, Databricks, BigQuery, and Synapse. Automated right-sizing.",
+  },
 };
 
 const ACCENT = "#D97706";
@@ -50,7 +64,7 @@ export default function DataXPage() {
   return (
     <>
       <div className="cv-hero-bg">
-        <section className="pt-[240px] pb-16 lg:pt-[240px] lg:pb-20 relative">
+        <section className="pt-[120px] sm:pt-[160px] pb-16 lg:pt-[240px] lg:pb-20 relative">
 
           <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
             <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
@@ -93,27 +107,27 @@ export default function DataXPage() {
       </section>
 
       <section className="cv-section">
-        <div className="cv-container max-w-4xl">
+        <div className="cv-container">
           <h2 className="cv-h2 text-cv-ink">Your data warehouse is a blank check.</h2>
-          <p className="cv-body-lg text-cv-ink/80 mt-6">
-            Most data teams find out about expensive queries the same way. The monthly bill arrives, it is higher than last month, and everyone starts guessing. The data is somewhere in the query logs. Finding it takes hours. Fixing it takes longer.
-          </p>
-          <p className="cv-body-lg text-cv-ink/80 mt-4">
-            DataX attributes every dollar of warehouse spend to the query, pipeline, dashboard, and team that ran it. Not to &quot;the data team.&quot; To the specific SELECT that ran 334.6 GB without a partition filter.
-          </p>
-          <p className="cv-body-lg text-cv-ink font-medium mt-4 italic">
-            Stop waiting for the monthly bill to see who burned the budget.
-          </p>
+          <div className="mt-6 space-y-4">
+            <p className="cv-body-lg text-cv-ink/80">
+              Most data teams find out about expensive queries the same way. The monthly bill arrives, it is higher than last month, and everyone starts guessing. The data is somewhere in the query logs. Finding it takes hours. Fixing it takes longer.
+            </p>
+            <p className="cv-body-lg text-cv-ink/80">
+              DataX attributes every dollar of warehouse spend to the query, pipeline, dashboard, and team that ran it. Not to &quot;the data team.&quot; To the specific SELECT that ran 334.6 GB without a partition filter.
+            </p>
+            <p className="cv-body-lg text-cv-ink font-medium italic">
+              Stop waiting for the monthly bill to see who burned the budget.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* $117 FINDING */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="max-w-3xl mb-10">
-            <h2 className="cv-h2 text-cv-ink">We find the leaks billing dashboards miss.</h2>
-            <p className="text-cv-ink/70 mt-4 italic">This is a real DataX finding. Not a mock. Not an illustration.</p>
-          </div>
+          <h2 className="cv-h2 text-cv-ink mb-3">We find the leaks billing dashboards miss.</h2>
+          <p className="text-cv-ink/70 italic mb-10">This is a real DataX finding. Not a mock. Not an illustration.</p>
           <div className="grid md:grid-cols-3 gap-3">
             {[
               ["The $117 full scan", "A BigQuery SELECT scanning 334.6 GB per query due to missing partition pruning. Zero cache hit rate. $117.16 in real cost. Fix: one-click partition pruning."],
@@ -134,12 +148,12 @@ export default function DataXPage() {
 
       {/* PRICING PHILOSOPHY */}
       <section className="cv-section bg-cv-surface">
-        <div className="cv-container max-w-4xl">
-          <h2 className="cv-h2 text-cv-ink">DataX does not profit from your inefficiency.</h2>
-          <p className="cv-body-lg text-cv-ink/75 mt-6">
+        <div className="cv-container">
+          <h2 className="cv-h2 text-cv-ink mb-5">DataX does not profit from your inefficiency.</h2>
+          <p className="cv-body-lg text-cv-ink/75 mb-10">
             DataX prices on the structural drivers of your data platform cost, not on billing noise.
           </p>
-          <div className="grid md:grid-cols-2 gap-5 mt-8">
+          <div className="grid md:grid-cols-2 gap-5">
             <div className="rounded-2xl border border-cv-line/40 bg-cv-surface dark:bg-[#0D0D0D] p-6">
               <div className="cv-label mb-3">What pricing reflects</div>
               <ul className="space-y-2 text-cv-ink/85 text-sm">
@@ -170,13 +184,11 @@ export default function DataXPage() {
       {/* SAFE AUTOMATION */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="max-w-3xl mb-10">
-            <h2 className="cv-h2 text-cv-ink">Automation without losing control.</h2>
-            <p className="cv-body-lg text-cv-ink/75 mt-5">
-              DataX applies approved optimisations within policies you define, and logs every action for audit and rollback.
-            </p>
-            <p className="text-cv-ink/70 mt-4 italic">The automation model is about DataX behaviour, not your pipelines.</p>
-          </div>
+          <h2 className="cv-h2 text-cv-ink mb-5">Automation without losing control.</h2>
+          <p className="cv-body-lg text-cv-ink/75 mb-2">
+            DataX applies approved optimisations within policies you define, and logs every action for audit and rollback.
+          </p>
+          <p className="text-cv-ink/70 italic mb-10">The automation model is about DataX behaviour, not your pipelines.</p>
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <div className="cv-label mb-3">Controls</div>
@@ -213,12 +225,10 @@ export default function DataXPage() {
       {/* SUPPORTED PLATFORMS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="max-w-3xl mb-10">
-            <h2 className="cv-h2 text-cv-ink">Enterprise integrations built for least privilege.</h2>
-            <p className="cv-body-lg text-cv-ink/75 mt-5">
-              Connect platforms using read-only access by default. Enable automation only when you are ready: scoped, auditable, reversible.
-            </p>
-          </div>
+          <h2 className="cv-h2 text-cv-ink mb-5">Enterprise integrations built for least privilege.</h2>
+          <p className="cv-body-lg text-cv-ink/75 mb-10">
+            Connect platforms using read-only access by default. Enable automation only when you are ready: scoped, auditable, reversible.
+          </p>
           <div className="overflow-x-auto rounded-2xl border border-cv-line">
             <table className="w-full text-sm">
               <thead className="bg-cv-surface dark:bg-[#0D0D0D]">
@@ -265,6 +275,7 @@ export default function DataXPage() {
       </section>
 
       <ClosingCTA />
+      <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Platform", href: "/platform/finops" }, { name: "DataX", href: "/platform/datax" }]} />
     </>
   );
 }

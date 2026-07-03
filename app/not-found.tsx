@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function NotFound() {
   return (
-    <section className="cv-hero-bg min-h-[70vh] flex items-center pt-[240px] pb-20">
+    <section className="cv-hero-bg min-h-[70vh] flex items-center pt-[120px] sm:pt-[160px] lg:pt-[240px] pb-20">
       <div className="cv-container relative z-10 text-center max-w-2xl mx-auto">
         <div className="cv-label mb-3">Error 404</div>
         <h1 className="cv-h1 text-cv-ink">This page is being rebuilt.</h1>

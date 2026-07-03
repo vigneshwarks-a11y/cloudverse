@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "@solar-icons/react";
 
 const CYCLE_MS = 5000;
@@ -158,14 +159,16 @@ export function PlatformSurfaces() {
             <div className="relative h-full rounded-2xl border border-cv-line bg-cv-card p-3 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_0_rgba(255,255,255,0.08)]">
               <div className="relative h-full min-h-[280px] overflow-hidden rounded-xl bg-cv-card">
                 {SURFACES.map((s, i) => (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
+                  <Image
                     key={s.name}
                     src={s.image}
-                    alt={`${s.name} dashboard`}
-                    className="absolute inset-0 h-full w-full object-cover object-top transition-opacity duration-700 ease-in-out"
+                    alt={i === active ? `${s.name} cost intelligence dashboard` : ""}
+                    fill
+                    className="object-cover object-top transition-opacity duration-700 ease-in-out"
                     style={{ opacity: i === active ? 1 : 0 }}
                     aria-hidden={i !== active}
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    loading={i === 0 ? "eager" : "lazy"}
                     data-testid={`surface-image-${s.name.toLowerCase().replace(/\s+/g, "-")}`}
                   />
                 ))}

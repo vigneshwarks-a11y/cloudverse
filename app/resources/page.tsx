@@ -37,7 +37,7 @@ export default function ResourcesPage() {
   return (
     <>
       {/* HERO */}
-      <section className="cv-hero-bg pt-[240px] pb-12 lg:pt-[240px] lg:pb-16 relative">
+      <section className="cv-hero-bg pt-[120px] sm:pt-[160px] pb-12 lg:pt-[240px] lg:pb-16 relative">
         <div className="cv-container relative z-10 max-w-4xl">
           <span className="cv-label inline-block mb-4">CloudVerse&trade; Resources</span>
           <h1 className="cv-h1 text-cv-ink mb-4">
@@ -90,7 +90,7 @@ export default function ResourcesPage() {
               <Link
                 key={d.slug}
                 href={`/resources/${d.slug}`}
-                className="rounded-xl border border-cv-line bg-cv-surface p-5 hover:border-cv-blue/40 transition-colors flex flex-col"
+                className="rounded-xl border border-cv-line bg-cv-surface dark:bg-[#0D0D0D] p-5 hover:border-cv-blue/40 transition-colors flex flex-col"
                 data-testid={`doc-${d.slug}`}
               >
                 <span
@@ -141,25 +141,25 @@ export default function ResourcesPage() {
           </div>
           <div className="space-y-3">
             {featuredFaqs.map((faq) => (
-              <details key={faq.id} className="rounded-xl border border-cv-line bg-cv-surface p-5 group" data-testid={`faq-${faq.id}`}>
+              <details key={faq.id} className="rounded-xl border border-cv-line bg-cv-surface dark:bg-[#0D0D0D] p-5 group" data-testid={`faq-${faq.id}`}>
                 <summary className="cursor-pointer font-medium text-cv-ink flex items-start gap-3">
                   <span className="text-cv-muted text-sm shrink-0">{faq.id}.</span>
                   <span>{faq.question}</span>
                 </summary>
                 <p className="text-sm sm:text-[15px] leading-relaxed text-cv-ink/75 mt-4">{faq.answer}</p>
-                <span className="inline-flex items-center text-xs font-medium px-2 py-1 rounded border border-cv-line bg-cv-surface2 text-cv-muted mt-4">
+                <span className="inline-flex items-center text-xs font-medium px-2 py-1 rounded border border-cv-line bg-cv-surface2 dark:bg-[#0D0D0D] text-cv-muted mt-4">
                   {faq.tag}
                 </span>
               </details>
             ))}
           </div>
-          <details className="mt-6 rounded-xl border border-cv-line bg-cv-surface p-5">
+          <details className="mt-6 rounded-xl border border-cv-line bg-cv-surface dark:bg-[#0D0D0D] p-5">
             <summary className="cursor-pointer font-medium text-cv-ink">
               Show all {FAQS.length} FAQs
             </summary>
             <div className="space-y-3 mt-5">
               {FAQS.slice(6).map((faq) => (
-                <details key={faq.id} className="rounded-lg border border-cv-line bg-cv-surface2 p-4" data-testid={`faq-${faq.id}`}>
+                <details key={faq.id} className="rounded-lg border border-cv-line bg-cv-surface2 dark:bg-[#0D0D0D] p-4" data-testid={`faq-${faq.id}`}>
                   <summary className="cursor-pointer text-sm font-medium text-cv-ink flex items-start gap-3">
                     <span className="text-cv-muted text-xs shrink-0">{faq.id}.</span>
                     <span>{faq.question}</span>
@@ -175,7 +175,7 @@ export default function ResourcesPage() {
       {/* CTA */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="rounded-3xl border border-cv-line bg-cv-surface2 p-10 lg:p-16 text-center">
+          <div className="rounded-3xl border border-cv-line/40 bg-cv-surface2 dark:bg-[#0D0D0D] p-10 lg:p-16 text-center">
             <h2 className="cv-h2 text-cv-ink max-w-3xl mx-auto">Have a story worth telling?</h2>
             <p className="cv-body-lg text-cv-ink/75 mt-5 max-w-2xl mx-auto">
               We work with practitioners on customer stories, joint research, and guest pieces.
@@ -196,7 +196,7 @@ function ResourceCard({ r, accent }: { r: import("@/lib/resources").Resource; ac
   return (
     <Link
       href={`/resources/${r.slug}`}
-      className={`group rounded-xl border p-6 transition-colors flex flex-col ${accent ? "border-cv-blue/30 bg-cv-surface2" : "border-cv-line bg-cv-surface2"} hover:border-cv-blue/60`}
+      className={`group rounded-xl border p-6 transition-colors flex flex-col ${accent ? "border-cv-blue/30 bg-cv-surface2 dark:bg-[#0D0D0D]" : "border-cv-line bg-cv-surface2 dark:bg-[#0D0D0D]"} hover:border-cv-blue/60`}
       data-testid={`resource-${r.slug}`}
     >
       <div className="flex items-center gap-3 text-[11px] text-cv-muted mb-4">
@@ -210,7 +210,7 @@ function ResourceCard({ r, accent }: { r: import("@/lib/resources").Resource; ac
       </div>
       <div className="font-display font-semibold text-cv-ink text-lg leading-snug">{r.title}</div>
       {r.seo?.description ? (
-        <p className="text-cv-muted text-sm mt-3 leading-relaxed flex-1 line-clamp-3">{r.seo.description}</p>
+        <p className="text-cv-muted text-sm mt-3 leading-relaxed flex-1 min-w-0 line-clamp-3">{r.seo.description}</p>
       ) : null}
       <div className="mt-5 inline-flex items-center gap-1.5 text-sm text-cv-blue-light font-medium">
         Read guide <ArrowRight weight="Linear" size={14} className="group-hover:translate-x-0.5 transition-transform" />
@@ -222,7 +222,7 @@ function ResourceCard({ r, accent }: { r: import("@/lib/resources").Resource; ac
 function BlogCard({ post, dark }: { post: import("@/lib/resources").BlogPost; dark?: boolean }) {
   return (
     <article
-      className={`block rounded-xl border border-cv-line p-5 ${dark ? "bg-cv-surface2" : "bg-cv-surface"}`}
+      className={`block rounded-xl border border-cv-line p-5 ${dark ? "bg-cv-surface2 dark:bg-[#0D0D0D]" : "bg-cv-surface"}`}
       data-testid={`blog-${post.slug}`}
     >
       <span className="inline-block text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full mb-3" style={{ background: "rgba(124, 184, 248, 0.1)", color: "#7CB8F8" }}>

@@ -6,7 +6,7 @@ import { CTABand } from "@/components/CTABand";
 export default function Snapshot() {
   return (
     <>
-      <section className="cv-hero-bg pt-[240px] pb-12 lg:pt-[240px] lg:pb-14 relative">
+      <section className="cv-hero-bg pt-[120px] sm:pt-[160px] pb-12 lg:pt-[240px] lg:pb-14 relative">
         <div className="cv-container relative z-10">
           <div className="cv-label mb-4" style={{ color: "#7CB8F8" }}>Efficiency snapshot</div>
           <h1 className="cv-h1 text-cv-ink max-w-3xl">

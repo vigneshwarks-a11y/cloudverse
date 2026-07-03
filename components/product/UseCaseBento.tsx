@@ -101,7 +101,7 @@ export default function UseCaseBento({ useCases }: { useCases: UseCase[] }) {
   });
 
   return (
-    <div ref={ref} className="grid auto-rows-fr gap-3 md:grid-cols-2">
+    <div ref={ref} className="grid auto-rows-fr gap-3 sm:grid-cols-2">
       {useCases.map((uc, i) => (
         <div key={uc.n} style={rise(i)}>
           <Card uc={uc} />

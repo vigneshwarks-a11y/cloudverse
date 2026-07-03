@@ -12,11 +12,25 @@ import UseCaseBento from "@/components/product/UseCaseBento";
 import AixRoiSplit from "@/components/product/AixRoiSplit";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { PlatformHeroMockup, type MockupTab } from "@/components/product/PlatformHeroMockup";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "AIX — The Control Plane for Enterprise AI | CloudVerse",
   description:
     "Route, govern, and meter every AI request across models, clouds, GPUs, and private endpoints. Cut AI cost 40–90%. The decision happens before the request, not after the bill.",
+  keywords: ["AI cost optimization", "LLM routing", "GPU cost management", "enterprise AI governance", "AI gateway", "model routing"],
+  alternates: { canonical: "/platform/aix" },
+  openGraph: {
+    title: "AIX — The Control Plane for Enterprise AI",
+    description: "Route, govern, and meter every AI request across models, clouds, GPUs, and private endpoints. Cut AI cost 40–90%.",
+    url: "/platform/aix",
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse AIX — AI Cost Control Plane" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AIX — The Control Plane for Enterprise AI",
+    description: "Route, govern, and meter every AI request. Cut AI cost 40–90%. Decision-time governance.",
+  },
 };
 
 const ACCENT = "#6954D4";
@@ -138,7 +152,7 @@ export default function AIXPage() {
     <>
       {/* HERO */}
       <div className="cv-hero-bg">
-        <section className="pt-[240px] pb-16 lg:pt-[240px] lg:pb-20 relative">
+        <section className="pt-[120px] sm:pt-[160px] pb-16 lg:pt-[240px] lg:pb-20 relative">
           <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
             <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
               {/* Left: badge + headline + CTAs */}
@@ -262,13 +276,11 @@ export default function AIXPage() {
           style={{ background: "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(34,120,224,0.16), transparent 70%)" }}
         />
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative">
-          <div className="max-w-3xl mb-10">
-            <h2 className="cv-h2 text-cv-ink">How AIX controls every AI request.</h2>
-            <p className="cv-body-lg text-cv-muted mt-5">
-              AIX sits between your application and every AI provider you use. On every request, it evaluates all available routes against the constraints your team has defined, and returns the best one, with a fallback and a full decision log.
-            </p>
-            <p className="text-cv-muted mt-4 italic">A gateway executes a routing rule you wrote. AIX evaluates whether that rule is still the right one.</p>
-          </div>
+          <h2 className="cv-h2 text-cv-ink mb-5">How AIX controls every AI request.</h2>
+          <p className="cv-body-lg text-cv-muted mb-2">
+            AIX sits between your application and every AI provider you use. On every request, it evaluates all available routes against the constraints your team has defined, and returns the best one, with a fallback and a full decision log.
+          </p>
+          <p className="text-cv-muted italic mb-10">A gateway executes a routing rule you wrote. AIX evaluates whether that rule is still the right one.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {STEPS.map((s, i) => {
               const Icon = STEP_ICONS[i];
@@ -293,10 +305,9 @@ export default function AIXPage() {
       {/* WHAT AIX IS NOT — comparison */}
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-10">
-            <h2 className="cv-h2 text-cv-ink">A gateway executes a rule you wrote. AIX decides what the rule should be.</h2>
-          </div>
-          <div className="overflow-x-auto rounded-2xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] shadow-[0_0_60px_-20px_rgba(34,120,224,0.25)]">
+          <h2 className="cv-h2 text-cv-ink mb-10">A gateway executes a rule you wrote. AIX decides what the rule should be.</h2>
+          {/* Desktop/tablet: full comparison table */}
+          <div className="hidden md:block overflow-x-auto rounded-2xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] shadow-[0_0_60px_-20px_rgba(34,120,224,0.25)]">
             <table className="w-full text-sm">
               <thead>
                 <tr className="text-left border-b border-cv-line">
@@ -336,6 +347,38 @@ export default function AIXPage() {
               </tbody>
             </table>
           </div>
+
+          {/* Mobile: stacked cards, no horizontal scroll needed */}
+          <div className="md:hidden space-y-3">
+            {COMPARE.map((row, i) => (
+              <div key={i} className="rounded-2xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-4">
+                <div className="text-cv-ink font-medium mb-3">{row[0]}</div>
+                <div className="space-y-2 text-sm">
+                  <div className="flex items-center justify-between">
+                    <span className="text-cv-muted">Gateway / Proxy</span>
+                    <CompCell v={row[1]} />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-cv-muted">LLM Gateway</span>
+                    <CompCell v={row[2]} />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-cv-muted">Observability Tool</span>
+                    <CompCell v={row[3]} />
+                  </div>
+                  <div
+                    className="flex items-center justify-between rounded-lg px-2.5 py-1.5 -mx-2.5 mt-1"
+                    style={{ background: "rgba(34,120,224,0.08)" }}
+                  >
+                    <span className="font-semibold" style={{ color: "#2278E0" }}>AIX</span>
+                    <span className="inline-flex items-center gap-1.5 font-semibold" style={{ color: "#2278E0" }}>
+                      <CheckCircle weight="Linear" size={15} /> Yes
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
           <p className="text-cv-ink/75 leading-relaxed mt-8 max-w-4xl">
             Observability tools tell you what happened after spend occurred. AIX acts before a request goes out. The routing decision, and the cost attached to it, is made explicitly before a token reaches any provider.
           </p>
@@ -345,12 +388,10 @@ export default function AIXPage() {
       {/* ROI */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-10">
-            <h2 className="cv-h2 text-cv-ink">The cost of not routing.</h2>
-            <p className="cv-body-lg text-cv-ink/75 mt-5">
-              Every hardcoded model endpoint is spending money without making a decision. AIX makes the decision explicitly. The saving is the difference.
-            </p>
-          </div>
+          <h2 className="cv-h2 text-cv-ink mb-5">The cost of not routing.</h2>
+          <p className="cv-body-lg text-cv-ink/75 mb-10">
+            Every hardcoded model endpoint is spending money without making a decision. AIX makes the decision explicitly. The saving is the difference.
+          </p>
           <AixRoiSplit roi={ROI} />
           <h3 className="cv-h3 text-cv-ink mt-14 mb-6">Three mechanisms</h3>
           <div className="grid md:grid-cols-3 gap-3">
@@ -395,12 +436,10 @@ export default function AIXPage() {
       {/* GOVERNANCE */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-10">
-            <h2 className="cv-h2 text-cv-ink">Built for enterprise AI governance.</h2>
-            <p className="cv-body-lg text-cv-ink/75 mt-5">
-              Every routing decision AIX makes is recorded, auditable, and explainable. Compliance controls are enforced at the routing layer, not bolted on after.
-            </p>
-          </div>
+          <h2 className="cv-h2 text-cv-ink mb-5">Built for enterprise AI governance.</h2>
+          <p className="cv-body-lg text-cv-ink/75 mb-10">
+            Every routing decision AIX makes is recorded, auditable, and explainable. Compliance controls are enforced at the routing layer, not bolted on after.
+          </p>
           <GovernanceBento />
         </div>
       </section>
@@ -411,9 +450,7 @@ export default function AIXPage() {
       {/* USE CASES */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-12">
-            <h2 className="cv-h2 text-cv-ink">Four problems AIX fixes.</h2>
-          </div>
+          <h2 className="cv-h2 text-cv-ink mb-12">Four problems AIX fixes.</h2>
           <UseCaseBento useCases={USE_CASES} />
         </div>
       </section>
@@ -421,12 +458,10 @@ export default function AIXPage() {
       {/* INTEGRATIONS */}
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-10">
-            <h2 className="cv-h2 text-cv-ink">Connect once. Route everywhere.</h2>
-            <p className="cv-body-lg text-cv-ink/75 mt-5">
-              Add your providers once. AIX handles routing, fallback, and cost tracking across all of them. No code changes when you add a new provider.
-            </p>
-          </div>
+          <h2 className="cv-h2 text-cv-ink mb-5">Connect once. Route everywhere.</h2>
+          <p className="cv-body-lg text-cv-ink/75 mb-10">
+            Add your providers once. AIX handles routing, fallback, and cost tracking across all of them. No code changes when you add a new provider.
+          </p>
           <h3 className="cv-label mb-4">Supported model providers</h3>
           <div className="overflow-x-auto rounded-2xl border border-cv-line/40">
             <table className="w-full text-sm">
@@ -462,31 +497,34 @@ export default function AIXPage() {
 
       {/* WHY AIX */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
-        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
+        <div className="cv-container">
           <h2 className="cv-h2 text-cv-ink">Most tools route traffic. AIX decides where it should go.</h2>
-          <p className="cv-body-lg text-cv-ink/75 mt-6">
-            A gateway executes whatever rule you gave it. If you told it to send traffic to Provider A, that is where it goes, even when Provider B is 90% cheaper and just as capable. A gateway has no scoring engine and no live signal evaluation. It is plumbing.
-          </p>
-          <p className="cv-body-lg text-cv-ink/80 mt-4">
-            AIX is not a gateway replacement. It is the decision layer that makes routing intelligent rather than static.
-          </p>
-          <div className="cv-label mt-8 mb-3">AIX is the right fit when:</div>
-          <ul className="space-y-2 text-cv-ink/85">
-            {[
-              "You run AI workloads in production across more than one provider",
-              "AI spend is material enough that optimisation has measurable impact",
-              "Compliance requirements constrain provider or region selection",
-              "Your team hardcoded model endpoints and has not revisited them",
-              "You want cost-aware routing without rebuilding your application",
-            ].map((b) => (
-              <li key={b} className="flex items-start gap-3"><CheckCircle weight="Linear" size={16} className="text-cv-teal mt-1 shrink-0" /> {b}</li>
-            ))}
-          </ul>
+          <div className="mt-6 space-y-4">
+            <p className="cv-body-lg text-cv-ink/75">
+              A gateway executes whatever rule you gave it. If you told it to send traffic to Provider A, that is where it goes, even when Provider B is 90% cheaper and just as capable. A gateway has no scoring engine and no live signal evaluation. It is plumbing.
+            </p>
+            <p className="cv-body-lg text-cv-ink/80">
+              AIX is not a gateway replacement. It is the decision layer that makes routing intelligent rather than static.
+            </p>
+            <div className="cv-label mt-2 mb-3">AIX is the right fit when:</div>
+            <ul className="space-y-2 text-cv-ink/85">
+              {[
+                "You run AI workloads in production across more than one provider",
+                "AI spend is material enough that optimisation has measurable impact",
+                "Compliance requirements constrain provider or region selection",
+                "Your team hardcoded model endpoints and has not revisited them",
+                "You want cost-aware routing without rebuilding your application",
+              ].map((b) => (
+                <li key={b} className="flex items-start gap-3"><CheckCircle weight="Linear" size={16} className="text-cv-teal mt-1 shrink-0" /> {b}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
       {/* FINAL CTA */}
       <ClosingCTA />
+      <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Platform", href: "/platform/finops" }, { name: "AIX", href: "/platform/aix" }]} />
     </>
   );
 }

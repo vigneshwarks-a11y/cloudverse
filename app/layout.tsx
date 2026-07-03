@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
@@ -20,6 +20,15 @@ const DEFAULT_DESCRIPTION =
   "Cloud, AI, data, and engineering spend governed in one place. $738,983 in annualised savings at Berkshire Hathaway. Real-time cost decisions across every compute surface.";
 const OG_IMAGE = "/og/default.png";
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+  ],
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -27,10 +36,12 @@ export const metadata: Metadata = {
     template: "%s | CloudVerse",
   },
   description: DEFAULT_DESCRIPTION,
+  keywords: ["cloud cost optimization", "FinOps platform", "AI cost governance", "compute economics", "cloud spend management", "unit economics"],
   alternates: { canonical: "/" },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
   openGraph: {
     type: "website",
-    siteName: "cloudverse",
+    siteName: "CloudVerse",
     url: SITE_URL,
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
@@ -49,7 +60,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={inter.variable} suppressHydrationWarning data-scroll-behavior="smooth">
-      <body>
+      <body suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           <Nav />
           <main>{children}</main>
@@ -60,21 +71,34 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "cloudverse",
-              url: SITE_URL,
-              logo: `${SITE_URL}/og/default.png`,
-              description: DEFAULT_DESCRIPTION,
-              sameAs: ["https://www.linkedin.com/company/cloudverse-ai"],
-              contactPoint: [{
-                "@type": "ContactPoint",
-                contactType: "sales",
-                email: "hello@cloudverse.ai",
-                availableLanguage: ["English"],
-              }],
-            }),
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                name: "CloudVerse",
+                url: SITE_URL,
+                logo: `${SITE_URL}/og/default.png`,
+                description: DEFAULT_DESCRIPTION,
+                sameAs: ["https://www.linkedin.com/company/cloudverse-ai"],
+                contactPoint: [{
+                  "@type": "ContactPoint",
+                  contactType: "sales",
+                  email: "hello@cloudverse.ai",
+                  availableLanguage: ["English"],
+                }],
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                name: "CloudVerse",
+                url: SITE_URL,
+                potentialAction: {
+                  "@type": "SearchAction",
+                  target: { "@type": "EntryPoint", urlTemplate: `${SITE_URL}/resources?q={search_term_string}` },
+                  "query-input": "required name=search_term_string",
+                },
+              },
+            ]),
           }}
         />
         {/* GTM placeholder — set NEXT_PUBLIC_GTM_ID to enable */}

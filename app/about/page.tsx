@@ -53,7 +53,7 @@ export default function Page() {
   return (
     <>
       {/* Hero */}
-      <section className="cv-hero-bg pt-[240px] pb-16 lg:pt-[240px] lg:pb-20 relative">
+      <section className="cv-hero-bg pt-[120px] sm:pt-[160px] pb-16 lg:pt-[240px] lg:pb-20 relative">
         <div className="cv-container relative z-10 text-center">
           <span className="cv-label inline-block mb-4">About CloudVerse™</span>
           <h1 className="cv-h1 text-cv-ink max-w-4xl mx-auto">
@@ -72,7 +72,7 @@ export default function Page() {
         <div className="cv-container">
           <div className="max-w-4xl mx-auto relative">
             <div className="absolute -inset-4 bg-gradient-to-r from-cv-blue/10 to-cv-purple/10 rounded-3xl blur-2xl opacity-50 pointer-events-none" />
-            <div className="relative p-8 sm:p-12 rounded-2xl border border-cv-line bg-cv-surface2">
+            <div className="relative p-8 sm:p-12 rounded-2xl border border-cv-line bg-cv-surface2 dark:bg-[#0D0D0D]">
               <h2 className="cv-h2 text-cv-ink mb-6 text-center">Our Mission</h2>
               <p className="text-lg sm:text-xl text-cv-muted leading-relaxed text-center">
                 CloudVerse™ is building the compute economics layer the cloud era was always
@@ -129,13 +129,13 @@ export default function Page() {
               Four ideas shape every product decision we make.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-5 max-w-4xl mx-auto">
             {VALUES.map((v, idx) => {
               const Icon = v.icon;
               return (
                 <div
                   key={idx}
-                  className="p-6 rounded-2xl bg-cv-surface2 border border-cv-line hover:border-cv-blue/40 transition-colors"
+                  className="p-6 rounded-2xl bg-cv-surface2 dark:bg-[#0D0D0D] border border-cv-line dark:border-white/10 hover:border-cv-blue/40 transition-colors"
                   data-testid={`value-card-${idx}`}
                 >
                   <div className="w-10 h-10 rounded-xl bg-cv-blue/10 flex items-center justify-center mb-4">
@@ -172,7 +172,7 @@ export default function Page() {
                   href={p.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group p-6 rounded-2xl bg-cv-surface border border-cv-line hover:border-cv-blue/40 hover:shadow-lg hover:shadow-cv-blue/10 transition-all"
+                  className="group p-6 rounded-2xl bg-cv-surface dark:bg-[#0D0D0D] border border-cv-line hover:border-cv-blue/40 hover:shadow-lg hover:shadow-cv-blue/10 transition-all"
                   data-testid={`product-summary-${idx}`}
                 >
                   <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cv-blue/20 to-cv-purple/20 flex items-center justify-center mb-4">

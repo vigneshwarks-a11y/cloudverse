@@ -33,7 +33,7 @@ export function FeatureShowcase({
           <h2 className="cv-h2 text-cv-ink">{heading}</h2>
         </div>
 
-        <div className="grid lg:grid-cols-[280px_1fr] gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] lg:grid-cols-[280px_1fr] gap-6 md:gap-8">
           <div className="flex flex-col gap-2">
             {states.map((s, i) => (
               <button
@@ -74,7 +74,7 @@ export function BrowserFrame({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-xl overflow-hidden border border-cv-line/10 bg-cv-surface2 shadow-2xl">
+    <div className="rounded-xl overflow-hidden border border-cv-line/10 bg-cv-surface2 dark:bg-[#0D0D0D] shadow-2xl">
       <div className="flex items-center gap-3 px-4 py-2.5 border-b border-cv-line/10 bg-cv-ink/[0.03]">
         <div className="flex gap-1.5">
           <span className="w-2.5 h-2.5 rounded-full bg-cv-ink/15" />
