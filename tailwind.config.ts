@@ -24,7 +24,7 @@ const config: Config = {
           card: "hsl(var(--cv-card))",
           navy: "#050F1C",
           blue: "#1664C0",
-          "blue-bright": "#2277E0",
+          "blue-bright": "#2278E0",
           "blue-light": "#7CB8F8",
           "blue-fill": "#E8F3FF",
           // Module accents (kept)

@@ -29,8 +29,7 @@ export const metadata: Metadata = {
   },
 };
 
-const ACCENT = "#0E9E7A";
-const BRAND = "#2277E0";
+const BRAND = "#2278E0";
 
 const DEVX_TABS = [
   { id: "pr-estimate", label: "PR Cost Estimate", copy: "Every infrastructure PR gets an inline cost estimate before reviewers see it. Engineers see impact at the moment they can still change something.", icon: CodeSquare },

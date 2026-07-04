@@ -33,8 +33,6 @@ export const metadata: Metadata = {
   },
 };
 
-const ACCENT = "#6954D4";
-
 const AIX_TABS: MockupTab[] = [
   { id: "routing", label: "Routing", copy: "Every request scored live on cost, latency, and quality. Best-fit route wins, with a fallback attached.", icon: Route },
   { id: "governance", label: "Governance", copy: "Budget caps, provider allowlists, and residency rules enforced at the routing layer, before a request goes out.", icon: ShieldCheck },

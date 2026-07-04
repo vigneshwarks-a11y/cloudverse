@@ -26,7 +26,7 @@ function Toggle({ on }: { on: boolean }) {
 }
 
 function Panel({ children }: { children: ReactNode }) {
-  return <div className="mt-5 rounded-xl border border-cv-line bg-cv-card dark:bg-[#050505] p-4">{children}</div>;
+  return <div className="mt-5 rounded-xl border border-cv-line bg-cv-card dark:bg-[#0D0D0D] p-4">{children}</div>;
 }
 
 function QueryAttributionVisual() {
@@ -84,7 +84,7 @@ function PatternDetectionVisual() {
   ];
   return (
     <Panel>
-      <div className="relative mb-4 h-20 overflow-hidden rounded-lg border border-cv-line bg-cv-card dark:bg-[#050505]">
+      <div className="relative mb-4 h-20 overflow-hidden rounded-lg border border-cv-line bg-cv-card dark:bg-[#0D0D0D]">
         <div
           className="absolute inset-0 opacity-40"
           style={{
@@ -207,7 +207,7 @@ export default function WarehouseIntel() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {CARDS.map(({ title, body, visual }) => (
-            <div key={title} className="flex flex-col rounded-2xl border border-cv-line bg-cv-surface2 dark:bg-[#050505] p-7">
+            <div key={title} className="flex flex-col rounded-2xl border border-cv-line bg-cv-surface2 dark:bg-[#0D0D0D] p-7">
               <h3 className="cv-h3 text-cv-ink">{title}</h3>
               <p className="text-cv-ink/75 mt-3 leading-relaxed">{body}</p>
               <div aria-hidden className="mt-auto">{visual}</div>

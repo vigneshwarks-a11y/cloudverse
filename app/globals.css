@@ -137,7 +137,7 @@
     background: #1664C0;
     color: #fff;
   }
-  .cv-btn-primary:hover { background: #2277E0; }
+  .cv-btn-primary:hover { background: #2278E0; }
 
   .cv-btn-ghost {
     @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm transition-colors text-cv-ink;
@@ -191,10 +191,10 @@
 .cv-video-ring {
   background: conic-gradient(
     from var(--cv-ring-angle),
-    #2277e0,
+    #2278e0,
     #6954d4,
     #22d3ee,
-    #2277e0
+    #2278e0
   );
   animation: cv-ring-spin 6s linear infinite;
 }

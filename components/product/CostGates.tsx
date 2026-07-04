@@ -7,7 +7,7 @@ const BLUE = "#007CFF";
 
 function Card1Visual() {
   return (
-    <div className="mt-5 rounded-xl border border-cv-line bg-cv-card dark:bg-[#050505] p-4 font-mono text-xs">
+    <div className="mt-5 rounded-xl border border-cv-line bg-cv-card dark:bg-[#0D0D0D] p-4 font-mono text-xs">
       <div className="flex items-center justify-between text-cv-ink/50">
         <span>instance_type</span>
         <span>monthly</span>
@@ -35,7 +35,7 @@ function Card1Visual() {
 
 function Card2Visual() {
   return (
-    <div className="mt-5 overflow-hidden rounded-xl border border-cv-line bg-cv-card dark:bg-[#050505]">
+    <div className="mt-5 overflow-hidden rounded-xl border border-cv-line bg-cv-card dark:bg-[#0D0D0D]">
       <div className="grid grid-cols-[1fr_1.4fr] text-xs">
         <div className="border-b border-cv-line px-3 py-2 font-medium text-cv-ink/50">Mode</div>
         <div className="border-b border-cv-line px-3 py-2 font-medium text-cv-ink/50">Trigger</div>

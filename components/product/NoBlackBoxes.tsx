@@ -52,7 +52,7 @@ export default function NoBlackBoxes({ traceJson }: { traceJson: string }) {
         >
           {/* LEFT (≈42%): compact code window with Mac chrome + clean blue border, no glow */}
           <div className="h-full lg:col-span-5" style={rise(0)}>
-            <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-cv-line/40 bg-cv-card dark:bg-[#1a1a1a]">
+            <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D]">
               {/* Mac chrome */}
               <div className="flex items-center gap-2 border-b border-cv-line bg-cv-ink/[0.03] px-4 py-3">
                 <span className="h-3 w-3 rounded-full bg-[#ff5f56]" />
