@@ -41,17 +41,17 @@ export default function Page() {
               const isExternal = c.href.startsWith("mailto:") || c.href.startsWith("http");
               return (
                 <div key={c.label} className="rounded-xl border border-cv-line/10 bg-cv-ink/[0.02] p-6">
-                  <div className="w-10 h-10 rounded-lg bg-cv-blue/15 text-cv-blue-light flex items-center justify-center mb-4">
+                  <div className="w-10 h-10 rounded-lg bg-cv-blue/15 text-cv-blue dark:text-cv-blue-light flex items-center justify-center mb-4">
                     <Icon size={20} weight="Linear" />
                   </div>
                   <div className="cv-label">{c.label}</div>
                   <p className="text-cv-ink/70 mt-2 text-sm leading-relaxed">{c.body}</p>
                   {isExternal ? (
-                    <a href={c.href} className="mt-5 inline-flex text-cv-blue-light text-sm font-medium" data-testid={`contact-${c.label.toLowerCase()}`}>
+                    <a href={c.href} className="mt-5 inline-flex text-cv-blue dark:text-cv-blue-light text-sm font-medium" data-testid={`contact-${c.label.toLowerCase()}`}>
                       {c.action} →
                     </a>
                   ) : (
-                    <Link href={c.href} className="mt-5 inline-flex text-cv-blue-light text-sm font-medium" data-testid={`contact-${c.label.toLowerCase()}`}>
+                    <Link href={c.href} className="mt-5 inline-flex text-cv-blue dark:text-cv-blue-light text-sm font-medium" data-testid={`contact-${c.label.toLowerCase()}`}>
                       {c.action} →
                     </Link>
                   )}
@@ -64,7 +64,7 @@ export default function Page() {
             <div className="cv-label mb-3">Headquarters</div>
             <h3 className="font-display font-semibold text-cv-ink text-xl">CloudVerse, Inc.</h3>
             <p className="text-cv-ink/70 mt-2 text-sm">Singapore · San Francisco · Bengaluru</p>
-            <p className="text-cv-ink/55 mt-3 text-sm">General inquiries: <a className="text-cv-blue-light" href="mailto:hello@cloudverse.ai">hello@cloudverse.ai</a></p>
+            <p className="text-cv-ink/55 mt-3 text-sm">General inquiries: <a className="text-cv-blue dark:text-cv-blue-light" href="mailto:hello@cloudverse.ai">hello@cloudverse.ai</a></p>
           </div>
         </div>
       </section>

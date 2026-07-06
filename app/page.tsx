@@ -145,7 +145,7 @@ export default function HomePage() {
                   <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-hero-demo">
                     Book a Demo
                   </Link>
-                  <Link href="/contact" className="cv-btn-ghost !text-cv-ink !border-cv-ink/30 hover:!border-cv-ink/60 hover:!bg-cv-ink/10 dark:!text-white dark:!border-white/40 dark:hover:!border-white/70 dark:hover:!bg-white/10" data-testid="link-hero-audit">
+                  <Link href="/contact" className="cv-btn-secondary" data-testid="link-hero-audit">
                     Request a free AI cost audit
                   </Link>
                 </div>

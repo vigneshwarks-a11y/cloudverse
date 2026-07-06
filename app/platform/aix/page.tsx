@@ -161,7 +161,7 @@ export default function AIXPage() {
                 <h1 className="cv-h1 mt-6 leading-[1.25] text-cv-ink">The Control Plane for Enterprise AI.</h1>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
-                  <Link href="/integrations" className="cv-btn-ghost">Explore the Platform</Link>
+                  <Link href="/integrations" className="cv-btn-secondary">Explore the Platform</Link>
                 </div>
               </div>
 
@@ -251,7 +251,7 @@ export default function AIXPage() {
                 style={{ background: "radial-gradient(circle, rgba(34,120,224,0.28), transparent 70%)" }}
               />
               <div className="relative">
-                <div className="cv-label mb-3" style={{ color: "#4D9AEF" }}>After AIX (dynamic)</div>
+                <div className="cv-label mb-3 text-[#1664C0] dark:text-[#4D9AEF]">After AIX (dynamic)</div>
                 <ul className="space-y-2 text-sm text-cv-ink/90">
                   <li>• Model: evaluated per request against constraints</li>
                   <li>• Provider: scored across all connected providers</li>

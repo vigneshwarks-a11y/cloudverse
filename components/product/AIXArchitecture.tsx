@@ -78,7 +78,7 @@ export function AIXArchitecture() {
 
           {/* Output bar */}
           <div className="mt-8 rounded-xl border border-cv-blue/40 bg-cv-blue/10 p-5">
-            <div className="cv-label mb-3" style={{ color: "#7CB8F8" }}>Decision output</div>
+            <div className="cv-label mb-3 text-[#1664C0] dark:text-[#7CB8F8]">Decision output</div>
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <div className="text-cv-ink/60 text-[11px] uppercase tracking-wider">Primary route</div>

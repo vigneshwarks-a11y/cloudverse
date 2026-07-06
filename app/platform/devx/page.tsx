@@ -78,7 +78,7 @@ export default function DevXPage() {
                 <h1 className="cv-h1 mt-6 leading-[1.25] text-cv-ink">Catch Cost Regressions Before They Reach Production</h1>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
-                  <Link href="#pr-example" className="cv-btn-ghost">See a Real PR Example</Link>
+                  <Link href="#pr-example" className="cv-btn-secondary">See a Real PR Example</Link>
                 </div>
               </div>
 
@@ -178,7 +178,7 @@ export default function DevXPage() {
               >
                 Most popular
               </span>
-              <div className="text-xs uppercase tracking-[0.18em] font-semibold" style={{ color: "#7CB8F8" }}>Business</div>
+              <div className="text-xs uppercase tracking-[0.18em] font-semibold text-[#1664C0] dark:text-[#7CB8F8]">Business</div>
               <div className="mt-5 text-5xl lg:text-6xl font-display font-semibold text-cv-ink leading-none tracking-tight">
                 $900<span className="text-lg font-normal text-cv-muted">/month</span>
               </div>

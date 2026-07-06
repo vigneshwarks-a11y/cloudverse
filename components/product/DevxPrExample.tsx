@@ -71,10 +71,10 @@ export default function DevxPrExample({ diff }: { diff: string }) {
             <div className="flex h-full flex-col gap-6">
               {/* TOP: DevX cost estimate dark, thin border */}
               <div className="rounded-2xl border border-cv-line bg-cv-surface dark:bg-[#0D0D0D] p-6" style={rise(2)}>
-                <div className="cv-label mb-2" style={{ color: CYAN }}>DevX cost estimate</div>
+                <div className="cv-label mb-2 text-[#1664C0] dark:text-[#38BDF8]">DevX cost estimate</div>
                 <div className="text-3xl font-display font-semibold text-cv-ink">+$1.1k to $1.4k</div>
                 <div className="text-sm text-cv-muted">per month</div>
-                <div className="cv-label mt-5 mb-2" style={{ color: CYAN }}>Primary drivers</div>
+                <div className="cv-label mt-5 mb-2 text-[#1664C0] dark:text-[#38BDF8]">Primary drivers</div>
                 <ul className="text-sm text-cv-ink/80 space-y-1">
                   <li>• NAT Gateway hourly + data processing charges</li>
                   <li>• Over-provisioned compute for observed utilisation</li>
@@ -85,12 +85,12 @@ export default function DevxPrExample({ diff }: { diff: string }) {
               <div className="relative flex-1 rounded-2xl p-[1.5px]" style={rise(3)}>
                 <div aria-hidden className="cv-ring-blue absolute inset-0 rounded-2xl" />
                 <div className="relative h-full rounded-2xl border border-cv-line bg-cv-surface dark:bg-[#0D0D0D] p-6">
-                  <div className="cv-label mb-2" style={{ color: CYAN }}>Why this matters</div>
+                  <div className="cv-label mb-2 text-[#1664C0] dark:text-[#38BDF8]">Why this matters</div>
                   <ul className="text-sm text-cv-ink/80 space-y-1">
                     <li>• Always-on NAT in non-prod is a recurring cost with no production benefit</li>
                     <li>• Instance size exceeds observed utilisation</li>
                   </ul>
-                  <div className="cv-label mt-5 mb-2" style={{ color: CYAN }}>Suggested fix</div>
+                  <div className="cv-label mt-5 mb-2 text-[#1664C0] dark:text-[#38BDF8]">Suggested fix</div>
                   <ul className="text-sm text-cv-ink/80 space-y-1">
                     <li>• Disable NAT Gateway in non-prod environments</li>
                     <li>• Use VPC endpoints for S3 and DynamoDB access</li>

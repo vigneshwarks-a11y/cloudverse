@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 
 const BLUE = "#007CFF";
-const VALUE = "#7CB8F8";
 
 function Bar({ pct }: { pct: number }) {
   return (
@@ -42,10 +41,10 @@ function QueryAttributionVisual() {
         {teams.map((t, i) => (
           <span
             key={t}
-            className="rounded-full px-2.5 py-1 text-[11px]"
+            className={`rounded-full px-2.5 py-1 text-[11px] ${i === 0 ? "text-[#1664C0] dark:text-[#7CB8F8]" : ""}`}
             style={
               i === 0
-                ? { background: `${BLUE}26`, color: VALUE, border: `1px solid ${BLUE}59` }
+                ? { background: `${BLUE}26`, border: `1px solid ${BLUE}59` }
                 : { background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.55)", border: "1px solid rgba(255,255,255,0.08)" }
             }
           >
@@ -63,7 +62,7 @@ function QueryAttributionVisual() {
           <div key={name} className="flex items-center gap-3 text-[11px]">
             <span className="w-16 text-cv-ink/60">{name}</span>
             <Bar pct={pct} />
-            <span className="w-9 text-right font-medium" style={{ color: VALUE }}>{pct}%</span>
+            <span className="w-9 text-right font-medium text-[#1664C0] dark:text-[#7CB8F8]">{pct}%</span>
           </div>
         ))}
       </div>
@@ -133,8 +132,8 @@ function PredictiveSignalsVisual() {
             <span className="text-cv-ink/70">{r.field}</span>
             <span>
               <span
-                className="inline-block rounded px-2 py-0.5 text-[10px] font-medium"
-                style={{ background: `${BLUE}26`, color: VALUE }}
+                className="inline-block rounded px-2 py-0.5 text-[10px] font-medium text-[#1664C0] dark:text-[#7CB8F8]"
+                style={{ background: `${BLUE}26` }}
               >
                 {r.rule}
               </span>
@@ -161,7 +160,7 @@ function SafeAutomationVisual() {
           <div key={r.team}>
             <div className="mb-1 flex items-center justify-between text-[11px]">
               <span className="text-cv-ink/60">{r.team}</span>
-              <span className="font-medium" style={{ color: VALUE }}>
+              <span className="font-medium text-[#1664C0] dark:text-[#7CB8F8]">
                 {r.spent} / {r.cap}
               </span>
             </div>

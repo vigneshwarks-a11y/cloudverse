@@ -42,13 +42,22 @@ export default function IntegrationsPage() {
   return (
     <>
       <section className="cv-hero-bg pt-[120px] sm:pt-[160px] pb-16 lg:pt-[240px] lg:pb-24 relative">
-        <div className="cv-container relative z-10 max-w-4xl">
-          <h1 className="cv-h1 text-cv-ink">Connects to the Stack Your Teams Already Use</h1>
-          <p className="cv-body-lg mt-6 text-cv-ink/75">
-            Add your integration once. CloudVerse handles routing, attribution, and cost tracking across all of them. No code changes when you add a new provider.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={DEMO_URL} className="cv-btn-primary"><span>Set up your integrations</span><ArrowRight weight="Linear" size={16} /></Link>
+        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
+            <div className="flex-1 min-w-0 lg:max-w-xl xl:max-w-2xl">
+              <span className="block text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8]">
+                Integrations
+              </span>
+              <h1 className="cv-h1 mt-6 leading-[1.25] text-cv-ink">Connects to the Stack Your Teams Already Use</h1>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link href={DEMO_URL} className="cv-btn-primary"><span>Set up your integrations</span><ArrowRight weight="Linear" size={16} /></Link>
+              </div>
+            </div>
+            <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-sm shrink-0">
+              <p className="cv-body text-cv-ink/70">
+                Add your integration once. CloudVerse handles routing, attribution, and cost tracking across all of them. No code changes when you add a new provider.
+              </p>
+            </div>
           </div>
         </div>
       </section>

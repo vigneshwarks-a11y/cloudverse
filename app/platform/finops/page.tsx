@@ -93,7 +93,7 @@ export default function FinOpsPage() {
                 <div className="mt-6 rounded-xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-4">
                   <div className="mb-4 flex items-center justify-between">
                     <span className="text-xs font-medium text-cv-ink/80">Allocation by team</span>
-                    <span className="rounded-full border border-[#1664C0]/40 bg-[#1664C0]/10 px-2 py-0.5 text-[10px] font-medium text-[#7C9BFF]">Reconciled · 100%</span>
+                    <span className="rounded-full border border-[#1664C0]/40 bg-[#1664C0]/10 px-2 py-0.5 text-[10px] font-medium text-[#1664C0] dark:text-[#7C9BFF]">Reconciled · 100%</span>
                   </div>
                   <div className="space-y-3">
                     {[
@@ -131,7 +131,7 @@ export default function FinOpsPage() {
                 <div className="mt-6 rounded-xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-4">
                   <div className="mb-3 flex items-center justify-between">
                     <span className="text-xs font-medium text-cv-ink/80">Daily spend · prod-emr</span>
-                    <span className="font-mono text-[11px] text-[#7C9BFF]">+$4,812</span>
+                    <span className="font-mono text-[11px] text-[#1664C0] dark:text-[#7C9BFF]">+$4,812</span>
                   </div>
                   <div className="flex h-24 items-end gap-1.5">
                     {[34, 30, 38, 32, 36, 33, 40, 35, 92, 41].map((h, i) => (
@@ -139,7 +139,7 @@ export default function FinOpsPage() {
                     ))}
                   </div>
                   <div className="mt-4 flex items-center gap-3 rounded-lg border border-[#1664C0]/30 bg-[#1664C0]/[0.08] p-3">
-                    <span className="h-2 w-2 shrink-0 rounded-full bg-[#7C9BFF]" />
+                    <span className="h-2 w-2 shrink-0 rounded-full bg-[#1664C0] dark:bg-[#7C9BFF]" />
                     <div className="text-[11px] leading-tight">
                       <div className="font-medium text-cv-ink/90">Anomaly · Data Science · prod-emr</div>
                       <div className="text-cv-muted">3.1× baseline · detected 2h ago</div>
@@ -207,7 +207,7 @@ export default function FinOpsPage() {
                 <div className="mt-6 rounded-xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-4">
                   <div className="mb-3 flex items-center justify-between">
                     <span className="text-xs font-medium text-cv-ink/80">Chargeback · Q2</span>
-                    <span className="rounded-full border border-[#1664C0]/40 bg-[#1664C0]/10 px-2 py-0.5 text-[10px] font-medium text-[#7C9BFF]">USD · EUR · GBP</span>
+                    <span className="rounded-full border border-[#1664C0]/40 bg-[#1664C0]/10 px-2 py-0.5 text-[10px] font-medium text-[#1664C0] dark:text-[#7C9BFF]">USD · EUR · GBP</span>
                   </div>
                   <div className="grid grid-cols-[1fr_auto_auto] gap-x-4 text-[11px]">
                     <div className="border-b border-cv-line pb-2 text-[10px] uppercase tracking-wider text-cv-muted">Business unit</div>
@@ -226,7 +226,7 @@ export default function FinOpsPage() {
                     ))}
                     <div className="py-2 font-medium text-cv-ink/90">Total</div>
                     <div className="py-2 text-right font-mono text-cv-muted">$6,415</div>
-                    <div className="py-2 text-right font-mono font-semibold text-[#7C9BFF]">$99,630</div>
+                    <div className="py-2 text-right font-mono font-semibold text-[#1664C0] dark:text-[#7C9BFF]">$99,630</div>
                   </div>
                 </div>
               </div>

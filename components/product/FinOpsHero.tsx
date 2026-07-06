@@ -26,7 +26,7 @@ export function FinOpsHero() {
                   <span>Book a Demo</span>
                   <ArrowRight weight="Linear" size={16} />
                 </Link>
-                <Link href="/integrations" className="cv-btn-ghost">Explore the Platform</Link>
+                <Link href="/integrations" className="cv-btn-secondary">Explore the Platform</Link>
               </div>
             </div>
             <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-sm shrink-0">

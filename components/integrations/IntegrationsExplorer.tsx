@@ -118,7 +118,7 @@ export function IntegrationsExplorer() {
           <p className="text-cv-ink/55">No integrations match those filters.</p>
           <button
             onClick={() => { setQ(""); setCat("All"); setStatus("All"); setMod("All"); }}
-            className="mt-3 text-sm text-cv-blue-light hover:text-cv-ink"
+            className="mt-3 text-sm text-cv-blue dark:text-cv-blue-light hover:text-cv-ink"
           >
             Reset filters
           </button>
@@ -214,10 +214,10 @@ function Drawer({ integration, onClose }: { integration: Integration; onClose: (
               data-testid={`link-docs-${integration.id}`}
             >
               <div>
-                <div className="text-[11px] uppercase tracking-widest text-cv-blue-light mb-1">Setup documentation</div>
+                <div className="text-[11px] uppercase tracking-widest text-cv-blue dark:text-cv-blue-light mb-1">Setup documentation</div>
                 <div className="text-sm text-cv-ink font-medium">Read the {integration.name} setup guide</div>
               </div>
-              <SquareArrowRightUp weight="Linear" size={18} className="text-cv-blue-light shrink-0" />
+              <SquareArrowRightUp weight="Linear" size={18} className="text-cv-blue dark:text-cv-blue-light shrink-0" />
             </Link>
           </div>
         )}
@@ -265,7 +265,7 @@ function BulletList({ items }: { items: string[] }) {
     <ul className="space-y-2">
       {items.map((it, i) => (
         <li key={i} className="flex gap-3 text-sm text-cv-ink/75 leading-6">
-          <span className="text-cv-blue-light shrink-0 mt-0.5">•</span>
+          <span className="text-cv-blue dark:text-cv-blue-light shrink-0 mt-0.5">•</span>
           <span>{it}</span>
         </li>
       ))}

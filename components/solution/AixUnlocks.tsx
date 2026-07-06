@@ -38,8 +38,8 @@ function RoutingVisual() {
       <VHead Icon={Route} label="Cost-aware routing" />
       <div className="flex items-center gap-3">
         <div
-          className="shrink-0 rounded-md px-2.5 py-1.5 text-[11px] font-medium"
-          style={{ background: `${BLUE}1A`, border: `1px solid ${BLUE}40`, color: VALUE }}
+          className="shrink-0 rounded-md px-2.5 py-1.5 text-[11px] font-medium text-[#1664C0] dark:text-[#7CB8F8]"
+          style={{ background: `${BLUE}1A`, border: `1px solid ${BLUE}40` }}
         >
           Request
         </div>
@@ -48,10 +48,10 @@ function RoutingVisual() {
           {providers.map(([name, best]) => (
             <div
               key={name}
-              className="flex items-center justify-between rounded-md border px-2.5 py-1 text-[11px]"
+              className={`flex items-center justify-between rounded-md border px-2.5 py-1 text-[11px] ${best ? "text-[#1664C0] dark:text-[#7CB8F8]" : ""}`}
               style={
                 best
-                  ? { borderColor: `${BLUE}59`, background: `${BLUE}1A`, color: VALUE }
+                  ? { borderColor: `${BLUE}59`, background: `${BLUE}1A` }
                   : { borderColor: "rgba(255,255,255,0.10)", color: "rgba(255,255,255,0.55)" }
               }
             >
@@ -78,7 +78,7 @@ function GuardrailsVisual() {
         {rules.map((r) => (
           <div key={r} className="flex items-center gap-2 text-[11px] text-cv-ink/70">
             <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full" style={{ background: `${BLUE}26` }}>
-              <CheckCircle weight="Linear" className="h-2.5 w-2.5" style={{ color: VALUE }} />
+              <CheckCircle weight="Linear" className="h-2.5 w-2.5 text-[#1664C0] dark:text-[#7CB8F8]" />
             </span>
             {r}
           </div>
@@ -101,7 +101,7 @@ function GpuVisual() {
           <div key={name}>
             <div className="mb-1 flex items-center justify-between text-[11px]">
               <span className="text-cv-ink/60">{name}</span>
-              <span className="font-medium" style={{ color: VALUE }}>{pct}%</span>
+              <span className="font-medium text-[#1664C0] dark:text-[#7CB8F8]">{pct}%</span>
             </div>
             <div className="h-2 w-full rounded-full bg-cv-ink/[0.06]">
               <div className="h-full rounded-full" style={{ width: `${pct}%`, background: BLUE }} />
@@ -132,7 +132,7 @@ function AttributionVisual() {
           <div key={name} className="flex items-center gap-1.5 text-[11px] text-cv-ink/60">
             <span className="h-2 w-2 rounded-full" style={{ background: color }} />
             {name}
-            <span className="font-medium" style={{ color: VALUE }}>{pct}%</span>
+            <span className="font-medium text-[#1664C0] dark:text-[#7CB8F8]">{pct}%</span>
           </div>
         ))}
       </div>
@@ -158,7 +158,7 @@ function RegistryVisual() {
         {models.map((m) => (
           <div key={m.name} className="grid grid-cols-[1.4fr_0.8fr_1fr] items-center gap-x-3 text-[11px]">
             <span className="font-mono text-cv-ink/75">{m.name}</span>
-            <span style={{ color: VALUE }}>{m.version}</span>
+            <span className="text-[#1664C0] dark:text-[#7CB8F8]">{m.version}</span>
             <span className="flex items-center justify-end gap-1.5 text-cv-ink/60">
               <span className="h-1.5 w-1.5 rounded-full" style={{ background: m.dot }} />
               {m.status}

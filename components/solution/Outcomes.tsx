@@ -26,13 +26,13 @@ export function Outcomes({
             const Icon = o.icon;
             return (
               <div key={o.title} className="rounded-xl border border-cv-line/10 bg-cv-ink/[0.02] p-6">
-                <div className="w-10 h-10 rounded-lg bg-cv-blue/15 text-cv-blue-light flex items-center justify-center mb-4">
+                <div className="w-10 h-10 rounded-lg bg-cv-blue/15 text-cv-blue dark:text-cv-blue-light flex items-center justify-center mb-4">
                   <Icon size={20} weight="Linear" />
                 </div>
                 <div className="font-display font-semibold text-cv-ink text-lg">{o.title}</div>
                 <p className="text-cv-ink/65 text-sm mt-2 leading-relaxed">{o.body}</p>
                 {o.metric && (
-                  <div className="mt-4 text-cv-blue-light font-display font-semibold tabular-nums">{o.metric}</div>
+                  <div className="mt-4 text-cv-blue dark:text-cv-blue-light font-display font-semibold tabular-nums">{o.metric}</div>
                 )}
               </div>
             );

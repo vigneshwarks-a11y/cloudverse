@@ -41,7 +41,7 @@ export default function ConnectPage() {
             <ul className="mt-8 space-y-3">
               {PROOF.map((p) => (
                 <li key={p} className="flex gap-3 text-cv-ink/85 text-[15px]">
-                  <CheckCircle weight="Linear" size={18} className="shrink-0 mt-0.5 text-cv-blue-light" />
+                  <CheckCircle weight="Linear" size={18} className="shrink-0 mt-0.5 text-cv-blue dark:text-cv-blue-light" />
                   <span>{p}</span>
                 </li>
               ))}

@@ -17,3 +17,7 @@ source_code.zip
 
 *.env
 *.tsbuildinfo
+
+# Local Netlify folder
+.netlify
+deno.lock

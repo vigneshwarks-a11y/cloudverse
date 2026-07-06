@@ -146,6 +146,19 @@
   }
   .cv-btn-ghost:hover { background: hsl(var(--cv-line) / 0.5); }
 
+  /* Secondary CTA — light blue fill pill, used for hero secondary buttons */
+  .cv-btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm transition-colors text-cv-ink;
+    background: #BFD7F0;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  .dark .cv-btn-secondary {
+    background: #0d1e3a;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .cv-btn-secondary:hover { filter: brightness(0.96); }
+  .dark .cv-btn-secondary:hover { filter: brightness(1.15); }
+
   /* Inverted button — ink bg, surface text; works in both themes */
   .cv-btn-inverse {
     @apply inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-md text-sm font-medium transition-colors;

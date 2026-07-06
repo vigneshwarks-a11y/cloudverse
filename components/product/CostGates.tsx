@@ -17,15 +17,15 @@ function Card1Visual() {
         <span>$2,400</span>
       </div>
       <div
-        className="mt-1 flex items-center justify-between rounded px-2 py-1"
-        style={{ background: `${BLUE}1F`, color: "#7CB8F8" }}
+        className="mt-1 flex items-center justify-between rounded px-2 py-1 text-[#1664C0] dark:text-[#7CB8F8]"
+        style={{ background: `${BLUE}1F` }}
       >
         <span>+ t3.medium</span>
         <span>$1,200</span>
       </div>
       <div
-        className="mt-3 inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold"
-        style={{ background: `${BLUE}26`, color: "#7CB8F8" }}
+        className="mt-3 inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold text-[#1664C0] dark:text-[#7CB8F8]"
+        style={{ background: `${BLUE}26` }}
       >
         ↓ saves $1,200/mo
       </div>
@@ -47,8 +47,8 @@ function Card2Visual() {
 
         <div className="px-3 py-2">
           <span
-            className="rounded-full px-2 py-0.5 font-medium"
-            style={{ background: `${BLUE}26`, color: "#7CB8F8" }}
+            className="rounded-full px-2 py-0.5 font-medium text-[#1664C0] dark:text-[#7CB8F8]"
+            style={{ background: `${BLUE}26` }}
           >
             required
           </span>
@@ -87,13 +87,13 @@ function Card4Visual() {
               className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full"
               style={{ background: `${BLUE}26` }}
             >
-              <CheckCircle weight="Linear" className="h-2.5 w-2.5" style={{ color: "#7CB8F8" }} />
+              <CheckCircle weight="Linear" className="h-2.5 w-2.5 text-[#1664C0] dark:text-[#7CB8F8]" />
             </span>
             {t}
           </div>
         ))}
       </div>
-      <div className="mt-3 text-[11px] font-semibold" style={{ color: "#7CB8F8" }}>
+      <div className="mt-3 text-[11px] font-semibold text-[#1664C0] dark:text-[#7CB8F8]">
         7+ formats supported
       </div>
     </div>

@@ -51,7 +51,7 @@ function Card({ e }: { e: Event }) {
       <div className="font-display font-semibold text-cv-ink text-lg">{e.title}</div>
       <Link
         href={e.href || DEMO_URL}
-        className="mt-4 inline-flex items-center gap-1.5 text-sm text-cv-blue-light font-medium"
+        className="mt-4 inline-flex items-center gap-1.5 text-sm text-cv-blue dark:text-cv-blue-light font-medium"
       >
         Register <ArrowRight weight="Linear" size={14} />
       </Link>

@@ -46,7 +46,7 @@ export function SolutionHero({
               <Link href={primaryHref} className="cv-btn-primary">
                 <span>{primaryLabel}</span> <ArrowRight weight="Linear" size={16} />
               </Link>
-              <Link href={platformHref} className="cv-btn-ghost">
+              <Link href={platformHref} className="cv-btn-secondary">
                 {secondaryLabel}
               </Link>
             </div>

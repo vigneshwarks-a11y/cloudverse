@@ -175,14 +175,14 @@ export function Testimonials() {
                   {/* Bottom strip */}
                   <div className="relative mt-2 flex flex-col gap-3 border-t border-cv-line bg-cv-surface/40 p-4 backdrop-blur-sm sm:mt-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:p-6 lg:px-10">
                     <div className="flex items-center gap-4">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#1664C0]/50 bg-[#1664C0]/20 text-sm font-semibold text-[#7C9BFF]">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#1664C0]/50 bg-[#1664C0]/20 text-sm font-semibold text-[#1664C0] dark:text-[#7C9BFF]">
                         {t.initials}
                       </div>
                       <div>
                         <div className="font-semibold text-cv-ink">{t.name}</div>
                         <div className="text-sm text-cv-muted">{t.title}</div>
                       </div>
-                      <span className="ml-2 hidden items-center rounded-full border border-[#1664C0]/50 bg-[#1664C0]/15 px-3 py-1 text-xs font-medium text-[#7C9BFF] sm:inline-flex">
+                      <span className="ml-2 hidden items-center rounded-full border border-[#1664C0]/50 bg-[#1664C0]/15 px-3 py-1 text-xs font-medium text-[#1664C0] dark:text-[#7C9BFF] sm:inline-flex">
                         {t.product}
                       </span>
                     </div>

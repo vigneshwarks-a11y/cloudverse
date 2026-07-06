@@ -38,19 +38,25 @@ export default function ResourcesPage() {
     <>
       {/* HERO */}
       <section className="cv-hero-bg pt-[120px] sm:pt-[160px] pb-12 lg:pt-[240px] lg:pb-16 relative">
-        <div className="cv-container relative z-10 max-w-4xl">
-          <span className="cv-label inline-block mb-4">CloudVerse&trade; Resources</span>
-          <h1 className="cv-h1 text-cv-ink mb-4">
-            Guides and Documentation for Infrastructure Economics
-          </h1>
-          <p className="cv-body-lg text-cv-ink/75 mb-8 max-w-2xl">
-            Practical guidance on visibility, allocation, anomalies, and automation across cloud, data, and AI platforms.
-          </p>
-          <div className="flex flex-wrap items-start gap-3">
-            <a href="#guides" className="cv-btn-primary" data-testid="button-browse-guides">Browse guides</a>
-            <a href="#docs" className="cv-btn-ghost" data-testid="button-browse-docs">Documentation</a>
-            <a href="#faq" className="cv-btn-ghost" data-testid="button-browse-faq">FAQ</a>
-            <a href="#blog" className="cv-btn-ghost" data-testid="button-browse-blog">Blog</a>
+        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
+            <div className="flex-1 min-w-0 lg:max-w-xl xl:max-w-2xl">
+              <span className="cv-label inline-block mb-4">CloudVerse&trade; Resources</span>
+              <h1 className="cv-h1 leading-[1.25] text-cv-ink">
+                Guides and Documentation for Infrastructure Economics
+              </h1>
+              <div className="mt-8 flex flex-wrap items-start gap-3">
+                <a href="#guides" className="cv-btn-primary" data-testid="button-browse-guides">Browse guides</a>
+                <a href="#docs" className="cv-btn-ghost" data-testid="button-browse-docs">Documentation</a>
+                <a href="#faq" className="cv-btn-ghost" data-testid="button-browse-faq">FAQ</a>
+                <a href="#blog" className="cv-btn-ghost" data-testid="button-browse-blog">Blog</a>
+              </div>
+            </div>
+            <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-sm shrink-0">
+              <p className="cv-body text-cv-ink/70">
+                Practical guidance on visibility, allocation, anomalies, and automation across cloud, data, and AI platforms.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -100,7 +106,7 @@ export default function ResourcesPage() {
                   {d.category}
                 </span>
                 <div className="font-display font-semibold text-cv-ink text-base leading-snug">{d.title}</div>
-                <div className="mt-4 inline-flex items-center gap-1.5 text-sm text-cv-blue-light">
+                <div className="mt-4 inline-flex items-center gap-1.5 text-sm text-cv-blue dark:text-cv-blue-light">
                   Read doc <ArrowRight weight="Linear" size={14} />
                 </div>
               </Link>
@@ -212,7 +218,7 @@ function ResourceCard({ r, accent }: { r: import("@/lib/resources").Resource; ac
       {r.seo?.description ? (
         <p className="text-cv-muted text-sm mt-3 leading-relaxed flex-1 min-w-0 line-clamp-3">{r.seo.description}</p>
       ) : null}
-      <div className="mt-5 inline-flex items-center gap-1.5 text-sm text-cv-blue-light font-medium">
+      <div className="mt-5 inline-flex items-center gap-1.5 text-sm text-cv-blue dark:text-cv-blue-light font-medium">
         Read guide <ArrowRight weight="Linear" size={14} className="group-hover:translate-x-0.5 transition-transform" />
       </div>
     </Link>
@@ -225,7 +231,7 @@ function BlogCard({ post, dark }: { post: import("@/lib/resources").BlogPost; da
       className={`block rounded-xl border border-cv-line p-5 ${dark ? "bg-cv-surface2 dark:bg-[#0D0D0D]" : "bg-cv-surface"}`}
       data-testid={`blog-${post.slug}`}
     >
-      <span className="inline-block text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full mb-3" style={{ background: "rgba(124, 184, 248, 0.1)", color: "#7CB8F8" }}>
+      <span className="inline-block text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full mb-3 bg-[#1664C0]/10 dark:bg-[#7CB8F8]/10 text-[#1664C0] dark:text-[#7CB8F8]">
         {post.category}
       </span>
       <h3 className="text-base font-semibold text-cv-ink mb-2 line-clamp-2">{post.title}</h3>

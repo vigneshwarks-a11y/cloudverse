@@ -75,7 +75,7 @@ export default function DataXPage() {
                 <h1 className="cv-h1 mt-6 leading-[1.25] text-cv-ink">Find the Queries Quietly Running Up Your Bill</h1>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
-                  <Link href="/integrations" className="cv-btn-ghost">Explore the Platform</Link>
+                  <Link href="/integrations" className="cv-btn-secondary">Explore the Platform</Link>
                 </div>
               </div>
 
