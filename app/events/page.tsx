@@ -35,7 +35,7 @@ const PAST: Event[] = [
 function Card({ e }: { e: Event }) {
   const Icon = e.mode === "virtual" ? VideoFrame : MapPoint;
   return (
-    <div className="rounded-xl border border-cv-line/10 bg-cv-ink/[0.02] p-6 hover:bg-cv-ink/[0.04] transition-colors">
+    <div className="rounded-xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-6 hover:border-cv-blue/40 transition-colors">
       <div className="flex flex-wrap items-center gap-3 text-xs text-cv-ink/55 mb-3">
         <span className="inline-flex items-center gap-1.5">
           <Calendar weight="Linear" size={12} /> {e.date}
