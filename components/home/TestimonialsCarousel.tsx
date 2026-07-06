@@ -162,16 +162,25 @@ export function TestimonialsCarousel() {
     return () => clearTimeout(t);
   }, [active, entered, hovered, busy, advance]);
 
+  // Below this width there's no room to show collapsed side-strips next to
+  // the active card without crushing its content — show only the active
+  // card, full width, and let the dots below handle navigation.
+  const isMobile = containerW > 0 && containerW < 640;
+
   const collapsedCount = TESTIMONIALS.length - 1;
   const activeW = containerW > 0
-    ? containerW - collapsedCount * COLLAPSED_W - collapsedCount * GAP
+    ? isMobile
+      ? containerW
+      : containerW - collapsedCount * COLLAPSED_W - collapsedCount * GAP
     : 0;
 
   // Width per card: active card grows to activeW, all others shrink to
   // COLLAPSED_W at the same time (parallel expand/collapse transition).
+  // On mobile, collapsed cards shrink to 0 instead of a visible strip.
   const getW = (i: number) => {
     if (!containerW) return undefined;
-    return i === active ? activeW : COLLAPSED_W;
+    if (i === active) return activeW;
+    return isMobile ? 0 : COLLAPSED_W;
   };
 
   return (
@@ -186,7 +195,7 @@ export function TestimonialsCarousel() {
 
         <div
           ref={containerRef}
-          className="flex gap-3"
+          className="flex gap-0 sm:gap-3"
           style={{ minHeight: 360 }}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
@@ -197,15 +206,16 @@ export function TestimonialsCarousel() {
             const contentVisible = isActive;
             // Entrance stagger
             const staggerDelay = entered ? 0 : i * 80;
+            const isCollapsedOnMobile = isMobile && !isActive;
 
             return (
               <div
                 key={i}
-                className="relative rounded-2xl border border-cv-line/40 overflow-hidden shrink-0"
+                className={`relative rounded-2xl overflow-hidden shrink-0 ${isCollapsedOnMobile ? "border-0" : "border border-cv-line/40"}`}
                 style={{
                   width: w ?? (isActive ? undefined : COLLAPSED_W),
                   flex: (!w && isActive) ? 1 : undefined,
-                  minWidth: w ?? COLLAPSED_W,
+                  minWidth: isCollapsedOnMobile ? 0 : (w ?? COLLAPSED_W),
                   transition: [
                     `width ${EXPAND_MS}ms ease-in-out`,
                     `min-width ${EXPAND_MS}ms ease-in-out`,
@@ -279,7 +289,7 @@ export function TestimonialsCarousel() {
                   }}
                 >
                   {/* Top bar */}
-                  <div className="flex items-center justify-between px-7 pt-6 pb-4 shrink-0">
+                  <div className="flex items-center justify-between px-4 sm:px-7 pt-5 sm:pt-6 pb-3 sm:pb-4 shrink-0">
                     <div className="flex items-center gap-2 min-w-0">
                       <div
                         className="h-7 w-7 rounded-md flex items-center justify-center text-white text-xs font-bold shrink-0"
@@ -297,14 +307,14 @@ export function TestimonialsCarousel() {
                   </div>
 
                   {/* Quote */}
-                  <div className="flex-1 px-7 py-2 flex items-end overflow-hidden">
+                  <div className="flex-1 px-4 sm:px-7 py-2 flex items-end overflow-hidden">
                     <p className="text-cv-ink/85 text-lg lg:text-xl leading-relaxed max-w-2xl">
                       {ct.quote}
                     </p>
                   </div>
 
                   {/* Footer */}
-                  <div className="border-t border-cv-line/50 px-7 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 shrink-0">
+                  <div className="border-t border-cv-line/50 px-4 sm:px-7 py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 shrink-0">
                     <div className="flex items-center gap-3">
                       <Avatar initials={ct.initials} color={ct.accentColor} size={38} />
                       <div>
