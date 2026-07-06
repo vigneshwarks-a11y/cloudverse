@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle } from "@solar-icons/react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
+import { IntegrationsExplorer } from "@/components/integrations/IntegrationsExplorer";
 
 export const metadata: Metadata = {
   title: "Integrations — Connects to the Stack Your Teams Already Use | CloudVerse",
@@ -59,6 +60,19 @@ export default function IntegrationsPage() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* EXPLORER */}
+      <section className="cv-section bg-cv-surface2">
+        <div className="cv-container">
+          <div className="max-w-3xl mb-10">
+            <h2 className="cv-h2 text-cv-ink">Browse every integration.</h2>
+            <p className="cv-body-lg text-cv-ink/75 mt-5">
+              Filter by module, category, or status to find exactly what you need.
+            </p>
+          </div>
+          <IntegrationsExplorer />
         </div>
       </section>
 
