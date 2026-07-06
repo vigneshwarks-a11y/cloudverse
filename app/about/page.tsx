@@ -96,7 +96,7 @@ export default function Page() {
             <span className="cv-label inline-block mb-3">Our Story</span>
             <h2 className="cv-h2 text-cv-ink">Why we built CloudVerse™</h2>
           </div>
-          <div className="max-w-4xl space-y-5 text-cv-ink/80 cv-body-lg leading-relaxed">
+          <div className="space-y-5 text-cv-ink/80 cv-body-lg leading-relaxed">
             <p>
               Cloud promised simplicity. What enterprises got instead was financial opacity —
               sprawling invoices, disconnected cost centers, and engineering teams blind to the
