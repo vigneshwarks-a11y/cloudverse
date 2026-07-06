@@ -70,11 +70,11 @@ export default function Page() {
       {/* Mission */}
       <section className="cv-section bg-cv-surface">
         <div className="cv-container">
-          <div className="max-w-4xl mx-auto relative">
+          <div className="relative">
             <div className="absolute -inset-4 bg-gradient-to-r from-cv-blue/10 to-cv-purple/10 rounded-3xl blur-2xl opacity-50 pointer-events-none" />
-            <div className="relative p-8 sm:p-12 rounded-2xl border border-cv-line/40 bg-cv-surface2 dark:bg-[#0D0D0D]">
-              <h2 className="cv-h2 text-cv-ink mb-6 text-center">Our Mission</h2>
-              <p className="text-lg sm:text-xl text-cv-muted leading-relaxed text-center">
+            <div className="relative p-10 lg:p-16 rounded-3xl border border-cv-line/40 bg-cv-surface2 dark:bg-[#0D0D0D] text-center">
+              <h2 className="cv-h2 text-cv-ink mb-6 max-w-3xl mx-auto">Our Mission</h2>
+              <p className="cv-body-lg text-cv-muted leading-relaxed max-w-3xl mx-auto">
                 CloudVerse™ is building the compute economics layer the cloud era was always
                 missing —{" "}
                 <span className="text-cv-ink font-semibold">
@@ -92,29 +92,27 @@ export default function Page() {
       {/* Story */}
       <section className="cv-section bg-cv-surface2">
         <div className="cv-container">
-          <div className="max-w-3xl">
-            <div className="mb-10">
-              <span className="cv-label inline-block mb-3">Our Story</span>
-              <h2 className="cv-h2 text-cv-ink">Why we built CloudVerse™</h2>
-            </div>
-            <div className="space-y-5 text-cv-ink/80 text-base sm:text-lg leading-relaxed">
-              <p>
-                Cloud promised simplicity. What enterprises got instead was financial opacity —
-                sprawling invoices, disconnected cost centers, and engineering teams blind to the
-                economic weight of every deployment decision.
-              </p>
-              <p>
-                AI made it worse. GPU clusters, spot instances, and experimental workloads
-                introduced spend that finance can&apos;t model and engineering can&apos;t control.
-                One misconfigured job can erase a quarter&apos;s infrastructure budget overnight.
-              </p>
-              <p>
-                CloudVerse™ was built to solve this at the root. giving engineers, finance, and
-                leadership a shared, real-time view of compute value, where every infrastructure
-                decision ties directly to business outcomes.
-              </p>
-              <p className="text-cv-ink font-semibold">That&apos;s compute economics.</p>
-            </div>
+          <div className="mb-10">
+            <span className="cv-label inline-block mb-3">Our Story</span>
+            <h2 className="cv-h2 text-cv-ink">Why we built CloudVerse™</h2>
+          </div>
+          <div className="max-w-4xl space-y-5 text-cv-ink/80 cv-body-lg leading-relaxed">
+            <p>
+              Cloud promised simplicity. What enterprises got instead was financial opacity —
+              sprawling invoices, disconnected cost centers, and engineering teams blind to the
+              economic weight of every deployment decision.
+            </p>
+            <p>
+              AI made it worse. GPU clusters, spot instances, and experimental workloads
+              introduced spend that finance can&apos;t model and engineering can&apos;t control.
+              One misconfigured job can erase a quarter&apos;s infrastructure budget overnight.
+            </p>
+            <p>
+              CloudVerse™ was built to solve this at the root. giving engineers, finance, and
+              leadership a shared, real-time view of compute value, where every infrastructure
+              decision ties directly to business outcomes.
+            </p>
+            <p className="text-cv-ink font-semibold">That&apos;s compute economics.</p>
           </div>
         </div>
       </section>
