@@ -47,9 +47,9 @@ export default function ResourcesPage() {
               </h1>
               <div className="mt-8 flex flex-wrap items-start gap-3">
                 <a href="#guides" className="cv-btn-primary" data-testid="button-browse-guides">Browse guides</a>
-                <a href="#docs" className="cv-btn-ghost" data-testid="button-browse-docs">Documentation</a>
-                <a href="#faq" className="cv-btn-ghost" data-testid="button-browse-faq">FAQ</a>
-                <a href="#blog" className="cv-btn-ghost" data-testid="button-browse-blog">Blog</a>
+                <a href="#docs" className="cv-btn-secondary" data-testid="button-browse-docs">Documentation</a>
+                <a href="#faq" className="cv-btn-secondary" data-testid="button-browse-faq">FAQ</a>
+                <a href="#blog" className="cv-btn-secondary" data-testid="button-browse-blog">Blog</a>
               </div>
             </div>
             <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-sm shrink-0">
@@ -188,7 +188,7 @@ export default function ResourcesPage() {
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
-              <Link href="/contact" className="cv-btn-ghost">Talk to Us</Link>
+              <Link href="/contact" className="cv-btn-secondary">Talk to Us</Link>
             </div>
           </div>
         </div>

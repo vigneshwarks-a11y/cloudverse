@@ -46,7 +46,7 @@ export function ClosingCTA() {
           <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-closing-demo">
             Book a Demo <ArrowRight weight="Linear" size={15} />
           </Link>
-          <Link href="/contact" className="cv-btn-ghost" data-testid="link-closing-audit">
+          <Link href="/contact" className="cv-btn-secondary" data-testid="link-closing-audit">
             Request a free AI cost audit
           </Link>
         </div>

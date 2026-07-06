@@ -33,7 +33,7 @@ export function ProductHero({
           <Link href={DEMO_URL} className="cv-btn-primary" style={{ background: color }}>
             Book a Demo <ArrowRight weight="Linear" size={16} />
           </Link>
-          <Link href="#features" className="cv-btn-ghost">
+          <Link href="#features" className="cv-btn-secondary">
             See it in action
           </Link>
         </div>

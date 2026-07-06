@@ -109,7 +109,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
             <h2 className="cv-h2 text-cv-ink max-w-3xl mx-auto">See cloudverse in your environment.</h2>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
-              <Link href="/resources" className="cv-btn-ghost">More resources</Link>
+              <Link href="/resources" className="cv-btn-secondary">More resources</Link>
             </div>
           </div>
         </div>

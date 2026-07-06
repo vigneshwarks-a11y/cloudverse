@@ -203,7 +203,7 @@ export default function IntegrationsPage() {
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Link href="/contact" className="cv-btn-primary"><span>Talk to Us</span><ArrowRight weight="Linear" size={16} /></Link>
-              <Link href="/resources" className="cv-btn-ghost">View Documentation</Link>
+              <Link href="/resources" className="cv-btn-secondary">View Documentation</Link>
             </div>
           </div>
         </div>

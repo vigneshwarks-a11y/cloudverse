@@ -19,7 +19,7 @@ export function CTABand({
             <Link href={DEMO_URL} className="cv-btn-primary">
               Get a Demo <ArrowRight weight="Linear" size={16} />
             </Link>
-            <Link href="/contact" className="cv-btn-ghost">
+            <Link href="/contact" className="cv-btn-secondary">
               Talk to Sales
             </Link>
           </div>
