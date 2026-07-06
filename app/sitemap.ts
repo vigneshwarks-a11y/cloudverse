@@ -22,7 +22,6 @@ const STATIC_ROUTES: RouteConfig[] = [
   { path: "/about",                   priority: 0.7,  changeFreq: "monthly" },
   { path: "/connect",                 priority: 0.7,  changeFreq: "monthly" },
   { path: "/efficiency-snapshot",     priority: 0.6,  changeFreq: "monthly" },
-  { path: "/events",                  priority: 0.6,  changeFreq: "weekly"  },
   { path: "/contact",                 priority: 0.5,  changeFreq: "monthly" },
   { path: "/sign-up",                 priority: 0.5,  changeFreq: "monthly" },
   { path: "/legal",                   priority: 0.3,  changeFreq: "monthly" },

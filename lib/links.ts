@@ -26,7 +26,6 @@ export const NAV = {
   ],
   primary: [
     { label: "Integrations", href: "/integrations" },
-    { label: "Events", href: "/events" },
     { label: "Resources", href: "/resources" },
     { label: "About", href: "/about" },
   ],

@@ -159,7 +159,7 @@ export function AixOrchestration() {
                     </h3>
 
                     {/* Expanded content */}
-                    <div className={`overflow-hidden transition-all duration-300 ${isActive ? "max-h-40 opacity-100 mt-3" : "max-h-0 opacity-0"}`}>
+                    <div className={`overflow-hidden transition-all duration-300 ${isActive ? "max-h-[420px] opacity-100 mt-3" : "max-h-0 opacity-0"}`}>
                       <p className="text-sm text-cv-ink/60 leading-relaxed">{f.body}</p>
                       <Link
                         href={f.href}
@@ -168,6 +168,13 @@ export function AixOrchestration() {
                       >
                         Learn More <ArrowRight weight="Linear" size={12} />
                       </Link>
+
+                      {/* Mobile-only inline visual — appears inside the open item, not a shared block below the list */}
+                      <div className="mt-4 lg:hidden">
+                        <div className="rounded-2xl border border-cv-line bg-cv-card overflow-hidden aspect-[4/3] flex items-center justify-center">
+                          <span className="text-sm text-cv-muted">Image coming soon</span>
+                        </div>
+                      </div>
                     </div>
 
                     {/* Progress bar — track always visible, fill only on active */}
@@ -178,8 +185,8 @@ export function AixOrchestration() {
             })}
           </div>
 
-          {/* Right: mock UI */}
-          <div className="mt-8 lg:mt-0 flex-1 min-w-0 overflow-hidden">
+          {/* Right: mock UI — desktop only, mobile shows it inline inside the open accordion item */}
+          <div className="hidden lg:block lg:mt-0 flex-1 min-w-0 overflow-hidden">
             <div className="rounded-2xl border border-cv-line bg-cv-card overflow-hidden aspect-[4/3] flex items-center justify-center">
               <span className="text-sm text-cv-muted">Image coming soon</span>
             </div>

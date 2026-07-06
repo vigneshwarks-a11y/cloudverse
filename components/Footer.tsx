@@ -25,7 +25,6 @@ export function Footer() {
             items={[
               { label: "About", href: "/about" },
               { label: "Resources", href: "/resources" },
-              { label: "Events", href: "/events" },
               { label: "Contact", href: "/contact" },
             ]}
           />
