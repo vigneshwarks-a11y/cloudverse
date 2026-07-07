@@ -221,10 +221,10 @@ export function AixGovernance() {
           <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] divide-y md:divide-y-0 md:divide-x divide-cv-line/30">
             {/* Left ~40%: logo + warm glow + testimonial */}
             <div className="relative flex flex-col justify-between bg-cv-surface p-8 lg:p-10 overflow-hidden min-h-[320px]">
-              {/* Blue glow — both modes */}
+              {/* Blue-to-purple glow — both modes */}
               <div
                 className="pointer-events-none absolute inset-0"
-                style={{ background: "radial-gradient(ellipse 90% 70% at 20% 80%, rgba(22,100,192,0.30) 0%, rgba(22,100,192,0.12) 50%, transparent 75%)" }}
+                style={{ background: "radial-gradient(ellipse 90% 70% at 20% 80%, rgba(22,100,192,0.30) 0%, rgba(105,84,212,0.20) 50%, transparent 75%)" }}
                 aria-hidden
               />
               <div className="relative inline-flex items-center gap-2">
