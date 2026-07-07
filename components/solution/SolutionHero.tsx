@@ -38,7 +38,7 @@ export function SolutionHero({
             <span className="block text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8]">
               {eyebrow}
             </span>
-            <h1 className="mt-6 font-display font-extrabold tracking-tight text-cv-ink" style={{ fontSize: "clamp(34px, 4.6vw, 64px)", lineHeight: 1.05 }}>
+            <h1 className="mt-6 font-display font-extrabold tracking-tight text-cv-ink" style={{ fontSize: "clamp(30px, 3.8vw, 52px)", lineHeight: 1.1, textWrap: "balance" }}>
               {h1}
             </h1>
             <p className="cv-body mt-6 text-cv-muted max-w-lg">{sub}</p>

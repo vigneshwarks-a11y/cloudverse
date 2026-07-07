@@ -141,8 +141,7 @@ export default function HomePage() {
               <div className="flex-1 min-w-0 lg:max-w-xl xl:max-w-2xl">
                 <p className="cv-label mb-5">AIX · The Control Plane for Enterprise AI</p>
                 <h1 className="cv-h1 text-cv-ink">
-                  Cloud governance solved<br />
-                  infrastructure chaos.<br />
+                  Cloud governance solved infrastructure chaos.{" "}
                   <span className="text-cv-blue dark:text-cv-blue-light">AIX solves AI chaos.</span>
                 </h1>
                 <div className="mt-8 flex flex-wrap gap-3">
