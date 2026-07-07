@@ -279,37 +279,37 @@ export default function GovernanceBento() {
     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
       <Card
         title="Multi-tenant isolation"
-        desc="Each team's workloads, policies, and cost data are separated."
+        desc="Each team's workloads, policies, and cost data stay separated."
       >
         <TenantViz />
       </Card>
       <Card
         title="Data residency controls"
-        desc="Route requests by region based on sovereignty requirements. EU, US, APAC per workload."
+        desc="Route by region to meet sovereignty rules."
       >
         <ResidencyViz />
       </Card>
       <Card
         title="PII handling rules"
-        desc="PII detection enforced before provider selection. Sensitive requests never reach unapproved endpoints."
+        desc="Detection enforced before provider selection."
       >
         <PiiViz />
       </Card>
       <Card
         title="Budget caps"
-        desc="Hard spend ceilings applied before a request goes out."
+        desc="Hard ceilings applied before a request goes out."
       >
         <BudgetViz />
       </Card>
       <Card
-        title="Org/team policy scopes"
-        desc="Different teams run under different constraint sets. One platform, multiple policies."
+        title="Org / team policy scopes"
+        desc="Different teams run under different constraint sets."
       >
         <PolicyTreeViz />
       </Card>
       <Card
         title="Full execution trace logs"
-        desc="Every decision logged with constraints, candidates, selection, outcome."
+        desc="Every decision timed and logged."
       >
         <TraceViz />
       </Card>

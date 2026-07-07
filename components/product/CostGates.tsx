@@ -43,7 +43,7 @@ function Card2Visual() {
         <div className="border-b border-cv-line px-3 py-2">
           <span className="rounded-full bg-cv-ink/[0.06] px-2 py-0.5 text-cv-ink/70">advisory</span>
         </div>
-        <div className="border-b border-cv-line px-3 py-2 text-cv-ink/70">estimate only</div>
+        <div className="border-b border-cv-line px-3 py-2 text-cv-ink/70">warn and continue</div>
 
         <div className="px-3 py-2">
           <span
@@ -53,7 +53,7 @@ function Card2Visual() {
             required
           </span>
         </div>
-        <div className="px-3 py-2 text-cv-ink/70">approval over threshold</div>
+        <div className="px-3 py-2 text-cv-ink/70">block until resolved</div>
       </div>
     </div>
   );
@@ -105,22 +105,22 @@ type Card = { title: string; body: string; visual: ReactNode };
 const CARDS: Card[] = [
   {
     title: "PR cost diff",
-    body: "Every infra PR gets an inline cost impact estimate before reviewers see it. The engineer sees what their change costs. Their reviewer sees it too. The conversation happens in the PR, not in a cost review meeting three weeks later.",
+    body: "The before-and-after cost of a change, line by line.",
     visual: <Card1Visual />,
   },
   {
     title: "Policy-as-code",
-    body: "Cost guardrails versioned in your repo. Applied as advisory or required checks. Advisory mode: the PR gets an estimate, the engineer decides. Required mode: PRs over a defined cost threshold need explicit approval before merge. Both modes live in your repo as code: version controlled, reviewable, auditable.",
+    body: "Cost rules in version control.",
     visual: <Card2Visual />,
   },
   {
     title: "Native CI integration",
-    body: "GitHub Actions, GitLab CI, Azure Pipelines, Jenkins, Argo. No new pipeline required. DevX slots into what your teams already use.",
+    body: "Runs in the pipeline you already have.",
     visual: <Card3Visual />,
   },
   {
     title: "Multi-IaC support",
-    body: "Terraform, OpenTofu, Pulumi, CloudFormation, Helm, Kubernetes, raw Kubernetes manifests. 7+ formats supported.",
+    body: "Reads your infrastructure as it's written.",
     visual: <Card4Visual />,
   },
 ];
@@ -154,7 +154,7 @@ export default function CostGates() {
     <section className="cv-section">
       <div className="cv-container">
         <div className="mb-10">
-          <h2 className="cv-h2 text-cv-ink lg:whitespace-nowrap">Cost gates engineers actually want to use.</h2>
+          <h2 className="cv-h2 text-cv-ink lg:whitespace-nowrap">Cost review, in the workflow engineers already use.</h2>
         </div>
         <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
           {CARDS.map(({ title, body, visual }, i) => (

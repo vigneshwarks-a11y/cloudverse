@@ -45,19 +45,19 @@ const STATS = [
 ];
 
 const PLATFORMS = [
-  ["Snowflake", "Credits, spillage, clustering, caching"],
-  ["Databricks", "DBUs, clusters, shuffle behaviour"],
-  ["BigQuery", "Scan economics, slots, reservations"],
-  ["Microsoft Fabric", "CU debt, smoothing, throttling"],
-  ["Azure Synapse", "DWUs, serverless TB scanned"],
+  ["Snowflake", "Query history, warehouse metering, roles"],
+  ["Databricks", "Job and cluster usage, SQL warehouse metering"],
+  ["BigQuery", "Job metadata, bytes scanned, reservations"],
+  ["Microsoft Fabric", "Capacity and item usage"],
+  ["Azure Synapse", "Pool usage and query metadata"],
 ];
 
 const FAQ = [
-  ["Does DataX read our actual data?", "No. DataX reads query history and metadata only, never row contents. Read-only by default."],
-  ["Which warehouses are supported?", "Snowflake, Databricks, BigQuery, Microsoft Fabric, Azure Synapse."],
-  ["How does it work with dbt?", "DataX attributes costs to dbt model runs and flags high-cost models with optimisation suggestions. The attribution follows the DAG."],
-  ["Can data engineers act on recommendations directly?", "Yes. One-click optimisation. All actions are policy-bound and auditable. No finance approval cycle required for routine fixes."],
-  ["How does DataX pricing work?", "Pricing is calculated automatically after login based on your connected platforms. It reflects your steady-state analytics footprint, not spike volume or alert activity."],
+  ["Does DataX read our actual data?", "No. It reads metadata only, query history and metering, over a read-only role. Never the contents of a table."],
+  ["Which warehouses are supported?", "Snowflake, Databricks, BigQuery, Microsoft Fabric, and Azure Synapse."],
+  ["How does dbt attribution work?", "DataX maps spend through the dbt DAG, so cost lands on the model and the owner that caused it."],
+  ["Can it take action, or only report?", "Both. Fixes are policy-bound, reversible, and audited. You choose the automation mode."],
+  ["What drives AI-related warehouse cost?", "RAG agents and model pipelines that query warehouses at scale. DataX attributes that traffic so AI-driven data cost is finally visible."],
 ];
 
 export default function DataXPage() {
@@ -72,16 +72,16 @@ export default function DataXPage() {
                 <span className="block text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8]">
                   DataX
                 </span>
-                <h1 className="cv-h1 mt-6 leading-[1.25] text-cv-ink">Find the Queries Quietly Running Up Your Bill</h1>
+                <h1 className="cv-h1 mt-6 leading-[1.25] text-cv-ink">Find the queries quietly running up your bill.</h1>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
-                  <Link href="/integrations" className="cv-btn-secondary">Explore the Platform</Link>
+                  <Link href="/integrations" className="cv-btn-ghost">Explore the platform</Link>
                 </div>
               </div>
 
               <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-sm shrink-0">
                 <p className="cv-body text-cv-ink/70">
-                  Query, dashboard, and dbt-model-level attribution across Snowflake, Databricks, BigQuery, Microsoft Fabric, and Synapse. Safe automation when you want it.
+                  Trace warehouse and pipeline cost to the query, the dashboard, the dbt model, and the team that ran it, across Snowflake, Databricks, BigQuery, Fabric, and Synapse.
                 </p>
               </div>
             </div>
@@ -111,10 +111,10 @@ export default function DataXPage() {
           <h2 className="cv-h2 text-cv-ink">Your data warehouse is a blank check.</h2>
           <div className="mt-6 space-y-4">
             <p className="cv-body-lg text-cv-ink/80">
-              Most data teams find out about expensive queries the same way. The monthly bill arrives, it is higher than last month, and everyone starts guessing. The data is somewhere in the query logs. Finding it takes hours. Fixing it takes longer.
+              Warehouse and pipeline cost scales with how people use it, and it rarely maps back to a team or a product.
             </p>
             <p className="cv-body-lg text-cv-ink/80">
-              DataX attributes every dollar of warehouse spend to the query, pipeline, dashboard, and team that ran it. Not to &quot;the data team.&quot; To the specific SELECT that ran 334.6 GB without a partition filter.
+              A single query can scan hundreds of gigabytes and cost more than a server. Run it on a schedule and it compounds, quietly, on someone else&apos;s budget.
             </p>
             <p className="cv-body-lg text-cv-ink font-medium italic">
               Stop waiting for the monthly bill to see who burned the budget.
@@ -130,9 +130,9 @@ export default function DataXPage() {
           <p className="text-cv-ink/70 italic mb-10">This is a real DataX finding. Not a mock. Not an illustration.</p>
           <div className="grid md:grid-cols-3 gap-3">
             {[
-              ["The $117 full scan", "A BigQuery SELECT scanning 334.6 GB per query due to missing partition pruning. Zero cache hit rate. $117.16 in real cost. Fix: one-click partition pruning."],
-              ["The pattern view billing never shows", "DataX groups queries into cost-amplifying patterns, not one-off executions. This query ran 77 times at $1.52 average cost for $117.16 total. 100% scan rate. Tagged full-scan, spiky, fan-out. This is where hidden spend actually lives."],
-              ["The high-frequency amplifier", "A query running 77 times a month does not look expensive until the repetition multiplies the cost. DataX detects this automatically. Exact SQL available. Frequency plus cost math explained. Cache and materialisation fixes suggested."],
+              ["The $117 full scan", "One query, no partition pruning, scanning everything to return a little."],
+              ["The pattern billing never shows", "The same shape of query run 77 times a month, invisible in a total."],
+              ["The high-frequency amplifier", "A cheap query on a tight schedule that adds up to real money."],
             ].map(([t, b]) => (
               <div key={t} className="rounded-2xl border border-cv-line/40 bg-cv-surface dark:bg-[#0D0D0D] p-6">
                 <h3 className="font-display font-semibold text-cv-ink text-lg" style={{ color: ACCENT }}>{t}</h3>
@@ -149,31 +149,34 @@ export default function DataXPage() {
       {/* PRICING PHILOSOPHY */}
       <section className="cv-section bg-cv-surface">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-5">DataX does not profit from your inefficiency.</h2>
+          <h2 className="cv-h2 text-cv-ink mb-5">DataX doesn&apos;t profit from your inefficiency.</h2>
           <p className="cv-body-lg text-cv-ink/75 mb-10">
             DataX prices on the structural drivers of your data platform cost, not on billing noise.
           </p>
           <div className="grid md:grid-cols-2 gap-5">
             <div className="rounded-2xl border border-cv-line/40 bg-cv-surface dark:bg-[#0D0D0D] p-6">
-              <div className="cv-label mb-3">What pricing reflects</div>
+              <div className="cv-label mb-3">What affects pricing</div>
               <ul className="space-y-2 text-cv-ink/85 text-sm">
-                <li>• Analytics compute footprint: warehouses, clusters, slots, capacities</li>
-                <li>• Analytics storage footprint: tables, partitions, datasets</li>
+                <li>• Platforms connected</li>
+                <li>• Seats</li>
+                <li>• Retention window</li>
+                <li>• Automation scope</li>
+                <li>• Support tier</li>
               </ul>
             </div>
             <div className="rounded-2xl border border-cv-line/40 bg-cv-surface dark:bg-[#0D0D0D] p-6">
-              <div className="cv-label mb-3">What does not affect pricing</div>
+              <div className="cv-label mb-3">What doesn&apos;t</div>
               <ul className="space-y-2 text-cv-ink/80 text-sm">
-                <li>• Sudden cost spikes or anomalies</li>
-                <li>• Inefficient queries or pipelines</li>
-                <li>• Retries, backfills, or bad deployments</li>
-                <li>• Alert volume or rule execution</li>
-                <li>• Short-term workload regressions</li>
+                <li>• Your total spend</li>
+                <li>• How much you waste</li>
+                <li>• How many queries you run</li>
+                <li>• Warehouse size</li>
+                <li>• How much we save you</li>
               </ul>
             </div>
           </div>
           <p className="text-cv-ink/75 mt-6">
-            These are precisely the problems DataX is designed to detect and prevent. We do not monetize them.
+            We don&apos;t profit from your inefficiency. What you pay reflects your platform, not your problems.
           </p>
           <p className="text-cv-ink/85 mt-4 italic">
             As your platform becomes more efficient, your cost per unit of work improves without being penalised for growth.
@@ -186,26 +189,26 @@ export default function DataXPage() {
         <div className="cv-container">
           <h2 className="cv-h2 text-cv-ink mb-5">Automation without losing control.</h2>
           <p className="cv-body-lg text-cv-ink/75 mb-2">
-            DataX applies approved optimisations within policies you define, and logs every action for audit and rollback.
+            DataX applies approved optimisations within the policies you define.
           </p>
           <p className="text-cv-ink/70 italic mb-10">The automation model is about DataX behaviour, not your pipelines.</p>
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <div className="cv-label mb-3">Controls</div>
               <ul className="space-y-2 text-cv-ink/85">
-                <li>• Opt-in policies and scoped permissions</li>
-                <li>• Confidence scoring gates execution</li>
-                <li>• Approval workflows for higher-risk changes</li>
-                <li>• Every action logged with reason, impact, rollback readiness</li>
+                <li>• Approval gates</li>
+                <li>• Scoped permissions</li>
+                <li>• Reversible actions</li>
+                <li>• Full audit trail</li>
               </ul>
             </div>
             <div>
               <div className="cv-label mb-3">Automation modes</div>
               <ul className="space-y-2 text-cv-ink/85">
-                <li>• Observe only</li>
+                <li>• Off</li>
                 <li>• Recommend only</li>
-                <li>• Auto-apply safe</li>
-                <li>• Approval required</li>
+                <li>• Approve then apply</li>
+                <li>• Auto within policy</li>
               </ul>
             </div>
           </div>
@@ -234,7 +237,7 @@ export default function DataXPage() {
               <thead className="bg-cv-surface dark:bg-[#0D0D0D]">
                 <tr className="text-left">
                   <th className="p-4 text-cv-ink font-medium">Platform</th>
-                  <th className="p-4 text-cv-ink font-medium">What DataX covers</th>
+                  <th className="p-4 text-cv-ink font-medium">What DataX reads</th>
                 </tr>
               </thead>
               <tbody>
@@ -250,11 +253,11 @@ export default function DataXPage() {
           <div className="mt-10">
             <div className="cv-label mb-4">Connection model</div>
             <ol className="space-y-2 text-cv-ink/85">
-              <li>1. Intent-based onboarding per platform type</li>
-              <li>2. Read-only permissions by default</li>
-              <li>3. Optional automation permissions — scoped, explicit</li>
-              <li>4. Metadata Pulse verifies telemetry before ingest</li>
-              <li>5. Least-privilege scripts your security team can audit</li>
+              <li>1. Read-only role</li>
+              <li>2. Metadata only, never your data</li>
+              <li>3. Scoped to what you approve</li>
+              <li>4. Every action logged</li>
+              <li>5. Revoke any time</li>
             </ol>
             <p className="text-cv-ink/75 mt-6 max-w-3xl">
               Read-only means read-only. DataX ingests metadata, query logs, and billing telemetry. It never touches your underlying data, workload code, or runtime configuration unless you explicitly grant automation permissions.

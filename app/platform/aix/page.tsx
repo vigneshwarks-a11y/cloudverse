@@ -34,28 +34,28 @@ export const metadata: Metadata = {
 };
 
 const AIX_TABS: MockupTab[] = [
-  { id: "routing", label: "Routing", copy: "Every request scored live on cost, latency, and quality. Best-fit route wins, with a fallback attached.", icon: Route },
-  { id: "governance", label: "Governance", copy: "Budget caps, provider allowlists, and residency rules enforced at the routing layer, before a request goes out.", icon: ShieldCheck },
-  { id: "attribution", label: "Cost Attribution", copy: "Cost lands against the request, the feature, and the tenant automatically. No spreadsheet reconstruction.", icon: DollarMinimalistic },
-  { id: "audit", label: "Audit Trail", copy: "Every routing decision logged: constraints active, routes evaluated, route selected, and why.", icon: FileText },
+  { id: "routing", label: "Routing", copy: "Every request scored live on cost, latency, and quality. The best-fit route wins, with a fallback attached.", icon: Route },
+  { id: "governance", label: "Governance", copy: "Policy, access, residency, and provider trust enforced before a request runs.", icon: ShieldCheck },
+  { id: "attribution", label: "Cost Attribution", copy: "Every run lands against a team, feature, and tenant. Automatically.", icon: DollarMinimalistic },
+  { id: "audit", label: "Audit Trail", copy: "Every routing decision logged with the constraints, the candidates, and why one won.", icon: FileText },
 ];
 
 const STATS = [
   { v: "40–90%", l: "cost reduction on production workloads" },
   { v: "<15ms", l: "routing overhead per request" },
-  { v: "96.8%", l: "lower cost vs hardcoded Claude" },
-  { v: "28.5%", l: "faster vs hardcoded baseline" },
+  { v: "96.8%", l: "lower cost vs a hardcoded Claude Sonnet setup" },
+  { v: "28.5%", l: "faster than that baseline" },
 ];
 
 const STEP_ICONS = [PlugCircle, ShieldCheck, Target, BranchingPathsDown, Scale, Eye];
 
 const STEPS = [
-  { n: "Connect", body: "Add provider API keys and endpoints. Minutes per provider. No application changes required." },
-  { n: "Govern", body: "Define constraints: latency ceiling, budget cap, allowed providers, compliance rules, quality floor. Per workload, per team, per region." },
-  { n: "Score", body: "Each route is evaluated on real-time latency distributions, effective unit cost, and availability signals. Live, not benchmarked." },
-  { n: "Route", body: "Policy constraints filter the scored routes. The best fit within policy is selected. Primary route and fallback returned together." },
-  { n: "Measure", body: "Cost per request, cost per feature, cost per tenant. Attribution automatic. No reconstruction from billing data." },
-  { n: "Audit", body: "Every routing decision logged: constraints active, routes evaluated, route selected, reason for selection, cost and latency outcome." },
+  { n: "Connect", body: "Add your provider API keys and endpoints. Minutes per provider, no application change." },
+  { n: "Govern", body: "Set the constraints: latency ceiling, budget cap, allowed providers, residency, quality floor." },
+  { n: "Score", body: "Each route is evaluated live on cost, latency distribution, and quality fit." },
+  { n: "Route", body: "Policy filters the scored routes; the best-fit wins and a fallback stands ready." },
+  { n: "Measure", body: "Cost per request, per feature, and per tenant, tracked as it happens." },
+  { n: "Audit", body: "Every decision logged: constraints active, routes considered, and why one won." },
 ];
 
 const COMPARE = [
@@ -66,7 +66,7 @@ const COMPARE = [
   ["Explainable routing decisions", "No", "No", "No", "Yes"],
   ["Primary + fallback route output", "Manual", "Basic", "No", "Yes"],
   ["GPU + managed API routing", "No", "No", "No", "Yes"],
-  ["Zero vendor lock-in", "Partial", "Partial", "N/A", "Yes"],
+  ["No vendor lock-in", "Partial", "Partial", "N/A", "Yes"],
 ];
 
 const ROI = [
@@ -77,49 +77,50 @@ const ROI = [
 ];
 
 const PROVIDERS = [
-  ["OpenAI", "GPT-4o, GPT-4o-mini, GPT-4 Turbo, GPT-3.5 Turbo. Managed API."],
-  ["Anthropic", "Claude 3.5 Sonnet, Claude 3 Haiku, Claude 3 Opus. Managed API."],
-  ["HuggingFace", "Hosted inference endpoints and open models via HuggingFace Hub."],
-  ["Mistral AI", "Mistral Large, Mistral Small, Mixtral 8x7B. Managed API and self-hosted."],
-  ["Llama / Ollama", "Meta Llama 3 family via Ollama and compatible deployments."],
-  ["Cohere", "Command R, Command R+, reranking endpoints. Managed API."],
-  ["Together AI", "Open model inference at scale. Llama, Mistral, Qwen variants."],
-  ["Groq", "Ultra-low latency LPU inference. Llama and Mistral family."],
-  ["DeepSeek", "DeepSeek-V3, DeepSeek-R1. Managed API."],
+  ["OpenAI", "GPT-4o, GPT-4o-mini, GPT-4 Turbo, GPT-3.5 Turbo."],
+  ["Anthropic", "Claude 3.5 Sonnet, Claude 3 Haiku, Claude 3 Opus."],
+  ["Google", "Gemini family."],
+  ["Cohere", "Command R, Command R+, reranking."],
+  ["Mistral AI", "Mistral Large, Mistral Small, Mixtral 8x7B."],
+  ["Llama / Ollama", "Meta Llama 3 family."],
+  ["Together AI", "Open-model inference at scale."],
+  ["Groq", "Ultra-low-latency LPU inference."],
+  ["DeepSeek", "DeepSeek-V3, DeepSeek-R1."],
+  ["HuggingFace", "Hosted inference endpoints and open models."],
 ];
 
 const USE_CASES = [
   {
     n: "1",
     title: "Multi-provider cost arbitrage",
-    sit: "A SaaS company runs 15M AI requests per month through a single hardcoded premium model.",
-    prob: "$44,700/month. 70% of those requests could be handled by a smaller model at equivalent quality.",
-    how: "Profiles each request type by task complexity. Routes to the lowest-cost model that meets the defined quality floor. No prompt changes. No application rewrites.",
-    after: "~$12,600/month. 30% premium, 70% cost-optimised. Full cost allocation by request type.",
+    sit: "A SaaS company runs 15M AI requests a month.",
+    prob: "$44,700/month, and 70% of it could run on a smaller model at the same quality.",
+    how: "AIX profiles each request by task complexity and routes accordingly.",
+    after: "~$12,600/month. 30% on premium models, 70% cost-optimized.",
   },
   {
     n: "2",
     title: "Compliance-bound routing",
-    sit: "A financial services firm operates in the EU, UK, and Singapore, each with different data residency requirements. Provider allowlists are maintained in a spreadsheet.",
-    prob: "Manual enforcement. Unapproved providers get used in testing. Compliance audits require manual log reconstruction.",
-    how: "Residency rules configured per org and region in the AIX policy engine. PII handling rules enforced before provider selection. Every routing decision produces a machine-generated audit trace.",
-    after: "Zero unapproved provider incidents post-deployment. Audit logs complete, not manually assembled. Security team removes spreadsheet enforcement process entirely.",
+    sit: "A financial services firm operates across the EU, UK, and Singapore.",
+    prob: "Residency is enforced by hand, and unapproved providers slip into testing.",
+    how: "Residency rules configured per org and region, enforced before routing.",
+    after: "Zero unapproved-provider incidents. Audit logs complete.",
   },
   {
     n: "3",
     title: "GPU cost control for AI agents",
-    sit: "An enterprise team runs AI agents for internal automation. Monthly AI spend varies by up to 3x depending on agent activity.",
-    prob: "No cost visibility per agent run. Budget caps exist in documentation but are not enforced at the infrastructure layer. Spend spikes get raised by finance two weeks after the fact.",
-    how: "Per-agent budget constraints applied at the routing layer. When a ceiling is approached, AIX routes to lower-cost alternatives automatically. Cost per agent run visible in real time.",
-    after: "Monthly spend variance drops from 3x to under 15%. Finance gets allocation data without engineering involvement. Budget enforcement becomes automated, not a policy conversation.",
+    sit: "An enterprise runs AI agents for internal automation.",
+    prob: "No per-run cost visibility. Budget caps exist only in a doc.",
+    how: "Per-agent budget constraints applied at the routing layer.",
+    after: "Monthly spend variance drops from 3x to under 15%.",
   },
   {
     n: "4",
     title: "Multi-model AI product infrastructure",
-    sit: "A product team builds an AI-native app with five distinct features, each with different latency, quality, and cost requirements. One model is hardcoded per feature.",
-    prob: "Six months in, two routing choices are suboptimal. One due to pricing, one due to latency degradation. Fixing either requires a deployment cycle.",
-    how: "Each feature is a separate AIX workload with its own constraint profile. When a better-fit model becomes available, AIX routes there automatically. Routing updates happen at the constraint layer, not the code layer.",
-    after: "Product team responds to model market changes in hours, not sprint cycles. Per-feature cost visible in the AIX dashboard. No deployment needed when providers or prices change.",
+    sit: "A product team ships an AI-native app with five distinct features.",
+    prob: "Six months in, two routing choices are quietly wrong.",
+    how: "Each feature is its own AIX workload with its own constraint profile.",
+    after: "The team responds to model-market changes in hours, not a sprint.",
   },
 ];
 
@@ -158,10 +159,10 @@ export default function AIXPage() {
                 <span className="block text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8]">
                   AIX
                 </span>
-                <h1 className="cv-h1 mt-6 leading-[1.25] text-cv-ink">The Control Plane for Enterprise AI.</h1>
+                <h1 className="cv-h1 mt-6 leading-[1.25] text-cv-ink">The control plane for enterprise AI.</h1>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
-                  <Link href="/integrations" className="cv-btn-secondary">Explore the Platform</Link>
+                  <Link href="/integrations" className="cv-btn-ghost">Explore the platform</Link>
                 </div>
               </div>
 
@@ -202,10 +203,10 @@ export default function AIXPage() {
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
           <h2 className="cv-h2 text-cv-ink">AI compute is becoming too expensive to hardcode.</h2>
           <p className="cv-body-lg text-cv-ink/80 mt-6">
-            Most teams make AI infrastructure decisions once. Model endpoint, provider, region, failover logic, cost assumptions. These get buried in application code. Six months later, a cheaper model handles 70% of those requests at equivalent quality. Nobody knows.
+            Most teams pick a model once, wire it into the app, and move on. Six months later a cheaper model handles 70% of those requests just as well, and nobody notices.
           </p>
           <p className="cv-body-lg text-cv-ink/80 mt-4">
-            Hardcoded decisions don&apos;t update when pricing shifts. They don&apos;t reroute when a provider degrades. They don&apos;t flag when a smaller model meets quality requirements at a third of the cost. That gap is where most AI infrastructure spend goes unmanaged.
+            A hardcoded choice doesn&apos;t update when prices drop. It doesn&apos;t reroute when a provider slows down. That gap is where the budget quietly goes.
           </p>
           <div className="grid md:grid-cols-2 gap-5 mt-10">
             {/* Before — legacy / inactive */}
@@ -222,11 +223,11 @@ export default function AIXPage() {
               <div className="relative">
                 <div className="cv-label mb-3 text-cv-muted">Before AIX (hardcoded)</div>
                 <ul className="space-y-2 text-sm text-cv-ink/70">
-                  <li>• Model: Claude Sonnet</li>
-                  <li>• Provider: Anthropic</li>
-                  <li>• Region: us-east-1</li>
-                  <li>• Routing: static</li>
-                  <li>• Cost assumptions: set at launch, never revisited</li>
+                  <li>• Model — one, chosen once</li>
+                  <li>• Provider — fixed</li>
+                  <li>• Region — fixed</li>
+                  <li>• Routing — none; every request goes the same place</li>
+                  <li>• Cost — an assumption, not a measurement</li>
                 </ul>
               </div>
             </div>
@@ -253,11 +254,11 @@ export default function AIXPage() {
               <div className="relative">
                 <div className="cv-label mb-3 text-[#1664C0] dark:text-[#4D9AEF]">After AIX (dynamic)</div>
                 <ul className="space-y-2 text-sm text-cv-ink/90">
-                  <li>• Model: evaluated per request against constraints</li>
-                  <li>• Provider: scored across all connected providers</li>
-                  <li>• Region: applied per data residency policy</li>
-                  <li>• Routing: live signal evaluation on every request</li>
-                  <li>• Cost: attributed per request, per feature, per tenant</li>
+                  <li>• Model — the best fit for each request</li>
+                  <li>• Provider — scored live, with a fallback</li>
+                  <li>• Region — chosen by residency rule</li>
+                  <li>• Routing — cost, latency, quality, and compliance, per request</li>
+                  <li>• Cost — attributed, capped, and on the record</li>
                 </ul>
               </div>
             </div>
@@ -276,9 +277,9 @@ export default function AIXPage() {
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative">
           <h2 className="cv-h2 text-cv-ink mb-5">How AIX controls every AI request.</h2>
           <p className="cv-body-lg text-cv-muted mb-2">
-            AIX sits between your application and every AI provider you use. On every request, it evaluates all available routes against the constraints your team has defined, and returns the best one, with a fallback and a full decision log.
+            AIX sits between your application and every AI provider you use. On each request it scores the available routes against the rules your team set, then returns the best one with a fallback and a full decision log.
           </p>
-          <p className="text-cv-muted italic mb-10">A gateway executes a routing rule you wrote. AIX evaluates whether that rule is still the right one.</p>
+          <p className="text-cv-muted italic mb-10">A gateway runs the rule you wrote. AIX works out whether that rule is still right.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {STEPS.map((s, i) => {
               const Icon = STEP_ICONS[i];
@@ -378,7 +379,7 @@ export default function AIXPage() {
             ))}
           </div>
           <p className="text-cv-ink/75 leading-relaxed mt-8 max-w-4xl">
-            Observability tools tell you what happened after spend occurred. AIX acts before a request goes out. The routing decision, and the cost attached to it, is made explicitly before a token reaches any provider.
+            Observability tells you what a request cost after it ran. AIX settles that before it does.
           </p>
         </div>
       </section>
@@ -388,15 +389,15 @@ export default function AIXPage() {
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
           <h2 className="cv-h2 text-cv-ink mb-5">The cost of not routing.</h2>
           <p className="cv-body-lg text-cv-ink/75 mb-10">
-            Every hardcoded model endpoint is spending money without making a decision. AIX makes the decision explicitly. The saving is the difference.
+            Every hardcoded endpoint spends money without making a decision. The same work, on the right model, often costs a fraction, at the same or better quality.
           </p>
           <AixRoiSplit roi={ROI} />
           <h3 className="cv-h3 text-cv-ink mt-14 mb-6">Three mechanisms</h3>
           <div className="grid md:grid-cols-3 gap-3">
             {([
-              ["Cost arbitrage", "AIX routes to the lowest-cost model that meets your quality floor. Prices change constantly. AIX adjusts automatically.", Scale],
-              ["Latency wins", "Faster routing reduces infrastructure overhead on time-sensitive workloads. Smaller models are often faster too.", Bolt],
-              ["Waste elimination", "Stops premium model usage on tasks a smaller model handles equally well. Most applications have multiple task types. Few need the flagship model for all of them.", TrashBin2],
+              ["Cost arbitrage", "AIX routes to the lowest-cost model that clears your quality floor.", Scale],
+              ["Latency wins", "A faster route cuts the compute you pay for while a request waits.", Bolt],
+              ["Waste elimination", "Stops premium models running work a smaller model handles just as well.", TrashBin2],
             ] as [string, string, Icon][]).map(([t, b, Icon]) => (
               <div key={t} className="rounded-2xl border border-cv-line/40 bg-cv-surface dark:bg-[#0D0D0D] p-6">
                 <Icon className="h-9 w-9" style={{ color: "#2278E0" }} aria-hidden />
@@ -413,15 +414,15 @@ export default function AIXPage() {
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
           <h2 className="cv-h2 text-cv-ink">From cloud cost reporting to AI compute economics.</h2>
           <p className="cv-body-lg text-cv-ink/75 mt-5">
-            AIX gives you cost-per-request, cost-per-feature, and cost-per-tenant allocation. Budget caps are enforced at the routing layer before spend occurs. No spreadsheet reconstruction after the fact.
+            AIX gives AI its own unit economics: cost per request, per feature, per tenant, allocated automatically.
           </p>
           <ul className="mt-8 space-y-3">
             {[
-              "Cost-per-request, cost-per-feature, cost-per-tenant allocation — automatic",
-              "Budget caps enforced before a request goes out, not after the bill arrives",
-              "Scenario modelling: simulate cost impact before traffic or model changes go live",
-              "Anomaly detection: cost deviations flagged before they compound",
-              "Spend attribution: know which feature, tenant, or workload is driving AI cost",
+              "Cost per request, per feature, and per tenant, allocated without manual clean-up",
+              "Budget caps enforced before a request goes out, not reconciled after",
+              "Scenario modeling before a model, traffic, or context change ships",
+              "Anomaly detection on AI spend, with root-cause signals",
+              "Spend attributed to the team, product, and use case that drove it",
             ].map((b) => (
               <li key={b} className="flex items-start gap-3 text-cv-ink/85">
                 <CheckCircle weight="Linear" size={18} className="text-cv-teal mt-0.5 shrink-0" /> {b}
@@ -436,7 +437,7 @@ export default function AIXPage() {
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
           <h2 className="cv-h2 text-cv-ink mb-5">Built for enterprise AI governance.</h2>
           <p className="cv-body-lg text-cv-ink/75 mb-10">
-            Every routing decision AIX makes is recorded, auditable, and explainable. Compliance controls are enforced at the routing layer, not bolted on after.
+            Every routing decision AIX makes is recorded, auditable, and explainable. Governance is on by default, not bolted on.
           </p>
           <GovernanceBento />
         </div>
@@ -499,19 +500,19 @@ export default function AIXPage() {
           <h2 className="cv-h2 text-cv-ink">Most tools route traffic. AIX decides where it should go.</h2>
           <div className="mt-6 space-y-4">
             <p className="cv-body-lg text-cv-ink/75">
-              A gateway executes whatever rule you gave it. If you told it to send traffic to Provider A, that is where it goes, even when Provider B is 90% cheaper and just as capable. A gateway has no scoring engine and no live signal evaluation. It is plumbing.
+              A gateway executes whatever rule you gave it. AIX is the layer that works out what the rule should be, request by request, and proves the decision afterward.
             </p>
             <p className="cv-body-lg text-cv-ink/80">
-              AIX is not a gateway replacement. It is the decision layer that makes routing intelligent rather than static.
+              It isn&apos;t a gateway replacement; it&apos;s the decision layer above one.
             </p>
-            <div className="cv-label mt-2 mb-3">AIX is the right fit when:</div>
+            <div className="cv-label mt-2 mb-3">AIX is right when you have:</div>
             <ul className="space-y-2 text-cv-ink/85">
               {[
-                "You run AI workloads in production across more than one provider",
-                "AI spend is material enough that optimisation has measurable impact",
-                "Compliance requirements constrain provider or region selection",
-                "Your team hardcoded model endpoints and has not revisited them",
-                "You want cost-aware routing without rebuilding your application",
+                "Workloads across more than one model or provider",
+                "AI spend large enough that the wrong model matters",
+                "Compliance or residency rules to enforce",
+                "Hardcoded endpoints that haven't been revisited since launch",
+                "A need to prove, not assume, what each request cost",
               ].map((b) => (
                 <li key={b} className="flex items-start gap-3"><CheckCircle weight="Linear" size={16} className="text-cv-teal mt-1 shrink-0" /> {b}</li>
               ))}

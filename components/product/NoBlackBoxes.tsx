@@ -72,7 +72,7 @@ export default function NoBlackBoxes({ traceJson }: { traceJson: string }) {
           >
             <h2 className="cv-h2 text-cv-ink">No black boxes.</h2>
             <p className="cv-body-lg text-cv-ink/75 mt-5">
-              Every routing decision includes an evidence summary: constraints active, routes evaluated, route selected, reason for selection, cost and latency outcome. Incident response, finance reviews, and compliance audits all work from the same traceable record.
+              Every routing decision includes an evidence summary: the constraints active, the routes evaluated, the one selected, and why. If you can&apos;t explain a decision, you can&apos;t govern it.
             </p>
             <p className="text-cv-ink/75 mt-8">
               SOC2 and ISO-aligned architecture. Audit trails, access controls, and policy enforcement structured to support compliance documentation. Specific certification status confirmed during your evaluation.

@@ -34,10 +34,11 @@ const STATS = [
 ];
 
 const FAQ = [
-  ["How is this different from cost explorer dashboards?", "Dashboards explain the invoice. CloudVerse governs the decisions that shape it: PR-level checks, AI/GPU economics, and warehouse query attribution on one model."],
-  ["Can we keep our current allocation logic?", "Yes. CloudVerse imports existing tag structures and cost allocation rules as a starting point."],
-  ["How long until we are using it day to day?", "Most teams have a working allocation model within the first account connection. Meaningful depth takes two to four weeks of iteration depending on tagging maturity."],
-  ["Do you support multi-currency and tax?", "Yes."],
+  ["How is this different from a cloud cost explorer?", "An explorer shows spend. CloudVerse traces variance to a driver and owner, ranks the fix, and can carry it out. It changes what happens after the dashboard."],
+  ["Does it work across all our clouds?", "Yes. One allocation model across AWS, Azure, and GCP, with Oracle, Alibaba, Huawei, and Tencent supported."],
+  ["Will it fit our existing allocation logic?", "Yes. Virtual tags let you define cost dimensions that match how the business is structured, not how billing is structured."],
+  ["How fast do we see value?", "First account connected in under 30 minutes. Most teams find recoverable spend the same day."],
+  ["Does automation touch our accounts?", "Read-only by default. Any action is opt-in, scoped, and logged."],
 ];
 
 export default function FinOpsPage() {
@@ -66,10 +67,10 @@ export default function FinOpsPage() {
           <h2 className="cv-h2 text-cv-ink">Most FinOps tools show dashboards. This one changes what happens next.</h2>
           <div className="mt-6 space-y-4">
             <p className="cv-body-lg text-cv-ink/80">
-              Most organisations already have a FinOps tool. Most of those tools show dashboards that look correct and generate recommendations that go unactioned. The problem is not visibility. It is that the intelligence stops at the dashboard.
+              A dashboard tells you spend went up. It doesn&apos;t tell you which team, which change, or what to do first.
             </p>
             <p className="cv-body-lg text-cv-ink/80">
-              CloudVerse FinOps Platform connects spend data to the teams and decisions that drive it. What the bill says, what changed, who owns it, and what to do next.
+              CloudVerse traces the variance to a driver and an owner, ranks the fix by impact, and carries it out once you approve. Cloud spend is visible everywhere. Here it&apos;s finally clear.
             </p>
           </div>
         </div>
@@ -88,7 +89,7 @@ export default function FinOpsPage() {
               />
               <div className="relative">
                 <h3 className="cv-h3 text-cv-ink">Workload mapping</h3>
-                <p className="text-cv-ink/70 mt-3 leading-relaxed">Allocation that sticks. Every tag, account, BU, and shared-service split reconciled to the finance model. Teams see the spend they own. Leaders have a view that matches the finance report.</p>
+                <p className="text-cv-ink/70 mt-3 leading-relaxed">Shared spend mapped to teams, services, environments, and products, automatically. Chargeback that survives an audit.</p>
                 {/* Allocation interface */}
                 <div className="mt-6 rounded-xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-4">
                   <div className="mb-4 flex items-center justify-between">
@@ -126,7 +127,7 @@ export default function FinOpsPage() {
               />
               <div className="relative">
                 <h3 className="cv-h3 text-cv-ink">Anomaly detection</h3>
-                <p className="text-cv-ink/70 mt-3 leading-relaxed">Identify the team, environment, and charge that drove the anomaly within hours of it happening, not in the next billing cycle review. The alert arrives with attribution, not just a number.</p>
+                <p className="text-cv-ink/70 mt-3 leading-relaxed">Spikes flagged in real time and traced to a root-cause signal before they compound.</p>
                 {/* Anomaly chart */}
                 <div className="mt-6 rounded-xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-4">
                   <div className="mb-3 flex items-center justify-between">
@@ -158,13 +159,13 @@ export default function FinOpsPage() {
               />
               <div className="relative">
                 <h3 className="cv-h3 text-cv-ink">Commitments with payback proof</h3>
-                <p className="text-cv-ink/70 mt-3 leading-relaxed">RI, SP, and CSP coverage modelled with explicit payback before you commit. Commitment planning that shows the math, not just the recommendation. No surprises.</p>
+                <p className="text-cv-ink/70 mt-3 leading-relaxed">RIs, Savings Plans, and CUDs with realized payback tracked, not assumed.</p>
                 {/* Commitment planning */}
                 <div className="mt-6 rounded-xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-4">
                   <div className="mb-4 grid grid-cols-2 gap-3">
                     {[
                       ["Est. savings", "$128k/yr"],
-                      ["Payback", "4.2 mo"],
+                      ["Payback", "7.4 mo"],
                     ].map(([l, v]) => (
                       <div key={l} className="rounded-lg border border-cv-line bg-cv-ink/[0.03] p-3">
                         <div className="text-[10px] uppercase tracking-wider text-cv-muted">{l}</div>
@@ -174,9 +175,9 @@ export default function FinOpsPage() {
                   </div>
                   <div className="space-y-3">
                     {[
-                      ["RI coverage", 78],
+                      ["RI coverage", 72],
                       ["Savings Plan", 64],
-                      ["CSP coverage", 51],
+                      ["CSP coverage", 58],
                     ].map(([l, pct]) => (
                       <div key={l as string}>
                         <div className="mb-1 flex items-center justify-between text-[11px]">
@@ -202,31 +203,26 @@ export default function FinOpsPage() {
               />
               <div className="relative">
                 <h3 className="cv-h3 text-cv-ink">Audit-ready chargeback</h3>
-                <p className="text-cv-ink/70 mt-3 leading-relaxed">Showback and chargeback wired to BU reporting with multi-currency and tax support. The finance team gets a report they can use. The engineering team gets a model they can trust.</p>
+                <p className="text-cv-ink/70 mt-3 leading-relaxed">Multi-currency, reconciled to source billing.</p>
                 {/* Chargeback dashboard */}
                 <div className="mt-6 rounded-xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-4">
                   <div className="mb-3 flex items-center justify-between">
                     <span className="text-xs font-medium text-cv-ink/80">Chargeback · Q2</span>
-                    <span className="rounded-full border border-[#1664C0]/40 bg-[#1664C0]/10 px-2 py-0.5 text-[10px] font-medium text-[#1664C0] dark:text-[#7C9BFF]">USD · EUR · GBP</span>
+                    <span className="rounded-full border border-[#1664C0]/40 bg-[#1664C0]/10 px-2 py-0.5 text-[10px] font-medium text-[#1664C0] dark:text-[#7C9BFF]">EUR · JPY · USD</span>
                   </div>
-                  <div className="grid grid-cols-[1fr_auto_auto] gap-x-4 text-[11px]">
+                  <div className="grid grid-cols-[1fr_auto] gap-x-4 text-[11px]">
                     <div className="border-b border-cv-line pb-2 text-[10px] uppercase tracking-wider text-cv-muted">Business unit</div>
-                    <div className="border-b border-cv-line pb-2 text-right text-[10px] uppercase tracking-wider text-cv-muted">Tax</div>
                     <div className="border-b border-cv-line pb-2 text-right text-[10px] uppercase tracking-wider text-cv-muted">Total</div>
                     {[
-                      ["Retail", "$3,140", "$48,210"],
-                      ["Mortgage", "$2,015", "$31,540"],
-                      ["Insurance", "$1,260", "$19,880"],
-                    ].map(([bu, tax, total]) => (
+                      ["EMEA", "€12.4k"],
+                      ["APAC", "¥9.8k"],
+                      ["Americas", "$21.1k"],
+                    ].map(([bu, total]) => (
                       <div key={bu} className="contents">
                         <div className="border-b border-cv-line py-2 text-cv-ink/80">{bu}</div>
-                        <div className="border-b border-cv-line py-2 text-right font-mono text-cv-muted">{tax}</div>
                         <div className="border-b border-cv-line py-2 text-right font-mono text-cv-ink/90">{total}</div>
                       </div>
                     ))}
-                    <div className="py-2 font-medium text-cv-ink/90">Total</div>
-                    <div className="py-2 text-right font-mono text-cv-muted">$6,415</div>
-                    <div className="py-2 text-right font-mono font-semibold text-[#1664C0] dark:text-[#7C9BFF]">$99,630</div>
                   </div>
                 </div>
               </div>
@@ -240,9 +236,9 @@ export default function FinOpsPage() {
           <h2 className="cv-h2 text-cv-ink mb-10">Inform. Optimise. Operate.</h2>
           <div className="grid md:grid-cols-3 gap-5">
             {[
-              ["Inform", "Allocation, tagging, attribution, and variance reporting. Understand what is happening, who owns it, and what changed since last month."],
-              ["Optimise", "Rightsizing, commitment coverage, and waste identification. Prioritised by impact. Engineering-grade signals alongside finance reporting."],
-              ["Operate", "Automated recommendations, chargeback, budget alerts, and governance controls. Automation paths with approval workflows and full audit logs."],
+              ["Inform", "Allocation and attribution first. Every dollar mapped to an owner and a driver."],
+              ["Optimise", "Rightsizing, idle cleanup, commitment and spot planning, ranked by impact."],
+              ["Operate", "Approved fixes automated on a schedule, inside policy, with an audit trail."],
             ].map(([t, b], i) => (
               <div key={t} className="rounded-2xl border border-cv-line/40 bg-cv-surface dark:bg-[#0D0D0D] p-7">
                 <div className="text-xs uppercase tracking-widest text-cv-muted">Stage 0{i + 1}</div>
@@ -259,9 +255,9 @@ export default function FinOpsPage() {
           <h2 className="cv-h2 text-cv-ink mb-10">Built for the teams accountable for the bill</h2>
           <WhoUsesItCards
             items={[
-              ["FinOps Manager", "One model that covers cloud, data platforms, and AI workloads. Everything reconciles to finance. Automation reduces the manual review cycle."],
-              ["Cloud Engineer", "Clear cost signals without leaving your workflow. See what changed, what it costs, and what to do. No more cost governance as a separate process."],
-              ["CFO / VP Finance", "Spend accountability at team and product level. The bill explained in terms of business decisions, not infrastructure line items."],
+              ["FinOps Manager", "Allocation and chargeback that hold up, and a queue of ranked actions instead of a spreadsheet."],
+              ["Cloud Engineer", "The driver behind a spike, with the fix and the risk attached."],
+              ["CFO / VP Finance", "A forecast you can defend and a number that reconciles to the ledger."],
             ]}
           />
         </div>
@@ -280,9 +276,9 @@ export default function FinOpsPage() {
       {/* CONNECTS TO STACK */}
       <section className="cv-section">
         <div className="cv-container">
-          <h2 className="cv-h3 text-cv-ink mb-5">Connects to the stack</h2>
+          <h2 className="cv-h3 text-cv-ink mb-5">Connects to the stack you already run.</h2>
           <p className="text-cv-ink/75 leading-relaxed">
-            AWS, Azure, Google Cloud, plus AIX for AI workload economics, DataX for warehouse intelligence, and DevX for shift-left cost intelligence.
+            AWS, Azure, and Google Cloud for infrastructure. AIX for AI spend, DataX for warehouses, and DevX for the engineering workflow. One view across all of it.
           </p>
         </div>
       </section>

@@ -138,10 +138,13 @@ export function AixOrchestration() {
         <h2 className="cv-h2 text-cv-ink mb-4 max-w-2xl">
           Enterprise AI is fragmented. AIX makes it one system of record.
         </h2>
-        <p className="text-cv-ink/70 leading-relaxed max-w-2xl mb-12">
+        <p className="text-cv-ink/70 leading-relaxed max-w-2xl mb-4">
           Not a gateway that runs your routing rules. Not observability that tells you what a request
           cost after it ran. AIX gives every asset — agent, app, RAG system, model — an identity, a
           contract, an operational record, and measurable economics. Discover · Govern · Value.
+        </p>
+        <p className="text-cv-ink/70 leading-relaxed max-w-2xl mb-12">
+          An HRMS holds the record for every employee. AIX holds it for every model and agent. Onboard it, route it, budget it, govern it, prove it.
         </p>
 
         <div
@@ -195,6 +198,15 @@ export function AixOrchestration() {
             </div>
           </div>
 
+        </div>
+
+        <div className="mt-10">
+          <Link
+            href="/platform/aix"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-[#1664C0] dark:text-[#7CB8F8] hover:text-cv-blue-bright hover:underline underline-offset-2 transition-colors"
+          >
+            Go deeper on AIX <ArrowRight weight="Linear" size={14} />
+          </Link>
         </div>
       </div>
     </section>

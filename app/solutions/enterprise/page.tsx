@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { Buildings } from "@solar-icons/react";
+import { Buildings, CheckCircle, CloseCircle } from "@solar-icons/react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import { EnterpriseDayOne } from "@/components/solution/EnterpriseDayOne";
 import { SolutionHero } from "@/components/solution/SolutionHero";
+import { WhoThisIsFor } from "@/components/solution/WhoThisIsFor";
 import { FaqBlock } from "@/components/FaqBlock";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
@@ -34,11 +35,11 @@ const STATS = [
 ];
 
 const FAQ = [
-  ["What enterprise controls are included?", "SSO/SAML, OIDC, SCIM provisioning, granular RBAC, audit logs, customer-managed encryption, and regional data residency. All included."],
-  ["Where is data stored?", "Region-specific. US, EU, and APAC options available with private-link and VPC options."],
-  ["Do you support air-gapped or VPC deployments?", "Contact our enterprise team to discuss your specific requirements."],
-  ["What about procurement?", "AWS, Azure, and Google Cloud Marketplace with committed-spend redemption."],
-  ["Who do we work with for rollout?", "CloudVerse enterprise accounts include a dedicated solutions engineer for onboarding and a customer success manager post-launch."],
+  ["What controls ship for enterprise?", "SSO, SCIM, RBAC, audit logs, data residency, and customer-managed encryption keys."],
+  ["Where is our data stored?", "In the region you choose (US, EU, APAC), with private-link and VPC options."],
+  ["Do you support air-gapped or on-prem?", "Private GPU and on-prem inference are first-class in AIX; deployment options are available."],
+  ["How does procurement work?", "Redeem committed cloud spend through marketplace listings."],
+  ["What does rollout look like?", "Read-only connection in under 30 minutes, then a phased, no-fee proof of value over two to four weeks."],
 ];
 
 export default function EnterprisePage() {
@@ -46,12 +47,12 @@ export default function EnterprisePage() {
     <>
       <SolutionHero
         eyebrow="For Enterprise"
-        h1="One Control Plane for Multi-Cloud, AI Infrastructure, and Data Economics"
-        sub="The compute economics platform global enterprises run on. SSO, SCIM provisioning, granular RBAC, audit logs, customer-managed encryption keys, and the procurement options the office of the CIO expects."
+        h1="One control plane for multi-cloud, AI, and data economics."
+        sub="Cloud, AI, data, and engineering are one estate. Govern it from one place, with SSO, SCIM, RBAC, audit logs, and encryption built in."
         accent="#1664C0"
         icon={Buildings}
         platformHref="/platform/finops"
-        primaryLabel="Talk to Our Enterprise Team"
+        primaryLabel="Talk to our enterprise team"
         primaryHref="/contact"
         badges={["SSO", "RBAC", "SCIM Provisioning", "Data Residency", "Audit Logs", "Multi-Cloud"]}
       />
@@ -72,28 +73,104 @@ export default function EnterprisePage() {
         </div>
       </section>
 
+      {/* THE PROBLEM */}
+      <section className="cv-section">
+        <div className="cv-container">
+          <h2 className="cv-h2 text-cv-ink">The situation CIOs and CTOs are in.</h2>
+          <p className="cv-body-lg text-cv-ink/80 mt-6">
+            Cloud, AI, data, and engineering each sit in a separate tool, and cost decisions get made in places you don&apos;t have line of sight to. AI is reshaping the operational picture faster than governance can keep up.
+          </p>
+          <p className="cv-body-lg text-cv-ink/85 mt-4">
+            Chargeback and showback creak across business units. No one owns the total, day to day. One control plane is how you take it back.
+          </p>
+        </div>
+      </section>
+
+      {/* WHAT IT'S COSTING YOU TODAY */}
+      <section className="cv-section bg-cv-surface dark:bg-black">
+        <div className="cv-container">
+          <h2 className="cv-h2 text-cv-ink mb-8">What that&apos;s costing you today.</h2>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              "Four disconnected tools instead of one view of the estate",
+              "Cost decisions made in engineering, AI ops, or data with no line of sight",
+              "AI changing the operational shape faster than governance keeps up",
+              "Chargeback and showback that don't hold across business units",
+              "No single owner accountable for the total",
+            ].map((b) => (
+              <li key={b} className="flex items-start gap-3 text-cv-ink/85">
+                <CloseCircle weight="Linear" size={18} className="text-cv-muted mt-0.5 shrink-0" /> {b}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       <section className="cv-section">
         <div className="cv-container">
           <h2 className="cv-h2 text-cv-ink mb-10">What enterprise teams operationalise on day one</h2>
           <EnterpriseDayOne
             items={[
-              ["One model across the estate", "Cloud, AI infrastructure, and warehouse spend on a single allocation model. One view for FinOps, one view for engineering, one view for finance. They all match."],
-              ["Identity and audit", "SSO, SCIM, granular RBAC, audit logs, customer-managed encryption keys. The access controls and audit trails your security and compliance teams require, available from the start."],
-              ["Regional residency", "US, EU, and APAC regions with private-link and VPC options. Data stays where your sovereignty requirements say it should."],
-              ["Marketplace and procurement", "AWS, Azure, and Google Cloud Marketplace listings with committed-spend redemption. Procurement through the channels your finance team already uses."],
+              ["One model across the estate", "A single allocation model for cloud, AI, and warehouse spend."],
+              ["Identity and audit", "SSO, SCIM, RBAC, audit logs, and customer-managed encryption keys."],
+              ["Regional residency", "US, EU, and APAC options, with private-link and VPC deployment."],
+              ["Marketplace and procurement", "Redeem committed spend across cloud marketplaces."],
             ]}
           />
+        </div>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section className="cv-section bg-cv-surface dark:bg-black">
+        <div className="cv-container">
+          <h2 className="cv-h2 text-cv-ink mb-10">How enterprise teams run it.</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              ["Connect", "Connect every cloud, AI provider, warehouse, and pipeline, read-only."],
+              ["Provision", "Provision access with SSO, SCIM, and RBAC scoped to each team."],
+              ["Govern", "Govern one estate: policy, residency, and audit across all four domains."],
+              ["Report", "Report chargeback and showback that reconcile across business units."],
+            ].map(([title, body], i) => (
+              <div key={title} className="rounded-2xl border border-cv-line/40 bg-cv-surface2 dark:bg-[#0D0D0D] p-6">
+                <div className="text-xs uppercase tracking-widest text-cv-muted">Step 0{i + 1}</div>
+                <h3 className="cv-h3 text-cv-ink mt-2">{title}</h3>
+                <p className="text-cv-ink/75 mt-3 leading-relaxed text-sm">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* OUTCOMES */}
+      <section className="cv-section">
+        <div className="cv-container">
+          <h2 className="cv-h2 text-cv-ink mb-8">Outcomes leadership owns.</h2>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              "Operational control: cloud, AI, data, and engineering from one control plane",
+              "Engineering visibility: cost context at the point changes are made",
+              "AI governance: AI folded into the operating picture, not run as an exception",
+              "Cross-team picture: decisions in one team and the spend they commit in another, connected",
+              "Forecasting: forecasts and capacity planning that hold as AI reshapes the estate",
+              "Accountability: one view the CIO owns, with chargeback that holds across business units",
+            ].map((b) => (
+              <li key={b} className="flex items-start gap-3 text-cv-ink/85">
+                <CheckCircle weight="Linear" size={18} className="text-cv-teal mt-0.5 shrink-0" /> {b}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
       <section className="cv-section bg-cv-surface dark:bg-black">
         <div className="cv-container">
           <h2 className="cv-h2 text-cv-ink mb-8">Modules that power enterprise deployments</h2>
-          <div className="grid md:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
+              ["AIX", "The control plane for enterprise AI", "/platform/aix"],
               ["FinOps Platform", "Multi-cloud cost intelligence", "/platform/finops"],
-              ["AIX", "GPU and LLM economics", "/platform/aix"],
-              ["DevX", "Shift-left cost intelligence", "/platform/devx"],
+              ["DevX", "Cost context in the engineering workflow", "/platform/devx"],
+              ["DataX", "Allocable warehouse and pipeline spend", "/platform/datax"],
             ].map(([t, b, h]) => (
               <Link key={t} href={h as string} className="rounded-2xl border border-cv-line bg-cv-surface dark:bg-[#0D0D0D] p-6 hover:border-cv-ink/30 transition-colors">
                 <h3 className="cv-h3 text-cv-ink">{t}</h3>
@@ -103,6 +180,11 @@ export default function EnterprisePage() {
           </div>
         </div>
       </section>
+
+      <WhoThisIsFor
+        roles={["CIO", "CTO", "VP / Director of Engineering", "Head of Cloud / Infrastructure"]}
+        accent="#1664C0"
+      />
 
       <section className="cv-section">
         <div className="cv-container">

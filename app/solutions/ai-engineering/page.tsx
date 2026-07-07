@@ -1,9 +1,10 @@
-import { CheckCircle, Cpu } from "@solar-icons/react";
+import { CheckCircle, CloseCircle, Cpu } from "@solar-icons/react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import AixUnlocks from "@/components/solution/AixUnlocks";
 import { PlatformCards } from "@/components/solution/PlatformCards";
 import { SolutionHero } from "@/components/solution/SolutionHero";
+import { WhoThisIsFor } from "@/components/solution/WhoThisIsFor";
 import { FaqBlock } from "@/components/FaqBlock";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
@@ -34,10 +35,12 @@ const STATS = [
 ];
 
 const FAQ = [
-  ["How is this different from an LLM gateway?", "A gateway executes a routing rule you wrote. AIX evaluates whether that rule is still the right one, continuously, using live cost and latency signals. The distinction matters when pricing shifts or a new model becomes available."],
-  ["Can we mix hosted and self-hosted models?", "Yes. AIX treats private GPU deployments and NeoCloud infrastructure as first-class routing targets alongside managed APIs. Same cost and policy logic applies to all of them."],
-  ["What about prompt privacy?", "AIX does not proxy traffic by default. It returns a routing decision. Your application sends the request. Prompt content never passes through AIX unless you configure otherwise."],
-  ["How does the cost attribution work?", "Every request is tagged to the team, feature, or workload that made it. Cost allocation is automatic. Finance does not need engineering to explain the report."],
+  ["How is this different from an LLM gateway?", "A gateway runs the rule you wrote. AIX scores every route live and decides what the rule should be, then logs why."],
+  ["Can we mix hosted and self-hosted models?", "Yes. Managed APIs and private GPU pools (vLLM/TGI, CoreWeave, Lambda, RunPod, on-prem) are all first-class routing targets."],
+  ["What about prompt privacy?", "PII is detected and handled (mask, tokenize, or block) before a request reaches any provider."],
+  ["How does cost attribution work?", "Every request is tagged to a team, feature, and tenant at routing time, so allocation needs no manual clean-up."],
+  ["Do we change application code?", "No. Routing and policy change at the rule layer, not in your code."],
+  ["Can we automate safely?", "Read-only to start. Automation is opt-in, gated by approval, and fully logged."],
 ];
 
 export default function AIEngineeringPage() {
@@ -45,8 +48,8 @@ export default function AIEngineeringPage() {
     <>
       <SolutionHero
         eyebrow="For AI Engineering"
-        h1="Run Every AI Workload Where It Costs Least and Runs Best"
-        sub="Live cost-quality routing across 8+ GPU and LLM providers. Policy-bound at execution. FinOps attribution included."
+        h1="Run every AI workload where it costs least and runs best."
+        sub="Live cost-quality routing across 8+ GPU and LLM providers. Policy-bound at execution. Full attribution included."
         accent="#6954D4"
         icon={Cpu}
         platformHref="/platform/aix"
@@ -73,26 +76,87 @@ export default function AIEngineeringPage() {
         <div className="cv-container">
           <h2 className="cv-h2 text-cv-ink">The situation AI engineering teams are in</h2>
           <p className="cv-body-lg text-cv-ink/80 mt-6">
-            Most teams hardcoded a model endpoint eighteen months ago because it was the right call at the time. Since then, three providers have launched models that handle 70% of those requests at a third of the cost. The endpoint still works, so nobody has changed it.
+            You picked a model once and wired it in. There are now cheaper models that clear the same quality bar, but changing means a code change nobody has time for.
           </p>
           <p className="cv-body-lg text-cv-ink/80 mt-4">
-            Meanwhile, GPU costs for agent infrastructure vary by 3x month to month depending on workload activity. Finance asks for an allocation report. The answer is a spreadsheet that took two engineers a week to build.
+            Meanwhile AI-assisted coding and agents are moving your inference and GPU cost week to week, and the bill arrives with no owner attached.
           </p>
-          <p className="cv-body-lg text-cv-ink font-medium mt-4">AIX solves both of these.</p>
+          <p className="cv-body-lg text-cv-ink font-medium mt-4">AIX closes both gaps.</p>
+        </div>
+      </section>
+
+      {/* WHAT IT'S COSTING YOU TODAY */}
+      <section className="cv-section bg-cv-surface dark:bg-black">
+        <div className="cv-container">
+          <h2 className="cv-h2 text-cv-ink mb-8">What that&apos;s costing you today.</h2>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              "AI spend you can't cleanly attribute to a team, feature, or use case",
+              "Unit economics borrowed from infrastructure, not sized for tokens and GPUs",
+              "Inference and GPU cost that shifts every week as agents and copilots scale",
+              "The \"is this worth it?\" question from finance you can't yet answer with confidence",
+            ].map((b) => (
+              <li key={b} className="flex items-start gap-3 text-cv-ink/85">
+                <CloseCircle weight="Linear" size={18} className="text-cv-muted mt-0.5 shrink-0" /> {b}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
       <AixUnlocks />
 
+      {/* HOW IT WORKS */}
       <section className="cv-section">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink">The numbers</h2>
+          <h2 className="cv-h2 text-cv-ink mb-10">How AI engineering teams run it.</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              ["Connect", "Connect your providers and GPU pools. Minutes each, no app change."],
+              ["Set policy", "Set policy per workload: quality floor, budget cap, allowed providers, residency."],
+              ["Route", "Route every request to the best-fit model, with a fallback and a decision log."],
+              ["Measure", "Measure cost per request, feature, and tenant, and take the number to finance."],
+            ].map(([title, body], i) => (
+              <div key={title} className="rounded-2xl border border-cv-line/40 bg-cv-surface2 dark:bg-[#0D0D0D] p-6">
+                <div className="text-xs uppercase tracking-widest text-cv-muted">Step 0{i + 1}</div>
+                <h3 className="cv-h3 text-cv-ink mt-2">{title}</h3>
+                <p className="text-cv-ink/75 mt-3 leading-relaxed text-sm">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="cv-section bg-cv-surface dark:bg-black">
+        <div className="cv-container">
+          <h2 className="cv-h2 text-cv-ink">The numbers.</h2>
           <ul className="mt-8 space-y-3">
             {[
               "40–90% cost reduction across production workloads",
-              "Less than 15ms routing overhead",
-              "96.8% lower cost vs hardcoded Claude Sonnet",
-              "Spend variance drops from 3x to under 15% for agent workloads after AIX",
+              "Under 15ms routing overhead",
+              "96.8% lower cost than a hardcoded Claude Sonnet setup, 28.5% faster",
+              "Agent spend variance down from 3x to under 15% after AIX",
+            ].map((b) => (
+              <li key={b} className="flex items-start gap-3 text-cv-ink/85">
+                <CheckCircle weight="Linear" size={18} className="text-cv-teal mt-0.5 shrink-0" /> {b}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* OUTCOMES */}
+      <section className="cv-section">
+        <div className="cv-container">
+          <h2 className="cv-h2 text-cv-ink mb-8">Outcomes you can take to the board.</h2>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              "Attribution that maps AI spend to teams, features, and use cases",
+              "Routing that kills 10–100x waste on the wrong model-for-the-job",
+              "AI-native unit economics: cost per request, per feature, per user",
+              "Governance: policy, access, residency, and vendor oversight in one place",
+              "Visibility into the AI cost shipping out of engineering (Copilot, Cursor, agents)",
+              "A number that holds up in front of finance, the CEO, and the board",
             ].map((b) => (
               <li key={b} className="flex items-start gap-3 text-cv-ink/85">
                 <CheckCircle weight="Linear" size={18} className="text-cv-teal mt-0.5 shrink-0" /> {b}
@@ -107,15 +171,20 @@ export default function AIEngineeringPage() {
           <h2 className="cv-h2 text-cv-ink mb-8">Platform that powers this solution</h2>
           <PlatformCards
             items={[
-              ["AIX", "GPU and LLM economics", "/platform/aix"],
-              ["FinOps Platform", "Multi-cloud cost intelligence", "/platform/finops"],
-              ["DevX", "Shift-left cost intelligence", "/platform/devx"],
+              ["AIX", "Routing, governance, and AI unit economics", "/platform/aix"],
+              ["DevX", "Catches the new model call or chatty agent loop in the pull request", "/platform/devx"],
+              ["DataX", "Attributes the warehouse cost your RAG and model pipelines drive", "/platform/datax"],
             ]}
           />
         </div>
       </section>
 
-      <section className="cv-section">
+      <WhoThisIsFor
+        roles={["Head of AI", "Chief AI Officer", "VP / Director of MLOps", "Head of Data Science / ML Engineering", "AI Platform leads"]}
+        accent="#6954D4"
+      />
+
+      <section className="cv-section bg-cv-surface dark:bg-black">
         <div className="cv-container">
           <div className="text-center mb-10">
             <h2 className="cv-h2 text-cv-ink">AI Engineering Questions Answered</h2>

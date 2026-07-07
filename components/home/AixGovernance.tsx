@@ -129,26 +129,26 @@ function MockSSOVisual() {
 
 const TOP_FEATURES = [
   {
-    title: "Govern AI before the spend happens",
-    body: "Policy, access controls, data residency, and vendor oversight sit in one place and apply before a request runs. Not a separate exception process bolted on at month-end.",
+    title: "Set the rules before the request runs",
+    body: "Owner, budget, allowed providers, residency, and a quality floor are applied before a single token leaves. Read-only to start. Automation is opt-in.",
     Visual: MockRBACVisual,
   },
   {
     title: "Every decision logged and traceable",
-    body: "Every model call, agent run, and workflow is on the record: who owned it, what it used, what it cost, what it returned. The same account finance, security, and the board can all read.",
+    body: "Every model call, agent run, and workflow is on the record: who owned it, what it used, what it cost, what it returned.",
     Visual: MockCostVisual,
   },
 ];
 
 const BOTTOM_FEATURES = [
   {
-    title: "Keep it secure with PII redaction",
-    body: "cloudverse automatically redacts sensitive data from your requests before they are sent to the LLM.",
+    title: "PII handled before provider selection",
+    body: "CloudVerse detects sensitive data and applies your rule (mask, tokenize, or block) before a request reaches any provider.",
     Visual: MockPIIVisual,
   },
   {
-    title: "Stay in control with full visibility",
-    body: "Track every action with detailed activity logs across any resource, making it easy to monitor and investigate incidents.",
+    title: "Full visibility across the estate",
+    body: "Track every action with detailed activity logs across teams, providers, and workloads. Investigate an incident in minutes, not days.",
     Visual: MockAuditVisual,
   },
 ];
@@ -166,11 +166,14 @@ export function AixGovernance() {
             Enterprise Control
           </span>
           <div className="flex flex-col lg:flex-row lg:items-start lg:gap-20">
-            <h2 className="cv-h2 text-cv-ink flex-1">
-              Take the driver's seat<br className="hidden lg:block" /> with AI Governance
-            </h2>
+            <div className="flex-1">
+              <h2 className="cv-h2 text-cv-ink">Enterprise control</h2>
+              <h3 className="mt-3 text-xl font-semibold text-cv-ink/90 leading-snug">
+                Govern AI before the spend happens, not after the invoice.
+              </h3>
+            </div>
             <p className="mt-4 lg:mt-1 text-cv-ink/60 leading-relaxed lg:max-w-sm xl:max-w-md shrink-0">
-              Policy, access controls, and full audit trails enforced before a single token leaves. Not a month-end reconciliation — governance that runs live, at the point of every decision.
+              Policy, access, residency, and audit are enforced at the point a request runs. The controls that took cloud a decade to earn, applied to AI from day one.
             </p>
           </div>
         </div>
@@ -199,7 +202,7 @@ export function AixGovernance() {
             </blockquote>
             <div className="mt-6">
               <div className="font-semibold text-cv-ink text-sm">Head of FinOps</div>
-              <div className="text-cv-muted text-sm">Large Southeast Asian digital &amp; telecommunications group</div>
+              <div className="text-cv-muted text-sm">Large Southeast Asian digital &amp; telecommunications group (anonymized per client request)</div>
             </div>
           </div>
 
@@ -245,7 +248,7 @@ export function AixGovernance() {
             {/* Right ~60%: SSO feature */}
             <div className="bg-cv-surface flex flex-col p-8 lg:p-10">
               <h3 className="text-base font-semibold text-cv-ink">Single sign-on, scoped from day one</h3>
-              <p className="mt-2 text-sm text-cv-ink/55 leading-relaxed">Onboard teams instantly and have CloudVerse follow your access rules from the start. Read-only by default. Automation is opt-in and logged.</p>
+              <p className="mt-2 text-sm text-cv-ink/55 leading-relaxed">Onboard teams instantly and have CloudVerse follow your access rules from the start. RBAC, SCIM, and audit logging included.</p>
               <Link href="/platform/aix" className="mt-3 inline-flex items-center gap-1 text-xs text-[#1664C0] hover:text-[#0e4fa0] dark:text-[#7CB8F8] dark:hover:text-[#A9C8F8] transition-colors font-medium">
                 Learn More <ArrowRight weight="Linear" size={12} />
               </Link>

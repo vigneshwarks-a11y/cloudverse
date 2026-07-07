@@ -10,20 +10,6 @@ function Bar({ pct }: { pct: number }) {
   );
 }
 
-function Toggle({ on }: { on: boolean }) {
-  return (
-    <span
-      className="inline-flex h-4 w-7 shrink-0 items-center rounded-full px-0.5 transition-colors"
-      style={{ background: on ? BLUE : "rgba(255,255,255,0.15)" }}
-    >
-      <span
-        className="h-3 w-3 rounded-full bg-white transition-all"
-        style={{ marginLeft: on ? "12px" : "0" }}
-      />
-    </span>
-  );
-}
-
 function Panel({ children }: { children: ReactNode }) {
   return <div className="mt-5 rounded-xl border border-cv-line bg-cv-card dark:bg-[#0D0D0D] p-4">{children}</div>;
 }
@@ -76,10 +62,10 @@ function PatternDetectionVisual() {
     { top: "55%", left: "60%" },
     { top: "32%", left: "80%" },
   ];
-  const routes: [string, boolean][] = [
-    ["EU routing", true],
-    ["US routing", true],
-    ["APAC routing", false],
+  const patterns: [string, string][] = [
+    ["Full-scan", "×127"],
+    ["Fan-out join", "×88"],
+    ["Missing prune", "×64"],
   ];
   return (
     <Panel>
@@ -101,10 +87,10 @@ function PatternDetectionVisual() {
         ))}
       </div>
       <div className="space-y-2">
-        {routes.map(([label, on]) => (
+        {patterns.map(([label, count]) => (
           <div key={label} className="flex items-center justify-between text-[11px] text-cv-ink/60">
             <span>{label}</span>
-            <Toggle on={on} />
+            <span className="font-mono font-medium text-[#1664C0] dark:text-[#7CB8F8]">{count}</span>
           </div>
         ))}
       </div>
@@ -177,22 +163,22 @@ type Card = { title: string; body: string; visual: ReactNode };
 const CARDS: Card[] = [
   {
     title: "Query attribution",
-    body: "Every query tied to the user, role, dashboard, model, or job that ran it. When the data team gets blamed, they can show exactly which workload and which team owns the cost.",
+    body: "Every query tied to a user, role, dashboard, dbt model, or job. Spend down to the SQL.",
     visual: <QueryAttributionVisual />,
   },
   {
     title: "Pattern detection",
-    body: "Repeated expensive patterns surfaced with rewrite suggestions. The problem is usually a handful of query patterns running hundreds of times, not one catastrophic scan. DataX finds the pattern, not just the instance.",
+    body: "Cost-amplifying patterns caught and explained, with a rewrite suggested.",
     visual: <PatternDetectionVisual />,
   },
   {
     title: "Predictive signals",
-    body: "Detect warehouse cost spikes from queue depth and pattern shifts before they hit the bill. Most regressions are visible in telemetry before they become a finance conversation. DataX flags them before they do.",
+    body: "Unit-cost regressions surfaced before monthly close, not in the post-mortem.",
     visual: <PredictiveSignalsVisual />,
   },
   {
     title: "Safe automation",
-    body: "One-click partition, cluster, and right-size fixes. Fully policy-bound and auditable. Automation in DataX controls when recommendations may be applied, and provides a complete audit trail of every decision and action. Opt-in, scoped, reversible.",
+    body: "Partition, cluster, and right-size fixes applied inside policy. Reversible and audited.",
     visual: <SafeAutomationVisual />,
   },
 ];

@@ -65,7 +65,7 @@ export default function AixRoiSplit({ roi }: { roi: string[][] }) {
           </table>
         </div>
         <p className="text-xs text-cv-muted mt-3 italic">
-          Assumptions: 40–90% cost reduction applied at 89% average. Hardcoded baseline is Claude Sonnet at $0.00298/request.
+          Assumption: 40–90% reduction applied at an 89% average. Your mix will differ; the audit measures yours.
         </p>
       </div>
 

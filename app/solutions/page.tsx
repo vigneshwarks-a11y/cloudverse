@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Buildings, Code2, Cpu, Database, UsersGroupRounded, Widget2 } from "@solar-icons/react";
+import { ArrowRight, Buildings, CheckCircle, Code2, Cpu, Database, UsersGroupRounded, Widget2 } from "@solar-icons/react";
 import { SolutionHero } from "@/components/solution/SolutionHero";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 
@@ -19,8 +19,8 @@ export const metadata: Metadata = {
 };
 
 const SOLUTIONS = [
+  { href: "/solutions/ai-engineering", icon: Cpu,            label: "AI Engineering",        desc: "Live cost-quality routing across 8+ GPU and LLM providers, policy-bound at execution.", color: "#6954D4" },
   { href: "/solutions/finops-teams",   icon: UsersGroupRounded,          label: "FinOps Teams",          desc: "Allocation, anomaly response, commitments, and chargeback on one model.", color: "#1664C0" },
-  { href: "/solutions/ai-engineering", icon: Cpu,            label: "AI Engineering",        desc: "Live cost-quality routing across 8+ GPU and LLM providers.", color: "#6954D4" },
   { href: "/solutions/platform-eng",   icon: Code2, label: "Platform Engineering", desc: "PR-level cost diffs, policy-as-code, native CI integration.", color: "#0E9E7A" },
   { href: "/solutions/data-teams",     icon: Database,       label: "Data Teams",            desc: "Query-level attribution and safe automation across 6 warehouses.", color: "#D97706" },
   { href: "/solutions/enterprise",     icon: Buildings,      label: "Enterprise",            desc: "One control plane across the estate, with SSO, RBAC, and residency.", color: "#1664C0" },
@@ -31,8 +31,8 @@ export default function Page() {
     <>
       <SolutionHero
         eyebrow="Solutions"
-        h1="Built for the Teams Accountable for the Bill."
-        sub="Five persona-built solution paths backed by one control plane."
+        h1="Built for the teams accountable for the bill."
+        sub="Five persona-built paths, one control plane underneath. Cloud, AI, data, and engineering spend, owned by the people who create it."
         accent="#1664C0"
         icon={Widget2}
         platformHref="/platform/finops"
@@ -65,6 +65,35 @@ export default function Page() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* THE SHARED IDEA */}
+      <section className="cv-section">
+        <div className="cv-container">
+          <h2 className="cv-h2 text-cv-ink mb-5 max-w-2xl">Different jobs. The same missing piece.</h2>
+          <p className="cv-body-lg text-cv-ink/80">
+            Finance can&apos;t explain the bill. Engineering commits the spend but never sees it. AI runs as a side process no one owns. Every team is accountable for a slice of the same problem: cost decided in one place, felt in another. CloudVerse connects the decision to the dollar, so each team works from one record instead of four tools.
+          </p>
+        </div>
+      </section>
+
+      {/* WHAT CHANGES */}
+      <section className="cv-section bg-cv-surface dark:bg-black">
+        <div className="cv-container">
+          <h2 className="cv-h2 text-cv-ink mb-8 max-w-2xl">What changes when spend has an owner.</h2>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              "Spend ownership reaches every team, not just the FinOps function.",
+              "Engineers meet cost inside the workflows they already use, not in a monthly review.",
+              "Finance acts on live signals instead of chasing explanations after close.",
+              "Leadership shifts from reviewing spend to deciding what's next.",
+            ].map((b) => (
+              <li key={b} className="flex items-start gap-3 text-cv-ink/85">
+                <CheckCircle weight="Linear" size={18} className="text-cv-teal mt-0.5 shrink-0" /> {b}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

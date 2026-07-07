@@ -23,28 +23,28 @@ type Testimonial = {
 
 const TESTIMONIALS: Testimonial[] = [
   {
-    company: "SE Asian Telco Group",
+    company: "SE Asian Digital & Telco Group",
     companyInitial: "T",
     accentColor: "#1664C0",
-    quote: '"129 applications and Rp8.77B in cloud spend, across four clouds, with no reliable owner. CloudVerse mapped spend to the way the business actually works and surfaced Rp964.80M in savings before any optimization work began."',
+    quote: '"129 applications and Rp8.77B in cloud spend across four clouds, with no reliable owner. CloudVerse mapped spend to how the business actually works and surfaced Rp964.80M in savings before any optimization began."',
     name: "Southeast Asian digital & telecommunications group",
-    title: "Multi-cloud estate — AWS, Huawei, Google Cloud, Cloudflare",
+    title: "Multi-cloud estate — AWS, Huawei, Google Cloud, Cloudflare (anonymized)",
     initials: "TG",
     whyLabel: "cloudverse",
     tags: [
-      { icon: <BranchingPathsUp weight="Linear" size={11} />, label: "Routing" },
-      { icon: <Eye weight="Linear" size={11} />, label: "Visibility" },
-      { icon: <Shield weight="Linear" size={11} />, label: "Governance" },
+      { icon: <BranchingPathsUp weight="Linear" size={11} />, label: "Multi-cloud" },
+      { icon: <DollarMinimalistic weight="Linear" size={11} />, label: "Allocation" },
+      { icon: <Eye weight="Linear" size={11} />, label: "Architecture" },
     ],
   },
   {
-    company: "Tencent Cloud",
-    companyInitial: "TC",
+    company: "Berkshire Hathaway HomeServices",
+    companyInitial: "BH",
     accentColor: "#6954D4",
-    quote: '"Before CloudVerse we could see the bill. We couldn\'t say who owned it, which applications drove it, or whether the architecture under it was worth the cost."',
-    name: "Head of FinOps",
-    title: "Large Southeast Asian digital & telecommunications group",
-    initials: "TC",
+    quote: '"A growing AWS estate, fragmented tagging, no team-level attribution. CloudVerse tied spend to teams and gave finance a model that held up under review."',
+    name: "Berkshire Hathaway HomeServices",
+    title: "$101,736 annual recovery · $61,582 in a single month · $738,983 realized",
+    initials: "BH",
     whyLabel: "cloudverse",
     tags: [
       { icon: <Eye weight="Linear" size={11} />, label: "Visibility" },
@@ -53,18 +53,18 @@ const TESTIMONIALS: Testimonial[] = [
     ],
   },
   {
-    company: "Dr. Reddy's",
-    companyInitial: "DR",
+    company: "The Outcome, in One Number",
+    companyInitial: "%",
     accentColor: "#0E9E7A",
-    quote: '"The teams responsible for governance were reconciling provider invoices by hand and arriving at numbers finance and engineering both questioned. That\'s gone now."',
-    name: "FinOps Lead",
-    title: "Multi-cloud digital services group (AWS, Huawei, Google Cloud, Cloudflare)",
-    initials: "DR",
+    quote: '"40–90% less spend on production AI workloads once routing and governance are in place. Most teams find something they didn\'t expect on day one."',
+    name: "The outcome, in one number",
+    title: "Across CloudVerse customers",
+    initials: "40+",
     whyLabel: "cloudverse",
     tags: [
-      { icon: <Shield weight="Linear" size={11} />, label: "Governance" },
       { icon: <BranchingPathsUp weight="Linear" size={11} />, label: "Routing" },
-      { icon: <Eye weight="Linear" size={11} />, label: "Visibility" },
+      { icon: <DollarMinimalistic weight="Linear" size={11} />, label: "Optimization" },
+      { icon: <Shield weight="Linear" size={11} />, label: "Governance" },
     ],
   },
 ];
@@ -73,7 +73,7 @@ function Avatar({ initials, color, size = 36 }: { initials: string; color: strin
   return (
     <div
       className="rounded-full flex items-center justify-center text-white font-semibold shrink-0 select-none"
-      style={{ width: size, height: size, background: color, fontSize: size * 0.35 }}
+      style={{ width: `${size}px`, height: `${size}px`, background: color, fontSize: `${Math.round(size * 0.35)}px` }}
     >
       {initials}
     </div>
@@ -119,9 +119,7 @@ export function TestimonialsCarousel() {
   const [busy, setBusy] = useState(false);
 
   const [hovered, setHovered] = useState(false);
-  const [entered, setEntered] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const sectionRef   = useRef<HTMLDivElement>(null);
   const [containerW, setContainerW] = useState(0);
 
   useEffect(() => {
@@ -130,17 +128,6 @@ export function TestimonialsCarousel() {
     const obs = new ResizeObserver(e => setContainerW(e[0].contentRect.width));
     obs.observe(el);
     setContainerW(el.getBoundingClientRect().width);
-    return () => obs.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setEntered(true); obs.disconnect(); } },
-      { threshold: 0.15 }
-    );
-    obs.observe(el);
     return () => obs.disconnect();
   }, []);
 
@@ -157,46 +144,41 @@ export function TestimonialsCarousel() {
   }, [active, goTo]);
 
   useEffect(() => {
-    if (!entered || hovered || busy) return;
+    if (hovered || busy) return;
     const t = setTimeout(advance, CYCLE_MS);
     return () => clearTimeout(t);
-  }, [active, entered, hovered, busy, advance]);
-
-  // Below this width there's no room to show collapsed side-strips next to
-  // the active card without crushing its content — show only the active
-  // card, full width, and let the dots below handle navigation.
-  const isMobile = containerW > 0 && containerW < 640;
+  }, [active, hovered, busy, advance]);
 
   const collapsedCount = TESTIMONIALS.length - 1;
   const activeW = containerW > 0
-    ? isMobile
-      ? containerW
-      : containerW - collapsedCount * COLLAPSED_W - collapsedCount * GAP
+    ? containerW - collapsedCount * COLLAPSED_W - collapsedCount * GAP
     : 0;
 
   // Width per card: active card grows to activeW, all others shrink to
   // COLLAPSED_W at the same time (parallel expand/collapse transition).
-  // On mobile, collapsed cards shrink to 0 instead of a visible strip.
   const getW = (i: number) => {
     if (!containerW) return undefined;
-    if (i === active) return activeW;
-    return isMobile ? 0 : COLLAPSED_W;
+    return i === active ? activeW : COLLAPSED_W;
   };
 
   return (
-    <section className="cv-section bg-cv-surface" ref={sectionRef}>
+    <section className="cv-section bg-cv-surface">
       <div className="cv-container">
         <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 dark:bg-[#7CB8F8]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8] mb-4">
           Customer Stories
         </span>
-        <h2 className="cv-h2 text-cv-ink mb-10 max-w-2xl">
-          Trusted by teams running AI at scale.
+        <h2 className="cv-h2 text-cv-ink mb-3 max-w-2xl">
+          Customer stories
         </h2>
+        <p className="text-cv-ink/70 leading-relaxed mb-10 max-w-2xl">
+          Teams running cloud and AI at scale, on the record.
+        </p>
 
+        {/* Desktop accordion */}
         <div
           ref={containerRef}
-          className="flex gap-0 sm:gap-3"
-          style={{ minHeight: 360 }}
+          className="hidden sm:flex gap-3"
+          style={{ minHeight: 380 }}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
@@ -204,41 +186,31 @@ export function TestimonialsCarousel() {
             const isActive = i === active;
             const w = getW(i);
             const contentVisible = isActive;
-            // Entrance stagger
-            const staggerDelay = entered ? 0 : i * 80;
-            const isCollapsedOnMobile = isMobile && !isActive;
 
             return (
               <div
                 key={i}
-                className={`relative rounded-2xl overflow-hidden shrink-0 ${isCollapsedOnMobile ? "border-0" : "border border-cv-line/40"}`}
+                className="relative rounded-2xl border border-cv-line/40 overflow-hidden shrink-0"
                 style={{
                   width: w ?? (isActive ? undefined : COLLAPSED_W),
                   flex: (!w && isActive) ? 1 : undefined,
-                  minWidth: isCollapsedOnMobile ? 0 : (w ?? COLLAPSED_W),
-                  transition: [
-                    `width ${EXPAND_MS}ms ease-in-out`,
-                    `min-width ${EXPAND_MS}ms ease-in-out`,
-                    `opacity 280ms ease-out ${staggerDelay}ms`,
-                    `transform 280ms ease-out ${staggerDelay}ms`,
-                  ].join(", "),
-                  opacity: entered ? 1 : 0,
-                  transform: entered ? "none" : isActive ? "translateY(10px)" : "translateX(14px)",
+                  minWidth: w ?? COLLAPSED_W,
+                  transition: `width ${EXPAND_MS}ms ease-in-out, min-width ${EXPAND_MS}ms ease-in-out`,
                 }}
               >
-                {/* ── Background ── */}
+                {/* Background */}
                 <div
                   className="absolute inset-0 transition-colors duration-500"
                   style={{
                     background: contentVisible
-                      ? `radial-gradient(ellipse 80% 60% at 20% 0%, #1664C055 0%, transparent 60%),
-                         radial-gradient(ellipse 60% 80% at 80% 100%, #2278E030 0%, transparent 55%),
-                         hsl(var(--cv-surface))`
-                      : "hsl(var(--cv-surface))",
+                      ? `radial-gradient(ellipse 80% 60% at 20% 0%, #6954D440 0%, transparent 60%),
+                         radial-gradient(ellipse 60% 80% at 80% 100%, #7C3AED20 0%, transparent 55%),
+                         #0D0D0D`
+                      : "#0D0D0D",
                   }}
                 />
 
-                {/* ── Collapsed strip (always rendered, fades out when active) ── */}
+                {/* Collapsed strip */}
                 <button
                   className="absolute inset-0 flex flex-col items-center w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-cv-blue/60"
                   style={{
@@ -252,44 +224,33 @@ export function TestimonialsCarousel() {
                   tabIndex={contentVisible ? -1 : 0}
                   aria-label={`View testimonial from ${ct.company}`}
                 >
-                  {/* Company name near top */}
                   <div className="flex items-start justify-center pt-1">
                     <span
-                      className="font-mono text-[11px] text-cv-muted/70 whitespace-nowrap select-none"
-                      style={{ writingMode: "vertical-rl", transform: "rotate(180deg)", letterSpacing: "0.1em" }}
+                      className="font-mono text-[11px] text-cv-muted/70 whitespace-nowrap select-none [writing-mode:vertical-rl] rotate-180 tracking-widest"
                     >
                       {ct.company}
                     </span>
                   </div>
-
-                  {/* Square rounded avatar pinned to bottom */}
                   <div className="mt-auto">
                     <div
-                      className="rounded-xl overflow-hidden flex items-center justify-center text-white font-semibold select-none"
-                      style={{
-                        width: 42,
-                        height: 42,
-                        background: ct.accentColor,
-                        fontSize: 14,
-                      }}
+                      className="w-[42px] h-[42px] rounded-xl overflow-hidden flex items-center justify-center text-white text-sm font-semibold select-none"
+                      style={{ background: ct.accentColor }}
                     >
                       {ct.initials}
                     </div>
                   </div>
                 </button>
 
-                {/* ── Expanded content (always rendered, fades in when active) ── */}
+                {/* Expanded content */}
                 <div
                   className="absolute inset-0 flex flex-col z-10"
                   style={{
                     opacity: contentVisible ? 1 : 0,
                     pointerEvents: contentVisible ? "auto" : "none",
-                    // Delay content fade-in so it appears after card has grown
                     transition: `opacity 260ms ease-in-out ${contentVisible ? EXPAND_MS * 0.55 : 0}ms`,
                   }}
                 >
-                  {/* Top bar */}
-                  <div className="flex items-center justify-between px-4 sm:px-7 pt-5 sm:pt-6 pb-3 sm:pb-4 shrink-0">
+                  <div className="flex items-center justify-between px-7 pt-6 pb-4 shrink-0">
                     <div className="flex items-center gap-2 min-w-0">
                       <div
                         className="h-7 w-7 rounded-md flex items-center justify-center text-white text-xs font-bold shrink-0"
@@ -299,33 +260,20 @@ export function TestimonialsCarousel() {
                       </div>
                       <span className="text-cv-ink font-semibold text-sm tracking-wide truncate">{ct.company}</span>
                     </div>
-                    <SingleProgress
-                      active={active}
-                      running={entered && !hovered && !busy}
-                      duration={CYCLE_MS}
-                    />
+                    <SingleProgress active={active} running={!hovered && !busy} duration={CYCLE_MS} />
                   </div>
-
-                  {/* Quote */}
-                  <div className="flex-1 px-4 sm:px-7 py-2 flex items-end overflow-hidden">
-                    <p className="text-cv-ink/85 text-lg lg:text-xl leading-relaxed max-w-2xl">
-                      {ct.quote}
-                    </p>
+                  <div className="flex-1 px-7 py-2 flex items-end overflow-hidden">
+                    <p className="text-cv-ink/85 text-lg lg:text-xl leading-relaxed max-w-2xl">{ct.quote}</p>
                   </div>
-
-                  {/* Footer */}
-                  <div className="border-t border-cv-line/50 px-4 sm:px-7 py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 shrink-0">
-                    <div className="flex items-center gap-3">
+                  <div className="border-t border-cv-line/50 px-7 py-5 flex flex-row items-center justify-between gap-4 shrink-0">
+                    <div className="flex items-center gap-3 min-w-0">
                       <Avatar initials={ct.initials} color={ct.accentColor} size={38} />
-                      <div>
-                        <div className="text-sm font-semibold text-cv-ink">{ct.name}</div>
-                        <div className="text-xs font-mono text-cv-muted mt-0.5">{ct.title}</div>
+                      <div className="min-w-0">
+                        <div className="text-sm font-semibold text-cv-ink truncate">{ct.name}</div>
+                        <div className="text-xs font-mono text-cv-muted mt-0.5 truncate">{ct.title}</div>
                       </div>
                     </div>
-                    <div className="flex items-center gap-3 flex-wrap">
-                      <span className="flex items-center gap-1 text-xs font-mono text-cv-muted whitespace-nowrap">
-                        Why {ct.whyLabel} <Heart weight="Linear" size={11} className="text-red-400 ml-0.5" />
-                      </span>
+                    <div className="flex items-center gap-2 shrink-0">
                       {ct.tags.map((tag) => (
                         <span
                           key={tag.label}
@@ -337,14 +285,74 @@ export function TestimonialsCarousel() {
                     </div>
                   </div>
                 </div>
+              </div>
+            );
+          })}
+        </div>
 
+        {/* Mobile: single card, full width */}
+        <div className="sm:hidden">
+          {TESTIMONIALS.map((ct, i) => {
+            if (i !== active) return null;
+            return (
+              <div
+                key={i}
+                className="relative rounded-2xl border border-cv-line/40 overflow-hidden"
+                style={{
+                  background: `radial-gradient(ellipse 80% 50% at 20% 0%, #6954D440 0%, transparent 60%),
+                    radial-gradient(ellipse 60% 70% at 80% 100%, #7C3AED20 0%, transparent 55%),
+                    #0D0D0D`,
+                }}
+              >
+                {/* Top bar */}
+                <div className="flex items-center justify-between px-5 pt-5 pb-3">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <div
+                      className="h-7 w-7 rounded-md flex items-center justify-center text-white text-xs font-bold shrink-0"
+                      style={{ background: ct.accentColor }}
+                    >
+                      {ct.companyInitial}
+                    </div>
+                    <span className="text-cv-ink font-semibold text-sm tracking-wide truncate">{ct.company}</span>
+                  </div>
+                  <SingleProgress active={active} running={!hovered && !busy} duration={CYCLE_MS} />
+                </div>
+
+                {/* Quote */}
+                <div className="px-5 pb-5 pt-2">
+                  <p className="text-cv-ink/85 text-base leading-relaxed">{ct.quote}</p>
+                </div>
+
+                {/* Footer */}
+                <div className="border-t border-cv-line/50 px-5 py-4">
+                  <div className="flex items-start gap-3">
+                    <Avatar initials={ct.initials} color={ct.accentColor} size={34} />
+                    <div className="min-w-0 flex-1">
+                      <div className="text-sm font-semibold text-cv-ink">{ct.name}</div>
+                      <div className="text-xs font-mono text-cv-muted mt-0.5 leading-snug">{ct.title}</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 flex-wrap mt-3">
+                    <span className="flex items-center gap-1 text-xs font-mono text-cv-muted">
+                      Why {ct.whyLabel} <Heart weight="Linear" size={10} className="text-red-400 ml-0.5" />
+                    </span>
+                    {ct.tags.map((tag) => (
+                      <span
+                        key={tag.label}
+                        className="flex items-center gap-1 text-[11px] font-mono text-cv-ink/60 border border-cv-blue/30 bg-cv-blue/10 rounded-full px-2 py-0.5 whitespace-nowrap"
+                      >
+                        {tag.icon} {tag.label}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             );
           })}
         </div>
 
         {/* Mobile dots */}
-        <div className="flex sm:hidden justify-center gap-2 mt-5">
+        <div className="flex sm:hidden justify-center gap-2 mt-4">
           {TESTIMONIALS.map((_, i) => (
             <button
               key={i}

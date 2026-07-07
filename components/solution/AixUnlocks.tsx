@@ -140,6 +140,27 @@ function AttributionVisual() {
   );
 }
 
+function TokenGpuVisual() {
+  const rows: [string, string][] = [
+    ["Tokens (24h)", "2.4M"],
+    ["GPU utilization", "71%"],
+    ["Avg. latency", "312ms"],
+  ];
+  return (
+    <Panel>
+      <VHead Icon={Cpu} label="Per-run telemetry" />
+      <div className="space-y-1.5">
+        {rows.map(([label, val]) => (
+          <div key={label} className="flex items-center justify-between text-[11px] text-cv-ink/60">
+            <span>{label}</span>
+            <span className="font-medium text-[#1664C0] dark:text-[#7CB8F8]">{val}</span>
+          </div>
+        ))}
+      </div>
+    </Panel>
+  );
+}
+
 function RegistryVisual() {
   const models: { name: string; version: string; status: string; dot: string }[] = [
     { name: "gpt-4o", version: "v2.1", status: "Primary", dot: BLUE },
@@ -175,33 +196,39 @@ type Card = { title: string; body: string; visual: ReactNode; span: string };
 const CARDS: Card[] = [
   {
     title: "Multi-provider routing",
-    body: "Score every request across OpenAI, Anthropic, Bedrock, Vertex, Cohere, Groq, HuggingFace, and self-hosted infrastructure. Path to the best fit based on cost, latency, and quality requirements for that specific task type. Automatically.",
+    body: "Every request scored across providers on cost, latency, and quality. Best-fit wins, fallback attached.",
     visual: <RoutingVisual />,
     span: "md:col-span-2",
   },
   {
     title: "Policy guardrails",
-    body: "Compliance, content, latency, and budget guardrails enforced before execution. PII handling rules, data residency constraints, and provider allowlists applied at the routing layer, not retrofitted in application code.",
+    body: "Allowed providers, residency, and budget enforced before execution.",
     visual: <GuardrailsVisual />,
     span: "md:col-span-2",
   },
   {
     title: "Right-sized GPU economics",
-    body: "Move workloads between hosted and dedicated GPU pools without rewriting code. AIX handles the routing logic. Your engineers handle the model.",
+    body: "Move workloads between hosted APIs and dedicated GPU pools as price and load change.",
     visual: <GpuVisual />,
     span: "md:col-span-2",
   },
   {
-    title: "Token and GPU attribution",
-    body: "Spend tied back to team, product, and unit revenue. Automatic. No separate AI cost report reconstructed from billing data after the fact.",
+    title: "Spend attribution",
+    body: "Cost allocated to the team, product, and workload that ran it, automatically.",
     visual: <AttributionVisual />,
-    span: "md:col-span-3",
+    span: "md:col-span-2",
   },
   {
-    title: "Model registry",
-    body: "Track model versions, provider options, and performance benchmarks. Multi-region failover built in. Primary and fallback routes generated on every request.",
+    title: "Token and GPU visibility",
+    body: "Token-level tracking and GPU utilization in one view, per model and per run.",
+    visual: <TokenGpuVisual />,
+    span: "md:col-span-2",
+  },
+  {
+    title: "Model registry and failover",
+    body: "Versioned models with automatic failover when a provider degrades.",
     visual: <RegistryVisual />,
-    span: "md:col-span-3",
+    span: "md:col-span-2",
   },
 ];
 
@@ -234,7 +261,7 @@ export default function AixUnlocks() {
     <section className="cv-section bg-cv-surface2">
       <div className="cv-container">
         <div className="max-w-3xl mb-10">
-          <h2 className="cv-h2 text-cv-ink">What AIX unlocks for AI engineering teams</h2>
+          <h2 className="cv-h2 text-cv-ink">What AIX unlocks for AI engineering teams.</h2>
         </div>
         <div ref={ref} className="grid grid-cols-1 md:grid-cols-6 gap-5 lg:gap-6">
           {CARDS.map(({ title, body, visual, span }, i) => (

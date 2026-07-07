@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { ArrowRight, Code2 } from "@solar-icons/react";
+import { ArrowRight, CheckCircle, CloseCircle, Code2 } from "@solar-icons/react";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import { PlatformCards } from "@/components/solution/PlatformCards";
 import { PlatformShips } from "@/components/solution/PlatformShips";
 import { SolutionHero } from "@/components/solution/SolutionHero";
+import { WhoThisIsFor } from "@/components/solution/WhoThisIsFor";
 import { FaqBlock } from "@/components/FaqBlock";
 import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
@@ -35,10 +36,11 @@ const STATS = [
 ];
 
 const FAQ = [
-  ["Will this slow down our PR flow?", "No. DevX runs as a fast check and posts a single inline comment. No extra approval step unless you opt into required mode."],
-  ["Which IaC tools are supported?", "Terraform, OpenTofu, Pulumi, CloudFormation, Helm, Kubernetes, raw Kubernetes."],
-  ["How do we manage cost policy?", "Policies are code in your repo. Version controlled, reviewable, auditable like any other config."],
-  ["What is the path from PR comment to actual savings?", "The engineer adjusts the change, the regression never reaches production. The saving is the cost of the avoided change multiplied by its lifetime."],
+  ["Does it slow the PR flow?", "No. It runs alongside CI and comments. It only blocks a merge if you set a required policy."],
+  ["Which IaC tools are supported?", "Terraform, Pulumi, CloudFormation, and Kubernetes, among others."],
+  ["How are policies managed?", "As code in the repo. Advisory warns; required blocks. Reviewed like any change."],
+  ["What's the savings path?", "Prevented regressions, tracked over time. Most teams clear the cost on the first catch."],
+  ["Does it handle AI cost in code?", "Yes. It flags the new model call or chatty agent loop an AI-assisted commit adds."],
 ];
 
 export default function PlatformEngPage() {
@@ -46,8 +48,8 @@ export default function PlatformEngPage() {
     <>
       <SolutionHero
         eyebrow="For Platform Engineering"
-        h1="Cost Gates Engineers Actually Want to Use"
-        sub="PR-level cost diffs, policy-as-code, and right-sizing recommendations in your IaC pipeline. Quantified savings rolled into FinOps."
+        h1="Cost gates engineers actually want to use."
+        sub="PR-level cost diffs, policy-as-code, and right-sizing recommendations in your IaC pipeline. Guardrails that keep delivery moving."
         accent="#0E9E7A"
         icon={Code2}
         platformHref="/platform/devx"
@@ -72,16 +74,32 @@ export default function PlatformEngPage() {
 
       <section className="cv-section">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink">The situation platform engineering teams are in</h2>
+          <h2 className="cv-h2 text-cv-ink">The situation platform engineering teams are in.</h2>
           <p className="cv-body-lg text-cv-ink/80 mt-6">
-            You have tried sending cost reports to engineering teams. The response is silence or confusion. The numbers do not connect to anything engineers can act on at the moment they are making decisions.
+            You already gate code on tests and static analysis. Cost is the one thing that ships unreviewed and shows up weeks later on a bill nobody connects back to that pull request.
           </p>
           <p className="cv-body-lg text-cv-ink/85 mt-4">
-            DevX puts the cost estimate in the PR. Before the code ships. While the engineer still has context on what they built and why.
+            By then the expensive change is in production and the fix means rework. DevX puts the cost estimate in the pull request, where the person who wrote the change can still cheaply change it.
           </p>
-          <p className="cv-body-lg text-cv-ink font-medium mt-4 italic">
-            The cost comment arrives the same way a test failure does. In context. With a suggested fix. Before the merge.
-          </p>
+        </div>
+      </section>
+
+      {/* WHAT IT'S COSTING YOU TODAY */}
+      <section className="cv-section bg-cv-surface dark:bg-black">
+        <div className="cv-container">
+          <h2 className="cv-h2 text-cv-ink mb-8">What that&apos;s costing you today.</h2>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              "Cost regressions noticed at the bill, not at review",
+              "Always-on and oversized resources shipping without a second look",
+              "Cost decisions with no clear owner, settled by month-end finger-pointing",
+              "Rework: issues fixed in production instead of once, at the cheapest point",
+            ].map((b) => (
+              <li key={b} className="flex items-start gap-3 text-cv-ink/85">
+                <CloseCircle weight="Linear" size={18} className="text-cv-muted mt-0.5 shrink-0" /> {b}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -99,20 +117,79 @@ export default function PlatformEngPage() {
         </div>
       </section>
 
+      {/* HOW IT WORKS */}
       <section className="cv-section">
+        <div className="cv-container">
+          <h2 className="cv-h2 text-cv-ink mb-10">How platform teams run it.</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              ["Install", "Install the CI check on your repos. No workflow change."],
+              ["Write", "Write cost policy as code: thresholds, advisory or required, per team."],
+              ["Review", "Review the cost diff inline on every pull request."],
+              ["Track", "Track prevented spend over time, by team and repo."],
+            ].map(([title, body], i) => (
+              <div key={title} className="rounded-2xl border border-cv-line/40 bg-cv-surface2 dark:bg-[#0D0D0D] p-6">
+                <div className="text-xs uppercase tracking-widest text-cv-muted">Step 0{i + 1}</div>
+                <h3 className="cv-h3 text-cv-ink mt-2">{title}</h3>
+                <p className="text-cv-ink/75 mt-3 leading-relaxed text-sm">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ROI */}
+      <section className="cv-section bg-cv-surface dark:bg-black">
+        <div className="cv-container">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="cv-h2 text-cv-ink">Most teams recover the cost from a single prevented regression.</h2>
+            <p className="cv-body-lg text-cv-ink/75 mt-5">
+              In a typical pre-production review, DevX flags around $2,400 of monthly spend before it ships. One catch pays for the tool.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* OUTCOMES */}
+      <section className="cv-section">
+        <div className="cv-container">
+          <h2 className="cv-h2 text-cv-ink mb-8">Outcomes your team feels.</h2>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              "Cost: expensive changes caught before they ship, prevented at source",
+              "Risk: fewer surprise bills and regressions reaching production",
+              "Control: ownership on the people making the decision",
+              "Productivity: less firefighting; issues fixed once, at the cheapest point",
+              "Velocity: guardrails that keep delivery moving, not blocking it",
+              "Visibility: financial impact inside the workflow, not buried in a bill",
+            ].map((b) => (
+              <li key={b} className="flex items-start gap-3 text-cv-ink/85">
+                <CheckCircle weight="Linear" size={18} className="text-cv-teal mt-0.5 shrink-0" /> {b}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="cv-section bg-cv-surface dark:bg-black">
         <div className="cv-container">
           <h2 className="cv-h2 text-cv-ink mb-8">Platform that powers this solution</h2>
           <PlatformCards
             items={[
-              ["DevX", "Shift-left cost intelligence", "/platform/devx"],
-              ["FinOps Platform", "Multi-cloud cost intelligence", "/platform/finops"],
-              ["AIX", "GPU and LLM economics", "/platform/aix"],
+              ["DevX", "Cost context in the pull request", "/platform/devx"],
+              ["AIX", "Catches the new model call or agent loop an AI-assisted commit introduces", "/platform/aix"],
+              ["FinOps Platform", "The spend those changes commit, allocated and forecast", "/platform/finops"],
             ]}
           />
         </div>
       </section>
 
-      <section className="cv-section">
+      <WhoThisIsFor
+        roles={["Head of Platform Engineering", "Head of Development", "Head of Infrastructure Automation", "DevOps / SRE leads"]}
+        accent="#0E9E7A"
+      />
+
+      <section className="cv-section bg-cv-surface dark:bg-black">
         <div className="cv-container">
           <div className="text-center mb-10">
             <h2 className="cv-h2 text-cv-ink">Platform Engineering Questions Answered</h2>

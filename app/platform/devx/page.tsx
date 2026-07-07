@@ -32,10 +32,10 @@ export const metadata: Metadata = {
 const BRAND = "#2278E0";
 
 const DEVX_TABS = [
-  { id: "pr-estimate", label: "PR Cost Estimate", copy: "Every infrastructure PR gets an inline cost estimate before reviewers see it. Engineers see impact at the moment they can still change something.", icon: CodeSquare },
-  { id: "cost-gates", label: "Cost Gates", copy: "Define thresholds per team or repo. Advisory or required enforcement. Policy as code, version controlled alongside your infrastructure.", icon: DollarMinimalistic },
+  { id: "pr-estimate", label: "PR Cost Estimate", copy: "The monthly cost impact of a change, commented inline on the pull request.", icon: CodeSquare },
+  { id: "cost-gates", label: "Cost Gates", copy: "A threshold breach can warn or block, by policy, before merge.", icon: DollarMinimalistic },
   { id: "ci-scan", label: "CI Scan", copy: "Automated cost scan runs on every push. Regressions flagged before merge. No manual review step required.", icon: Chart },
-  { id: "policy", label: "Policy Engine", copy: "Policies live in your repo. Enforce cost budgets per PR, per team, or per environment. Reviewable and auditable like any other config.", icon: ShieldCheck },
+  { id: "policy", label: "Policy Engine", copy: "Cost rules written as code, versioned with the repo, applied across every team.", icon: ShieldCheck },
 ];
 
 const STATS = [
@@ -58,10 +58,10 @@ resource "aws_instance" "app" {
 }`;
 
 const FAQ = [
-  ["Will this slow down our PR flow?", "No. DevX runs as a fast check and posts a single inline comment. No extra approval step unless you opt into required mode."],
-  ["Which IaC tools are supported?", "Terraform, OpenTofu, Pulumi, CloudFormation, Helm, Kubernetes, raw Kubernetes."],
-  ["How do we manage cost policy?", "Policies are code in your repo. Define thresholds, apply advisory or required enforcement per team or repo. Version controlled and reviewable like any other config."],
-  ["What is the path from PR comment to actual savings?", "The engineer sees the estimate, adjusts the change before merge, and the regression never reaches production. The saving is the cost of the avoided change multiplied by its lifetime."],
+  ["Does it slow the pipeline down?", "No. The check runs alongside CI and posts a comment. It doesn't gate merges unless you set a policy to."],
+  ["Which tools does it support?", "GitHub, GitLab, and Azure DevOps for CI; Terraform, Pulumi, CloudFormation, and Kubernetes for infrastructure."],
+  ["How are policies managed?", "As code, in the repo. Advisory rules warn; required rules block. Versioned and reviewed like any other change."],
+  ["How does this pay for itself?", "Most teams recover the cost from a single prevented regression, around $2,400 in a typical review."],
 ];
 
 export default function DevXPage() {
@@ -75,16 +75,16 @@ export default function DevXPage() {
                 <span className="block text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8]">
                   DevX
                 </span>
-                <h1 className="cv-h1 mt-6 leading-[1.25] text-cv-ink">Catch Cost Regressions Before They Reach Production</h1>
+                <h1 className="cv-h1 mt-6 leading-[1.25] text-cv-ink">Catch cost regressions before they reach production.</h1>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
-                  <Link href="#pr-example" className="cv-btn-secondary">See a Real PR Example</Link>
+                  <Link href="#pr-example" className="cv-btn-ghost">See a real PR example</Link>
                 </div>
               </div>
 
               <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-sm shrink-0">
                 <p className="cv-body text-cv-ink/70">
-                  Every infrastructure PR gets an inline cost impact comment before reviewers see it. Engineers see what their changes cost at the moment they can still change something.
+                  Cost context lands in the pull request, for infrastructure, application code, and AI calls. Velocity stays high. Governance finally keeps up.
                 </p>
               </div>
             </div>
@@ -111,16 +111,16 @@ export default function DevXPage() {
 
       <section className="cv-section">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink">Infrastructure cost mistakes do not look like mistakes.</h2>
+          <h2 className="cv-h2 text-cv-ink">Infrastructure cost mistakes don&apos;t look like mistakes.</h2>
           <div className="mt-6 space-y-4">
             <p className="cv-body-lg text-cv-ink/80">
-              Infrastructure decisions that cause cost regressions look like correct Terraform. The NAT gateway goes in because someone needed it for one sprint. Nobody removes it. The always-on compute instance gets sized for peak load. Load normalises. The instance stays.
+              A change ships. It passes review, it passes tests, it looks fine.
             </p>
             <p className="cv-body-lg text-cv-ink/80">
-              Cost reports land three weeks after the deployment. The engineer who wrote the change has moved on to four other things. Nobody changes anything.
+              The cost shows up weeks later on a bill nobody connects back to that pull request. By then the fix means unwinding work already in production.
             </p>
             <p className="cv-body-lg text-cv-ink font-medium">
-              DevX puts a cost estimate on every PR before it merges. Engineers see impact at the moment they still have context on what they built and why.
+              The cheapest moment to catch a regression is before it merges, in front of the person who wrote it.
             </p>
           </div>
         </div>
@@ -142,7 +142,7 @@ export default function DevXPage() {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="cv-h2 text-cv-ink">Most customers recover the cost of DevX from a single prevented regression.</h2>
             <p className="cv-body-lg text-cv-ink/75 mt-5">
-              A missed NAT gateway cleanup runs $800 per month minimum. A misconfigured always-on instance in non-prod runs higher. DevX catches these before they merge.
+              One caught change pays for the tool. In an average pre-production review, DevX flags around $2,400 of monthly spend before it ships, spend that would otherwise have been discovered and unwound later.
             </p>
           </div>
 
@@ -156,10 +156,10 @@ export default function DevXPage() {
               </div>
               <div className="mt-8 h-px bg-cv-line" />
               <ul className="space-y-3.5 text-sm text-cv-ink/80 mt-8 leading-relaxed">
-                <li>• Unlimited public repos</li>
-                <li>• Standard PR cost estimates</li>
-                <li>• Basic CI scan</li>
-                <li>• Weekly reports</li>
+                <li>• PR cost estimates</li>
+                <li>• Public repos</li>
+                <li>• Core IaC formats</li>
+                <li>• Community support</li>
               </ul>
             </div>
 
@@ -186,10 +186,10 @@ export default function DevXPage() {
               <ul className="space-y-3.5 text-sm text-cv-ink/90 mt-8 leading-relaxed">
                 <li>• Everything in Free</li>
                 <li>• Private repos</li>
-                <li>• Priority CI scans</li>
-                <li>• Advanced PR policy engine</li>
-                <li>• SSO (GitHub, Okta, and others)</li>
-                <li>• Includes 1,000 units per month. $0.50 per additional unit.</li>
+                <li>• Cost gates and policy-as-code</li>
+                <li>• All CI integrations</li>
+                <li>• Team roles</li>
+                <li>• Email support</li>
               </ul>
             </div>
 
@@ -200,10 +200,10 @@ export default function DevXPage() {
               <div className="mt-8 h-px bg-cv-line" />
               <ul className="space-y-3.5 text-sm text-cv-ink/80 mt-8 leading-relaxed">
                 <li>• Everything in Business</li>
-                <li>• Custom allowance and unlimited scale</li>
-                <li>• Dedicated success manager</li>
-                <li>• SLA and premium support</li>
-                <li>• On-prem deployment options</li>
+                <li>• SSO and RBAC</li>
+                <li>• Audit export</li>
+                <li>• Dedicated support</li>
+                <li>• Deployment options</li>
               </ul>
             </div>
           </div>

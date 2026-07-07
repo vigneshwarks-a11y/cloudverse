@@ -14,20 +14,20 @@ type Persona = {
 
 const PERSONAS: Persona[] = [
   {
-    title: "Platform engineers",
-    body: "Stop cost governance from being a retrospective exercise. Policies live in the repo. Every PR gets a signal before it ships. Governance happens where the work happens.",
+    title: "Platform Engineering",
+    body: "Cost guardrails that don't slow delivery.",
     Icon: Tuning2,
     color: "#007CFF",
   },
   {
-    title: "Application engineers",
-    body: "Catch costly code patterns early. Expensive loops, chatty APIs, and inefficient resource usage flagged in context before production. The estimate arrives with a suggested fix.",
+    title: "DevOps / SRE",
+    body: "Fewer surprise bills reaching production.",
     Icon: Code,
     color: "#007CFF",
   },
   {
-    title: "FinOps teams",
-    body: "Shift cost accountability into the delivery workflow. Surface cost risks where decisions are made, before infrastructure or code ships. Stop chasing post-production waste.",
+    title: "FinOps",
+    body: "Engineering adoption and clear ownership, at last.",
     Icon: FileText,
     color: "#007CFF",
   },

@@ -16,7 +16,7 @@ export function SolutionHero({
   platformHref,
   primaryLabel = "Book a Demo",
   primaryHref = DEMO_URL,
-  secondaryLabel = "Explore the Platform",
+  secondaryLabel = "Explore the platform",
 }: {
   eyebrow: string;
   h1: React.ReactNode;
@@ -46,7 +46,7 @@ export function SolutionHero({
               <Link href={primaryHref} className="cv-btn-primary">
                 <span>{primaryLabel}</span> <ArrowRight weight="Linear" size={16} />
               </Link>
-              <Link href={platformHref} className="cv-btn-secondary">
+              <Link href={platformHref} className="cv-btn-ghost">
                 {secondaryLabel}
               </Link>
             </div>

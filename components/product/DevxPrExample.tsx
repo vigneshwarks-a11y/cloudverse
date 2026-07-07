@@ -76,8 +76,8 @@ export default function DevxPrExample({ diff }: { diff: string }) {
                 <div className="text-sm text-cv-muted">per month</div>
                 <div className="cv-label mt-5 mb-2 text-[#1664C0] dark:text-[#38BDF8]">Primary drivers</div>
                 <ul className="text-sm text-cv-ink/80 space-y-1">
-                  <li>• NAT Gateway hourly + data processing charges</li>
-                  <li>• Over-provisioned compute for observed utilisation</li>
+                  <li>• Instance size increase</li>
+                  <li>• Always-on scheduling</li>
                 </ul>
               </div>
 
@@ -87,14 +87,13 @@ export default function DevxPrExample({ diff }: { diff: string }) {
                 <div className="relative h-full rounded-2xl border border-cv-line bg-cv-surface dark:bg-[#0D0D0D] p-6">
                   <div className="cv-label mb-2 text-[#1664C0] dark:text-[#38BDF8]">Why this matters</div>
                   <ul className="text-sm text-cv-ink/80 space-y-1">
-                    <li>• Always-on NAT in non-prod is a recurring cost with no production benefit</li>
-                    <li>• Instance size exceeds observed utilisation</li>
+                    <li>• Recurring monthly cost</li>
+                    <li>• No attached owner or budget line</li>
                   </ul>
                   <div className="cv-label mt-5 mb-2 text-[#1664C0] dark:text-[#38BDF8]">Suggested fix</div>
                   <ul className="text-sm text-cv-ink/80 space-y-1">
-                    <li>• Disable NAT Gateway in non-prod environments</li>
-                    <li>• Use VPC endpoints for S3 and DynamoDB access</li>
-                    <li>• Right-size compute for non-prod workloads</li>
+                    <li>• Drop one instance tier</li>
+                    <li>• Add an auto-stop schedule for non-prod</li>
                   </ul>
                 </div>
               </div>
