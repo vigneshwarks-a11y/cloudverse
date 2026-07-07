@@ -135,9 +135,14 @@ export function AixOrchestration() {
       <div className="cv-container">
 
         {/* Section heading */}
-        <h2 className="cv-h2 text-cv-ink mb-12 max-w-2xl">
-          Enterprise AI is fragmented. AIX makes it one system.
+        <h2 className="cv-h2 text-cv-ink mb-4 max-w-2xl">
+          Enterprise AI is fragmented. AIX makes it one system of record.
         </h2>
+        <p className="text-cv-ink/70 leading-relaxed max-w-2xl mb-12">
+          Not a gateway that runs your routing rules. Not observability that tells you what a request
+          cost after it ran. AIX gives every asset — agent, app, RAG system, model — an identity, a
+          contract, an operational record, and measurable economics. Discover · Govern · Value.
+        </p>
 
         <div
           className="flex flex-col lg:flex-row lg:items-start lg:gap-16"
@@ -159,7 +164,7 @@ export function AixOrchestration() {
                     </h3>
 
                     {/* Expanded content */}
-                    <div className={`overflow-hidden transition-all duration-300 ${isActive ? "max-h-[420px] opacity-100 mt-3" : "max-h-0 opacity-0"}`}>
+                    <div className={`overflow-hidden transition-all duration-500 ${isActive ? "max-h-[600px] opacity-100 mt-3" : "max-h-0 opacity-0"}`}>
                       <p className="text-sm text-cv-ink/60 leading-relaxed">{f.body}</p>
                       <Link
                         href={f.href}
@@ -169,11 +174,9 @@ export function AixOrchestration() {
                         Learn More <ArrowRight weight="Linear" size={12} />
                       </Link>
 
-                      {/* Mobile-only inline visual — appears inside the open item, not a shared block below the list */}
-                      <div className="mt-4 lg:hidden">
-                        <div className="rounded-2xl border border-cv-line bg-cv-card overflow-hidden aspect-[4/3] flex items-center justify-center">
-                          <span className="text-sm text-cv-muted">Image coming soon</span>
-                        </div>
+                      {/* Mobile-only: image inline inside expanded item */}
+                      <div className="lg:hidden mt-4 rounded-2xl border border-cv-line bg-cv-card overflow-hidden aspect-[4/3] flex items-center justify-center">
+                        <span className="text-sm text-cv-muted">Image coming soon</span>
                       </div>
                     </div>
 
@@ -185,8 +188,8 @@ export function AixOrchestration() {
             })}
           </div>
 
-          {/* Right: mock UI — desktop only, mobile shows it inline inside the open accordion item */}
-          <div className="hidden lg:block lg:mt-0 flex-1 min-w-0 overflow-hidden">
+          {/* Right: mock UI — desktop only */}
+          <div className="hidden lg:block mt-8 lg:mt-0 flex-1 min-w-0 overflow-hidden">
             <div className="rounded-2xl border border-cv-line bg-cv-card overflow-hidden aspect-[4/3] flex items-center justify-center">
               <span className="text-sm text-cv-muted">Image coming soon</span>
             </div>

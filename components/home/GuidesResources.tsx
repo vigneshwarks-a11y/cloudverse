@@ -27,7 +27,7 @@ export function GuidesResources() {
     <section className="cv-section bg-cv-surface">
       <div className="cv-container">
         <div className="flex items-end justify-between mb-10 gap-6">
-          <h2 className="cv-h2 text-cv-ink max-w-sm">Latest guides and resources</h2>
+          <h2 className="cv-h2 text-cv-ink sm:whitespace-nowrap">Latest guides and resources</h2>
           <Link
             href="/resources"
             className="hidden sm:inline-flex items-center gap-1 text-sm font-medium text-[#1664C0] dark:text-[#7CB8F8] hover:opacity-80 transition-opacity shrink-0"

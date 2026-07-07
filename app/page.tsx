@@ -8,6 +8,8 @@ import { Testimonials } from "@/components/home/Testimonials";
 import { CountUpStat } from "@/components/CountUpStat";
 import { FaqBlock } from "@/components/FaqBlock";
 import { AixGovernance } from "@/components/home/AixGovernance";
+import { DomainsOverview } from "@/components/home/DomainsOverview";
+import { VendorSovereignty } from "@/components/home/VendorSovereignty";
 import { AixOrchestration } from "@/components/home/AixOrchestration";
 import { TestimonialsCarousel } from "@/components/home/TestimonialsCarousel";
 import { DEMO_URL } from "@/lib/links";
@@ -137,15 +139,16 @@ export default function HomePage() {
             <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
               {/* Left: eyebrow + headline + CTAs */}
               <div className="flex-1 min-w-0 lg:max-w-xl xl:max-w-2xl">
-                <p className="cv-label mb-5">The AI-Native FinOps Platform</p>
+                <p className="cv-label mb-5">The Control Plane for Enterprise AI and Compute</p>
                 <h1 className="cv-h1 text-cv-ink max-w-xl">
-                  Every Dollar of Cloud, Data, and AI Spend. Owned.
+                  Own every dollar.<br />
+                  <span className="text-cv-blue dark:text-cv-blue-light">Govern every AI execution.</span>
                 </h1>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-hero-demo">
-                    Book a Demo
+                    Book a demo
                   </Link>
-                  <Link href="/contact" className="cv-btn-secondary" data-testid="link-hero-audit">
+                  <Link href="/contact" className="cv-btn-ghost !text-cv-ink !border-cv-ink/30 hover:!border-cv-ink/60 hover:!bg-cv-ink/10 dark:!text-white dark:!border-white/40 dark:hover:!border-white/70 dark:hover:!bg-white/10" data-testid="link-hero-audit">
                     Request a free AI cost audit
                   </Link>
                 </div>
@@ -154,7 +157,7 @@ export default function HomePage() {
               {/* Right: subhead + utility links */}
               <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-sm shrink-0">
                 <p className="cv-body text-cv-ink/70">
-                  Most teams can see their cloud bill. Few can explain it, and fewer can act on it fast enough to matter. CloudVerse ties every dollar to the decision that caused it, across cloud, data, AI, and engineering.
+                  One ledger for every dollar of cloud, AI, data, SaaS, and engineering spend — each entry tied to the team, the workload, and the decision that caused it. Governance before the request runs. Evidence after it does.
                 </p>
                 <div className="mt-5 flex flex-col gap-2">
                   <Link href="/platform/aix" className="text-sm text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-2 transition-colors flex items-center gap-1" data-testid="link-hero-platform">
@@ -196,6 +199,12 @@ export default function HomePage() {
 
       {/* CUSTOMER LOGOS */}
       <CustomerLogos />
+
+      {/* DOMAINS OVERVIEW */}
+      <DomainsOverview />
+
+      {/* VENDOR SOVEREIGNTY */}
+      <VendorSovereignty />
 
       {/* AIX GOVERNANCE */}
       <AixGovernance />
