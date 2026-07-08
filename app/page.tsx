@@ -93,23 +93,23 @@ const LIFECYCLE_STEPS = [
 const HOME_FAQS = [
   {
     q: "What is an AI control plane?",
-    a: "The system that governs, routes, and meters every AI request across your models and providers. It sets policy and budget before a request runs, scores routes while it runs, and records cost and outcome after.",
+    a: "An AI control plane is the system that governs, routes, and meters every AI request across your models and providers. It sets policy and budget before a request runs, scores routes while it runs, and records cost and outcome after.",
   },
   {
     q: "How is this different from an AI gateway?",
-    a: "A gateway runs the routing rule you wrote. AIX works out what the rule should be, scoring every route live on cost, latency, quality, and compliance, and records the cost and outcome of each.",
+    a: "A gateway runs the routing rule you wrote. AIX works out what the rule should be, scoring every route live on cost, latency, quality, and compliance, and records the cost and outcome of each one.",
   },
   {
     q: "How is it different from LLM observability?",
-    a: "Observability tells you what a request cost after it ran. AIX settles that before it runs, and enforces budget and policy in real time.",
+    a: "Observability tells you what a request cost after it ran. AIX settles that before it does, and enforces budget and policy in real time.",
   },
   {
-    q: "Does CloudVerse only do AI, or cloud cost too?",
-    a: "Both. AIX runs the AI. The FinOps platform, DevX, and DataX run cloud, engineering, and data on the same system.",
+    q: "Does cloudverse only do AI, or cloud cost too?",
+    a: "Both. AIX runs the AI. FinOps, DevX, and DataX run cloud, engineering, and data on the same platform.",
   },
   {
     q: "How fast is this live?",
-    a: "First account connected in under 30 minutes. Most teams find something they didn't expect the same day, inside a no-fee two-to-four-week proof of value.",
+    a: "First account connected in under 30 minutes. Most teams find something they didn't expect the same day, inside a no-fee, two-to-four-week proof of value.",
   },
 ];
 
@@ -123,7 +123,7 @@ const INTEGRATIONS_LOGOS = [
   { name: "Oracle", src: "/legacy/integration/oracle.svg" },
   { name: "Alibaba", src: "/legacy/integration/alibabatop.svg" },
   { name: "Tencent", src: "/legacy/integration/tencenttop.svg" },
-  { name: "Databricks", src: "/logos/databricks.svg" },
+  { name: "Spark", src: "/legacy/integration/sparktop.svg" },
   { name: "vCenter", src: "/legacy/integration/vcenter.svg" },
   { name: "DigitalOcean", src: "/legacy/integration/oceantop.svg" },
 ];
@@ -139,35 +139,32 @@ export default function HomePage() {
             <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
               {/* Left: eyebrow + headline + CTAs */}
               <div className="flex-1 min-w-0 lg:max-w-xl xl:max-w-2xl">
-                <p className="cv-label mb-5">AIX · The Control Plane for Enterprise AI</p>
-                <h1 className="cv-h1 text-cv-ink">
-                  Cloud governance solved infrastructure chaos.{" "}
-                  <span className="text-cv-blue dark:text-cv-blue-light">AIX solves AI chaos.</span>
+                <p className="cv-label mb-5">The Control Plane for Enterprise AI and Compute</p>
+                <h1 className="cv-h1 text-cv-ink max-w-xl">
+                  Own every dollar.<br />
+                  <span className="text-cv-blue dark:text-cv-blue-light">Govern every AI execution.</span>
                 </h1>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-hero-demo">
-                    Book a Demo
+                    Book a demo
                   </Link>
                   <Link href="/contact" className="cv-btn-ghost !text-cv-ink !border-cv-ink/30 hover:!border-cv-ink/60 hover:!bg-cv-ink/10 dark:!text-white dark:!border-white/40 dark:hover:!border-white/70 dark:hover:!bg-white/10" data-testid="link-hero-audit">
                     Request a free AI cost audit
                   </Link>
                 </div>
-                <p className="mt-4 text-sm text-cv-ink/60">
-                  Connect your first account in under 30 minutes. No-fee proof of value in two to four weeks.
-                </p>
               </div>
 
               {/* Right: subhead + utility links */}
               <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-sm shrink-0">
                 <p className="cv-body text-cv-ink/70">
-                  AIX routes, governs, and meters every model, agent, and GPU job across your stack. It runs on CloudVerse, the AI-native FinOps platform enterprises already trust to own their cloud and data spend.
+                  One ledger for every dollar of cloud, AI, data, SaaS, and engineering spend — each entry tied to the team, the workload, and the decision that caused it. Governance before the request runs. Evidence after it does.
                 </p>
                 <div className="mt-5 flex flex-col gap-2">
                   <Link href="/platform/aix" className="text-sm text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-2 transition-colors flex items-center gap-1" data-testid="link-hero-platform">
-                    See how AIX works <ArrowRight weight="Linear" size={13} />
+                    See the platform <ArrowRight weight="Linear" size={13} />
                   </Link>
                   <Link href="/connect" className="text-sm text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-2 transition-colors flex items-center gap-1" data-testid="link-hero-walkthrough">
-                    Explore the platform <ArrowRight weight="Linear" size={13} />
+                    Walkthrough on your own data, in 30 minutes <ArrowRight weight="Linear" size={13} />
                   </Link>
                 </div>
               </div>
@@ -254,9 +251,6 @@ export default function HomePage() {
           <h2 className="cv-h2 text-cv-ink max-w-2xl">
             Connects to the stack<br className="hidden sm:block" /> your teams already run.
           </h2>
-          <p className="mt-4 cv-body text-cv-ink/70 max-w-xl">
-            Cloud, models, GPUs, data warehouses, and CI, connected once.
-          </p>
 
           {/* Cards grid */}
           <div className="mt-12 w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
