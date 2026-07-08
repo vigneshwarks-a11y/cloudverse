@@ -146,19 +146,6 @@
   }
   .cv-btn-ghost:hover { background: hsl(var(--cv-line) / 0.5); }
 
-  /* Secondary CTA — light blue fill pill, used for hero secondary buttons */
-  .cv-btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm transition-colors text-cv-ink;
-    background: #BFD7F0;
-    border: 1px solid rgba(0, 0, 0, 0.12);
-  }
-  .dark .cv-btn-secondary {
-    background: #0d1e3a;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-  }
-  .cv-btn-secondary:hover { filter: brightness(0.96); }
-  .dark .cv-btn-secondary:hover { filter: brightness(1.15); }
-
   /* Inverted button — ink bg, surface text; works in both themes */
   .cv-btn-inverse {
     @apply inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-md text-sm font-medium transition-colors;
@@ -255,11 +242,21 @@
 .cv-border-sweep {
   animation: cv-border-sweep 3.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+/* Infinite right-to-left logo marquee: track holds two identical copies of
+   the logo list back-to-back, so translating by -50% loops seamlessly. */
+@keyframes cv-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.cv-marquee-track {
+  animation: cv-marquee 32s linear infinite;
+}
 @media (prefers-reduced-motion: reduce) {
   .cv-video-ring { animation: none; }
   .cv-ring-blue { animation: none; }
   .cv-video-rise { animation: none; opacity: 1; transform: none; }
   .cv-hero-fade { animation: none; opacity: 1; }
+  .cv-marquee-track { animation: none; }
   .cv-testimonials,
   .cv-testimonials * {
     animation: none !important;

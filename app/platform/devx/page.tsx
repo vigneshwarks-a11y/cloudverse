@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, CodeSquare, DollarMinimalistic, ShieldCheck, Chart } from "@solar-icons/react";
 import { FaqBlock } from "@/components/FaqBlock";
-import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { PlatformHeroMockup } from "@/components/product/PlatformHeroMockup";
 import type { Metadata } from "next";
@@ -220,7 +219,6 @@ export default function DevXPage() {
         </div>
       </section>
 
-      <ClosingCTA />
       <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Platform", href: "/platform/finops" }, { name: "DevX", href: "/platform/devx" }]} />
     </>
   );

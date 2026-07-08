@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "@solar-icons/react";
 import { FaqBlock } from "@/components/FaqBlock";
-import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
@@ -283,7 +282,6 @@ export default function FinOpsPage() {
         </div>
       </section>
 
-      <ClosingCTA />
       <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Platform", href: "/platform/finops" }, { name: "FinOps", href: "/platform/finops" }]} />
     </>
   );

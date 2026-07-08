@@ -10,7 +10,6 @@ import GovernanceBento from "@/components/product/GovernanceBento";
 import NoBlackBoxes from "@/components/product/NoBlackBoxes";
 import UseCaseBento from "@/components/product/UseCaseBento";
 import AixRoiSplit from "@/components/product/AixRoiSplit";
-import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { PlatformHeroMockup, type MockupTab } from "@/components/product/PlatformHeroMockup";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
@@ -522,7 +521,6 @@ export default function AIXPage() {
       </section>
 
       {/* FINAL CTA */}
-      <ClosingCTA />
       <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Platform", href: "/platform/finops" }, { name: "AIX", href: "/platform/aix" }]} />
     </>
   );

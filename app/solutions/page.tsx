@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Buildings, CheckCircle, Code2, Cpu, Database, UsersGroupRounded, Widget2 } from "@solar-icons/react";
 import { SolutionHero } from "@/components/solution/SolutionHero";
-import { ClosingCTA } from "@/components/home/ClosingCTA";
 
 export const metadata: Metadata = {
   title: "Solutions — CloudVerse",
@@ -97,7 +96,6 @@ export default function Page() {
         </div>
       </section>
 
-      <ClosingCTA />
     </>
   );
 }

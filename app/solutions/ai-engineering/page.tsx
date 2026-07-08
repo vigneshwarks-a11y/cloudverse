@@ -6,7 +6,6 @@ import { PlatformCards } from "@/components/solution/PlatformCards";
 import { SolutionHero } from "@/components/solution/SolutionHero";
 import { WhoThisIsFor } from "@/components/solution/WhoThisIsFor";
 import { FaqBlock } from "@/components/FaqBlock";
-import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
@@ -193,7 +192,6 @@ export default function AIEngineeringPage() {
         </div>
       </section>
 
-      <ClosingCTA />
       <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Solutions", href: "/solutions" }, { name: "AI Engineering", href: "/solutions/ai-engineering" }]} />
     </>
   );

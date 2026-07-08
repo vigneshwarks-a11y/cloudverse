@@ -2,7 +2,7 @@
 
 import { useMemo, useState, useEffect } from "react";
 import Link from "next/link";
-import { AltArrowDown, ArrowRight, CloseCircle, Magnifer, SquareArrowRightUp } from "@solar-icons/react";
+import { ArrowRight, CloseCircle, Magnifer, SquareArrowRightUp } from "@solar-icons/react";
 import { integrationsData, type Integration } from "@/lib/integrationsData";
 import { IntegrationLogo } from "./IntegrationLogo";
 
@@ -11,15 +11,15 @@ const STATUSES = ["All", "Available", "Beta", "Coming soon"] as const;
 const MODULES = ["All", "AIX", "DevX", "DataX"] as const;
 
 const STATUS_STYLE: Record<Integration["status"], string> = {
-  "Available":   "bg-cv-teal/10 text-cv-teal border-cv-teal/30",
-  "Beta":        "bg-cv-amber/10 text-cv-amber border-cv-amber/30",
-  "Coming soon": "bg-cv-ink/[0.04] text-cv-ink/55 border-cv-line/20",
+  "Available":   "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
+  "Beta":        "bg-amber-500/10 text-amber-300 border-amber-500/30",
+  "Coming soon": "bg-cv-ink/[0.04] text-cv-ink/55 border-cv-line/15",
 };
 
 const PRODUCT_STYLE: Record<string, string> = {
-  AIX:   "border-cv-purple/40 text-cv-purple bg-cv-purple/10",
-  DevX:  "border-cv-blue/40 text-cv-blue bg-cv-blue/10",
-  DataX: "border-cv-amber/40 text-cv-amber bg-cv-amber/10",
+  AIX:   "border-purple-400/40 text-purple-300 bg-purple-400/10",
+  DevX:  "border-emerald-400/40 text-emerald-300 bg-emerald-400/10",
+  DataX: "border-amber-400/40 text-amber-300 bg-amber-400/10",
 };
 
 export function IntegrationsExplorer() {
@@ -58,24 +58,24 @@ export function IntegrationsExplorer() {
 
   return (
     <>
-      {/* Search */}
+      {/* MagnifyingGlass */}
       <div className="relative mb-6 max-w-xl">
         <Magnifer weight="Linear" size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-cv-ink/45" />
         <input
           type="text"
-          placeholder="Search integrations…"
+          placeholder="MagnifyingGlass integrations…"
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          className="w-full pl-10 pr-4 py-3 rounded-lg border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] text-cv-ink placeholder-cv-muted focus:outline-none focus:border-cv-blue/60 transition-colors"
+          className="w-full pl-10 pr-4 py-3 rounded-lg border border-cv-line/10 bg-cv-ink/[0.03] text-cv-ink placeholder-white/45 focus:outline-none focus:border-cv-blue/60 transition-colors"
           data-testid="input-search-integrations"
         />
       </div>
 
       {/* Filters */}
-      <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] gap-x-10 gap-y-5 mb-10 lg:items-start">
+      <div className="flex flex-col gap-5 mb-10">
         <FilterRow label="Module" options={MODULES as unknown as readonly string[]} value={mod} onChange={setMod} testidPrefix="filter-module" />
         <FilterRow label="Category" options={CATEGORIES as unknown as readonly string[]} value={cat} onChange={setCat} testidPrefix="filter-category" />
-        <SelectFilter label="Status" options={STATUSES as unknown as readonly string[]} value={status} onChange={setStatus} testidPrefix="filter-status" />
+        <FilterRow label="Status" options={STATUSES as unknown as readonly string[]} value={status} onChange={setStatus} testidPrefix="filter-status" />
       </div>
 
       <div className="mb-4 text-xs text-cv-ink/55">
@@ -88,7 +88,7 @@ export function IntegrationsExplorer() {
           <button
             key={i.id}
             onClick={() => setActive(i)}
-            className="group text-left p-5 rounded-xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] hover:border-cv-blue/40 transition-all"
+            className="group text-left p-5 rounded-xl border border-cv-line/10 bg-cv-ink/[0.02] hover:bg-cv-ink/[0.05] hover:border-cv-line/20 transition-all"
             data-testid={`card-integration-${i.id}`}
           >
             <div className="flex items-start justify-between gap-3 mb-3">
@@ -114,7 +114,7 @@ export function IntegrationsExplorer() {
       </div>
 
       {filtered.length === 0 && (
-        <div className="text-center py-16 rounded-xl border border-dashed border-cv-line/40">
+        <div className="text-center py-16 rounded-xl border border-dashed border-cv-line/10">
           <p className="text-cv-ink/55">No integrations match those filters.</p>
           <button
             onClick={() => { setQ(""); setCat("All"); setStatus("All"); setMod("All"); }}
@@ -135,52 +135,23 @@ function FilterRow({ label, options, value, onChange, testidPrefix }: {
   label: string; options: readonly string[]; value: string; onChange: (v: string) => void; testidPrefix: string;
 }) {
   return (
-    <div className="flex flex-col gap-3">
-      <div className="text-[11px] uppercase tracking-widest text-cv-ink/50 font-medium">{label}</div>
-      <div className="flex flex-wrap gap-2">
+    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+      <div className="text-[11px] uppercase tracking-widest text-cv-ink/50 font-medium w-20 shrink-0">{label}</div>
+      <div className="flex flex-wrap gap-1.5">
         {options.map((o) => (
           <button
             key={o}
             onClick={() => onChange(o)}
-            className={`px-4 py-2 text-sm rounded-full border transition-all ${
+            className={`px-3 py-1.5 text-xs rounded-md border transition-all ${
               value === o
-                ? "bg-cv-ink text-cv-surface border-cv-ink font-medium"
-                : "bg-transparent border-cv-line/40 text-cv-ink/70 hover:border-cv-line/70 hover:text-cv-ink"
+                ? "bg-white text-cv-navy border-white font-medium"
+                : "bg-transparent border-cv-line/15 text-cv-ink/70 hover:border-cv-line/30 hover:text-cv-ink"
             }`}
             data-testid={`${testidPrefix}-${o.toLowerCase().replace(/\s+/g, "-")}`}
           >
             {o}
           </button>
         ))}
-      </div>
-    </div>
-  );
-}
-
-function SelectFilter({ label, options, value, onChange, testidPrefix }: {
-  label: string; options: readonly string[]; value: string; onChange: (v: string) => void; testidPrefix: string;
-}) {
-  return (
-    <div className="flex flex-col gap-3 lg:items-end">
-      <div className="text-[11px] uppercase tracking-widest text-cv-ink/50 font-medium">{label}</div>
-      <div className="relative w-full lg:w-40">
-        <select
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          className="w-full appearance-none px-4 py-2 pr-9 text-sm rounded-full border border-cv-line/40 bg-transparent text-cv-ink focus:outline-none focus:border-cv-blue/60 transition-colors"
-          data-testid={`${testidPrefix}-select`}
-        >
-          {options.map((o) => (
-            <option key={o} value={o} className="bg-cv-surface text-cv-ink">
-              {o}
-            </option>
-          ))}
-        </select>
-        <AltArrowDown
-          weight="Linear"
-          size={14}
-          className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-cv-ink/50"
-        />
       </div>
     </div>
   );
@@ -195,14 +166,14 @@ function Drawer({ integration, onClose }: { integration: Integration; onClose: (
         data-testid="drawer-backdrop"
       />
       <aside
-        className="fixed right-0 top-0 bottom-0 w-full sm:w-[480px] bg-cv-surface2 dark:bg-[#0D0D0D] border-l border-cv-line/40 z-50 overflow-y-auto shadow-2xl"
+        className="fixed right-0 top-0 bottom-0 w-full sm:w-[480px] bg-cv-surface2 dark:bg-[#0D0D0D] border-l border-cv-line/10 z-50 overflow-y-auto shadow-2xl"
         role="dialog"
         aria-modal="true"
         aria-label={`${integration.name} integration details`}
         data-testid="drawer-integration"
       >
         {/* Header */}
-        <div className="sticky top-0 bg-cv-surface2/95 dark:bg-[#0D0D0D]/95 backdrop-blur border-b border-cv-line/40 p-5 sm:p-6 flex items-start justify-between gap-4 z-10">
+        <div className="sticky top-0 bg-cv-surface2/95 dark:bg-[#0D0D0D]/95 backdrop-blur border-b border-cv-line/10 p-5 sm:p-6 flex items-start justify-between gap-4 z-10">
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-3 mb-2">
               <IntegrationLogo name={integration.name} logo={integration.logo} size={32} />
@@ -259,7 +230,7 @@ function Drawer({ integration, onClose }: { integration: Integration; onClose: (
             <BulletList items={integration.outputs.slice(0, 5)} />
           </Section>
           <Section title="Setup requirements">
-            <div className="rounded-xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-4 sm:p-5 space-y-4">
+            <div className="rounded-xl border border-cv-line/10 bg-cv-ink/[0.02] p-4 sm:p-5 space-y-4">
               <Field label="Method" value={integration.setup.method} />
               <Field label="Time to value" value={integration.setup.timeToValue} />
               <Field label="Permissions" value={integration.setup.permissions} />

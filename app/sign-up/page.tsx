@@ -40,7 +40,7 @@ export default function Page() {
             <Link href={SIGNIN_URL} className="cv-btn-primary justify-center text-center" data-testid="link-create-account">
               Create your account <ArrowRight weight="Linear" size={16} />
             </Link>
-            <Link href={DEMO_URL} className="cv-btn-secondary justify-center text-center" data-testid="link-book-demo">
+            <Link href={DEMO_URL} className="cv-btn-ghost justify-center text-center" data-testid="link-book-demo">
               Book a guided demo
             </Link>
           </div>

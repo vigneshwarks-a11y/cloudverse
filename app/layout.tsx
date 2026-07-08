@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import ClosingCtaBand from "@/components/ClosingCtaBand";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 const inter = Inter({
@@ -64,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           <Nav />
           <main>{children}</main>
+          <ClosingCtaBand />
           <Footer />
         </ThemeProvider>
         <Script

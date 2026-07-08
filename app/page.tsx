@@ -8,12 +8,12 @@ import { Testimonials } from "@/components/home/Testimonials";
 import { CountUpStat } from "@/components/CountUpStat";
 import { FaqBlock } from "@/components/FaqBlock";
 import { AixGovernance } from "@/components/home/AixGovernance";
-import { DomainsOverview } from "@/components/home/DomainsOverview";
+import { FeatureShowcase } from "@/components/home/FeatureShowcase";
+import { IntegrationsMarquee } from "@/components/home/IntegrationsMarquee";
 import { VendorSovereignty } from "@/components/home/VendorSovereignty";
 import { AixOrchestration } from "@/components/home/AixOrchestration";
 import { TestimonialsCarousel } from "@/components/home/TestimonialsCarousel";
 import { DEMO_URL } from "@/lib/links";
-import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { GuidesResources } from "@/components/home/GuidesResources";
 
 export const metadata: Metadata = {
@@ -113,21 +113,6 @@ const HOME_FAQS = [
   },
 ];
 
-const INTEGRATIONS_LOGOS = [
-  { name: "AWS", src: "/legacy/integration/awstop.svg" },
-  { name: "Azure", src: "/legacy/integration/Azuretop.svg" },
-  { name: "Google Cloud", src: "/legacy/integration/googletop.svg" },
-  { name: "Snowflake", src: "/legacy/integration/snowflake.svg" },
-  { name: "Datadog", src: "/legacy/integration/datadog.svg" },
-  { name: "Kubernetes", src: "/legacy/integration/kuber.svg" },
-  { name: "Oracle", src: "/legacy/integration/oracle.svg" },
-  { name: "Alibaba", src: "/legacy/integration/alibabatop.svg" },
-  { name: "Tencent", src: "/legacy/integration/tencenttop.svg" },
-  { name: "Spark", src: "/legacy/integration/sparktop.svg" },
-  { name: "vCenter", src: "/legacy/integration/vcenter.svg" },
-  { name: "DigitalOcean", src: "/legacy/integration/oceantop.svg" },
-];
-
 export default function HomePage() {
   return (
     <>
@@ -201,7 +186,7 @@ export default function HomePage() {
       <CustomerLogos />
 
       {/* DOMAINS OVERVIEW */}
-      <DomainsOverview />
+      <FeatureShowcase />
 
       {/* VENDOR SOVEREIGNTY */}
       <VendorSovereignty />
@@ -222,73 +207,48 @@ export default function HomePage() {
       <GuidesResources />
 
       {/* INTEGRATIONS */}
-      <section className="cv-section bg-cv-surface relative overflow-hidden">
-        {/* Subtle dot texture */}
+      <section className="cv-section bg-cv-surface2 dark:bg-black relative overflow-hidden">
+        {/* Ambient blue glow */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0"
-          style={{
-            backgroundImage: "radial-gradient(hsl(var(--cv-ink) / 0.06) 1px, transparent 1px)",
-            backgroundSize: "24px 24px",
-            maskImage: "radial-gradient(ellipse 80% 70% at 50% 50%, #000 20%, transparent 100%)",
-            WebkitMaskImage: "radial-gradient(ellipse 80% 70% at 50% 50%, #000 20%, transparent 100%)",
-          }}
-        />
-        {/* Blue center glow */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0"
-          style={{ background: "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(22,100,192,0.10), transparent 70%)" }}
+          className="pointer-events-none absolute inset-x-0 top-0 h-[32rem]"
+          style={{ background: "radial-gradient(ellipse 60% 60% at 50% 0%, rgba(22,100,192,0.16), transparent 70%)" }}
         />
 
-        <div className="cv-container relative z-10 flex flex-col items-center text-center">
-          {/* Eyebrow */}
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 dark:bg-[#7CB8F8]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8] mb-4">
-            Integrations
-          </span>
+        <div className="cv-container relative z-10">
 
           {/* Heading */}
-          <h2 className="cv-h2 text-cv-ink max-w-2xl">
-            Connects to the stack<br className="hidden sm:block" /> your teams already run.
-          </h2>
-
-          {/* Cards grid */}
-          <div className="mt-12 w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {INTEGRATIONS_LOGOS.map((l) => (
-              <div
-                key={l.name}
-                className="group relative flex items-center gap-4 rounded-xl border border-cv-line/40 bg-cv-card dark:bg-black px-5 py-4 text-left transition-colors hover:border-cv-line/60 cursor-default"
-                data-testid={`integration-${l.name.toLowerCase().replace(/\s+/g, "-")}`}
-              >
-                <span className="pointer-events-none absolute inset-0 rounded-xl bg-cv-ink/[0.06] opacity-0 transition-opacity group-hover:opacity-100" />
-                <img
-                  src={l.src}
-                  alt=""
-                  aria-hidden
-                  className="relative h-8 w-8 shrink-0 object-contain"
-                  loading="lazy"
-                />
-                <span className="relative text-sm font-medium text-cv-ink/85 truncate">{l.name}</span>
-              </div>
-            ))}
+          <div className="text-center">
+            <h2
+              className="font-display font-bold tracking-tight text-cv-ink mx-auto max-w-2xl"
+              style={{ fontSize: "clamp(30px, 4.2vw, 52px)", lineHeight: 1.15 }}
+            >
+              Connects to the stack{" "}
+              <span className="italic text-cv-blue dark:text-cv-blue-light">your teams</span> already run.
+            </h2>
+            <p className="mt-5 cv-body text-cv-ink/60 max-w-lg mx-auto">
+              Cloud, models, GPUs, data warehouses, and CI, connected once.
+            </p>
           </div>
 
-          {/* Trust badge */}
-          <div className="mt-10 inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-cv-blue/40 bg-cv-blue/10 text-sm text-cv-ink/70">
-            <CheckCircle weight="Linear" size={13} className="text-cv-teal shrink-0" />
-            Read-only by default. Automation is opt-in, scoped, and logged.
-          </div>
+          {/* Logos marquee — two rows of app-icon tiles */}
+          <IntegrationsMarquee />
 
-          {/* CTA button */}
-          <div className="mt-5">
+          {/* Trust line + CTA */}
+          <div className="mt-16 flex flex-col items-center gap-4">
+            <div className="inline-flex items-center gap-2 text-xs text-cv-muted">
+              <CheckCircle weight="Linear" size={13} className="text-cv-teal shrink-0" />
+              Read-only by default. Automation is opt-in, scoped, and logged.
+            </div>
             <Link
               href="/integrations"
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-cv-line text-sm font-medium text-cv-ink hover:bg-cv-ink/[0.06] hover:border-cv-line/80 transition-colors"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-4 transition-colors"
               data-testid="link-integrations"
             >
-              View all integrations <ArrowRight weight="Linear" size={15} />
+              View all integrations <ArrowRight weight="Linear" size={14} />
             </Link>
           </div>
+
         </div>
       </section>
 
@@ -296,16 +256,16 @@ export default function HomePage() {
       {/* FAQ */}
       <section className="cv-section bg-cv-surface">
         <div className="cv-container">
-          <div className="text-center mb-10">
-            <h2 className="cv-h2 text-cv-ink">Frequently Asked Questions</h2>
-            <p className="mt-3 cv-body text-cv-muted">Common questions we get asked the most</p>
-          </div>
-          <FaqBlock items={HOME_FAQS} accent="#1664C0" />
+          <FaqBlock
+            items={HOME_FAQS}
+            accent="#1664C0"
+            title="Frequently Asked Questions"
+            subtitle="Common questions we get asked the most"
+          />
         </div>
       </section>
 
       {/* FINAL CTA */}
-      <ClosingCTA />
     </>
   );
 }

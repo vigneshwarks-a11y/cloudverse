@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import WarehouseIntel from "@/components/product/WarehouseIntel";
 import { FaqBlock } from "@/components/FaqBlock";
-import { ClosingCTA } from "@/components/home/ClosingCTA";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { PlatformHeroMockup } from "@/components/product/PlatformHeroMockup";
 
@@ -277,7 +276,6 @@ export default function DataXPage() {
         </div>
       </section>
 
-      <ClosingCTA />
       <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Platform", href: "/platform/finops" }, { name: "DataX", href: "/platform/datax" }]} />
     </>
   );

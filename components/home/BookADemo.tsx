@@ -83,7 +83,7 @@ export function BookADemo() {
               <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-demo-cta">
                 Book a Demo <ArrowRight weight="Linear" size={16} />
               </Link>
-              <Link href="/sign-up" className="cv-btn-secondary" data-testid="link-signup-cta">
+              <Link href="/sign-up" className="cv-btn-ghost" data-testid="link-signup-cta">
                 Get started free
               </Link>
             </div>

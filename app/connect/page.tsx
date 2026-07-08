@@ -48,7 +48,7 @@ export default function ConnectPage() {
             </ul>
             <div className="mt-10 pt-8 border-t border-cv-line/10">
               <div className="cv-label mb-3 text-cv-ink/50">Prefer to talk to sales?</div>
-              <Link href="/contact" className="cv-btn-secondary">
+              <Link href="/contact" className="cv-btn-ghost">
                 Contact sales <ArrowRight weight="Linear" size={14} />
               </Link>
             </div>
