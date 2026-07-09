@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const r = getResource(slug);
   if (!r) return { title: "Not found" };
   return {
-    title: r.seo?.title || `${r.title} — CloudVerse Resources`,
+    title: r.seo?.title || `${r.title}: CloudVerse Resources`,
     description: r.seo?.description,
     keywords: r.seo?.keywords,
     alternates: { canonical: `/resources/${r.slug}` },

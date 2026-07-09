@@ -8,20 +8,20 @@ import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { PlatformHeroMockup } from "@/components/product/PlatformHeroMockup";
 
 export const metadata: Metadata = {
-  title: "DataX — Find the Queries Quietly Running Up Your Bill | CloudVerse",
+  title: "DataX: Find the Queries Quietly Running Up Your Bill | CloudVerse",
   description:
     "Query, dashboard, and dbt-model-level attribution across Snowflake, Databricks, BigQuery, Microsoft Fabric, and Synapse. Safe automation when you want it.",
   keywords: ["Snowflake cost optimization", "Databricks cost management", "BigQuery cost attribution", "warehouse FinOps", "data platform cost", "query cost analysis"],
   alternates: { canonical: "/platform/datax" },
   openGraph: {
-    title: "DataX — Find the Queries Quietly Running Up Your Bill",
+    title: "DataX: Find the Queries Quietly Running Up Your Bill",
     description: "Query, dashboard, and dbt-model-level attribution across Snowflake, Databricks, BigQuery, and more. Safe automation when you want it.",
     url: "/platform/datax",
-    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse DataX — Warehouse Cost Intelligence" }],
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse DataX: Warehouse Cost Intelligence" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DataX — Find the Queries Running Up Your Bill",
+    title: "DataX: Find the Queries Running Up Your Bill",
     description: "Query-level attribution across Snowflake, Databricks, BigQuery, and Synapse. Automated right-sizing.",
   },
 };

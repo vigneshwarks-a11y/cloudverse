@@ -9,19 +9,19 @@ import { FaqBlock } from "@/components/FaqBlock";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
-  title: "For Enterprise — One Control Plane for Multi-Cloud, AI Infrastructure, and Data Economics | CloudVerse",
+  title: "For Enterprise: One Control Plane for Multi-Cloud, AI Infrastructure, and Data Economics | CloudVerse",
   description: "SSO, SCIM provisioning, granular RBAC, audit logs, customer-managed encryption keys, and the procurement options the office of the CIO expects.",
   keywords: ["enterprise cloud cost management", "multi-cloud governance", "enterprise FinOps", "SSO cloud platform", "RBAC cloud cost", "CIO cloud economics"],
   alternates: { canonical: "/solutions/enterprise" },
   openGraph: {
-    title: "For Enterprise — One Control Plane for Multi-Cloud, AI and Data Economics",
+    title: "For Enterprise: One Control Plane for Multi-Cloud, AI and Data Economics",
     description: "SSO, SCIM, granular RBAC, audit logs, customer-managed encryption keys, and the procurement options the CIO expects.",
     url: "/solutions/enterprise",
     images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse for Enterprise" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "For Enterprise — One Control Plane for Multi-Cloud Economics",
+    title: "For Enterprise: One Control Plane for Multi-Cloud Economics",
     description: "SSO, SCIM, RBAC, audit logs, and enterprise procurement options. Built for the CIO's office.",
   },
 };

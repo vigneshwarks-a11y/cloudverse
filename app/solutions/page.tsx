@@ -4,17 +4,17 @@ import { ArrowRight, Buildings, CheckCircle, Code2, Cpu, Database, UsersGroupRou
 import { SolutionHero } from "@/components/solution/SolutionHero";
 
 export const metadata: Metadata = {
-  title: "Solutions — CloudVerse",
+  title: "Solutions: CloudVerse",
   description: "Persona-built solutions for FinOps, AI Engineering, Platform Engineering, Data teams, and Enterprise.",
   keywords: ["cloud cost solutions", "FinOps solutions", "AI cost management", "platform engineering cost", "enterprise cloud economics"],
   alternates: { canonical: "/solutions" },
   openGraph: {
-    title: "CloudVerse Solutions — Built for Every Team",
+    title: "CloudVerse Solutions: Built for Every Team",
     description: "Persona-built solutions for FinOps, AI Engineering, Platform Engineering, Data teams, and Enterprise.",
     url: "/solutions",
     images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse Solutions" }],
   },
-  twitter: { card: "summary_large_image", title: "CloudVerse Solutions — Built for Every Team", description: "Solutions for FinOps, AI Engineering, Platform Engineering, Data teams, and Enterprise." },
+  twitter: { card: "summary_large_image", title: "CloudVerse Solutions: Built for Every Team", description: "Solutions for FinOps, AI Engineering, Platform Engineering, Data teams, and Enterprise." },
 };
 
 const SOLUTIONS = [

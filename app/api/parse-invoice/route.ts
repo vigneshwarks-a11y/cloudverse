@@ -46,7 +46,7 @@ function clampPercent(v: unknown): number {
 }
 
 function buildPrompt(fileContent: string, fileName: string) {
-  return `You are an expert cloud infrastructure economics advisor. Your job is NOT to read back the invoice — it is to analyze spending patterns and identify WHERE and HOW the customer can save money.
+  return `You are an expert cloud infrastructure economics advisor. Your job is NOT to read back the invoice; it is to analyze spending patterns and identify WHERE and HOW the customer can save money.
 
 File name: ${fileName}
 
@@ -59,7 +59,7 @@ YOUR PRIMARY TASK:
 3. For each top service, estimate a specific savings opportunity (savings %, amount, action)
 4. Generate 3-5 actionable RECOMMENDATIONS (not summaries)
 
-Good insight: "EC2 instances appear to be on-demand — switching to 1-year Reserved Instances could save ~30% on compute"
+Good insight: "EC2 instances appear to be on-demand; switching to 1-year Reserved Instances could save ~30% on compute"
 Bad insight: "EC2 accounts for 24% of total spend"
 
 EXTRACTION RULES:

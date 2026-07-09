@@ -3,9 +3,9 @@
 const DURATION_MS = 5000;
 
 interface LoaderBarProps {
-  /** Whether this item is active — shows the animated fill */
+  /** Whether this item is active - shows the animated fill */
   active?: boolean;
-  /** Duration in ms — defaults to 5000 */
+  /** Duration in ms - defaults to 5000 */
   duration?: number;
   /** Key to remount and restart the animation */
   animKey?: number | string;

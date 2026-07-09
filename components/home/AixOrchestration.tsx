@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
-/* "One system of record" — a left accordion of AIX capabilities (the active
+/* "One system of record" - a left accordion of AIX capabilities (the active
    one expands with copy + Learn More + an auto-advance progress bar) beside a
    product dashboard mock (logs table + trace timeline + request/response). */
 
@@ -16,7 +16,7 @@ const CAPABILITIES: Capability[] = [
     name: "See every asset in one system of record",
     accent: "#1664C0",
     record:
-      "One view of models, tokens, teams, projects, agents, subscriptions, and APIs — instead of a spreadsheet per provider.",
+      "One view of models, tokens, teams, projects, agents, subscriptions, and APIs, instead of a spreadsheet per provider.",
   },
   {
     key: "lifecycle",
@@ -37,7 +37,7 @@ const CAPABILITIES: Capability[] = [
     name: "Give AI its own unit economics",
     accent: "#D97706",
     record:
-      "Every run lands against a team, a feature, and a use case — cost-per-request, per-feature, and per-tenant, not numbers borrowed from infra.",
+      "Every run lands against a team, a feature, and a use case: cost-per-request, per-feature, and per-tenant, not numbers borrowed from infra.",
   },
   {
     key: "resilience",
@@ -52,8 +52,15 @@ const DWELL_MS = 6000;
 
 export function AixOrchestration() {
   const [active, setActive] = useState(1);
+  // Bumped on every manual tap so the progress bar remounts and restarts from
+  // 0% even when the already-active item is tapped again.
+  const [cycle, setCycle] = useState(0);
   const [reduced, setReduced] = useState(false);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
+  // Only run the auto-advance + progress fill once the section is on screen, so
+  // the loader fills from 0 when the user sees it (not already complete).
+  const rootRef = useRef<HTMLElement | null>(null);
+  const inView = useInView(rootRef, { margin: "-20% 0px -20% 0px" });
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -65,9 +72,9 @@ export function AixOrchestration() {
 
   const startTimer = useCallback(() => {
     if (timer.current) clearInterval(timer.current);
-    if (reduced) return;
+    if (reduced || !inView) return;
     timer.current = setInterval(() => setActive((i) => (i + 1) % CAPABILITIES.length), DWELL_MS);
-  }, [reduced]);
+  }, [reduced, inView]);
 
   useEffect(() => {
     startTimer();
@@ -78,11 +85,12 @@ export function AixOrchestration() {
 
   const select = (i: number) => {
     setActive(i);
+    setCycle((c) => c + 1);
     startTimer();
   };
 
   return (
-    <section className="cv-section overflow-hidden bg-cv-surface2" data-testid="section-aix-orchestration">
+    <section ref={rootRef} className="cv-section overflow-hidden bg-cv-surface2" data-testid="section-aix-orchestration">
       <div className="cv-container">
         <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
           One system of record
@@ -92,13 +100,13 @@ export function AixOrchestration() {
         </h2>
         <p className="mt-4 max-w-2xl cv-body text-cv-ink/70">
           Not a gateway that runs your routing rules. Not observability that tells you what a request
-          cost after it ran. AIX gives every asset — agent, app, RAG system, model — an identity, a
+          cost after it ran. AIX gives every asset (agent, app, RAG system, model) an identity, a
           contract, an operational record, and measurable economics.
         </p>
 
         <div className="mt-12 grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-14">
-          {/* LEFT — accordion */}
-          <ul className="divide-y divide-cv-line">
+          {/* LEFT - accordion (desktop) */}
+          <ul className="hidden divide-y divide-cv-line lg:block">
             {CAPABILITIES.map((c, i) => {
               const isActive = i === active;
               return (
@@ -140,25 +148,101 @@ export function AixOrchestration() {
                   </button>
 
                   {/* auto-advance progress bar under the active item */}
-                  {isActive && !reduced && (
+                  {isActive && !reduced && inView && (
                     <motion.span
-                      key={active}
+                      key={`${active}-${cycle}`}
                       className="absolute bottom-0 left-0 h-[2px] rounded-full"
-                      style={{ background: `linear-gradient(90deg, ${c.accent}, transparent)` }}
+                      style={{ background: "linear-gradient(90deg, #1664C0, transparent)" }}
                       initial={{ width: "0%" }}
                       animate={{ width: "100%" }}
                       transition={{ duration: DWELL_MS / 1000, ease: "linear" }}
                     />
                   )}
                   {isActive && reduced && (
-                    <span className="absolute bottom-0 left-0 h-[2px] w-full rounded-full" style={{ background: c.accent }} />
+                    <span className="absolute bottom-0 left-0 h-[2px] w-full rounded-full" style={{ background: "#1664C0" }} />
                   )}
                 </li>
               );
             })}
           </ul>
 
-          {/* RIGHT — dashboard mock */}
+          {/* LEFT - accordion (mobile): title + divider, active item reveals
+              copy, Learn More, and a track + gradient-fill progress bar whose
+              glowing leading edge advances to 100% before auto-advancing. */}
+          <ul className="lg:hidden">
+            {CAPABILITIES.map((c, i) => {
+              const isActive = i === active;
+              return (
+                <li key={c.key}>
+                  <button
+                    type="button"
+                    onClick={() => select(i)}
+                    aria-pressed={isActive}
+                    className="block w-full pb-3 pt-5 text-left"
+                  >
+                    <span
+                      className="text-lg font-semibold leading-snug transition-colors duration-300"
+                      style={{ color: isActive ? "hsl(var(--cv-ink))" : "hsl(var(--cv-muted))" }}
+                    >
+                      {c.name}
+                    </span>
+                  </button>
+
+                  {/* full-width divider below the title */}
+                  <div className="h-px w-full bg-cv-line" />
+
+                  {/* expanded body - only for the active item */}
+                  <div
+                    className="grid transition-[grid-template-rows,opacity] duration-500 ease-out"
+                    style={{ gridTemplateRows: isActive ? "1fr" : "0fr", opacity: isActive ? 1 : 0 }}
+                  >
+                    <div className="overflow-hidden">
+                      <p className="mt-3 text-sm leading-relaxed text-cv-muted">{c.record}</p>
+                      <Link
+                        href="/platform/aix"
+                        className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-cv-blue dark:text-cv-blue-light"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        Learn More
+                        <svg viewBox="0 0 24 24" className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                          <path d="M9 6l6 6-6 6" />
+                        </svg>
+                      </Link>
+
+                      {/* progress bar - flat track with a gradient fill on top */}
+                      {isActive && (
+                        <div className="mb-5 mt-4 h-[3px] w-full rounded-full bg-cv-line">
+                          <div className="relative h-full w-full overflow-visible rounded-full">
+                            {reduced ? (
+                              <div className="absolute inset-y-0 left-0 w-full rounded-full bg-gradient-to-r from-cv-blue to-cv-blue-light" />
+                            ) : !inView ? (
+                              <div className="absolute inset-y-0 left-0 w-0 rounded-full bg-gradient-to-r from-cv-blue to-cv-blue-light" />
+                            ) : (
+                              <motion.div
+                                key={`${active}-${cycle}`}
+                                className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-cv-blue to-cv-blue-light"
+                                initial={{ width: "0%" }}
+                                animate={{ width: "100%" }}
+                                transition={{ duration: DWELL_MS / 1000, ease: "linear" }}
+                              >
+                                {/* soft glow at the leading (filling) edge */}
+                                <span
+                                  className="absolute right-0 top-1/2 h-2.5 w-2.5 -translate-y-1/2 translate-x-1/2 rounded-full bg-cv-blue-light"
+                                  style={{ boxShadow: "0 0 10px 2px rgba(22,100,192,0.75)" }}
+                                />
+                              </motion.div>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* RIGHT - dashboard mock */}
           <Dashboard />
         </div>
       </div>
@@ -213,8 +297,8 @@ const META: [string, string][] = [
 
 function Dashboard() {
   return (
-    <div className="rounded-2xl p-[2px] shadow-[0_30px_70px_-25px_rgba(0,0,0,0.5)]" style={{ background: "linear-gradient(135deg,#f9a8d4,#c4b5fd 45%,#93c5fd)" }}>
-      <div className="overflow-hidden rounded-[15px] bg-white text-[#1d1d1f]">
+    <div className="aspect-video w-full rounded-2xl p-[2px] shadow-[0_16px_40px_-24px_rgba(16,24,40,0.18)] dark:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.5)]" style={{ background: "linear-gradient(135deg,#f9a8d4,#c4b5fd 45%,#93c5fd)" }}>
+      <div className="flex h-full flex-col overflow-hidden rounded-[15px] bg-white text-[#1d1d1f]">
         {/* window top bar */}
         <div className="flex items-center gap-3 border-b border-black/[0.07] px-3 py-2 text-xs">
           <span className="flex items-center gap-1.5 font-semibold">
@@ -228,7 +312,7 @@ function Dashboard() {
           </div>
         </div>
 
-        <div className="flex min-h-[420px]">
+        <div className="flex min-h-0 flex-1">
           {/* sidebar */}
           <aside className="hidden w-40 shrink-0 border-r border-black/[0.06] bg-[#fafafa] p-2.5 md:block">
             {NAV_GROUPS.map((g) => (
@@ -241,7 +325,7 @@ function Dashboard() {
                       key={it}
                       className={`flex items-center gap-2 rounded-md px-2 py-1.5 text-[11px] ${on ? "bg-[#1664C0]/10 font-medium text-[#1664C0]" : "text-[#57575c]"}`}
                     >
-                      <span className={`h-1.5 w-1.5 rounded-full ${on ? "bg-[#1664C0]" : "bg-[#c7c7cc]"}`} />
+                      <span className={`h-1.5 w-1.5 rounded-full ${on ? "bg-[#1664C0]" : "bg-[#1664C0]/40"}`} />
                       {it}
                     </div>
                   );
@@ -288,7 +372,7 @@ function Dashboard() {
               {TIMELINE.map((t, i) => (
                 <div key={i} className="flex items-center justify-between py-[3px] text-[10px]" style={{ paddingLeft: t.indent * 10 }}>
                   <span className="flex items-center gap-1.5 truncate text-[#57575c]">
-                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#34D399]" />
+                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#1664C0]" />
                     {t.label}
                   </span>
                   <span className="shrink-0 font-mono text-[#a1a1a6]">{t.dur}</span>

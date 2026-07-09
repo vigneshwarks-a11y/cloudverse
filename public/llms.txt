@@ -3,7 +3,7 @@
 > CloudVerse is the Compute Economics Platform for the AI Era. Cloud, AI, data, and engineering spend governed in one place.
 
 ## About
-CloudVerse gives enterprises economic control over AI, cloud, and data infrastructure across every major provider — AWS, Azure, GCP, Snowflake, Databricks, OpenAI, Anthropic, CoreWeave, and more. Four modules — FinOps Platform, AIX, DevX, and DataX — share one control plane.
+CloudVerse gives enterprises economic control over AI, cloud, and data infrastructure across every major provider: AWS, Azure, GCP, Snowflake, Databricks, OpenAI, Anthropic, CoreWeave, and more. Four modules (FinOps Platform, AIX, DevX, and DataX) share one control plane.
 
 ## Proof
 - Berkshire Hathaway HomeServices: $738,983 in annualised savings (2026)

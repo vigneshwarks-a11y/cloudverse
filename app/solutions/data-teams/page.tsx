@@ -10,19 +10,19 @@ import { FaqBlock } from "@/components/FaqBlock";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
-  title: "For Data Teams — Find the Queries Quietly Running Up Your Bill | CloudVerse",
+  title: "For Data Teams: Find the Queries Quietly Running Up Your Bill | CloudVerse",
   description: "Query, dashboard, and dbt-model-level attribution across Snowflake, Databricks, BigQuery, Microsoft Fabric, and Synapse.",
   keywords: ["data team cost optimization", "warehouse cost visibility", "dbt cost attribution", "Snowflake FinOps", "Databricks cost management"],
   alternates: { canonical: "/solutions/data-teams" },
   openGraph: {
-    title: "For Data Teams — Find the Queries Running Up Your Bill",
+    title: "For Data Teams: Find the Queries Running Up Your Bill",
     description: "Query, dashboard, and dbt-model-level attribution across Snowflake, Databricks, BigQuery, and Synapse.",
     url: "/solutions/data-teams",
     images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse for Data Teams" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "For Data Teams — Find the Queries Running Up Your Bill",
+    title: "For Data Teams: Find the Queries Running Up Your Bill",
     description: "Attribution across Snowflake, Databricks, BigQuery, Microsoft Fabric, and Synapse.",
   },
 };

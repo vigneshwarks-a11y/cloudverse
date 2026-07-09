@@ -3,7 +3,7 @@ import { DEMO_URL } from "@/lib/links";
 import { PixelMosaic } from "@/components/PixelMosaic";
 
 /**
- * Closing CTA band — a deliberate saturated brand-blue accent break from the
+ * Closing CTA band - a deliberate saturated brand-blue accent break from the
  * dark theme, placed above the footer across marketing pages.
  *
  * Layering technique: solid base blue → generated pixel-mosaic pattern →
@@ -36,7 +36,7 @@ export default function ClosingCtaBand({
 }: ClosingCtaBandProps) {
   return (
     <section className="relative overflow-hidden" style={{ background: BASE_BLUE }}>
-      {/* Pixel-mosaic texture — light squares + very dark blue squares */}
+      {/* Pixel-mosaic texture - light squares + very dark blue squares */}
       <PixelMosaic
         patternId="cv-cta-mosaic"
         darkColor="#00143C"

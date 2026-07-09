@@ -5,8 +5,8 @@ import Image from "next/image";
 const LOGOS = [
   { name: "Dr. Reddy's",        src: "/logos/dr-reddys.svg" },
   { name: "Infogain",           src: "/logos/infogain.svg" },
-  { name: "Max Life Insurance", src: "/logos/axis-max-life-insurance-logo.svg" },
-  { name: "Shaw Industries",    src: "/logos/logo-dark-Shaw.png" },
+  { name: "Max Life Insurance", src: "/logos/axis-max-life-insurance-logo.svg", box: "w-[132px] h-[44px]" },
+  { name: "Shaw Industries",    src: "/logos/logo-dark-Shaw.png", box: "w-[120px] h-[56px]" },
   { name: "SISL Infotech",      src: "/logos/logo-light-sisl.svg" },
   { name: "Ginesys",            src: "/logos/ginesys-light.svg" },
   { name: "Ken42",              src: "/logos/ken42-dark.png" },
@@ -32,14 +32,14 @@ export function CustomerLogos() {
               key={l.name}
               className="flex items-center justify-center p-6 lg:p-7 bg-cv-surface hover:bg-cv-ink/[0.03] transition-colors"
             >
-              <div className="relative w-[96px] h-[30px]">
+              <div className={`relative ${l.box ?? "w-[96px] h-[30px]"}`}>
                 <Image
                   src={l.src}
                   alt={l.name}
                   fill
-                  sizes="96px"
+                  sizes="128px"
                   loading="lazy"
-                  className="object-contain brightness-0 dark:invert opacity-50 hover:opacity-80 transition-opacity"
+                  className="object-contain brightness-0 dark:invert"
                   unoptimized={l.src.endsWith(".svg")}
                 />
               </div>

@@ -3,7 +3,7 @@ const DOMAINS = [
     name: "Cloud",
     color: "#1664C0",
     record:
-      "Multi-cloud cost intelligence: allocation, anomalies, chargeback, and commitments — across AWS, Azure, Google Cloud, and eight more providers.",
+      "Multi-cloud cost intelligence: allocation, anomalies, chargeback, and commitments, across AWS, Azure, Google Cloud, and eight more providers.",
     lineItems: "Compute · Storage · Network",
     users: "FinOps teams",
   },
@@ -11,7 +11,7 @@ const DOMAINS = [
     name: "AI",
     color: "#6954D4",
     record:
-      "Governed AI execution: tokens, models, agents, and GPUs — policy set before the request, metered during, ROI evidence after. This is AIX.",
+      "Governed AI execution: tokens, models, agents, and GPUs: policy set before the request, metered during, ROI evidence after. This is AIX.",
     lineItems: "Tokens · Models · Agents",
     users: "AI & platform teams",
   },
@@ -51,7 +51,7 @@ export function DomainsOverview() {
         <h2 className="cv-h2 text-cv-ink max-w-2xl">Every domain of technology spend, one record.</h2>
         <p className="mt-4 cv-body text-cv-ink/70 max-w-2xl">
           Cloud taught enterprises what ungoverned spend costs. AI is repeating it faster. CloudVerse puts
-          every domain on one record — for AI and engineering we sit at the execution path itself; for
+          every domain on one record: for AI and engineering we sit at the execution path itself; for
           cloud, data, and SaaS we make every dollar accountable with allocation, chargeback, and evidence.
         </p>
 
@@ -79,7 +79,7 @@ export function DomainsOverview() {
         </div>
 
         <p className="mt-6 text-xs text-cv-muted text-center md:text-left">
-          The data model holds every domain to the same standard. Read-only by default — connect in under
+          The data model holds every domain to the same standard. Read-only by default: connect in under
           30 minutes.
         </p>
       </div>

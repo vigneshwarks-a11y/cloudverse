@@ -8,20 +8,20 @@ import { WhoUsesItCards } from "@/components/product/WhoUsesItCards";
 import { FinOpsHero } from "@/components/product/FinOpsHero";
 
 export const metadata: Metadata = {
-  title: "FinOps Platform — Multi-Cloud Cost Intelligence for Every Team | CloudVerse",
+  title: "FinOps Platform: Multi-Cloud Cost Intelligence for Every Team | CloudVerse",
   description:
     "See every dollar by team, product, and provider. One model that reconciles to finance and explains itself to engineering.",
   keywords: ["FinOps platform", "cloud cost management", "multi-cloud cost visibility", "cloud allocation", "chargeback", "cloud unit economics"],
   alternates: { canonical: "/platform/finops" },
   openGraph: {
-    title: "FinOps Platform — Multi-Cloud Cost Intelligence for Every Team",
+    title: "FinOps Platform: Multi-Cloud Cost Intelligence for Every Team",
     description: "See every dollar by team, product, and provider. One model that reconciles to finance and explains itself to engineering.",
     url: "/platform/finops",
-    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse FinOps Platform — Multi-Cloud Cost Intelligence" }],
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse FinOps Platform: Multi-Cloud Cost Intelligence" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "FinOps Platform — Multi-Cloud Cost Intelligence",
+    title: "FinOps Platform: Multi-Cloud Cost Intelligence",
     description: "See every dollar by team, product, and provider. Reconciles to finance. Explains itself to engineering.",
   },
 };

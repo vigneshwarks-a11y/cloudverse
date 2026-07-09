@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Fragment, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { ArrowRight, Shield } from "@solar-icons/react";
 
 /* ------------------------------------------------------------------ *
@@ -16,8 +16,32 @@ const EDGE_FADE = {
   maskImage: "linear-gradient(to bottom,#000 82%,transparent 100%)",
 } as const;
 
+// Two layered, heavily-blurred blue gradient capsules that sit behind a quote
+// card (lowest z) to create one soft ambient glow with depth. Parent must be
+// `relative overflow-hidden`; quote content should sit at z-10 above it.
+// Theme-aware blob palettes: deep navy→blue in dark, soft light-blue in light
+// so the glow blends with the card surface in either theme.
+const DARK_A = "#0D2B57";
+const DARK_B = "#2E6BD6";
+const LIGHT_A = "#CFE0FF";
+const LIGHT_B = "#8FB8FF";
+function QuoteGlow() {
+  const blob2 = { left: -40, right: -40, top: 96, height: 180, borderRadius: 138, filter: "blur(120px)", transform: "rotate(-48deg)" } as const;
+  const blob1 = { left: -40, top: "42%", width: 560, height: 180, borderRadius: 138, filter: "blur(120px)", transform: "rotate(-14deg)" } as const;
+  return (
+    <>
+      {/* DARK-mode blobs */}
+      <div aria-hidden className="pointer-events-none absolute z-0 hidden dark:block" style={{ ...blob2, opacity: 0.4, background: `linear-gradient(90deg, ${DARK_B} 0%, ${DARK_A} 100%)` }} />
+      <div aria-hidden className="pointer-events-none absolute z-0 hidden dark:block" style={{ ...blob1, opacity: 0.3, background: `linear-gradient(90deg, ${DARK_A} 0%, ${DARK_B} 100%)` }} />
+      {/* LIGHT-mode blobs - soft light-blue wash on the white card */}
+      <div aria-hidden className="pointer-events-none absolute z-0 dark:hidden" style={{ ...blob2, opacity: 0.5, background: `linear-gradient(90deg, ${LIGHT_B} 0%, ${LIGHT_A} 100%)` }} />
+      <div aria-hidden className="pointer-events-none absolute z-0 dark:hidden" style={{ ...blob1, opacity: 0.45, background: `linear-gradient(90deg, ${LIGHT_A} 0%, ${LIGHT_B} 100%)` }} />
+    </>
+  );
+}
+
 /* ------------------------------------------------------------------ *
- * Block 1 — Govern AI before the spend happens (3D role-card stack)
+ * Block 1 - Govern AI before the spend happens (3D role-card stack)
  * ------------------------------------------------------------------ */
 
 // Policy decision applied to a request BEFORE it runs.
@@ -77,7 +101,6 @@ const POLICY_DETAILS: [string, string][] = [
 const POLICY_ROWS: { status: PolicyStatus; route: string; date: string; expanded: boolean }[] = [
   { status: "Allowed", route: "gpt-4o · Prompt run", date: "March 9th, 2025", expanded: true },
   { status: "Blocked", route: "claude-3 · Agent call", date: "March 3rd, 2025", expanded: false },
-  { status: "Allowed", route: "gpt-4o-mini · Batch", date: "March 9th, 2025", expanded: false },
   { status: "Flagged", route: "llama-3 · Fine-tune", date: "March 3rd, 2025", expanded: false },
 ];
 
@@ -106,21 +129,21 @@ function PolicyRow({ status, route, date, expanded }: (typeof POLICY_ROWS)[numbe
   );
 }
 
-// Policy-evaluation panel: requests scored against policy BEFORE they run —
-// Allowed / Blocked / Flagged — with the most recent decision expanded to
+// Policy-evaluation panel: requests scored against policy BEFORE they run -
+// Allowed / Blocked / Flagged - with the most recent decision expanded to
 // show which checks, residency, and role were enforced.
 function MockRBACVisual() {
-  const rm = useReducedMotion();
+  const rm = true; // static - entrance animations disabled
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   const show = rm ? true : inView;
 
   return (
-    <div ref={ref} className="mt-6">
-      <div className="relative overflow-hidden rounded-2xl border border-cv-line bg-white p-4 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)] dark:border-white/10 dark:bg-black">
+    <div ref={ref} className="mt-6 h-[430px]">
+      <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-cv-line bg-white p-4 shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)] dark:border-white/10 dark:bg-black" style={EDGE_FADE}>
         <CardLightEdge />
         <div className="px-1 pb-3 text-base font-semibold text-cv-ink">Policy Evaluations</div>
-        <div className="space-y-2.5">
+        <div className="flex flex-1 flex-col justify-between gap-2.5">
           {POLICY_ROWS.map((r, i) => (
             <motion.div
               key={i}
@@ -138,7 +161,7 @@ function MockRBACVisual() {
 }
 
 /* ------------------------------------------------------------------ *
- * Block 2 — Every decision logged and traceable (tokens / latency)
+ * Block 2 - Every decision logged and traceable (tokens / latency)
  * ------------------------------------------------------------------ */
 
 // Shared light-edge treatment: gradient top-bright stroke + ambient top-left glow.
@@ -181,7 +204,7 @@ function TrendUp({ className }: { className?: string }) {
 }
 
 function MockCostVisual() {
-  const rm = useReducedMotion();
+  const rm = true; // static - entrance animations disabled
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   const show = rm ? true : inView;
@@ -192,12 +215,13 @@ function MockCostVisual() {
 
   return (
     <div ref={ref} className="relative mt-6 h-[430px]">
-      {/* CARD 1 — Tokens Used (back, upper-left) */}
+      {/* CARD 1 - Tokens Used (back, upper-left) */}
       <motion.div
         initial={rm ? false : { opacity: 0, y: 10 }}
         animate={show ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-0 top-0 w-[82%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-4 shadow-[0_12px_30px_-12px_rgba(0,0,0,0.6)]"
+        className="absolute left-0 top-0 w-[82%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-4 shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:shadow-[0_12px_30px_-12px_rgba(0,0,0,0.6)]"
+        style={EDGE_FADE}
       >
         <CardLightEdge />
 
@@ -251,12 +275,13 @@ function MockCostVisual() {
         </div>
       </motion.div>
 
-      {/* CARD 3 — Cost budget (front, lower-left) */}
+      {/* CARD 3 - Cost budget (front, lower-left) */}
       <motion.div
         initial={rm ? false : { opacity: 0, y: 10 }}
         animate={show ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, delay: rm ? 0 : 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute bottom-0 left-0 z-10 w-[42%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-4 shadow-[0_18px_40px_-12px_rgba(0,0,0,0.7)]"
+        className="absolute bottom-0 left-0 z-10 w-[42%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-4 shadow-[0_12px_30px_-14px_rgba(16,24,40,0.11)] dark:shadow-[0_18px_40px_-12px_rgba(0,0,0,0.7)]"
+        style={EDGE_FADE}
       >
         <CardLightEdge />
         <div className="text-sm font-semibold text-cv-ink">Set Your Cost Budget</div>
@@ -267,12 +292,13 @@ function MockCostVisual() {
         </div>
       </motion.div>
 
-      {/* CARD 2 — Latency (front, lower-right) */}
+      {/* CARD 2 - Latency (front, lower-right) */}
       <motion.div
         initial={rm ? false : { opacity: 0, y: 12 }}
         animate={show ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.55, delay: rm ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute bottom-3 right-0 z-20 w-[60%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-4 shadow-[0_24px_50px_-12px_rgba(0,0,0,0.75)]"
+        className="absolute bottom-3 right-0 z-20 w-[60%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-4 shadow-[0_14px_34px_-16px_rgba(16,24,40,0.12)] dark:shadow-[0_24px_50px_-12px_rgba(0,0,0,0.75)]"
+        style={EDGE_FADE}
       >
         <CardLightEdge />
 
@@ -344,7 +370,7 @@ function MockCostVisual() {
 }
 
 /* ------------------------------------------------------------------ *
- * Block 3 — Keep it secure with PII redaction (guardrail + chat mockup)
+ * Block 3 - Keep it secure with PII redaction (guardrail + chat mockup)
  * ------------------------------------------------------------------ */
 
 function ChatAvatar({ variant }: { variant: "agent" | "client" }) {
@@ -363,20 +389,20 @@ function ChatAvatar({ variant }: { variant: "agent" | "client" }) {
 }
 
 function MockPIIVisual() {
-  const rm = useReducedMotion();
+  const rm = true; // static - entrance animations disabled
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   const show = rm ? true : inView;
-  const cyan = "#22D3EE";
 
   return (
     <div ref={ref} className="relative mt-6 h-[480px] overflow-hidden">
-      {/* CARD 1 — PII Redaction Guardrail settings (back, upper-left) */}
+      {/* CARD 1 - PII Redaction Guardrail settings (back, upper-left) */}
       <motion.div
         initial={rm ? false : { opacity: 0, y: 10 }}
         animate={show ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-0 top-0 w-[80%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-5 shadow-[0_12px_30px_-12px_rgba(0,0,0,0.6)]"
+        className="absolute left-0 top-0 w-[80%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-5 shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:shadow-[0_12px_30px_-12px_rgba(0,0,0,0.6)]"
+        style={EDGE_FADE}
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -405,17 +431,18 @@ function MockPIIVisual() {
         <CardLightEdge />
       </motion.div>
 
-      {/* CARD 2 — Secure Conversation chat (front, lower-right) */}
+      {/* CARD 2 - Secure Conversation chat (front, lower-right) */}
       <motion.div
         initial={rm ? false : { opacity: 0, y: 12 }}
         animate={show ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.55, delay: rm ? 0 : 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute right-0 top-[120px] z-20 w-[66%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black shadow-[0_24px_50px_-12px_rgba(0,0,0,0.75)]"
+        className="absolute right-0 top-[120px] z-20 w-[66%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black shadow-[0_14px_34px_-16px_rgba(16,24,40,0.12)] dark:shadow-[0_24px_50px_-12px_rgba(0,0,0,0.75)]"
+        style={EDGE_FADE}
       >
         {/* gradient banner */}
         <div
           className="px-4 py-3 text-center text-sm font-bold text-white"
-          style={{ background: "linear-gradient(115deg,#0B3B78 0%,#1664C0 52%,#3B8AE8 100%)" }}
+          style={{ background: "linear-gradient(115deg,#1664C0 0%,#2E86E6 52%,#5AA0F0 100%)" }}
         >
           Secure Conversation
         </div>
@@ -432,7 +459,7 @@ function MockPIIVisual() {
             </div>
           </div>
 
-          {/* client — highlighted redaction container */}
+          {/* client - highlighted redaction container */}
           <div
             className="rounded-lg border p-2.5"
             style={{ borderColor: "rgba(34,211,238,0.4)", background: "rgba(34,211,238,0.06)" }}
@@ -442,10 +469,7 @@ function MockPIIVisual() {
               <ChatAvatar variant="client" />
             </div>
             <div className="flex flex-wrap items-center gap-2 rounded-md bg-white dark:bg-black/40 px-2 py-1.5 font-mono">
-              <span
-                className="inline-flex shrink-0 items-center gap-1 rounded-full px-1.5 py-0.5 text-[10px] font-medium"
-                style={{ color: cyan, background: "rgba(34,211,238,0.12)" }}
-              >
+              <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-[#22D3EE]/15 px-1.5 py-0.5 text-[10px] font-medium text-[#0E7490] dark:text-[#22D3EE]">
                 <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                   <path d="M3 3l18 18" />
                   <path d="M10.6 10.7a2 2 0 002.8 2.8" />
@@ -455,8 +479,8 @@ function MockPIIVisual() {
               </span>
               <span className="text-[11px] text-cv-ink/70">
                 My card ends in{" "}
-                <span className="rounded bg-[#0E9E7A]/20 px-1 text-[#4ADE80]">[CARD]</span> and CVV{" "}
-                <span className="rounded bg-[#0E9E7A]/20 px-1 text-[#4ADE80]">[CVV]</span>
+                <span className="rounded bg-[#0E9E7A]/20 px-1 text-[#0E7A5F] dark:text-[#4ADE80]">[CARD]</span> and CVV{" "}
+                <span className="rounded bg-[#0E9E7A]/20 px-1 text-[#0E7A5F] dark:text-[#4ADE80]">[CVV]</span>
               </span>
             </div>
           </div>
@@ -480,10 +504,10 @@ function MockPIIVisual() {
 }
 
 /* ------------------------------------------------------------------ *
- * Block 4 — Stay in control with full visibility (audit feed)
+ * Block 4 - Stay in control with full visibility (audit feed)
  * ------------------------------------------------------------------ */
 
-// Small circular initials avatar, tinted per user — used across the audit rows.
+// Small circular initials avatar, tinted per user - used across the audit rows.
 function LogAvatar({ initials, color, size = 24 }: { initials: string; color: string; size?: number }) {
   return (
     <span
@@ -530,19 +554,20 @@ const DETAIL_ROWS = [
 ];
 
 function MockAuditVisual() {
-  const rm = useReducedMotion();
+  const rm = true; // static - entrance animations disabled
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   const show = rm ? true : inView;
 
   return (
     <div ref={ref} className="relative mt-6 h-[500px]">
-      {/* CARD 1 — Audit Logs list (back, upper-left) */}
+      {/* CARD 1 - Audit Logs list (back, upper-left) */}
       <motion.div
         initial={rm ? false : { opacity: 0, y: 10 }}
         animate={show ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-0 top-0 w-[82%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-4 shadow-[0_12px_30px_-12px_rgba(0,0,0,0.6)]"
+        className="absolute left-0 top-0 w-[82%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-4 shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:shadow-[0_12px_30px_-12px_rgba(0,0,0,0.6)]"
+        style={EDGE_FADE}
       >
         <CardLightEdge />
 
@@ -593,17 +618,17 @@ function MockAuditVisual() {
         </div>
       </motion.div>
 
-      {/* CARD 2 — log entry detail (front, lower-right) */}
+      {/* CARD 2 - log entry detail (front, lower-right) */}
       <motion.div
         initial={rm ? false : { opacity: 0, y: 12 }}
         animate={show ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.55, delay: rm ? 0 : 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute right-0 top-[150px] z-20 w-[64%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-4 shadow-[0_24px_50px_-12px_rgba(0,0,0,0.75)]"
+        className="absolute right-0 top-[150px] z-20 w-[64%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-4 shadow-[0_14px_34px_-16px_rgba(16,24,40,0.12)] dark:shadow-[0_24px_50px_-12px_rgba(0,0,0,0.75)]"
         style={EDGE_FADE}
       >
         <CardLightEdge />
 
-        {/* header — id pill + external link */}
+        {/* header - id pill + external link */}
         <div className="flex items-center gap-2 rounded-lg border border-cv-line dark:border-white/10 bg-cv-ink/[0.04] dark:bg-white/[0.03] px-3 py-2">
           <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0 text-cv-muted" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
             <rect x="3" y="3" width="7" height="7" rx="1.5" />
@@ -640,12 +665,13 @@ function MockAuditVisual() {
         </div>
       </motion.div>
 
-      {/* FLOATING HIGHLIGHT CHIP — the active/selected entry (lower-left) */}
+      {/* FLOATING HIGHLIGHT CHIP - the active/selected entry (lower-left) */}
       <motion.div
         initial={rm ? false : { opacity: 0, y: 12, scale: 0.96 }}
         animate={show ? { opacity: 1, y: 0, scale: 1 } : {}}
         transition={{ duration: 0.5, delay: rm ? 0 : 0.4, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute bottom-[70px] left-0 z-30 flex w-[58%] items-center gap-3 overflow-hidden rounded-[14px] bg-white dark:bg-[#111] px-4 py-3 text-xs shadow-[0_20px_45px_-12px_rgba(0,0,0,0.8)]"
+        className="absolute bottom-[70px] left-0 z-30 flex w-[58%] items-center gap-3 overflow-hidden rounded-[14px] border border-cv-line dark:border-white/12 bg-white dark:bg-[#111] px-4 py-3 text-xs shadow-[0_12px_30px_-14px_rgba(16,24,40,0.12)] dark:shadow-[0_20px_45px_-12px_rgba(0,0,0,0.8)]"
+        style={EDGE_FADE}
       >
         <CardLightEdge />
 
@@ -671,7 +697,7 @@ function MockAuditVisual() {
 }
 
 /* ------------------------------------------------------------------ *
- * Block 5 — Single sign-on, scoped from day one (cursor-driven tabs)
+ * Block 5 - Single sign-on, scoped from day one (cursor-driven tabs)
  * ------------------------------------------------------------------ */
 
 function SSOToggle({
@@ -712,7 +738,7 @@ function SSOToggle({
 }
 
 function MockSSOVisual() {
-  const rm = useReducedMotion();
+  const rm = true; // static - entrance animations disabled
   const cardRef = useRef<HTMLDivElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
   const tabRefs = [useRef<HTMLButtonElement>(null), useRef<HTMLButtonElement>(null)];
@@ -750,13 +776,14 @@ function MockSSOVisual() {
   const teal = "#0E9E7A";
 
   return (
-    // outer shell — no mask here so the floating popover can overflow freely
+    // outer shell - no mask here so the floating popover can overflow freely
     <div className="relative mt-6">
       <div ref={cardRef} className="relative min-h-[360px]">
         {/* main configuration card */}
         <div
           ref={wrapRef}
           className="relative space-y-3 overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-4 font-mono text-xs"
+          style={EDGE_FADE}
         >
           {/* light-edge treatment (matches the tokens/latency cards) */}
           <CardLightEdge />
@@ -873,7 +900,8 @@ function MockSSOVisual() {
           initial={rm ? false : { opacity: 0, y: 14, scale: 0.96 }}
           animate={show ? { opacity: 1, y: 0, scale: 1 } : {}}
           transition={{ duration: 0.5, delay: rm ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute top-[150px] -right-6 z-20 w-56 space-y-3 overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-3.5 font-mono text-xs shadow-[0_20px_45px_-12px_rgba(0,0,0,0.55)]"
+          className="absolute top-[150px] -right-6 z-20 w-56 space-y-3 overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-3.5 font-mono text-xs shadow-[0_12px_30px_-14px_rgba(16,24,40,0.11)] dark:shadow-[0_20px_45px_-12px_rgba(0,0,0,0.55)]"
+          style={EDGE_FADE}
         >
           {/* light-edge treatment (matches the tokens/latency cards) */}
           <CardLightEdge />
@@ -941,11 +969,31 @@ const CELL = "bg-cv-surface dark:bg-[#0D0D0D] p-6 lg:p-8 flex flex-col";
 
 export function AixGovernance() {
   return (
-    <section className="cv-section bg-cv-surface">
-      <div className="cv-container">
+    <section className="cv-section relative overflow-hidden bg-cv-surface">
+      {/* Ambient blue gradient wash across the top, behind the header.
+          Dark: saturated blue on black. Light: soft, pale blue on white. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 z-0 hidden h-[460px] dark:block"
+        style={{
+          background:
+            "radial-gradient(58% 105% at 32% -8%, rgba(46,107,214,0.58) 0%, rgba(22,100,192,0.26) 40%, transparent 74%), radial-gradient(46% 95% at 66% -6%, rgba(77,154,239,0.36) 0%, transparent 70%)",
+          filter: "blur(8px)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 z-0 block h-[460px] dark:hidden"
+        style={{
+          background:
+            "radial-gradient(58% 105% at 32% -8%, rgba(120,170,255,0.30) 0%, rgba(150,190,255,0.12) 42%, transparent 74%), radial-gradient(46% 95% at 66% -6%, rgba(160,200,255,0.20) 0%, transparent 70%)",
+          filter: "blur(8px)",
+        }}
+      />
+      <div className="cv-container relative z-10">
 
         {/* Section header */}
-        <div className="mb-14">
+        <div className="mb-20 lg:mb-28 lg:pt-8">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 dark:bg-[#7CB8F8]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8] mb-5">
             Enterprise Control
           </span>
@@ -954,7 +1002,7 @@ export function AixGovernance() {
               Take the driver's seat<br className="hidden lg:block" /> with AI Governance
             </h2>
             <p className="mt-4 lg:mt-1 text-cv-ink/60 leading-relaxed lg:max-w-sm xl:max-w-md shrink-0">
-              Policy, access controls, and full audit trails enforced before a single token leaves. Not a month-end reconciliation — governance that runs live, at the point of every decision.
+              Policy, access controls, and full audit trails enforced before a single token leaves. Not a month-end reconciliation: governance that runs live, at the point of every decision.
             </p>
           </div>
         </div>
@@ -966,8 +1014,8 @@ export function AixGovernance() {
           <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-cv-line/30">
             {TOP_FEATURES.map(({ title, body, Visual }) => (
               <div key={title} className={CELL}>
-                <h3 className="text-base font-semibold text-cv-ink">{title}</h3>
-                <p className="mt-2 text-sm text-cv-ink/55 leading-relaxed">{body}</p>
+                <h3 className="text-lg font-semibold text-cv-ink">{title}</h3>
+                <p className="mt-2 text-base text-cv-ink/55 leading-relaxed">{body}</p>
                 <Link href="/platform/aix" className="mt-3 inline-flex items-center gap-1 text-xs text-[#1664C0] hover:text-[#0e4fa0] dark:text-[#7CB8F8] dark:hover:text-[#A9C8F8] transition-colors font-medium">
                   Learn More <ArrowRight weight="Linear" size={12} />
                 </Link>
@@ -976,14 +1024,17 @@ export function AixGovernance() {
             ))}
           </div>
 
-          {/* Quote strip warm left border accent */}
-          <div className="bg-cv-surface p-8 lg:p-10">
-            <blockquote className="text-lg lg:text-xl leading-relaxed text-cv-ink/80 max-w-4xl">
-              "Before CloudVerse we could see the bill. We couldn&apos;t say who owned it, which applications drove it, or whether the architecture under it was worth the cost."
-            </blockquote>
-            <div className="mt-6">
-              <div className="font-semibold text-cv-ink text-sm">Head of FinOps</div>
-              <div className="text-cv-muted text-sm">Large Southeast Asian digital &amp; telecommunications group</div>
+          {/* Quote strip with ambient blue glow behind the text */}
+          <div className="relative overflow-hidden bg-cv-surface p-8 lg:p-10">
+            <QuoteGlow />
+            <div className="relative z-10">
+              <blockquote className="text-lg lg:text-xl leading-relaxed text-cv-ink/80 max-w-4xl">
+                "Before CloudVerse we could see the bill. We couldn&apos;t say who owned it, which applications drove it, or whether the architecture under it was worth the cost."
+              </blockquote>
+              <div className="mt-6">
+                <div className="font-semibold text-cv-ink text-sm">Head of FinOps</div>
+                <div className="text-cv-muted text-sm">Large Southeast Asian digital &amp; telecommunications group</div>
+              </div>
             </div>
           </div>
 
@@ -991,8 +1042,8 @@ export function AixGovernance() {
           <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-cv-line/30">
             {BOTTOM_FEATURES.map(({ title, body, Visual }) => (
               <div key={title} className={CELL}>
-                <h3 className="text-base font-semibold text-cv-ink">{title}</h3>
-                <p className="mt-2 text-sm text-cv-ink/55 leading-relaxed">{body}</p>
+                <h3 className="text-lg font-semibold text-cv-ink">{title}</h3>
+                <p className="mt-2 text-base text-cv-ink/55 leading-relaxed">{body}</p>
                 <Link href="/platform/aix" className="mt-3 inline-flex items-center gap-1 text-xs text-[#1664C0] hover:text-[#0e4fa0] dark:text-[#7CB8F8] dark:hover:text-[#A9C8F8] transition-colors font-medium">
                   Learn More <ArrowRight weight="Linear" size={12} />
                 </Link>
@@ -1005,21 +1056,17 @@ export function AixGovernance() {
           <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] divide-y md:divide-y-0 md:divide-x divide-cv-line/30">
             {/* Left ~40%: logo + warm glow + testimonial */}
             <div className="relative flex flex-col justify-between bg-cv-surface p-8 lg:p-10 overflow-hidden min-h-[320px]">
-              {/* Blue glow — both modes */}
-              <div
-                className="pointer-events-none absolute inset-0"
-                style={{ background: "radial-gradient(ellipse 90% 70% at 20% 80%, rgba(22,100,192,0.30) 0%, rgba(22,100,192,0.12) 50%, transparent 75%)" }}
-                aria-hidden
-              />
-              <div className="relative inline-flex items-center gap-2.5">
+              {/* Two-layer ambient blue glow */}
+              <QuoteGlow />
+              <div className="relative z-10 inline-flex items-center gap-2.5">
                 <img src="/cv-logo.png" alt="" aria-hidden className="h-8 w-auto" />
-                <span className="text-cv-ink font-semibold text-sm tracking-wide">cloudverse</span>
+                <span className="text-cv-ink font-semibold text-[16px] tracking-wide">Cloudverse</span>
               </div>
-              <div className="relative mt-auto pt-10">
-                <p className="text-cv-ink/70 text-sm leading-relaxed">
+              <div className="relative z-10 mt-auto pt-10">
+                <p className="text-cv-ink/85 text-[20px] leading-relaxed">
                   "The teams responsible for governance were reconciling provider invoices by hand and arriving at numbers finance and engineering both questioned. That&apos;s gone now."
                 </p>
-                <div className="mt-4">
+                <div className="mt-8">
                   <div className="font-semibold text-cv-ink text-sm">FinOps Lead</div>
                   <div className="text-cv-muted text-xs">Multi-cloud digital services group (AWS, Huawei, Google Cloud, Cloudflare)</div>
                 </div>
@@ -1028,8 +1075,8 @@ export function AixGovernance() {
 
             {/* Right ~60%: SSO feature */}
             <div className="bg-cv-surface flex flex-col p-8 lg:p-10">
-              <h3 className="text-base font-semibold text-cv-ink">Single sign-on, scoped from day one</h3>
-              <p className="mt-2 text-sm text-cv-ink/55 leading-relaxed">Onboard teams instantly and have CloudVerse follow your access rules from the start. Read-only by default. Automation is opt-in and logged.</p>
+              <h3 className="text-lg font-semibold text-cv-ink">Single sign-on, scoped from day one</h3>
+              <p className="mt-2 text-base text-cv-ink/55 leading-relaxed">Onboard teams instantly and have CloudVerse follow your access rules from the start. Read-only by default. Automation is opt-in and logged.</p>
               <Link href="/platform/aix" className="mt-3 inline-flex items-center gap-1 text-xs text-[#1664C0] hover:text-[#0e4fa0] dark:text-[#7CB8F8] dark:hover:text-[#A9C8F8] transition-colors font-medium">
                 Learn More <ArrowRight weight="Linear" size={12} />
               </Link>

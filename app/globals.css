@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  /* Light theme — Apple Developer palette (legacy) */
+  /* Light theme - Apple Developer palette (legacy) */
   :root {
     --cv-ink:      240 3% 12%;   /* #1d1d1f */
     --cv-muted:    240 2% 46%;   /* #86868b */
@@ -12,19 +12,19 @@
     --cv-surface2: 240 4% 98%;   /* #fbfbfd */
     --cv-hero-glow: 211 100% 50% / 0.18;
     --cv-grid:     240 5% 12% / 0.05;
-    --cv-card:     240 4% 97%;   /* #f7f7f9 — light card surface */
+    --cv-card:     240 4% 97%;   /* #f7f7f9 - light card surface */
   }
 
-  /* Dark theme — Apple Developer dark palette (legacy) */
+  /* Dark theme - Apple Developer dark palette (legacy) */
   .dark {
     --cv-ink:      0 0% 98%;     /* #f5f5f7 */
     --cv-muted:    240 2% 63%;   /* #a1a1a6 */
     --cv-line:     240 5% 26%;   /* #38383a */
-    --cv-surface:  0 0% 0%;      /* #000000 — pure black */
-    --cv-surface2: 0 0% 0%;      /* #000000 — pure black (matches surface) */
+    --cv-surface:  0 0% 0%;      /* #000000 - pure black */
+    --cv-surface2: 0 0% 0%;      /* #000000 - pure black (matches surface) */
     --cv-hero-glow: 211 100% 50% / 0.35;
     --cv-grid:     0 0% 100% / 0.04;
-    --cv-card:     240 40% 4%;   /* #070710 — dark card surface */
+    --cv-card:     240 40% 4%;   /* #070710 - dark card surface */
   }
 
   html { scroll-behavior: smooth; color-scheme: light dark; }
@@ -34,11 +34,19 @@
 
   button, [role="button"] { touch-action: manipulation; }
 
+  /* Inter alternate letterforms applied site-wide (single-story 'a' via cv11,
+     open 6/9 via cv03/cv04, etc). font-feature-settings inherits, so setting it
+     on html/body cascades to every element. tnum kept for tabular-figure
+     alignment (e.g. animated stat counters). Letter-spacing/weight/line-height
+     are intentionally NOT set here - those stay scoped to headings. */
+  html, body {
+    font-feature-settings: 'cv03' on, 'cv04' on, 'cv09' on, 'cv11' on, 'blwf' on, 'tnum' on;
+  }
+
   body {
     @apply bg-cv-surface text-cv-ink font-sans antialiased;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: "ss01", "tnum";
     letter-spacing: -0.02em;
   }
 
@@ -56,10 +64,10 @@
     @apply max-w-cv-content mx-auto px-5 sm:px-6 lg:px-6;
   }
   .cv-section {
-    @apply py-10 sm:py-12 lg:py-16;
+    @apply py-16 sm:py-20 lg:py-28;
   }
 
-  /* Typography — Manrope */
+  /* Typography - Inter (single site-wide font family) */
   .cv-h1 {
     @apply font-sans font-bold tracking-tight;
     font-size: clamp(28px, 3.8vw, 56px);
@@ -107,7 +115,7 @@
     color: hsl(var(--cv-muted));
   }
 
-  /* Hero band — theme-aware. Base = surface, with subtle grid + blue radial glow. */
+  /* Hero band - theme-aware. Base = surface, with subtle grid + blue radial glow. */
   .cv-hero-bg {
     position: relative;
     background: linear-gradient(180deg, rgba(7, 144, 213, 0.00) 0%, rgba(7, 144, 213, 0.50) 100%), #000;
@@ -146,7 +154,7 @@
   }
   .cv-btn-ghost:hover { background: hsl(var(--cv-line) / 0.5); }
 
-  /* Inverted button — ink bg, surface text; works in both themes */
+  /* Inverted button - ink bg, surface text; works in both themes */
   .cv-btn-inverse {
     @apply inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-md text-sm font-medium transition-colors;
     background: hsl(var(--cv-ink));
@@ -154,7 +162,7 @@
   }
   .cv-btn-inverse:hover { background: hsl(var(--cv-ink) / 0.85); }
 
-  /* Outlined button for nav — adapts border/text to theme */
+  /* Outlined button for nav - adapts border/text to theme */
   .cv-btn-outline {
     @apply inline-flex items-center justify-center gap-2 px-4 py-1.5 rounded-md text-sm font-medium transition-colors;
     border: 1px solid hsl(var(--cv-line));

@@ -23,9 +23,11 @@ const INTEGRATIONS: Integ[] = [
   { name: "DigitalOcean", src: "/icons/digitalocean.svg", color: "#0080FF" },
 ];
 
-// Row A in list order; Row B rotated by 6 so the two rows never mirror each other.
+// Row A in list order; Row B is a genuine shuffle (not a rotation) of the same
+// 12 logos, so the two rows never scroll the same sequence past each other.
 const ROW_A = INTEGRATIONS;
-const ROW_B = [...INTEGRATIONS.slice(6), ...INTEGRATIONS.slice(0, 6)];
+const ROW_B_ORDER = [8, 4, 11, 6, 1, 9, 3, 0, 5, 10, 7, 2];
+const ROW_B = ROW_B_ORDER.map((i) => INTEGRATIONS[i]);
 
 const MASK = {
   maskImage: "linear-gradient(to right, transparent, black 6%, black 94%, transparent)",

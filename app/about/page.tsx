@@ -103,7 +103,7 @@ export default function Page() {
           <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-5">
             <div className="rounded-2xl border border-cv-line/40 bg-cv-card dark:bg-black p-6">
               <p className="text-cv-ink/75 leading-relaxed">
-                Cloud promised simplicity. What enterprises got instead was financial opacity —
+                Cloud promised simplicity. What enterprises got instead was financial opacity:
                 sprawling invoices, disconnected cost centers, and engineering teams blind to the
                 economic weight of every deployment decision.
               </p>
@@ -206,8 +206,8 @@ export default function Page() {
               <p className="mt-5 text-lg text-cv-ink/70 leading-relaxed">
                 The next decade of compute will be defined by how well teams allocate scarce GPU,
                 storage, and network capacity. CloudVerse™ is building the economic decision layer
-                that makes those choices automatic, auditable, and aligned with business outcomes
-                — across every cloud, every model, and every team.
+                that makes those choices automatic, auditable, and aligned with business outcomes,
+                across every cloud, every model, and every team.
               </p>
             </div>
             <Link href={DEMO_URL} className="cv-btn-primary shrink-0" data-testid="link-book-demo-about">

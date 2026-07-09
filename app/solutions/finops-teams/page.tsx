@@ -10,19 +10,19 @@ import { FaqBlock } from "@/components/FaqBlock";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
-  title: "For FinOps Teams — The Control Plane Your Finance and Engineering Teams Both Trust | CloudVerse",
+  title: "For FinOps Teams: The Control Plane Your Finance and Engineering Teams Both Trust | CloudVerse",
   description: "Allocation, anomaly response, commitments, and chargeback on one model. Reconciles to finance. Explains itself to engineering.",
   keywords: ["FinOps team platform", "cloud chargeback", "cloud cost allocation", "anomaly detection cloud", "cloud commitment management"],
   alternates: { canonical: "/solutions/finops-teams" },
   openGraph: {
-    title: "For FinOps Teams — The Platform Finance and Engineering Both Trust",
+    title: "For FinOps Teams: The Platform Finance and Engineering Both Trust",
     description: "Allocation, anomaly response, commitments, and chargeback on one model. Reconciles to finance. Explains itself to engineering.",
     url: "/solutions/finops-teams",
     images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse for FinOps Teams" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "For FinOps Teams — The Platform Finance and Engineering Both Trust",
+    title: "For FinOps Teams: The Platform Finance and Engineering Both Trust",
     description: "Allocation, anomaly response, commitments, and chargeback. Reconciles to finance.",
   },
 };

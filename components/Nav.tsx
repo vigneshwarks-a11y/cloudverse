@@ -72,8 +72,8 @@ export function Nav() {
                     {PLATFORM_ICONS[it.icon]}
                   </div>
                   <div className="flex-1 min-w-0 pt-0.5">
-                    <div className="text-sm font-semibold text-cv-ink leading-snug tracking-wide">{it.label}</div>
-                    <div className="text-cv-muted text-xs mt-0.5 leading-snug tracking-wide">{it.desc}</div>
+                    <div className="text-sm font-semibold text-cv-ink leading-snug">{it.label}</div>
+                    <div className="text-cv-muted text-xs mt-0.5 leading-snug">{it.desc}</div>
                   </div>
                 </Link>
               ))}
@@ -93,8 +93,8 @@ export function Nav() {
                     {SOLUTION_ICONS[it.icon]}
                   </div>
                   <div className="flex-1 min-w-0 pt-0.5">
-                    <div className="text-sm font-semibold text-cv-ink leading-snug tracking-wide">{it.label}</div>
-                    <div className="text-cv-muted text-xs mt-0.5 leading-snug tracking-wide">{it.desc}</div>
+                    <div className="text-sm font-semibold text-cv-ink leading-snug">{it.label}</div>
+                    <div className="text-cv-muted text-xs mt-0.5 leading-snug">{it.desc}</div>
                   </div>
                   <AltArrowRight weight="Linear" size={14} className="shrink-0 text-cv-muted opacity-0 group-hover:opacity-100 transition-opacity" />
                 </Link>
@@ -145,7 +145,7 @@ export function Nav() {
         </button>
       </div>
 
-      {/* Mobile menu — full-screen overlay panel */}
+      {/* Mobile menu - full-screen overlay panel */}
       {open && (
         <div className="lg:hidden fixed inset-0 top-[56px] z-40 bg-cv-surface overflow-y-auto">
           <div className="cv-container py-3 flex flex-col">

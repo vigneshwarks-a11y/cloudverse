@@ -24,7 +24,7 @@ function FaqRow({ item, isOpen, onToggle, index }: {
         aria-controls={`faq-answer-${index}`}
         className="w-full text-left flex items-center justify-between gap-4 px-5 py-4"
       >
-        <span className="text-sm font-semibold text-cv-ink leading-snug">
+        <span className="text-[18px] font-semibold text-cv-ink leading-snug">
           {item.q}
         </span>
         <span className="shrink-0 flex items-center justify-center w-6 h-6 text-cv-blue dark:text-cv-blue-light text-xl leading-none font-normal">
@@ -44,7 +44,7 @@ function FaqRow({ item, isOpen, onToggle, index }: {
       >
         <div className="overflow-hidden">
           <div
-            className="px-5 pb-4 text-sm text-cv-ink/60 leading-relaxed"
+            className="px-5 pb-4 text-[16px] text-cv-ink/60 leading-relaxed"
             style={{
               opacity: isOpen ? 1 : 0,
               transform: isOpen ? "translateY(0)" : "translateY(-4px)",
@@ -82,7 +82,7 @@ export function FaqBlock({
         {/* Solid-colour backing layer */}
         <div
           aria-hidden
-          className="pointer-events-none absolute -inset-x-[24px] top-[24px] bottom-[-24px] rounded-[24px] bg-cv-blue-bright"
+          className="pointer-events-none absolute -inset-x-[24px] top-[24px] bottom-[-24px] rounded-[24px] bg-[#0059FF]"
         />
 
         {/* Main content card */}

@@ -14,20 +14,20 @@ import { PlatformHeroMockup, type MockupTab } from "@/components/product/Platfor
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
-  title: "AIX — The Control Plane for Enterprise AI | CloudVerse",
+  title: "AIX: The Control Plane for Enterprise AI | CloudVerse",
   description:
     "Route, govern, and meter every AI request across models, clouds, GPUs, and private endpoints. Cut AI cost 40–90%. The decision happens before the request, not after the bill.",
   keywords: ["AI cost optimization", "LLM routing", "GPU cost management", "enterprise AI governance", "AI gateway", "model routing"],
   alternates: { canonical: "/platform/aix" },
   openGraph: {
-    title: "AIX — The Control Plane for Enterprise AI",
+    title: "AIX: The Control Plane for Enterprise AI",
     description: "Route, govern, and meter every AI request across models, clouds, GPUs, and private endpoints. Cut AI cost 40–90%.",
     url: "/platform/aix",
-    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse AIX — AI Cost Control Plane" }],
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse AIX: AI Cost Control Plane" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AIX — The Control Plane for Enterprise AI",
+    title: "AIX: The Control Plane for Enterprise AI",
     description: "Route, govern, and meter every AI request. Cut AI cost 40–90%. Decision-time governance.",
   },
 };
@@ -208,7 +208,7 @@ export default function AIXPage() {
             A hardcoded choice doesn&apos;t update when prices drop. It doesn&apos;t reroute when a provider slows down. That gap is where the budget quietly goes.
           </p>
           <div className="grid md:grid-cols-2 gap-5 mt-10">
-            {/* Before — legacy / inactive */}
+            {/* Before - legacy / inactive */}
             <div className="relative overflow-hidden rounded-2xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-6">
               {/* Faint static node pattern */}
               <div
@@ -222,15 +222,15 @@ export default function AIXPage() {
               <div className="relative">
                 <div className="cv-label mb-3 text-cv-muted">Before AIX (hardcoded)</div>
                 <ul className="space-y-2 text-sm text-cv-ink/70">
-                  <li>• Model — one, chosen once</li>
-                  <li>• Provider — fixed</li>
-                  <li>• Region — fixed</li>
-                  <li>• Routing — none; every request goes the same place</li>
-                  <li>• Cost — an assumption, not a measurement</li>
+                  <li>• Model: one, chosen once</li>
+                  <li>• Provider: fixed</li>
+                  <li>• Region: fixed</li>
+                  <li>• Routing: none; every request goes the same place</li>
+                  <li>• Cost: an assumption, not a measurement</li>
                 </ul>
               </div>
             </div>
-            {/* After — premium / active */}
+            {/* After - premium / active */}
             <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-cv-card dark:bg-[#0D0D0D] p-6">
               {/* Dynamic blue grid pattern */}
               <div
@@ -253,11 +253,11 @@ export default function AIXPage() {
               <div className="relative">
                 <div className="cv-label mb-3 text-[#1664C0] dark:text-[#4D9AEF]">After AIX (dynamic)</div>
                 <ul className="space-y-2 text-sm text-cv-ink/90">
-                  <li>• Model — the best fit for each request</li>
-                  <li>• Provider — scored live, with a fallback</li>
-                  <li>• Region — chosen by residency rule</li>
-                  <li>• Routing — cost, latency, quality, and compliance, per request</li>
-                  <li>• Cost — attributed, capped, and on the record</li>
+                  <li>• Model: the best fit for each request</li>
+                  <li>• Provider: scored live, with a fallback</li>
+                  <li>• Region: chosen by residency rule</li>
+                  <li>• Routing: cost, latency, quality, and compliance, per request</li>
+                  <li>• Cost: attributed, capped, and on the record</li>
                 </ul>
               </div>
             </div>
@@ -300,7 +300,7 @@ export default function AIXPage() {
         </div>
       </section>
 
-      {/* WHAT AIX IS NOT — comparison */}
+      {/* WHAT AIX IS NOT - comparison */}
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
           <h2 className="cv-h2 text-cv-ink mb-10">A gateway executes a rule you wrote. AIX decides what the rule should be.</h2>

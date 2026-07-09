@@ -9,7 +9,7 @@ import { AnimatePresence, motion } from "framer-motion";
    Right-column visual follows the Laravel Cloud tabbed-showcase recipe:
    fixed-height stage → edge mask-fade → tilted group
    (origin-top-right rotate-[5deg] skew-x-[-10deg]) → floating cards that
-   bleed off the right edge. Rendered DARK (committed) — product-screenshot
+   bleed off the right edge. Rendered DARK (committed) - product-screenshot
    chrome sitting on a theme-aware cv-surface section.
    ──────────────────────────────────────────────────────────────────────── */
 
@@ -25,9 +25,31 @@ const SUCCESS = "#34D399";
 const DANGER = "#FF5470";
 const INPROGRESS = "#4D9AEF";
 
-/* Dark card chrome — 1px light-grey hairline border + soft drop shadow */
+/* Dark card chrome - hairline border + soft drop shadow */
 const CARD =
   "rounded-lg bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.10),0_18px_44px_rgba(0,0,0,0.14)] dark:bg-[#111114] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.18),0_18px_44px_rgba(0,0,0,0.55)]";
+
+/* Top-right border light-edge - a 1px gradient-filled border isolated with the
+   mask-composite trick (same technique as the Enterprise Control cards, oriented
+   to the top-right corner instead of the top-left). Host must be `relative` and
+   rounded; renders nothing but the lit border ring. */
+function CornerEdge() {
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none absolute inset-0 z-[1] rounded-[inherit]"
+      style={{
+        padding: "1px",
+        background:
+          "linear-gradient(225deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.18) 20%, rgba(255,255,255,0) 46%)",
+        WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+        mask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+        WebkitMaskComposite: "xor",
+        maskComposite: "exclude",
+      }}
+    />
+  );
+}
 
 type Key = keyof typeof ACCENT;
 
@@ -52,7 +74,7 @@ const FEATURES: Feature[] = [
   {
     key: "ai",
     title: "AI",
-    desc: "Governed AI execution: tokens, models, agents, and GPUs — policy set before the request, metered during, ROI evidence after. This is AIX.",
+    desc: "Governed AI execution: tokens, models, agents, and GPUs: policy set before the request, metered during, ROI evidence after. This is AIX.",
     accent: ACCENT.ai,
     lineItems: ["Tokens", "Models", "Agents"],
     users: "AI & platform teams",
@@ -137,16 +159,18 @@ export function FeatureShowcase() {
           One platform · Five domains
         </span>
 
-        <h2 className="cv-h2 mt-5 text-cv-ink">
-          Every domain of technology spend, one record.
-        </h2>
-        <p className="cv-body-lg mt-4 text-cv-muted">
-          Cloud taught enterprises what ungoverned spend costs. AI is repeating
-          it faster. CloudVerse puts every domain on one record — for AI and
-          engineering we sit at the execution path itself; for cloud, data, and
-          SaaS we make every dollar accountable with allocation, chargeback, and
-          evidence.
-        </p>
+        <div className="mt-5 flex flex-col lg:flex-row lg:items-start lg:gap-16">
+          <h2 className="cv-h2 flex-1 text-cv-ink">
+            Every domain of technology spend, one record.
+          </h2>
+          <p className="cv-body-lg mt-4 flex-1 text-cv-muted lg:mt-1">
+            Cloud taught enterprises what ungoverned spend costs. AI is repeating
+            it faster. CloudVerse puts every domain on one record: for AI and
+            engineering we sit at the execution path itself; for cloud, data, and
+            SaaS we make every dollar accountable with allocation, chargeback, and
+            evidence.
+          </p>
+        </div>
 
         <div className="mt-12 grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
           {/* ── LEFT: tab list ── */}
@@ -166,7 +190,7 @@ export function FeatureShowcase() {
                   >
                     <span className="flex items-center gap-2.5">
                       <span
-                        className="text-[15px] font-semibold transition-colors duration-300"
+                        className="text-xl font-semibold transition-colors duration-300"
                         style={{
                           color: isActive
                             ? "hsl(var(--cv-ink))"
@@ -177,7 +201,7 @@ export function FeatureShowcase() {
                       </span>
                     </span>
                     <span
-                      className="mt-1.5 block text-[13px] leading-relaxed transition-opacity duration-300"
+                      className="mt-1.5 block text-[15px] leading-relaxed transition-opacity duration-300"
                       style={{
                         color: "hsl(var(--cv-muted))",
                         opacity: isActive ? 1 : 0.6,
@@ -203,7 +227,7 @@ export function FeatureShowcase() {
 
         <p className="mt-8 text-[13px] text-cv-muted">
           The data model holds every domain to the same standard. Read-only by
-          default — connect in under 30 minutes.
+          default: connect in under 30 minutes.
         </p>
       </div>
     </section>
@@ -212,12 +236,12 @@ export function FeatureShowcase() {
 
 export default FeatureShowcase;
 
-/* ═══════════════════════ VisualFrame — the ONE shared frame ═══════════════════════
+/* ═══════════════════════ VisualFrame - the ONE shared frame ═══════════════════════
    Defined a single time so the geometry can't drift between the 5 states:
    the fixed-size container, the edge MASK-fade, and the tilted group
    (origin-top-right · scale · rotate · skew) all live here. Each visual
    renders its content as children and bleeds past the right/bottom edges,
-   fading out via MASK — never hard-clipped. Only the children cross-fade;
+   fading out via MASK - never hard-clipped. Only the children cross-fade;
    the frame's bounding box, tilt and fade are identical for every state. */
 
 const PANEL = "absolute right-0 top-0 w-[600px]"; // unified panel anchor + width
@@ -288,14 +312,15 @@ function Chevron() {
   );
 }
 
-/* ═══════════════════════════ Cloud — metrics cards ═══════════════════════════ */
+/* ═══════════════════════════ Cloud - metrics cards ═══════════════════════════ */
 
 function CloudState() {
   const times = ["06 PM", "09 PM", "12 AM", "03 AM", "06 AM", "09 AM", "12 PM", "03 PM"];
   return (
     <>
-      {/* Top metrics card — provider spend */}
+      {/* Top metrics card - provider spend */}
       <div className={`${PANEL} p-6 text-cv-muted ${CARD}`}>
+        <CornerEdge />
         <div className="flex justify-end gap-8">
           <Legend color={ACCENT.cloud} label="AWS" value="$42.1K" />
           <Legend color={ACCENT.ai} label="Azure" value="$18.3K" />
@@ -315,9 +340,10 @@ function CloudState() {
         </div>
       </div>
 
-      {/* Second metrics card — resource lines. Staggered down + right from
+      {/* Second metrics card - resource lines. Staggered down + right from
           card 1 so it reads as a distinct cascading surface (own shadow). */}
       <div className={`absolute top-[252px] right-[-56px] w-[600px] p-6 text-cv-muted ${CARD}`}>
+        <CornerEdge />
         <div className="flex justify-end gap-8">
           <Legend color="#94A3B8" label="Compute" value="$31.4K" />
           <Legend color="#FFB224" label="Storage" value="$12.7K" />
@@ -337,10 +363,11 @@ function CloudState() {
         </div>
       </div>
 
-      {/* Floating tooltip — straddles the seam between the two cards, centered */}
+      {/* Floating tooltip - straddles the seam between the two cards, centered */}
       <div
-        className="absolute top-[212px] right-[266px] hidden divide-y divide-cv-line/70 dark:divide-white/[0.06] rounded-lg bg-cv-card dark:bg-[#141418] text-cv-muted shadow-[0_0_0_1px_rgba(255,255,255,0.08),8px_12px_28px_rgba(0,0,0,0.5)] sm:block"
+        className="absolute top-[212px] right-[266px] hidden overflow-hidden divide-y divide-cv-line/70 dark:divide-white/[0.06] rounded-lg bg-cv-card dark:bg-[#141418] text-cv-muted shadow-[0_0_0_1px_rgba(255,255,255,0.08),8px_12px_28px_rgba(0,0,0,0.5)] sm:block"
       >
+        <CornerEdge />
         <div className="px-4 py-2 font-medium text-cv-ink">09:45 AM</div>
         <div className="space-y-2 px-4 py-3">
           {[
@@ -396,15 +423,16 @@ function LineChart({ series }: { series: { color: string; pts: string }[] }) {
   );
 }
 
-/* ═══════════════════════════ AI — log stream ═══════════════════════════ */
+/* ═══════════════════════════ AI - log stream ═══════════════════════════ */
 
 function AiState() {
   return (
     <div className={`${PANEL} space-y-0.5 overflow-hidden p-4 font-mono text-[13px] text-cv-muted ${CARD}`}>
+      <CornerEdge />
       <AiLog time="14:02:11" label="gpt-4o · agent:research-bot" tokens="1,204 tokens" status="DONE" />
       <AiLog time="14:03:47" label="claude-opus · agent:support-bot" tokens="890 tokens" status="DONE" />
 
-      {/* Flagged row — contained: timestamp shrinks-0, detail block flexes
+      {/* Flagged row - contained: timestamp shrinks-0, detail block flexes
           and wraps within the card; nothing runs past the edges. */}
       <div className="flex gap-3 rounded-md border border-[#ff003f]/15 bg-[#ff003f]/[0.08] p-1.5 text-[#ff5470]/70">
         <p className="shrink-0">
@@ -481,7 +509,7 @@ function AiLog({
   );
 }
 
-/* ═══════════════════════════ Data — run history ═══════════════════════════ */
+/* ═══════════════════════════ Data - run history ═══════════════════════════ */
 
 function DataState() {
   const rows = [
@@ -495,6 +523,7 @@ function DataState() {
 
   return (
     <div className={`${PANEL} divide-y divide-cv-line/70 dark:divide-white/[0.06] text-cv-muted ${CARD}`}>
+      <CornerEdge />
       {rows.map((r) => (
         <div key={r.label} className="p-1">
           <div className="group flex items-center justify-between rounded-md py-2 pr-6 pl-4 hover:bg-cv-ink/[0.05]">
@@ -552,12 +581,13 @@ function RunStatus({ status }: { status: "progress" | "done" | "failed" }) {
   );
 }
 
-/* ═══════════════════════════ SaaS — command palette ═══════════════════════════ */
+/* ═══════════════════════════ SaaS - command palette ═══════════════════════════ */
 
 function SaasState() {
   return (
     <div className={`${PANEL} rounded-lg bg-white dark:bg-[#111114] p-1 shadow-[0_0_0_1px_rgba(255,255,255,0.18),0_18px_44px_rgba(0,0,0,0.55)]`}>
-      <div className="overflow-hidden rounded-lg bg-cv-card dark:bg-[#141418] shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_0_0_7px_#0c0c0f,0_0_0_8px_rgba(255,255,255,0.06)]">
+      <div className="relative overflow-hidden rounded-lg bg-cv-card dark:bg-[#141418] shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_0_0_7px_#0c0c0f,0_0_0_8px_rgba(255,255,255,0.06)]">
+        <CornerEdge />
         <div className="flex items-center border-b border-white/[0.06] p-4 text-cv-muted">
           <span className="mr-2 h-6 w-0.5 animate-pulse-dot rounded-full bg-[#4D9AEF]" />
           Search subscriptions, seats, tools…
@@ -590,7 +620,7 @@ function PaletteRow({ name, meta, accent }: { name: string; meta: string; accent
   );
 }
 
-/* ═══════════════════════════ Engineering — PR cost check ═══════════════════════════ */
+/* ═══════════════════════════ Engineering - PR cost check ═══════════════════════════ */
 
 function EngState() {
   const lines = [
@@ -600,6 +630,7 @@ function EngState() {
   ];
   return (
     <div className={`${PANEL} p-4 text-cv-muted ${CARD}`}>
+      <CornerEdge />
       {/* PR header */}
       <div className="flex items-center justify-between rounded-md p-2">
         <div className="flex items-center gap-2">
@@ -663,7 +694,7 @@ function EngState() {
         ))}
       </div>
 
-      {/* Recent PR cost checks — fills the shared frame */}
+      {/* Recent PR cost checks - fills the shared frame */}
       <div className="mt-3 border-t border-white/[0.06] px-1 pt-3">
         <p className="mb-2 text-[11px] font-medium text-cv-muted">Recent cost checks</p>
         <div className="space-y-2 font-mono text-[13px]">

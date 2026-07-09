@@ -17,20 +17,20 @@ import { DEMO_URL } from "@/lib/links";
 import { GuidesResources } from "@/components/home/GuidesResources";
 
 export const metadata: Metadata = {
-  title: "CloudVerse — The Control Plane for Enterprise AI",
+  title: "CloudVerse: The Control Plane for Enterprise AI",
   description:
     "Put every AI model, agent, and dollar on one record. Route, govern, and meter your AI, and prove the ROI. Built on the FinOps platform enterprises already trust.",
   keywords: ["cloud cost management", "AI cost optimization", "FinOps", "compute economics", "enterprise AI governance", "cloud spend", "LLM cost"],
   alternates: { canonical: "/" },
   openGraph: {
-    title: "CloudVerse — The Control Plane for Enterprise AI",
+    title: "CloudVerse: The Control Plane for Enterprise AI",
     description: "Put every AI model, agent, and dollar on one record. Route, govern, and meter your AI, and prove the ROI.",
     url: "/",
-    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse — Compute Economics Platform" }],
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse: Compute Economics Platform" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "CloudVerse — The Control Plane for Enterprise AI",
+    title: "CloudVerse: The Control Plane for Enterprise AI",
     description: "Route, govern, and meter your AI. Prove the ROI. Built on the FinOps platform enterprises trust.",
   },
 };
@@ -123,11 +123,11 @@ export default function HomePage() {
           <div className="cv-container relative z-10">
             <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
               {/* Left: eyebrow + headline + CTAs */}
-              <div className="flex-1 min-w-0 lg:max-w-xl xl:max-w-2xl">
+              <div className="flex-1 min-w-0 lg:max-w-2xl xl:max-w-3xl">
                 <p className="cv-label mb-5">The Control Plane for Enterprise AI and Compute</p>
-                <h1 className="cv-h1 text-cv-ink max-w-xl">
+                <h1 className="cv-h1 text-cv-ink max-w-3xl">
                   Own every dollar.<br />
-                  <span className="text-cv-blue dark:text-cv-blue-light">Govern every AI execution.</span>
+                  <span className="text-cv-blue dark:text-cv-blue-light lg:whitespace-nowrap">Govern every AI execution.</span>
                 </h1>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-hero-demo">
@@ -142,7 +142,7 @@ export default function HomePage() {
               {/* Right: subhead + utility links */}
               <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-sm shrink-0">
                 <p className="cv-body text-cv-ink/70">
-                  One ledger for every dollar of cloud, AI, data, SaaS, and engineering spend — each entry tied to the team, the workload, and the decision that caused it. Governance before the request runs. Evidence after it does.
+                  One ledger for every dollar of cloud, AI, data, SaaS, and engineering spend, each entry tied to the team, the workload, and the decision that caused it. Governance before the request runs. Evidence after it does.
                 </p>
                 <div className="mt-5 flex flex-col gap-2">
                   <Link href="/platform/aix" className="text-sm text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-2 transition-colors flex items-center gap-1" data-testid="link-hero-platform">
@@ -174,7 +174,7 @@ export default function HomePage() {
                 className="flex flex-col items-center justify-center rounded-2xl border border-cv-ink/10 dark:border-white/10 px-8 py-12 text-center bg-white/40 dark:bg-white/5 backdrop-blur-sm"
               >
                 <CountUpStat value={s.v} className="font-mono text-5xl lg:text-6xl font-bold text-cv-ink tracking-tight" />
-                <p className="mt-4 text-sm font-medium text-cv-muted tracking-wide">{s.label}</p>
+                <p className="mt-4 text-sm font-semibold text-cv-muted">{s.label}</p>
               </div>
             ))}
           </div>
@@ -231,7 +231,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Logos marquee — two rows of app-icon tiles */}
+          {/* Logos marquee - two rows of app-icon tiles */}
           <IntegrationsMarquee />
 
           {/* Trust line + CTA */}

@@ -46,10 +46,10 @@ export function GuidesResources() {
               <span className="text-[11px] font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8] mb-4">
                 {g.eyebrow}
               </span>
-              <h3 className="text-base font-semibold text-cv-ink leading-snug flex-1">
+              <h3 className="text-lg font-semibold text-cv-ink leading-snug flex-1">
                 {g.title}
               </h3>
-              <p className="mt-3 text-sm text-cv-ink/55 leading-relaxed">
+              <p className="mt-3 text-base text-cv-ink/55 leading-relaxed">
                 {g.body}
               </p>
               <span className="mt-5 inline-flex items-center gap-1 text-xs font-medium text-[#1664C0] dark:text-[#7CB8F8] group-hover:gap-2 transition-all">

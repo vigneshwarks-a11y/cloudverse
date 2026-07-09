@@ -2,7 +2,7 @@ import Link from "next/link";
 import { NAV, DEMO_URL } from "@/lib/links";
 import { PixelMosaic } from "@/components/PixelMosaic";
 
-// Spreads the mosaic across the top band — densest at the top-left, fading
+// Spreads the mosaic across the top band - densest at the top-left, fading
 // down and toward the right (box-relative so it scales with the footer height).
 const FOOTER_MOSAIC_MASK =
   "radial-gradient(125% 145% at 0% 0%, #000 0%, #000 16%, rgba(0,0,0,0.55) 40%, transparent 66%)";
@@ -10,12 +10,12 @@ const FOOTER_MOSAIC_MASK =
 export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-cv-surface border-t border-cv-line pt-14 pb-8" data-testid="site-footer">
-      {/* Pixel-mosaic texture — top-left accent, matching the closing CTA band */}
+      {/* Pixel-mosaic texture - top-left accent, matching the closing CTA band */}
       <PixelMosaic
         patternId="cv-footer-mosaic"
         lightColor="#4C67D4"
         darkColor="#182566"
-        className="pointer-events-none absolute inset-0 h-full w-full"
+        className="pointer-events-none absolute inset-0 h-full w-full opacity-30 dark:opacity-100"
         style={{ WebkitMaskImage: FOOTER_MOSAIC_MASK, maskImage: FOOTER_MOSAIC_MASK }}
       />
 

@@ -4,12 +4,12 @@ import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 
 export const metadata: Metadata = {
-  title: "Integrations — Connects to the Stack Your Teams Already Use | CloudVerse",
+  title: "Integrations: Connects to the Stack Your Teams Already Use | CloudVerse",
   description: "Add your integration once. CloudVerse handles routing, attribution, and cost tracking across all of them. No code changes when you add a new provider.",
   keywords: ["cloud integrations", "AWS integration", "Snowflake integration", "OpenAI cost tracking", "cloud provider connectors"],
   alternates: { canonical: "/integrations" },
   openGraph: {
-    title: "CloudVerse Integrations — Connects to Your Entire Stack",
+    title: "CloudVerse Integrations: Connects to Your Entire Stack",
     description: "Add your integration once. CloudVerse handles routing, attribution, and cost tracking across all of them.",
     url: "/integrations",
     images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse Integrations" }],

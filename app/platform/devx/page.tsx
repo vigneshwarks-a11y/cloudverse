@@ -10,20 +10,20 @@ import DevxPrExample from "@/components/product/DevxPrExample";
 import CostGates from "@/components/product/CostGates";
 
 export const metadata: Metadata = {
-  title: "DevX — Catch Cost Regressions Before They Reach Production | CloudVerse",
+  title: "DevX: Catch Cost Regressions Before They Reach Production | CloudVerse",
   description:
     "Every infrastructure PR gets an inline cost impact comment before reviewers see it. Engineers see what their changes cost at the moment they can still change something.",
   keywords: ["infrastructure cost review", "PR cost analysis", "cloud cost drift", "FinOps developer tools", "shift-left cost governance", "IaC cost"],
   alternates: { canonical: "/platform/devx" },
   openGraph: {
-    title: "DevX — Catch Cost Regressions Before They Reach Production",
+    title: "DevX: Catch Cost Regressions Before They Reach Production",
     description: "Every infrastructure PR gets an inline cost impact comment before reviewers see it. Engineers see costs when they can still change something.",
     url: "/platform/devx",
-    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse DevX — Developer-First Cost Governance" }],
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse DevX: Developer-First Cost Governance" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DevX — Catch Cost Regressions Before They Reach Production",
+    title: "DevX: Catch Cost Regressions Before They Reach Production",
     description: "Every infrastructure PR gets an inline cost impact comment. See costs before they hit production.",
   },
 };
@@ -162,7 +162,7 @@ export default function DevXPage() {
               </ul>
             </div>
 
-            {/* Business — primary focal point (CloudVerse brand blue) */}
+            {/* Business - primary focal point (CloudVerse brand blue) */}
             <div
               className="relative flex h-full flex-col rounded-3xl border-2 p-8 lg:p-10 lg:z-10"
               style={{

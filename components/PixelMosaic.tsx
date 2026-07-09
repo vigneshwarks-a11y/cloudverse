@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 
 /**
- * Generated pixel-mosaic texture — a dense grid of small squares at pseudo-random
+ * Generated pixel-mosaic texture - a dense grid of small squares at pseudo-random
  * opacities (mostly lighter, some darker, a few empty cells). Rendered as an inline
  * SVG pattern so it inherits any color and needs no static asset.
  *
@@ -10,8 +10,8 @@ import type { CSSProperties } from "react";
  */
 
 const TILE = 320; // pattern tile size (px)
-const PITCH = 20; // grid cell size (spacing between pixels — unchanged)
-const SQUARE = 11; // square size — smaller pixels, same pitch
+const PITCH = 20; // grid cell size (spacing between pixels - unchanged)
+const SQUARE = 11; // square size - smaller pixels, same pitch
 
 const PATTERN_CELLS = (() => {
   const cells: { x: number; y: number; o: number; dark: boolean }[] = [];

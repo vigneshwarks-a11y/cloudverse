@@ -28,7 +28,7 @@ const TESTIMONIALS: Testimonial[] = [
     accentColor: "#1664C0",
     quote: '"129 applications and Rp8.77B in cloud spend, across four clouds, with no reliable owner. CloudVerse mapped spend to the way the business actually works and surfaced Rp964.80M in savings before any optimization work began."',
     name: "Southeast Asian digital & telecommunications group",
-    title: "Multi-cloud estate — AWS, Huawei, Google Cloud, Cloudflare",
+    title: "Multi-cloud estate: AWS, Huawei, Google Cloud, Cloudflare",
     initials: "TG",
     whyLabel: "cloudverse",
     tags: [
@@ -80,8 +80,45 @@ function Avatar({ initials, color, size = 36 }: { initials: string; color: strin
   );
 }
 
-function SingleProgress({ active, running, duration }: {
-  active: number; running: boolean; duration: number;
+// Large, heavily-blurred rotated blue blob — the moody ambient glow used on the
+// Enterprise Control quote cards, sized to bleed across the whole open card.
+function AmbientGlow() {
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div
+        className="absolute"
+        style={{
+          left: "-12%",
+          top: "8%",
+          width: "78%",
+          height: "82%",
+          borderRadius: 240,
+          filter: "blur(96px)",
+          opacity: 0.32,
+          transform: "rotate(-24deg)",
+          background: "linear-gradient(90deg, #1664C0 0%, #2278E0 100%)",
+        }}
+      />
+      <div
+        className="absolute"
+        style={{
+          right: "-14%",
+          bottom: "-6%",
+          width: "52%",
+          height: "70%",
+          borderRadius: 200,
+          filter: "blur(90px)",
+          opacity: 0.2,
+          transform: "rotate(18deg)",
+          background: "linear-gradient(90deg, #2278E0 0%, #1664C0 100%)",
+        }}
+      />
+    </div>
+  );
+}
+
+function SingleProgress({ active, running, duration, className = "" }: {
+  active: number; running: boolean; duration: number; className?: string;
 }) {
   const [fillPct, setFillPct] = useState(0);
   const startRef = useRef<number | null>(null);
@@ -103,9 +140,9 @@ function SingleProgress({ active, running, duration }: {
   }, [running, duration, active]);
 
   return (
-    <div className="h-0.5 w-24 rounded-full bg-cv-ink/15 overflow-hidden">
+    <div className={`h-1 overflow-hidden rounded-full bg-cv-ink/[0.08] ${className}`}>
       <div
-        className="h-full rounded-full bg-cv-ink/70"
+        className="h-full rounded-full bg-cv-ink/45"
         style={{ width: `${fillPct}%`, transition: "none" }}
       />
     </div>
@@ -163,7 +200,7 @@ export function TestimonialsCarousel() {
   }, [active, entered, hovered, busy, advance]);
 
   // Below this width there's no room to show collapsed side-strips next to
-  // the active card without crushing its content — show only the active
+  // the active card without crushing its content - show only the active
   // card, full width, and let the dots below handle navigation.
   const isMobile = containerW > 0 && containerW < 640;
 
@@ -196,7 +233,7 @@ export function TestimonialsCarousel() {
         <div
           ref={containerRef}
           className="flex gap-0 sm:gap-3"
-          style={{ minHeight: 360 }}
+          style={{ minHeight: 420 }}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
@@ -227,16 +264,16 @@ export function TestimonialsCarousel() {
                 }}
               >
                 {/* ── Background ── */}
+                <div className="absolute inset-0" style={{ background: "hsl(var(--cv-surface))" }} />
+
+                {/* ── Active-card decoration: ambient glow ── */}
                 <div
-                  className="absolute inset-0 transition-colors duration-500"
-                  style={{
-                    background: contentVisible
-                      ? `radial-gradient(ellipse 80% 60% at 20% 0%, #1664C055 0%, transparent 60%),
-                         radial-gradient(ellipse 60% 80% at 80% 100%, #2278E030 0%, transparent 55%),
-                         hsl(var(--cv-surface))`
-                      : "hsl(var(--cv-surface))",
-                  }}
-                />
+                  className="absolute inset-0 transition-opacity duration-500"
+                  style={{ opacity: contentVisible ? 1 : 0 }}
+                  aria-hidden
+                >
+                  <AmbientGlow />
+                </div>
 
                 {/* ── Collapsed strip (always rendered, fades out when active) ── */}
                 <button
@@ -262,16 +299,11 @@ export function TestimonialsCarousel() {
                     </span>
                   </div>
 
-                  {/* Square rounded avatar pinned to bottom */}
+                  {/* Initials avatar pinned to bottom */}
                   <div className="mt-auto">
                     <div
-                      className="rounded-xl overflow-hidden flex items-center justify-center text-white font-semibold select-none"
-                      style={{
-                        width: 42,
-                        height: 42,
-                        background: ct.accentColor,
-                        fontSize: 14,
-                      }}
+                      className="flex items-center justify-center rounded-xl font-semibold text-white select-none"
+                      style={{ width: 42, height: 42, background: ct.accentColor, fontSize: 14 }}
                     >
                       {ct.initials}
                     </div>
@@ -289,10 +321,10 @@ export function TestimonialsCarousel() {
                   }}
                 >
                   {/* Top bar */}
-                  <div className="flex items-center justify-between px-4 sm:px-7 pt-5 sm:pt-6 pb-3 sm:pb-4 shrink-0">
-                    <div className="flex items-center gap-2 min-w-0">
+                  <div className="flex items-center justify-between gap-4 px-4 sm:px-7 pt-5 sm:pt-6 pb-3 sm:pb-4 shrink-0">
+                    <div className="flex items-center gap-2 min-w-0 shrink-0">
                       <div
-                        className="h-7 w-7 rounded-md flex items-center justify-center text-white text-xs font-bold shrink-0"
+                        className="flex h-7 w-7 items-center justify-center rounded-md text-xs font-bold text-white shrink-0"
                         style={{ background: ct.accentColor }}
                       >
                         {ct.companyInitial}
@@ -303,12 +335,13 @@ export function TestimonialsCarousel() {
                       active={active}
                       running={entered && !hovered && !busy}
                       duration={CYCLE_MS}
+                      className="w-24 shrink-0"
                     />
                   </div>
 
                   {/* Quote */}
-                  <div className="flex-1 px-4 sm:px-7 py-2 flex items-end overflow-hidden">
-                    <p className="text-cv-ink/85 text-lg lg:text-xl leading-relaxed max-w-2xl">
+                  <div className="flex-1 px-4 sm:px-7 py-2 flex items-center overflow-hidden">
+                    <p className="text-cv-ink/90 text-[16px] sm:text-[20px] lg:text-[26px] leading-snug max-w-5xl">
                       {ct.quote}
                     </p>
                   </div>

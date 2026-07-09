@@ -10,19 +10,19 @@ import { FaqBlock } from "@/components/FaqBlock";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
-  title: "For Platform Engineering — Cost Gates Engineers Actually Want to Use | CloudVerse",
+  title: "For Platform Engineering: Cost Gates Engineers Actually Want to Use | CloudVerse",
   description: "PR-level cost diffs, policy-as-code, and right-sizing recommendations in your IaC pipeline. Quantified savings rolled into FinOps.",
   keywords: ["platform engineering FinOps", "IaC cost management", "policy-as-code cost", "infrastructure right-sizing", "cloud cost gates", "PR cost diff"],
   alternates: { canonical: "/solutions/platform-eng" },
   openGraph: {
-    title: "For Platform Engineering — Cost Gates Engineers Actually Want to Use",
+    title: "For Platform Engineering: Cost Gates Engineers Actually Want to Use",
     description: "PR-level cost diffs, policy-as-code, and right-sizing recommendations in your IaC pipeline.",
     url: "/solutions/platform-eng",
     images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse for Platform Engineering" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "For Platform Engineering — Cost Gates Engineers Want to Use",
+    title: "For Platform Engineering: Cost Gates Engineers Want to Use",
     description: "PR-level cost diffs, policy-as-code, and right-sizing recommendations in your IaC pipeline.",
   },
 };

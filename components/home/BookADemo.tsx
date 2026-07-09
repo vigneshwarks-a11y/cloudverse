@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowRight, Calendar } from "@solar-icons/react";
 import { DEMO_URL } from "@/lib/links";
 
-// Scattered logo bubbles — [src, size, top%, left%, opacity, delay]
+// Scattered logo bubbles - [src, size, top%, left%, opacity, delay]
 const BUBBLES: [string, number, number, number, number, number][] = [
   ["/legacy/integration/awstop.svg",      72,  8,  62, 1.00, 0],
   ["/legacy/integration/Azuretop.svg",    64, 22,  80, 1.00, 60],

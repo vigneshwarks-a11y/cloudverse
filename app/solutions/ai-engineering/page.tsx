@@ -9,19 +9,19 @@ import { FaqBlock } from "@/components/FaqBlock";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
-  title: "For AI Engineering — Run Every AI Workload Where It Costs Least and Runs Best | CloudVerse",
+  title: "For AI Engineering: Run Every AI Workload Where It Costs Least and Runs Best | CloudVerse",
   description: "Live cost-quality routing across 8+ GPU and LLM providers. Policy-bound at execution. FinOps attribution included.",
   keywords: ["AI engineering cost", "LLM provider routing", "GPU cost optimization", "AI FinOps", "machine learning cost management"],
   alternates: { canonical: "/solutions/ai-engineering" },
   openGraph: {
-    title: "For AI Engineering — Run Every AI Workload Where It Costs Least",
+    title: "For AI Engineering: Run Every AI Workload Where It Costs Least",
     description: "Live cost-quality routing across 8+ GPU and LLM providers. Policy-bound at execution. FinOps attribution included.",
     url: "/solutions/ai-engineering",
     images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse for AI Engineering Teams" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "For AI Engineering — Run AI Workloads Where They Cost Least",
+    title: "For AI Engineering: Run AI Workloads Where They Cost Least",
     description: "Live cost-quality routing across 8+ GPU and LLM providers. FinOps attribution included.",
   },
 };

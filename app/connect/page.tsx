@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle } from "@solar-icons/react";
 
 export const metadata: Metadata = {
-  title: "Book a Demo — CloudVerse",
+  title: "Book a Demo: CloudVerse",
   description:
     "Connect your first cloud account in under 30 minutes. Most teams have their first non-obvious finding the same day.",
   alternates: { canonical: "/connect" },
