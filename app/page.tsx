@@ -219,12 +219,8 @@ export default function HomePage() {
 
           {/* Heading */}
           <div className="text-center">
-            <h2
-              className="font-display font-bold tracking-tight text-cv-ink mx-auto max-w-2xl"
-              style={{ fontSize: "clamp(30px, 4.2vw, 52px)", lineHeight: 1.15 }}
-            >
-              Connects to the stack{" "}
-              <span className="italic text-cv-blue dark:text-cv-blue-light">your teams</span> already run.
+            <h2 className="cv-h2 text-cv-ink mx-auto max-w-2xl">
+              Connects to the stack your teams already run.
             </h2>
             <p className="mt-5 cv-body text-cv-ink/60 max-w-lg mx-auto">
               Cloud, models, GPUs, data warehouses, and CI, connected once.
@@ -254,7 +250,7 @@ export default function HomePage() {
 
 
       {/* FAQ */}
-      <section className="cv-section bg-cv-surface">
+      <section className="cv-section bg-cv-surface overflow-hidden">
         <div className="cv-container">
           <FaqBlock
             items={HOME_FAQS}

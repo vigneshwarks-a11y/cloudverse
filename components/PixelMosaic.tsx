@@ -1,21 +1,35 @@
-import type { CSSProperties } from "react";
-
 /**
- * Generated pixel-mosaic texture - a dense grid of small squares at pseudo-random
- * opacities (mostly lighter, some darker, a few empty cells). Rendered as an inline
- * SVG pattern so it inherits any color and needs no static asset.
+ * Generated pixel-mosaic texture — a strict, uniform grid of equal-size squares
+ * separated by a thin "grout" gap. Two coverage models:
+ *
+ *  - sparse (default, CTA band): most cells sit at the base colour (blend in);
+ *    a scattered ~13% get a subtle lighter/darker shade, so the field reads as
+ *    a faint tile texture with sparse accents.
+ *  - full (`full` prop, footer): every cell renders a square at a varied
+ *    brightness, giving a continuous woven texture. Pair with a directional
+ *    `maskImage` (e.g. top→bottom) to fade it out across the section.
+ *
+ * A subset of cells twinkle via SMIL `<animate>` (not CSS) because CSS
+ * animation inside an SVG <pattern> does not repaint the tiled output in
+ * Safari/WebKit — SMIL does, in every browser.
  *
  * Deterministic (computed once at module load) so server markup is stable.
- * Fade it by passing a CSS `maskImage` via `style`; caller positions/sizes it.
  */
 
-const TILE = 320; // pattern tile size (px)
-const PITCH = 20; // grid cell size (spacing between pixels - unchanged)
-const SQUARE = 11; // square size - smaller pixels, same pitch
+const TILE = 320; // pattern tile size (px) — 320 / PITCH must be a whole number
+const PITCH = 16; // grid cell size (square + grout)
+const SQUARE = 13; // square size — leaves a consistent ~3px grout line
 
-const PATTERN_CELLS = (() => {
-  const cells: { x: number; y: number; o: number; dark: boolean }[] = [];
-  let seed = 20240607;
+// Sparse model: share of cells that get a visible shade.
+const ACCENT_RATIO = 0.16;
+
+type Role = "base" | "light" | "dark";
+type Flick = "dim" | "glow" | null;
+type Cell = { x: number; y: number; o: number; role: Role; flick: Flick; dur: number; delay: number };
+
+function buildCells(mode: "sparse" | "full"): Cell[] {
+  const cells: Cell[] = [];
+  let seed = mode === "full" ? 99811 : 20240607;
   const rand = () => {
     seed = (seed * 1103515245 + 12345) & 0x7fffffff;
     return seed / 0x7fffffff;
@@ -23,36 +37,84 @@ const PATTERN_CELLS = (() => {
   const n = TILE / PITCH;
   for (let y = 0; y < n; y++) {
     for (let x = 0; x < n; x++) {
-      if (rand() < 0.1) continue; // ~10% empty cells
-      const dark = rand() > 0.62; // ~38% darker, rest lighter
-      const o = dark ? 0.05 + rand() * 0.13 : 0.04 + rand() * 0.2;
-      cells.push({ x: x * PITCH, y: y * PITCH, o, dark });
+      let o: number;
+      let role: Role = "base";
+      let flick: Flick = null;
+      let dur = 0;
+      let delay = 0;
+
+      if (mode === "full") {
+        // Full coverage: every cell filled, brightness varies per cell. The
+        // top→bottom fade is applied by the caller's mask, not baked in here.
+        o = 0.2 + rand() * 0.5; // 0.20–0.70
+        role = "light";
+        if (rand() < 0.15) {
+          flick = "dim";
+          dur = 3 + rand() * 3;
+          delay = rand() * 4;
+        }
+      } else {
+        const r = rand();
+        if (r < ACCENT_RATIO) {
+          // Sparse accent: semi-transparent so it blends into the band (paired
+          // with a multiply blend on the layer) rather than sitting as a block.
+          const dark = rand() < 0.5;
+          role = dark ? "dark" : "light";
+          o = 0.5 + rand() * 0.28; // 0.50–0.78
+          flick = dark ? "dim" : "glow";
+          dur = 3 + rand() * 3;
+          delay = rand() * 4;
+        } else {
+          o = 0.26 + rand() * 0.16; // 0.26–0.42 base tiles — soft woven grid
+        }
+      }
+      cells.push({ x: x * PITCH, y: y * PITCH, o, role, flick, dur, delay });
     }
   }
   return cells;
-})();
+}
+
+const SPARSE_CELLS = buildCells("sparse");
+const FULL_CELLS = buildCells("full");
+
+// Gentle opacity keyframe endpoints for a twinkling cell.
+function flickValues(c: Cell): string {
+  if (c.flick === "glow") return `${c.o};${Math.min(1, c.o * 1.9).toFixed(3)};${c.o}`;
+  return `${c.o};${(c.o * 0.45).toFixed(3)};${c.o}`;
+}
 
 export interface PixelMosaicProps {
   /** Unique SVG pattern id (must differ between instances on the same page). */
   patternId: string;
+  /** Colour for lighter squares (and, in `full` mode, every square). */
   lightColor?: string;
+  /** Colour for darker accent squares (sparse mode). */
   darkColor?: string;
+  /** Colour for the majority "base" tiles (sparse mode; defaults to lightColor). */
+  baseColor?: string;
+  /** Fill every cell at a varied brightness instead of sparse accents. */
+  full?: boolean;
   className?: string;
-  style?: CSSProperties;
+  style?: React.CSSProperties;
 }
 
 export function PixelMosaic({
   patternId,
   lightColor = "#FFFFFF",
   darkColor = "#0A2E8C",
+  baseColor,
+  full = false,
   className,
   style,
 }: PixelMosaicProps) {
+  const base = baseColor ?? lightColor;
+  const cells = full ? FULL_CELLS : SPARSE_CELLS;
+  const fillFor = (role: Role) => (role === "dark" ? darkColor : role === "light" ? lightColor : base);
   return (
     <svg aria-hidden className={className} style={style}>
       <defs>
         <pattern id={patternId} width={TILE} height={TILE} patternUnits="userSpaceOnUse">
-          {PATTERN_CELLS.map((c, i) => (
+          {cells.map((c, i) => (
             <rect
               key={i}
               x={c.x}
@@ -60,9 +122,22 @@ export function PixelMosaic({
               width={SQUARE}
               height={SQUARE}
               rx="1"
-              fill={c.dark ? darkColor : lightColor}
+              fill={fillFor(c.role)}
               opacity={c.o}
-            />
+            >
+              {c.flick && (
+                <animate
+                  attributeName="opacity"
+                  values={flickValues(c)}
+                  keyTimes="0;0.5;1"
+                  calcMode="spline"
+                  keySplines="0.4 0 0.6 1;0.4 0 0.6 1"
+                  dur={`${c.dur}s`}
+                  begin={`${c.delay}s`}
+                  repeatCount="indefinite"
+                />
+              )}
+            </rect>
           ))}
         </pattern>
       </defs>

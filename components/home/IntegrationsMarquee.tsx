@@ -36,16 +36,16 @@ const MASK = {
 
 function Tile({ item, dup }: { item: Integ; dup?: boolean }) {
   return (
-    <div className="mr-10 flex w-[112px] shrink-0 flex-col items-center gap-3.5 sm:mr-14 sm:w-[124px]">
-      <div className="flex h-16 items-center justify-center">
+    <div className="mr-5 flex w-[64px] shrink-0 flex-col items-center gap-2.5 sm:mr-14 sm:w-[124px] sm:gap-3.5">
+      <div className="flex h-12 items-center justify-center sm:h-16">
         <img
           src={item.src}
           alt={dup ? "" : item.name}
           loading="lazy"
-          className="h-14 w-14 object-contain transition-transform duration-300 hover:scale-110"
+          className="h-11 w-11 object-contain transition-transform duration-300 hover:scale-110 sm:h-14 sm:w-14"
         />
       </div>
-      <span className="text-sm font-medium text-cv-muted whitespace-nowrap">{item.name}</span>
+      <span className="text-xs font-medium text-cv-muted whitespace-nowrap sm:text-sm">{item.name}</span>
     </div>
   );
 }

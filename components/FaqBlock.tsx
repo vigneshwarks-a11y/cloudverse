@@ -79,14 +79,17 @@ export function FaqBlock({
           DOWN and wider so it's revealed on the left, right, and bottom while the
           content card overhangs it at the top. Bold blue, same in light & dark. */}
       <div className="relative mx-auto w-full">
-        {/* Solid-colour backing layer */}
+        {/* Solid-colour backing layer. On mobile it aligns to the container
+            edge (inside the layout padding) and the card is inset instead, so
+            the blue reveal sits within the layout gutters. At sm+ it bleeds the
+            full 24px into the gutter as designed. */}
         <div
           aria-hidden
-          className="pointer-events-none absolute -inset-x-[24px] top-[24px] bottom-[-24px] rounded-[24px] bg-[#0059FF]"
+          className="pointer-events-none absolute inset-x-0 top-3 -bottom-3 rounded-[18px] bg-[#0059FF] sm:-inset-x-[24px] sm:top-[24px] sm:-bottom-[24px] sm:rounded-[24px]"
         />
 
         {/* Main content card */}
-        <div className="relative rounded-[24px] border-[1.5px] border-cv-ink/20 bg-white p-6 dark:border-white/10 dark:bg-[#151619] sm:p-10">
+        <div className="relative mx-3 rounded-[18px] border-[1.5px] border-cv-ink/20 bg-white p-6 dark:border-white/10 dark:bg-[#151619] sm:mx-0 sm:rounded-[24px] sm:p-10">
           {(title || subtitle) && (
             <div className="mb-8 text-center">
               {title && <h2 className="cv-h2 text-cv-ink">{title}</h2>}

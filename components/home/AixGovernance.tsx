@@ -40,6 +40,64 @@ function QuoteGlow() {
   );
 }
 
+/* Responsive scaler: the governance visuals are laid out at a fixed pixel
+   "design width" (absolutely-positioned cards at % widths). On columns wider
+   than `designW` the visual renders naturally (desktop stays untouched); on
+   narrower columns it renders at the full design width and is transform-scaled
+   down to fit, so every card + label stays legible instead of wrapping or
+   clipping. Height is reserved so nothing overflows the row. */
+function ScaledVisual({
+  children,
+  designW = 500,
+}: {
+  children: React.ReactNode;
+  designW?: number;
+}) {
+  const outer = useRef<HTMLDivElement>(null);
+  const inner = useRef<HTMLDivElement>(null);
+  const [state, setState] = useState<{ fixed: boolean; scale: number; height?: number }>({
+    fixed: false,
+    scale: 1,
+  });
+
+  useLayoutEffect(() => {
+    const el = outer.current;
+    const ic = inner.current;
+    if (!el || !ic) return;
+    const measure = () => {
+      const w = el.clientWidth;
+      if (w >= designW) {
+        setState((s) => (s.fixed || s.scale !== 1 ? { fixed: false, scale: 1 } : s));
+      } else {
+        const scale = w / designW;
+        const h = Math.max(ic.offsetHeight, ic.scrollHeight);
+        setState({ fixed: true, scale, height: h * scale });
+      }
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    ro.observe(ic);
+    return () => ro.disconnect();
+  }, [designW]);
+
+  return (
+    <div
+      ref={outer}
+      className="relative w-full"
+      style={state.fixed ? { height: state.height } : undefined}
+    >
+      <div
+        ref={inner}
+        className={state.fixed ? "absolute left-0 top-0 origin-top-left" : undefined}
+        style={state.fixed ? { width: designW, transform: `scale(${state.scale})` } : undefined}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
+
 /* ------------------------------------------------------------------ *
  * Block 1 - Govern AI before the spend happens (3D role-card stack)
  * ------------------------------------------------------------------ */
@@ -280,7 +338,7 @@ function MockCostVisual() {
         initial={rm ? false : { opacity: 0, y: 10 }}
         animate={show ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, delay: rm ? 0 : 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute bottom-0 left-0 z-10 w-[42%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-4 shadow-[0_12px_30px_-14px_rgba(16,24,40,0.11)] dark:shadow-[0_18px_40px_-12px_rgba(0,0,0,0.7)]"
+        className="absolute bottom-0 left-0 z-30 w-[42%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-4 shadow-[0_12px_30px_-14px_rgba(16,24,40,0.11)] dark:shadow-[0_18px_40px_-12px_rgba(0,0,0,0.7)]"
         style={EDGE_FADE}
       >
         <CardLightEdge />
@@ -1019,7 +1077,7 @@ export function AixGovernance() {
                 <Link href="/platform/aix" className="mt-3 inline-flex items-center gap-1 text-xs text-[#1664C0] hover:text-[#0e4fa0] dark:text-[#7CB8F8] dark:hover:text-[#A9C8F8] transition-colors font-medium">
                   Learn More <ArrowRight weight="Linear" size={12} />
                 </Link>
-                <div className="mt-auto"><Visual /></div>
+                <div className="mt-auto"><ScaledVisual><Visual /></ScaledVisual></div>
               </div>
             ))}
           </div>
@@ -1047,7 +1105,7 @@ export function AixGovernance() {
                 <Link href="/platform/aix" className="mt-3 inline-flex items-center gap-1 text-xs text-[#1664C0] hover:text-[#0e4fa0] dark:text-[#7CB8F8] dark:hover:text-[#A9C8F8] transition-colors font-medium">
                   Learn More <ArrowRight weight="Linear" size={12} />
                 </Link>
-                <div className="mt-auto"><Visual /></div>
+                <div className="mt-auto"><ScaledVisual><Visual /></ScaledVisual></div>
               </div>
             ))}
           </div>
@@ -1080,7 +1138,7 @@ export function AixGovernance() {
               <Link href="/platform/aix" className="mt-3 inline-flex items-center gap-1 text-xs text-[#1664C0] hover:text-[#0e4fa0] dark:text-[#7CB8F8] dark:hover:text-[#A9C8F8] transition-colors font-medium">
                 Learn More <ArrowRight weight="Linear" size={12} />
               </Link>
-              <div className="mt-auto"><MockSSOVisual /></div>
+              <div className="mt-auto"><ScaledVisual><MockSSOVisual /></ScaledVisual></div>
             </div>
           </div>
 

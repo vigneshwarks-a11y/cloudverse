@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
 /* "One system of record" - a left accordion of AIX capabilities (the active
@@ -95,7 +95,7 @@ export function AixOrchestration() {
         <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
           One system of record
         </span>
-        <h2 className="cv-h2 max-w-2xl text-cv-ink">
+        <h2 className="cv-h2 max-w-2xl text-cv-ink max-sm:text-[22px]">
           Enterprise AI is fragmented. AIX makes it one system of record.
         </h2>
         <p className="mt-4 max-w-2xl cv-body text-cv-ink/70">
@@ -147,12 +147,12 @@ export function AixOrchestration() {
                     </div>
                   </button>
 
-                  {/* auto-advance progress bar under the active item */}
+                  {/* auto-advance progress bar under the active item: solid
+                      fill that grows left-to-right */}
                   {isActive && !reduced && inView && (
                     <motion.span
                       key={`${active}-${cycle}`}
-                      className="absolute bottom-0 left-0 h-[2px] rounded-full"
-                      style={{ background: "linear-gradient(90deg, #1664C0, transparent)" }}
+                      className="absolute bottom-0 left-0 h-[2px] rounded-full bg-[#1664C0]"
                       initial={{ width: "0%" }}
                       animate={{ width: "100%" }}
                       transition={{ duration: DWELL_MS / 1000, ease: "linear" }}
@@ -209,30 +209,32 @@ export function AixOrchestration() {
                         </svg>
                       </Link>
 
-                      {/* progress bar - flat track with a gradient fill on top */}
+                      {/* auto-advance progress bar - matches the desktop loader:
+                          a muted track with a solid fill that grows and a glow
+                          riding its leading edge */}
                       {isActive && (
-                        <div className="mb-5 mt-4 h-[3px] w-full rounded-full bg-cv-line">
-                          <div className="relative h-full w-full overflow-visible rounded-full">
-                            {reduced ? (
-                              <div className="absolute inset-y-0 left-0 w-full rounded-full bg-gradient-to-r from-cv-blue to-cv-blue-light" />
-                            ) : !inView ? (
-                              <div className="absolute inset-y-0 left-0 w-0 rounded-full bg-gradient-to-r from-cv-blue to-cv-blue-light" />
-                            ) : (
-                              <motion.div
-                                key={`${active}-${cycle}`}
-                                className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-cv-blue to-cv-blue-light"
-                                initial={{ width: "0%" }}
-                                animate={{ width: "100%" }}
-                                transition={{ duration: DWELL_MS / 1000, ease: "linear" }}
-                              >
-                                {/* soft glow at the leading (filling) edge */}
-                                <span
-                                  className="absolute right-0 top-1/2 h-2.5 w-2.5 -translate-y-1/2 translate-x-1/2 rounded-full bg-cv-blue-light"
-                                  style={{ boxShadow: "0 0 10px 2px rgba(22,100,192,0.75)" }}
-                                />
-                              </motion.div>
-                            )}
-                          </div>
+                        <div className="relative mt-5 h-[2px] w-full rounded-full bg-cv-line">
+                          {reduced ? (
+                            <div className="absolute inset-y-0 left-0 w-full rounded-full bg-[#1664C0]" />
+                          ) : !inView ? (
+                            <div className="absolute inset-y-0 left-0 w-0 rounded-full bg-[#1664C0]" />
+                          ) : (
+                            <motion.div
+                              key={`${active}-${cycle}`}
+                              className="absolute inset-y-0 left-0 rounded-full bg-[#1664C0]"
+                              initial={{ width: "0%" }}
+                              animate={{ width: "100%" }}
+                              transition={{ duration: DWELL_MS / 1000, ease: "linear" }}
+                            />
+                          )}
+                        </div>
+                      )}
+
+                      {/* the dashboard visual, inside the active item — full desktop
+                          layout scaled down at a locked 16:9 ratio */}
+                      {isActive && (
+                        <div className="mb-6 mt-6">
+                          <ScaledDashboard />
                         </div>
                       )}
                     </div>
@@ -242,8 +244,11 @@ export function AixOrchestration() {
             })}
           </ul>
 
-          {/* RIGHT - dashboard mock */}
-          <Dashboard />
+          {/* RIGHT - dashboard mock (desktop; on mobile it lives inside the
+              active accordion item instead) */}
+          <div className="hidden lg:block">
+            <Dashboard />
+          </div>
         </div>
       </div>
     </section>
@@ -295,10 +300,53 @@ const META: [string, string][] = [
   ["_source", "opentelemetry"],
 ];
 
-function Dashboard() {
+/* Renders the full desktop dashboard at a fixed design width and transform-
+   scales it to fit the available column, keeping a locked 16:9 box. Used on
+   mobile so the complete visual (sidebar + logs + detail panel) shows exactly
+   as it does on desktop, only smaller — never a cropped/rearranged version. */
+function ScaledDashboard({ designW = 780 }: { designW?: number }) {
+  const outer = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(0.44);
+  useLayoutEffect(() => {
+    const el = outer.current;
+    if (!el) return;
+    const measure = () => {
+      const w = el.clientWidth;
+      if (w > 0) setScale(Math.min(1, w / designW));
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [designW]);
+  const designH = (designW * 9) / 16;
   return (
-    <div className="aspect-video w-full rounded-2xl p-[2px] shadow-[0_16px_40px_-24px_rgba(16,24,40,0.18)] dark:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.5)]" style={{ background: "rgba(150,155,165,0.45)" }}>
-      <div className="flex h-full flex-col overflow-hidden rounded-[15px] bg-white text-[#1d1d1f] dark:bg-[#0c0c0f] dark:text-[#e5e5e7]">
+    <div ref={outer} className="w-full overflow-hidden" style={{ height: designH * scale }}>
+      <div style={{ width: designW, height: designH, transform: `scale(${scale})`, transformOrigin: "top left" }}>
+        <Dashboard full />
+      </div>
+    </div>
+  );
+}
+
+function Dashboard({ full = false }: { full?: boolean }) {
+  return (
+    <div className="aspect-video w-full rounded-2xl shadow-[0_16px_40px_-24px_rgba(16,24,40,0.18)] dark:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.5)]">
+      <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-cv-line bg-white text-[#1d1d1f] dark:border-white/10 dark:bg-[#0c0c0f] dark:text-[#e5e5e7]">
+        {/* top-left linear light-edge highlight */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-30 rounded-[inherit]"
+          style={{
+            padding: "1.5px",
+            background:
+              "linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 22%, rgba(255,255,255,0) 50%)",
+            WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+            mask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+            WebkitMaskComposite: "xor",
+            maskComposite: "exclude",
+          }}
+        />
         {/* window top bar */}
         <div className="flex items-center gap-3 border-b border-black/[0.07] px-3 py-2 text-xs dark:border-white/[0.08]">
           <span className="flex items-center gap-1.5 font-semibold">
@@ -314,7 +362,7 @@ function Dashboard() {
 
         <div className="flex min-h-0 flex-1">
           {/* sidebar */}
-          <aside className="hidden w-40 shrink-0 border-r border-black/[0.06] bg-[#fafafa] p-2.5 dark:border-white/[0.06] dark:bg-[#111114] md:block">
+          <aside className={`${full ? "block" : "hidden md:block"} w-40 shrink-0 border-r border-black/[0.06] bg-[#fafafa] p-2.5 dark:border-white/[0.06] dark:bg-[#111114]`}>
             {NAV_GROUPS.map((g) => (
               <div key={g.title} className="mb-3">
                 <div className="px-2 pb-1 text-[9px] font-semibold uppercase tracking-wider text-[#a1a1a6] dark:text-[#6f6f76]">{g.title}</div>
@@ -355,7 +403,7 @@ function Dashboard() {
           </div>
 
           {/* detail panel */}
-          <div className="hidden w-[280px] shrink-0 flex-col lg:flex">
+          <div className={`${full ? "flex" : "hidden lg:flex"} w-[280px] shrink-0 flex-col`}>
             <div className="flex items-center justify-between border-b border-black/[0.06] px-3 py-2 text-[11px] dark:border-white/[0.06]">
               <span className="text-[#86868b] dark:text-[#8a8a90]">Trace ID</span>
               <span className="truncate font-mono text-[10px] text-[#1d1d1f] dark:text-white">9480ca99-d906…f8a91</span>

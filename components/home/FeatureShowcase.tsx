@@ -172,7 +172,7 @@ export function FeatureShowcase() {
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
+        <div className="mt-12 hidden items-center gap-12 lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
           {/* ── LEFT: tab list ── */}
           <ul className="space-y-1">
             {FEATURES.map((f, i) => {
@@ -217,12 +217,50 @@ export function FeatureShowcase() {
 
           {/* ── RIGHT: one shared tilted, mask-faded frame for all 5 ── */}
           <VisualFrame reduced={reduced} activeKey={current.key}>
-            {current.key === "cloud" && <CloudState />}
-            {current.key === "ai" && <AiState />}
-            {current.key === "data" && <DataState />}
-            {current.key === "saas" && <SaasState />}
-            {current.key === "eng" && <EngState />}
+            <DomainVisual k={current.key} />
           </VisualFrame>
+        </div>
+
+        {/* ── Mobile: accordion — active item reveals description + visual,
+            the rest show only their heading. ── */}
+        <div className="mt-10 lg:hidden">
+          <ul className="space-y-1">
+            {FEATURES.map((f, i) => {
+              const isActive = i === active;
+              return (
+                <li key={f.key} className={isActive ? "pb-4" : undefined}>
+                  {/* Accent line runs alongside the heading + description only,
+                      not down past the visual. */}
+                  <div
+                    className="border-l-2 pl-4"
+                    style={{ borderColor: isActive ? f.accent : "hsl(var(--cv-line))" }}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => select(i)}
+                      aria-pressed={isActive}
+                      className="block w-full py-3.5 text-left text-lg font-semibold transition-colors duration-300"
+                      style={{ color: isActive ? "hsl(var(--cv-ink))" : "hsl(var(--cv-muted))" }}
+                    >
+                      {f.title}
+                    </button>
+                    {isActive && (
+                      <p className="pb-1 text-sm leading-relaxed text-cv-muted">{f.desc}</p>
+                    )}
+                  </div>
+                  {isActive && (
+                    <div className="mt-4 pl-4">
+                      <ScaledVisual designW={600} designH={532}>
+                        <TiltedVisual reduced={reduced}>
+                          <DomainVisual k={f.key} />
+                        </TiltedVisual>
+                      </ScaledVisual>
+                    </div>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
         </div>
 
         <p className="mt-8 text-[13px] text-cv-muted">
@@ -235,6 +273,72 @@ export function FeatureShowcase() {
 }
 
 export default FeatureShowcase;
+
+/* Maps a domain key to its visual. */
+function DomainVisual({ k }: { k: Key }) {
+  switch (k) {
+    case "cloud":
+      return <CloudState />;
+    case "ai":
+      return <AiState />;
+    case "data":
+      return <DataState />;
+    case "saas":
+      return <SaasState />;
+    case "eng":
+      return <EngState />;
+    default:
+      return null;
+  }
+}
+
+/* Reproduces the desktop frame's look (edge MASK-fade + origin-top-right tilt/
+   skew) at a fixed design size, so the mobile visual matches desktop exactly —
+   just scaled by ScaledVisual. */
+function TiltedVisual({ children, reduced }: { children: React.ReactNode; reduced: boolean }) {
+  return (
+    <div className="relative h-full w-full overflow-hidden pt-24" style={reduced ? undefined : MASK}>
+      <div className={"relative origin-top-right " + (reduced ? "" : "rotate-[5deg] skew-x-[-10deg]")}>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/* Responsive wrapper: renders the fixed 600px-wide visual design and scales it
+   down (never up) to fit the available width, reserving the scaled height so it
+   never overflows. Lets the mobile layout reuse the exact desktop visuals. */
+function ScaledVisual({
+  children,
+  designW = 600,
+  designH = 540,
+}: {
+  children: React.ReactNode;
+  designW?: number;
+  designH?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(0.56);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const measure = () => setScale(Math.min(1, el.clientWidth / designW));
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [designW]);
+  return (
+    <div ref={ref} className="relative w-full overflow-hidden" style={{ height: designH * scale }}>
+      <div
+        className="absolute left-0 top-0"
+        style={{ width: designW, height: designH, transform: `scale(${scale})`, transformOrigin: "top left" }}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
 
 /* ═══════════════════════ VisualFrame - the ONE shared frame ═══════════════════════
    Defined a single time so the geometry can't drift between the 5 states:
