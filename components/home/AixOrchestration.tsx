@@ -1,127 +1,57 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
-/* "One system of record" — mirrors the FeatureShowcase recipe: a left tab list
-   of AIX capabilities and a shared tilted, mask-faded runs feed on the right
-   that cross-fades per capability. */
+/* "One system of record" — a left accordion of AIX capabilities (the active
+   one expands with copy + Learn More + an auto-advance progress bar) beside a
+   product dashboard mock (logs table + trace timeline + request/response). */
 
-const INPROGRESS = "#4D9AEF";
-const SUCCESS = "#34D399";
-const DANGER = "#FF5470";
-
-type Status = "progress" | "done" | "failed";
-type Run = { label: string; owner: string; when: string; status: Status; initial: string; avatar: string };
-
-const P = "#1664C0";
-const D = "#D97706";
-const S = "#6954D4";
-
-type Capability = {
-  key: string;
-  name: string;
-  accent: string;
-  record: string;
-  runs: Run[];
-};
+type Capability = { key: string; name: string; accent: string; record: string };
 
 const CAPABILITIES: Capability[] = [
   {
     key: "visibility",
-    name: "Visibility",
+    name: "See every asset in one system of record",
     accent: "#1664C0",
     record:
-      "One view of all of it — models, tokens, teams, projects, agents, subscriptions, and APIs — instead of a spreadsheet per provider.",
-    runs: [
-      { label: "asset:gpt-4o.support-agent", owner: "Priya Shah", when: "Just now", status: "progress", initial: "P", avatar: P },
-      { label: "asset:claude.rag-index", owner: "Dana Osei", when: "3 minutes ago", status: "done", initial: "D", avatar: D },
-      { label: "subscription:openai.enterprise", owner: "Sam Iyer", when: "9 minutes ago", status: "done", initial: "S", avatar: S },
-      { label: "api:vertex.embeddings", owner: "Priya Shah", when: "30 minutes ago", status: "done", initial: "P", avatar: P },
-      { label: "agent:billing-copilot.v3", owner: "Dana Osei", when: "1 hour ago", status: "done", initial: "D", avatar: D },
-      { label: "token-pool:azure-openai.prod", owner: "Sam Iyer", when: "3 hours ago", status: "done", initial: "S", avatar: S },
-    ],
+      "One view of models, tokens, teams, projects, agents, subscriptions, and APIs — instead of a spreadsheet per provider.",
+  },
+  {
+    key: "lifecycle",
+    name: "Observe the entire lifecycle of an agent run",
+    accent: "#6954D4",
+    record:
+      "Trace every agent action and tool call to debug and optimize complex autonomous workflows.",
   },
   {
     key: "routing",
-    name: "Routing",
-    accent: "#6954D4",
-    record:
-      "Every request is scored live on cost, latency, quality, and compliance, and the best-fit model wins automatically.",
-    runs: [
-      { label: "route:chat.tier1 → gpt-4o-mini", owner: "Priya Shah", when: "Just now", status: "progress", initial: "P", avatar: P },
-      { label: "route:summarize → claude-haiku", owner: "Dana Osei", when: "2 minutes ago", status: "done", initial: "D", avatar: D },
-      { label: "route:code.review → gpt-4o", owner: "Sam Iyer", when: "7 minutes ago", status: "done", initial: "S", avatar: S },
-      { label: "route:rag.answer → gemini-flash", owner: "Priya Shah", when: "25 minutes ago", status: "failed", initial: "P", avatar: P },
-      { label: "route:classify → llama-70b", owner: "Dana Osei", when: "1 hour ago", status: "done", initial: "D", avatar: D },
-      { label: "route:extract → gpt-4o-mini", owner: "Sam Iyer", when: "4 hours ago", status: "done", initial: "S", avatar: S },
-    ],
-  },
-  {
-    key: "optimization",
-    name: "Optimization",
+    name: "Route each request to the best-fit model",
     accent: "#0E9E7A",
     record:
-      "Find the oversized model, the wasteful prompt, and the subscription you're paying for twice — with the saving shown before you commit.",
-    runs: [
-      { label: "optimize:downsize gpt-4o → mini", owner: "Priya Shah", when: "Just now", status: "progress", initial: "P", avatar: P },
-      { label: "optimize:prompt-trim.support", owner: "Dana Osei", when: "5 minutes ago", status: "done", initial: "D", avatar: D },
-      { label: "duplicate:datadog + newrelic", owner: "Sam Iyer", when: "20 minutes ago", status: "done", initial: "S", avatar: S },
-      { label: "waste:idle-endpoint.staging", owner: "Priya Shah", when: "1 hour ago", status: "failed", initial: "P", avatar: P },
-      { label: "optimize:cache.rag-hits", owner: "Dana Osei", when: "2 hours ago", status: "done", initial: "D", avatar: D },
-      { label: "optimize:batch.embeddings", owner: "Sam Iyer", when: "5 hours ago", status: "done", initial: "S", avatar: S },
-    ],
+      "Every request is scored live on cost, latency, quality, and compliance, and the best-fit model wins automatically.",
   },
   {
     key: "unit",
-    name: "Unit economics",
+    name: "Give AI its own unit economics",
     accent: "#D97706",
     record:
-      "AI gets its own unit economics instead of numbers borrowed from infrastructure. Every run lands against a team, a feature, and a use case.",
-    runs: [
-      { label: "unit:cost-per-request.search", owner: "Priya Shah", when: "Just now", status: "progress", initial: "P", avatar: P },
-      { label: "unit:cost-per-feature.copilot", owner: "Dana Osei", when: "4 minutes ago", status: "done", initial: "D", avatar: D },
-      { label: "unit:cost-per-tenant.acme", owner: "Sam Iyer", when: "12 minutes ago", status: "done", initial: "S", avatar: S },
-      { label: "unit:margin.pro-plan", owner: "Priya Shah", when: "1 hour ago", status: "done", initial: "P", avatar: P },
-      { label: "unit:cost-per-run.nightly-eval", owner: "Dana Osei", when: "3 hours ago", status: "done", initial: "D", avatar: D },
-      { label: "unit:cost-per-seat.enterprise", owner: "Sam Iyer", when: "6 hours ago", status: "done", initial: "S", avatar: S },
-    ],
+      "Every run lands against a team, a feature, and a use case — cost-per-request, per-feature, and per-tenant, not numbers borrowed from infra.",
   },
   {
     key: "resilience",
-    name: "Resilience",
+    name: "Identify performance gaps with filtered views",
     accent: "#E05A2B",
     record:
-      "When prices shift or a provider goes down, AIX reroutes automatically. No code change when providers or prices move.",
-    runs: [
-      { label: "failover:openai → azure-openai", owner: "Priya Shah", when: "Just now", status: "progress", initial: "P", avatar: P },
-      { label: "reroute:latency-spike.us-east", owner: "Dana Osei", when: "3 minutes ago", status: "done", initial: "D", avatar: D },
-      { label: "reprice:anthropic.new-rates", owner: "Sam Iyer", when: "18 minutes ago", status: "done", initial: "S", avatar: S },
-      { label: "failover:gemini → gpt-4o", owner: "Priya Shah", when: "1 hour ago", status: "failed", initial: "P", avatar: P },
-      { label: "reroute:quota.exhausted", owner: "Dana Osei", when: "2 hours ago", status: "done", initial: "D", avatar: D },
-      { label: "reprice:volume-discount.q3", owner: "Sam Iyer", when: "5 hours ago", status: "done", initial: "S", avatar: S },
-    ],
+      "Slice runs by model, team, or route to surface the oversized model, the wasteful prompt, and the provider that just went down.",
   },
 ];
 
-const DWELL_MS = 5500;
-
-const MASK: React.CSSProperties = {
-  WebkitMaskImage:
-    "linear-gradient(to bottom,#000 55%,transparent 100%), linear-gradient(to left,#000 72%,transparent 100%)",
-  WebkitMaskComposite: "source-in",
-  maskImage:
-    "linear-gradient(to bottom,#000 55%,transparent 100%), linear-gradient(to left,#000 72%,transparent 100%)",
-  maskComposite: "intersect",
-};
-
-const PANEL = "absolute right-0 top-0 w-[600px]";
-// Theme-aware mock surface: light card in light mode, dark app-mock in dark mode.
-const CARD =
-  "rounded-2xl bg-white ring-1 ring-black/10 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.22)] dark:bg-[#0c0c0f] dark:ring-white/10 dark:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.6)]";
+const DWELL_MS = 6000;
 
 export function AixOrchestration() {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(1);
   const [reduced, setReduced] = useState(false);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -151,8 +81,6 @@ export function AixOrchestration() {
     startTimer();
   };
 
-  const current = CAPABILITIES[active];
-
   return (
     <section className="cv-section overflow-hidden bg-cv-surface2" data-testid="section-aix-orchestration">
       <div className="cv-container">
@@ -165,73 +93,74 @@ export function AixOrchestration() {
         <p className="mt-4 max-w-2xl cv-body text-cv-ink/70">
           Not a gateway that runs your routing rules. Not observability that tells you what a request
           cost after it ran. AIX gives every asset — agent, app, RAG system, model — an identity, a
-          contract, an operational record, and measurable economics. Discover · Govern · Value.
+          contract, an operational record, and measurable economics.
         </p>
 
-        <div className="mt-12 grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
-          {/* LEFT — capability tab list */}
-          <ul className="space-y-1">
+        <div className="mt-12 grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-14">
+          {/* LEFT — accordion */}
+          <ul className="divide-y divide-cv-line">
             {CAPABILITIES.map((c, i) => {
               const isActive = i === active;
               return (
-                <li key={c.key}>
+                <li key={c.key} className="relative">
                   <button
                     type="button"
                     onClick={() => select(i)}
                     aria-pressed={isActive}
-                    className="block w-full border-l-2 py-3.5 pl-5 text-left transition-colors duration-300"
-                    style={{ borderColor: isActive ? c.accent : "hsl(var(--cv-line))" }}
+                    className="block w-full py-5 text-left"
                   >
                     <span
-                      className="text-[15px] font-semibold transition-colors duration-300"
+                      className="text-lg font-semibold leading-snug transition-colors duration-300"
                       style={{ color: isActive ? "hsl(var(--cv-ink))" : "hsl(var(--cv-muted))" }}
                     >
                       {c.name}
                     </span>
-                    {isActive && (
-                      <span className="mt-1.5 block text-[13px] leading-relaxed text-cv-muted">
-                        {c.record}
-                      </span>
-                    )}
+
+                    <div
+                      className="grid transition-[grid-template-rows,opacity] duration-500 ease-out"
+                      style={{
+                        gridTemplateRows: isActive ? "1fr" : "0fr",
+                        opacity: isActive ? 1 : 0,
+                      }}
+                    >
+                      <div className="overflow-hidden">
+                        <p className="mt-3 max-w-md text-sm leading-relaxed text-cv-muted">{c.record}</p>
+                        <Link
+                          href="/platform/aix"
+                          className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-cv-blue dark:text-cv-blue-light"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          Learn More
+                          <svg viewBox="0 0 24 24" className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                            <path d="M9 6l6 6-6 6" />
+                          </svg>
+                        </Link>
+                      </div>
+                    </div>
                   </button>
+
+                  {/* auto-advance progress bar under the active item */}
+                  {isActive && !reduced && (
+                    <motion.span
+                      key={active}
+                      className="absolute bottom-0 left-0 h-[2px] rounded-full"
+                      style={{ background: `linear-gradient(90deg, ${c.accent}, transparent)` }}
+                      initial={{ width: "0%" }}
+                      animate={{ width: "100%" }}
+                      transition={{ duration: DWELL_MS / 1000, ease: "linear" }}
+                    />
+                  )}
+                  {isActive && reduced && (
+                    <span className="absolute bottom-0 left-0 h-[2px] w-full rounded-full" style={{ background: c.accent }} />
+                  )}
                 </li>
               );
             })}
           </ul>
 
-          {/* RIGHT — shared tilted, mask-faded runs feed */}
-          <div className="relative -mx-8 h-[420px] cursor-default select-none sm:h-[532px] lg:mx-0">
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div
-                key={current.key}
-                className="absolute inset-0"
-                initial={reduced ? false : { opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: reduced ? 0 : 0.3 }}
-              >
-                <div
-                  className="relative -mx-8 box-content h-full overflow-hidden px-8 pt-24"
-                  style={reduced ? undefined : MASK}
-                >
-                  <div
-                    className={
-                      "relative origin-top-right scale-[0.72] sm:scale-100 " +
-                      (reduced ? "" : "rotate-[5deg] skew-x-[-10deg]")
-                    }
-                  >
-                    <RunFeed runs={current.runs} />
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+          {/* RIGHT — dashboard mock */}
+          <Dashboard />
         </div>
-
-        <p className="mt-8 text-[13px] text-cv-muted">
-          Every route is scored live on cost, latency, quality, and compliance — no code change when
-          prices or providers move.
-        </p>
       </div>
     </section>
   );
@@ -239,67 +168,170 @@ export function AixOrchestration() {
 
 export default AixOrchestration;
 
-function RunFeed({ runs }: { runs: Run[] }) {
+/* ------------------------------------------------------------------ *
+ * Product dashboard mock (Logs · Trace · Request details)
+ * ------------------------------------------------------------------ */
+
+const NAV_GROUPS: { title: string; items: string[] }[] = [
+  { title: "Observability", items: ["Analytics", "Logs", "Exports"] },
+  { title: "AI Gateway", items: ["Configs", "Virtual Keys", "Guardrails"] },
+  { title: "Prompt Engineering", items: ["Playground", "Prompts", "Prompt Partials"] },
+];
+
+const LOGS: { time: string; trace: string }[] = [
+  { time: "Apr 30, 03:36:58", trace: "9c89c525-fdf8-4fce-bb94-fd2814" },
+  { time: "Apr 30, 03:36:56", trace: "634ff4bf-04b9-4c60-b69f-9363c6" },
+  { time: "Apr 30, 03:36:47", trace: "5923890b-f23a-4819-8e29-38243b" },
+  { time: "Apr 30, 03:36:37", trace: "0824d426-126e-44c6-b56a-53554" },
+  { time: "Apr 30, 03:36:37", trace: "ea263144-5b42-4baa-8372-654731" },
+  { time: "Apr 30, 03:36:32", trace: "0a10de63-b1ec-44d5-9a8a-9e6625" },
+  { time: "Apr 30, 03:35:37", trace: "f33833de-cc9d-4ae6-8c96-84f0e0" },
+  { time: "Apr 30, 03:34:59", trace: "4b05bc4d-40e2-4ba4-a50c-9bd2d1" },
+  { time: "Apr 30, 03:33:47", trace: "1e3e916b-720e-4aa0-99ca-ec0927" },
+];
+
+const TIMELINE: { label: string; dur: string; indent: number }[] = [
+  { label: "Crew.kickoff", dur: "1.51 s", indent: 0 },
+  { label: "Crew Created", dur: "0.31 ms", indent: 1 },
+  { label: "Task.execute_sync", dur: "1.1 s", indent: 1 },
+  { label: "Task Created", dur: "0.04 ms", indent: 2 },
+  { label: "Agent.execute_…", dur: "1.1 s", indent: 2 },
+  { label: "Completions.c…", dur: "1.08 s", indent: 3 },
+  { label: "Task.execut…", dur: "399.97 ms", indent: 1 },
+  { label: "Task Created", dur: "0.11 ms", indent: 2 },
+  { label: "Agent.ex…", dur: "396.66 ms", indent: 2 },
+];
+
+const META: [string, string][] = [
+  ["traceId", "9480ca99-d906-5614-ad3b"],
+  ["spanId", "13247436097119146000"],
+  ["spanName", "Task Created"],
+  ["startTime", "1746009025279647000"],
+  ["endTime", "1746009025279760000"],
+  ["_source", "opentelemetry"],
+];
+
+function Dashboard() {
   return (
-    <div className={`${PANEL} divide-y divide-cv-line/70 text-cv-muted dark:divide-white/[0.06] ${CARD}`}>
-      {runs.map((r) => (
-        <div key={r.label} className="p-1">
-          <div className="group flex items-center justify-between rounded-md py-2 pl-4 pr-6 hover:bg-cv-ink/[0.04]">
-            <div className="space-y-3">
-              <p className="font-mono text-cv-ink">{r.label}</p>
-              <div className="flex items-center gap-1.5 text-cv-muted">
-                <span
-                  className="flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-semibold text-white"
-                  style={{ background: r.avatar }}
-                >
-                  {r.initial}
-                </span>
-                <span>{r.owner}</span>
-                <span>·</span>
-                <span>{r.when}</span>
+    <div className="rounded-2xl p-[2px] shadow-[0_30px_70px_-25px_rgba(0,0,0,0.5)]" style={{ background: "linear-gradient(135deg,#f9a8d4,#c4b5fd 45%,#93c5fd)" }}>
+      <div className="overflow-hidden rounded-[15px] bg-white text-[#1d1d1f]">
+        {/* window top bar */}
+        <div className="flex items-center gap-3 border-b border-black/[0.07] px-3 py-2 text-xs">
+          <span className="flex items-center gap-1.5 font-semibold">
+            <span className="grid h-4 w-4 place-items-center rounded-full bg-[#1664C0] text-[8px] text-white">C</span>
+            cloudverse
+          </span>
+          <span className="font-semibold text-[#1d1d1f]">Logs</span>
+          <div className="ml-2 flex items-center gap-1 text-[11px]">
+            <span className="rounded-md bg-black/[0.05] px-2 py-0.5">Workspace</span>
+            <span className="px-2 py-0.5 text-[#86868b]">Organisation</span>
+          </div>
+        </div>
+
+        <div className="flex min-h-[420px]">
+          {/* sidebar */}
+          <aside className="hidden w-40 shrink-0 border-r border-black/[0.06] bg-[#fafafa] p-2.5 md:block">
+            {NAV_GROUPS.map((g) => (
+              <div key={g.title} className="mb-3">
+                <div className="px-2 pb-1 text-[9px] font-semibold uppercase tracking-wider text-[#a1a1a6]">{g.title}</div>
+                {g.items.map((it) => {
+                  const on = it === "Logs";
+                  return (
+                    <div
+                      key={it}
+                      className={`flex items-center gap-2 rounded-md px-2 py-1.5 text-[11px] ${on ? "bg-[#1664C0]/10 font-medium text-[#1664C0]" : "text-[#57575c]"}`}
+                    >
+                      <span className={`h-1.5 w-1.5 rounded-full ${on ? "bg-[#1664C0]" : "bg-[#c7c7cc]"}`} />
+                      {it}
+                    </div>
+                  );
+                })}
               </div>
+            ))}
+          </aside>
+
+          {/* logs table */}
+          <div className="min-w-0 flex-1 border-r border-black/[0.06]">
+            <div className="flex items-center gap-2 border-b border-black/[0.06] px-3 py-2">
+              <div className="flex-1 rounded-md border border-black/[0.08] bg-[#fafafa] px-2.5 py-1 text-[11px] text-[#a1a1a6]">Search Filter</div>
             </div>
-            <div className="flex items-center gap-12">
-              <RunStatus status={r.status} />
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="size-5 text-cv-muted/50">
-                <path d="M10 8L14 12L10 16" />
-              </svg>
+            <div className="grid grid-cols-[auto_1fr] gap-x-4 border-b border-black/[0.06] px-3 py-2 text-[9px] font-semibold uppercase tracking-wider text-[#a1a1a6]">
+              <span>Timestamp</span>
+              <span>Trace ID</span>
+            </div>
+            {LOGS.map((l, i) => (
+              <div
+                key={l.trace}
+                className={`grid grid-cols-[auto_1fr] items-center gap-x-4 border-b border-black/[0.04] px-3 py-2 text-[11px] ${i === LOGS.length - 1 ? "bg-[#1664C0]/[0.06]" : ""}`}
+              >
+                <span className="whitespace-nowrap text-[#57575c]">{l.time} AM</span>
+                <span className="truncate font-mono text-[#86868b]">{l.trace}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* detail panel */}
+          <div className="hidden w-[280px] shrink-0 flex-col lg:flex">
+            <div className="flex items-center justify-between border-b border-black/[0.06] px-3 py-2 text-[11px]">
+              <span className="text-[#86868b]">Trace ID</span>
+              <span className="truncate font-mono text-[10px] text-[#1d1d1f]">9480ca99-d906…f8a91</span>
+            </div>
+            {/* tabs */}
+            <div className="flex gap-4 border-b border-black/[0.06] px-3 py-2 text-[11px]">
+              <span className="text-[#86868b]">Request Details</span>
+              <span className="border-b-2 border-[#1664C0] pb-1.5 font-medium text-[#1664C0]">Guardrails &amp; Feedback</span>
+            </div>
+
+            {/* trace timeline */}
+            <div className="border-b border-black/[0.06] px-3 py-2">
+              <div className="mb-1.5 text-[9px] font-semibold uppercase tracking-wider text-[#a1a1a6]">Timeline</div>
+              {TIMELINE.map((t, i) => (
+                <div key={i} className="flex items-center justify-between py-[3px] text-[10px]" style={{ paddingLeft: t.indent * 10 }}>
+                  <span className="flex items-center gap-1.5 truncate text-[#57575c]">
+                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#34D399]" />
+                    {t.label}
+                  </span>
+                  <span className="shrink-0 font-mono text-[#a1a1a6]">{t.dur}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* meta */}
+            <div className="space-y-1 border-b border-black/[0.06] px-3 py-2">
+              {META.map(([k, v]) => (
+                <div key={k} className="flex items-center justify-between gap-2 text-[10px]">
+                  <span className="text-[#a1a1a6]">{k}</span>
+                  <span className="truncate font-mono text-[#57575c]">{v}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* response + feedback */}
+            <div className="px-3 py-2">
+              <div className="mb-1 text-[10px] font-medium text-[#57575c]">Response (0 tokens)</div>
+              <pre className="overflow-hidden rounded-md border border-black/[0.06] bg-[#fbfbfd] p-2 text-[9px] leading-relaxed text-[#1d1d1f]">
+{`{
+  "status": 200,
+  "headers": { "Content-Type": "application/json" },
+  "body": {},
+  "responseTime": 0.1129,
+  "lastUsedOptionJsonPath": ""
+}`}
+              </pre>
+              <div className="mt-2 flex items-center justify-between">
+                <span className="text-[10px] font-medium text-[#57575c]">Feedback</span>
+                <div className="flex gap-0.5">
+                  {[1, 2, 3, 4, 5].map((s) => (
+                    <svg key={s} viewBox="0 0 24 24" className="h-3 w-3" style={{ fill: "rgba(0,0,0,0.15)" }} aria-hidden>
+                      <path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5 20.4l1.4-6.8L1.3 9l6.9-.7L12 2z" />
+                    </svg>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      ))}
+      </div>
     </div>
-  );
-}
-
-function RunStatus({ status }: { status: Status }) {
-  if (status === "progress") {
-    return (
-      <p className="flex w-28 items-center gap-2 font-medium" style={{ color: INPROGRESS }}>
-        <svg viewBox="0 0 24 24" fill="none" className="size-4 animate-spin">
-          <circle cx="12" cy="12" r="9" stroke={INPROGRESS} strokeWidth="3" strokeOpacity="0.25" />
-          <path d="M21 12a9 9 0 0 0-9-9" stroke={INPROGRESS} strokeWidth="3" strokeLinecap="round" />
-        </svg>
-        In progress
-      </p>
-    );
-  }
-  if (status === "failed") {
-    return (
-      <p className="flex w-28 items-center gap-2 font-medium" style={{ color: DANGER }}>
-        <svg viewBox="0 0 16 16" fill={DANGER} className="size-4">
-          <path fillRule="evenodd" clipRule="evenodd" d="M15 8C15 11.866 11.866 15 8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1C11.866 1 15 4.13401 15 8ZM6.03033 4.96967C5.73744 4.67678 5.26256 4.67678 4.96967 4.96967C4.67678 5.26256 4.67678 5.73744 4.96967 6.03033L6.93934 8L4.96967 9.96967C4.67678 10.2626 4.67678 10.7374 4.96967 11.0303C5.26256 11.3232 5.73744 11.3232 6.03033 11.0303L8 9.06066L9.96967 11.0303C10.2626 11.3232 10.7374 11.3232 11.0303 11.0303C11.3232 10.7374 11.3232 10.2626 11.0303 9.96967L9.06066 8L11.0303 6.03033C11.3232 5.73744 11.3232 5.26256 11.0303 4.96967C10.7374 4.67678 10.2626 4.67678 9.96967 4.96967L8 6.93934L6.03033 4.96967Z" />
-        </svg>
-        Failed
-      </p>
-    );
-  }
-  return (
-    <p className="flex w-28 items-center gap-2 font-medium" style={{ color: SUCCESS }}>
-      <svg viewBox="0 0 16 16" fill={SUCCESS} className="size-4">
-        <path fillRule="evenodd" clipRule="evenodd" d="M8 15C11.866 15 15 11.866 15 8C15 4.13401 11.866 1 8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15ZM11.1865 5.1874C10.8212 4.8975 10.2828 4.94972 9.98386 5.30405L6.9191 8.93721L5.95897 8.00596C5.62521 7.68224 5.08408 7.68224 4.75032 8.00596C4.41656 8.32969 4.41656 8.85454 4.75032 9.17827L6.37822 10.7572C6.54896 10.9228 6.78396 11.0106 7.02512 10.999C7.26629 10.9873 7.49111 10.8772 7.64401 10.696L11.3068 6.35389C11.6057 5.99956 11.5518 5.47731 11.1865 5.1874Z" />
-      </svg>
-      Finished
-    </p>
   );
 }

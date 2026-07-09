@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { ArrowRight, Shield } from "@solar-icons/react";
 
@@ -20,204 +20,119 @@ const EDGE_FADE = {
  * Block 1 — Govern AI before the spend happens (3D role-card stack)
  * ------------------------------------------------------------------ */
 
-// Small building/org glyph, tinted per role — echoes the org rows in the ref.
-function OrgIcon({ color }: { color: string }) {
+// Policy decision applied to a request BEFORE it runs.
+type PolicyStatus = "Allowed" | "Blocked" | "Flagged";
+
+function statusColor(s: PolicyStatus) {
+  return s === "Allowed" ? "#0E9E7A" : s === "Blocked" ? "#EF4444" : "#D97706";
+}
+
+// Status glyph: check / cross / warning.
+function StatusIcon({ status }: { status: PolicyStatus }) {
+  return (
+    <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      {status === "Allowed" && <path d="M5 13l4 4L19 7" />}
+      {status === "Blocked" && <path d="M6 6l12 12M18 6L6 18" />}
+      {status === "Flagged" && <path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a1 1 0 0 0 .9 1.5h18.6a1 1 0 0 0 .9-1.5L13.7 3.9a1 1 0 0 0-1.7 0z" />}
+    </svg>
+  );
+}
+
+// Rounded square status badge, tinted by decision.
+function StatusBadge({ status }: { status: PolicyStatus }) {
+  const c = statusColor(status);
   return (
     <span
-      className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md"
-      style={{ background: `${color}22`, color }}
-      aria-hidden
+      className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border"
+      style={{ borderColor: `${c}66`, color: c, background: `${c}1A` }}
     >
-      <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M4 21V6a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v15" />
-        <path d="M14 21V10a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v11" />
-        <path d="M7 8h3M7 12h3M7 16h3M17 13h0M17 17h0M2 21h20" />
-      </svg>
+      <StatusIcon status={status} />
     </span>
   );
 }
 
-// Cluster of 4 overlapping initials avatars, tinted from the role accent.
-function AvatarCluster({ color, initials }: { color: string; initials: string[] }) {
+// Decision pill on the trailing edge of each row.
+function StatusPill({ status }: { status: PolicyStatus }) {
+  const c = statusColor(status);
   return (
-    <div className="flex shrink-0 -space-x-0.5">
-      {initials.map((ini, i) => (
-        <span
-          key={ini + i}
-          className="flex h-7 w-7 items-center justify-center rounded-full text-[9px] font-semibold text-white ring-2 ring-black"
-          style={{
-            background: `linear-gradient(135deg, color-mix(in srgb, ${color} ${35 + i * 12}%, white), ${color})`,
-          }}
-        >
-          {ini}
-        </span>
-      ))}
+    <span
+      className="ml-auto shrink-0 rounded-full px-2.5 py-1 text-[11px] font-medium"
+      style={{ color: c, background: `${c}1A` }}
+    >
+      {status}
+    </span>
+  );
+}
+
+// Expanded detail rows for the focused entry (illustrative governance data).
+const POLICY_DETAILS: [string, string][] = [
+  ["policy_id", "pg-prod-guardrails"],
+  ["decision", "Allowed before run"],
+  ["data_residency", "eu-west-1"],
+  ["access_role", "FinOps Admin"],
+  ["checks", "PII redaction, budget-limit"],
+  ["gate_latency", "42ms"],
+];
+
+const POLICY_ROWS: { status: PolicyStatus; route: string; date: string; expanded: boolean }[] = [
+  { status: "Allowed", route: "gpt-4o · Prompt run", date: "March 9th, 2025", expanded: true },
+  { status: "Blocked", route: "claude-3 · Agent call", date: "March 3rd, 2025", expanded: false },
+  { status: "Allowed", route: "gpt-4o-mini · Batch", date: "March 9th, 2025", expanded: false },
+  { status: "Flagged", route: "llama-3 · Fine-tune", date: "March 3rd, 2025", expanded: false },
+];
+
+function PolicyRow({ status, route, date, expanded }: (typeof POLICY_ROWS)[number]) {
+  return (
+    <div className="rounded-xl border border-cv-line/70 bg-cv-ink/[0.02] px-3 py-3 dark:border-white/[0.07] dark:bg-white/[0.02]">
+      <div className="flex items-center gap-3">
+        <StatusBadge status={status} />
+        <div className="min-w-0">
+          <div className="truncate text-sm text-cv-ink/90">{route}</div>
+          <div className="text-[11px] text-cv-muted">{date}</div>
+        </div>
+        <StatusPill status={status} />
+      </div>
+      {expanded && (
+        <div className="mt-3 grid grid-cols-[minmax(120px,auto)_1fr] gap-x-6 gap-y-1.5 border-t border-cv-line/60 pt-3 text-xs dark:border-white/5">
+          {POLICY_DETAILS.map(([k, v]) => (
+            <Fragment key={k}>
+              <span className="truncate text-cv-muted">{k}:</span>
+              <span className="font-mono text-cv-ink/80">{v}</span>
+            </Fragment>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
 
-function CardHeader({
-  color,
-  label,
-  maskedId,
-  initials,
-}: {
-  color: string;
-  label: string;
-  maskedId: string;
-  initials: string[];
-}) {
-  return (
-    <>
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex items-center gap-2">
-          <OrgIcon color={color} />
-          <span className="text-sm font-semibold text-white">{label}</span>
-        </div>
-        {/* cluster overhangs slightly above the card's top edge */}
-        <div className="-translate-y-4">
-          <AvatarCluster color={color} initials={initials} />
-        </div>
-      </div>
-      <div className="mt-2 font-mono text-xs tracking-wider text-cv-muted">{maskedId}</div>
-    </>
-  );
-}
-
-// A checkbox-with-label chip for the front card's permission row.
-function PermCheck({ label, checked }: { label: string; checked: boolean }) {
-  return (
-    <span className="inline-flex items-center gap-1.5 text-xs text-cv-ink/80">
-      <span className="flex h-4 w-4 items-center justify-center rounded-[5px] border border-white/25 bg-white/[0.04]">
-        {checked && (
-          <svg viewBox="0 0 24 24" className="h-2.5 w-2.5" fill="none" stroke="#fff" strokeWidth={3.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-            <path d="M5 13l4 4L19 7" />
-          </svg>
-        )}
-      </span>
-      {label}
-    </span>
-  );
-}
-
-const RBAC_CARDS = {
-  data: { color: "#D97706", label: "Data", maskedId: "4673**********j4h3", initials: ["JN", "RA", "PL", "KS"] },
-  eng: { color: "#0E9E7A", label: "Engineering", maskedId: "37h4**********9h27", initials: ["DK", "SC", "ML", "TC"] },
-  finance: { color: "#1664C0", label: "Finance", maskedId: "0xA1**********c7e2", initials: ["AP", "RS", "ML", "JK"] },
-};
-
-const PERMS = [
-  { label: "Create", checked: true },
-  { label: "Update", checked: true },
-  { label: "Delete", checked: true },
-  { label: "Read", checked: true },
-  { label: "List", checked: false },
-];
-
-// One full role card (header + RBAC permissions). Dimmed + occluded behind.
-function RoleCard({
-  data,
-  posClass,
-  tilt,
-  scale,
-  shadow,
-  dim,
-  delay,
-  show,
-  rm,
-}: {
-  data: (typeof RBAC_CARDS)[keyof typeof RBAC_CARDS];
-  posClass: string;
-  tilt: string;
-  scale: number;
-  shadow: string;
-  dim: number;
-  delay: number;
-  show: boolean;
-  rm: boolean | null;
-}) {
-  return (
-    <motion.div
-      initial={rm ? false : { opacity: 0 }}
-      animate={show ? { opacity: 1 } : {}}
-      transition={{ duration: 0.5, delay: rm ? 0 : delay, ease: [0.22, 1, 0.36, 1] }}
-      className={`absolute w-[80%] rounded-[14px] bg-black p-4 ${posClass}`}
-      style={{ transform: `${tilt} scale(${scale})`, filter: `drop-shadow(${shadow})` }}
-    >
-      <CardHeader {...data} />
-
-      <div className="mt-5">
-        <div className="text-sm font-bold text-[#1664C0] dark:text-[#7CB8F8]">
-          Role-Based Access Control
-        </div>
-        <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
-          {PERMS.map((p) => (
-            <PermCheck key={p.label} label={p.label} checked={p.checked} />
-          ))}
-        </div>
-      </div>
-
-      {/* dim overlay — card recedes into darkness */}
-      {dim > 0 && (
-        <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[14px] bg-black" style={{ opacity: dim }} />
-      )}
-      {/* light corner edge — above the dim overlay so it stays crisp on all cards */}
-      <CardLightEdge />
-    </motion.div>
-  );
-}
-
+// Policy-evaluation panel: requests scored against policy BEFORE they run —
+// Allowed / Blocked / Flagged — with the most recent decision expanded to
+// show which checks, residency, and role were enforced.
 function MockRBACVisual() {
   const rm = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   const show = rm ? true : inView;
 
-  // Parallel deck: all three cards share ONE identical tilt + scale, so their
-  // edges stay perfectly parallel. Depth comes purely from a CONSTANT (dx, dy)
-  // step — card 1→2 offset equals card 2→3 offset — stepping down-and-right
-  // from back (top-left, dimmest) to front (bottom-right, focused).
-  const TILT = "rotateX(-24deg) rotateY(42deg) rotateZ(2.5deg)";
-  const SCALE = 0.96;
   return (
-    <div
-      ref={ref}
-      className="relative mt-6 h-[460px]"
-      style={{ perspective: "1300px", perspectiveOrigin: "60% 45%" }}
-    >
-      <RoleCard
-        data={RBAC_CARDS.data}
-        posClass="left-0 top-[40px] z-10"
-        tilt={TILT}
-        scale={SCALE}
-        shadow="-14px -10px 16px rgba(0,0,0,0.45)"
-        dim={0.55}
-        delay={0}
-        show={show}
-        rm={rm}
-      />
-      <RoleCard
-        data={RBAC_CARDS.eng}
-        posClass="left-[9%] top-[104px] z-20"
-        tilt={TILT}
-        scale={SCALE}
-        shadow="-14px -10px 16px rgba(0,0,0,0.5)"
-        dim={0.3}
-        delay={0.12}
-        show={show}
-        rm={rm}
-      />
-      <RoleCard
-        data={RBAC_CARDS.finance}
-        posClass="left-[18%] top-[168px] z-30"
-        tilt={TILT}
-        scale={SCALE}
-        shadow="-16px -12px 24px rgba(0,0,0,0.55)"
-        dim={0}
-        delay={0.24}
-        show={show}
-        rm={rm}
-      />
+    <div ref={ref} className="mt-6">
+      <div className="relative overflow-hidden rounded-2xl border border-cv-line bg-white p-4 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)] dark:border-white/10 dark:bg-black">
+        <CardLightEdge />
+        <div className="px-1 pb-3 text-base font-semibold text-cv-ink">Policy Evaluations</div>
+        <div className="space-y-2.5">
+          {POLICY_ROWS.map((r, i) => (
+            <motion.div
+              key={i}
+              initial={rm ? false : { opacity: 0, y: 10 }}
+              animate={show ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.45, delay: rm ? 0 : i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <PolicyRow {...r} />
+            </motion.div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
@@ -282,16 +197,16 @@ function MockCostVisual() {
         initial={rm ? false : { opacity: 0, y: 10 }}
         animate={show ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-0 top-0 w-[82%] overflow-hidden rounded-[14px] border border-white/10 bg-black p-4 shadow-[0_12px_30px_-12px_rgba(0,0,0,0.6)]"
+        className="absolute left-0 top-0 w-[82%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-4 shadow-[0_12px_30px_-12px_rgba(0,0,0,0.6)]"
       >
         <CardLightEdge />
 
         {/* header sub-panel */}
-        <div className="rounded-xl border border-white/10 bg-white/[0.02] px-4 py-3">
+        <div className="rounded-xl border border-cv-line dark:border-white/10 bg-cv-ink/[0.03] dark:bg-white/[0.02] px-4 py-3">
           <div className="flex items-start justify-between gap-3">
             <div>
               <div className="text-xs text-cv-muted">Tokens Used</div>
-              <div className="mt-0.5 text-3xl font-bold text-white">34.5M</div>
+              <div className="mt-0.5 text-3xl font-bold text-cv-ink">34.5M</div>
             </div>
             <div className="space-y-1.5 text-right text-[11px] font-medium">
               <div className="flex items-center justify-end gap-1 text-cv-muted">
@@ -341,10 +256,10 @@ function MockCostVisual() {
         initial={rm ? false : { opacity: 0, y: 10 }}
         animate={show ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, delay: rm ? 0 : 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute bottom-0 left-0 z-10 w-[42%] overflow-hidden rounded-[14px] border border-white/10 bg-black p-4 shadow-[0_18px_40px_-12px_rgba(0,0,0,0.7)]"
+        className="absolute bottom-0 left-0 z-10 w-[42%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-4 shadow-[0_18px_40px_-12px_rgba(0,0,0,0.7)]"
       >
         <CardLightEdge />
-        <div className="text-sm font-semibold text-white">Set Your Cost Budget</div>
+        <div className="text-sm font-semibold text-cv-ink">Set Your Cost Budget</div>
         <div className="mt-3 text-[11px] text-cv-muted">Budget limit</div>
         <div className="mt-1 flex items-center justify-between rounded-lg border border-[#1664C0]/30 bg-[#1664C0]/10 px-3 py-2">
           <span className="font-mono text-lg font-semibold text-[#7CB8F8]">$50k</span>
@@ -357,16 +272,16 @@ function MockCostVisual() {
         initial={rm ? false : { opacity: 0, y: 12 }}
         animate={show ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.55, delay: rm ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute bottom-3 right-0 z-20 w-[60%] overflow-hidden rounded-[14px] border border-white/10 bg-black p-4 shadow-[0_24px_50px_-12px_rgba(0,0,0,0.75)]"
+        className="absolute bottom-3 right-0 z-20 w-[60%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-4 shadow-[0_24px_50px_-12px_rgba(0,0,0,0.75)]"
       >
         <CardLightEdge />
 
         <div className="flex items-start justify-between">
           <div>
             <div className="text-xs text-cv-muted">Latency</div>
-            <div className="mt-0.5 text-3xl font-bold text-white">313.69ms</div>
+            <div className="mt-0.5 text-3xl font-bold text-cv-ink">313.69ms</div>
           </div>
-          <div className="flex items-center gap-1 rounded-lg border border-white/15 bg-white/[0.04] px-2.5 py-1 text-xs text-cv-ink/80">
+          <div className="flex items-center gap-1 rounded-lg border border-cv-line dark:border-white/15 bg-cv-ink/[0.05] dark:bg-white/[0.04] px-2.5 py-1 text-xs text-cv-ink/80">
             Mean
             <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
               <path d="M6 9l6 6 6-6" />
@@ -461,14 +376,14 @@ function MockPIIVisual() {
         initial={rm ? false : { opacity: 0, y: 10 }}
         animate={show ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-0 top-0 w-[80%] overflow-hidden rounded-[14px] border border-white/10 bg-black p-5 shadow-[0_12px_30px_-12px_rgba(0,0,0,0.6)]"
+        className="absolute left-0 top-0 w-[80%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-5 shadow-[0_12px_30px_-12px_rgba(0,0,0,0.6)]"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="flex h-6 w-6 items-center justify-center rounded-md bg-[#1664C0]/15">
               <Shield weight="Bold" size={13} className="text-[#1664C0] dark:text-[#7CB8F8]" />
             </div>
-            <span className="text-sm font-semibold text-white">PII Redaction Guardrail</span>
+            <span className="text-sm font-semibold text-cv-ink">PII Redaction Guardrail</span>
           </div>
           <SSOToggle on color="#0E9E7A" showCheck />
         </div>
@@ -482,7 +397,7 @@ function MockPIIVisual() {
           <div>Timeout (in Milliseconds):</div>
         </div>
 
-        <div className="mt-6 flex items-center justify-between border-t border-white/5 pt-4">
+        <div className="mt-6 flex items-center justify-between border-t border-cv-line/60 dark:border-white/5 pt-4">
           <span className="text-xs text-cv-ink/70">Enable Redact PII</span>
           <SSOToggle on color="#0E9E7A" showCheck />
         </div>
@@ -495,7 +410,7 @@ function MockPIIVisual() {
         initial={rm ? false : { opacity: 0, y: 12 }}
         animate={show ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.55, delay: rm ? 0 : 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute right-0 top-[120px] z-20 w-[66%] overflow-hidden rounded-[14px] border border-white/10 bg-black shadow-[0_24px_50px_-12px_rgba(0,0,0,0.75)]"
+        className="absolute right-0 top-[120px] z-20 w-[66%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black shadow-[0_24px_50px_-12px_rgba(0,0,0,0.75)]"
       >
         {/* gradient banner */}
         <div
@@ -512,7 +427,7 @@ function MockPIIVisual() {
               <ChatAvatar variant="agent" />
               <span className="text-[11px] italic text-cv-muted">Agent</span>
             </div>
-            <div className="w-fit rounded-lg bg-white/[0.06] px-3 py-2 text-xs text-cv-ink/80">
+            <div className="w-fit rounded-lg bg-cv-ink/[0.06] dark:bg-white/[0.06] px-3 py-2 text-xs text-cv-ink/80">
               Card last 4 digits and CVV?
             </div>
           </div>
@@ -526,7 +441,7 @@ function MockPIIVisual() {
               <span className="text-[11px] italic text-cv-muted">Client</span>
               <ChatAvatar variant="client" />
             </div>
-            <div className="flex flex-wrap items-center gap-2 rounded-md bg-black/40 px-2 py-1.5 font-mono">
+            <div className="flex flex-wrap items-center gap-2 rounded-md bg-white dark:bg-black/40 px-2 py-1.5 font-mono">
               <span
                 className="inline-flex shrink-0 items-center gap-1 rounded-full px-1.5 py-0.5 text-[10px] font-medium"
                 style={{ color: cyan, background: "rgba(34,211,238,0.12)" }}
@@ -552,7 +467,7 @@ function MockPIIVisual() {
               <ChatAvatar variant="agent" />
               <span className="text-[11px] italic text-cv-muted">Agent</span>
             </div>
-            <div className="w-fit rounded-lg bg-white/[0.06] px-3 py-2 text-xs text-cv-ink/80">
+            <div className="w-fit rounded-lg bg-cv-ink/[0.06] dark:bg-white/[0.06] px-3 py-2 text-xs text-cv-ink/80">
               Got it. Checking now!
             </div>
           </div>
@@ -588,7 +503,7 @@ function LogAvatar({ initials, color, size = 24 }: { initials: string; color: st
 // Small rounded letter tile (e.g. "R", "C") that prefixes detail rows in Card 2.
 function LetterTile({ letter }: { letter: string }) {
   return (
-    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-[6px] bg-white/[0.06] text-[10px] font-semibold text-cv-muted ring-1 ring-white/10">
+    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-[6px] bg-cv-ink/[0.06] dark:bg-white/[0.06] text-[10px] font-semibold text-cv-muted ring-1 ring-white/10">
       {letter}
     </span>
   );
@@ -627,7 +542,7 @@ function MockAuditVisual() {
         initial={rm ? false : { opacity: 0, y: 10 }}
         animate={show ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-0 top-0 w-[82%] overflow-hidden rounded-[14px] border border-white/10 bg-black p-4 shadow-[0_12px_30px_-12px_rgba(0,0,0,0.6)]"
+        className="absolute left-0 top-0 w-[82%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-4 shadow-[0_12px_30px_-12px_rgba(0,0,0,0.6)]"
       >
         <CardLightEdge />
 
@@ -641,9 +556,9 @@ function MockAuditVisual() {
                 <path d="M5 12v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6" />
               </svg>
             </div>
-            <span className="text-sm font-semibold text-white">Audit Logs</span>
+            <span className="text-sm font-semibold text-cv-ink">Audit Logs</span>
           </div>
-          <span className="flex h-6 w-6 items-center justify-center rounded-md border border-white/10 text-cv-muted">
+          <span className="flex h-6 w-6 items-center justify-center rounded-md border border-cv-line dark:border-white/10 text-cv-muted">
             <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
               <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
             </svg>
@@ -651,7 +566,7 @@ function MockAuditVisual() {
         </div>
 
         {/* search filter (decorative) */}
-        <div className="mt-4 flex items-center rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-xs text-cv-muted">
+        <div className="mt-4 flex items-center rounded-lg border border-cv-line dark:border-white/10 bg-cv-ink/[0.04] dark:bg-white/[0.03] px-3 py-2 text-xs text-cv-muted">
           Search Filter
         </div>
 
@@ -663,7 +578,7 @@ function MockAuditVisual() {
               initial={rm ? false : { opacity: 0, y: 6 }}
               animate={show ? { opacity: AUDIT_FADE[i] ?? 0.2, y: 0 } : {}}
               transition={{ duration: 0.4, delay: rm ? 0 : 0.1 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className="grid grid-cols-[minmax(96px,auto)_1fr_auto] items-center gap-3 border-b border-white/5 py-3 text-xs last:border-0"
+              className="grid grid-cols-[minmax(96px,auto)_1fr_auto] items-center gap-3 border-b border-cv-line/60 dark:border-white/5 py-3 text-xs last:border-0"
             >
               <span className="text-cv-ink/70">
                 {r.date} · {r.time}
@@ -683,13 +598,13 @@ function MockAuditVisual() {
         initial={rm ? false : { opacity: 0, y: 12 }}
         animate={show ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.55, delay: rm ? 0 : 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute right-0 top-[150px] z-20 w-[64%] overflow-hidden rounded-[14px] border border-white/10 bg-black p-4 shadow-[0_24px_50px_-12px_rgba(0,0,0,0.75)]"
+        className="absolute right-0 top-[150px] z-20 w-[64%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-4 shadow-[0_24px_50px_-12px_rgba(0,0,0,0.75)]"
         style={EDGE_FADE}
       >
         <CardLightEdge />
 
         {/* header — id pill + external link */}
-        <div className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2">
+        <div className="flex items-center gap-2 rounded-lg border border-cv-line dark:border-white/10 bg-cv-ink/[0.04] dark:bg-white/[0.03] px-3 py-2">
           <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0 text-cv-muted" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
             <rect x="3" y="3" width="7" height="7" rx="1.5" />
             <rect x="14" y="3" width="7" height="7" rx="1.5" />
@@ -730,7 +645,7 @@ function MockAuditVisual() {
         initial={rm ? false : { opacity: 0, y: 12, scale: 0.96 }}
         animate={show ? { opacity: 1, y: 0, scale: 1 } : {}}
         transition={{ duration: 0.5, delay: rm ? 0 : 0.4, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute bottom-[70px] left-0 z-30 flex w-[58%] items-center gap-3 overflow-hidden rounded-[14px] bg-[#111] px-4 py-3 text-xs shadow-[0_20px_45px_-12px_rgba(0,0,0,0.8)]"
+        className="absolute bottom-[70px] left-0 z-30 flex w-[58%] items-center gap-3 overflow-hidden rounded-[14px] bg-white dark:bg-[#111] px-4 py-3 text-xs shadow-[0_20px_45px_-12px_rgba(0,0,0,0.8)]"
       >
         <CardLightEdge />
 
@@ -745,7 +660,7 @@ function MockAuditVisual() {
           )}
           <span className="relative h-2.5 w-2.5 rounded-full bg-[#2278E0] shadow-[0_0_8px_rgba(34,120,224,0.9)]" />
         </span>
-        <span className="text-white">
+        <span className="text-cv-ink">
           {FEATURED.date} · {FEATURED.time}
         </span>
         <LogAvatar initials={FEATURED.initials} color={FEATURED.color} size={22} />
@@ -841,7 +756,7 @@ function MockSSOVisual() {
         {/* main configuration card */}
         <div
           ref={wrapRef}
-          className="relative space-y-3 overflow-hidden rounded-[14px] border border-white/10 bg-black p-4 font-mono text-xs"
+          className="relative space-y-3 overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-4 font-mono text-xs"
         >
           {/* light-edge treatment (matches the tokens/latency cards) */}
           <CardLightEdge />
@@ -958,7 +873,7 @@ function MockSSOVisual() {
           initial={rm ? false : { opacity: 0, y: 14, scale: 0.96 }}
           animate={show ? { opacity: 1, y: 0, scale: 1 } : {}}
           transition={{ duration: 0.5, delay: rm ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute top-[150px] -right-6 z-20 w-56 space-y-3 overflow-hidden rounded-[14px] border border-white/10 bg-black p-3.5 font-mono text-xs shadow-[0_20px_45px_-12px_rgba(0,0,0,0.55)]"
+          className="absolute top-[150px] -right-6 z-20 w-56 space-y-3 overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-3.5 font-mono text-xs shadow-[0_20px_45px_-12px_rgba(0,0,0,0.55)]"
         >
           {/* light-edge treatment (matches the tokens/latency cards) */}
           <CardLightEdge />
