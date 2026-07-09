@@ -297,35 +297,35 @@ const META: [string, string][] = [
 
 function Dashboard() {
   return (
-    <div className="aspect-video w-full rounded-2xl p-[2px] shadow-[0_16px_40px_-24px_rgba(16,24,40,0.18)] dark:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.5)]" style={{ background: "linear-gradient(135deg,#f9a8d4,#c4b5fd 45%,#93c5fd)" }}>
-      <div className="flex h-full flex-col overflow-hidden rounded-[15px] bg-white text-[#1d1d1f]">
+    <div className="aspect-video w-full rounded-2xl p-[2px] shadow-[0_16px_40px_-24px_rgba(16,24,40,0.18)] dark:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.5)]" style={{ background: "rgba(150,155,165,0.45)" }}>
+      <div className="flex h-full flex-col overflow-hidden rounded-[15px] bg-white text-[#1d1d1f] dark:bg-[#0c0c0f] dark:text-[#e5e5e7]">
         {/* window top bar */}
-        <div className="flex items-center gap-3 border-b border-black/[0.07] px-3 py-2 text-xs">
+        <div className="flex items-center gap-3 border-b border-black/[0.07] px-3 py-2 text-xs dark:border-white/[0.08]">
           <span className="flex items-center gap-1.5 font-semibold">
             <span className="grid h-4 w-4 place-items-center rounded-full bg-[#1664C0] text-[8px] text-white">C</span>
             cloudverse
           </span>
-          <span className="font-semibold text-[#1d1d1f]">Logs</span>
+          <span className="font-semibold text-[#1d1d1f] dark:text-white">Logs</span>
           <div className="ml-2 flex items-center gap-1 text-[11px]">
-            <span className="rounded-md bg-black/[0.05] px-2 py-0.5">Workspace</span>
-            <span className="px-2 py-0.5 text-[#86868b]">Organisation</span>
+            <span className="rounded-md bg-black/[0.05] px-2 py-0.5 dark:bg-white/[0.08]">Workspace</span>
+            <span className="px-2 py-0.5 text-[#86868b] dark:text-[#8a8a90]">Organisation</span>
           </div>
         </div>
 
         <div className="flex min-h-0 flex-1">
           {/* sidebar */}
-          <aside className="hidden w-40 shrink-0 border-r border-black/[0.06] bg-[#fafafa] p-2.5 md:block">
+          <aside className="hidden w-40 shrink-0 border-r border-black/[0.06] bg-[#fafafa] p-2.5 dark:border-white/[0.06] dark:bg-[#111114] md:block">
             {NAV_GROUPS.map((g) => (
               <div key={g.title} className="mb-3">
-                <div className="px-2 pb-1 text-[9px] font-semibold uppercase tracking-wider text-[#a1a1a6]">{g.title}</div>
+                <div className="px-2 pb-1 text-[9px] font-semibold uppercase tracking-wider text-[#a1a1a6] dark:text-[#6f6f76]">{g.title}</div>
                 {g.items.map((it) => {
                   const on = it === "Logs";
                   return (
                     <div
                       key={it}
-                      className={`flex items-center gap-2 rounded-md px-2 py-1.5 text-[11px] ${on ? "bg-[#1664C0]/10 font-medium text-[#1664C0]" : "text-[#57575c]"}`}
+                      className={`flex items-center gap-2 rounded-md px-2 py-1.5 text-[11px] ${on ? "bg-[#1664C0]/10 font-medium text-[#1664C0] dark:bg-[#1664C0]/20 dark:text-[#7CB8F8]" : "text-[#57575c] dark:text-[#a1a1a6]"}`}
                     >
-                      <span className={`h-1.5 w-1.5 rounded-full ${on ? "bg-[#1664C0]" : "bg-[#1664C0]/40"}`} />
+                      <span className={`h-1.5 w-1.5 rounded-full ${on ? "bg-[#1664C0] dark:bg-[#7CB8F8]" : "bg-[#1664C0]/40"}`} />
                       {it}
                     </div>
                   );
@@ -335,65 +335,65 @@ function Dashboard() {
           </aside>
 
           {/* logs table */}
-          <div className="min-w-0 flex-1 border-r border-black/[0.06]">
-            <div className="flex items-center gap-2 border-b border-black/[0.06] px-3 py-2">
-              <div className="flex-1 rounded-md border border-black/[0.08] bg-[#fafafa] px-2.5 py-1 text-[11px] text-[#a1a1a6]">Search Filter</div>
+          <div className="min-w-0 flex-1 border-r border-black/[0.06] dark:border-white/[0.06]">
+            <div className="flex items-center gap-2 border-b border-black/[0.06] px-3 py-2 dark:border-white/[0.06]">
+              <div className="flex-1 rounded-md border border-black/[0.08] bg-[#fafafa] px-2.5 py-1 text-[11px] text-[#a1a1a6] dark:border-white/10 dark:bg-white/[0.03] dark:text-[#6f6f76]">Search Filter</div>
             </div>
-            <div className="grid grid-cols-[auto_1fr] gap-x-4 border-b border-black/[0.06] px-3 py-2 text-[9px] font-semibold uppercase tracking-wider text-[#a1a1a6]">
+            <div className="grid grid-cols-[auto_1fr] gap-x-4 border-b border-black/[0.06] px-3 py-2 text-[9px] font-semibold uppercase tracking-wider text-[#a1a1a6] dark:border-white/[0.06] dark:text-[#6f6f76]">
               <span>Timestamp</span>
               <span>Trace ID</span>
             </div>
             {LOGS.map((l, i) => (
               <div
                 key={l.trace}
-                className={`grid grid-cols-[auto_1fr] items-center gap-x-4 border-b border-black/[0.04] px-3 py-2 text-[11px] ${i === LOGS.length - 1 ? "bg-[#1664C0]/[0.06]" : ""}`}
+                className={`grid grid-cols-[auto_1fr] items-center gap-x-4 border-b border-black/[0.04] px-3 py-2 text-[11px] dark:border-white/[0.04] ${i === LOGS.length - 1 ? "bg-[#1664C0]/[0.06] dark:bg-[#1664C0]/[0.14]" : ""}`}
               >
-                <span className="whitespace-nowrap text-[#57575c]">{l.time} AM</span>
-                <span className="truncate font-mono text-[#86868b]">{l.trace}</span>
+                <span className="whitespace-nowrap text-[#57575c] dark:text-[#c7c7cc]">{l.time} AM</span>
+                <span className="truncate font-mono text-[#86868b] dark:text-[#8a8a90]">{l.trace}</span>
               </div>
             ))}
           </div>
 
           {/* detail panel */}
           <div className="hidden w-[280px] shrink-0 flex-col lg:flex">
-            <div className="flex items-center justify-between border-b border-black/[0.06] px-3 py-2 text-[11px]">
-              <span className="text-[#86868b]">Trace ID</span>
-              <span className="truncate font-mono text-[10px] text-[#1d1d1f]">9480ca99-d906…f8a91</span>
+            <div className="flex items-center justify-between border-b border-black/[0.06] px-3 py-2 text-[11px] dark:border-white/[0.06]">
+              <span className="text-[#86868b] dark:text-[#8a8a90]">Trace ID</span>
+              <span className="truncate font-mono text-[10px] text-[#1d1d1f] dark:text-white">9480ca99-d906…f8a91</span>
             </div>
             {/* tabs */}
-            <div className="flex gap-4 border-b border-black/[0.06] px-3 py-2 text-[11px]">
-              <span className="text-[#86868b]">Request Details</span>
-              <span className="border-b-2 border-[#1664C0] pb-1.5 font-medium text-[#1664C0]">Guardrails &amp; Feedback</span>
+            <div className="flex gap-4 border-b border-black/[0.06] px-3 py-2 text-[11px] dark:border-white/[0.06]">
+              <span className="text-[#86868b] dark:text-[#8a8a90]">Request Details</span>
+              <span className="border-b-2 border-[#1664C0] pb-1.5 font-medium text-[#1664C0] dark:border-[#7CB8F8] dark:text-[#7CB8F8]">Guardrails &amp; Feedback</span>
             </div>
 
             {/* trace timeline */}
-            <div className="border-b border-black/[0.06] px-3 py-2">
-              <div className="mb-1.5 text-[9px] font-semibold uppercase tracking-wider text-[#a1a1a6]">Timeline</div>
+            <div className="border-b border-black/[0.06] px-3 py-2 dark:border-white/[0.06]">
+              <div className="mb-1.5 text-[9px] font-semibold uppercase tracking-wider text-[#a1a1a6] dark:text-[#6f6f76]">Timeline</div>
               {TIMELINE.map((t, i) => (
                 <div key={i} className="flex items-center justify-between py-[3px] text-[10px]" style={{ paddingLeft: t.indent * 10 }}>
-                  <span className="flex items-center gap-1.5 truncate text-[#57575c]">
-                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#1664C0]" />
+                  <span className="flex items-center gap-1.5 truncate text-[#57575c] dark:text-[#a1a1a6]">
+                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#1664C0] dark:bg-[#7CB8F8]" />
                     {t.label}
                   </span>
-                  <span className="shrink-0 font-mono text-[#a1a1a6]">{t.dur}</span>
+                  <span className="shrink-0 font-mono text-[#a1a1a6] dark:text-[#6f6f76]">{t.dur}</span>
                 </div>
               ))}
             </div>
 
             {/* meta */}
-            <div className="space-y-1 border-b border-black/[0.06] px-3 py-2">
+            <div className="space-y-1 border-b border-black/[0.06] px-3 py-2 dark:border-white/[0.06]">
               {META.map(([k, v]) => (
                 <div key={k} className="flex items-center justify-between gap-2 text-[10px]">
-                  <span className="text-[#a1a1a6]">{k}</span>
-                  <span className="truncate font-mono text-[#57575c]">{v}</span>
+                  <span className="text-[#a1a1a6] dark:text-[#6f6f76]">{k}</span>
+                  <span className="truncate font-mono text-[#57575c] dark:text-[#c7c7cc]">{v}</span>
                 </div>
               ))}
             </div>
 
             {/* response + feedback */}
             <div className="px-3 py-2">
-              <div className="mb-1 text-[10px] font-medium text-[#57575c]">Response (0 tokens)</div>
-              <pre className="overflow-hidden rounded-md border border-black/[0.06] bg-[#fbfbfd] p-2 text-[9px] leading-relaxed text-[#1d1d1f]">
+              <div className="mb-1 text-[10px] font-medium text-[#57575c] dark:text-[#a1a1a6]">Response (0 tokens)</div>
+              <pre className="overflow-hidden rounded-md border border-black/[0.06] bg-[#fbfbfd] p-2 text-[9px] leading-relaxed text-[#1d1d1f] dark:border-white/10 dark:bg-white/[0.03] dark:text-[#c7c7cc]">
 {`{
   "status": 200,
   "headers": { "Content-Type": "application/json" },
@@ -403,10 +403,10 @@ function Dashboard() {
 }`}
               </pre>
               <div className="mt-2 flex items-center justify-between">
-                <span className="text-[10px] font-medium text-[#57575c]">Feedback</span>
+                <span className="text-[10px] font-medium text-[#57575c] dark:text-[#a1a1a6]">Feedback</span>
                 <div className="flex gap-0.5">
                   {[1, 2, 3, 4, 5].map((s) => (
-                    <svg key={s} viewBox="0 0 24 24" className="h-3 w-3" style={{ fill: "rgba(0,0,0,0.15)" }} aria-hidden>
+                    <svg key={s} viewBox="0 0 24 24" className="h-3 w-3 fill-[rgba(0,0,0,0.15)] dark:fill-[rgba(255,255,255,0.22)]" aria-hidden>
                       <path d="M12 2l2.9 6.3 6.9.7-5.1 4.6 1.4 6.8L12 17.8 5 20.4l1.4-6.8L1.3 9l6.9-.7L12 2z" />
                     </svg>
                   ))}
