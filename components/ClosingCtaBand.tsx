@@ -33,7 +33,7 @@ export default function ClosingCtaBand({
     <section className="relative overflow-hidden" style={{ background: BASE_BLUE }}>
       {/* Content */}
       <div className="cv-container relative py-10 md:py-32">
-        <h2 className="max-w-4xl text-[32px] font-medium leading-[1.05] text-white md:text-3xl lg:text-[48px] lg:leading-[1.05]">
+        <h2 className="max-w-4xl text-[clamp(19px,5vw,22px)] font-medium leading-[1.3] text-white sm:text-[32px] sm:leading-[1.1] md:text-3xl md:leading-[1.05] lg:text-[48px] lg:leading-[1.05]">
           {(() => {
             // Break after the first sentence so the second line starts with the
             // next sentence (e.g. "Find Out Exactly Where.").

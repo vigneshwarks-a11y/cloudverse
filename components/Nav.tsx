@@ -134,15 +134,18 @@ export function Nav() {
           </Link>
         </div>
 
-        {/* Mobile hamburger */}
-        <button
-          className="lg:hidden text-cv-ink/80 p-2"
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-          data-testid="button-mobile-menu"
-        >
-          {open ? <X size={22} strokeWidth={1.5} /> : <HamburgerMenu weight="Linear" size={22} />}
-        </button>
+        {/* Mobile controls - theme toggle + hamburger */}
+        <div className="flex items-center gap-1 lg:hidden">
+          <ModeToggle />
+          <button
+            className="text-cv-ink/80 p-2"
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle menu"
+            data-testid="button-mobile-menu"
+          >
+            {open ? <X size={22} strokeWidth={1.5} /> : <HamburgerMenu weight="Linear" size={22} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu - full-screen overlay panel */}

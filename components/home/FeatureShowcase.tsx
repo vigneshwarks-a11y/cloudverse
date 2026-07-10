@@ -27,7 +27,7 @@ const INPROGRESS = "#4D9AEF";
 
 /* Dark card chrome - hairline border + soft drop shadow */
 const CARD =
-  "rounded-lg bg-white shadow-[0_0_0_1px_rgba(0,0,0,0.10),0_18px_44px_rgba(0,0,0,0.14)] dark:bg-[#111114] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.18),0_18px_44px_rgba(0,0,0,0.55)]";
+  "rounded-lg bg-white shadow-[0_0_0_1px_rgba(15,23,42,0.06),0_10px_30px_rgba(15,23,42,0.05)] dark:bg-[#111114] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.18),0_18px_44px_rgba(0,0,0,0.55)]";
 
 /* Top-right border light-edge - a 1px gradient-filled border isolated with the
    mask-composite trick (same technique as the Enterprise Control cards, oriented
@@ -689,8 +689,8 @@ function RunStatus({ status }: { status: "progress" | "done" | "failed" }) {
 
 function SaasState() {
   return (
-    <div className={`${PANEL} rounded-lg bg-white dark:bg-[#111114] p-1 shadow-[0_0_0_1px_rgba(255,255,255,0.18),0_18px_44px_rgba(0,0,0,0.55)]`}>
-      <div className="relative overflow-hidden rounded-lg bg-cv-card dark:bg-[#141418] shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_0_0_7px_#0c0c0f,0_0_0_8px_rgba(255,255,255,0.06)]">
+    <div className={`${PANEL} rounded-lg bg-white dark:bg-[#111114] p-1 shadow-[0_0_0_1px_rgba(15,23,42,0.06),0_10px_30px_rgba(15,23,42,0.05)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.18),0_18px_44px_rgba(0,0,0,0.55)]`}>
+      <div className="relative overflow-hidden rounded-lg bg-cv-card dark:bg-[#141418] shadow-[0_0_0_1px_rgba(0,0,0,0.06),0_0_0_7px_#F1F3F6,0_0_0_8px_rgba(0,0,0,0.06)] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_0_0_7px_#0c0c0f,0_0_0_8px_rgba(255,255,255,0.06)]">
         <CornerEdge />
         <div className="flex items-center border-b border-white/[0.06] p-4 text-cv-muted">
           <span className="mr-2 h-6 w-0.5 animate-pulse-dot rounded-full bg-[#4D9AEF]" />

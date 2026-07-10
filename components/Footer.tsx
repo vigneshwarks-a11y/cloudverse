@@ -10,7 +10,7 @@ export function Footer() {
             <div className="font-display font-bold text-cv-ink text-lg">
               CloudVerse<sup className="text-[10px] ml-0.5">™</sup>
             </div>
-            <p className="text-cv-muted text-sm mt-3 max-w-xs">
+            <p className="text-cv-muted text-sm mt-3 max-w-none md:max-w-xs">
               The compute economics platform for the AI era. Cloud, AI, data, and engineering spend governed in one place.
             </p>
             <Link href={DEMO_URL} className="cv-btn-primary mt-5">
