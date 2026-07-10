@@ -12,6 +12,7 @@ import UseCaseBento from "@/components/product/UseCaseBento";
 import AixRoiSplit from "@/components/product/AixRoiSplit";
 import { PlatformHeroMockup, type MockupTab } from "@/components/product/PlatformHeroMockup";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import OrbitCore from "@/components/OrbitCore";
 
 export const metadata: Metadata = {
   title: "AIX: The Control Plane for Enterprise AI | CloudVerse",
@@ -200,14 +201,34 @@ export default function AIXPage() {
       {/* PROBLEM */}
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <h2 className="cv-h2 text-cv-ink">AI compute is becoming too expensive to hardcode.</h2>
-          <p className="cv-body-lg text-cv-ink/80 mt-6">
-            Most teams pick a model once, wire it into the app, and move on. Six months later a cheaper model handles 70% of those requests just as well, and nobody notices.
-          </p>
-          <p className="cv-body-lg text-cv-ink/80 mt-4">
-            A hardcoded choice doesn&apos;t update when prices drop. It doesn&apos;t reroute when a provider slows down. That gap is where the budget quietly goes.
-          </p>
-          <div className="grid md:grid-cols-2 gap-5 mt-10">
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-14">
+            <h2 className="cv-h2 text-cv-ink">AI compute is becoming too expensive to hardcode.</h2>
+            <div>
+              <p className="cv-body-lg text-cv-ink/80">
+                Most teams pick a model once, wire it into the app, and move on. Six months later a cheaper model handles 70% of those requests just as well, and nobody notices.
+              </p>
+              <p className="cv-body-lg text-cv-ink/80 mt-4">
+                A hardcoded choice doesn&apos;t update when prices drop. It doesn&apos;t reroute when a provider slows down. That gap is where the budget quietly goes.
+              </p>
+            </div>
+          </div>
+
+          {/* OrbitCore - AIX routing every request around one system of record */}
+          <div className="mt-12">
+            <OrbitCore
+              brand="AIX"
+              labels={[
+                "Model selection",
+                "Provider scoring",
+                "Cost controls",
+                "Residency rules",
+                "Latency routing",
+                "Compliance log",
+              ]}
+            />
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-5 mt-12">
             {/* Before - legacy / inactive */}
             <div className="relative overflow-hidden rounded-2xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-6">
               {/* Faint static node pattern */}
