@@ -13,7 +13,7 @@ export function Footer() {
             <p className="text-cv-muted text-sm mt-3 max-w-none md:max-w-xs">
               The compute economics platform for the AI era. Cloud, AI, data, and engineering spend governed in one place.
             </p>
-            <Link href={DEMO_URL} className="cv-btn-primary mt-5">
+            <Link href={DEMO_URL} className="cv-btn-primary mt-5 mb-8 md:mb-0">
               Get a Demo
             </Link>
           </div>
