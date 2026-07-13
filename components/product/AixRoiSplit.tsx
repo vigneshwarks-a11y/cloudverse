@@ -2,8 +2,28 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const ACCENT = "#6954D4";
-const CYAN = "#38BDF8";
+const ACCENT = "#2278E0";
+
+// Spec rows for the two comparison cards. `cut` renders a reduction chip.
+const WITHOUT = [
+  ["Model", "Claude Sonnet"],
+  ["Latency", "5,537 ms"],
+  ["Cost / request", "$0.00298"],
+] as const;
+
+const WITH: [string, string, string?][] = [
+  ["Model", "GPT-4o-mini"],
+  ["Latency", "3,962 ms", "-28.5%"],
+  ["Cost / request", "$0.00010", "-96.8%"],
+];
+
+function Chip({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="shrink-0 rounded-full bg-white/20 px-2 py-0.5 text-[11px] font-semibold text-white">
+      {children}
+    </span>
+  );
+}
 
 export default function AixRoiSplit({ roi }: { roi: string[][] }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -39,51 +59,80 @@ export default function AixRoiSplit({ roi }: { roi: string[][] }) {
 
   return (
     <div ref={ref} className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
-      {/* LEFT: label + table + assumptions */}
+      {/* LEFT: one box holding label + table + assumptions */}
       <div className="flex flex-col" style={rise(0)}>
-        <div className="cv-label mb-4 text-[#1664C0] dark:text-[#38BDF8]">At scale (monthly)</div>
-        <div className="flex-1 overflow-x-auto rounded-2xl border border-cv-line/40">
-          <table className="w-full text-sm">
-            <thead className="bg-cv-surface dark:bg-[#0D0D0D]">
-              <tr className="text-left">
-                <th className="p-4 text-cv-ink font-medium">Monthly volume</th>
-                <th className="p-4 text-cv-muted font-medium">Hardcoded spend</th>
-                <th className="p-4 text-cv-muted font-medium">With AIX</th>
-                <th className="p-4 font-medium" style={{ color: ACCENT }}>Monthly saving</th>
-              </tr>
-            </thead>
-            <tbody>
-              {roi.map((row, i) => (
-                <tr key={i} className="border-t border-cv-line">
-                  <td className="p-4 text-cv-ink/90">{row[0]}</td>
-                  <td className="p-4 text-cv-ink/75">{row[1]}</td>
-                  <td className="p-4 text-cv-ink/75">{row[2]}</td>
-                  <td className="p-4 font-semibold text-cv-ink">{row[3]}</td>
+        <div className="flex flex-1 flex-col overflow-hidden rounded-2xl border border-cv-line/40 bg-cv-surface dark:bg-[#0D0D0D]">
+          <div className="cv-label px-6 pt-6 pb-3 text-[#1664C0] dark:text-[#7CB8F8]">At scale (monthly)</div>
+          <div className="flex-1 overflow-x-auto">
+            <table className="h-full w-full text-sm">
+              <thead className="bg-cv-surface dark:bg-[#0D0D0D]">
+                <tr className="text-left">
+                  <th className="px-6 py-4 align-middle text-cv-ink font-medium">Monthly volume</th>
+                  <th className="px-6 py-4 align-middle text-cv-muted font-medium">Hardcoded spend</th>
+                  <th className="px-6 py-4 align-middle text-cv-muted font-medium">With AIX</th>
+                  <th className="px-6 py-4 align-middle font-medium text-[#1664C0] dark:text-[#7CB8F8]">Monthly saving</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {roi.map((row, i) => (
+                  <tr key={i} className="border-t border-cv-line">
+                    <td className="px-6 py-4 align-middle text-cv-ink/90">{row[0]}</td>
+                    <td className="px-6 py-4 align-middle text-cv-ink/75">{row[1]}</td>
+                    <td className="px-6 py-4 align-middle text-cv-ink/75">{row[2]}</td>
+                    <td className="px-6 py-4 align-middle font-semibold text-cv-ink">{row[3]}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="border-t border-cv-line p-6 text-xs italic text-cv-muted">
+            Assumption: 40–90% reduction applied at an 89% average. Your mix will differ; the audit measures yours.
+          </p>
         </div>
-        <p className="text-xs text-cv-muted mt-3 italic">
-          Assumption: 40–90% reduction applied at an 89% average. Your mix will differ; the audit measures yours.
-        </p>
       </div>
 
-      {/* RIGHT: two stacked cards, equal combined height to the table */}
+      {/* RIGHT: two stacked comparison cards, same combined height as the table */}
       <div className="flex h-full flex-col gap-6">
-        {/* TOP: Without AIX dark, thin border */}
-        <div className="rounded-2xl border border-cv-line/40 bg-cv-surface dark:bg-[#0D0D0D] p-6" style={rise(1)}>
-          <div className="cv-label mb-3 text-[#1664C0] dark:text-[#38BDF8]">Without AIX</div>
-          <p className="text-cv-ink/85">Claude Sonnet, 5,537ms latency, $0.00298/req</p>
+        {/* Without AIX — neutral (equal height) */}
+        <div
+          className="flex flex-1 flex-col rounded-2xl border border-cv-line/40 bg-cv-surface dark:bg-[#0D0D0D] p-6"
+          style={rise(1)}
+        >
+          <div className="cv-label mb-3 text-cv-muted">Without AIX</div>
+          <dl className="divide-y divide-cv-line/50">
+            {WITHOUT.map(([k, v]) => (
+              <div key={k} className="flex items-center justify-between py-2.5 text-sm">
+                <dt className="text-cv-muted">{k}</dt>
+                <dd className="font-mono text-cv-ink/80">{v}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
 
-        {/* BOTTOM: With AIX dark, blue glowing border */}
-        <div className="relative flex-1 rounded-2xl p-[1.5px]" style={rise(2)}>
-          <div aria-hidden className="cv-ring-blue absolute inset-0 rounded-2xl" />
-          <div className="relative flex h-full flex-col rounded-2xl border border-cv-line bg-cv-surface dark:bg-[#0D0D0D] p-6">
-            <div className="cv-label mb-3 text-[#1664C0] dark:text-[#38BDF8]">With AIX</div>
-            <p className="text-cv-ink/95">GPT-4o-mini, 3,962ms latency, $0.00010/req</p>
-            <p className="text-cv-ink font-medium mt-3">Result: 96.8% lower cost. 28.5% faster.</p>
+        {/* With AIX — solid blue card (sized to content so the result
+            highlight is never clipped) */}
+        <div
+          className="relative flex flex-col overflow-hidden rounded-2xl p-6 text-white shadow-[0_24px_60px_-24px_rgba(22,100,192,0.65)]"
+          style={{ ...rise(2), background: "linear-gradient(150deg, #2278E0 0%, #1664C0 52%, #0E3F8C 100%)" }}
+        >
+          <div className="cv-label mb-3 text-white/85">With AIX</div>
+          <dl className="divide-y divide-white/15">
+            {WITH.map(([k, v, cut]) => (
+              <div key={k} className="flex items-center justify-between gap-3 py-2.5 text-sm">
+                <dt className="text-white/70">{k}</dt>
+                <dd className="flex items-center gap-2 font-mono text-white">
+                  {v}
+                  {cut && <Chip>{cut}</Chip>}
+                </dd>
+              </div>
+            ))}
+          </dl>
+          {/* Result highlight fills the remaining space */}
+          <div className="mt-auto flex flex-wrap items-baseline gap-x-2 gap-y-1 rounded-xl border border-white/25 bg-white/10 px-4 py-3.5">
+            <span className="text-lg font-bold text-white">96.8% lower cost</span>
+            <span className="text-white/60">·</span>
+            <span className="text-lg font-bold text-white">28.5% faster</span>
+            <span className="w-full text-xs text-white/75">Same task, same-or-better quality.</span>
           </div>
         </div>
       </div>

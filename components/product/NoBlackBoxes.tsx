@@ -2,6 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 
+/* "No black boxes." — a designed decision-trace card showing the raw JSON of a
+   routing decision, so nothing is hidden. */
+
 export default function NoBlackBoxes({ traceJson }: { traceJson: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -50,24 +53,30 @@ export default function NoBlackBoxes({ traceJson }: { traceJson: string }) {
           ref={ref}
           className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-12 lg:gap-20"
         >
-          {/* LEFT (≈42%): compact code window with Mac chrome + clean blue border, no glow */}
-          <div className="h-full lg:col-span-5" style={rise(0)}>
-            <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D]">
-              {/* Mac chrome */}
-              <div className="flex items-center gap-2 border-b border-cv-line bg-cv-ink/[0.03] px-4 py-3">
-                <span className="h-3 w-3 rounded-full bg-[#ff5f56]" />
-                <span className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
-                <span className="h-3 w-3 rounded-full bg-[#27c93f]" />
+          {/* LEFT: decision-trace card (raw JSON) */}
+          <div className="h-full lg:col-span-6" style={rise(0)}>
+            <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-cv-line/60 bg-cv-card shadow-[0_10px_30px_-16px_rgba(15,23,42,0.15)] dark:border-white/10 dark:bg-[#0D0D0D] dark:shadow-[0_24px_60px_-24px_rgba(0,0,0,0.8)]">
+              {/* chrome header: mac dots + JSON label */}
+              <div className="flex items-center justify-between gap-3 border-b border-cv-line bg-cv-ink/[0.03] px-4 py-3">
+                <div className="flex items-center gap-2">
+                  <span className="h-3 w-3 rounded-full bg-[#ff5f56]" />
+                  <span className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
+                  <span className="h-3 w-3 rounded-full bg-[#27c93f]" />
+                </div>
+                <span className="rounded-md bg-cv-ink/[0.08] px-2.5 py-1 text-[11px] font-medium text-cv-ink dark:bg-white/10">
+                  JSON
+                </span>
               </div>
+
               <pre className="flex-1 overflow-auto p-6 font-mono text-xs leading-relaxed text-cv-ink/85">
                 {traceJson}
               </pre>
             </div>
           </div>
 
-          {/* RIGHT (≈58%): headline + description + bottom text, generous padding, centered to code */}
+          {/* RIGHT: headline + description */}
           <div
-            className="flex flex-col justify-center lg:col-span-7 lg:pl-8"
+            className="flex flex-col justify-center lg:col-span-6 lg:pl-4"
             style={rise(1)}
           >
             <h2 className="cv-h2 text-cv-ink">No black boxes.</h2>

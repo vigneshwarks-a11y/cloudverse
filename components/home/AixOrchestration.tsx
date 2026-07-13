@@ -304,7 +304,7 @@ const META: [string, string][] = [
    scales it to fit the available column, keeping a locked 16:9 box. Used on
    mobile so the complete visual (sidebar + logs + detail panel) shows exactly
    as it does on desktop, only smaller — never a cropped/rearranged version. */
-function ScaledDashboard({ designW = 780 }: { designW?: number }) {
+export function ScaledDashboard({ designW = 780 }: { designW?: number }) {
   const outer = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(0.44);
   useLayoutEffect(() => {
@@ -329,7 +329,7 @@ function ScaledDashboard({ designW = 780 }: { designW?: number }) {
   );
 }
 
-function Dashboard({ full = false }: { full?: boolean }) {
+export function Dashboard({ full = false }: { full?: boolean }) {
   return (
     <div className="aspect-video w-full rounded-2xl shadow-[0_16px_40px_-24px_rgba(16,24,40,0.18)] dark:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.5)]">
       <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-cv-line bg-white text-[#1d1d1f] dark:border-white/10 dark:bg-[#0c0c0f] dark:text-[#e5e5e7]">

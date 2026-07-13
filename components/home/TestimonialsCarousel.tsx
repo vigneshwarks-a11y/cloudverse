@@ -321,7 +321,7 @@ export function TestimonialsCarousel() {
                   }}
                 >
                   {/* Top bar */}
-                  <div className="flex items-center gap-4 sm:gap-6 px-4 sm:px-7 pt-5 sm:pt-6 pb-3 sm:pb-4 shrink-0">
+                  <div className="flex items-center justify-between gap-4 sm:gap-6 px-4 sm:px-7 pt-5 sm:pt-6 pb-3 sm:pb-4 shrink-0">
                     <div className="flex items-center gap-2 min-w-0 shrink-0">
                       <div
                         className="flex h-7 w-7 items-center justify-center rounded-md text-xs font-bold text-white shrink-0"

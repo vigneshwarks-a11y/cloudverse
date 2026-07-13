@@ -1,7 +1,6 @@
 {
   "name": "cloudverse-website",
   "version": "1.0.0",
-  "type": "module",
   "license": "MIT",
   "scripts": {
     "dev": "rm -rf .next .next-build && next dev -H 0.0.0.0 -p 3000",
