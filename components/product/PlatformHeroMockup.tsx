@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { ComponentType } from "react";
 import { AltArrowLeft, AltArrowRight } from "@solar-icons/react";
 import type { IconProps } from "@solar-icons/react";
+import { BorderBeam } from "@/components/magicui/border-beam";
 
 const ACCENT = "#1664C0";
 const AUTO_ADVANCE_MS = 5000;
@@ -74,25 +75,6 @@ export function PlatformHeroMockup({ tabs }: { tabs: MockupTab[] }) {
             boxShadow: "0 40px 80px -32px rgba(0,0,0,0.75), 0 0 60px -20px rgba(22,100,192,0.5)",
           }}
         >
-          {/* Travelling light sweep */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute top-0 h-px w-[30%] cv-border-sweep"
-            style={{
-              background: "linear-gradient(to right, transparent, rgba(255,255,255,0.95) 40%, rgba(124,184,248,0.8) 60%, transparent)",
-              zIndex: 10,
-            }}
-          />
-
-          {/* Thin top highlight */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute left-1/2 top-0 h-px w-[78%] -translate-x-1/2 rounded-full"
-            style={{
-              background: "linear-gradient(to right, transparent, rgba(255,255,255,0.85), rgba(124,184,248,0.7), transparent)",
-            }}
-          />
-
           {/* Placeholder frame */}
           <div
             className="relative flex items-center justify-center overflow-hidden rounded-[16px] border bg-black sm:rounded-[23px]"
@@ -124,6 +106,9 @@ export function PlatformHeroMockup({ tabs }: { tabs: MockupTab[] }) {
               <p className="text-xs text-white/30">Video coming soon</p>
             </div>
           </div>
+
+          {/* White light beam travelling around the frame border */}
+          <BorderBeam duration={8} size={140} colorFrom="#ffffff" colorTo="#ffffff" />
         </div>
 
         {/* Mobile carousel nav */}

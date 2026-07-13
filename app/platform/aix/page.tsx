@@ -191,7 +191,7 @@ export default function AIXPage() {
                 className="flex flex-col items-center justify-center rounded-2xl border border-cv-ink/10 dark:border-white/10 px-6 py-10 text-center bg-white/40 dark:bg-[#0D0D0D] backdrop-blur-sm"
               >
                 <CountUpStat value={s.v} className="font-mono text-3xl lg:text-4xl font-bold text-cv-ink tracking-tight" />
-                <p className="mt-3 text-sm font-medium text-cv-muted tracking-wide max-w-[160px] line-clamp-2">{s.l}</p>
+                <p className="mt-3 text-sm font-medium text-cv-muted tracking-tight max-w-[160px] line-clamp-2">{s.l}</p>
               </div>
             ))}
           </div>

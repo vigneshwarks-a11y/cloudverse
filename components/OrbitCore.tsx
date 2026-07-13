@@ -132,9 +132,11 @@ export default function OrbitCore({
       gsap.set(pills, { opacity: 0, scale: 0.25, xPercent: -50, yPercent: -50 });
       gsap.set(stageRef.current, { opacity: 0 });
 
-      const tl = gsap.timeline({
-        scrollTrigger: { trigger: stageRef.current, start: "top 80%", once: true },
-      });
+      // Build the entrance paused, then play it exactly once when the stage
+      // scrolls into view. An IntersectionObserver is used instead of GSAP's
+      // ScrollTrigger so the trigger can't fire early or get stuck on a stale
+      // start position when layout above shifts (fonts/images loading).
+      const tl = gsap.timeline({ paused: true });
       tl.to(stageRef.current, { opacity: 1, duration: 0.35 }, 0)
         .to(solid, { scale: 1, opacity: 1, duration: 0.8, ease: "power3.out" }, 0.1)
         .to(brandEl, { opacity: 1, duration: 0.5 }, 0.55)
@@ -154,6 +156,20 @@ export default function OrbitCore({
       });
 
       tl.add(startAmbient, 1.2);
+
+      const el = stageRef.current;
+      if (!el) return;
+      const io = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((e) => e.isIntersecting)) {
+            tl.play();
+            io.disconnect();
+          }
+        },
+        { threshold: 0.2 }
+      );
+      io.observe(el);
+      return () => io.disconnect();
     },
     { scope: stageRef }
   );
