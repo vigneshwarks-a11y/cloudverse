@@ -92,7 +92,7 @@ export default function DevXPage() {
                 </div>
               </div>
 
-              <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-sm shrink-0">
+              <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-xs shrink-0">
                 <p className="cv-body text-cv-ink/70">
                   Cost context lands in the pull request, for infrastructure, application code, and AI calls. Velocity stays high. Governance finally keeps up.
                 </p>

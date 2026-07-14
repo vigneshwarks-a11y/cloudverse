@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { ArrowRight } from "@solar-icons/react";
+import { ArrowRight, CheckCircle } from "@solar-icons/react";
 import { IconChartPie2, IconInvestment, IconArrowRefresh } from "nucleo-isometric";
+import { IntegrationsMarquee } from "@/components/home/IntegrationsMarquee";
 import { FinopsVarianceMock } from "@/components/product/FinopsVarianceMock";
 import { FaqBlock } from "@/components/FaqBlock";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
@@ -161,13 +162,43 @@ export default function FinOpsPage() {
         </div>
       </section>
 
-      {/* CONNECTS TO STACK */}
-      <section className="cv-section">
-        <div className="cv-container">
-          <h2 className="cv-h3 text-cv-ink mb-5">Connects to the stack you already run.</h2>
-          <p className="text-cv-ink/75 leading-relaxed">
-            AWS, Azure, and Google Cloud for infrastructure. AIX for AI spend, DataX for warehouses, and DevX for the engineering workflow. One view across all of it.
-          </p>
+      {/* CONNECTS TO STACK — same integration section as the home page / DataX */}
+      <section className="cv-section bg-cv-surface2 dark:bg-black relative overflow-hidden">
+        {/* Ambient blue glow */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-[32rem]"
+          style={{ background: "radial-gradient(ellipse 60% 60% at 50% 0%, rgba(22,100,192,0.16), transparent 70%)" }}
+        />
+
+        <div className="cv-container relative z-10">
+          {/* Heading */}
+          <div className="text-center">
+            <h2 className="cv-h2 text-cv-ink mx-auto max-w-2xl">
+              Connects to the stack you already run.
+            </h2>
+            <p className="mt-5 cv-body text-cv-ink/60 max-w-lg mx-auto">
+              AWS, Azure, and Google Cloud for infrastructure. AIX for AI spend, DataX for warehouses, and DevX for the engineering workflow. One view across all of it.
+            </p>
+          </div>
+
+          {/* Logos marquee - two rows of app-icon tiles */}
+          <IntegrationsMarquee />
+
+          {/* Trust line + CTA */}
+          <div className="mt-16 flex flex-col items-center gap-4">
+            <div className="inline-flex items-center gap-2 text-xs text-cv-muted">
+              <CheckCircle weight="Linear" size={13} className="text-cv-teal shrink-0" />
+              Read-only by default. Automation is opt-in, scoped, and logged.
+            </div>
+            <Link
+              href="/integrations"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-4 transition-colors"
+              data-testid="link-integrations"
+            >
+              View all integrations <ArrowRight weight="Linear" size={14} />
+            </Link>
+          </div>
         </div>
       </section>
 
