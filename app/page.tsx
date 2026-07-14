@@ -3,12 +3,11 @@ import { ArrowRight, CheckCircle } from "@solar-icons/react";
 import type { Metadata } from "next";
 import { CustomerLogos } from "@/components/CustomerLogos";
 import { ProductVideo } from "@/components/home/ProductVideo";
-import { PlatformSurfaces } from "@/components/home/PlatformSurfaces";
-import { Testimonials } from "@/components/home/Testimonials";
-import { CountUpStat } from "@/components/CountUpStat";
 import { FaqBlock } from "@/components/FaqBlock";
+import { HardcodeCost } from "@/components/home/HardcodeCost";
+import { BeforeAfterAix } from "@/components/home/BeforeAfterAix";
+import { CostOfNotRouting } from "@/components/home/CostOfNotRouting";
 import { AixGovernance } from "@/components/home/AixGovernance";
-import { FeatureShowcase } from "@/components/home/FeatureShowcase";
 import { IntegrationsMarquee } from "@/components/home/IntegrationsMarquee";
 import { VendorSovereignty } from "@/components/home/VendorSovereignty";
 import { AixOrchestration } from "@/components/home/AixOrchestration";
@@ -35,81 +34,30 @@ export const metadata: Metadata = {
   },
 };
 
-const STATS = [
-  { v: "40–90%", label: "less AI spend on production workloads" },
-  { v: "96.8%", label: "cheaper inference than a hardcoded setup (benchmarked)" },
-  { v: "$738,983", label: "recovered by a single customer" },
-  { v: "10–100x", label: "cost gap when the wrong model runs the job" },
-];
-
-const EXECUTION_STAGES = [
-  {
-    label: "Before it runs",
-    body: "The owner, the budget, the allowed providers, the residency rule, and the quality floor are set before a single token leaves.",
-    accent: "#6954D4",
-  },
-  {
-    label: "While it runs",
-    body: "Every route is scored live on cost, latency, quality, and compliance. The best fit wins, a fallback waits, and the budget holds in real time.",
-    accent: "#007CFF",
-  },
-  {
-    label: "After it runs",
-    body: "Cost lands against the request, the feature, and the tenant. The run goes on the ledger with its outcome and an audit trail.",
-    accent: "#0E9E7A",
-  },
-];
-
-const AIX_CAPABILITIES = [
-  {
-    title: "Routing",
-    body: "Every workload goes to the model that fits its cost, latency, and quality needs. Automatically. No code change when prices move.",
-  },
-  {
-    title: "Visibility",
-    body: "One view of all of it: models, tokens, teams, projects, agents, subscriptions, APIs.",
-  },
-  {
-    title: "Optimization",
-    body: "Find the oversized model, the wasteful prompt, the subscription you're paying for twice. See the saving before you commit.",
-  },
-  {
-    title: "Governance & evals",
-    body: "Policy, access control, residency, vendor oversight, and quality checks. On by default.",
-  },
-  {
-    title: "Productivity",
-    body: "Measure what AI changed about engineering output, in hours and in dollars.",
-  },
-];
-
-const LIFECYCLE_STEPS = [
-  { n: "01", title: "Connect", body: "Plug in your cloud, AI, and data accounts. Read-only by default. Most teams are live in under 30 minutes." },
-  { n: "02", title: "Govern", body: "Set owners, budgets, policies, and allowed providers. Rules apply before a request runs, not after the bill lands." },
-  { n: "03", title: "Route & Measure", body: "AIX scores every request live and routes it. Cost lands against the request, the feature, and the tenant automatically." },
-  { n: "04", title: "Optimize", body: "Surface the savings, automate the ones you approve, and track what changed. No spreadsheet reconstruction." },
-];
-
 const HOME_FAQS = [
   {
     q: "What is an AI control plane?",
-    a: "An AI control plane is the system that governs, routes, and meters every AI request across your models and providers. It sets policy and budget before a request runs, scores routes while it runs, and records cost and outcome after.",
+    a: "The system that governs, routes, and meters every AI request across your models and providers. It sets policy and budget before a request runs, scores routes while it runs, and records cost and outcome after.",
   },
   {
-    q: "How is this different from an AI gateway?",
-    a: "A gateway runs the routing rule you wrote. AIX works out what the rule should be, scoring every route live on cost, latency, quality, and compliance, and records the cost and outcome of each one.",
+    q: "How is AIX different from an AI gateway?",
+    a: "A gateway runs the routing rule you already wrote. AIX works out what the rule should be, scoring every route live on cost, latency, quality, and compliance, then logs why one won.",
   },
   {
     q: "How is it different from LLM observability?",
-    a: "Observability tells you what a request cost after it ran. AIX settles that before it does, and enforces budget and policy in real time.",
+    a: "Observability tells you what a request cost after it ran. AIX settles that before it runs and enforces budget and policy in real time.",
   },
   {
-    q: "Does cloudverse only do AI, or cloud cost too?",
-    a: "Both. AIX runs the AI. FinOps, DevX, and DataX run cloud, engineering, and data on the same platform.",
+    q: "Does AIX proxy my traffic or add latency?",
+    a: "Routing overhead is under 15ms per request, and AIX can operate as a decision layer without mediating all traffic. Execution stays in your control.",
+  },
+  {
+    q: "What happens when a model is deprecated or a provider goes down?",
+    a: "Every route carries a fallback. AIX reroutes within your constraints, and your prompts, policies, and audit trail keep working because they live in your control plane.",
   },
   {
     q: "How fast is this live?",
-    a: "First account connected in under 30 minutes. Most teams find something they didn't expect the same day, inside a no-fee, two-to-four-week proof of value.",
+    a: "First account connected in under 30 minutes, read-only by default. Most teams find something they didn't expect the same day, inside a no-fee, two-to-four-week proof of value.",
   },
 ];
 
@@ -119,7 +67,7 @@ export default function HomePage() {
       {/* HERO + VIDEO wrapper shares the same gradient background */}
       <div className="cv-hero-bg">
         {/* HERO */}
-        <section className="pt-[120px] sm:pt-[160px] pb-6 lg:pt-[240px] lg:pb-8 relative">
+        <section className="pt-[160px] sm:pt-[200px] pb-20 lg:pt-[300px] lg:pb-32 relative">
           <div className="cv-container relative z-10">
             <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
               {/* Left: eyebrow + headline + CTAs */}
@@ -159,52 +107,16 @@ export default function HomePage() {
 
         {/* PRODUCT VIDEO */}
         <ProductVideo />
-
-        {/* STATS CARDS */}
-        <section className="pt-6 pb-10 lg:pt-8 lg:pb-12">
-        <div className="cv-container">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-            {[
-              { v: "$739K+", label: "Annualized cloud savings at one customer" },
-              { v: "40–90%", label: "AI cost cut across production workloads" },
-              { v: "96.8%", label: "Lower inference cost than a hardcoded model setup" },
-            ].map((s) => (
-              <div
-                key={s.label}
-                className="flex flex-col items-center justify-center rounded-2xl border border-cv-ink/10 dark:border-white/10 px-8 py-12 text-center bg-white/40 dark:bg-white/5 backdrop-blur-sm"
-              >
-                <CountUpStat value={s.v} className="font-mono text-5xl lg:text-6xl font-bold text-cv-ink tracking-tight" />
-                <p className="mt-4 text-sm font-semibold text-cv-muted">{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-        </section>
       </div>
 
       {/* CUSTOMER LOGOS */}
       <CustomerLogos />
 
-      {/* DOMAINS OVERVIEW */}
-      <FeatureShowcase />
+      {/* AI COMPUTE IS TOO EXPENSIVE TO HARDCODE */}
+      <HardcodeCost />
 
-      {/* VENDOR SOVEREIGNTY */}
-      <VendorSovereignty />
-
-      {/* AIX GOVERNANCE */}
-      <AixGovernance />
-
-      {/* AIX ORCHESTRATION */}
-      <AixOrchestration />
-
-
-
-
-      {/* TESTIMONIALS */}
-      <TestimonialsCarousel />
-
-      {/* GUIDES & RESOURCES */}
-      <GuidesResources />
+      {/* BEFORE / AFTER AIX */}
+      <BeforeAfterAix />
 
       {/* INTEGRATIONS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black relative overflow-hidden">
@@ -216,7 +128,6 @@ export default function HomePage() {
         />
 
         <div className="cv-container relative z-10">
-
           {/* Heading */}
           <div className="text-center">
             <h2 className="cv-h2 text-cv-ink mx-auto max-w-2xl">
@@ -244,10 +155,26 @@ export default function HomePage() {
               View all integrations <ArrowRight weight="Linear" size={14} />
             </Link>
           </div>
-
         </div>
       </section>
 
+      {/* THE COST OF NOT ROUTING */}
+      <CostOfNotRouting />
+
+      {/* AIX GOVERNANCE - Take the driver's seat */}
+      <AixGovernance />
+
+      {/* VENDOR SOVEREIGNTY - Own your stuff */}
+      <VendorSovereignty />
+
+      {/* AIX ORCHESTRATION - One system of record */}
+      <AixOrchestration />
+
+      {/* TESTIMONIALS */}
+      <TestimonialsCarousel />
+
+      {/* GUIDES & RESOURCES */}
+      <GuidesResources />
 
       {/* FAQ */}
       <section className="cv-section bg-cv-surface overflow-hidden">
@@ -260,8 +187,6 @@ export default function HomePage() {
           />
         </div>
       </section>
-
-      {/* FINAL CTA */}
     </>
   );
 }

@@ -1,7 +1,14 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle } from "@solar-icons/react";
+import { ArrowRight, CheckCircle, ShieldCheck, Cloud, Database, Cpu, CodeSquare, ChartSquare, UsersGroupRounded, ServerSquare, Server } from "@solar-icons/react";
 import type { Metadata } from "next";
+import type { ComponentType } from "react";
+import type { IconProps } from "@solar-icons/react";
 import { DEMO_URL } from "@/lib/links";
+import AixProvidersMarquee from "@/components/product/AixProvidersMarquee";
+import IntegrationSteps from "@/components/product/IntegrationSteps";
+import IntegrationsCatalog from "@/components/product/IntegrationsCatalog";
+import ClosingCtaBand from "@/components/ClosingCtaBand";
+import { FaqBlock } from "@/components/FaqBlock";
 
 export const metadata: Metadata = {
   title: "Integrations: Connects to the Stack Your Teams Already Use | CloudVerse",
@@ -17,188 +24,261 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: "CloudVerse Integrations", description: "Connect once. CloudVerse handles routing, attribution, and cost tracking across your entire stack." },
 };
 
-const CATEGORIES = [
-  ["Cloud providers", "AWS, Microsoft Azure, Google Cloud Platform"],
-  ["Data platforms", "Snowflake, Databricks, BigQuery, Microsoft Fabric, Azure Synapse"],
-  ["AI providers", "OpenAI, Anthropic, HuggingFace, Mistral AI, Llama/Ollama, Cohere, Together AI, Groq, DeepSeek"],
-  ["Code and CI", "GitHub, GitLab, Azure DevOps, GitHub Actions, GitLab CI, Jenkins, Argo"],
-  ["APM and telemetry", "OpenTelemetry, Datadog, New Relic, Dynatrace"],
-  ["Identity", "Okta, Azure Active Directory, Google Workspace (SSO + SCIM)"],
+type Category = { title: string; body: string; Icon: ComponentType<IconProps> };
+
+const CATEGORIES: Category[] = [
+  { title: "Cloud providers", body: "AWS, Microsoft Azure, Google Cloud Platform", Icon: Cloud },
+  { title: "Data platforms", body: "Snowflake, Databricks, BigQuery, Microsoft Fabric, Azure Synapse", Icon: Database },
+  { title: "AI providers", body: "OpenAI, Anthropic, HuggingFace, Mistral, Llama/Ollama, Cohere, Together AI, Groq, DeepSeek", Icon: Cpu },
+  { title: "Code and CI", body: "GitHub, GitLab, Azure DevOps, GitHub Actions, GitLab CI, Jenkins, Argo", Icon: CodeSquare },
+  { title: "APM and telemetry", body: "OpenTelemetry, Datadog, New Relic, Dynatrace", Icon: ChartSquare },
+  { title: "Identity", body: "Okta, Azure Active Directory, Google Workspace (SSO + SCIM)", Icon: UsersGroupRounded },
 ];
 
-const PROVIDERS = [
-  ["OpenAI", "GPT-4o, GPT-4o-mini, GPT-4 Turbo, GPT-3.5 Turbo"],
-  ["Anthropic", "Claude 3.5 Sonnet, Claude 3 Haiku, Claude 3 Opus"],
-  ["HuggingFace", "Hosted inference endpoints and open models via HuggingFace Hub"],
-  ["Mistral AI", "Mistral Large, Mistral Small, Mixtral 8x7B"],
-  ["Llama / Ollama", "Meta Llama 3 family via Ollama and compatible deployments"],
-  ["Cohere", "Command R, Command R+, reranking endpoints"],
-  ["Together AI", "Open model inference at scale"],
-  ["Groq", "Ultra-low latency LPU inference"],
-  ["DeepSeek", "DeepSeek-V3, DeepSeek-R1"],
+const PERMISSIONS: [string, string][] = [
+  ["Read-only by default", "Metadata, query logs, and billing telemetry. Never touches your underlying data, workload code, or runtime configuration."],
+  ["Automation is opt-in", "Explicitly granted, scoped to specific resources, and fully auditable. Every action is logged with its reason, impact, and rollback path."],
+  ["Least-privilege scripts", "Provided for your security team to review before any connection is established."],
+];
+
+const ENTERPRISE: [string, string][] = [
+  ["Private-link available", "No data leaves your VPC."],
+  ["Audit logs", "All connection and access activity logged."],
+  ["Customer-managed keys", "Bring your own encryption keys on enterprise accounts."],
+  ["Least-privilege onboarding", "Reviewed by your security team before any connection is established."],
+  ["Multiple ingestion modes", "Push, pull, and event-driven options depending on platform type."],
+];
+
+const GPU_ITEMS: { title: string; body: string; Icon: ComponentType<IconProps> }[] = [
+  { title: "Private model deployments", body: "vLLM, TGI, and custom inference servers.", Icon: ServerSquare },
+  { title: "GPU providers", body: "CoreWeave, Lambda Labs, and RunPod.", Icon: Cpu },
+  { title: "On-premises infrastructure", body: "Your own dedicated inference hardware.", Icon: Server },
+];
+
+const FAQ: [string, string][] = [
+  ["How long does setup take?", "Most connections take 15–30 minutes depending on the ingestion method. Cloud and AI providers are usually the fastest; enterprise integrations with private networking may take longer to review and approve."],
+  ["What permissions do you require?", "Read-only by default, scoped to billing and usage telemetry wherever possible. CloudVerse never touches your underlying data, workload code, or runtime configuration. Automation is opt-in, scoped to specific resources, and fully logged."],
+  ["Do you support multi-account and multi-org setups?", "Yes. CloudVerse supports enterprise hierarchies and tenancy boundaries across multiple accounts, subscriptions, and projects, with allocation dimensions that map to how your organization is structured."],
+  ["Can we use exports instead of APIs?", "Yes. Billing exports are supported when direct APIs aren't available. We offer multiple ingestion modes — push, pull, and event-driven — depending on the platform type."],
+  ["Do integrations affect production performance?", "No. Connections are read-only and designed to be low-overhead. They ingest metadata, query logs, and billing telemetry without touching your workload code or runtime."],
+  ["What if the connector we need isn't listed?", "Talk to us. We add integrations based on customer demand, and least-privilege connection scripts are provided for your security team to review before anything goes live."],
 ];
 
 export default function IntegrationsPage() {
   return (
     <>
-      <section className="cv-hero-bg pt-[120px] sm:pt-[160px] pb-16 lg:pt-[240px] lg:pb-24 relative">
-        <div className="cv-container relative z-10 max-w-4xl">
-          <h1 className="cv-h1 text-cv-ink">Connects to the Stack Your Teams Already Use</h1>
-          <p className="cv-body-lg mt-6 text-cv-ink/75">
-            Add your integration once. CloudVerse handles routing, attribution, and cost tracking across all of them. No code changes when you add a new provider.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={DEMO_URL} className="cv-btn-primary"><span>Set up your integrations</span><ArrowRight weight="Linear" size={16} /></Link>
+      {/* HERO */}
+      <div className="cv-hero-bg">
+        <section className="pt-[120px] sm:pt-[160px] pb-16 lg:pt-[240px] lg:pb-24 relative">
+          <div className="cv-container relative z-10">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
+              {/* Left: eyebrow + headline + CTAs */}
+              <div className="flex-1 min-w-0 lg:max-w-2xl xl:max-w-3xl">
+                <p className="cv-label mb-5">Integrations</p>
+                <h1 className="cv-h1 text-cv-ink max-w-3xl">
+                  Connects to the stack<br />
+                  <span className="text-cv-blue dark:text-cv-blue-light">your teams already use.</span>
+                </h1>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Link href={DEMO_URL} className="cv-btn-primary">
+                    <span>Set up your integrations</span><ArrowRight weight="Linear" size={16} />
+                  </Link>
+                  <Link href="/contact" className="cv-btn-ghost !text-cv-ink !border-cv-ink/30 hover:!border-cv-ink/60 hover:!bg-cv-ink/10 dark:!text-white dark:!border-white/40 dark:hover:!border-white/70 dark:hover:!bg-white/10">
+                    Request a connector
+                  </Link>
+                </div>
+              </div>
+
+              {/* Right: subhead + trust line */}
+              <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-sm shrink-0">
+                <p className="cv-body text-cv-ink/70">
+                  Add your integration once. CloudVerse handles routing, attribution, and cost tracking across all of them. No code changes when you add a new provider.
+                </p>
+                <div className="mt-5 inline-flex items-center gap-2 text-xs text-cv-muted">
+                  <CheckCircle weight="Linear" size={13} className="text-cv-teal shrink-0" />
+                  Read-only by default. Automation is opt-in, scoped, and logged.
+                </div>
+              </div>
+            </div>
           </div>
+        </section>
+
+      </div>
+
+      {/* AI PROVIDERS — reuse the home marquee design */}
+      <section className="cv-section relative overflow-hidden bg-cv-surface2 dark:bg-black">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-[32rem]"
+          style={{ background: "radial-gradient(ellipse 60% 60% at 50% 0%, rgba(22,100,192,0.16), transparent 70%)" }}
+        />
+        <div className="cv-container relative z-10">
+          <div className="text-center">
+            <h2 className="cv-h2 text-cv-ink mx-auto max-w-2xl">Every model provider, one endpoint.</h2>
+            <p className="mt-5 cv-body text-cv-ink/60 max-w-lg mx-auto">
+              Route across managed APIs and private deployments without changing your application code.
+            </p>
+          </div>
+          <AixProvidersMarquee />
+          <p className="mt-14 text-center text-sm italic text-cv-muted">More providers added regularly.</p>
         </div>
       </section>
 
-      {/* SECURITY MODEL */}
+      {/* INTEGRATIONS DIRECTORY — searchable catalog */}
       <section className="cv-section">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink">Read-only by default. Automation is opt-in.</h2>
-          <div className="mt-6 space-y-4">
-            <p className="cv-body-lg text-cv-ink/80">
-              CloudVerse connects to your infrastructure using read-only access. It reads metadata, query logs, billing telemetry, and policy signals. It never touches your underlying data, workload code, or runtime configuration unless you explicitly grant automation permissions.
-            </p>
-            <p className="cv-body-lg text-cv-ink/80">
-              Automation permissions are scoped, explicit, and auditable. Every automated action is logged with the reason, the expected impact, and a rollback path.
-            </p>
-            <div className="cv-label mt-2 mb-3">Permissions model</div>
-            <ul className="space-y-3">
-              {[
-                ["Read-only by default", "metadata, query logs, billing telemetry. Never touches underlying data."],
-                ["Automation is opt-in", "explicitly granted, scoped to specific resources, fully auditable."],
-                ["Least-privilege scripts", "provided for your security team to review before connection."],
-              ].map(([t, b]) => (
-                <li key={t} className="flex items-start gap-3 text-cv-ink/85">
-                  <CheckCircle weight="Linear" size={18} className="text-cv-teal mt-1 shrink-0" />
-                  <span><strong className="text-cv-ink">{t}:</strong> {b}</span>
-                </li>
-              ))}
-            </ul>
+          <p className="cv-label mb-4">Integration directory</p>
+          <h2 className="cv-h2 text-cv-ink max-w-2xl">Browse every connector.</h2>
+          <div className="mt-10">
+            <IntegrationsCatalog />
           </div>
         </div>
       </section>
 
-      {/* INTEGRATION CATEGORIES */}
-      <section className="cv-section bg-cv-surface2">
+      {/* INTEGRATION CATEGORIES — bento */}
+      <section className="cv-section">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-10">Integration categories</h2>
-          <div className="grid md:grid-cols-2 gap-5">
-            {CATEGORIES.map(([t, b]) => (
-              <div key={t} className="rounded-2xl border border-cv-line bg-cv-surface dark:bg-[#0D0D0D] p-6">
-                <h3 className="cv-h3 text-cv-ink">{t}</h3>
-                <p className="text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
+          <p className="cv-label mb-4">What we connect</p>
+          <h2 className="cv-h2 text-cv-ink max-w-2xl">Every layer of your compute stack, in one place.</h2>
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {CATEGORIES.map(({ title, body, Icon }) => (
+              <div
+                key={title}
+                className="group relative overflow-hidden rounded-2xl border border-cv-line/60 bg-cv-surface p-6 shadow-sm shadow-black/[0.04] ring-1 ring-transparent transition-colors hover:border-cv-blue/40 dark:bg-[#0D0D0D] lg:p-8"
+              >
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute -right-16 -top-20 h-48 w-48 rounded-full blur-3xl"
+                  style={{ background: "radial-gradient(circle, rgba(34,120,224,0.16), transparent 70%)" }}
+                />
+                <div className="relative">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#1664C0]/12 text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
+                    <Icon weight="Linear" size={22} />
+                  </div>
+                  <h3 className="mt-5 font-display text-lg font-semibold text-cv-ink">{title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-cv-muted">{body}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* AI PROVIDER DETAIL */}
+      {/* SECURITY / PERMISSIONS MODEL */}
       <section className="cv-section">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-10">Supported model providers</h2>
-          <div className="overflow-x-auto rounded-2xl border border-cv-line">
-            <table className="w-full text-xs sm:text-sm">
-              <thead className="bg-cv-surface2 dark:bg-[#0D0D0D]">
-                <tr className="text-left">
-                  <th className="p-4 text-cv-ink font-medium w-1/4">Provider</th>
-                  <th className="p-4 text-cv-ink font-medium">Models and notes</th>
-                </tr>
-              </thead>
-              <tbody>
-                {PROVIDERS.map(([p, n]) => (
-                  <tr key={p} className="border-t border-cv-line">
-                    <td className="p-4 font-medium text-cv-ink">{p}</td>
-                    <td className="p-4 text-cv-ink/75">{n}</td>
-                  </tr>
+          <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+            <div>
+              <p className="cv-label mb-4">Security model</p>
+              <h2 className="cv-h2 text-cv-ink">Read-only by default. Automation is opt-in.</h2>
+              <p className="cv-body-lg text-cv-ink/75 mt-6">
+                CloudVerse connects to your infrastructure using read-only access. It reads metadata, query logs, billing telemetry, and policy signals, and never touches your data or runtime unless you explicitly grant automation permissions.
+              </p>
+              <Link href="/contact" className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-4 transition-colors">
+                Review our security posture <ArrowRight weight="Linear" size={14} />
+              </Link>
+            </div>
+
+            <div className="rounded-2xl border border-cv-line/60 bg-cv-surface2 dark:bg-[#0D0D0D] p-6 lg:p-8">
+              <div className="mb-5 flex items-center gap-2.5">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#1664C0]/12 text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
+                  <ShieldCheck weight="Bold" size={18} />
+                </div>
+                <span className="font-display font-semibold text-cv-ink">Permissions model</span>
+              </div>
+              <ul className="divide-y divide-cv-line/60">
+                {PERMISSIONS.map(([t, b]) => (
+                  <li key={t} className="flex items-start gap-3 py-4 first:pt-0 last:pb-0">
+                    <CheckCircle weight="Linear" size={18} className="mt-0.5 shrink-0 text-cv-teal" />
+                    <span className="text-sm leading-relaxed text-cv-ink/80">
+                      <strong className="font-semibold text-cv-ink">{t}:</strong> {b}
+                    </span>
+                  </li>
                 ))}
-              </tbody>
-            </table>
+              </ul>
+            </div>
           </div>
-          <p className="text-cv-muted text-sm mt-4 italic">More providers added regularly.</p>
         </div>
       </section>
 
-      {/* GPU INFRASTRUCTURE */}
-      <section className="cv-section bg-cv-surface2">
+      {/* ENTERPRISE ACCESS — bento */}
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-8">Private deployments and GPU infrastructure.</h2>
-          <p className="cv-body-lg text-cv-ink/75 max-w-4xl">
-            AIX treats private GPU capacity as a first-class routing target alongside managed APIs. If you run models on dedicated hardware or a NeoCloud provider, AIX routes to them with the same cost and policy logic.
-          </p>
-          <ul className="mt-8 space-y-3">
-            {[
-              "Private model deployments: vLLM, TGI, custom inference",
-              "GPU providers: CoreWeave, Lambda Labs, RunPod",
-              "On-premises infrastructure: your own inference hardware",
-            ].map((b) => (
-              <li key={b} className="flex items-start gap-3 text-cv-ink/85">
-                <CheckCircle weight="Linear" size={18} className="text-cv-teal mt-0.5 shrink-0" /> {b}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* ENTERPRISE ACCESS */}
-      <section className="cv-section">
-        <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-10">Built for enterprise access patterns.</h2>
-          <div className="grid md:grid-cols-2 gap-5">
-            {[
-              ["Private-link available", "No data leaves your VPC."],
-              ["Audit logs", "All connection and access activity logged."],
-              ["Customer-managed encryption keys", "Available for enterprise accounts."],
-              ["Least-privilege onboarding scripts", "Reviewed by your security team before any connection is established."],
-              ["Multiple ingestion modes", "Push, pull, and event-driven options depending on platform type."],
-            ].map(([t, b]) => (
-              <div key={t} className="rounded-2xl border border-cv-line bg-cv-surface2 dark:bg-[#0D0D0D] p-6">
-                <h3 className="font-display font-semibold text-cv-ink">{t}</h3>
-                <p className="text-sm text-cv-ink/75 mt-2 leading-relaxed">{b}</p>
+          <p className="cv-label mb-4">Enterprise-ready</p>
+          <h2 className="cv-h2 text-cv-ink max-w-2xl">Built for enterprise access patterns.</h2>
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {ENTERPRISE.map(([t, b]) => (
+              <div key={t} className="rounded-2xl border border-cv-line/60 bg-cv-surface dark:bg-[#0D0D0D] p-6 lg:p-8">
+                <CheckCircle weight="Bold" size={20} className="text-[#1664C0] dark:text-[#7CB8F8]" />
+                <h3 className="mt-4 font-display font-semibold text-cv-ink">{t}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-cv-muted">{b}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PRIVATE DEPLOYMENTS + GPU */}
+      <section className="cv-section">
+        <div className="cv-container">
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+            {/* left: eyebrow + heading + body */}
+            <div>
+              <p className="cv-label mb-4">Private compute</p>
+              <h2 className="cv-h2 text-cv-ink">Private deployments and GPU infrastructure.</h2>
+              <p className="cv-body-lg text-cv-ink/75 mt-6">
+                AIX treats private GPU capacity as a first-class routing target alongside managed APIs. If you run models on dedicated hardware or a NeoCloud provider, AIX routes to them with the same cost and policy logic.
+              </p>
+            </div>
+
+            {/* right: bordered grid of icon-cell rows */}
+            <div className="overflow-hidden rounded-2xl border border-cv-line/70 divide-y divide-cv-line/70 dark:border-white/10 dark:divide-white/10">
+              {GPU_ITEMS.map(({ title, body, Icon }) => (
+                <div key={title} className="grid grid-cols-[auto_1fr] items-stretch">
+                  <div className="flex items-center justify-center border-r border-cv-line/70 px-7 py-6 text-cv-blue dark:border-white/10 dark:text-cv-blue-light sm:px-9">
+                    <Icon weight="Bold" size={28} />
+                  </div>
+                  <div className="px-6 py-6 sm:px-8">
+                    <h3 className="font-display text-lg font-semibold text-cv-ink">{title}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-cv-muted">{body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* THREE STEPS */}
-      <section className="cv-section bg-cv-surface2">
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-10">Three steps to get started</h2>
-          <div className="grid md:grid-cols-3 gap-5">
-            {[
-              ["Connect providers", "Add API keys and endpoints. Minutes per provider."],
-              ["Define constraints", "Set latency, budget, compliance, and provider rules per workload."],
-              ["Route through CloudVerse", "Point model calls at the CloudVerse endpoint. Routing handled from there."],
-            ].map(([t, b], i) => (
-              <div key={t} className="rounded-2xl border border-cv-line bg-cv-surface dark:bg-[#0D0D0D] p-6">
-                <div className="text-xs uppercase tracking-widest text-cv-muted">Step 0{i + 1}</div>
-                <h3 className="cv-h3 text-cv-ink mt-2">{t}</h3>
-                <p className="text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
-              </div>
-            ))}
+          <p className="cv-label mb-4">Getting started</p>
+          <h2 className="cv-h2 text-cv-ink max-w-2xl">Three steps to go live.</h2>
+          <div className="mt-12">
+            <IntegrationSteps />
           </div>
         </div>
       </section>
 
-      {/* FINAL CTA */}
+      {/* FAQ */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="rounded-3xl border border-cv-line bg-cv-surface2 dark:bg-[#0D0D0D] p-10 lg:p-16 text-center">
-            <h2 className="cv-h2 text-cv-ink max-w-3xl mx-auto">Need a connector that is not listed?</h2>
-            <p className="cv-body-lg text-cv-ink/75 mt-5 max-w-2xl mx-auto">
-              Talk to us. We add integrations based on customer demand.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href="/contact" className="cv-btn-primary"><span>Talk to Us</span><ArrowRight weight="Linear" size={16} /></Link>
-              <Link href="/resources" className="cv-btn-ghost">View Documentation</Link>
-            </div>
+          <div className="text-center mb-10">
+            <h2 className="cv-h2 text-cv-ink">Frequently Asked Questions</h2>
           </div>
+          <FaqBlock items={FAQ.map(([q, a]) => ({ q, a }))} accent="#1664C0" />
         </div>
       </section>
+
+      {/* FINAL CTA — closing band (replaces the global one on this page) */}
+      <ClosingCtaBand
+        heading="Need a connector that is not listed?"
+        subtext="Talk to us. We add integrations based on customer demand."
+        primaryLabel="Talk to Us"
+        primaryHref="/contact"
+        secondaryLabel="View Documentation"
+        secondaryHref="/resources"
+      />
     </>
   );
 }

@@ -8,6 +8,7 @@ import { DEMO_URL } from "@/lib/links";
 import WhoDevxFor from "@/components/product/WhoDevxFor";
 import DevxPrExample from "@/components/product/DevxPrExample";
 import CostGates from "@/components/product/CostGates";
+import { BeforeAfterCards, type BeforeAfterRow } from "@/components/product/BeforeAfterCards";
 
 export const metadata: Metadata = {
   title: "DevX: Catch Cost Regressions Before They Reach Production | CloudVerse",
@@ -44,6 +45,16 @@ const STATS = [
   { v: "7+", l: "IaC formats supported" },
 ];
 
+// Attribute-by-attribute contrast between the old review flow and DevX. Same
+// keys on both sides so the two cards read as an aligned before/after.
+const DEVX_VS: BeforeAfterRow[] = [
+  { k: "Signal", before: "Discovered on next month's bill", after: "Commented inline on the PR" },
+  { k: "Timing", before: "Weeks after it merged", after: "Before review, before merge" },
+  { k: "Owner", before: "Nobody links it back", after: "In front of who wrote it" },
+  { k: "Fix", before: "Unwind work in production", after: "Change a line before it ships" },
+  { k: "Policy", before: "Tribal knowledge", after: "Cost rules as code, per team" },
+];
+
 const DIFF = `resource "aws_nat_gateway" "this" {
 - count = 1
 + count = var.enable_nat_gateway ? 1 : 0
@@ -70,7 +81,7 @@ export default function DevXPage() {
         <section className="pt-[120px] sm:pt-[160px] pb-16 lg:pt-[240px] lg:pb-20 relative">
           <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
             <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
-              <div className="flex-1 min-w-0 lg:max-w-xl xl:max-w-2xl">
+              <div className="flex-1 min-w-0 lg:max-w-2xl xl:max-w-3xl">
                 <span className="block text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8]">
                   DevX
                 </span>
@@ -109,18 +120,27 @@ export default function DevXPage() {
       </section>
 
       <section className="cv-section">
-        <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink">Infrastructure cost mistakes don&apos;t look like mistakes.</h2>
-          <div className="mt-6 space-y-4">
-            <p className="cv-body-lg text-cv-ink/80">
-              A change ships. It passes review, it passes tests, it looks fine.
-            </p>
-            <p className="cv-body-lg text-cv-ink/80">
-              The cost shows up weeks later on a bill nobody connects back to that pull request. By then the fix means unwinding work already in production.
-            </p>
-            <p className="cv-body-lg text-cv-ink font-medium">
-              The cheapest moment to catch a regression is before it merges, in front of the person who wrote it.
-            </p>
+        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-14">
+            <h2 className="cv-h2 text-cv-ink">Infrastructure cost mistakes don&apos;t look like mistakes.</h2>
+            <div>
+              <p className="cv-body-lg text-cv-ink/80">
+                A change ships. It passes review, it passes tests, it looks fine. The cost shows up weeks later on a bill nobody connects back to that pull request. By then the fix means unwinding work already in production.
+              </p>
+              <p className="cv-body-lg text-cv-ink font-medium mt-4">
+                The cheapest moment to catch a regression is before it merges, in front of the person who wrote it.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-12">
+            <BeforeAfterCards
+              beforeLabel="Before DevX"
+              beforeSub="Cost found after merge"
+              afterLabel="With DevX"
+              afterSub="Cost seen in the PR"
+              rows={DEVX_VS}
+            />
           </div>
         </div>
       </section>

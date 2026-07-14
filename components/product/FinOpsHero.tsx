@@ -16,7 +16,7 @@ export function FinOpsHero() {
       <section className="pt-[120px] sm:pt-[160px] pb-16 lg:pt-[240px] lg:pb-20 relative">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
-            <div className="flex-1 min-w-0 lg:max-w-xl xl:max-w-2xl">
+            <div className="flex-1 min-w-0 lg:max-w-2xl xl:max-w-3xl">
               <span className="block text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8]">
                 FinOps Platform
               </span>

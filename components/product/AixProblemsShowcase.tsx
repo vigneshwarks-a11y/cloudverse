@@ -260,7 +260,7 @@ const WORKLOADS: { name: string; model: string; profile: Profile; switched: stri
 ];
 function WorkloadMock() {
   return (
-    <div className="grid flex-1 grid-cols-2 gap-2.5">
+    <div className="grid flex-1 grid-cols-2 auto-rows-fr gap-2.5">
       {WORKLOADS.map((w) => {
         const c = PROFILE_COLOR[w.profile];
         return (
@@ -409,9 +409,9 @@ export default function AixProblemsShowcase() {
 
         {/* carousel */}
         <div className="overflow-hidden" ref={emblaRef}>
-          <div className="flex gap-6">
+          <div className="flex gap-6 lg:gap-8">
             {PROBLEMS.map((p) => (
-              <div key={p.title} className="min-w-0 flex-[0_0_88%] sm:flex-[0_0_60%] lg:flex-[0_0_48%]">
+              <div key={p.title} className="min-w-0 flex-[0_0_88%] sm:flex-[0_0_60%] lg:flex-[0_0_46%]">
                 <Cell {...p} />
               </div>
             ))}

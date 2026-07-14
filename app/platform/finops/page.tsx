@@ -1,11 +1,16 @@
 import Link from "next/link";
 import { ArrowRight } from "@solar-icons/react";
+import { IconChartPie2, IconInvestment, IconArrowRefresh } from "nucleo-isometric";
+import { FinopsVarianceMock } from "@/components/product/FinopsVarianceMock";
 import { FaqBlock } from "@/components/FaqBlock";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import { WhoUsesItCards } from "@/components/product/WhoUsesItCards";
 import { FinOpsHero } from "@/components/product/FinOpsHero";
+import { FeatureShowcase } from "@/components/home/FeatureShowcase";
+import { CountUpStat } from "@/components/CountUpStat";
+import FinopsSurfaces from "@/components/product/FinopsSurfaces";
 
 export const metadata: Metadata = {
   title: "FinOps Platform: Multi-Cloud Cost Intelligence for Every Team | CloudVerse",
@@ -53,7 +58,7 @@ export default function FinOpsPage() {
                 key={s.l}
                 className={`flex flex-col items-center justify-center rounded-2xl border border-cv-ink/10 dark:border-white/10 px-6 py-10 text-center bg-white/40 dark:bg-[#0D0D0D] backdrop-blur-sm${i === STATS.length - 1 && STATS.length % 2 !== 0 ? " col-span-2 lg:col-span-1" : ""}`}
               >
-                <div className="font-mono text-2xl lg:text-3xl font-bold text-cv-ink tracking-tight">{s.v}</div>
+                <CountUpStat value={s.v} className="font-mono text-3xl lg:text-4xl font-bold text-cv-ink tracking-tight" />
                 <p className="mt-3 text-sm font-medium text-cv-muted tracking-wide">{s.l}</p>
               </div>
             ))}
@@ -62,189 +67,73 @@ export default function FinOpsPage() {
       </section>
 
       <section className="cv-section">
-        <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink">Most FinOps tools show dashboards. This one changes what happens next.</h2>
-          <div className="mt-6 space-y-4">
-            <p className="cv-body-lg text-cv-ink/80">
-              A dashboard tells you spend went up. It doesn&apos;t tell you which team, which change, or what to do first.
-            </p>
-            <p className="cv-body-lg text-cv-ink/80">
-              CloudVerse traces the variance to a driver and an owner, ranks the fix by impact, and carries it out once you approve. Cloud spend is visible everywhere. Here it&apos;s finally clear.
-            </p>
+        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-14">
+            <h2 className="cv-h2 text-cv-ink">Most FinOps tools show dashboards. This one changes what happens next.</h2>
+            <div>
+              <p className="cv-body-lg text-cv-ink/80">
+                A dashboard tells you spend went up. It doesn&apos;t tell you which team, which change, or what to do first.
+              </p>
+              <p className="cv-body-lg text-cv-ink/80 mt-4">
+                CloudVerse traces the variance to a driver and an owner, ranks the fix by impact, and carries it out once you approve. Cloud spend is visible everywhere. Here it&apos;s finally clear.
+              </p>
+            </div>
           </div>
+          <FinopsVarianceMock />
         </div>
       </section>
+
+      {/* DOMAINS OVERVIEW */}
+      <FeatureShowcase />
 
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
           <h2 className="cv-h2 text-cv-ink mb-10">Four product surfaces. One unified view.</h2>
-          <div className="grid md:grid-cols-2 gap-5">
-            {/* Workload mapping */}
-            <div className="relative overflow-hidden rounded-2xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-7">
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0"
-                style={{ background: "radial-gradient(ellipse 85% 60% at 0% 0%, rgba(22,100,192,0.10), transparent 60%)" }}
-              />
-              <div className="relative">
-                <h3 className="cv-h3 text-cv-ink">Workload mapping</h3>
-                <p className="text-cv-ink/70 mt-3 leading-relaxed">Shared spend mapped to teams, services, environments, and products, automatically. Chargeback that survives an audit.</p>
-                {/* Allocation interface */}
-                <div className="mt-6 rounded-xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-4">
-                  <div className="mb-4 flex items-center justify-between">
-                    <span className="text-xs font-medium text-cv-ink/80">Allocation by team</span>
-                    <span className="rounded-full border border-[#1664C0]/40 bg-[#1664C0]/10 px-2 py-0.5 text-[10px] font-medium text-[#1664C0] dark:text-[#7C9BFF]">Reconciled · 100%</span>
-                  </div>
-                  <div className="space-y-3">
-                    {[
-                      ["Platform Eng", 42, "$214k"],
-                      ["Data Science", 28, "$142k"],
-                      ["Shared Services", 18, "$91k"],
-                      ["Frontend", 12, "$61k"],
-                    ].map(([name, pct, amt]) => (
-                      <div key={name as string}>
-                        <div className="mb-1 flex items-center justify-between text-[11px]">
-                          <span className="text-cv-ink/80">{name}</span>
-                          <span className="font-mono text-cv-muted">{pct}% · {amt}</span>
-                        </div>
-                        <div className="h-1.5 w-full overflow-hidden rounded-full bg-cv-ink/[0.06]">
-                          <div className="h-full rounded-full bg-gradient-to-r from-[#1664C0] to-[#7C9BFF]" style={{ width: `${pct}%` }} />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Anomaly detection */}
-            <div className="relative overflow-hidden rounded-2xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-7">
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0"
-                style={{ background: "radial-gradient(ellipse 85% 60% at 100% 0%, rgba(22,100,192,0.10), transparent 60%)" }}
-              />
-              <div className="relative">
-                <h3 className="cv-h3 text-cv-ink">Anomaly detection</h3>
-                <p className="text-cv-ink/70 mt-3 leading-relaxed">Spikes flagged in real time and traced to a root-cause signal before they compound.</p>
-                {/* Anomaly chart */}
-                <div className="mt-6 rounded-xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-4">
-                  <div className="mb-3 flex items-center justify-between">
-                    <span className="text-xs font-medium text-cv-ink/80">Daily spend · prod-emr</span>
-                    <span className="font-mono text-[11px] text-[#1664C0] dark:text-[#7C9BFF]">+$4,812</span>
-                  </div>
-                  <div className="flex h-24 items-end gap-1.5">
-                    {[34, 30, 38, 32, 36, 33, 40, 35, 92, 41].map((h, i) => (
-                      <div key={i} className="flex-1 rounded-t-sm" style={{ height: `${h}%`, background: i === 8 ? "linear-gradient(to top, #1664C0, #7C9BFF)" : "hsl(var(--cv-ink) / 0.10)" }} />
-                    ))}
-                  </div>
-                  <div className="mt-4 flex items-center gap-3 rounded-lg border border-[#1664C0]/30 bg-[#1664C0]/[0.08] p-3">
-                    <span className="h-2 w-2 shrink-0 rounded-full bg-[#1664C0] dark:bg-[#7C9BFF]" />
-                    <div className="text-[11px] leading-tight">
-                      <div className="font-medium text-cv-ink/90">Anomaly · Data Science · prod-emr</div>
-                      <div className="text-cv-muted">3.1× baseline · detected 2h ago</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Commitments with payback proof */}
-            <div className="relative overflow-hidden rounded-2xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-7">
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0"
-                style={{ background: "radial-gradient(ellipse 85% 60% at 0% 100%, rgba(22,100,192,0.10), transparent 60%)" }}
-              />
-              <div className="relative">
-                <h3 className="cv-h3 text-cv-ink">Commitments with payback proof</h3>
-                <p className="text-cv-ink/70 mt-3 leading-relaxed">RIs, Savings Plans, and CUDs with realized payback tracked, not assumed.</p>
-                {/* Commitment planning */}
-                <div className="mt-6 rounded-xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-4">
-                  <div className="mb-4 grid grid-cols-2 gap-3">
-                    {[
-                      ["Est. savings", "$128k/yr"],
-                      ["Payback", "7.4 mo"],
-                    ].map(([l, v]) => (
-                      <div key={l} className="rounded-lg border border-cv-line bg-cv-ink/[0.03] p-3">
-                        <div className="text-[10px] uppercase tracking-wider text-cv-muted">{l}</div>
-                        <div className="mt-1 font-display text-xl font-semibold text-cv-ink">{v}</div>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="space-y-3">
-                    {[
-                      ["RI coverage", 72],
-                      ["Savings Plan", 64],
-                      ["CSP coverage", 58],
-                    ].map(([l, pct]) => (
-                      <div key={l as string}>
-                        <div className="mb-1 flex items-center justify-between text-[11px]">
-                          <span className="text-cv-ink/80">{l}</span>
-                          <span className="font-mono text-cv-muted">{pct}%</span>
-                        </div>
-                        <div className="h-1.5 w-full overflow-hidden rounded-full bg-cv-ink/[0.06]">
-                          <div className="h-full rounded-full bg-gradient-to-r from-[#1664C0] to-[#7C9BFF]" style={{ width: `${pct}%` }} />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Audit-ready chargeback */}
-            <div className="relative overflow-hidden rounded-2xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-7">
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0"
-                style={{ background: "radial-gradient(ellipse 85% 60% at 100% 100%, rgba(22,100,192,0.10), transparent 60%)" }}
-              />
-              <div className="relative">
-                <h3 className="cv-h3 text-cv-ink">Audit-ready chargeback</h3>
-                <p className="text-cv-ink/70 mt-3 leading-relaxed">Multi-currency, reconciled to source billing.</p>
-                {/* Chargeback dashboard */}
-                <div className="mt-6 rounded-xl border border-cv-line/40 bg-cv-card dark:bg-[#0D0D0D] p-4">
-                  <div className="mb-3 flex items-center justify-between">
-                    <span className="text-xs font-medium text-cv-ink/80">Chargeback · Q2</span>
-                    <span className="rounded-full border border-[#1664C0]/40 bg-[#1664C0]/10 px-2 py-0.5 text-[10px] font-medium text-[#1664C0] dark:text-[#7C9BFF]">EUR · JPY · USD</span>
-                  </div>
-                  <div className="grid grid-cols-[1fr_auto] gap-x-4 text-[11px]">
-                    <div className="border-b border-cv-line pb-2 text-[10px] uppercase tracking-wider text-cv-muted">Business unit</div>
-                    <div className="border-b border-cv-line pb-2 text-right text-[10px] uppercase tracking-wider text-cv-muted">Total</div>
-                    {[
-                      ["EMEA", "€12.4k"],
-                      ["APAC", "¥9.8k"],
-                      ["Americas", "$21.1k"],
-                    ].map(([bu, total]) => (
-                      <div key={bu} className="contents">
-                        <div className="border-b border-cv-line py-2 text-cv-ink/80">{bu}</div>
-                        <div className="border-b border-cv-line py-2 text-right font-mono text-cv-ink/90">{total}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <FinopsSurfaces />
         </div>
       </section>
 
+      {/* LIFECYCLE — CloudZero-style split: heading left, isometric icon rows right */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-10">Inform. Optimise. Operate.</h2>
-          <div className="grid md:grid-cols-3 gap-5">
-            {[
-              ["Inform", "Allocation and attribution first. Every dollar mapped to an owner and a driver."],
-              ["Optimise", "Rightsizing, idle cleanup, commitment and spot planning, ranked by impact."],
-              ["Operate", "Approved fixes automated on a schedule, inside policy, with an audit trail."],
-            ].map(([t, b], i) => (
-              <div key={t} className="rounded-2xl border border-cv-line/40 bg-cv-surface dark:bg-[#0D0D0D] p-7">
-                <div className="text-xs uppercase tracking-widest text-cv-muted">Stage 0{i + 1}</div>
-                <h3 className="cv-h3 text-cv-ink mt-2">{t}</h3>
-                <p className="text-cv-ink/75 mt-4 leading-relaxed">{b}</p>
-              </div>
-            ))}
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
+            {/* left: eyebrow + heading + lead */}
+            <div className="lg:pt-2">
+              <p className="cv-label mb-4">The FinOps lifecycle</p>
+              <h2 className="cv-h2 text-cv-ink">Inform. Optimise. Operate.</h2>
+              <p className="cv-body-lg mt-5 max-w-md text-cv-ink/70">
+                One model that carries you from visibility to action: allocation you can trust, savings ranked by impact, and approved fixes that run inside policy, with an audit trail.
+              </p>
+            </div>
+
+            {/* right: isometric icon rows */}
+            <div className="divide-y divide-cv-line/60 overflow-hidden rounded-2xl border border-cv-line/60 bg-cv-surface dark:divide-white/10 dark:border-white/10 dark:bg-[#0D0D0D]">
+              {[
+                {
+                  Icon: IconChartPie2,
+                  title: "Inform",
+                  body: "Allocation and attribution first. Every dollar mapped to an owner and a driver.",
+                },
+                {
+                  Icon: IconInvestment,
+                  title: "Optimise",
+                  body: "Rightsizing, idle cleanup, commitment and spot planning, ranked by impact.",
+                },
+                {
+                  Icon: IconArrowRefresh,
+                  title: "Operate",
+                  body: "Approved fixes automated on a schedule, inside policy, with an audit trail.",
+                },
+              ].map(({ Icon, title, body }) => (
+                <div key={title} className="flex items-start gap-5 p-6 md:p-7">
+                  <Icon size={46} aria-hidden className="shrink-0 text-[#1664C0] dark:text-[#7CB8F8]" />
+                  <div className="min-w-0">
+                    <h3 className="text-lg font-semibold text-cv-ink">{title}</h3>
+                    <p className="mt-1.5 text-[15px] leading-relaxed text-cv-muted">{body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

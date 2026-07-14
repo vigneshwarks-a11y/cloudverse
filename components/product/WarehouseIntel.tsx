@@ -1,185 +1,139 @@
-import type { ReactNode } from "react";
+import { CheckCircle } from "@solar-icons/react";
+import { FeatureCard, Panel, StatusPill, BLUE } from "@/components/product/BentoChrome";
 
-const BLUE = "#007CFF";
+/* "Warehouse cost intelligence, not just dashboards" — a bento of product
+   screenshot mocks on the shared AIX chrome. Each mock matches its card:
+   query-level attribution, cost-amplifying patterns, a unit-cost forecast, and
+   policy-bound automation actions. cv-* tokens, theme-aware. */
 
-function Bar({ pct }: { pct: number }) {
-  return (
-    <div className="h-2 flex-1 rounded-full bg-cv-ink/[0.06]">
-      <div className="h-full rounded-full" style={{ width: `${pct}%`, background: BLUE }} />
-    </div>
-  );
-}
-
-function Panel({ children }: { children: ReactNode }) {
-  return <div className="mt-5 rounded-xl border border-cv-line bg-cv-card dark:bg-[#0D0D0D] p-4">{children}</div>;
-}
-
-function QueryAttributionVisual() {
-  const teams = ["Acme AI", "Beta Labs", "Core Eng"];
-  const rows: [string, number][] = [
-    ["Tenant A", 42],
-    ["Tenant B", 31],
-    ["Tenant C", 27],
+/* 1. Query attribution — spend down to the query, owner, and cost. */
+function QueryAttributionViz() {
+  const rows: [string, string, string, boolean][] = [
+    ["events · full scan", "analytics", "$117.16", true],
+    ["dbt · fct_orders", "data-eng", "$42.80", false],
+    ["dash · Revenue", "finance", "$18.40", false],
   ];
   return (
-    <Panel>
-      <div className="mb-4 flex flex-wrap gap-2">
-        {teams.map((t, i) => (
-          <span
-            key={t}
-            className={`rounded-full px-2.5 py-1 text-[11px] ${i === 0 ? "text-[#1664C0] dark:text-[#7CB8F8]" : ""}`}
-            style={
-              i === 0
-                ? { background: `${BLUE}26`, border: `1px solid ${BLUE}59` }
-                : { background: "rgba(255,255,255,0.04)", color: "rgba(255,255,255,0.55)", border: "1px solid rgba(255,255,255,0.08)" }
-            }
-          >
-            {t}
-          </span>
-        ))}
+    <Panel className="text-xs">
+      <div className="grid grid-cols-[1.4fr_auto_auto] gap-3 border-b border-cv-line px-3 py-2 text-[10px] uppercase tracking-wide text-cv-muted dark:border-white/10">
+        <span>Query</span>
+        <span>Team</span>
+        <span className="text-right">Cost</span>
       </div>
-      <div className="mb-2 flex items-center gap-3 text-[10px] font-medium uppercase tracking-wide text-cv-ink/40">
-        <span className="w-16">Workspace</span>
-        <span className="flex-1">GPU allocation</span>
-        <span className="w-9" />
-      </div>
-      <div className="space-y-2">
-        {rows.map(([name, pct]) => (
-          <div key={name} className="flex items-center gap-3 text-[11px]">
-            <span className="w-16 text-cv-ink/60">{name}</span>
-            <Bar pct={pct} />
-            <span className="w-9 text-right font-medium text-[#1664C0] dark:text-[#7CB8F8]">{pct}%</span>
-          </div>
-        ))}
-      </div>
-    </Panel>
-  );
-}
-
-function PatternDetectionVisual() {
-  const dots = [
-    { top: "20%", left: "22%" },
-    { top: "55%", left: "60%" },
-    { top: "32%", left: "80%" },
-  ];
-  const patterns: [string, string][] = [
-    ["Full-scan", "×127"],
-    ["Fan-out join", "×88"],
-    ["Missing prune", "×64"],
-  ];
-  return (
-    <Panel>
-      <div className="relative mb-4 h-20 overflow-hidden rounded-lg border border-cv-line bg-cv-card dark:bg-[#0D0D0D]">
+      {rows.map(([q, team, cost, hot]) => (
         <div
-          className="absolute inset-0 opacity-40"
-          style={{
-            backgroundImage:
-              "linear-gradient(hsl(var(--cv-ink) / 0.05) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--cv-ink) / 0.05) 1px, transparent 1px)",
-            backgroundSize: "20px 20px",
-          }}
-        />
-        {dots.map((d, i) => (
-          <span
-            key={i}
-            className="absolute h-2.5 w-2.5 rounded-full"
-            style={{ top: d.top, left: d.left, background: BLUE, boxShadow: `0 0 10px 2px ${BLUE}AA` }}
-          />
-        ))}
-      </div>
-      <div className="space-y-2">
-        {patterns.map(([label, count]) => (
-          <div key={label} className="flex items-center justify-between text-[11px] text-cv-ink/60">
-            <span>{label}</span>
-            <span className="font-mono font-medium text-[#1664C0] dark:text-[#7CB8F8]">{count}</span>
-          </div>
-        ))}
-      </div>
+          key={q}
+          className="grid grid-cols-[1.4fr_auto_auto] items-center gap-3 border-t border-cv-line px-3 py-2.5 first:border-t-0 dark:border-white/10"
+          style={hot ? { background: `${BLUE}0d` } : undefined}
+        >
+          <span className="truncate font-mono text-cv-ink/75">{q}</span>
+          <span className="text-cv-muted">{team}</span>
+          <span className="text-right font-mono font-medium" style={{ color: hot ? "#D97706" : "hsl(var(--cv-ink))" }}>{cost}</span>
+        </div>
+      ))}
     </Panel>
   );
 }
 
-function PredictiveSignalsVisual() {
-  const rows: { field: string; rule: string; sample: string }[] = [
-    { field: "Email", rule: "Mask", sample: "a***@***.io" },
-    { field: "SSN", rule: "Block", sample: "***-**-****" },
-    { field: "Full name", rule: "Tokenize", sample: "[REDACTED]" },
-    { field: "Card no.", rule: "Block", sample: "**** **** 4242" },
+/* 2. Pattern detection — cost-amplifying shapes, counted, with a rewrite hint. */
+function PatternDetectionViz() {
+  const patterns: [string, string, "flag" | "info"][] = [
+    ["Full scan", "×127", "flag"],
+    ["Fan-out join", "×88", "flag"],
+    ["Missing prune", "×64", "info"],
   ];
   return (
-    <Panel>
-      <div className="grid grid-cols-[1fr_1fr_1.2fr] gap-x-2 text-[10px] font-medium uppercase tracking-wide text-cv-ink/40">
-        <span>Field</span>
-        <span>Rule</span>
-        <span className="text-right">Sample</span>
-      </div>
-      <div className="mt-2 space-y-2">
-        {rows.map((r) => (
-          <div key={r.field} className="grid grid-cols-[1fr_1fr_1.2fr] items-center gap-x-2 text-[11px]">
-            <span className="text-cv-ink/70">{r.field}</span>
-            <span>
-              <span
-                className="inline-block rounded px-2 py-0.5 text-[10px] font-medium text-[#1664C0] dark:text-[#7CB8F8]"
-                style={{ background: `${BLUE}26` }}
-              >
-                {r.rule}
-              </span>
-            </span>
-            <span className="text-right font-mono text-cv-ink/55">{r.sample}</span>
-          </div>
-        ))}
+    <Panel className="gap-2.5 p-4 text-xs">
+      {patterns.map(([label, count, kind]) => (
+        <div key={label} className="flex items-center justify-between rounded-lg border border-cv-line/70 px-3 py-2 dark:border-white/10">
+          <span className="flex items-center gap-2 text-cv-ink/75">
+            <StatusPill kind={kind} label={count} />
+            {label}
+          </span>
+        </div>
+      ))}
+      <div className="flex items-center gap-1.5 pt-0.5 text-[11px] text-cv-teal">
+        <CheckCircle weight="Linear" size={13} /> Rewrite suggested
       </div>
     </Panel>
   );
 }
 
-function SafeAutomationVisual() {
-  const rows: { team: string; spent: string; cap: string; pct: number }[] = [
-    { team: "Research", spent: "$8.2k", cap: "$10k", pct: 82 },
-    { team: "Platform", spent: "$4.1k", cap: "$8k", pct: 51 },
-    { team: "Data Eng", spent: "$2.7k", cap: "$5k", pct: 54 },
+/* 3. Predictive signals — a unit-cost trend that flags a regression before close. */
+function ForecastViz() {
+  const bars = [38, 42, 40, 47, 52, 61, 88];
+  return (
+    <Panel className="p-4 text-xs">
+      <div className="mb-3 flex items-end justify-between">
+        <div>
+          <div className="text-[10px] uppercase tracking-wide text-cv-muted">Projected close</div>
+          <div className="mt-0.5 font-mono text-xl font-bold text-cv-ink">$128k</div>
+        </div>
+        <StatusPill kind="flag" label="regression · +38%" />
+      </div>
+      <div className="flex h-16 items-end gap-1.5">
+        {bars.map((h, i) => {
+          const last = i === bars.length - 1;
+          return (
+            <div
+              key={i}
+              className="flex-1 rounded-t-sm"
+              style={{
+                height: `${h}%`,
+                background: last ? "#D97706" : `${BLUE}`,
+                opacity: last ? 1 : 0.45,
+                boxShadow: last ? "0 0 12px rgba(217,119,6,0.6)" : undefined,
+              }}
+            />
+          );
+        })}
+      </div>
+      <div className="mt-3 text-[11px] text-cv-muted">Flagged before month close</div>
+    </Panel>
+  );
+}
+
+/* 4. Safe automation — policy-bound fixes, reversible and audited. */
+function AutomationViz() {
+  const actions: [string, "ok" | "flag", string][] = [
+    ["Resize warehouse M to S", "ok", "applied"],
+    ["Auto-suspend idle 5m", "ok", "applied"],
+    ["Add partition prune", "flag", "pending"],
   ];
   return (
-    <Panel>
-      <div className="mb-3 text-[10px] font-medium uppercase tracking-wide text-cv-ink/40">Budget tracking</div>
-      <div className="space-y-3">
-        {rows.map((r) => (
-          <div key={r.team}>
-            <div className="mb-1 flex items-center justify-between text-[11px]">
-              <span className="text-cv-ink/60">{r.team}</span>
-              <span className="font-medium text-[#1664C0] dark:text-[#7CB8F8]">
-                {r.spent} / {r.cap}
-              </span>
-            </div>
-            <Bar pct={r.pct} />
-          </div>
-        ))}
-      </div>
+    <Panel className="text-xs">
+      <div className="border-b border-cv-line px-3 py-2 text-[10px] uppercase tracking-wide text-cv-muted dark:border-white/10">Automation actions</div>
+      {actions.map(([label, kind, status]) => (
+        <div key={label} className="flex items-center justify-between gap-3 border-t border-cv-line px-3 py-2.5 first:border-t-0 dark:border-white/10">
+          <span className="truncate text-cv-ink/75">{label}</span>
+          <StatusPill kind={kind} label={status} />
+        </div>
+      ))}
+      <div className="border-t border-cv-line px-3 py-2 text-[11px] text-cv-muted dark:border-white/10">Reversible · audited</div>
     </Panel>
   );
 }
 
-type Card = { title: string; body: string; visual: ReactNode };
-
-const CARDS: Card[] = [
+const CARDS = [
   {
     title: "Query attribution",
-    body: "Every query tied to a user, role, dashboard, dbt model, or job. Spend down to the SQL.",
-    visual: <QueryAttributionVisual />,
+    desc: "Every query tied to a user, role, dashboard, dbt model, or job. Spend down to the SQL.",
+    viz: <QueryAttributionViz />,
   },
   {
     title: "Pattern detection",
-    body: "Cost-amplifying patterns caught and explained, with a rewrite suggested.",
-    visual: <PatternDetectionVisual />,
+    desc: "Cost-amplifying patterns caught and explained, with a rewrite suggested.",
+    viz: <PatternDetectionViz />,
   },
   {
     title: "Predictive signals",
-    body: "Unit-cost regressions surfaced before monthly close, not in the post-mortem.",
-    visual: <PredictiveSignalsVisual />,
+    desc: "Unit-cost regressions surfaced before monthly close, not in the post-mortem.",
+    viz: <ForecastViz />,
   },
   {
     title: "Safe automation",
-    body: "Partition, cluster, and right-size fixes applied inside policy. Reversible and audited.",
-    visual: <SafeAutomationVisual />,
+    desc: "Partition, cluster, and right-size fixes applied inside policy. Reversible and audited.",
+    viz: <AutomationViz />,
   },
 ];
 
@@ -190,13 +144,11 @@ export default function WarehouseIntel() {
         <div className="max-w-3xl mb-10">
           <h2 className="cv-h2 text-cv-ink">Warehouse cost intelligence, not just dashboards.</h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-          {CARDS.map(({ title, body, visual }) => (
-            <div key={title} className="flex flex-col rounded-2xl border border-cv-line bg-cv-surface2 dark:bg-[#0D0D0D] p-7">
-              <h3 className="cv-h3 text-cv-ink">{title}</h3>
-              <p className="text-cv-ink/75 mt-3 leading-relaxed">{body}</p>
-              <div aria-hidden className="mt-auto">{visual}</div>
-            </div>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {CARDS.map(({ title, desc, viz }) => (
+            <FeatureCard key={title} title={title} desc={desc}>
+              {viz}
+            </FeatureCard>
           ))}
         </div>
       </div>

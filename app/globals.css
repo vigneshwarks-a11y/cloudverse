@@ -27,6 +27,34 @@
     --cv-card:     240 40% 4%;   /* #070710 - dark card surface */
   }
 
+  /* Integration-step illustration panels — theme-aware tokens so the product
+     mock / diagram visuals read light in light mode and keep the deep-navy
+     "screenshot" look in dark mode (see components/product/IntegrationSteps). */
+  .cv-viz {
+    --viz-panel:  #eef2fb;
+    --viz-panel2: #ffffff;
+    --viz-ink:    #1d1d1f;
+    --viz-ink-70: rgba(29, 29, 31, 0.72);
+    --viz-ink-45: rgba(29, 29, 31, 0.48);
+    --viz-line:   rgba(29, 29, 31, 0.10);
+    --viz-fill:   rgba(29, 29, 31, 0.03);
+    --viz-track:  rgba(29, 29, 31, 0.10);
+    --viz-dot:    rgba(29, 29, 31, 0.06);
+    --viz-accent: #1664C0;
+  }
+  .dark .cv-viz {
+    --viz-panel:  #080B14;
+    --viz-panel2: #0B1220;
+    --viz-ink:    #ffffff;
+    --viz-ink-70: rgba(255, 255, 255, 0.85);
+    --viz-ink-45: rgba(255, 255, 255, 0.50);
+    --viz-line:   rgba(255, 255, 255, 0.10);
+    --viz-fill:   rgba(255, 255, 255, 0.035);
+    --viz-track:  rgba(255, 255, 255, 0.08);
+    --viz-dot:    rgba(255, 255, 255, 0.06);
+    --viz-accent: #7CB8F8;
+  }
+
   html { scroll-behavior: smooth; color-scheme: light dark; }
 
   a { text-decoration: none; }
@@ -250,6 +278,19 @@
 .cv-border-sweep {
   animation: cv-border-sweep 3.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+/* Travelling data-flow dot along a connector wire (FinOps "how it works").
+   A glowing dot runs the length of the line and fades at both ends, echoing
+   the home page's cv-border-sweep light motif. */
+@keyframes cv-wire-flow {
+  0%   { left: 0%;   opacity: 0; }
+  12%  { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+.cv-wire-flow {
+  animation: cv-wire-flow 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
 /* Infinite right-to-left logo marquee: track holds two identical copies of
    the logo list back-to-back, so translating by -50% loops seamlessly. */
 @keyframes cv-marquee {
@@ -265,6 +306,7 @@
   .cv-video-rise { animation: none; opacity: 1; transform: none; }
   .cv-hero-fade { animation: none; opacity: 1; }
   .cv-marquee-track { animation: none; }
+  .cv-wire-flow { animation: none; opacity: 1; left: 50%; }
   .cv-testimonials,
   .cv-testimonials * {
     animation: none !important;

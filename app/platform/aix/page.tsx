@@ -8,7 +8,6 @@ import NoBlackBoxes from "@/components/product/NoBlackBoxes";
 import AixRoiSplit from "@/components/product/AixRoiSplit";
 import { PlatformHeroMockup, type MockupTab } from "@/components/product/PlatformHeroMockup";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
-import OrbitCore from "@/components/OrbitCore";
 import AixSteps from "@/components/product/AixSteps";
 import AixProvidersMarquee from "@/components/product/AixProvidersMarquee";
 import AixProblemsShowcase from "@/components/product/AixProblemsShowcase";
@@ -90,7 +89,7 @@ export default function AIXPage() {
           <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
             <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
               {/* Left: badge + headline + CTAs */}
-              <div className="flex-1 min-w-0 lg:max-w-xl xl:max-w-2xl">
+              <div className="flex-1 min-w-0 lg:max-w-2xl xl:max-w-3xl">
                 <span className="block text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8]">
                   AIX
                 </span>
@@ -146,21 +145,6 @@ export default function AIXPage() {
                 A hardcoded choice doesn&apos;t update when prices drop. It doesn&apos;t reroute when a provider slows down. That gap is where the budget quietly goes.
               </p>
             </div>
-          </div>
-
-          {/* OrbitCore - AIX routing every request around one system of record */}
-          <div className="mt-12">
-            <OrbitCore
-              brand="AIX"
-              labels={[
-                "Model selection",
-                "Provider scoring",
-                "Cost controls",
-                "Residency rules",
-                "Latency routing",
-                "Compliance log",
-              ]}
-            />
           </div>
 
           <div className="grid gap-5 md:grid-cols-2 mt-12 items-stretch">

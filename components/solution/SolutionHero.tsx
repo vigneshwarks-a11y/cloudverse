@@ -12,7 +12,7 @@ export function SolutionHero({
   sub,
   accent,
   icon: Icon,
-  badges,
+  badges = [],
   platformHref,
   primaryLabel = "Book a Demo",
   primaryHref = DEMO_URL,
@@ -23,7 +23,7 @@ export function SolutionHero({
   sub: string;
   accent: string;
   icon: Icon;
-  badges: string[];
+  badges?: string[];
   platformHref: string;
   primaryLabel?: string;
   primaryHref?: string;

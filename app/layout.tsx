@@ -4,7 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
-import ClosingCtaBand from "@/components/ClosingCtaBand";
+import GlobalClosingCta from "@/components/GlobalClosingCta";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 // Self-hosted OFFICIAL Inter (variable) from rsms.me. The Google Fonts build
@@ -71,7 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           <Nav />
           <main>{children}</main>
-          <ClosingCtaBand />
+          <GlobalClosingCta />
           <Footer />
         </ThemeProvider>
         <Script
