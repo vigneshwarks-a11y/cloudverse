@@ -1,6 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import {
+  FeatureCard,
+  Panel,
+  Pill,
+  Tab,
+  ShieldCheck,
+  VIZ_BLUE as BLUE,
+  VIZ_OK as OK,
+  VIZ_VIOLET as VIOLET,
+  VIZ_AMBER as AMBER,
+  VIZ_GRAY as GRAY,
+} from "@/components/solution/CardChrome";
 
 /* FinOps "what you ship" bento — image-topped cards in the home/AixGovernance
    idiom: a polished product-screenshot mock fills a top "screenshot" slot
@@ -8,100 +20,6 @@ import { useEffect, useState } from "react";
    content fading at the bottom), with the title + description in a footer
    below. Blue is the neutral accent; green = proof/reconciled, amber =
    anomaly/expiring, red = restricted. Theme-aware via cv-* tokens. */
-
-const BLUE = "#2278E0";
-const OK = "#0E9E7A";
-const VIOLET = "#6954D4";
-const AMBER = "#D97706";
-const GRAY = "#94969C";
-
-const EDGE_FADE = {
-  WebkitMaskImage: "linear-gradient(to bottom,#000 90%,transparent 100%)",
-  maskImage: "linear-gradient(to bottom,#000 90%,transparent 100%)",
-} as const;
-
-/* ─────────────────────────── card + panel chrome ─────────────────────────── */
-
-function FeatureCard({ title, desc, children }: { title: string; desc: string; children: React.ReactNode }) {
-  return (
-    <div className="flex h-full flex-col overflow-hidden rounded-xl border border-cv-line/60 bg-cv-surface dark:border-white/10 dark:bg-[#0D0D0D]">
-      <div className="relative flex h-64 shrink-0 items-center justify-center overflow-hidden bg-cv-surface2 p-6 dark:bg-black">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-16 -top-20 h-48 w-48 rounded-full blur-3xl"
-          style={{ background: "radial-gradient(circle, rgba(34,120,224,0.18), transparent 70%)" }}
-        />
-        <div className="relative flex h-full w-full flex-col justify-center">{children}</div>
-      </div>
-      <div className="flex flex-1 flex-col px-5 pt-6 pb-6 md:px-6 md:pb-7">
-        <h3 className="mb-2 text-base font-semibold text-cv-ink md:text-lg">{title}</h3>
-        <p className="text-sm text-cv-muted md:text-base">{desc}</p>
-      </div>
-    </div>
-  );
-}
-
-function CardLightEdge() {
-  return (
-    <>
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 rounded-[inherit]"
-        style={{
-          padding: "1.5px",
-          background:
-            "linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 22%, rgba(255,255,255,0) 50%)",
-          WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
-          mask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
-          WebkitMaskComposite: "xor",
-          maskComposite: "exclude",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -left-6 -top-6 h-40 w-40 rounded-full"
-        style={{ background: "radial-gradient(circle, rgba(200,218,255,0.13), transparent 70%)", filter: "blur(26px)" }}
-      />
-    </>
-  );
-}
-
-function Panel({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return (
-    <div
-      className="relative flex flex-1 flex-col overflow-hidden rounded-[14px] border border-cv-line bg-white shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:border-white/10 dark:bg-black dark:shadow-[0_12px_30px_-12px_rgba(0,0,0,0.6)]"
-      style={EDGE_FADE}
-    >
-      <CardLightEdge />
-      <div className={`relative flex flex-1 flex-col ${className}`}>{children}</div>
-    </div>
-  );
-}
-
-/* ─────────────────────────── small building blocks ─────────────────────────── */
-
-function Pill({ color, children }: { color: string; children: React.ReactNode }) {
-  return (
-    <span className="justify-self-start rounded-full px-2 py-0.5 text-[10px] font-medium" style={{ color, background: `${color}1A` }}>
-      {children}
-    </span>
-  );
-}
-
-function Tab({ label, active }: { label: string; active?: boolean }) {
-  return (
-    <span
-      className="rounded-md border px-2.5 py-1 text-[11px] font-medium"
-      style={
-        active
-          ? { color: BLUE, borderColor: `${BLUE}80`, background: `${BLUE}1a` }
-          : { color: "hsl(var(--cv-muted))", borderColor: "hsl(var(--cv-line))" }
-      }
-    >
-      {label}
-    </span>
-  );
-}
 
 /* ───────────────────────────── the four mocks ───────────────────────────── */
 
@@ -116,7 +34,7 @@ function AllocationViz() {
     ["Shared", 8, GRAY, "$14.7k"],
   ];
   return (
-    <Panel className="p-0">
+    <Panel className="p-0" chrome="finops.app/allocation">
       <div className="flex items-center gap-1.5 border-b border-cv-line px-3 py-2 dark:border-white/10">
         <Tab label="Teams" active />
         <Tab label="Services" />
@@ -156,7 +74,7 @@ function AnomalyViz({ reduced }: VizProps) {
     [122, "0"],
   ] as const;
   return (
-    <Panel className="gap-1.5 p-3">
+    <Panel className="gap-1.5 p-3" chrome="finops.app/anomalies">
       <div className="flex items-center justify-between">
         <span className="text-[10px] uppercase tracking-wide text-cv-muted">Cost anomalies · last 24h</span>
         <span className="font-mono text-[10px] text-cv-muted">
@@ -207,11 +125,11 @@ function CommitmentViz() {
     ["CUDs", 58, "$19k", "expiring"],
   ];
   return (
-    <Panel className="justify-center gap-3.5 p-4">
+    <Panel className="justify-center gap-3.5 p-4" chrome="finops.app/commitments">
       <div className="flex items-center justify-between">
         <span className="text-[10px] uppercase tracking-wide text-cv-muted">Commitment coverage</span>
-        <span className="flex items-center gap-1 text-[10px] font-medium" style={{ color: OK }}>
-          <ShieldCheck color={OK} size={11} /> 7.4 mo payback
+        <span className="flex items-center gap-1 font-mono text-sm font-bold tabular-nums" style={{ color: OK }}>
+          <ShieldCheck color={OK} size={13} /> 7.4 mo payback
         </span>
       </div>
       {meters.map(([name, pct, saved, status]) => {
@@ -245,7 +163,7 @@ function ChargebackViz() {
     ["Americas", "$21.1k"],
   ];
   return (
-    <Panel className="p-0">
+    <Panel className="p-0" chrome="finops.app/chargeback">
       <div className="grid grid-cols-[1fr_auto_1.1fr] items-center gap-3 border-b border-cv-line px-3 py-1.5 text-[10px] uppercase tracking-wide text-cv-muted dark:border-white/10">
         <span>Business unit</span>
         <span>Status</span>
@@ -263,15 +181,6 @@ function ChargebackViz() {
         <span className="whitespace-nowrap text-right font-mono font-semibold tabular-nums" style={{ color: OK }}>$43.3k</span>
       </div>
     </Panel>
-  );
-}
-
-function ShieldCheck({ color, size = 14 }: { color: string; size?: number }) {
-  return (
-    <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke={color} strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
-      <path d="M12 3l7 3v6c0 4-3 6.6-7 8-4-1.4-7-4-7-8V6z" />
-      <path d="M9 12l2 2 4-4" />
-    </svg>
   );
 }
 

@@ -1,95 +1,111 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { FeatureCard, Panel, Tab, CodeLine, Callout, CheckBadge, VIZ_BLUE as BLUE, VIZ_AMBER as AMBER } from "@/components/solution/CardChrome";
 
-const BLUE = "#007CFF";
+/* Platform Engineering "what you ship" bento — same image-topped FeatureCard
+   idiom as FinopsShips: a bordered panel with a lit top-left edge + ambient
+   glow on a dark surface, tables/code panels inside. Theme-aware via
+   cv-* tokens. */
 
-/* ---------- per-feature visuals (all same fixed height) ---------- */
-
-function VizFrame({ children }: { children: React.ReactNode }) {
-  return (
-    <div
-      className="mt-auto flex h-32 flex-col justify-center overflow-hidden rounded-lg border p-4"
-      style={{ borderColor: `${BLUE}26`, background: `${BLUE}0d` }}
-    >
-      {children}
-    </div>
-  );
-}
-
-/* 1. PR cost diff diff lines with an inline cost delta */
+/* 1. PR cost diff — code-editor-style panel with an inline cost delta. */
 function PrDiffViz() {
   return (
-    <div className="font-mono text-[11px] leading-relaxed">
-      <div className="text-cv-ink/45">infra/ec2.tf</div>
-      <div className="mt-1 flex items-center gap-2 rounded-sm bg-[#E5484D]/10 px-1.5">
-        <span className="text-[#E5484D]">-</span>
-        <span className="text-cv-ink/65">instance_type = m5.large</span>
+    <Panel className="p-0" chrome="devx.app/pull/1042">
+      <div className="flex items-center gap-1.5 border-b border-cv-line px-3 py-2 dark:border-white/10">
+        <Tab label="infra/ec2.tf" active />
       </div>
-      <div className="flex items-center gap-2 rounded-sm bg-[#0E9E7A]/10 px-1.5">
-        <span className="text-[#0E9E7A]">+</span>
-        <span className="text-cv-ink/65">instance_type = m5.2xlarge</span>
+      <div className="flex-1 p-3 font-mono text-[11px] leading-relaxed">
+        <div className="flex items-center gap-2 rounded-sm bg-[#EF4444]/10 px-1.5 py-0.5">
+          <span className="text-[#EF4444]">-</span>
+          <span className="text-cv-ink/65">instance_type = m5.large</span>
+        </div>
+        <div className="flex items-center gap-2 rounded-sm bg-[#0E9E7A]/10 px-1.5 py-0.5">
+          <span className="text-[#0E9E7A]">+</span>
+          <span className="text-cv-ink/65">instance_type = m5.2xlarge</span>
+        </div>
+        <div className="mt-3">
+          <span className="rounded-md px-2 py-0.5 font-sans text-[10px] font-semibold" style={{ background: `${BLUE}1f`, color: BLUE }}>
+            Cost impact +$1,240 / mo
+          </span>
+        </div>
       </div>
-      <div className="mt-2">
-        <span
-          className="rounded-md px-2 py-0.5 font-sans text-[10px] font-semibold"
-          style={{ background: `${BLUE}1f`, color: BLUE }}
-        >
-          Cost impact +$1,240 / mo
-        </span>
-      </div>
-    </div>
+    </Panel>
   );
 }
 
-/* 2. Policy-as-code versioned rule with advisory/required modes */
+/* 2. Policy-as-code — line-numbered rule file with an inline warning
+   callout, in the idiom of Laravel Cloud's env-var editor tooltip. */
 function PolicyViz() {
   return (
-    <div className="font-mono text-[11px] leading-relaxed">
-      <div className="text-cv-ink/65">
-        <span style={{ color: BLUE }}>rule</span> cost_guard {"{"}
+    <Panel className="p-0" chrome="devx.app/policy.rego">
+      <div className="flex items-center gap-1.5 border-b border-cv-line px-3 py-2 dark:border-white/10">
+        <Tab label="Advisory" />
+        <Tab label="Required" active />
       </div>
-      <div className="pl-3 text-cv-ink/55">if delta &gt; $500 → block</div>
-      <div className="text-cv-ink/65">{"}"}</div>
-      <div className="mt-2 flex gap-1.5 font-sans text-[10px]">
-        <span className="rounded-md border px-2 py-0.5 text-cv-ink/55" style={{ borderColor: `${BLUE}33` }}>
-          Advisory
-        </span>
-        <span
-          className="rounded-md px-2 py-0.5 font-semibold"
-          style={{ background: `${BLUE}1f`, color: BLUE }}
-        >
-          Required
-        </span>
+      <div className="flex items-center gap-1.5 px-3 pt-2.5 text-[11px] font-medium" style={{ color: AMBER }}>
+        <svg viewBox="0 0 24 24" width={13} height={13} fill="none" stroke={AMBER} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 9v4M12 17h.01M10.29 3.86 1.82 18a1 1 0 0 0 .87 1.5h18.62a1 1 0 0 0 .87-1.5L13.71 3.86a1 1 0 0 0-1.72 0Z" />
+        </svg>
+        This rule blocks 1 pending PR.
       </div>
-    </div>
+      <div className="relative flex-1 pt-2 pb-3">
+        <CodeLine n={1}><span style={{ color: BLUE }}>rule</span> <span className="text-cv-ink/75">cost_guard {"{"}</span></CodeLine>
+        <div className="rounded-sm" style={{ background: `${AMBER}14` }}>
+          <CodeLine n={2}><span className="text-cv-ink/75">if delta &gt; $500 → </span><span style={{ color: AMBER }}>block</span></CodeLine>
+        </div>
+        <CodeLine n={3}><span className="text-cv-ink/55">notify: #platform-eng</span></CodeLine>
+        <CodeLine n={4}><span className="text-cv-ink/75">{"}"}</span></CodeLine>
+        <div className="mt-2 px-3">
+          <Callout>
+            <span className="text-cv-ink/85">Required mode</span>{" "}
+            <span className="text-cv-muted">blocks the PR until explicitly approved</span>
+          </Callout>
+        </div>
+      </div>
+    </Panel>
   );
 }
 
-function Chips({ items }: { items: string[] }) {
-  return (
-    <div className="flex flex-wrap gap-1.5">
-      {items.map((c) => (
-        <span
-          key={c}
-          className="rounded-md border px-2 py-1 text-[10px] text-cv-ink/70"
-          style={{ borderColor: `${BLUE}33`, background: `${BLUE}12` }}
-        >
-          {c}
-        </span>
-      ))}
-    </div>
-  );
-}
-
-/* 3. Native CI integration pipeline providers */
+/* 3. Native CI integration — pipeline provider status table. */
 function CiViz() {
-  return <Chips items={["GitHub Actions", "GitLab CI", "Azure Pipelines", "Jenkins", "Argo"]} />;
+  const rows = ["GitHub Actions", "GitLab CI", "Azure Pipelines", "Jenkins", "Argo"];
+  return (
+    <Panel className="p-0" chrome="devx.app/pipelines">
+      <div className="grid grid-cols-[1fr_auto] items-center gap-3 border-b border-cv-line px-3 py-1.5 text-[10px] uppercase tracking-wide text-cv-muted dark:border-white/10">
+        <span>Pipeline</span>
+        <span className="text-right">Status</span>
+      </div>
+      {rows.map((r, i) => (
+        <div key={r} className={`grid grid-cols-[1fr_auto] items-center gap-3 px-3 py-2 text-xs ${i > 0 ? "border-t border-cv-line dark:border-white/10" : ""}`}>
+          <span className="truncate text-cv-ink/80">{r}</span>
+          <CheckBadge>Connected</CheckBadge>
+        </div>
+      ))}
+    </Panel>
+  );
 }
 
-/* 4. Multi-IaC support supported formats */
+/* 4. Multi-IaC support — one integration, every format recognized and
+   scanned (the claim is breadth, not a percentage, so a checklist reads
+   more honestly than a bar chart). */
 function IacViz() {
-  return <Chips items={["Terraform", "OpenTofu", "Pulumi", "CloudFormation", "Helm", "Kubernetes"]} />;
+  const formats = ["Terraform", "OpenTofu", "Pulumi", "CloudFormation", "Helm", "Kubernetes"];
+  return (
+    <Panel className="justify-center gap-3 p-4" chrome="devx.app/iac-formats">
+      <div className="flex items-center justify-between">
+        <span className="text-[10px] uppercase tracking-wide text-cv-muted">Scanned on every PR</span>
+        <span className="text-[10px] font-medium text-cv-muted">7+ formats</span>
+      </div>
+      <div className="grid grid-cols-2 gap-2">
+        {formats.map((f) => (
+          <div key={f} className="rounded-md border border-cv-line/60 px-2.5 py-1.5 dark:border-white/10">
+            <CheckBadge>{f}</CheckBadge>
+          </div>
+        ))}
+      </div>
+      <div className="text-[10px] text-cv-muted">One integration. No pipeline change.</div>
+    </Panel>
+  );
 }
 
 const VISUALS: Record<string, () => React.JSX.Element> = {
@@ -102,53 +118,14 @@ const VISUALS: Record<string, () => React.JSX.Element> = {
 export type PlatformShipItem = [title: string, desc: string];
 
 export function PlatformShips({ items }: { items: PlatformShipItem[] }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  const [reduceMotion, setReduceMotion] = useState(false);
-
-  useEffect(() => {
-    setReduceMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-  }, []);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          obs.disconnect();
-        }
-      },
-      { threshold: 0.15 },
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  const rise = (i: number): React.CSSProperties => ({
-    opacity: visible || reduceMotion ? 1 : 0,
-    transform: reduceMotion || visible ? "translateY(0)" : "translateY(24px)",
-    transition: "opacity 700ms ease-out, transform 700ms ease-out",
-    transitionDelay: reduceMotion ? "0ms" : `${i * 120}ms`,
-  });
-
   return (
-    <div ref={ref} className="grid auto-rows-fr gap-4 sm:gap-5 sm:grid-cols-2">
-      {items.map(([t, b], i) => {
+    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+      {items.map(([t, b]) => {
         const Viz = VISUALS[t];
         return (
-          <div key={t} style={rise(i)}>
-            <div className="flex h-full flex-col rounded-xl border border-cv-line bg-cv-surface dark:bg-[#0D0D0D] p-7">
-              <h3 className="cv-h3 font-semibold text-cv-ink">{t}</h3>
-              <p className="text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
-              {Viz ? (
-                <VizFrame>
-                  <Viz />
-                </VizFrame>
-              ) : null}
-            </div>
-          </div>
+          <FeatureCard key={t} title={t} desc={b}>
+            {Viz ? <Viz /> : null}
+          </FeatureCard>
         );
       })}
     </div>

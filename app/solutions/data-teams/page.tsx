@@ -1,10 +1,13 @@
-import Link from "next/link";
-import { ArrowRight, CheckCircle, CloseCircle, Database } from "@solar-icons/react";
 import type { Metadata } from "next";
-import { DEMO_URL } from "@/lib/links";
+import { ChartSquare, Layers, MagicStick3, Routing, Filter, Graph, Tuning, Database } from "@solar-icons/react";
 import { PlatformCards } from "@/components/solution/PlatformCards";
 import { DataXUnlocks } from "@/components/solution/DataXUnlocks";
+import { HowItWorksFlow, type FlowChip, type FlowWorkload, type FlowRightNode } from "@/components/solution/HowItWorksFlow";
+import { DataXAttributionMock } from "@/components/solution/DataXAttributionMock";
+import { Panel, CodeLine, Pill, VIZ_AMBER, VIZ_RED } from "@/components/solution/CardChrome";
 import { SolutionHero } from "@/components/solution/SolutionHero";
+import { SectionEyebrow } from "@/components/solution/SectionEyebrow";
+import { BulletGrid } from "@/components/solution/BulletGrid";
 import { WhoThisIsFor } from "@/components/solution/WhoThisIsFor";
 import { FaqBlock } from "@/components/FaqBlock";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
@@ -27,11 +30,43 @@ export const metadata: Metadata = {
   },
 };
 
-const STATS = [
-  { v: "$117.16", l: "full scan detected" },
-  { v: "334.6 GB", l: "per query" },
-  { v: "77 runs", l: "at $1.52" },
-  { v: "6", l: "warehouses" },
+const COSTS = [
+  "Data platform spend that surprises you month to month",
+  "Warehouse and pipeline cost you can't cleanly attribute to a team or product",
+  "A rising share of the bill driven by AI workloads reading from warehouses",
+  "Queries from AI-assisted code showing up with no owner",
+  "No unit economics for data: cost per pipeline, per query, per dataset",
+];
+
+const OUTCOMES = [
+  "Attribution: warehouse and pipeline cost traced to the query that committed it",
+  "Pattern detection: full scans and runaway queries caught before they compound",
+  "AI visibility: AI-driven warehouse traffic attributed cleanly",
+  "Engineering visibility: data cost committed by code surfaced before the bill",
+  "Predictive signals: unit-cost regressions before close, not in the post-mortem",
+  "Defendability: data economics that hold up in front of finance and the board",
+];
+
+const HOW_IT_WORKS_WORKLOADS: FlowWorkload[] = [
+  { label: "Dashboards & BI", sub: "Reports & analytics", color: "#1664C0", Icon: ChartSquare },
+  { label: "dbt Models", sub: "Pipelines & transforms", color: "#0E9E7A", Icon: Layers },
+  { label: "RAG & Agents", sub: "AI-driven warehouse reads", color: "#6954D4", Icon: MagicStick3 },
+];
+
+const HOW_IT_WORKS_CHIPS: FlowChip[] = [
+  { label: "Query Attribution", color: "#1664C0", Icon: Routing },
+  { label: "Pattern Detection", color: "#D97706", Icon: Filter },
+  { label: "Predictive Signals", color: "#6954D4", Icon: Graph },
+  { label: "Safe Automation", color: "#0E9E7A", Icon: Tuning },
+];
+
+const HOW_IT_WORKS_RIGHT: FlowRightNode[] = [
+  { kind: "logo", src: "/icons/snowflake.svg", name: "Snowflake" },
+  { kind: "logo", src: "/logos/databricks.svg", name: "Databricks" },
+  { kind: "tile", label: "BigQuery", color: "#1664C0", Icon: Database },
+  { kind: "tile", label: "Fabric", color: "#0E9E7A", Icon: Database },
+  { kind: "tile", label: "Synapse", color: "#6954D4", Icon: Database },
+  { kind: "tile", label: "+ more", color: "#94969C", Icon: Database },
 ];
 
 const FAQ = [
@@ -49,62 +84,65 @@ export default function DataTeamsPage() {
         eyebrow="For Data Teams"
         h1="Make shared data spend allocable."
         sub="Trace warehouse and pipeline cost to the query, the pipeline, and the team that ran it, including the data spend your AI workloads now drive."
-        accent="#D97706"
-        icon={Database}
         platformHref="/platform/datax"
-        badges={["Query Attribution", "Pattern Detection", "Predictive Signals", "Safe Automation", "6 Warehouses", "Read-Only by Default"]}
       />
 
-      <section className="pt-8 pb-12 lg:pt-10 lg:pb-16">
-        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
-            {STATS.map((s) => (
-              <div
-                key={s.l}
-                className="flex flex-col items-center justify-center rounded-2xl border border-cv-ink/10 dark:border-white/10 px-6 py-10 text-center bg-white/40 dark:bg-[#0D0D0D] backdrop-blur-sm"
-              >
-                <div className="font-mono text-2xl lg:text-3xl font-bold text-cv-ink tracking-tight">{s.v}</div>
-                <p className="mt-3 text-sm font-medium text-cv-muted tracking-wide max-w-[160px] line-clamp-2">{s.l}</p>
-              </div>
-            ))}
+      <section className="cv-section">
+        <div className="cv-container">
+          <div className="grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-stretch lg:gap-16">
+            <div>
+              <SectionEyebrow className="mb-4">The situation</SectionEyebrow>
+              <h2 className="cv-h2 text-cv-ink">The situation data teams are in.</h2>
+              <p className="cv-body-lg text-cv-ink/80 mt-6">
+                Warehouse spend is unpredictable and rarely maps to a team or product. A single unpruned query scans hundreds of gigabytes; run on a schedule, it compounds.
+              </p>
+              <p className="cv-body-lg text-cv-ink font-medium mt-4">
+                And now AI workloads are reading from your warehouses at scale, on budgets that were never sized for them, often from AI-assisted code with no obvious owner. DataX finds these automatically, with attribution down to the SQL.
+              </p>
+            </div>
+            <div className="flex">
+              <Panel className="justify-between p-6" chrome="datax.app/situation">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] uppercase tracking-wide text-cv-muted">Scheduled query · nightly</span>
+                  <Pill color={VIZ_AMBER}>Full scan</Pill>
+                </div>
+                <div className="rounded-md border border-cv-line/60 py-2 dark:border-white/10">
+                  <CodeLine n={1}>
+                    <span className="text-cv-ink/75">SELECT * FROM </span>
+                    <span style={{ color: VIZ_AMBER }}>orders</span>
+                  </CodeLine>
+                </div>
+                <div className="flex items-center justify-between rounded-md border border-cv-line/60 px-3.5 py-4 text-xs dark:border-white/10">
+                  <span className="text-cv-ink/70">Data scanned</span>
+                  <span className="font-mono tabular-nums" style={{ color: VIZ_AMBER }}>334.6 GB</span>
+                </div>
+                <div className="flex items-center justify-between rounded-md border border-cv-line/60 px-3.5 py-4 text-xs dark:border-white/10">
+                  <span className="text-cv-ink/70">Runs on schedule</span>
+                  <span className="font-mono tabular-nums text-cv-muted">×77 this month</span>
+                </div>
+                <div className="flex items-center justify-between rounded-md px-3.5 py-4 text-xs" style={{ background: `${VIZ_RED}12` }}>
+                  <span style={{ color: VIZ_RED }}>AI agent reading from warehouse</span>
+                  <span className="font-mono font-semibold" style={{ color: VIZ_RED }}>No owner</span>
+                </div>
+              </Panel>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* WHAT IT'S COSTING YOU TODAY */}
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
+        <div className="cv-container">
+          <SectionEyebrow className="mb-4">The cost of the gap</SectionEyebrow>
+          <h2 className="cv-h2 text-cv-ink mb-8">What that&apos;s costing you today.</h2>
+          <BulletGrid items={COSTS} tone="negative" />
+        </div>
+      </section>
+
+      {/* WHAT YOU SHIP */}
       <section className="cv-section">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink">The situation data teams are in.</h2>
-          <p className="cv-body-lg text-cv-ink/80 mt-6">
-            Warehouse spend is unpredictable and rarely maps to a team or product. A single unpruned query scans hundreds of gigabytes; run on a schedule, it compounds.
-          </p>
-          <p className="cv-body-lg text-cv-ink font-medium mt-4">
-            And now AI workloads are reading from your warehouses at scale, on budgets that were never sized for them, often from AI-assisted code with no obvious owner. DataX finds these automatically, with attribution down to the SQL.
-          </p>
-        </div>
-      </section>
-
-      {/* WHAT IT'S COSTING YOU TODAY */}
-      <section className="cv-section bg-cv-surface dark:bg-black">
-        <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-8">What that&apos;s costing you today.</h2>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {[
-              "Data platform spend that surprises you month to month",
-              "Warehouse and pipeline cost you can't cleanly attribute to a team or product",
-              "A rising share of the bill driven by AI workloads reading from warehouses",
-              "Queries from AI-assisted code showing up with no owner",
-              "No unit economics for data: cost per pipeline, per query, per dataset",
-            ].map((b) => (
-              <li key={b} className="flex items-start gap-3 text-cv-ink/85">
-                <CloseCircle weight="Linear" size={18} className="text-cv-muted mt-0.5 shrink-0" /> {b}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section className="cv-section bg-cv-surface dark:bg-black">
-        <div className="cv-container">
+          <SectionEyebrow className="mb-4">What you ship</SectionEyebrow>
           <h2 className="cv-h2 text-cv-ink mb-10">What data teams unlock with DataX</h2>
           <DataXUnlocks
             items={[
@@ -118,61 +156,69 @@ export default function DataTeamsPage() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section className="cv-section">
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-10">How data teams run it.</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              ["Connect", "Connect your warehouses over a read-only role. Metadata only."],
-              ["Attribute", "Attribute every query and pipeline to an owner through the dbt DAG."],
-              ["Catch", "Catch the patterns and regressions billing dashboards miss."],
-              ["Fix", "Fix within policy: reversible, audited, on your approval."],
-            ].map(([title, body], i) => (
-              <div key={title} className="rounded-2xl border border-cv-line/40 bg-cv-surface2 dark:bg-[#0D0D0D] p-6">
-                <div className="text-xs uppercase tracking-widest text-cv-muted">Step 0{i + 1}</div>
-                <h3 className="cv-h3 text-cv-ink mt-2">{title}</h3>
-                <p className="text-cv-ink/75 mt-3 leading-relaxed text-sm">{body}</p>
-              </div>
-            ))}
+          <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
+          <h2 className="cv-h2 text-cv-ink">How DataX controls every warehouse dollar.</h2>
+          <div className="mt-4 max-w-3xl space-y-4 mb-12">
+            <p className="cv-body-lg text-cv-muted">
+              DataX sits alongside your warehouses over a read-only role. On every query it attributes the cost to an owner through the dbt DAG, catches the patterns that compound, and applies the fix once you approve it.
+            </p>
+            <p className="cv-body-lg text-cv-muted">
+              A cost explorer shows the spend. DataX works out who caused it, and what to do next.
+            </p>
           </div>
+          <HowItWorksFlow
+            workloads={HOW_IT_WORKS_WORKLOADS}
+            chips={HOW_IT_WORKS_CHIPS}
+            hubLabel="Cost · Owner · Risk"
+            hubSub="attributed on every query"
+            right={HOW_IT_WORKS_RIGHT}
+            bottomRows={["Read-only, metadata only", "6 warehouses connected"]}
+          />
         </div>
       </section>
 
-      {/* PROOF */}
-      <section className="cv-section bg-cv-surface dark:bg-black">
+      {/* CUSTOMER PROOF */}
+      <section className="cv-section">
         <div className="cv-container">
-          <div className="rounded-3xl border border-cv-line/40 dark:bg-[#0D0D0D] p-8 lg:p-12">
-            <h2 className="cv-h2 text-cv-ink max-w-3xl">From invisible spend to accountable architecture.</h2>
-            <p className="text-cv-ink/80 leading-relaxed max-w-3xl mt-6">
-              A Southeast Asian digital and telecommunications group ran 129 applications across four clouds with no reliable owner. CloudVerse mapped spend to how the business works and surfaced Rp964.80M in savings before optimization began.
-            </p>
+          <div className="grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:items-center lg:gap-16">
+            <div>
+              <SectionEyebrow className="mb-4">Customer proof</SectionEyebrow>
+              <h2 className="cv-h2 text-cv-ink max-w-xl">From invisible spend to accountable architecture.</h2>
+              <p className="mt-6 leading-relaxed text-cv-ink/80 max-w-xl">
+                A Southeast Asian digital and telecommunications group ran 129 applications across four clouds with no reliable owner. CloudVerse mapped spend to how the business works and surfaced Rp964.80M in savings before optimization began.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-6">
+                <div>
+                  <div className="font-mono text-2xl font-bold text-cv-ink tracking-tight">Rp964.80M</div>
+                  <p className="mt-1 text-xs text-cv-muted">surfaced before optimization</p>
+                </div>
+                <div className="hidden sm:block w-px self-stretch bg-cv-line/50" />
+                <div>
+                  <div className="font-mono text-2xl font-bold text-cv-ink tracking-tight">129</div>
+                  <p className="mt-1 text-xs text-cv-muted">applications mapped</p>
+                </div>
+              </div>
+            </div>
+            <DataXAttributionMock />
           </div>
         </div>
       </section>
 
       {/* OUTCOMES */}
-      <section className="cv-section">
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
+          <SectionEyebrow className="mb-4">Outcomes</SectionEyebrow>
           <h2 className="cv-h2 text-cv-ink mb-8">Outcomes you can defend.</h2>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {[
-              "Attribution: warehouse and pipeline cost traced to the query that committed it",
-              "Pattern detection: full scans and runaway queries caught before they compound",
-              "AI visibility: AI-driven warehouse traffic attributed cleanly",
-              "Engineering visibility: data cost committed by code surfaced before the bill",
-              "Predictive signals: unit-cost regressions before close, not in the post-mortem",
-              "Defendability: data economics that hold up in front of finance and the board",
-            ].map((b) => (
-              <li key={b} className="flex items-start gap-3 text-cv-ink/85">
-                <CheckCircle weight="Linear" size={18} className="text-cv-teal mt-0.5 shrink-0" /> {b}
-              </li>
-            ))}
-          </ul>
+          <BulletGrid items={OUTCOMES} tone="positive" />
         </div>
       </section>
 
-      <section className="cv-section bg-cv-surface dark:bg-black">
+      {/* PLATFORM */}
+      <section className="cv-section">
         <div className="cv-container">
+          <SectionEyebrow className="mb-4">Platform</SectionEyebrow>
           <h2 className="cv-h2 text-cv-ink mb-8">Platform that powers this solution</h2>
           <PlatformCards
             items={[
@@ -185,16 +231,39 @@ export default function DataTeamsPage() {
       </section>
 
       <WhoThisIsFor
-        roles={["Head of Data / Chief Data Officer", "VP / Director of Data Engineering", "Head of Analytics / BI", "Data Platform lead / Lakehouse architect"]}
         accent="#D97706"
+        personas={[
+          {
+            role: "Head of Data / Chief Data Officer",
+            category: "Data leadership",
+            quote: "Warehouse spend finally maps to the team and product that drove it, not a shared line item.",
+          },
+          {
+            role: "VP / Director of Data Engineering",
+            category: "Data engineering",
+            quote: "Full scans and runaway queries get caught before they compound, not at monthly close.",
+          },
+          {
+            role: "Head of Analytics / BI",
+            category: "Analytics",
+            quote: "Dashboard and query cost traced back to the report that's actually driving the bill.",
+          },
+          {
+            role: "Data Platform lead / Lakehouse architect",
+            category: "Platform engineering",
+            quote: "Attribution runs through the dbt DAG automatically, no manual tagging to maintain.",
+          },
+        ]}
       />
 
-      <section className="cv-section">
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="text-center mb-10">
-            <h2 className="cv-h2 text-cv-ink">Data Team Questions Answered</h2>
-          </div>
-          <FaqBlock items={FAQ.map(([q, a]) => ({ q, a }))} accent="#1664C0" />
+          <FaqBlock
+            items={FAQ.map(([q, a]) => ({ q, a }))}
+            accent="#1664C0"
+            title="Data Team Questions Answered"
+            subtitle="Common questions we get asked the most"
+          />
         </div>
       </section>
 

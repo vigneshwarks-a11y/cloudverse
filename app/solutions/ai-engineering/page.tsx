@@ -1,9 +1,12 @@
-import { CheckCircle, CloseCircle, Cpu } from "@solar-icons/react";
 import type { Metadata } from "next";
-import { DEMO_URL } from "@/lib/links";
-import AixUnlocks from "@/components/solution/AixUnlocks";
+import { ChatRound, Cpu, Server2, Wallet, CheckSquare, ShieldCheck, Routing } from "@solar-icons/react";
+import { AixUnlocks } from "@/components/solution/AixUnlocks";
+import { Panel, CodeLine, Pill, VIZ_AMBER, VIZ_RED } from "@/components/solution/CardChrome";
+import { HowItWorksFlow, type FlowChip, type FlowWorkload, type FlowRightNode } from "@/components/solution/HowItWorksFlow";
 import { PlatformCards } from "@/components/solution/PlatformCards";
 import { SolutionHero } from "@/components/solution/SolutionHero";
+import { SectionEyebrow } from "@/components/solution/SectionEyebrow";
+import { BulletGrid } from "@/components/solution/BulletGrid";
 import { WhoThisIsFor } from "@/components/solution/WhoThisIsFor";
 import { FaqBlock } from "@/components/FaqBlock";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
@@ -26,11 +29,42 @@ export const metadata: Metadata = {
   },
 };
 
-const STATS = [
-  { v: "8+", l: "GPU and LLM providers" },
-  { v: "Live", l: "cost-quality routing" },
-  { v: "Policy-bound", l: "at execution" },
-  { v: "Auditable", l: "decision trail" },
+const COSTS = [
+  "AI spend you can't cleanly attribute to a team, feature, or use case",
+  "Unit economics borrowed from infrastructure, not sized for tokens and GPUs",
+  "Inference and GPU cost that shifts every week as agents and copilots scale",
+  "The \"is this worth it?\" question from finance you can't yet answer with confidence",
+];
+
+const OUTCOMES = [
+  "Attribution: AI spend mapped to teams, features, and use cases",
+  "Routing: kills 10–100x waste on the wrong model-for-the-job",
+  "AI-native unit economics: cost per request, per feature, per user",
+  "Governance: policy, access, residency, and vendor oversight in one place",
+  "Visibility: the AI cost shipping out of engineering, surfaced (Copilot, Cursor, agents)",
+  "Credibility: a number that holds up in front of finance, the CEO, and the board",
+];
+
+const HOW_IT_WORKS_WORKLOADS: FlowWorkload[] = [
+  { label: "Chat & Copilots", sub: "User-facing requests", color: "#1664C0", Icon: ChatRound },
+  { label: "AI Agents", sub: "Autonomous workflows", color: "#6954D4", Icon: Cpu },
+  { label: "Batch Inference", sub: "Scheduled & bulk jobs", color: "#0E9E7A", Icon: Server2 },
+];
+
+const HOW_IT_WORKS_CHIPS: FlowChip[] = [
+  { label: "Cost Scoring", color: "#1664C0", Icon: Wallet },
+  { label: "Quality Scoring", color: "#0E9E7A", Icon: CheckSquare },
+  { label: "Policy Guardrails", color: "#D97706", Icon: ShieldCheck },
+  { label: "Fallback Routing", color: "#6954D4", Icon: Routing },
+];
+
+const HOW_IT_WORKS_RIGHT: FlowRightNode[] = [
+  { kind: "logo", src: "/icons/openai.svg", name: "OpenAI", invert: true },
+  { kind: "logo", src: "/icons/anthropic.svg", name: "Anthropic" },
+  { kind: "logo", src: "/icons/gemini.svg", name: "Gemini" },
+  { kind: "logo", src: "/icons/meta.svg", name: "Meta" },
+  { kind: "logo", src: "/icons/mistral.svg", name: "Mistral" },
+  { kind: "logo", src: "/icons/groq.svg", name: "Groq" },
 ];
 
 const FAQ = [
@@ -49,124 +83,135 @@ export default function AIEngineeringPage() {
         eyebrow="For AI Engineering"
         h1="Run every AI workload where it costs least and runs best."
         sub="Live cost-quality routing across 8+ GPU and LLM providers. Policy-bound at execution. Full attribution included."
-        accent="#6954D4"
-        icon={Cpu}
         platformHref="/platform/aix"
-        badges={["Live Routing", "Cost-Quality Scoring", "8+ Providers", "Budget Caps", "Fallback Routing", "Audit Trails"]}
       />
-
-      <section className="pt-8 pb-12 lg:pt-10 lg:pb-16">
-        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
-            {STATS.map((s) => (
-              <div
-                key={s.l}
-                className="flex flex-col items-center justify-center rounded-2xl border border-cv-ink/10 dark:border-white/10 px-6 py-10 text-center bg-white/40 dark:bg-[#0D0D0D] backdrop-blur-sm"
-              >
-                <div className="font-mono text-2xl lg:text-3xl font-bold text-cv-ink tracking-tight">{s.v}</div>
-                <p className="mt-3 text-sm font-medium text-cv-muted tracking-wide max-w-[160px] line-clamp-2">{s.l}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section className="cv-section">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink">The situation AI engineering teams are in</h2>
-          <p className="cv-body-lg text-cv-ink/80 mt-6">
-            You picked a model once and wired it in. There are now cheaper models that clear the same quality bar, but changing means a code change nobody has time for.
-          </p>
-          <p className="cv-body-lg text-cv-ink/80 mt-4">
-            Meanwhile AI-assisted coding and agents are moving your inference and GPU cost week to week, and the bill arrives with no owner attached.
-          </p>
-          <p className="cv-body-lg text-cv-ink font-medium mt-4">AIX closes both gaps.</p>
+          <div className="grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-stretch lg:gap-16">
+            <div>
+              <SectionEyebrow className="mb-4">The situation</SectionEyebrow>
+              <h2 className="cv-h2 text-cv-ink">The situation AI engineering teams are in.</h2>
+              <p className="cv-body-lg text-cv-ink/80 mt-6">
+                You picked a model once and wired it in. There are now cheaper models that clear the same quality bar, but changing means a code change nobody has time for.
+              </p>
+              <p className="cv-body-lg text-cv-ink/80 mt-4">
+                Meanwhile AI-assisted coding and agents are moving your inference and GPU cost week to week, and the bill arrives with no owner attached.
+              </p>
+              <p className="cv-body-lg text-cv-ink font-medium mt-4">AIX closes both gaps.</p>
+            </div>
+            <div className="flex">
+              <Panel className="justify-between p-6" chrome="aix.app/situation">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] uppercase tracking-wide text-cv-muted">Current route · hardcoded</span>
+                  <Pill color={VIZ_AMBER}>Locked in code</Pill>
+                </div>
+                <div className="rounded-md border border-cv-line/60 py-2 dark:border-white/10">
+                  <CodeLine n={1}>
+                    <span className="text-cv-ink/75">model: </span>
+                    <span style={{ color: VIZ_AMBER }}>&quot;gpt-4-turbo&quot;</span>
+                  </CodeLine>
+                </div>
+                <div className="space-y-2.5">
+                  {[
+                    ["claude-3.5-haiku", "$0.006/1k"],
+                    ["gemini-1.5-flash", "$0.004/1k"],
+                    ["llama-3-70b", "$0.003/1k"],
+                  ].map(([name, price]) => (
+                    <div key={name} className="flex items-center justify-between rounded-md border border-cv-line/60 px-3.5 py-3 text-xs dark:border-white/10">
+                      <span className="text-cv-ink/60">{name}</span>
+                      <span className="flex items-center gap-2">
+                        <span className="font-mono tabular-nums text-cv-muted">{price}</span>
+                        <span className="text-[10px] text-cv-ink/35">blocked · code change</span>
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex items-center justify-between rounded-md px-2.5 py-1.5 text-xs" style={{ background: `${VIZ_RED}12` }}>
+                  <span style={{ color: VIZ_RED }}>GPU + inference spend, rising weekly</span>
+                  <span className="font-mono font-semibold" style={{ color: VIZ_RED }}>No owner</span>
+                </div>
+              </Panel>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* WHAT IT'S COSTING YOU TODAY */}
-      <section className="cv-section bg-cv-surface dark:bg-black">
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
+          <SectionEyebrow className="mb-4">The cost of the gap</SectionEyebrow>
           <h2 className="cv-h2 text-cv-ink mb-8">What that&apos;s costing you today.</h2>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {[
-              "AI spend you can't cleanly attribute to a team, feature, or use case",
-              "Unit economics borrowed from infrastructure, not sized for tokens and GPUs",
-              "Inference and GPU cost that shifts every week as agents and copilots scale",
-              "The \"is this worth it?\" question from finance you can't yet answer with confidence",
-            ].map((b) => (
-              <li key={b} className="flex items-start gap-3 text-cv-ink/85">
-                <CloseCircle weight="Linear" size={18} className="text-cv-muted mt-0.5 shrink-0" /> {b}
-              </li>
-            ))}
-          </ul>
+          <BulletGrid items={COSTS} tone="negative" />
         </div>
       </section>
 
-      <AixUnlocks />
-
-      {/* HOW IT WORKS */}
+      {/* WHAT YOU SHIP */}
       <section className="cv-section">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-10">How AI engineering teams run it.</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              ["Connect", "Connect your providers and GPU pools. Minutes each, no app change."],
-              ["Set policy", "Set policy per workload: quality floor, budget cap, allowed providers, residency."],
-              ["Route", "Route every request to the best-fit model, with a fallback and a decision log."],
-              ["Measure", "Measure cost per request, feature, and tenant, and take the number to finance."],
-            ].map(([title, body], i) => (
-              <div key={title} className="rounded-2xl border border-cv-line/40 bg-cv-surface2 dark:bg-[#0D0D0D] p-6">
-                <div className="text-xs uppercase tracking-widest text-cv-muted">Step 0{i + 1}</div>
-                <h3 className="cv-h3 text-cv-ink mt-2">{title}</h3>
-                <p className="text-cv-ink/75 mt-3 leading-relaxed text-sm">{body}</p>
-              </div>
-            ))}
-          </div>
+          <SectionEyebrow className="mb-4">What you ship</SectionEyebrow>
+          <h2 className="cv-h2 text-cv-ink mb-10">What AIX unlocks for AI engineering teams.</h2>
+          <AixUnlocks />
         </div>
       </section>
 
-      <section className="cv-section bg-cv-surface dark:bg-black">
+      {/* HOW IT WORKS */}
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
+          <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
+          <h2 className="cv-h2 text-cv-ink">How AIX controls every AI request.</h2>
+          <div className="mt-4 max-w-3xl space-y-4 mb-12">
+            <p className="cv-body-lg text-cv-muted">
+              AIX sits between your application and every AI provider you use. On each request it scores the available routes against the rules your team set, then returns the best one with a fallback and a full decision log.
+            </p>
+            <p className="cv-body-lg text-cv-muted">
+              A gateway runs the rule you wrote. AIX works out whether that rule is still right.
+            </p>
+          </div>
+          <HowItWorksFlow
+            workloads={HOW_IT_WORKS_WORKLOADS}
+            chips={HOW_IT_WORKS_CHIPS}
+            hubLabel="Cost · Quality · Latency"
+            hubSub="scored on every request"
+            right={HOW_IT_WORKS_RIGHT}
+            bottomRows={["Hosted APIs", "Dedicated GPU pools"]}
+          />
+        </div>
+      </section>
+
+      {/* THE NUMBERS */}
+      <section className="cv-section">
+        <div className="cv-container">
+          <SectionEyebrow className="mb-4">The numbers</SectionEyebrow>
           <h2 className="cv-h2 text-cv-ink">The numbers.</h2>
-          <ul className="mt-8 space-y-3">
+          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
             {[
               "40–90% cost reduction across production workloads",
               "Under 15ms routing overhead",
               "96.8% lower cost than a hardcoded Claude Sonnet setup, 28.5% faster",
               "Agent spend variance down from 3x to under 15% after AIX",
             ].map((b) => (
-              <li key={b} className="flex items-start gap-3 text-cv-ink/85">
-                <CheckCircle weight="Linear" size={18} className="text-cv-teal mt-0.5 shrink-0" /> {b}
-              </li>
+              <div key={b} className="flex items-start gap-3 rounded-2xl border border-cv-line/40 bg-cv-surface dark:bg-[#0D0D0D] p-5 text-cv-ink/85">
+                <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cv-teal" /> {b}
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
 
       {/* OUTCOMES */}
-      <section className="cv-section">
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
+          <SectionEyebrow className="mb-4">Outcomes</SectionEyebrow>
           <h2 className="cv-h2 text-cv-ink mb-8">Outcomes you can take to the board.</h2>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {[
-              "Attribution that maps AI spend to teams, features, and use cases",
-              "Routing that kills 10–100x waste on the wrong model-for-the-job",
-              "AI-native unit economics: cost per request, per feature, per user",
-              "Governance: policy, access, residency, and vendor oversight in one place",
-              "Visibility into the AI cost shipping out of engineering (Copilot, Cursor, agents)",
-              "A number that holds up in front of finance, the CEO, and the board",
-            ].map((b) => (
-              <li key={b} className="flex items-start gap-3 text-cv-ink/85">
-                <CheckCircle weight="Linear" size={18} className="text-cv-teal mt-0.5 shrink-0" /> {b}
-              </li>
-            ))}
-          </ul>
+          <BulletGrid items={OUTCOMES} tone="positive" />
         </div>
       </section>
 
-      <section className="cv-section bg-cv-surface dark:bg-black">
+      {/* PLATFORM */}
+      <section className="cv-section">
         <div className="cv-container">
+          <SectionEyebrow className="mb-4">Platform</SectionEyebrow>
           <h2 className="cv-h2 text-cv-ink mb-8">Platform that powers this solution</h2>
           <PlatformCards
             items={[
@@ -179,16 +224,44 @@ export default function AIEngineeringPage() {
       </section>
 
       <WhoThisIsFor
-        roles={["Head of AI", "Chief AI Officer", "VP / Director of MLOps", "Head of Data Science / ML Engineering", "AI Platform leads"]}
         accent="#6954D4"
+        personas={[
+          {
+            role: "Head of AI",
+            category: "AI leadership",
+            quote: "Every model route explained and priced — I can defend the AI number to the board.",
+          },
+          {
+            role: "Chief AI Officer",
+            category: "AI leadership",
+            quote: "Governance and cost sit on the same model, so growth doesn't mean losing control of spend.",
+          },
+          {
+            role: "VP / Director of MLOps",
+            category: "AI operations",
+            quote: "Routing and fallback logged automatically — no more chasing why a request went where it did.",
+          },
+          {
+            role: "Head of Data Science / ML Engineering",
+            category: "AI engineering",
+            quote: "Cost per request, per feature, per user, without instrumenting it ourselves.",
+          },
+          {
+            role: "AI Platform leads",
+            category: "Platform engineering",
+            quote: "One policy layer across every provider and GPU pool we run.",
+          },
+        ]}
       />
 
-      <section className="cv-section bg-cv-surface dark:bg-black">
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="text-center mb-10">
-            <h2 className="cv-h2 text-cv-ink">AI Engineering Questions Answered</h2>
-          </div>
-          <FaqBlock items={FAQ.map(([q, a]) => ({ q, a }))} accent="#1664C0" />
+          <FaqBlock
+            items={FAQ.map(([q, a]) => ({ q, a }))}
+            accent="#1664C0"
+            title="AI Engineering Questions Answered"
+            subtitle="Common questions we get asked the most"
+          />
         </div>
       </section>
 

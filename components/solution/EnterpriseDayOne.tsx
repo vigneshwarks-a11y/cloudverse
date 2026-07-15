@@ -1,118 +1,118 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { FeatureCard, Panel, CheckBadge, VIZ_BLUE as BLUE, VIZ_OK as OK, VIZ_VIOLET as VIOLET, VIZ_AMBER as AMBER } from "@/components/solution/CardChrome";
 
-const BLUE = "#007CFF";
+/* Enterprise "what enterprise teams operationalise" bento — same
+   image-topped FeatureCard idiom as FinopsShips: a bordered panel with a
+   lit top-left edge + ambient glow on a dark surface, tables/checklists
+   inside. Theme-aware via cv-* tokens. */
 
-/* ---------- per-feature visuals (all same fixed height) ---------- */
-
-function VizFrame({ children }: { children: React.ReactNode }) {
-  return (
-    <div
-      className="mt-auto flex h-32 flex-col justify-center overflow-hidden rounded-lg border p-4"
-      style={{ borderColor: `${BLUE}26`, background: `${BLUE}0d` }}
-    >
-      {children}
-    </div>
-  );
-}
-
-/* 1. One model single allocation feeding three matching views */
+/* 1. One model across the estate — the SAME total shown from three
+   different vantage points, each reconciled, so "one model" reads as
+   one number that holds up everywhere rather than an abstract "% match". */
 function ModelViz() {
-  const views = ["FinOps", "Engineering", "Finance"];
+  const views: [string, string][] = [
+    ["As seen in FinOps", BLUE],
+    ["As seen in Engineering", VIOLET],
+    ["As seen in Finance", AMBER],
+  ];
   return (
-    <div className="w-full">
-      <div className="flex h-3 w-full overflow-hidden rounded-full">
-        <div style={{ width: "44%", background: "rgba(0,124,255,1)" }} />
-        <div style={{ width: "33%", background: "rgba(0,124,255,0.7)" }} />
-        <div style={{ width: "23%", background: "rgba(0,124,255,0.45)" }} />
+    <Panel className="justify-center gap-3 p-4" chrome="enterprise.app/allocation-model">
+      <div className="flex items-center justify-between">
+        <span className="text-[10px] uppercase tracking-wide text-cv-muted">This month's estate spend</span>
+        <span className="font-mono text-base font-bold tabular-nums" style={{ color: BLUE }}>$1.84M</span>
       </div>
-      <div className="mt-3 grid grid-cols-3 gap-2">
-        {views.map((v) => (
-          <div
-            key={v}
-            className="rounded-md border py-1.5 text-center text-[10px] text-cv-ink/70"
-            style={{ borderColor: `${BLUE}33`, background: `${BLUE}12` }}
-          >
+      {views.map(([v, color]) => (
+        <div key={v} className="flex items-center justify-between rounded-md border border-cv-line/60 px-2.5 py-1.5 text-xs dark:border-white/10">
+          <span className="flex items-center gap-2 text-cv-ink/75">
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: color }} />
             {v}
-            <div className="mt-0.5 text-[9px] text-cv-ink/45">matches</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* 2. Identity and audit security control checklist */
-function IdentityViz() {
-  const items = ["SSO", "SCIM", "RBAC", "Audit logs", "Encryption keys"];
-  return (
-    <div className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-[11px]">
-      {items.map((it) => (
-        <div key={it} className="flex items-center gap-1.5">
-          <svg viewBox="0 0 16 16" className="h-3 w-3 shrink-0" fill="none">
-            <circle cx="8" cy="8" r="7" fill={`${BLUE}22`} stroke={BLUE} strokeWidth="1" />
-            <path d="M5 8.2l2 2 4-4.2" stroke={BLUE} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          <span className="text-cv-ink/70">{it}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-/* 3. Regional residency region pills with deployment options */
-function RegionViz() {
-  const regions = ["US", "EU", "APAC"];
-  return (
-    <div className="w-full">
-      <div className="flex justify-between gap-2">
-        {regions.map((r) => (
-          <div
-            key={r}
-            className="flex-1 rounded-md border py-2 text-center"
-            style={{ borderColor: `${BLUE}33`, background: `${BLUE}12` }}
-          >
-            <div className="text-xs font-semibold" style={{ color: BLUE }}>
-              {r}
-            </div>
-            <div className="mt-0.5 flex justify-center gap-0.5">
-              <span className="h-1 w-1 rounded-full" style={{ background: BLUE }} />
-              <span className="h-1 w-1 rounded-full" style={{ background: BLUE }} />
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="mt-2.5 flex justify-center gap-3 text-[10px] text-cv-ink/55">
-        <span>Private-link</span>
-        <span>·</span>
-        <span>VPC</span>
-      </div>
-    </div>
-  );
-}
-
-/* 4. Marketplace and procurement cloud provider listings */
-function MarketplaceViz() {
-  const providers = ["AWS", "Azure", "Google Cloud"];
-  return (
-    <div className="space-y-1.5 text-[11px]">
-      {providers.map((p) => (
-        <div
-          key={p}
-          className="flex items-center justify-between rounded-md border px-2.5 py-1.5"
-          style={{ borderColor: `${BLUE}26`, background: `${BLUE}0a` }}
-        >
-          <span className="text-cv-ink/75">{p} Marketplace</span>
-          <span
-            className="rounded px-1.5 py-0.5 text-[9px] font-semibold"
-            style={{ background: `${BLUE}1f`, color: BLUE }}
-          >
-            Committed spend
+          </span>
+          <span className="flex items-center gap-2">
+            <span className="font-mono tabular-nums text-cv-ink/85">$1.84M</span>
+            <CheckBadge color={color}>Matches</CheckBadge>
           </span>
         </div>
       ))}
-    </div>
+    </Panel>
+  );
+}
+
+/* 2. Identity and audit — enabled security controls checklist. */
+function IdentityViz() {
+  const items: [string, string][] = [
+    ["SSO", BLUE],
+    ["SCIM", VIOLET],
+    ["RBAC", OK],
+    ["Audit logs", AMBER],
+    ["Encryption keys", BLUE],
+  ];
+  return (
+    <Panel className="justify-center gap-2.5 p-4" chrome="enterprise.app/identity">
+      <div className="flex items-center justify-between">
+        <span className="text-[10px] uppercase tracking-wide text-cv-muted">Identity &amp; audit</span>
+        <span className="text-[10px] font-medium text-cv-muted">5 controls</span>
+      </div>
+      <div className="grid grid-cols-2 gap-x-3 gap-y-2 text-[11px] text-cv-ink/75">
+        {items.map(([it, color]) => (
+          <CheckBadge key={it} color={color}>{it}</CheckBadge>
+        ))}
+      </div>
+    </Panel>
+  );
+}
+
+/* 3. Regional residency — region list with connection status, in the
+   idiom of Laravel Cloud's connected-domains list. */
+function RegionViz() {
+  const rows: [string, string, string][] = [
+    ["US", "Private-link", BLUE],
+    ["EU", "VPC", VIOLET],
+    ["APAC", "Private-link", AMBER],
+  ];
+  return (
+    <Panel className="p-0" chrome="enterprise.app/residency">
+      {rows.map(([region, opt, color], i) => (
+        <div key={region} className={`grid grid-cols-[1fr_auto_auto] items-center gap-3 px-3 py-2.5 text-xs ${i > 0 ? "border-t border-cv-line/60 dark:border-white/10" : ""}`}>
+          <span className="flex items-center gap-2 text-cv-ink/85">
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: color }} />
+            {region}
+          </span>
+          <CheckBadge color={color}>Connected</CheckBadge>
+          <span className="whitespace-nowrap text-cv-muted">{opt}</span>
+        </div>
+      ))}
+    </Panel>
+  );
+}
+
+/* 4. Marketplace and procurement — committed-spend listing table. */
+function MarketplaceViz() {
+  const rows: [string, string, string][] = [
+    ["AWS Marketplace", "$142k", AMBER],
+    ["Azure Marketplace", "$96k", BLUE],
+    ["Google Cloud Marketplace", "$58k", OK],
+  ];
+  return (
+    <Panel className="p-0" chrome="enterprise.app/marketplace">
+      <div className="grid grid-cols-[1fr_auto] items-center gap-3 border-b border-cv-line px-3 py-1.5 text-[10px] uppercase tracking-wide text-cv-muted dark:border-white/10">
+        <span>Marketplace</span>
+        <span className="text-right">Committed spend</span>
+      </div>
+      {rows.map(([p, amount, color], i) => (
+        <div key={p} className={`grid grid-cols-[1fr_auto] items-center gap-3 px-3 py-2 text-xs ${i > 0 ? "border-t border-cv-line dark:border-white/10" : ""}`}>
+          <span className="flex items-center gap-2 truncate text-cv-ink/80">
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: color }} />
+            {p}
+          </span>
+          <span className="whitespace-nowrap font-mono tabular-nums" style={{ color }}>{amount}</span>
+        </div>
+      ))}
+      <div className="grid grid-cols-[1fr_auto] items-center gap-3 border-t border-cv-line px-3 py-2 text-xs dark:border-white/10" style={{ background: `${VIOLET}12` }}>
+        <span className="font-semibold text-cv-ink">Total redeemed</span>
+        <span className="whitespace-nowrap text-right font-mono font-semibold tabular-nums" style={{ color: VIOLET }}>$296k</span>
+      </div>
+    </Panel>
   );
 }
 
@@ -126,53 +126,14 @@ const VISUALS: Record<string, () => React.JSX.Element> = {
 export type EnterpriseItem = [title: string, desc: string];
 
 export function EnterpriseDayOne({ items }: { items: EnterpriseItem[] }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  const [reduceMotion, setReduceMotion] = useState(false);
-
-  useEffect(() => {
-    setReduceMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-  }, []);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          obs.disconnect();
-        }
-      },
-      { threshold: 0.15 },
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  const rise = (i: number): React.CSSProperties => ({
-    opacity: visible || reduceMotion ? 1 : 0,
-    transform: reduceMotion || visible ? "translateY(0)" : "translateY(24px)",
-    transition: "opacity 700ms ease-out, transform 700ms ease-out",
-    transitionDelay: reduceMotion ? "0ms" : `${i * 120}ms`,
-  });
-
   return (
-    <div ref={ref} className="grid auto-rows-fr gap-4 sm:gap-5 sm:grid-cols-2">
-      {items.map(([t, b], i) => {
+    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+      {items.map(([t, b]) => {
         const Viz = VISUALS[t];
         return (
-          <div key={t} style={rise(i)}>
-            <div className="flex h-full flex-col rounded-xl border border-cv-line bg-cv-surface dark:bg-[#0D0D0D] p-7">
-              <h3 className="cv-h3 font-semibold text-cv-ink">{t}</h3>
-              <p className="text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
-              {Viz ? (
-                <VizFrame>
-                  <Viz />
-                </VizFrame>
-              ) : null}
-            </div>
-          </div>
+          <FeatureCard key={t} title={t} desc={b}>
+            {Viz ? <Viz /> : null}
+          </FeatureCard>
         );
       })}
     </div>

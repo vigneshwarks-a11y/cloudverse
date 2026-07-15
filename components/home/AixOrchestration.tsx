@@ -351,7 +351,7 @@ export function Dashboard({ full = false }: { full?: boolean }) {
         <div className="flex items-center gap-3 border-b border-black/[0.07] px-3 py-2 text-xs dark:border-white/[0.08]">
           <span className="flex items-center gap-1.5 font-semibold">
             <span className="grid h-4 w-4 place-items-center rounded-full bg-[#1664C0] text-[8px] text-white">C</span>
-            cloudverse
+            Cloudverse
           </span>
           <span className="font-semibold text-[#1d1d1f] dark:text-white">Logs</span>
           <div className="ml-2 flex items-center gap-1 text-[11px]">

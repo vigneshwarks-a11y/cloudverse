@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Buildings, CheckCircle, Code2, Cpu, Database, UsersGroupRounded, Widget2 } from "@solar-icons/react";
+import { ArrowRight, Buildings, CheckCircle, Code2, Cpu, Database, UsersGroupRounded } from "@solar-icons/react";
 import { SolutionHero } from "@/components/solution/SolutionHero";
+import { SectionEyebrow } from "@/components/solution/SectionEyebrow";
+import { Panel, VIZ_BLUE } from "@/components/solution/CardChrome";
 
 export const metadata: Metadata = {
   title: "Solutions: CloudVerse",
@@ -32,13 +34,10 @@ export default function Page() {
         eyebrow="Solutions"
         h1="Built for the teams accountable for the bill."
         sub="Five persona-built paths, one control plane underneath. Cloud, AI, data, and engineering spend, owned by the people who create it."
-        accent="#1664C0"
-        icon={Widget2}
         platformHref="/platform/finops"
-        badges={["Cost Attribution", "Policy Enforcement", "Live Routing", "Audit Trails", "Multi-Cloud", "Read-Only by Default"]}
       />
 
-      <section className="cv-section bg-cv-surface dark:bg-black">
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {SOLUTIONS.map((s) => {
@@ -70,16 +69,43 @@ export default function Page() {
       {/* THE SHARED IDEA */}
       <section className="cv-section">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-5 max-w-2xl">Different jobs. The same missing piece.</h2>
-          <p className="cv-body-lg text-cv-ink/80">
-            Finance can&apos;t explain the bill. Engineering commits the spend but never sees it. AI runs as a side process no one owns. Every team is accountable for a slice of the same problem: cost decided in one place, felt in another. CloudVerse connects the decision to the dollar, so each team works from one record instead of four tools.
-          </p>
+          <div className="grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-stretch lg:gap-16">
+            <div>
+              <h2 className="cv-h2 text-cv-ink mb-5 max-w-2xl">Different jobs. The same missing piece.</h2>
+              <p className="cv-body-lg text-cv-ink/80">
+                Finance can&apos;t explain the bill. Engineering commits the spend but never sees it. AI runs as a side process no one owns. Every team is accountable for a slice of the same problem: cost decided in one place, felt in another. CloudVerse connects the decision to the dollar, so each team works from one record instead of four tools.
+              </p>
+            </div>
+            <div className="flex">
+              <Panel className="justify-between p-6" chrome="cloudverse.app/estate">
+                <span className="text-[10px] uppercase tracking-wide text-cv-muted">Four teams, four partial views</span>
+                <div className="grid grid-cols-2 gap-3">
+                  {[
+                    ["Finance", "Sees the invoice"],
+                    ["Engineering", "Commits the spend"],
+                    ["AI Ops", "Runs as a side process"],
+                    ["Leadership", "Reviews after the fact"],
+                  ].map(([role, sub]) => (
+                    <div key={role} className="rounded-md border border-dashed border-cv-line/60 px-3.5 py-4 text-xs dark:border-white/15">
+                      <div className="font-medium text-cv-ink/80">{role}</div>
+                      <div className="mt-0.5 text-[10px] text-cv-muted">{sub}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex items-center justify-between rounded-md px-3.5 py-4 text-xs" style={{ background: `${VIZ_BLUE}12` }}>
+                  <span style={{ color: VIZ_BLUE }}>CloudVerse</span>
+                  <span className="font-mono font-semibold" style={{ color: VIZ_BLUE }}>One record</span>
+                </div>
+              </Panel>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* WHAT CHANGES */}
-      <section className="cv-section bg-cv-surface dark:bg-black">
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
+          <SectionEyebrow className="mb-4">What changes</SectionEyebrow>
           <h2 className="cv-h2 text-cv-ink mb-8 max-w-2xl">What changes when spend has an owner.</h2>
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[

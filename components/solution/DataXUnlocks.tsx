@@ -1,50 +1,50 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { FeatureCard, Panel, Pill, Tab, Toggle, VIZ_BLUE as BLUE, VIZ_AMBER as AMBER } from "@/components/solution/CardChrome";
 
-const BLUE = "#007CFF";
+/* Data Teams "what data teams unlock" bento — same image-topped FeatureCard
+   idiom as FinopsShips: a bordered panel with a lit top-left edge + ambient
+   glow on a dark surface, tables/charts inside. Theme-aware via cv-* tokens. */
 
-/* ---------- per-feature visuals (all same fixed height) ---------- */
+type VizProps = { reduced: boolean };
 
-function VizFrame({ children }: { children: React.ReactNode }) {
-  return (
-    <div
-      className="mt-auto flex h-32 flex-col justify-center overflow-hidden rounded-lg border p-4"
-      style={{ borderColor: `${BLUE}26`, background: `${BLUE}0d` }}
-    >
-      {children}
-    </div>
-  );
-}
-
-/* 1. Query attribution workload → owner → cost rows */
+/* 1. Query attribution — query → owner → cost table. */
 function AttributionViz() {
-  const rows: [string, string, number][] = [
-    ["dash_revenue", "Analytics", 82],
-    ["model_churn", "DS team", 54],
-    ["etl_nightly", "Data Eng", 38],
+  const rows: [string, string, number, string][] = [
+    ["dash_revenue", "Analytics", 82, "$4.2k"],
+    ["model_churn", "DS team", 54, "$2.6k"],
+    ["etl_nightly", "Data Eng", 38, "$1.8k"],
   ];
   return (
-    <VizFrame>
-      <div className="space-y-2">
-        {rows.map(([q, owner, pct]) => (
-          <div key={q} className="flex items-center gap-2 text-[11px]">
-            <span className="w-20 truncate font-mono text-cv-ink/70">{q}</span>
-            <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-cv-ink/10">
-              <div
-                className="h-full rounded-full"
-                style={{ width: `${pct}%`, background: BLUE, boxShadow: `0 0 8px ${BLUE}99` }}
-              />
-            </div>
-            <span className="w-14 text-right text-cv-ink/55">{owner}</span>
-          </div>
-        ))}
+    <Panel className="p-0" chrome="datax.app/query-attribution">
+      <div className="flex items-center gap-1.5 border-b border-cv-line px-3 py-2 dark:border-white/10">
+        <Tab label="Queries" active />
+        <Tab label="Dashboards" />
+        <Tab label="dbt models" />
       </div>
-    </VizFrame>
+      <div className="grid grid-cols-[1fr_1.2fr_auto] items-center gap-3 border-b border-cv-line px-3 py-1.5 text-[10px] uppercase tracking-wide text-cv-muted dark:border-white/10">
+        <span>Query</span>
+        <span>Owner</span>
+        <span className="text-right">Cost</span>
+      </div>
+      {rows.map(([q, owner, pct, cost], i) => (
+        <div key={q} className={`grid grid-cols-[1fr_1.2fr_auto] items-center gap-3 px-3 py-2 text-xs ${i > 0 ? "border-t border-cv-line dark:border-white/10" : ""}`}>
+          <span className="truncate font-mono text-cv-ink/75">{q}</span>
+          <div className="flex items-center gap-2">
+            <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-cv-ink/10 dark:bg-white/10">
+              <div className="h-full rounded-full" style={{ width: `${pct}%`, background: BLUE }} />
+            </div>
+            <span className="w-16 truncate text-cv-muted">{owner}</span>
+          </div>
+          <span className="whitespace-nowrap font-mono tabular-nums text-cv-muted">{cost}</span>
+        </div>
+      ))}
+    </Panel>
   );
 }
 
-/* 2. Pattern detection grouped patterns with run counts */
+/* 2. Pattern detection — cost-amplifying pattern table with run counts. */
 function PatternViz() {
   const rows: [string, string][] = [
     ["full-scan", "×127"],
@@ -52,88 +52,80 @@ function PatternViz() {
     ["missing prune", "×64"],
   ];
   return (
-    <VizFrame>
-      <div className="space-y-2">
-        {rows.map(([label, count]) => (
-          <div
-            key={label}
-            className="flex items-center justify-between rounded-md border px-2.5 py-1.5 text-[11px]"
-            style={{ borderColor: `${BLUE}26` }}
-          >
-            <span className="font-mono text-cv-ink/70">{label}</span>
-            <span
-              className="rounded px-1.5 py-0.5 text-[10px] font-semibold tabular-nums"
-              style={{ color: BLUE, background: `${BLUE}1a`, border: `1px solid ${BLUE}40` }}
-            >
-              {count}
-            </span>
-          </div>
-        ))}
+    <Panel className="p-0" chrome="datax.app/patterns">
+      <div className="grid grid-cols-[1fr_auto] items-center gap-3 border-b border-cv-line px-3 py-1.5 text-[10px] uppercase tracking-wide text-cv-muted dark:border-white/10">
+        <span>Pattern</span>
+        <span className="text-right">Occurrences</span>
       </div>
-    </VizFrame>
+      {rows.map(([label, count], i) => (
+        <div key={label} className={`grid grid-cols-[1fr_auto] items-center gap-3 px-3 py-2 text-xs ${i > 0 ? "border-t border-cv-line dark:border-white/10" : ""}`}>
+          <span className="truncate font-mono text-cv-ink/75">{label}</span>
+          <Pill color={AMBER}>{count}</Pill>
+        </div>
+      ))}
+    </Panel>
   );
 }
 
-/* 3. Predictive signals sparkline with a forecast spike */
-function PredictiveViz() {
+/* 3. Predictive signals — unit-cost chart with a forecast spike. */
+function PredictiveViz({ reduced }: VizProps) {
+  const LINE = "40,108 60,104 80,106 100,96 120,98 140,86 160,90";
+  const FORECAST = "160,90 200,78 240,58 280,22";
+  const grid = [
+    [24, "High"],
+    [73, "Mid"],
+    [122, "Low"],
+  ] as const;
   return (
-    <VizFrame>
-      <svg viewBox="0 0 200 56" className="h-full w-full" preserveAspectRatio="none">
-        {/* baseline history */}
-        <polyline
-          points="0,42 26,38 52,40 78,34 104,36 130,30"
-          fill="none"
-          stroke={BLUE}
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        {/* forecast (dashed, rising spike) */}
-        <polyline
-          points="130,30 156,26 182,8"
-          fill="none"
-          stroke={BLUE}
-          strokeWidth="2"
-          strokeDasharray="4 4"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          opacity="0.7"
-        />
-        {/* predicted spike marker */}
-        <circle cx="182" cy="8" r="4" fill={BLUE} />
-        <circle cx="182" cy="8" r="8" fill="none" stroke={BLUE} strokeWidth="1.5" opacity="0.4" />
-      </svg>
-    </VizFrame>
+    <Panel className="gap-1.5 p-3" chrome="datax.app/forecast">
+      <div className="flex items-center justify-between">
+        <span className="text-[10px] uppercase tracking-wide text-cv-muted">Unit-cost forecast</span>
+        <span className="font-mono text-base font-bold tabular-nums" style={{ color: AMBER }}>+38% projected</span>
+      </div>
+      <div className="relative min-h-0 flex-1">
+        <svg viewBox="0 0 320 150" className="h-full w-full" preserveAspectRatio="none">
+          {grid.map(([y, label]) => (
+            <g key={label}>
+              <line x1={40} y1={y} x2={300} y2={y} stroke="hsl(var(--cv-line))" strokeWidth={1} strokeOpacity={0.5} vectorEffect="non-scaling-stroke" />
+              <text x={34} y={y + 3.5} textAnchor="end" fontSize={9} fill="hsl(var(--cv-muted))">{label}</text>
+            </g>
+          ))}
+          <polyline points={LINE} fill="none" stroke={BLUE} strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+          <polyline points={FORECAST} fill="none" stroke={AMBER} strokeWidth={2.5} strokeDasharray="4 4" strokeLinecap="round" strokeLinejoin="round" opacity={0.85} vectorEffect="non-scaling-stroke" />
+          <circle cx={280} cy={22} r={7} fill={AMBER} opacity={0.16}>
+            {!reduced && <animate attributeName="r" values="6;9;6" dur="2.4s" repeatCount="indefinite" />}
+          </circle>
+          <circle cx={280} cy={22} r={3.5} fill={AMBER} stroke="hsl(var(--cv-card))" strokeWidth={1.4} vectorEffect="non-scaling-stroke" />
+        </svg>
+      </div>
+    </Panel>
   );
 }
 
-/* 4. Safe automation scoped fixes with toggles */
+/* 4. Safe automation — reversible fix queue with toggle rows. */
 function AutomationViz() {
-  const fixes = ["Partition prune", "Right-size cluster", "Reversible · audited"];
+  const fixes: [string, boolean][] = [
+    ["Partition prune", true],
+    ["Right-size cluster", true],
+    ["Deprecate unused view", false],
+  ];
   return (
-    <VizFrame>
-      <div className="space-y-2">
-        {fixes.map((label, i) => (
-          <div
-            key={label}
-            className="flex items-center justify-between rounded-md border px-2.5 py-1.5 text-[11px]"
-            style={{ borderColor: `${BLUE}26` }}
-          >
-            <span className="text-cv-ink/70">{label}</span>
-            <span
-              className="flex h-3.5 w-6 items-center rounded-full p-0.5"
-              style={{ background: BLUE, justifyContent: i === 2 ? "flex-start" : "flex-end", opacity: i === 2 ? 0.4 : 1 }}
-            >
-              <span className="h-2.5 w-2.5 rounded-full bg-white" />
-            </span>
-          </div>
-        ))}
+    <Panel className="justify-center gap-2.5 p-4" chrome="datax.app/automation">
+      <div className="flex items-center justify-between">
+        <span className="text-[10px] uppercase tracking-wide text-cv-muted">Fix queue</span>
+        <Pill color={BLUE}>Reversible · audited</Pill>
       </div>
-    </VizFrame>
+      {fixes.map(([label, on]) => (
+        <div key={label} className="flex items-center justify-between rounded-md border border-cv-line/60 px-2.5 py-1.5 text-xs dark:border-white/10">
+          <span className="text-cv-ink/75">{label}</span>
+          <Toggle on={on} />
+        </div>
+      ))}
+    </Panel>
   );
 }
 
-const VISUALS: Record<string, () => React.JSX.Element> = {
+const VISUALS: Record<string, (p: VizProps) => React.JSX.Element> = {
   "Query attribution": AttributionViz,
   "Pattern detection": PatternViz,
   "Predictive signals": PredictiveViz,
@@ -143,52 +135,19 @@ const VISUALS: Record<string, () => React.JSX.Element> = {
 export type UnlockItem = [title: string, desc: string];
 
 export function DataXUnlocks({ items }: { items: UnlockItem[] }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  const [reduceMotion, setReduceMotion] = useState(false);
-
+  const [reduced, setReduced] = useState(false);
   useEffect(() => {
-    setReduceMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   }, []);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          obs.disconnect();
-        }
-      },
-      { threshold: 0.15 },
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  const rise = (i: number): React.CSSProperties => ({
-    opacity: visible || reduceMotion ? 1 : 0,
-    transform: reduceMotion || visible ? "translateY(0)" : "translateY(24px)",
-    transition: "opacity 700ms ease-out, transform 700ms ease-out",
-    transitionDelay: reduceMotion ? "0ms" : `${i * 120}ms`,
-  });
 
   return (
-    <div ref={ref} className="grid auto-rows-fr gap-4 sm:gap-5 sm:grid-cols-2">
-      {items.map(([t, b], i) => {
+    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+      {items.map(([t, b]) => {
         const Viz = VISUALS[t];
         return (
-          <div key={t} style={rise(i)}>
-            <div
-              className="flex h-full flex-col rounded-xl border border-cv-line p-7"
-              style={{ background: "#0a0a0a" }}
-            >
-              <h3 className="cv-h3 font-semibold text-cv-ink">{t}</h3>
-              <p className="text-cv-ink/75 mt-3 leading-relaxed">{b}</p>
-              {Viz ? <Viz /> : null}
-            </div>
-          </div>
+          <FeatureCard key={t} title={t} desc={b}>
+            {Viz ? <Viz reduced={reduced} /> : null}
+          </FeatureCard>
         );
       })}
     </div>

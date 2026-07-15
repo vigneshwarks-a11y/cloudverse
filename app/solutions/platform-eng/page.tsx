@@ -1,10 +1,12 @@
-import Link from "next/link";
-import { ArrowRight, CheckCircle, CloseCircle, Code2 } from "@solar-icons/react";
 import type { Metadata } from "next";
-import { DEMO_URL } from "@/lib/links";
+import { Code2, Server2, MagicStick3, BillList, DocumentText, CheckSquare, Tuning, Programming, Widget2, Tuning2, Routing } from "@solar-icons/react";
 import { PlatformCards } from "@/components/solution/PlatformCards";
+import { Panel, CheckBadge, VIZ_AMBER, VIZ_GRAY, VIZ_OK } from "@/components/solution/CardChrome";
+import { HowItWorksFlow, type FlowChip, type FlowWorkload, type FlowRightNode } from "@/components/solution/HowItWorksFlow";
 import { PlatformShips } from "@/components/solution/PlatformShips";
 import { SolutionHero } from "@/components/solution/SolutionHero";
+import { SectionEyebrow } from "@/components/solution/SectionEyebrow";
+import { BulletGrid } from "@/components/solution/BulletGrid";
 import { WhoThisIsFor } from "@/components/solution/WhoThisIsFor";
 import { FaqBlock } from "@/components/FaqBlock";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
@@ -27,11 +29,42 @@ export const metadata: Metadata = {
   },
 };
 
-const STATS = [
-  { v: "+$2.4k to $2.9k", l: "flagged from a single PR" },
-  { v: "Free tier", l: "available" },
-  { v: "GitHub, GitLab, Azure DevOps", l: "native" },
-  { v: "7+", l: "IaC formats supported" },
+const COSTS = [
+  "Cost regressions noticed at the bill, not at review",
+  "Always-on and oversized resources shipping without a second look",
+  "Cost decisions with no clear owner, settled by month-end finger-pointing",
+  "Rework: issues fixed in production instead of once, at the cheapest point",
+];
+
+const OUTCOMES = [
+  "Cost: expensive changes caught before they ship, prevented at source",
+  "Risk: fewer surprise bills and regressions reaching production",
+  "Control: ownership on the people making the decision",
+  "Productivity: less firefighting; issues fixed once, at the cheapest point",
+  "Velocity: guardrails that keep delivery moving, not blocking it",
+  "Visibility: financial impact inside the workflow, not buried in a bill",
+];
+
+const HOW_IT_WORKS_WORKLOADS: FlowWorkload[] = [
+  { label: "Pull Requests", sub: "Every infra change", color: "#1664C0", Icon: Code2 },
+  { label: "Infra Changes", sub: "Terraform, Helm, K8s", color: "#0E9E7A", Icon: Server2 },
+  { label: "AI-Assisted Commits", sub: "New model calls & agent loops", color: "#6954D4", Icon: MagicStick3 },
+];
+
+const HOW_IT_WORKS_CHIPS: FlowChip[] = [
+  { label: "Cost Diff", color: "#1664C0", Icon: BillList },
+  { label: "Policy as Code", color: "#D97706", Icon: DocumentText },
+  { label: "CI Checks", color: "#0E9E7A", Icon: CheckSquare },
+  { label: "Right-Sizing", color: "#6954D4", Icon: Tuning },
+];
+
+const HOW_IT_WORKS_RIGHT: FlowRightNode[] = [
+  { kind: "tile", label: "GitHub Actions", color: "#1664C0", Icon: Programming },
+  { kind: "tile", label: "GitLab CI", color: "#D97706", Icon: Code2 },
+  { kind: "tile", label: "Azure Pipelines", color: "#0E9E7A", Icon: Widget2 },
+  { kind: "tile", label: "Jenkins", color: "#6954D4", Icon: Tuning2 },
+  { kind: "tile", label: "Argo", color: "#1664C0", Icon: Routing },
+  { kind: "logo", src: "/icons/kubernetes.svg", name: "Kubernetes" },
 ];
 
 const FAQ = [
@@ -49,62 +82,62 @@ export default function PlatformEngPage() {
         eyebrow="For Platform Engineering"
         h1="Cost gates engineers actually want to use."
         sub="PR-level cost diffs, policy-as-code, and right-sizing recommendations in your IaC pipeline. Guardrails that keep delivery moving."
-        accent="#0E9E7A"
-        icon={Code2}
         platformHref="/platform/devx"
-        badges={["PR-Level Diffs", "Policy-as-Code", "CI Native", "Cost Gates", "Shift-Left", "7+ IaC Formats"]}
       />
 
-      <section className="pt-8 pb-12 lg:pt-10 lg:pb-16">
-        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
-            {STATS.map((s) => (
-              <div
-                key={s.l}
-                className="flex flex-col items-center justify-center rounded-2xl border border-cv-ink/10 dark:border-white/10 px-6 py-10 text-center bg-white/40 dark:bg-[#0D0D0D] backdrop-blur-sm"
-              >
-                <div className="font-mono text-2xl lg:text-3xl font-bold text-cv-ink tracking-tight">{s.v}</div>
-                <p className="mt-3 text-sm font-medium text-cv-muted tracking-wide max-w-[160px] line-clamp-2">{s.l}</p>
-              </div>
-            ))}
+      <section className="cv-section">
+        <div className="cv-container">
+          <div className="grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-stretch lg:gap-16">
+            <div>
+              <SectionEyebrow className="mb-4">The situation</SectionEyebrow>
+              <h2 className="cv-h2 text-cv-ink">The situation platform engineering teams are in.</h2>
+              <p className="cv-body-lg text-cv-ink/80 mt-6">
+                You already gate code on tests and static analysis. Cost is the one thing that ships unreviewed and shows up weeks later on a bill nobody connects back to that pull request.
+              </p>
+              <p className="cv-body-lg text-cv-ink/85 mt-4">
+                By then the expensive change is in production and the fix means rework. DevX puts the cost estimate in the pull request, where the person who wrote the change can still cheaply change it.
+              </p>
+            </div>
+            <div className="flex">
+              <Panel className="justify-between p-6" chrome="devx.app/pull/1042">
+                <span className="text-[10px] uppercase tracking-wide text-cv-muted">Merge checks</span>
+                <div className="flex items-center justify-between rounded-md border border-cv-line/60 px-3.5 py-4 text-xs dark:border-white/10">
+                  <span className="text-cv-ink/75">Unit tests</span>
+                  <CheckBadge>Passed</CheckBadge>
+                </div>
+                <div className="flex items-center justify-between rounded-md border border-cv-line/60 px-3.5 py-4 text-xs dark:border-white/10">
+                  <span className="text-cv-ink/75">Static analysis</span>
+                  <CheckBadge>Passed</CheckBadge>
+                </div>
+                <div className="flex items-center justify-between rounded-md border border-dashed border-cv-line/60 px-3.5 py-4 text-xs dark:border-white/15">
+                  <span className="text-cv-ink/50">Cost impact</span>
+                  <span className="font-medium" style={{ color: VIZ_GRAY }}>Not checked</span>
+                </div>
+                <div className="my-1 flex items-center justify-center text-[10px] uppercase tracking-wide text-cv-muted">3 weeks later ↓</div>
+                <div className="flex items-center justify-between rounded-md px-3.5 py-4 text-xs" style={{ background: `${VIZ_AMBER}12` }}>
+                  <span style={{ color: VIZ_AMBER }}>Unattributed regression on the bill</span>
+                  <span className="font-mono font-semibold" style={{ color: VIZ_AMBER }}>+$2,400/mo</span>
+                </div>
+              </Panel>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* WHAT IT'S COSTING YOU TODAY */}
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
+        <div className="cv-container">
+          <SectionEyebrow className="mb-4">The cost of the gap</SectionEyebrow>
+          <h2 className="cv-h2 text-cv-ink mb-8">What that&apos;s costing you today.</h2>
+          <BulletGrid items={COSTS} tone="negative" />
+        </div>
+      </section>
+
+      {/* WHAT YOU SHIP */}
       <section className="cv-section">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink">The situation platform engineering teams are in.</h2>
-          <p className="cv-body-lg text-cv-ink/80 mt-6">
-            You already gate code on tests and static analysis. Cost is the one thing that ships unreviewed and shows up weeks later on a bill nobody connects back to that pull request.
-          </p>
-          <p className="cv-body-lg text-cv-ink/85 mt-4">
-            By then the expensive change is in production and the fix means rework. DevX puts the cost estimate in the pull request, where the person who wrote the change can still cheaply change it.
-          </p>
-        </div>
-      </section>
-
-      {/* WHAT IT'S COSTING YOU TODAY */}
-      <section className="cv-section bg-cv-surface dark:bg-black">
-        <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-8">What that&apos;s costing you today.</h2>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {[
-              "Cost regressions noticed at the bill, not at review",
-              "Always-on and oversized resources shipping without a second look",
-              "Cost decisions with no clear owner, settled by month-end finger-pointing",
-              "Rework: issues fixed in production instead of once, at the cheapest point",
-            ].map((b) => (
-              <li key={b} className="flex items-start gap-3 text-cv-ink/85">
-                <CloseCircle weight="Linear" size={18} className="text-cv-muted mt-0.5 shrink-0" /> {b}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section className="cv-section bg-cv-surface dark:bg-black">
-        <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-10">What platform teams ship with cloudverse</h2>
+          <SectionEyebrow className="mb-4">What you ship</SectionEyebrow>
+          <h2 className="cv-h2 text-cv-ink mb-10">What platform teams ship with CloudVerse</h2>
           <PlatformShips
             items={[
               ["PR cost diff", "Every infra PR gets an inline cost impact estimate before reviewers see it. Advisory or required, your choice. The governance happens where the work happens."],
@@ -117,61 +150,71 @@ export default function PlatformEngPage() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section className="cv-section">
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-10">How platform teams run it.</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              ["Install", "Install the CI check on your repos. No workflow change."],
-              ["Write", "Write cost policy as code: thresholds, advisory or required, per team."],
-              ["Review", "Review the cost diff inline on every pull request."],
-              ["Track", "Track prevented spend over time, by team and repo."],
-            ].map(([title, body], i) => (
-              <div key={title} className="rounded-2xl border border-cv-line/40 bg-cv-surface2 dark:bg-[#0D0D0D] p-6">
-                <div className="text-xs uppercase tracking-widest text-cv-muted">Step 0{i + 1}</div>
-                <h3 className="cv-h3 text-cv-ink mt-2">{title}</h3>
-                <p className="text-cv-ink/75 mt-3 leading-relaxed text-sm">{body}</p>
-              </div>
-            ))}
+          <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
+          <h2 className="cv-h2 text-cv-ink">How DevX controls every infra change.</h2>
+          <div className="mt-4 max-w-3xl space-y-4 mb-12">
+            <p className="cv-body-lg text-cv-muted">
+              DevX sits in your CI pipeline and every pull request. On each infra change it estimates the cost delta against policy your team wrote, then posts it inline with a fallback path and a full decision log.
+            </p>
+            <p className="cv-body-lg text-cv-muted">
+              A linter runs the rule you wrote. DevX works out whether that rule is still right.
+            </p>
           </div>
+          <HowItWorksFlow
+            workloads={HOW_IT_WORKS_WORKLOADS}
+            chips={HOW_IT_WORKS_CHIPS}
+            hubLabel="Cost · Risk · Ownership"
+            hubSub="evaluated before it merges"
+            right={HOW_IT_WORKS_RIGHT}
+            bottomRows={["Terraform / OpenTofu / Pulumi", "CloudFormation / Helm"]}
+          />
         </div>
       </section>
 
-      {/* ROI */}
-      <section className="cv-section bg-cv-surface dark:bg-black">
+      {/* THE PAYBACK */}
+      <section className="cv-section">
         <div className="cv-container">
           <div className="max-w-3xl mx-auto text-center">
+            <SectionEyebrow className="mb-4">The payback</SectionEyebrow>
             <h2 className="cv-h2 text-cv-ink">Most teams recover the cost from a single prevented regression.</h2>
             <p className="cv-body-lg text-cv-ink/75 mt-5">
               In a typical pre-production review, DevX flags around $2,400 of monthly spend before it ships. One catch pays for the tool.
             </p>
           </div>
+          <div className="mx-auto mt-10 max-w-md">
+            <Panel className="justify-center gap-2.5 p-4" chrome="devx.app/payback">
+              <div className="flex items-center justify-between rounded-md border border-cv-line/60 px-3.5 py-4 text-xs dark:border-white/10">
+                <span className="text-cv-ink/70">Flagged before merge</span>
+                <span className="font-mono font-semibold" style={{ color: VIZ_AMBER }}>+$2,400/mo</span>
+              </div>
+              <div className="flex items-center justify-between rounded-md border border-cv-line/60 px-3.5 py-4 text-xs dark:border-white/10">
+                <span className="text-cv-ink/70">Reviewed &amp; confirmed</span>
+                <CheckBadge>Same PR</CheckBadge>
+              </div>
+              <div className="flex items-center justify-between rounded-md px-2.5 py-1.5 text-xs" style={{ background: `${VIZ_OK}12` }}>
+                <span style={{ color: VIZ_OK }}>Tool pays for itself</span>
+                <span className="font-mono font-semibold" style={{ color: VIZ_OK }}>First catch</span>
+              </div>
+            </Panel>
+          </div>
         </div>
       </section>
 
       {/* OUTCOMES */}
-      <section className="cv-section">
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
+          <SectionEyebrow className="mb-4">Outcomes</SectionEyebrow>
           <h2 className="cv-h2 text-cv-ink mb-8">Outcomes your team feels.</h2>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {[
-              "Cost: expensive changes caught before they ship, prevented at source",
-              "Risk: fewer surprise bills and regressions reaching production",
-              "Control: ownership on the people making the decision",
-              "Productivity: less firefighting; issues fixed once, at the cheapest point",
-              "Velocity: guardrails that keep delivery moving, not blocking it",
-              "Visibility: financial impact inside the workflow, not buried in a bill",
-            ].map((b) => (
-              <li key={b} className="flex items-start gap-3 text-cv-ink/85">
-                <CheckCircle weight="Linear" size={18} className="text-cv-teal mt-0.5 shrink-0" /> {b}
-              </li>
-            ))}
-          </ul>
+          <BulletGrid items={OUTCOMES} tone="positive" />
         </div>
       </section>
 
-      <section className="cv-section bg-cv-surface dark:bg-black">
+      {/* PLATFORM */}
+      <section className="cv-section">
         <div className="cv-container">
+          <SectionEyebrow className="mb-4">Platform</SectionEyebrow>
           <h2 className="cv-h2 text-cv-ink mb-8">Platform that powers this solution</h2>
           <PlatformCards
             items={[
@@ -184,16 +227,39 @@ export default function PlatformEngPage() {
       </section>
 
       <WhoThisIsFor
-        roles={["Head of Platform Engineering", "Head of Development", "Head of Infrastructure Automation", "DevOps / SRE leads"]}
         accent="#0E9E7A"
+        personas={[
+          {
+            role: "Head of Platform Engineering",
+            category: "Platform leadership",
+            quote: "Cost sits next to tests and static analysis — one more gate the team already trusts.",
+          },
+          {
+            role: "Head of Development",
+            category: "Engineering leadership",
+            quote: "Expensive changes get caught in review, not three weeks later on the invoice.",
+          },
+          {
+            role: "Head of Infrastructure Automation",
+            category: "Platform engineering",
+            quote: "Policy as code, versioned in the repo — no separate portal to keep in sync.",
+          },
+          {
+            role: "DevOps / SRE leads",
+            category: "Operations",
+            quote: "PR-level cost diffs mean fewer surprise regressions to firefight after the fact.",
+          },
+        ]}
       />
 
-      <section className="cv-section bg-cv-surface dark:bg-black">
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="text-center mb-10">
-            <h2 className="cv-h2 text-cv-ink">Platform Engineering Questions Answered</h2>
-          </div>
-          <FaqBlock items={FAQ.map(([q, a]) => ({ q, a }))} accent="#1664C0" />
+          <FaqBlock
+            items={FAQ.map(([q, a]) => ({ q, a }))}
+            accent="#1664C0"
+            title="Platform Engineering Questions Answered"
+            subtitle="Common questions we get asked the most"
+          />
         </div>
       </section>
 
