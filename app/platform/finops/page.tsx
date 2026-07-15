@@ -10,7 +10,6 @@ import { DEMO_URL } from "@/lib/links";
 import { WhoUsesItCards } from "@/components/product/WhoUsesItCards";
 import { FinOpsHero } from "@/components/product/FinOpsHero";
 import { FeatureShowcase } from "@/components/home/FeatureShowcase";
-import { CountUpStat } from "@/components/CountUpStat";
 import FinopsSurfaces from "@/components/product/FinopsSurfaces";
 
 export const metadata: Metadata = {
@@ -32,12 +31,6 @@ export const metadata: Metadata = {
   },
 };
 
-const STATS = [
-  { v: "$101,736", l: "saved annually" },
-  { v: "$61,582", l: "recovered in a single month" },
-  { v: "5+", l: "cloud providers unified" },
-];
-
 const FAQ = [
   ["How is this different from a cloud cost explorer?", "An explorer shows spend. CloudVerse traces variance to a driver and owner, ranks the fix, and can carry it out. It changes what happens after the dashboard."],
   ["Does it work across all our clouds?", "Yes. One allocation model across AWS, Azure, and GCP, with Oracle, Alibaba, Huawei, and Tencent supported."],
@@ -50,22 +43,6 @@ export default function FinOpsPage() {
   return (
     <>
       <FinOpsHero />
-
-      <section className="pt-8 pb-12 lg:pt-10 lg:pb-16">
-        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
-            {STATS.map((s, i) => (
-              <div
-                key={s.l}
-                className={`flex flex-col items-center justify-center rounded-2xl border border-cv-ink/10 dark:border-white/10 px-6 py-10 text-center bg-white/40 dark:bg-[#0D0D0D] backdrop-blur-sm${i === STATS.length - 1 && STATS.length % 2 !== 0 ? " col-span-2 lg:col-span-1" : ""}`}
-              >
-                <CountUpStat value={s.v} className="font-mono text-3xl lg:text-4xl font-bold text-cv-ink tracking-tight" />
-                <p className="mt-3 text-sm font-medium text-cv-muted tracking-wide">{s.l}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* DOMAINS OVERVIEW */}
       <FeatureShowcase />
@@ -129,7 +106,6 @@ export default function FinOpsPage() {
 
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-10">Four product surfaces. One unified view.</h2>
           <FinopsSurfaces />
         </div>
       </section>
