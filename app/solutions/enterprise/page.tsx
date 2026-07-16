@@ -118,9 +118,9 @@ export default function EnterprisePage() {
                     </div>
                   ))}
                 </div>
-                <div className="flex items-center justify-between rounded-md px-3.5 py-4 text-xs" style={{ background: `${VIZ_RED}12` }}>
-                  <span style={{ color: VIZ_RED }}>No single reconciled total</span>
-                  <span className="font-mono font-semibold" style={{ color: VIZ_RED }}>Unowned</span>
+                <div className="flex items-center justify-between gap-3 rounded-md px-3.5 py-4 text-xs" style={{ background: `${VIZ_RED}12` }}>
+                  <span className="min-w-0 flex-1" style={{ color: VIZ_RED }}>No single reconciled total</span>
+                  <span className="shrink-0 whitespace-nowrap font-mono font-semibold" style={{ color: VIZ_RED }}>Unowned</span>
                 </div>
               </Panel>
             </div>

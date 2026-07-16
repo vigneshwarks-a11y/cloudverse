@@ -23,13 +23,13 @@ function ModelViz() {
         <span className="font-mono text-base font-bold tabular-nums" style={{ color: BLUE }}>$1.84M</span>
       </div>
       {views.map(([v, color]) => (
-        <div key={v} className="flex items-center justify-between rounded-md border border-cv-line/60 px-2.5 py-1.5 text-xs dark:border-white/10">
-          <span className="flex items-center gap-2 text-cv-ink/75">
+        <div key={v} className="flex items-center justify-between gap-2 rounded-md border border-cv-line/60 px-2.5 py-1.5 text-xs dark:border-white/10">
+          <span className="flex min-w-0 items-center gap-2 text-cv-ink/75">
             <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: color }} />
-            {v}
+            <span className="truncate">{v}</span>
           </span>
-          <span className="flex items-center gap-2">
-            <span className="font-mono tabular-nums text-cv-ink/85">$1.84M</span>
+          <span className="flex shrink-0 items-center gap-2">
+            <span className="whitespace-nowrap font-mono tabular-nums text-cv-ink/85">$1.84M</span>
             <CheckBadge color={color}>Matches</CheckBadge>
           </span>
         </div>

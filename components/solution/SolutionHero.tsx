@@ -25,7 +25,7 @@ export function SolutionHero({
 }) {
   return (
     <div className="cv-hero-bg">
-      <section className="pt-[120px] sm:pt-[160px] pb-12 lg:pt-[240px] lg:pb-16 relative">
+      <section className="pt-[140px] sm:pt-[180px] pb-16 lg:pt-[260px] lg:pb-24 relative">
         <div className="cv-container relative z-10">
           <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
             <div className="flex-1 min-w-0 lg:max-w-2xl xl:max-w-3xl">

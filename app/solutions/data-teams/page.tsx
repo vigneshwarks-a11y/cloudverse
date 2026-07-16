@@ -120,9 +120,9 @@ export default function DataTeamsPage() {
                   <span className="text-cv-ink/70">Runs on schedule</span>
                   <span className="font-mono tabular-nums text-cv-muted">×77 this month</span>
                 </div>
-                <div className="flex items-center justify-between rounded-md px-3.5 py-4 text-xs" style={{ background: `${VIZ_RED}12` }}>
-                  <span style={{ color: VIZ_RED }}>AI agent reading from warehouse</span>
-                  <span className="font-mono font-semibold" style={{ color: VIZ_RED }}>No owner</span>
+                <div className="flex items-center justify-between gap-3 rounded-md px-3.5 py-4 text-xs" style={{ background: `${VIZ_RED}12` }}>
+                  <span className="min-w-0 flex-1" style={{ color: VIZ_RED }}>AI agent reading from warehouse</span>
+                  <span className="shrink-0 whitespace-nowrap font-mono font-semibold" style={{ color: VIZ_RED }}>No owner</span>
                 </div>
               </Panel>
             </div>

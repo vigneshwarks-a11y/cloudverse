@@ -98,9 +98,9 @@ export default function FinOpsTeamsPage() {
                   <span className="text-cv-ink/55">Owner assigned</span>
                   <span className="font-medium" style={{ color: VIZ_GRAY }}>Unassigned</span>
                 </div>
-                <div className="flex items-center justify-between rounded-md px-3.5 py-4 text-xs" style={{ background: `${VIZ_AMBER}12` }}>
-                  <span style={{ color: VIZ_AMBER }}>AI spend, unquantified value</span>
-                  <span className="font-mono font-semibold" style={{ color: VIZ_AMBER }}>$18,400</span>
+                <div className="flex items-center justify-between gap-3 rounded-md px-3.5 py-4 text-xs" style={{ background: `${VIZ_AMBER}12` }}>
+                  <span className="min-w-0 flex-1" style={{ color: VIZ_AMBER }}>AI spend, unquantified value</span>
+                  <span className="shrink-0 whitespace-nowrap font-mono font-semibold" style={{ color: VIZ_AMBER }}>$18,400</span>
                 </div>
               </Panel>
             </div>

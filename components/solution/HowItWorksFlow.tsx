@@ -99,16 +99,16 @@ export function HowItWorksFlow({
       {/* MIDDLE — CloudVerse decision layer */}
       <div className={`${PANEL} flex flex-col lg:flex-[1.35]`}>
         <CardLightEdge />
-        <div className="relative z-[2] grid grid-cols-2 gap-2.5">
+        <div className="relative z-[2] grid grid-cols-1 gap-2.5 sm:grid-cols-2">
           {chips.map((c) => (
             <div
               key={c.label}
-              className="flex items-center gap-2.5 rounded-xl border border-cv-line/70 bg-cv-ink/[0.02] px-3 py-2.5 dark:border-white/[0.07] dark:bg-white/[0.02]"
+              className="flex min-w-0 items-center gap-2.5 rounded-xl border border-cv-line/70 bg-cv-ink/[0.02] px-3 py-2.5 dark:border-white/[0.07] dark:bg-white/[0.02]"
             >
               <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg" style={{ color: c.color, background: `${c.color}1A` }}>
                 <c.Icon weight="Bold" size={15} />
               </span>
-              <span className="text-[13px] font-medium text-cv-ink">{c.label}</span>
+              <span className="min-w-0 truncate text-[13px] font-medium text-cv-ink">{c.label}</span>
             </div>
           ))}
         </div>
@@ -133,7 +133,7 @@ export function HowItWorksFlow({
       {/* RIGHT — destinations / infrastructure */}
       <div className={`${PANEL} flex flex-col lg:flex-1`}>
         <CardLightEdge />
-        <div className="relative z-[2] grid grid-cols-3 gap-2">
+        <div className="relative z-[2] grid grid-cols-2 gap-2 sm:grid-cols-3">
           {right.map((n) =>
             n.kind === "logo" ? (
               <div key={n.name} className="flex aspect-square items-center justify-center rounded-xl border border-cv-line/60 bg-cv-surface dark:border-white/[0.07] dark:bg-black">
@@ -143,12 +143,12 @@ export function HowItWorksFlow({
             ) : (
               <div
                 key={n.label}
-                className="flex aspect-square flex-col items-center justify-center gap-1 rounded-xl border border-cv-line/60 bg-cv-surface p-1 text-center dark:border-white/[0.07] dark:bg-black"
+                className="flex aspect-square min-w-0 flex-col items-center justify-center gap-1 rounded-xl border border-cv-line/60 bg-cv-surface p-1 text-center dark:border-white/[0.07] dark:bg-black"
               >
-                <span className="flex h-6 w-6 items-center justify-center rounded-md" style={{ color: n.color, background: `${n.color}1A` }}>
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md" style={{ color: n.color, background: `${n.color}1A` }}>
                   <n.Icon weight="Bold" size={13} />
                 </span>
-                <span className="text-[9px] leading-tight text-cv-ink/70">{n.label}</span>
+                <span className="w-full truncate px-0.5 text-[9px] leading-tight text-cv-ink/70">{n.label}</span>
               </div>
             )
           )}

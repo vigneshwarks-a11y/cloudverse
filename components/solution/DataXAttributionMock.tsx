@@ -43,13 +43,13 @@ export function DataXAttributionMock() {
         ))}
 
         <div className="grid grid-cols-[1.3fr_0.9fr_0.9fr] items-center gap-3 border-t border-cv-line/60 px-4 py-2.5 text-xs dark:border-white/10">
-          <span className="flex items-center gap-2 text-cv-muted">
+          <span className="flex min-w-0 items-center gap-2 text-cv-muted">
             <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded" style={{ background: `${GRAY}22` }}>
               <span className="h-1.5 w-1.5 rounded-full" style={{ background: GRAY }} />
             </span>
-            +126 more applications
+            <span className="truncate">+126 more applications</span>
           </span>
-          <span className="text-cv-muted">mapped</span>
+          <span className="truncate text-cv-muted">mapped</span>
           <span className="whitespace-nowrap text-right font-mono tabular-nums text-cv-ink/70">Rp668.80M</span>
         </div>
       </Panel>

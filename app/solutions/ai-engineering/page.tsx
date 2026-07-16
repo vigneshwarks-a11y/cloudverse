@@ -118,18 +118,18 @@ export default function AIEngineeringPage() {
                     ["gemini-1.5-flash", "$0.004/1k"],
                     ["llama-3-70b", "$0.003/1k"],
                   ].map(([name, price]) => (
-                    <div key={name} className="flex items-center justify-between rounded-md border border-cv-line/60 px-3.5 py-3 text-xs dark:border-white/10">
-                      <span className="text-cv-ink/60">{name}</span>
-                      <span className="flex items-center gap-2">
-                        <span className="font-mono tabular-nums text-cv-muted">{price}</span>
-                        <span className="text-[10px] text-cv-ink/35">blocked · code change</span>
+                    <div key={name} className="flex items-center justify-between gap-3 rounded-md border border-cv-line/60 px-3.5 py-3 text-xs dark:border-white/10">
+                      <span className="min-w-0 flex-1 truncate text-cv-ink/60">{name}</span>
+                      <span className="flex shrink-0 flex-col items-end gap-0.5">
+                        <span className="whitespace-nowrap font-mono tabular-nums text-cv-muted">{price}</span>
+                        <span className="whitespace-nowrap text-[10px] text-cv-ink/35">blocked · code change</span>
                       </span>
                     </div>
                   ))}
                 </div>
-                <div className="flex items-center justify-between rounded-md px-2.5 py-1.5 text-xs" style={{ background: `${VIZ_RED}12` }}>
-                  <span style={{ color: VIZ_RED }}>GPU + inference spend, rising weekly</span>
-                  <span className="font-mono font-semibold" style={{ color: VIZ_RED }}>No owner</span>
+                <div className="flex items-center justify-between gap-3 rounded-md px-3.5 py-4 text-xs" style={{ background: `${VIZ_RED}12` }}>
+                  <span className="min-w-0 flex-1" style={{ color: VIZ_RED }}>GPU + inference spend, rising weekly</span>
+                  <span className="shrink-0 whitespace-nowrap font-mono font-semibold" style={{ color: VIZ_RED }}>No owner</span>
                 </div>
               </Panel>
             </div>
