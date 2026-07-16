@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, CheckCircle } from "@solar-icons/react";
+import { ArrowRight, CheckCircle } from "@/lib/solar-icons";
 
 export const metadata: Metadata = {
   title: "Book a Demo: CloudVerse",

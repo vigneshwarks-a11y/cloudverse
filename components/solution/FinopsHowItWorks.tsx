@@ -1,7 +1,7 @@
 /* "How compute economics works" flow diagram — FinOps-specific data fed
    into the shared HowItWorksFlow visual. Server component. */
 
-import { Routing, ShieldCheck, DocumentText, Tuning, Widget, Cpu, Database } from "@solar-icons/react";
+import { Routing, ShieldCheck, DocumentText, Tuning, Widget, Cpu, Database } from "@/lib/solar-icons";
 import { HowItWorksFlow, type FlowChip, type FlowWorkload, type FlowRightNode } from "@/components/solution/HowItWorksFlow";
 
 const CHIPS: FlowChip[] = [

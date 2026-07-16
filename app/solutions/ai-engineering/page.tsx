@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ChatRound, Cpu, Server2, Wallet, CheckSquare, ShieldCheck, Routing } from "@solar-icons/react";
+import { ChatRound, Cpu, Server2, Wallet, CheckSquare, ShieldCheck, Routing } from "@/lib/solar-icons";
 import { AixUnlocks } from "@/components/solution/AixUnlocks";
 import { Panel, CodeLine, Pill, VIZ_AMBER, VIZ_RED } from "@/components/solution/CardChrome";
 import { HowItWorksFlow, type FlowChip, type FlowWorkload, type FlowRightNode } from "@/components/solution/HowItWorksFlow";

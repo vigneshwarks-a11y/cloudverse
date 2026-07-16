@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Server2, Cpu, Database, LockKeyhole, ShieldCheck, ListCheck, Wallet } from "@solar-icons/react";
+import { Server2, Cpu, Database, LockKeyhole, ShieldCheck, ListCheck, Wallet } from "@/lib/solar-icons";
 import { EnterpriseDayOne } from "@/components/solution/EnterpriseDayOne";
 import { HowItWorksFlow, type FlowChip, type FlowWorkload, type FlowRightNode } from "@/components/solution/HowItWorksFlow";
 import { Panel, VIZ_RED } from "@/components/solution/CardChrome";

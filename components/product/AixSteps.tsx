@@ -2,15 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import {
-  BranchingPathsDown,
-  Eye,
-  PlugCircle,
-  Scale,
-  ShieldCheck,
-  Target,
-  type IconProps,
-} from "@solar-icons/react";
+import { BranchingPathsDown, Eye, PlugCircle, Scale, ShieldCheck, Target } from "@/lib/solar-icons";
+import type { IconProps } from "@solar-icons/react";
 import type { ComponentType } from "react";
 import { Dashboard } from "@/components/home/AixOrchestration";
 

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle, ChartSquare, Database, MagicStick, ShieldCheck } from "@solar-icons/react";
+import { ArrowRight, CheckCircle, ChartSquare, Database, MagicStick, ShieldCheck } from "@/lib/solar-icons";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import WarehouseIntel from "@/components/product/WarehouseIntel";
@@ -36,14 +36,6 @@ const DATAX_TABS = [
   { id: "warehouse", label: "Warehouse Intel", copy: "Full scan detection, spillage, clustering, and caching analysis across all connected warehouses.", icon: Database },
   { id: "anomaly", label: "Anomaly Detection", copy: "Cost-amplifying patterns detected automatically. Frequency, scan rate, and total cost explained.", icon: MagicStick },
   { id: "automation", label: "Safe Automation", copy: "Approved optimisations applied within your policies. Every action logged, auditable, and reversible.", icon: ShieldCheck },
-];
-
-const STATS = [
-  { v: "$117.16", l: "full scan detected on a single query pattern" },
-  { v: "334.6 GB", l: "scanned per query" },
-  { v: "77 runs", l: "at $1.52 average cost" },
-  { v: "6", l: "warehouses supported" },
-  { v: "Read-only", l: "by default" },
 ];
 
 // Attribute-by-attribute contrast between an untracked warehouse and DataX.
@@ -93,22 +85,6 @@ export default function DataXPage() {
         </section>
         <PlatformHeroMockup tabs={DATAX_TABS} />
       </div>
-
-      <section className="pt-8 pb-12 lg:pt-10 lg:pb-16">
-        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-5 gap-2">
-            {STATS.map((s) => (
-              <div
-                key={s.l}
-                className="flex flex-col items-center justify-center rounded-2xl border border-cv-ink/10 dark:border-white/10 px-6 py-10 text-center bg-white/40 dark:bg-[#0D0D0D] backdrop-blur-sm"
-              >
-                <div className="font-mono text-2xl lg:text-3xl font-bold text-cv-ink tracking-tight">{s.v}</div>
-                <p className="mt-3 text-sm font-medium text-cv-muted tracking-wide max-w-[160px] line-clamp-2">{s.l}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">

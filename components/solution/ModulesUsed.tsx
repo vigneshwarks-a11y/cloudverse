@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "@solar-icons/react";
+import { ArrowRight } from "@/lib/solar-icons";
 import { MODULES, type ModuleKey } from "@/lib/modules";
 
 export function ModulesUsed({

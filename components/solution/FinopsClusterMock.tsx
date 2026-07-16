@@ -2,7 +2,7 @@
    potential-savings summary. Static (illustrative) selection state. cv-* tokens,
    theme-aware. Server component. */
 
-import { Planet } from "@solar-icons/react";
+import { Planet } from "@/lib/solar-icons";
 
 /* Home product-screenshot chrome: hairline ring + soft shadow. */
 const CARD =

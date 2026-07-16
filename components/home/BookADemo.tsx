@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Calendar } from "@solar-icons/react";
+import { ArrowRight, Calendar } from "@/lib/solar-icons";
 import { DEMO_URL } from "@/lib/links";
 
 // Scattered logo bubbles - [src, size, top%, left%, opacity, delay]

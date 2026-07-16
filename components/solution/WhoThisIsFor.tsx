@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { UserRounded } from "@solar-icons/react";
+import { UserRounded } from "@/lib/solar-icons";
 
 export type Persona = { role: string; quote: string; category?: string };
 

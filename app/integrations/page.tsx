@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle, ShieldCheck, Cloud, Database, Cpu, CodeSquare, ChartSquare, UsersGroupRounded, ServerSquare, Server } from "@solar-icons/react";
+import { ArrowRight, CheckCircle, ShieldCheck, Cloud, Database, Cpu, CodeSquare, ChartSquare, UsersGroupRounded, ServerSquare, Server } from "@/lib/solar-icons";
 import type { Metadata } from "next";
 import type { ComponentType } from "react";
 import type { IconProps } from "@solar-icons/react";

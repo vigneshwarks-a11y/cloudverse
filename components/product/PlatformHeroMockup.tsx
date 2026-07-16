@@ -2,7 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { ComponentType } from "react";
-import { AltArrowLeft, AltArrowRight } from "@solar-icons/react";
+import { AltArrowLeft, AltArrowRight } from "@/lib/solar-icons";
 import type { IconProps } from "@solar-icons/react";
 import { BorderBeam } from "@/components/magicui/border-beam";
 

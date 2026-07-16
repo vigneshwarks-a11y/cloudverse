@@ -52,9 +52,9 @@ export function CardLightEdge() {
         aria-hidden
         className="pointer-events-none absolute inset-0 rounded-[inherit]"
         style={{
-          padding: "1.5px",
+          padding: "1px",
           background:
-            "linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 22%, rgba(255,255,255,0) 50%)",
+            "linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.14) 16%, rgba(255,255,255,0) 40%)",
           WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
           mask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
           WebkitMaskComposite: "xor",
@@ -63,8 +63,8 @@ export function CardLightEdge() {
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-6 -top-6 h-40 w-40 rounded-full"
-        style={{ background: "radial-gradient(circle, rgba(200,218,255,0.13), transparent 70%)", filter: "blur(26px)" }}
+        className="pointer-events-none absolute -left-8 -top-8 h-36 w-36 rounded-full"
+        style={{ background: "radial-gradient(circle, rgba(200,218,255,0.10), transparent 70%)", filter: "blur(28px)" }}
       />
     </>
   );

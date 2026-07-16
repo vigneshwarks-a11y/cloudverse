@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "@solar-icons/react";
+import { ArrowRight } from "@/lib/solar-icons";
 import { DEMO_URL } from "@/lib/links";
 
 export type ProofStat = { value: string; label: string; cite?: string };

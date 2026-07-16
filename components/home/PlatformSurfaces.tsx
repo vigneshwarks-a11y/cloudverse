@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "@solar-icons/react";
+import { ArrowRight } from "@/lib/solar-icons";
 
 const CYCLE_MS = 5000;
 

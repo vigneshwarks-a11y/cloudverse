@@ -3,7 +3,7 @@
    setup (blue grid + glow, CheckCircle rows). Design ported from the AIX
    platform page. cv-* tokens, theme-aware. Server component. */
 
-import { TrashBin2, Bolt, CloseCircle, CheckCircle } from "@solar-icons/react";
+import { TrashBin2, Bolt, CloseCircle, CheckCircle } from "@/lib/solar-icons";
 
 const ROWS: { k: string; before: string; after: string }[] = [
   { k: "Model", before: "One, chosen once", after: "Best fit, per request" },

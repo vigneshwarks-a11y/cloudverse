@@ -1,6 +1,6 @@
 "use client";
 
-import { Moon, Sun } from "@solar-icons/react";
+import { Moon, Sun } from "@/lib/solar-icons";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 

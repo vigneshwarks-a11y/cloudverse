@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight } from "@solar-icons/react";
+import { ArrowLeft, ArrowRight } from "@/lib/solar-icons";
 import { RESOURCES, getResource } from "@/lib/resources";
 import { DEMO_URL } from "@/lib/links";
 

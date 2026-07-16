@@ -1,4 +1,4 @@
-import { CheckCircle, CloseCircle } from "@solar-icons/react";
+import { CheckCircle, CloseCircle } from "@/lib/solar-icons";
 
 export function BulletGrid({ items, tone }: { items: string[]; tone: "negative" | "positive" }) {
   if (tone === "negative") {

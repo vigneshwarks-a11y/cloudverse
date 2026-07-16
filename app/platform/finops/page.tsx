@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle } from "@solar-icons/react";
+import { ArrowRight, CheckCircle } from "@/lib/solar-icons";
 import { IconChartPie2, IconInvestment, IconArrowRefresh } from "nucleo-isometric";
 import { IntegrationsMarquee } from "@/components/home/IntegrationsMarquee";
 import { FinopsVarianceMock } from "@/components/product/FinopsVarianceMock";

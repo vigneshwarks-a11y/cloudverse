@@ -3,7 +3,7 @@
    "after" card (blue grid + glow, CheckCircle rows). Shared across the platform
    pages so each reads with the same layout. cv-* tokens, theme-aware. */
 
-import { Bolt, CheckCircle, CloseCircle, TrashBin2 } from "@solar-icons/react";
+import { Bolt, CheckCircle, CloseCircle, TrashBin2 } from "@/lib/solar-icons";
 
 export type BeforeAfterRow = { k: string; before: string; after: string };
 

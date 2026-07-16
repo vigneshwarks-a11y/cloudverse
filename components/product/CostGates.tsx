@@ -1,4 +1,4 @@
-import { CheckCircle } from "@solar-icons/react";
+import { CheckCircle } from "@/lib/solar-icons";
 import { FeatureCard, Panel, StatusPill, BLUE } from "@/components/product/BentoChrome";
 
 /* "Cost review, in the workflow engineers already use" — a bento of product

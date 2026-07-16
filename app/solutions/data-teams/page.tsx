@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ChartSquare, Layers, MagicStick3, Routing, Filter, Graph, Tuning, Database } from "@solar-icons/react";
+import { ChartSquare, Layers, MagicStick3, Routing, Filter, Graph, Tuning, Database } from "@/lib/solar-icons";
 import { PlatformCards } from "@/components/solution/PlatformCards";
 import { DataXUnlocks } from "@/components/solution/DataXUnlocks";
 import { HowItWorksFlow, type FlowChip, type FlowWorkload, type FlowRightNode } from "@/components/solution/HowItWorksFlow";

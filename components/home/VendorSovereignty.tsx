@@ -1,4 +1,4 @@
-import { ShieldCheck } from "@solar-icons/react";
+import { ShieldCheck } from "@/lib/solar-icons";
 import type { ReactNode } from "react";
 
 /* Vendor sovereignty - ported from Tailark's 3-column "features" block: one

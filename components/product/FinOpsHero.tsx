@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, ChartSquare, Bell, Layers, ChatDots } from "@solar-icons/react";
+import { ArrowRight, ChartSquare, Bell, Layers, ChatDots } from "@/lib/solar-icons";
 import { DEMO_URL } from "@/lib/links";
 import { PlatformHeroMockup } from "@/components/product/PlatformHeroMockup";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback, useEffect } from "react";
-import { CheckCircle, CloseCircle, DangerTriangle, FileText, MagicStick2, Upload } from "@solar-icons/react";
+import { CheckCircle, CloseCircle, DangerTriangle, FileText, MagicStick2, Upload } from "@/lib/solar-icons";
 import Link from "next/link";
 
 type Result = {

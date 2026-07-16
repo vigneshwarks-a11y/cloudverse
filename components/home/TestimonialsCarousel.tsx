@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import { BranchingPathsUp, DollarMinimalistic, Eye, Heart, Shield } from "@solar-icons/react";
+import { BranchingPathsUp, DollarMinimalistic, Eye, Heart, Shield } from "@/lib/solar-icons";
 
 const CYCLE_MS = 6000;
 const EXPAND_MS = 420; // parallel expand/collapse duration

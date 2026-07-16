@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "@solar-icons/react";
+import { ArrowRight } from "@/lib/solar-icons";
 import { DEMO_URL } from "@/lib/links";
 
 /* Shared Solutions-page hero — the FinOps Teams layout is the source of
@@ -28,9 +28,9 @@ export function SolutionHero({
       <section className="pt-[140px] sm:pt-[180px] pb-16 lg:pt-[260px] lg:pb-24 relative">
         <div className="cv-container relative z-10">
           <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
-            <div className="flex-1 min-w-0 lg:max-w-2xl xl:max-w-3xl">
+            <div className="flex-1 min-w-0 lg:max-w-3xl xl:max-w-4xl">
               <p className="cv-label mb-5">{eyebrow}</p>
-              <h1 className="cv-h1 text-cv-ink max-w-3xl">{h1}</h1>
+              <h1 className="cv-h1 text-cv-ink">{h1}</h1>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link href={primaryHref} className="cv-btn-primary">
                   <span>{primaryLabel}</span>

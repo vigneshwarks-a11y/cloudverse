@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, type ComponentType } from "react";
-import { Code, Cpu, Database, Wallet, Widget2, type IconProps } from "@solar-icons/react";
+import { Code, Cpu, Database, Wallet, Widget2 } from "@/lib/solar-icons";
+import type { IconProps } from "@solar-icons/react";
 
 type Icon = ComponentType<IconProps>;
 

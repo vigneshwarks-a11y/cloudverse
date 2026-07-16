@@ -2,7 +2,7 @@
 
 import { useMemo, useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowRight, CloseCircle, Magnifer, SquareArrowRightUp } from "@solar-icons/react";
+import { ArrowRight, CloseCircle, Magnifer, SquareArrowRightUp } from "@/lib/solar-icons";
 import { integrationsData, type Integration } from "@/lib/integrationsData";
 import { IntegrationLogo } from "./IntegrationLogo";
 

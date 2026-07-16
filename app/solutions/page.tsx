@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Buildings, CheckCircle, Code2, Cpu, Database, UsersGroupRounded } from "@solar-icons/react";
+import { ArrowRight, Buildings, CheckCircle, Code2, Cpu, Database, UsersGroupRounded } from "@/lib/solar-icons";
 import { SolutionHero } from "@/components/solution/SolutionHero";
 import { SectionEyebrow } from "@/components/solution/SectionEyebrow";
 import { Panel, VIZ_BLUE } from "@/components/solution/CardChrome";

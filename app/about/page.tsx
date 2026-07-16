@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import type { ComponentType } from "react";
 import Link from "next/link";
-import { ArrowRight, Bill, Box, Compass, Database, MagicStick2, ShieldCheck, SpeedometerMax, type IconProps } from "@solar-icons/react";
+import { ArrowRight, Bill, Box, Compass, Database, MagicStick2, ShieldCheck, SpeedometerMax } from "@/lib/solar-icons";
+import type { IconProps } from "@solar-icons/react";
 
 type Icon = ComponentType<IconProps>;
 import { CTABand } from "@/components/CTABand";

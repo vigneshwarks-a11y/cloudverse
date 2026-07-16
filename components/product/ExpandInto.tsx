@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "@solar-icons/react";
+import { ArrowRight } from "@/lib/solar-icons";
 import { siblings, type ModuleKey } from "@/lib/modules";
 
 export function ExpandInto({ current }: { current: ModuleKey }) {

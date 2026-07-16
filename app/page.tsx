@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle } from "@solar-icons/react";
+import { ArrowRight, CheckCircle } from "@/lib/solar-icons";
 import type { Metadata } from "next";
 import { CustomerLogos } from "@/components/CustomerLogos";
 import { ProductVideo } from "@/components/home/ProductVideo";

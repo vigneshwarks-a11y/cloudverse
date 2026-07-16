@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArrowRight, CheckCircle } from "@solar-icons/react";
+import { ArrowRight, CheckCircle } from "@/lib/solar-icons";
 import { SIGNIN_URL, DEMO_URL } from "@/lib/links";
 import Link from "next/link";
 

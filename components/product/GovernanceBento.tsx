@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle } from "@solar-icons/react";
+import { CheckCircle } from "@/lib/solar-icons";
 
 const BLUE = "#2278E0";
 

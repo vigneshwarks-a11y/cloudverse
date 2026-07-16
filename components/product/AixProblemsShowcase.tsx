@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Magnifer, DocumentText, Widget, Export } from "@solar-icons/react";
+import { ArrowRight, Magnifer, DocumentText, Widget, Export } from "@/lib/solar-icons";
 import { Fragment, useCallback, useEffect, useRef, useState, type ReactElement, type ReactNode } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { DEMO_URL } from "@/lib/links";

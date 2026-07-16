@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle } from "@solar-icons/react";
+import { ArrowRight, CheckCircle } from "@/lib/solar-icons";
 
 /* DataX integrations — the home-style logo section (centered heading + logo
    tiles + trust line + "View all integrations"), scoped to the warehouses and

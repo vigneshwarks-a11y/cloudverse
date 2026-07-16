@@ -2,21 +2,8 @@
 
 import { useMemo, useState } from "react";
 import type { ComponentType } from "react";
-import {
-  Cloud,
-  Database,
-  Cpu,
-  Server,
-  ServerSquare,
-  Key,
-  Ticket,
-  ChatRound,
-  ChartSquare,
-  Widget,
-  Magnifer,
-  AltArrowDown,
-  type IconProps,
-} from "@solar-icons/react";
+import { Cloud, Database, Cpu, Server, ServerSquare, Key, Ticket, ChatRound, ChartSquare, Widget, Magnifer, AltArrowDown } from "@/lib/solar-icons";
+import type { IconProps } from "@solar-icons/react";
 
 /* Full integrations directory: searchable + filterable by module, category,
    and status. Client component (interactive filtering). Card + control styling

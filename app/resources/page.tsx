@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "@solar-icons/react";
+import { ArrowRight } from "@/lib/solar-icons";
 import { GUIDES, DOCS, FAQS, BLOG_POSTS } from "@/lib/resources";
 import { DEMO_URL } from "@/lib/links";
 

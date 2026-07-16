@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Bolt, CheckCircle, CloseCircle, Route, ShieldCheck, TrashBin2, DollarMinimalistic, FileText } from "@solar-icons/react";
+import { ArrowRight, Bolt, CheckCircle, CloseCircle, Route, ShieldCheck, TrashBin2, DollarMinimalistic, FileText } from "@/lib/solar-icons";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import { CountUpStat } from "@/components/CountUpStat";

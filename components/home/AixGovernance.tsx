@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Fragment, useLayoutEffect, useRef, useState } from "react";
-import { ArrowRight } from "@solar-icons/react";
+import { ArrowRight } from "@/lib/solar-icons";
 
 /* ------------------------------------------------------------------ *
  * "Take the driver's seat with AI Governance" — a 2x2 grid of the four

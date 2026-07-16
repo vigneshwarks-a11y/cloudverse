@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, type ComponentType } from "react";
-import { Code, FileText, Tuning2, Widget2, type IconProps } from "@solar-icons/react";
+import { Code, FileText, Tuning2, Widget2 } from "@/lib/solar-icons";
+import type { IconProps } from "@solar-icons/react";
 
 type Icon = ComponentType<IconProps>;
 

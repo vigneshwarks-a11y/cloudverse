@@ -4,7 +4,7 @@
    connection scopes, and a unit-cost trend. cv-* tokens, theme-aware.
    Server components. */
 
-import { CheckCircle, CloseCircle } from "@solar-icons/react";
+import { CheckCircle, CloseCircle } from "@/lib/solar-icons";
 import { CardLightEdge, StatusPill } from "@/components/product/BentoChrome";
 
 const AMBER = "#D97706";

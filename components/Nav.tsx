@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
-import { AltArrowDown, AltArrowRight, Buildings, Chart, Code2, Cpu, Database, HamburgerMenu, Layers, UsersGroupRounded, Widget2 } from "@solar-icons/react";
+import { AltArrowDown, AltArrowRight, Buildings, Chart, Code2, Cpu, Database, HamburgerMenu, Layers, UsersGroupRounded, Widget2 } from "@/lib/solar-icons";
 import { X } from "lucide-react";
 import { NAV, DEMO_URL, SIGNIN_URL } from "@/lib/links";
 import { ModeToggle } from "./ModeToggle";
@@ -26,14 +26,34 @@ const SOLUTION_ICONS: Record<string, React.ReactNode> = {
 export function Nav() {
   const [open, setOpen] = useState(false);
   const [openDrop, setOpenDrop] = useState<string | null>(null);
+  const headerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
+  useEffect(() => {
+    if (!openDrop) return;
+    const handlePointerDown = (e: PointerEvent) => {
+      if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
+        setOpenDrop(null);
+      }
+    };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpenDrop(null);
+    };
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [openDrop]);
+
   return (
     <header
+      ref={headerRef}
       className="fixed top-0 inset-x-0 z-50 bg-cv-surface"
       data-testid="site-nav"
     >
@@ -59,6 +79,7 @@ export function Nav() {
                   key={it.href}
                   href={it.href}
                   className="group flex items-start gap-3 p-2.5 rounded-xl hover:bg-cv-ink/[0.05] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cv-blue/60"
+                  onClick={() => setOpenDrop(null)}
                   data-testid={`nav-link-${it.label.toLowerCase().replace(/\s+/g, "-")}`}
                 >
                   <div
@@ -87,6 +108,7 @@ export function Nav() {
                   key={it.href}
                   href={it.href}
                   className="group flex items-center gap-3 p-2.5 rounded-xl hover:bg-cv-ink/[0.05] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cv-blue/60"
+                  onClick={() => setOpenDrop(null)}
                   data-testid={`nav-link-${it.label.toLowerCase().replace(/\s+/g, "-")}`}
                 >
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-cv-line bg-cv-ink/[0.06] text-cv-ink/70">
@@ -264,35 +286,16 @@ function DropTrigger({
   children: React.ReactNode;
 }) {
   const open = openDrop === value;
-  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const cancelClose = () => {
-    if (closeTimer.current) {
-      clearTimeout(closeTimer.current);
-      closeTimer.current = null;
-    }
-  };
-
-  const handleEnter = () => {
-    cancelClose();
-    setOpenDrop(value);
-  };
-
-  const handleLeave = () => {
-    cancelClose();
-    closeTimer.current = setTimeout(() => {
-      setOpenDrop((cur) => (cur === value ? null : cur));
-    }, 120);
-  };
-
-  useEffect(() => () => cancelClose(), []);
 
   return (
-    <div className="relative" onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
+    <div className="relative">
       <button
+        type="button"
         className={`px-3 py-2 text-sm inline-flex items-center gap-1 transition-colors ${
           open ? "text-cv-ink" : "text-cv-ink/70 hover:text-cv-ink"
         }`}
+        onClick={() => setOpenDrop((cur) => (cur === value ? null : value))}
+        aria-expanded={open}
         data-testid={`nav-trigger-${label.toLowerCase()}`}
       >
         {label}

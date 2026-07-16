@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Buildings, ChatRound, Letter, MapPoint } from "@solar-icons/react";
+import { Buildings, ChatRound, Letter, MapPoint } from "@/lib/solar-icons";
 import { DEMO_URL } from "@/lib/links";
 
 export const metadata: Metadata = {
