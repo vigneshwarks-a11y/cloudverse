@@ -173,17 +173,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* THE COST OF NOT ROUTING */}
-      <CostOfNotRouting />
-
-      {/* NOT A GATEWAY. NOT OBSERVABILITY. NOT A COST TOOL. */}
-      <NotAGateway />
-
       {/* WHAT IT DOES FOR YOU ON DAY ONE */}
       <AixGovernance />
 
       {/* ARCHITECTURE — DEPLOYED IN YOUR ENVIRONMENT */}
       <AixDeployment />
+
+      {/* THE COST OF NOT ROUTING */}
+      <CostOfNotRouting />
+
+      {/* NOT A GATEWAY. NOT OBSERVABILITY. NOT A COST TOOL. */}
+      <NotAGateway />
 
       {/* VENDOR SOVEREIGNTY - Own your stuff */}
       <VendorSovereignty />
