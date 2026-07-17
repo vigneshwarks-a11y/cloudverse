@@ -1,18 +1,17 @@
 "use client";
 
 import { useEffect, useRef, useState, type ComponentType } from "react";
-import { Code, FileText, Tuning2, Widget2 } from "@/lib/solar-icons";
-import type { IconProps } from "@solar-icons/react";
+import { IconChartPie2, IconServer2, IconInvestment } from "nucleo-isometric";
 
-type Icon = ComponentType<IconProps>;
+type Icon = ComponentType<{ size?: number; className?: string }>;
 
 const BLUE = "#007CFF";
 
 const ICONS: Record<string, Icon> = {
-  "FinOps Manager": Tuning2,
-  "Cloud Engineer": Code,
-  "Cloud / Platform Engineer": Code,
-  "CFO / VP Finance": FileText,
+  "FinOps Manager": IconChartPie2,
+  "Cloud Engineer": IconServer2,
+  "Cloud / Platform Engineer": IconServer2,
+  "CFO / VP Finance": IconInvestment,
 };
 
 export type WhoUsesItItem = [title: string, desc: string];
@@ -52,7 +51,7 @@ export function WhoUsesItCards({ items }: { items: WhoUsesItItem[] }) {
   return (
     <div ref={ref} className="grid auto-rows-fr gap-4 sm:gap-5 sm:grid-cols-2 md:grid-cols-3">
       {items.map(([t, b], i) => {
-        const Icon = ICONS[t] ?? Widget2;
+        const Icon = ICONS[t] ?? IconChartPie2;
         return (
           <div key={t} style={rise(i)}>
             <div
@@ -61,9 +60,9 @@ export function WhoUsesItCards({ items }: { items: WhoUsesItItem[] }) {
             >
               <span
                 className="flex h-11 w-11 items-center justify-center rounded-lg"
-                style={{ background: `${BLUE}1a`, border: `1px solid ${BLUE}40` }}
+                style={{ background: `${BLUE}1a`, border: `1px solid ${BLUE}40`, color: BLUE }}
               >
-                <Icon size={22} weight="Linear" style={{ color: BLUE }} />
+                <Icon size={28} />
               </span>
               <h3 className="font-display font-semibold text-cv-ink mt-5">{t}</h3>
               <p className="text-sm text-cv-ink/75 mt-3 flex-1 leading-relaxed">{b}</p>

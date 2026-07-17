@@ -63,12 +63,12 @@ export default function FinOpsPage() {
         />
 
         <div className="cv-container relative z-10">
-          {/* Heading */}
-          <div className="text-center">
-            <h2 className="cv-h2 text-cv-ink mx-auto max-w-2xl">
+          {/* Heading - two-column left/right */}
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-14 lg:items-end">
+            <h2 className="cv-h2 text-cv-ink">
               Connects to the stack you already run.
             </h2>
-            <p className="mt-5 cv-body text-cv-ink/60 max-w-lg mx-auto">
+            <p className="cv-body text-cv-ink/60 lg:max-w-md lg:justify-self-end">
               AWS, Azure, and Google Cloud for infrastructure. AIX for AI spend, DataX for warehouses, and DevX for the engineering workflow. One view across all of it.
             </p>
           </div>
