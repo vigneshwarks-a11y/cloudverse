@@ -20,12 +20,26 @@ const PROVIDERS: Provider[] = [
   { name: "Groq", src: "/icons/groq.svg" },
   { name: "DeepSeek", src: "/icons/deepseek.svg" },
   { name: "HuggingFace", src: "/icons/huggingface.svg" },
+  // Cloud, data, and infrastructure connectors — the same set the home-page
+  // "Connects to the stack" marquee shows, so both read as one estate.
+  { name: "AWS", src: "/icons/aws.svg" },
+  { name: "Azure", src: "/icons/azure.svg" },
+  { name: "Google Cloud", src: "/icons/googlecloud.svg" },
+  { name: "Kubernetes", src: "/icons/kubernetes.svg" },
+  { name: "Snowflake", src: "/icons/snowflake.svg" },
+  { name: "Datadog", src: "/icons/datadog.svg" },
+  { name: "Oracle", src: "/icons/oracle.svg" },
+  { name: "Alibaba", src: "/icons/alibabacloud.svg" },
+  { name: "Tencent", src: "/icons/tencentcloud.svg" },
+  { name: "Spark", src: "/icons/apache-spark.svg" },
+  { name: "vCenter", src: "/icons/vmware.svg" },
+  { name: "DigitalOcean", src: "/icons/digitalocean.svg" },
 ];
 
 // Row A in list order; Row B is a genuine shuffle (not a rotation) of the same
 // logos, so the two rows never scroll the same sequence past each other.
 const ROW_A = PROVIDERS;
-const ROW_B_ORDER = [6, 2, 9, 4, 0, 7, 3, 1, 8, 5];
+const ROW_B_ORDER = [13, 4, 20, 8, 1, 15, 9, 18, 3, 11, 6, 21, 0, 16, 5, 12, 19, 2, 10, 17, 7, 14];
 const ROW_B = ROW_B_ORDER.map((i) => PROVIDERS[i]);
 
 const MASK = {
