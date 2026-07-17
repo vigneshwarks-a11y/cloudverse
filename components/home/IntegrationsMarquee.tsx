@@ -6,7 +6,7 @@
    globals.css. Assets use the colour brand marks under /legacy/integration so
    they read on the dark tiles without any filter recolouring. */
 
-type Integ = { name: string; src: string; color: string };
+type Integ = { name: string; src: string; color: string; invert?: boolean };
 
 const INTEGRATIONS: Integ[] = [
   { name: "AWS", src: "/icons/aws.svg", color: "#FF9900" },
@@ -21,12 +21,24 @@ const INTEGRATIONS: Integ[] = [
   { name: "Spark", src: "/icons/apache-spark.svg", color: "#E25A1C" },
   { name: "vCenter", src: "/icons/vmware.svg", color: "#3BA7DE" },
   { name: "DigitalOcean", src: "/icons/digitalocean.svg", color: "#0080FF" },
+  // Model providers — same logos as the integrations page "Every model
+  // provider, one endpoint." marquee. Dark marks carry `invert` for dark theme.
+  { name: "OpenAI", src: "/icons/openai.svg", color: "#000000", invert: true },
+  { name: "Anthropic", src: "/icons/anthropic.svg", color: "#D97757", invert: true },
+  { name: "Google Gemini", src: "/icons/gemini.svg", color: "#4285F4" },
+  { name: "Mistral AI", src: "/icons/mistral.svg", color: "#FF7000" },
+  { name: "Cohere", src: "/icons/cohere.svg", color: "#39594D" },
+  { name: "Llama", src: "/icons/meta.svg", color: "#0668E1" },
+  { name: "Ollama", src: "/icons/ollama.svg", color: "#000000", invert: true },
+  { name: "Groq", src: "/icons/groq.svg", color: "#F55036" },
+  { name: "DeepSeek", src: "/icons/deepseek.svg", color: "#4D6BFE" },
+  { name: "HuggingFace", src: "/icons/huggingface.svg", color: "#FFD21E" },
 ];
 
 // Row A in list order; Row B is a genuine shuffle (not a rotation) of the same
-// 12 logos, so the two rows never scroll the same sequence past each other.
+// logos, so the two rows never scroll the same sequence past each other.
 const ROW_A = INTEGRATIONS;
-const ROW_B_ORDER = [8, 4, 11, 6, 1, 9, 3, 0, 5, 10, 7, 2];
+const ROW_B_ORDER = [13, 4, 20, 8, 1, 15, 9, 18, 3, 11, 6, 21, 0, 16, 5, 12, 19, 2, 10, 17, 7, 14];
 const ROW_B = ROW_B_ORDER.map((i) => INTEGRATIONS[i]);
 
 const MASK = {
@@ -42,7 +54,9 @@ function Tile({ item, dup }: { item: Integ; dup?: boolean }) {
           src={item.src}
           alt={dup ? "" : item.name}
           loading="lazy"
-          className="h-11 w-11 object-contain transition-transform duration-300 hover:scale-110 sm:h-14 sm:w-14"
+          className={`h-11 w-11 object-contain transition-transform duration-300 hover:scale-110 sm:h-14 sm:w-14${
+            item.invert ? " dark:invert" : ""
+          }`}
         />
       </div>
       <span className="text-xs font-medium text-cv-muted whitespace-nowrap sm:text-sm">{item.name}</span>
