@@ -8,14 +8,19 @@ export function HardcodeCost() {
     <section className="pt-16 sm:pt-20 lg:pt-28 pb-0 bg-cv-surface2 dark:bg-black" data-testid="section-hardcode-cost">
       <div className="cv-container">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-14">
-          <h2 className="cv-h2 text-balance text-cv-ink">
-            AI compute is becoming too expensive to hardcode.
-          </h2>
+          <div>
+            <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
+              The problem
+            </span>
+            <h2 className="cv-h2 text-balance text-cv-ink">
+              AI agents are multiplying faster than they can be governed.
+            </h2>
+          </div>
           <p className="cv-body text-cv-ink/70 lg:self-end">
-            Most teams pick a model once, wire it into the app, and move on. Six months later a cheaper
-            model handles 70% of those requests just as well, and nobody notices. A hardcoded choice
-            doesn&apos;t update when prices drop or reroute when a provider slows down. That gap is where the
-            budget quietly goes.
+            40% of enterprise applications will embed task-specific AI agents in 2026, up from under 5%
+            in 2025 (Gartner). Every ungoverned agent is unbudgeted spend, an unauditable decision path,
+            and an unmonitored data flow, invisible to you until the invoice lands or the incident
+            does.
           </p>
         </div>
       </div>

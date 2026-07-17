@@ -8,13 +8,13 @@ const ACCENT = "#2278E0";
 const WITHOUT = [
   ["Model", "Claude Sonnet"],
   ["Latency", "5,537 ms"],
-  ["Cost / request", "$0.00298"],
+  ["Cost / 1000 requests", "$2.98"],
 ] as const;
 
 const WITH: [string, string, string?][] = [
   ["Model", "GPT-4o-mini"],
   ["Latency", "3,962 ms", "-28.5%"],
-  ["Cost / request", "$0.00010", "-96.8%"],
+  ["Cost / 1000 requests", "$0.10", "-96.8%"],
 ];
 
 function Chip({ children }: { children: React.ReactNode }) {
@@ -129,9 +129,9 @@ export default function AixRoiSplit({ roi }: { roi: string[][] }) {
           </dl>
           {/* Result highlight fills the remaining space */}
           <div className="mt-auto flex flex-wrap items-baseline gap-x-2 gap-y-1 rounded-xl border border-white/25 bg-white/10 px-4 py-3.5">
-            <span className="text-lg font-bold text-white">96.8% lower cost</span>
+            <span className="text-lg font-bold text-white">30× lower cost</span>
             <span className="text-white/60">·</span>
-            <span className="text-lg font-bold text-white">28.5% faster</span>
+            <span className="text-lg font-bold text-white">1.6s faster per request</span>
             <span className="w-full text-xs text-white/75">Same task, same-or-better quality.</span>
           </div>
         </div>

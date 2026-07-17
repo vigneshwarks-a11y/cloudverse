@@ -74,7 +74,7 @@ const FEATURES: Feature[] = [
   {
     key: "ai",
     title: "AI",
-    desc: "Governed AI execution: tokens, models, agents, and GPUs: policy set before the request, metered during, ROI evidence after. This is AIX.",
+    desc: "Spend visibility, budgets, and chargeback across every model and provider your teams use. Technology Spend explains the economics; AIX adds execution-path governance.",
     accent: ACCENT.ai,
     lineItems: ["Tokens", "Models", "Agents"],
     users: "AI & platform teams",
@@ -82,7 +82,7 @@ const FEATURES: Feature[] = [
   {
     key: "data",
     title: "Data",
-    desc: "Warehouse spend intelligence: Snowflake, Databricks, and pipeline costs attributed to the teams and workloads that drive them.",
+    desc: "Warehouse and pipeline spend, explained by query and workload behavior, not just by resource tag.",
     accent: ACCENT.data,
     lineItems: ["Warehouses", "Pipelines", "Queries"],
     users: "Data teams",
@@ -90,7 +90,7 @@ const FEATURES: Feature[] = [
   {
     key: "saas",
     title: "SaaS",
-    desc: "License and renewal intelligence: subscriptions, seats, and duplicate tools surfaced before the renewal invoice hits.",
+    desc: "Usage and ownership across business units: which teams use which tools, and at what utilization. (Rolling out.)",
     accent: ACCENT.saas,
     lineItems: ["Licenses", "Seats", "Renewals"],
     users: "IT & procurement",

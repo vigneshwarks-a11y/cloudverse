@@ -18,20 +18,20 @@ export function FinOpsHero() {
           <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
             <div className="flex-1 min-w-0 lg:max-w-2xl xl:max-w-3xl">
               <span className="block text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8]">
-                FinOps Platform
+                CloudVerse Technology Spend
               </span>
-              <h1 className="cv-h1 mt-4 leading-[1.25] text-cv-ink">Multi-cloud cost intelligence for every team.</h1>
+              <h1 className="cv-h1 mt-4 leading-[1.25] text-cv-ink">Every technology dollar. Explained, owned, and optimized.</h1>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link href={DEMO_URL} className="cv-btn-primary">
-                  <span>Book a Demo</span>
+                  <span>Book a demo</span>
                   <ArrowRight weight="Linear" size={16} />
                 </Link>
-                <Link href="/integrations" className="cv-btn-ghost">Explore the platform</Link>
+                <Link href="/contact" className="cv-btn-ghost">Request a technology spend assessment</Link>
               </div>
             </div>
             <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-sm shrink-0">
               <p className="cv-body text-cv-ink/70">
-                See every dollar by team, product, and provider. One model that reconciles to finance and explains itself to engineering.
+                Manage cloud, AI, data-platform, and SaaS spend through one intelligent control plane. CloudVerse connects billing, usage, contracts, and ownership into one data model, no disconnected cost-management tools.
               </p>
             </div>
           </div>

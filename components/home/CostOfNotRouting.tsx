@@ -52,11 +52,18 @@ export function CostOfNotRouting() {
   return (
     <section className="cv-section bg-cv-surface2 dark:bg-black" data-testid="section-cost-of-not-routing">
       <div className="cv-container">
-        <h2 className="cv-h2 text-cv-ink max-w-2xl">The cost of not routing.</h2>
-        <p className="mt-4 cv-body text-cv-ink/70 max-w-2xl">
-          Every hardcoded endpoint spends money without making a decision. The same work, on the right
-          model, often costs a fraction, at the same or better quality.
-        </p>
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-14 lg:items-end">
+          <div>
+            <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
+              Economics
+            </span>
+            <h2 className="cv-h2 text-cv-ink">The cost of not routing.</h2>
+          </div>
+          <p className="cv-body text-cv-ink/70 lg:max-w-md lg:justify-self-end">
+            Every hardcoded endpoint spends money without making a decision. The same work, on the right
+            model, often costs a fraction, at the same or better quality.
+          </p>
+        </div>
 
         <div className="mt-10 grid gap-4 lg:grid-cols-[1.25fr_1fr] lg:gap-5">
           {/* At-scale monthly savings table */}
@@ -95,7 +102,7 @@ export function CostOfNotRouting() {
           {/* Single-request Without / With comparison */}
           <div className="flex flex-col gap-4">
             <CompareCard
-              label="Without AIX"
+              label="Example · without AIX"
               tone="without"
               rows={[
                 { k: "Model", v: "Claude Sonnet" },
@@ -104,7 +111,7 @@ export function CostOfNotRouting() {
               ]}
             />
             <CompareCard
-              label="With AIX"
+              label="Example · with AIX"
               tone="with"
               rows={[
                 { k: "Model", v: "GPT-4o-mini" },
@@ -117,8 +124,8 @@ export function CostOfNotRouting() {
 
         {/* Result banner */}
         <div className="mt-5 flex flex-col items-center gap-1 rounded-2xl border border-cv-teal/30 bg-cv-teal/[0.06] px-6 py-5 text-center sm:flex-row sm:justify-center sm:gap-3">
-          <span className="font-mono text-lg font-bold text-cv-teal">96.8% lower cost · 28.5% faster.</span>
-          <span className="text-sm text-cv-ink/70">Same task, same-or-better quality.</span>
+          <span className="font-mono text-lg font-bold text-cv-teal">40&ndash;90% lower cost, depending on workload mix.</span>
+          <span className="text-sm text-cv-ink/70">The example above is one workload; the audit measures yours.</span>
         </div>
       </div>
     </section>

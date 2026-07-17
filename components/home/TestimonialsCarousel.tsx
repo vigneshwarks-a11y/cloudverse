@@ -23,28 +23,28 @@ type Testimonial = {
 
 const TESTIMONIALS: Testimonial[] = [
   {
-    company: "SE Asian Telco Group",
-    companyInitial: "T",
+    company: "Berkshire Hathaway HomeServices",
+    companyInitial: "B",
     accentColor: "#1664C0",
-    quote: '"129 applications and Rp8.77B in cloud spend, across four clouds, with no reliable owner. CloudVerse mapped spend to the way the business actually works and surfaced Rp964.80M in savings before any optimization work began."',
-    name: "Southeast Asian digital & telecommunications group",
-    title: "Multi-cloud estate: AWS, Huawei, Google Cloud, Cloudflare",
-    initials: "TG",
+    quote: "Optimization, governance, usage visibility, and AI spend controls across Azure, OpenAI, and Azure AI, running in production.",
+    name: "Berkshire Hathaway HomeServices",
+    title: "Azure · OpenAI · Azure AI",
+    initials: "BH",
     whyLabel: "cloudverse",
     tags: [
-      { icon: <BranchingPathsUp weight="Linear" size={11} />, label: "Routing" },
-      { icon: <Eye weight="Linear" size={11} />, label: "Visibility" },
+      { icon: <BranchingPathsUp weight="Linear" size={11} />, label: "Optimization" },
       { icon: <Shield weight="Linear" size={11} />, label: "Governance" },
+      { icon: <Eye weight="Linear" size={11} />, label: "Visibility" },
     ],
   },
   {
-    company: "Tencent Cloud",
-    companyInitial: "TC",
+    company: "XL-Smart",
+    companyInitial: "XL",
     accentColor: "#6954D4",
-    quote: '"Before CloudVerse we could see the bill. We couldn\'t say who owned it, which applications drove it, or whether the architecture under it was worth the cost."',
-    name: "Head of FinOps",
-    title: "Large Southeast Asian digital & telecommunications group",
-    initials: "TC",
+    quote: "Enterprise cloud, data, and AI spend optimization and governance across providers, warehouses, and LLMs.",
+    name: "XL-Smart",
+    title: "AWS · GCP · Tencent · Huawei · Snowflake · Databricks · Anthropic · OpenAI",
+    initials: "XL",
     whyLabel: "cloudverse",
     tags: [
       { icon: <Eye weight="Linear" size={11} />, label: "Visibility" },
@@ -53,17 +53,17 @@ const TESTIMONIALS: Testimonial[] = [
     ],
   },
   {
-    company: "Dr. Reddy's",
-    companyInitial: "DR",
+    company: "Carlsberg",
+    companyInitial: "C",
     accentColor: "#0E9E7A",
-    quote: '"The teams responsible for governance were reconciling provider invoices by hand and arriving at numbers finance and engineering both questioned. That\'s gone now."',
-    name: "FinOps Lead",
-    title: "Multi-cloud digital services group (AWS, Huawei, Google Cloud, Cloudflare)",
-    initials: "DR",
+    quote: "Enterprise governance, commitment management, and AI spend governance across cloud and AI services.",
+    name: "Carlsberg",
+    title: "Azure · AWS · OpenAI · Azure AI",
+    initials: "C",
     whyLabel: "cloudverse",
     tags: [
       { icon: <Shield weight="Linear" size={11} />, label: "Governance" },
-      { icon: <BranchingPathsUp weight="Linear" size={11} />, label: "Routing" },
+      { icon: <DollarMinimalistic weight="Linear" size={11} />, label: "Commitments" },
       { icon: <Eye weight="Linear" size={11} />, label: "Visibility" },
     ],
   },
@@ -227,7 +227,7 @@ export function TestimonialsCarousel() {
           Customer Stories
         </span>
         <h2 className="cv-h2 text-cv-ink mb-10 max-w-2xl">
-          Trusted by teams running AI at scale.
+          Trusted by teams running AI in production.
         </h2>
 
         <div

@@ -11,6 +11,7 @@ const BLUE = "#007CFF";
 const ICONS: Record<string, Icon> = {
   "FinOps Manager": Tuning2,
   "Cloud Engineer": Code,
+  "Cloud / Platform Engineer": Code,
   "CFO / VP Finance": FileText,
 };
 

@@ -402,23 +402,23 @@ function MockBudgetVisual() {
 
 const FEATURES = [
   {
-    title: "Govern AI before the spend happens",
-    body: "Policy, access controls, data residency, and vendor oversight sit in one place and apply before a request runs. Not a separate exception process bolted on at month-end.",
+    title: "Block rogue and spoofed agents",
+    body: "A leaked or shared API key starts making model calls that look like a legitimate workload. Execution is identity-gated: only registered workloads with scoped runtime keys can route. Unknown callers are denied and logged; per-workload keys are revocable in one click. A stolen key becomes a dead key.",
     Visual: MockRBACVisual,
   },
   {
-    title: "Every decision logged and traceable",
-    body: "Every model call, agent run, and workflow is on the record: who owned it, what it used, what it cost, what it returned. The same account finance, security, and the board can all read.",
+    title: "Answer audit and finance with evidence",
+    body: "What did AI cost last quarter, per team and workload, and who accessed which prompts? The execution ledger attributes every call and dollar to a workload, team, and policy. Prompt access is RBAC-gated and every view is logged. Questions that took weeks of forensics become queries.",
     Visual: MockCostVisual,
   },
   {
-    title: "Multi-tenant isolation",
-    body: "Workloads, policies, and cost stay fully separate across teams and tenants. Each workspace runs under its own policy set and its own cost ceiling, so one team's usage never spills into another's budget or governance scope.",
+    title: "Guardrail shadow AI, don't just ban it",
+    body: "Teams have quietly built agents on Bedrock, Copilot Studio, Kubernetes, and raw OpenAI keys. AIX discovers them across clouds, SaaS platforms, and clusters, ranks them by spend, and gives each a one-step on-ramp: point it at the governed endpoint, policy applies, nothing gets rewritten.",
     Visual: MockTenantVisual,
   },
   {
-    title: "Budget caps",
-    body: "Hard ceilings applied at the routing layer, before a request goes out. When a team approaches its cap, AIX flags it and can block or reroute, so spend is controlled at decision time rather than discovered at month-end.",
+    title: "Stop runaway agent cost, in flight",
+    body: "An agent enters a retry loop at 2am, burning tokens on your most expensive model. Budgets are reserved before each call and settled after. When a cap is breached, the next call is denied or downgraded, and a kill switch acts mid-incident. You find out from an alert with the loop already stopped, not the month-end invoice.",
     Visual: MockBudgetVisual,
   },
 ];
@@ -451,14 +451,14 @@ export function AixGovernance() {
         {/* Section header */}
         <div className="mb-20 lg:mb-28 lg:pt-8">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 dark:bg-[#7CB8F8]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8] mb-5">
-            Enterprise Control
+            Day one
           </span>
           <div className="flex flex-col lg:flex-row lg:items-start lg:gap-20">
             <h2 className="cv-h2 text-cv-ink flex-1">
-              Take the driver&apos;s seat<br className="hidden lg:block" /> with AI Governance
+              What it does for you<br className="hidden lg:block" /> on day one
             </h2>
             <p className="mt-4 lg:mt-1 text-cv-ink/60 leading-relaxed lg:max-w-sm xl:max-w-md shrink-0">
-              Policy, access controls, and full audit trails enforced before a single token leaves. Not a month-end reconciliation: governance that runs live, at the point of every decision.
+              Not a roadmap. The things AIX handles the moment it&apos;s in the execution path: rogue agents, audit-grade evidence, shadow AI, and runaway cost stopped in flight.
             </p>
           </div>
         </div>

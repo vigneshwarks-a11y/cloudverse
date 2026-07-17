@@ -6,8 +6,12 @@ import { ProductVideo } from "@/components/home/ProductVideo";
 import { FaqBlock } from "@/components/FaqBlock";
 import { HardcodeCost } from "@/components/home/HardcodeCost";
 import { BeforeAfterAix } from "@/components/home/BeforeAfterAix";
+import { HowAixWorks } from "@/components/home/HowAixWorks";
 import { CostOfNotRouting } from "@/components/home/CostOfNotRouting";
+import { NotAGateway } from "@/components/home/NotAGateway";
 import { AixGovernance } from "@/components/home/AixGovernance";
+import { AixDeployment } from "@/components/home/AixDeployment";
+import { TechSpendCrossLink } from "@/components/home/TechSpendCrossLink";
 import { IntegrationsMarquee } from "@/components/home/IntegrationsMarquee";
 import { VendorSovereignty } from "@/components/home/VendorSovereignty";
 import { AixOrchestration } from "@/components/home/AixOrchestration";
@@ -16,48 +20,48 @@ import { DEMO_URL } from "@/lib/links";
 import { GuidesResources } from "@/components/home/GuidesResources";
 
 export const metadata: Metadata = {
-  title: "CloudVerse: The Control Plane for Enterprise AI",
+  title: "CloudVerse: The Enterprise AI Control Plane",
   description:
-    "Put every AI model, agent, and dollar on one record. Route, govern, and meter your AI, and prove the ROI. Built on the FinOps platform enterprises already trust.",
-  keywords: ["cloud cost management", "AI cost optimization", "FinOps", "compute economics", "enterprise AI governance", "cloud spend", "LLM cost"],
+    "Govern every AI execution and prove the economics behind it. One system of record for every agent, model route, prompt, and dollar of AI spend, with governance enforced in the execution path, deployed in your environment.",
+  keywords: ["enterprise AI governance", "AI control plane", "AI agent governance", "AI cost optimization", "LLM routing", "AI spend", "execution ledger"],
   alternates: { canonical: "/" },
   openGraph: {
-    title: "CloudVerse: The Control Plane for Enterprise AI",
-    description: "Put every AI model, agent, and dollar on one record. Route, govern, and meter your AI, and prove the ROI.",
+    title: "CloudVerse: The Enterprise AI Control Plane",
+    description: "Govern every AI execution. Prove the economics behind it. One system of record for every agent, model route, prompt, and dollar of AI spend.",
     url: "/",
-    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse: Compute Economics Platform" }],
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse: The Enterprise AI Control Plane" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "CloudVerse: The Control Plane for Enterprise AI",
-    description: "Route, govern, and meter your AI. Prove the ROI. Built on the FinOps platform enterprises trust.",
+    title: "CloudVerse: The Enterprise AI Control Plane",
+    description: "Govern every AI execution. Prove the economics behind it. Governance enforced in the execution path, not a report after the fact.",
   },
 };
 
 const HOME_FAQS = [
   {
     q: "What is an AI control plane?",
-    a: "The system that governs, routes, and meters every AI request across your models and providers. It sets policy and budget before a request runs, scores routes while it runs, and records cost and outcome after.",
+    a: "The system that discovers every AI agent and model in use, governs execution in real time (budgets, policy, routing, kill switch), and records every call as evidence. It sets policy before a request runs and proves cost and outcome after.",
   },
   {
     q: "How is AIX different from an AI gateway?",
-    a: "A gateway runs the routing rule you already wrote. AIX works out what the rule should be, scoring every route live on cost, latency, quality, and compliance, then logs why one won.",
-  },
-  {
-    q: "How is it different from LLM observability?",
-    a: "Observability tells you what a request cost after it ran. AIX settles that before it runs and enforces budget and policy in real time.",
+    a: "A gateway runs the routing rule you already wrote. AIX discovers what's actually running across your estate, including agents nobody told you about, and enforces budget, identity, and policy on every call, not just the ones already wired through a gateway.",
   },
   {
     q: "Does AIX proxy my traffic or add latency?",
-    a: "Routing overhead is under 15ms per request, and AIX can operate as a decision layer without mediating all traffic. Execution stays in your control.",
+    a: "Routing overhead is under 15ms per request. AIX can operate as a decision layer without mediating all traffic. Execution stays in your control.",
   },
   {
     q: "What happens when a model is deprecated or a provider goes down?",
-    a: "Every route carries a fallback. AIX reroutes within your constraints, and your prompts, policies, and audit trail keep working because they live in your control plane.",
+    a: "Every route carries a fallback. AIX reroutes within your constraints, and your prompts, policies, and audit trail keep working because they live in your control plane, not the vendor's.",
   },
   {
-    q: "How fast is this live?",
-    a: "First account connected in under 30 minutes, read-only by default. Most teams find something they didn't expect the same day, inside a no-fee, two-to-four-week proof of value.",
+    q: "Can AIX run entirely inside our own environment?",
+    a: "Yes. AIX deploys into your cloud tenancy or on-premises; the data plane stays inside your boundary, and prompt capture is a per-workload policy: full capture, redacted, or metadata-only.",
+  },
+  {
+    q: "How fast can we see this on real workloads?",
+    a: "A scoped private pilot in a tenancy you control: discover what's already running, govern one real workload, and read out the evidence, in about three weeks.",
   },
 ];
 
@@ -72,17 +76,17 @@ export default function HomePage() {
             <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
               {/* Left: eyebrow + headline + CTAs */}
               <div className="flex-1 min-w-0 lg:max-w-2xl xl:max-w-3xl">
-                <p className="cv-label mb-5">The Control Plane for Enterprise AI and Compute</p>
-                <h1 className="cv-h1 text-cv-ink max-w-3xl">
-                  Own every dollar.<br />
-                  <span className="text-cv-blue dark:text-cv-blue-light lg:whitespace-nowrap">Govern every AI execution.</span>
+                <p className="cv-label mb-5">The Enterprise AI Control Plane</p>
+                <h1 className="cv-h1 text-cv-ink max-w-none" style={{ fontSize: "clamp(28px, 3.6vw, 46px)" }}>
+                  Govern every AI execution.<br />
+                  <span className="text-cv-blue dark:text-cv-blue-light">Prove the economics behind it.</span>
                 </h1>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-hero-demo">
                     Book a demo
                   </Link>
                   <Link href="/contact" className="cv-btn-ghost !text-cv-ink !border-cv-ink/30 hover:!border-cv-ink/60 hover:!bg-cv-ink/10 dark:!text-white dark:!border-white/40 dark:hover:!border-white/70 dark:hover:!bg-white/10" data-testid="link-hero-audit">
-                    Request a free AI cost audit
+                    Request a free AI cost &amp; risk audit
                   </Link>
                 </div>
               </div>
@@ -90,7 +94,10 @@ export default function HomePage() {
               {/* Right: subhead + utility links */}
               <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-sm shrink-0">
                 <p className="cv-body text-cv-ink/70">
-                  One ledger for every dollar of cloud, AI, data, SaaS, and engineering spend, each entry tied to the team, the workload, and the decision that caused it. Governance before the request runs. Evidence after it does.
+                  One system of record for every agent, model route, prompt, and dollar of AI spend, with governance enforced in the execution path, not a report after the fact.
+                </p>
+                <p className="mt-4 text-sm italic text-cv-muted">
+                  Private deployment. Your cloud, your data plane, your keys.
                 </p>
                 <div className="mt-5 flex flex-col gap-2">
                   <Link href="/platform/aix" className="text-sm text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-2 transition-colors flex items-center gap-1" data-testid="link-hero-platform">
@@ -118,6 +125,9 @@ export default function HomePage() {
       {/* BEFORE / AFTER AIX */}
       <BeforeAfterAix />
 
+      {/* HOW AIX WORKS — DISCOVER · GOVERN · PROVE */}
+      <HowAixWorks />
+
       {/* INTEGRATIONS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black relative overflow-hidden">
         {/* Ambient blue glow */}
@@ -128,12 +138,17 @@ export default function HomePage() {
         />
 
         <div className="cv-container relative z-10">
-          {/* Heading */}
-          <div className="text-center">
-            <h2 className="cv-h2 text-cv-ink mx-auto max-w-2xl">
-              Connects to the stack your teams already run.
-            </h2>
-            <p className="mt-5 cv-body text-cv-ink/60 max-w-lg mx-auto">
+          {/* Heading - two-column left/right */}
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-14 lg:items-end">
+            <div>
+              <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
+                Integrations
+              </span>
+              <h2 className="cv-h2 text-cv-ink">
+                Connects to the stack your teams already run.
+              </h2>
+            </div>
+            <p className="cv-body text-cv-ink/60 lg:max-w-md lg:justify-self-end">
               Cloud, models, GPUs, data warehouses, and CI, connected once.
             </p>
           </div>
@@ -161,8 +176,14 @@ export default function HomePage() {
       {/* THE COST OF NOT ROUTING */}
       <CostOfNotRouting />
 
-      {/* AIX GOVERNANCE - Take the driver's seat */}
+      {/* NOT A GATEWAY. NOT OBSERVABILITY. NOT A COST TOOL. */}
+      <NotAGateway />
+
+      {/* WHAT IT DOES FOR YOU ON DAY ONE */}
       <AixGovernance />
+
+      {/* ARCHITECTURE — DEPLOYED IN YOUR ENVIRONMENT */}
+      <AixDeployment />
 
       {/* VENDOR SOVEREIGNTY - Own your stuff */}
       <VendorSovereignty />
@@ -170,8 +191,11 @@ export default function HomePage() {
       {/* AIX ORCHESTRATION - One system of record */}
       <AixOrchestration />
 
-      {/* TESTIMONIALS */}
+      {/* TESTIMONIALS / PROOF */}
       <TestimonialsCarousel />
+
+      {/* CROSS-LINK TO TECHNOLOGY SPEND */}
+      <TechSpendCrossLink />
 
       {/* GUIDES & RESOURCES */}
       <GuidesResources />
@@ -179,6 +203,11 @@ export default function HomePage() {
       {/* FAQ */}
       <section className="cv-section bg-cv-surface overflow-hidden">
         <div className="cv-container">
+          <div className="mb-4 text-center">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
+              FAQ
+            </span>
+          </div>
           <FaqBlock
             items={HOME_FAQS}
             accent="#1664C0"

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, CheckCircle } from "@/lib/solar-icons";
-import { IconChartPie2, IconInvestment, IconArrowRefresh } from "nucleo-isometric";
+import { IconChartPie2, IconInvestment, IconShield, IconReceipt } from "nucleo-isometric";
 import { IntegrationsMarquee } from "@/components/home/IntegrationsMarquee";
 import { FinopsVarianceMock } from "@/components/product/FinopsVarianceMock";
 import { FaqBlock } from "@/components/FaqBlock";
@@ -11,32 +11,38 @@ import { WhoUsesItCards } from "@/components/product/WhoUsesItCards";
 import { FinOpsHero } from "@/components/product/FinOpsHero";
 import { FeatureShowcase } from "@/components/home/FeatureShowcase";
 import FinopsSurfaces from "@/components/product/FinopsSurfaces";
+import { DomainDepth } from "@/components/product/DomainDepth";
+import { ProofInProduction } from "@/components/product/ProofInProduction";
+import { NamedCustomers } from "@/components/product/NamedCustomers";
+import { WhyCloudVerse } from "@/components/product/WhyCloudVerse";
+import { GettingStarted } from "@/components/product/GettingStarted";
 
 export const metadata: Metadata = {
-  title: "FinOps Platform: Multi-Cloud Cost Intelligence for Every Team | CloudVerse",
+  title: "CloudVerse Technology Spend: Cloud, AI, Data & SaaS on One Model | CloudVerse",
   description:
-    "See every dollar by team, product, and provider. One model that reconciles to finance and explains itself to engineering.",
-  keywords: ["FinOps platform", "cloud cost management", "multi-cloud cost visibility", "cloud allocation", "chargeback", "cloud unit economics"],
+    "Every technology dollar, explained, owned, and optimized. Manage cloud, AI, data-platform, and SaaS spend through one intelligent control plane that connects billing, usage, contracts, and ownership into one data model.",
+  keywords: ["technology spend management", "FinOps platform", "cloud cost management", "AI spend", "data platform cost", "SaaS spend", "chargeback", "multi-cloud allocation"],
   alternates: { canonical: "/platform/finops" },
   openGraph: {
-    title: "FinOps Platform: Multi-Cloud Cost Intelligence for Every Team",
-    description: "See every dollar by team, product, and provider. One model that reconciles to finance and explains itself to engineering.",
+    title: "CloudVerse Technology Spend: Cloud, AI, Data & SaaS on One Model",
+    description: "Every technology dollar, explained, owned, and optimized. Cloud, AI, data-platform, and SaaS spend through one intelligent control plane.",
     url: "/platform/finops",
-    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse FinOps Platform: Multi-Cloud Cost Intelligence" }],
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse Technology Spend Platform" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "FinOps Platform: Multi-Cloud Cost Intelligence",
-    description: "See every dollar by team, product, and provider. Reconciles to finance. Explains itself to engineering.",
+    title: "CloudVerse Technology Spend: One Model for Cloud, AI, Data & SaaS",
+    description: "Every technology dollar, explained, owned, and optimized. One data model across billing, usage, contracts, and ownership.",
   },
 };
 
 const FAQ = [
-  ["How is this different from a cloud cost explorer?", "An explorer shows spend. CloudVerse traces variance to a driver and owner, ranks the fix, and can carry it out. It changes what happens after the dashboard."],
+  ["Is CloudVerse a cloud-cost management platform?", "Cloud cost management is one part of CloudVerse. CloudVerse is a technology spend platform covering cloud infrastructure, AI workloads, data platforms, and SaaS applications through one shared economic and governance model."],
+  ["How is this different from traditional FinOps?", "Traditional FinOps focuses primarily on cloud financial management. CloudVerse applies the same principles of visibility, ownership, optimization, and governance across the broader technology estate, including AI, data, and SaaS."],
+  ["Can we start with only one spend category?", "Yes. Organizations can begin with cloud, AI, data, or SaaS and expand through the same ownership, allocation, reporting, and workflow model."],
   ["Does it work across all our clouds?", "Yes. One allocation model across AWS, Azure, and GCP, with Oracle, Alibaba, Huawei, and Tencent supported."],
-  ["Will it fit our existing allocation logic?", "Yes. Virtual tags let you define cost dimensions that match how the business is structured, not how billing is structured."],
-  ["How fast do we see value?", "First account connected in under 30 minutes. Most teams find recoverable spend the same day."],
   ["Does automation touch our accounts?", "Read-only by default. Any action is opt-in, scoped, and logged."],
+  ["How does CloudVerse manage AI spend specifically?", "CloudVerse connects provider, model, and workload expenditure to teams, applications, and business outcomes. For runtime AI governance, including workload identity, policy enforcement, approvals, and execution controls, CloudVerse provides AIX."],
 ];
 
 export default function FinOpsPage() {
@@ -90,13 +96,13 @@ export default function FinOpsPage() {
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-14">
-            <h2 className="cv-h2 text-cv-ink">Most FinOps tools show dashboards. This one changes what happens next.</h2>
+            <h2 className="cv-h2 text-cv-ink">Spend is visible. Decisions are still hard.</h2>
             <div>
               <p className="cv-body-lg text-cv-ink/80">
-                A dashboard tells you spend went up. It doesn&apos;t tell you which team, which change, or what to do first.
+                Across cloud, AI, data, and SaaS, every team gets stuck on the same four questions, and today they get asked in four different tools, by four different owners, with no shared answer.
               </p>
               <p className="cv-body-lg text-cv-ink/80 mt-4">
-                CloudVerse traces the variance to a driver and an owner, ranks the fix by impact, and carries it out once you approve. Cloud spend is visible everywhere. Here it&apos;s finally clear.
+                What changed, who owns it, whether the spend is justified, and what to do next, answered once, on one record, prioritized by impact across your whole technology budget.
               </p>
             </div>
           </div>
@@ -116,10 +122,10 @@ export default function FinOpsPage() {
           <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
             {/* left: eyebrow + heading + lead */}
             <div className="lg:pt-2">
-              <p className="cv-label mb-4">The FinOps lifecycle</p>
-              <h2 className="cv-h2 text-cv-ink">Inform. Optimise. Operate.</h2>
+              <p className="cv-label mb-4">The lifecycle</p>
+              <h2 className="cv-h2 text-cv-ink">Understand. Optimize. Govern. Prove.</h2>
               <p className="cv-body-lg mt-5 max-w-md text-cv-ink/70">
-                One model that carries you from visibility to action: allocation you can trust, savings ranked by impact, and approved fixes that run inside policy, with an audit trail.
+                One model carries every domain from fragmented invoices to continuous economic control: understand what changed and who owns it, optimize toward the highest-impact fix, govern it with budgets and policy, and prove the realized result.
               </p>
             </div>
 
@@ -128,18 +134,23 @@ export default function FinOpsPage() {
               {[
                 {
                   Icon: IconChartPie2,
-                  title: "Inform",
-                  body: "Allocation and attribution first. Every dollar mapped to an owner and a driver.",
+                  title: "Understand",
+                  body: "What changed and who owns it. Every dollar mapped to an owner and a driver, across every domain.",
                 },
                 {
                   Icon: IconInvestment,
-                  title: "Optimise",
-                  body: "Rightsizing, idle cleanup, commitment and spot planning, ranked by impact.",
+                  title: "Optimize",
+                  body: "Toward the highest-impact fix. Rightsizing, commitments, and waste, ranked by impact and confidence.",
                 },
                 {
-                  Icon: IconArrowRefresh,
-                  title: "Operate",
-                  body: "Approved fixes automated on a schedule, inside policy, with an audit trail.",
+                  Icon: IconShield,
+                  title: "Govern",
+                  body: "Budgets and policy that hold. Guardrails, approvals, and chargeback that survive an audit.",
+                },
+                {
+                  Icon: IconReceipt,
+                  title: "Prove",
+                  body: "The realized result. Savings and unit economics reconciled to the bill, as evidence.",
                 },
               ].map(({ Icon, title, body }) => (
                 <div key={title} className="flex items-start gap-5 p-6 md:p-7">
@@ -155,14 +166,29 @@ export default function FinOpsPage() {
         </div>
       </section>
 
+      {/* DOMAIN DEPTH */}
+      <DomainDepth />
+
+      {/* PROOF IN PRODUCTION */}
+      <ProofInProduction />
+
+      {/* NAMED CUSTOMER USE CASES */}
+      <NamedCustomers />
+
+      {/* WHY CLOUDVERSE OVER FLEXERA / IBM APPTIO */}
+      <WhyCloudVerse />
+
+      {/* GETTING STARTED — 30/60/90 */}
+      <GettingStarted />
+
       <section className="cv-section">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-10">Built for the teams accountable for the bill</h2>
+          <h2 className="cv-h2 text-cv-ink mb-10">Built for every stakeholder</h2>
           <WhoUsesItCards
             items={[
               ["FinOps Manager", "Allocation and chargeback that hold up, and a queue of ranked actions instead of a spreadsheet."],
-              ["Cloud Engineer", "The driver behind a spike, with the fix and the risk attached."],
-              ["CFO / VP Finance", "A forecast you can defend and a number that reconciles to the ledger."],
+              ["Cloud / Platform Engineer", "The driver behind a spike, with the fix and the risk attached."],
+              ["CFO / VP Finance", "A forecast you can defend and a number that reconciles to the ledger, across every domain, not just cloud."],
             ]}
           />
         </div>
