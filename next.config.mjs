@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Build output goes to a gitignored dir (NOT the default ".next") to keep
-  // the live build output out of version control entirely.
-  distDir: ".next-build",
+  // Build output uses the default ".next" dir (gitignored). Vercel's zero-config
+  // Next.js builder requires ".next"; a custom distDir breaks deploys there.
   reactStrictMode: true,
   eslint: { ignoreDuringBuilds: true },
   experimental: {
