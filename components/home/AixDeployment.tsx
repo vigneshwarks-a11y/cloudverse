@@ -1,15 +1,51 @@
-/* "Architecture — deployed in your environment" — a call-path diagram (AI
-   surfaces → AIX inside your boundary → model providers) with the reserve →
-   route → settle → log pipeline, followed by the four deployment guarantees.
-   Matches the home design language: cv-* tokens, pill chip, bordered cards.
-   Server component. */
+/* "In the call path. Deployed in your environment." — a premium, floating
+   product-style composition of the AIX call path: AI surfaces → CloudVerse AIX
+   (focal, glowing, layered) → model providers, joined by animated connector
+   lines. The AIX core shows live-looking product widgets (policy routing +
+   failover, budget reservation, request settlement, audit ledger) rather than a
+   static list. Glassmorphism via translucent cards + backdrop blur over ambient
+   gradient blobs. cv-* tokens, theme-aware, reduced-motion friendly.
+   Server component (CSS-only motion). */
 
-import { Server, LockKeyhole, DocumentText, UsersGroupRounded } from "@/lib/solar-icons";
+import {
+  Server,
+  LockKeyhole,
+  DocumentText,
+  UsersGroupRounded,
+  Routing,
+  Wallet,
+  ShieldCheck,
+  Shield,
+  Bolt,
+  Cpu,
+  Code2,
+  Database,
+  ChatRound,
+  Cloud,
+  CheckCircle,
+  Widget,
+} from "@/lib/solar-icons";
 import type { IconWeight } from "@solar-icons/react";
 
-const SURFACES = ["Agents", "Apps", "IDEs", "RAG pipelines", "Copilots"];
-const PROVIDERS = ["Commercial APIs", "Cloud-hosted", "Sovereign / local"];
-const PIPELINE = ["Budget reserved", "Policy-selected route + failover", "Call", "Settled", "Logged to ledger"];
+type IconType = React.ComponentType<{ weight?: IconWeight; size?: number; className?: string }>;
+
+const BLUE = "#1664C0";
+const PURPLE = "#6954D4";
+const GREEN = "#0E9E7A";
+
+const SURFACES: { label: string; Icon: IconType }[] = [
+  { label: "Agents", Icon: Cpu },
+  { label: "Apps", Icon: Widget },
+  { label: "IDEs", Icon: Code2 },
+  { label: "RAG pipelines", Icon: Database },
+  { label: "Copilots", Icon: ChatRound },
+];
+
+const PROVIDERS: { label: string; meta: string; Icon: IconType }[] = [
+  { label: "Commercial APIs", meta: "OpenAI · Anthropic", Icon: Cloud },
+  { label: "Cloud-hosted", meta: "Bedrock · Vertex", Icon: Server },
+  { label: "Sovereign / local", meta: "In-region · air-gapped", Icon: LockKeyhole },
+];
 
 type Guarantee = {
   title: string;
@@ -40,21 +76,191 @@ const GUARANTEES: Guarantee[] = [
   },
 ];
 
-function Column({ label, items, accent }: { label: string; items: string[]; accent: string }) {
+/* ---- reusable pieces ------------------------------------------------ */
+
+// Uppercase stage caption above each floating card.
+function StageLabel({ children, color }: { children: React.ReactNode; color: string }) {
   return (
-    <div className="flex-1">
-      <div className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-cv-muted">{label}</div>
-      <div className="space-y-2">
-        {items.map((it) => (
-          <div
-            key={it}
-            className="rounded-lg border border-cv-line/60 bg-cv-surface px-3 py-2.5 text-sm text-cv-ink/80 dark:border-white/10 dark:bg-black"
-          >
-            <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full align-middle" style={{ background: accent }} />
-            {it}
+    <div className="mb-3 px-1 text-[10px] font-semibold uppercase tracking-[0.16em]" style={{ color }}>
+      {children}
+    </div>
+  );
+}
+
+// Glass surface: translucent fill + blur + thin ring + soft shadow.
+function GlassCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <div
+      className={
+        "relative rounded-2xl border border-cv-line/70 bg-white/70 shadow-[0_18px_44px_-26px_rgba(16,24,40,0.30)] backdrop-blur-xl dark:border-white/10 dark:bg-white/[0.045] dark:shadow-[0_30px_70px_-30px_rgba(0,0,0,0.7)] " +
+        className
+      }
+    >
+      {children}
+    </div>
+  );
+}
+
+// A single surface / provider row inside its glass card.
+function NodeRow({
+  Icon,
+  label,
+  meta,
+  accent,
+}: {
+  Icon: IconType;
+  label: string;
+  meta?: string;
+  accent: string;
+}) {
+  return (
+    <div className="flex items-center gap-3 rounded-xl border border-cv-line/50 bg-cv-surface/60 px-3 py-2.5 dark:border-white/[0.06] dark:bg-white/[0.03]">
+      <span
+        className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg"
+        style={{ background: `${accent}1A`, color: accent }}
+      >
+        <Icon weight="Linear" size={15} />
+      </span>
+      <span className="min-w-0 flex-1">
+        <span className="block truncate text-[13px] font-medium leading-tight text-cv-ink">{label}</span>
+        {meta && <span className="block truncate text-[10px] leading-tight text-cv-muted">{meta}</span>}
+      </span>
+      <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: accent }} />
+    </div>
+  );
+}
+
+// Horizontal animated connector (desktop) — gradient hairline + travelling dot.
+function Connector() {
+  return (
+    <div className="relative hidden h-16 w-8 shrink-0 self-center lg:block xl:w-12">
+      <div className="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-cv-ink/25 to-transparent dark:via-white/25" />
+      <span
+        className="cv-wire-flow absolute top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full"
+        style={{ background: PURPLE, boxShadow: `0 0 8px 2px ${PURPLE}88` }}
+      />
+    </div>
+  );
+}
+
+// Small widget frame used inside the AIX core.
+function Tile({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <div
+      className={
+        "rounded-xl border border-cv-line/50 bg-cv-surface/70 p-3 dark:border-white/[0.06] dark:bg-white/[0.035] " +
+        className
+      }
+    >
+      {children}
+    </div>
+  );
+}
+
+function WidgetHead({ Icon, label }: { Icon: IconType; label: string }) {
+  return (
+    <div className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-cv-muted">
+      <Icon weight="Linear" size={12} />
+      {label}
+    </div>
+  );
+}
+
+/* ---- AIX focal core ------------------------------------------------- */
+
+function AixCore() {
+  return (
+    <div className="relative w-full">
+      {/* breathing glow */}
+      <div
+        aria-hidden
+        className="cv-glow-pulse pointer-events-none absolute -inset-6 -z-10 rounded-[34px]"
+        style={{ background: `radial-gradient(circle at 50% 42%, ${PURPLE}44, transparent 70%)`, filter: "blur(26px)" }}
+      />
+      {/* layered depth: faint card stacked behind */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -inset-x-3 -bottom-3 top-3 -z-10 rounded-2xl border border-[#6954D4]/20 bg-[#6954D4]/[0.04]"
+      />
+
+      <GlassCard className="p-4 ring-1 ring-[#6954D4]/25 sm:p-5">
+        {/* top-edge sheen */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-px rounded-t-2xl bg-gradient-to-r from-transparent via-[#B7A9F5]/70 to-transparent"
+        />
+
+        <div className="mb-4 flex items-center justify-between">
+          <span className="flex items-center gap-2">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="absolute inline-flex h-full w-full rounded-full opacity-60" style={{ background: PURPLE }} />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full" style={{ background: PURPLE, boxShadow: `0 0 8px 2px ${PURPLE}88` }} />
+            </span>
+            <span className="text-[14px] font-semibold text-cv-ink">CloudVerse AIX</span>
+          </span>
+          <span className="inline-flex items-center gap-1 rounded-full border border-[#6954D4]/30 bg-[#6954D4]/[0.08] px-2 py-0.5 text-[10px] font-medium text-[#6954D4] dark:text-[#B7A9F5]">
+            <Shield weight="Linear" size={11} /> Inside your boundary
+          </span>
+        </div>
+
+        {/* Routing + failover */}
+        <Tile>
+          <div className="flex items-center justify-between">
+            <WidgetHead Icon={Routing} label="Policy route" />
+            <span className="inline-flex items-center gap-1 rounded-full bg-[#0E9E7A]/12 px-2 py-0.5 text-[10px] font-semibold text-[#0E9E7A]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#0E9E7A]" /> Failover ready
+            </span>
           </div>
-        ))}
-      </div>
+          <div className="mt-2.5 flex items-center gap-2">
+            <span className="inline-flex items-center gap-1.5 rounded-lg border border-[#1664C0]/30 bg-[#1664C0]/[0.08] px-2.5 py-1 text-[12px] font-medium text-cv-ink">
+              <span className="h-1.5 w-1.5 rounded-full" style={{ background: BLUE }} /> gpt-4o
+            </span>
+            <span className="text-cv-muted">→</span>
+            <span className="inline-flex items-center gap-1.5 rounded-lg border border-cv-line/60 bg-cv-ink/[0.03] px-2.5 py-1 text-[12px] text-cv-muted dark:border-white/10 dark:bg-white/[0.04]">
+              claude-3 <span className="text-[10px]">standby</span>
+            </span>
+          </div>
+        </Tile>
+
+        {/* Budget reservation + request settlement */}
+        <div className="mt-2.5 grid grid-cols-2 gap-2.5">
+          <Tile>
+            <WidgetHead Icon={Wallet} label="Budget reserved" />
+            <div className="mt-2 flex items-baseline gap-1">
+              <span className="font-mono text-[17px] font-semibold text-cv-ink">$0.42</span>
+              <span className="text-[10px] text-cv-muted">/ call</span>
+            </div>
+            <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-cv-ink/[0.08] dark:bg-white/[0.08]">
+              <div className="h-full rounded-full" style={{ width: "62%", background: `linear-gradient(90deg, ${PURPLE}, ${PURPLE}CC)` }} />
+            </div>
+          </Tile>
+
+          <Tile>
+            <WidgetHead Icon={Bolt} label="Request" />
+            <div className="mt-2 flex items-center gap-1.5 text-[13px] font-semibold text-cv-ink">
+              <CheckCircle weight="Bold" size={16} className="text-[#0E9E7A]" />
+              Settled
+            </div>
+            <div className="mt-1.5 font-mono text-[11px] text-cv-muted">42ms · reserved → settled</div>
+          </Tile>
+        </div>
+
+        {/* Audit ledger */}
+        <Tile className="mt-2.5">
+          <div className="flex items-center justify-between">
+            <span className="flex items-center gap-2 text-[12px] font-medium text-cv-ink">
+              <span className="flex h-6 w-6 items-center justify-center rounded-md bg-[#6954D4]/12 text-[#6954D4] dark:text-[#B7A9F5]">
+                <ShieldCheck weight="Linear" size={14} />
+              </span>
+              Logged to ledger
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="font-mono text-[11px] text-cv-muted">0x9f3a…c1</span>
+              <span className="h-1.5 w-1.5 rounded-full bg-[#0E9E7A]" />
+            </span>
+          </div>
+        </Tile>
+      </GlassCard>
     </div>
   );
 }
@@ -76,31 +282,61 @@ export function AixDeployment() {
           </p>
         </div>
 
-        {/* Call-path diagram */}
-        <div className="mt-10 rounded-2xl border border-cv-line/60 bg-cv-surface p-5 sm:p-7 dark:border-white/10 dark:bg-[#0D0D0D]">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-stretch lg:gap-3">
-            <Column label="Your AI surfaces" items={SURFACES} accent="#1664C0" />
+        {/* Floating call-path composition */}
+        <div className="relative mt-10 overflow-hidden rounded-[28px] border border-cv-line/50 bg-cv-surface2/50 p-6 sm:p-10 dark:border-white/10 dark:bg-[#0b0b0f]">
+          {/* ambient gradient blobs behind the glass */}
+          <div aria-hidden className="pointer-events-none absolute -left-16 top-1/4 h-64 w-64 rounded-full" style={{ background: `radial-gradient(circle, ${BLUE}22, transparent 70%)`, filter: "blur(50px)" }} />
+          <div aria-hidden className="pointer-events-none absolute -right-16 top-1/3 h-64 w-64 rounded-full" style={{ background: `radial-gradient(circle, ${GREEN}22, transparent 70%)`, filter: "blur(50px)" }} />
+          <div aria-hidden className="pointer-events-none absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full" style={{ background: `radial-gradient(circle, ${PURPLE}22, transparent 70%)`, filter: "blur(60px)" }} />
+          {/* faint dot grid */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-[0.5] dark:opacity-100"
+            style={{
+              backgroundImage: "radial-gradient(currentColor 1px, transparent 1px)",
+              backgroundSize: "22px 22px",
+              color: "rgba(120,120,140,0.10)",
+              maskImage: "radial-gradient(ellipse 80% 70% at 50% 50%, #000 40%, transparent 100%)",
+              WebkitMaskImage: "radial-gradient(ellipse 80% 70% at 50% 50%, #000 40%, transparent 100%)",
+            }}
+          />
 
-            {/* AIX core */}
-            <div className="flex-[1.4]">
-              <div className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-[#6954D4] dark:text-[#B7A9F5]">
-                CloudVerse AIX · inside your boundary
-              </div>
-              <div className="rounded-xl border border-[#6954D4]/35 bg-[#6954D4]/[0.06] p-4">
-                <ol className="space-y-2">
-                  {PIPELINE.map((step, i) => (
-                    <li key={step} className="flex items-center gap-3 text-sm text-cv-ink/85">
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#6954D4]/15 font-mono text-[11px] font-semibold text-[#6954D4] dark:text-[#B7A9F5]">
-                        {i + 1}
-                      </span>
-                      {step}
-                    </li>
+          <div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-stretch lg:gap-0">
+            {/* AI surfaces */}
+            <div className="flex flex-1 flex-col">
+              <StageLabel color={BLUE}>Your AI surfaces</StageLabel>
+              <div className="flex flex-1 items-center">
+                <GlassCard className="w-full space-y-2 p-3">
+                  {SURFACES.map((s) => (
+                    <NodeRow key={s.label} Icon={s.Icon} label={s.label} accent={BLUE} />
                   ))}
-                </ol>
+                </GlassCard>
               </div>
             </div>
 
-            <Column label="Model providers" items={PROVIDERS} accent="#0E9E7A" />
+            <Connector />
+
+            {/* AIX focal core */}
+            <div className="flex flex-[1.55] flex-col">
+              <StageLabel color={PURPLE}>CloudVerse AIX</StageLabel>
+              <div className="flex flex-1 items-center">
+                <AixCore />
+              </div>
+            </div>
+
+            <Connector />
+
+            {/* Model providers */}
+            <div className="flex flex-1 flex-col">
+              <StageLabel color={GREEN}>Model providers</StageLabel>
+              <div className="flex flex-1 items-center">
+                <GlassCard className="w-full space-y-2 p-3">
+                  {PROVIDERS.map((p) => (
+                    <NodeRow key={p.label} Icon={p.Icon} label={p.label} meta={p.meta} accent={GREEN} />
+                  ))}
+                </GlassCard>
+              </div>
+            </div>
           </div>
         </div>
 
