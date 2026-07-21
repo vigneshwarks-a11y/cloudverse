@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle } from "@/lib/solar-icons";
 import type { Metadata } from "next";
 import { CustomerLogos } from "@/components/CustomerLogos";
+import { HeroSquares, HeroEyebrow } from "@/components/PageHero";
 import { ProductVideo } from "@/components/home/ProductVideo";
 import { FaqBlock } from "@/components/FaqBlock";
 import { HardcodeCost } from "@/components/home/HardcodeCost";
@@ -68,45 +69,39 @@ const HOME_FAQS = [
 export default function HomePage() {
   return (
     <>
-      {/* HERO + VIDEO wrapper shares the same gradient background */}
-      <div className="cv-hero-bg">
+      {/* HERO + VIDEO wrapper shares the same solid grid background */}
+      <div className="cv-hero-bg" style={{ background: "hsl(var(--cv-surface))" }}>
         {/* HERO */}
-        <section className="pt-[160px] sm:pt-[200px] pb-20 lg:pt-[300px] lg:pb-32 relative">
-          <div className="cv-container relative z-10">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
-              {/* Left: eyebrow + headline + CTAs */}
-              <div className="flex-1 min-w-0 lg:max-w-2xl xl:max-w-3xl">
-                <p className="cv-label mb-5">The Enterprise AI Control Plane</p>
-                <h1 className="cv-h1 text-cv-ink max-w-none" style={{ fontSize: "clamp(28px, 3.6vw, 46px)" }}>
-                  Govern every AI execution.<br />
-                  <span className="text-cv-blue dark:text-cv-blue-light">Prove the economics behind it.</span>
-                </h1>
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-hero-demo">
-                    Book a demo
-                  </Link>
-                  <Link href="/contact" className="cv-btn-ghost !text-cv-ink !border-cv-ink/30 hover:!border-cv-ink/60 hover:!bg-cv-ink/10 dark:!text-white dark:!border-white/40 dark:hover:!border-white/70 dark:hover:!bg-white/10" data-testid="link-hero-audit">
-                    Request a free AI cost &amp; risk audit
-                  </Link>
-                </div>
+        <section className="relative pt-36 pb-16 sm:pt-48 lg:pt-56 lg:pb-24">
+          <HeroSquares />
+          <div className="max-w-cv relative z-10 mx-auto px-5 sm:px-6 lg:px-8">
+            <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
+              <HeroEyebrow accent="blue">The Enterprise AI Control Plane</HeroEyebrow>
+              <h1 className="cv-h1 mt-4 text-balance leading-[1.08] text-cv-ink">
+                Govern every AI execution.{" "}
+                <span className="text-cv-blue dark:text-cv-blue-light">Prove the economics behind it.</span>
+              </h1>
+              <p className="cv-body mt-6 max-w-[60ch] text-pretty text-cv-ink/70 sm:mt-7">
+                One system of record for every agent, model route, prompt, and dollar of AI spend, with governance enforced in the execution path, not a report after the fact.
+              </p>
+              <div className="mt-10 flex flex-col items-center gap-3 sm:mt-12 sm:flex-row sm:justify-center sm:gap-4">
+                <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-hero-demo">
+                  Book a demo
+                </Link>
+                <Link href="/contact" className="cv-btn-ghost" data-testid="link-hero-audit">
+                  Request a free AI cost &amp; risk audit
+                </Link>
               </div>
-
-              {/* Right: subhead + utility links */}
-              <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-sm shrink-0">
-                <p className="cv-body text-cv-ink/70">
-                  One system of record for every agent, model route, prompt, and dollar of AI spend, with governance enforced in the execution path, not a report after the fact.
-                </p>
-                <p className="mt-4 text-sm italic text-cv-muted">
-                  Private deployment. Your cloud, your data plane, your keys.
-                </p>
-                <div className="mt-5 flex flex-col gap-2">
-                  <Link href="/platform/aix" className="text-sm text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-2 transition-colors flex items-center gap-1" data-testid="link-hero-platform">
-                    See the platform <ArrowRight weight="Linear" size={13} />
-                  </Link>
-                  <Link href="/connect" className="text-sm text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-2 transition-colors flex items-center gap-1" data-testid="link-hero-walkthrough">
-                    Walkthrough on your own data, in 30 minutes <ArrowRight weight="Linear" size={13} />
-                  </Link>
-                </div>
+              <p className="mt-6 text-sm italic text-cv-muted">
+                Private deployment. Your cloud, your data plane, your keys.
+              </p>
+              <div className="mt-4 flex flex-col items-center gap-2 sm:flex-row sm:gap-6">
+                <Link href="/platform/aix" className="text-sm text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-2 transition-colors flex items-center gap-1" data-testid="link-hero-platform">
+                  See the platform <ArrowRight weight="Linear" size={13} />
+                </Link>
+                <Link href="/connect" className="text-sm text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-2 transition-colors flex items-center gap-1" data-testid="link-hero-walkthrough">
+                  Walkthrough on your own data, in 30 minutes <ArrowRight weight="Linear" size={13} />
+                </Link>
               </div>
             </div>
           </div>

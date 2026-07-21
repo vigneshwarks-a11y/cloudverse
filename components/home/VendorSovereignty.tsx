@@ -16,7 +16,7 @@ function PromptIllustration() {
   return (
     <div
       aria-hidden
-      className="mx-auto w-fit max-w-[15rem] rounded-2xl border border-cv-line bg-cv-surface2 p-3 shadow-sm ring-1 ring-cv-line/60 dark:bg-white/[0.03]"
+      className="mx-auto w-fit max-w-[15rem] rounded-2xl border border-cv-line bg-cv-surface2 p-3 dark:border-white/10 dark:bg-white/[0.03]"
     >
       <div className="flex items-center gap-2 text-xs text-cv-muted">
         <span className="size-2 rounded-full bg-[#0E9E7A]" />
@@ -45,10 +45,10 @@ function RoutingIllustration() {
       {rows.map((r) => (
         <div
           key={r.name}
-          className={`flex items-center justify-between rounded-xl border px-3 py-2 text-sm ring-1 ${
+          className={`flex items-center justify-between rounded-xl border px-3 py-2 text-sm ${
             r.active
-              ? "border-cv-blue/50 bg-cv-blue/10 ring-cv-blue/30"
-              : "border-cv-line bg-cv-surface2 ring-cv-line/60 dark:bg-white/[0.03]"
+              ? "border-cv-blue/50 bg-cv-blue/10"
+              : "border-cv-line bg-cv-surface2 dark:border-white/10 dark:bg-white/[0.03]"
           }`}
         >
           <span className="flex items-center gap-2">
@@ -144,8 +144,8 @@ export function VendorSovereignty() {
         </div>
 
         {/* 3-column subgrid card - full layout width */}
-        <div className="mt-12 w-full overflow-hidden rounded-2xl border border-cv-line bg-cv-card/50 shadow-md shadow-black/5 ring-1 ring-cv-line max-lg:mx-auto max-lg:max-w-sm">
-          <div className="grid divide-cv-line max-lg:divide-y lg:grid-cols-3 lg:divide-x">
+        <div className="mt-12 w-full overflow-hidden rounded-2xl border border-cv-line/60 bg-cv-surface dark:border-white/10 dark:bg-[#0D0D0D] max-lg:mx-auto max-lg:max-w-sm">
+          <div className="grid divide-cv-line/60 dark:divide-white/10 max-lg:divide-y lg:grid-cols-3 lg:divide-x">
             {PILLARS.map((p) => (
               <div key={p.title} className="row-span-2 grid grid-rows-subgrid gap-8 p-8">
                 <div className="self-center">{p.illustration}</div>

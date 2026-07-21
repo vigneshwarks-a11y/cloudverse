@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ArrowRight, CheckCircle } from "@/lib/solar-icons";
 import { SIGNIN_URL, DEMO_URL } from "@/lib/links";
+import { HeroSquares, HeroEyebrow } from "@/components/PageHero";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -25,10 +26,11 @@ const STEPS = [
 
 export default function Page() {
   return (
-    <section className="cv-hero-bg pt-[120px] sm:pt-[160px] pb-16 lg:pt-[240px] lg:pb-24 relative min-h-[80vh]">
+    <section className="cv-hero-bg pt-[120px] sm:pt-[160px] pb-16 lg:pt-[240px] lg:pb-24 relative min-h-[80vh]" style={{ background: "hsl(var(--cv-surface))" }}>
+      <HeroSquares />
       <div className="cv-container relative z-10">
         <div className="max-w-2xl mx-auto text-center">
-          <div className="cv-label mb-4">Get started</div>
+          <div className="mb-4"><HeroEyebrow accent="blue">Get started</HeroEyebrow></div>
           <h1 className="cv-h1 text-cv-ink">
             See Where Your Cloud Bill Is <span className="text-cv-blue dark:text-cv-blue-light">Actually Going.</span>
           </h1>

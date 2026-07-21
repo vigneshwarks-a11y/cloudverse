@@ -6,6 +6,7 @@ import type { IconProps } from "@solar-icons/react";
 
 type Icon = ComponentType<IconProps>;
 import { CTABand } from "@/components/CTABand";
+import { PageHero } from "@/components/PageHero";
 import { DEMO_URL, PRODUCT_URLS } from "@/lib/links";
 
 export const metadata: Metadata = {
@@ -62,19 +63,12 @@ export default function Page() {
   return (
     <>
       {/* Hero */}
-      <section className="cv-hero-bg pt-[120px] sm:pt-[160px] pb-16 lg:pt-[240px] lg:pb-20 relative">
-        <div className="cv-container relative z-10">
-          <p className="cv-label mb-5">About CloudVerse™</p>
-          <h1 className="cv-h1 text-cv-ink max-w-3xl">
-            Building the future of cloud financial management.
-          </h1>
-          <p className="cv-body-lg mt-6 text-cv-ink/75 max-w-2xl">
-            We&apos;re the compute economics platform for the AI era, bringing real-time
-            visibility, unit economics, and automated control to every dollar your teams spend on
-            cloud and AI infrastructure.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="About CloudVerse™"
+        accent="blue"
+        title="Building the future of cloud financial management."
+        subtitle="We're the compute economics platform for the AI era, bringing real-time visibility, unit economics, and automated control to every dollar your teams spend on cloud and AI infrastructure."
+      />
 
       {/* Mission */}
       <section className="cv-section bg-cv-surface">

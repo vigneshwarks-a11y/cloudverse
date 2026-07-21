@@ -3,6 +3,7 @@ import { ArrowRight, CodeSquare, DollarMinimalistic, ShieldCheck, Chart } from "
 import { FaqBlock } from "@/components/FaqBlock";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { PlatformHeroMockup } from "@/components/product/PlatformHeroMockup";
+import { PageHero } from "@/components/PageHero";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import WhoDevxFor from "@/components/product/WhoDevxFor";
@@ -68,31 +69,20 @@ const FAQ = [
 export default function DevXPage() {
   return (
     <>
-      <div className="cv-hero-bg">
-        <section className="pt-[120px] sm:pt-[160px] pb-16 lg:pt-[240px] lg:pb-20 relative">
-          <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
-              <div className="flex-1 min-w-0 lg:max-w-2xl xl:max-w-3xl">
-                <span className="block text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8]">
-                  DevX
-                </span>
-                <h1 className="cv-h1 mt-6 leading-[1.25] text-cv-ink">Catch cost regressions before they reach production.</h1>
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
-                  <Link href="#pr-example" className="cv-btn-ghost">See a real PR example</Link>
-                </div>
-              </div>
+      <PageHero
+        eyebrow="DevX"
+        accent="blue"
+        title="Catch cost regressions before they reach production."
+        subtitle="Cost context lands in the pull request, for infrastructure, application code, and AI calls. Velocity stays high. Governance finally keeps up."
+        actions={
+          <>
+            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
+            <Link href="#pr-example" className="cv-btn-ghost">See a real PR example</Link>
+          </>
+        }
+      />
 
-              <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-xs shrink-0">
-                <p className="cv-body text-cv-ink/70">
-                  Cost context lands in the pull request, for infrastructure, application code, and AI calls. Velocity stays high. Governance finally keeps up.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-        <PlatformHeroMockup tabs={DEVX_TABS} />
-      </div>
+      <PlatformHeroMockup tabs={DEVX_TABS} />
 
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">

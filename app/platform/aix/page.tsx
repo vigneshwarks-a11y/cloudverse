@@ -7,6 +7,7 @@ import GovernanceBento from "@/components/product/GovernanceBento";
 import NoBlackBoxes from "@/components/product/NoBlackBoxes";
 import AixRoiSplit from "@/components/product/AixRoiSplit";
 import { PlatformHeroMockup, type MockupTab } from "@/components/product/PlatformHeroMockup";
+import { PageHero } from "@/components/PageHero";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import AixSteps from "@/components/product/AixSteps";
 import AixProvidersMarquee from "@/components/product/AixProvidersMarquee";
@@ -84,36 +85,23 @@ export default function AIXPage() {
   return (
     <>
       {/* HERO */}
-      <div className="cv-hero-bg">
-        <section className="pt-[120px] sm:pt-[160px] pb-16 lg:pt-[240px] lg:pb-20 relative">
-          <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
-              {/* Left: badge + headline + CTAs */}
-              <div className="flex-1 min-w-0 lg:max-w-2xl xl:max-w-3xl">
-                <span className="block text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8]">
-                  AIX
-                </span>
-                <h1 className="cv-h1 mt-6 leading-[1.25] text-cv-ink">The control plane for enterprise AI.</h1>
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
-                  <Link href="/integrations" className="cv-btn-ghost">Explore the platform</Link>
-                </div>
-              </div>
+      <PageHero
+        eyebrow="AIX"
+        accent="purple"
+        title="The control plane for enterprise AI."
+        subtitle="Route, govern, and meter every AI request across your models, clouds, GPUs, and private endpoints. The cost decision gets made before the request goes out, not in a spreadsheet after the bill lands."
+        actions={
+          <>
+            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
+            <Link href="/integrations" className="cv-btn-ghost">Explore the platform</Link>
+          </>
+        }
+      >
+        <p className="mt-6 text-center text-sm italic text-cv-muted">Optimizing the future of enterprise AI consumption.</p>
+      </PageHero>
 
-              {/* Right: description */}
-              <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-sm shrink-0">
-                <p className="cv-body text-cv-ink/70">
-                  Route, govern, and meter every AI request across your models, clouds, GPUs, and private endpoints. The cost decision gets made before the request goes out, not in a spreadsheet after the bill lands.
-                </p>
-                <p className="mt-4 text-sm text-cv-muted italic">Optimizing the future of enterprise AI consumption.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* HERO MOCKUP */}
-        <PlatformHeroMockup tabs={AIX_TABS} />
-      </div>
+      {/* HERO MOCKUP */}
+      <PlatformHeroMockup tabs={AIX_TABS} />
 
       {/* STATS */}
       <section className="pt-8 pb-12 lg:pt-10 lg:pb-16">

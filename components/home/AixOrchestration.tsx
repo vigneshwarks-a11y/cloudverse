@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import { CardLightEdge } from "@/components/home/cardChrome";
 
 /* "One system of record" - a left accordion of AIX capabilities (the active
    one expands with copy + Learn More + an auto-advance progress bar) beside a
@@ -139,7 +140,7 @@ export function AixOrchestration() {
                           onClick={(e) => e.stopPropagation()}
                         >
                           Learn More
-                          <svg viewBox="0 0 24 24" className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                          <svg viewBox="0 0 24 24" className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                             <path d="M9 6l6 6-6 6" />
                           </svg>
                         </Link>
@@ -204,7 +205,7 @@ export function AixOrchestration() {
                         onClick={(e) => e.stopPropagation()}
                       >
                         Learn More
-                        <svg viewBox="0 0 24 24" className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                        <svg viewBox="0 0 24 24" className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                           <path d="M9 6l6 6-6 6" />
                         </svg>
                       </Link>
@@ -333,20 +334,10 @@ export function Dashboard({ full = false }: { full?: boolean }) {
   return (
     <div className="aspect-video w-full rounded-2xl shadow-[0_16px_40px_-24px_rgba(16,24,40,0.18)] dark:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.5)]">
       <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-cv-line bg-white text-[#1d1d1f] dark:border-white/10 dark:bg-[#0c0c0f] dark:text-[#e5e5e7]">
-        {/* top-left linear light-edge highlight */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 z-30 rounded-[inherit]"
-          style={{
-            padding: "1.5px",
-            background:
-              "linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 22%, rgba(255,255,255,0) 50%)",
-            WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
-            mask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
-            WebkitMaskComposite: "xor",
-            maskComposite: "exclude",
-          }}
-        />
+        {/* top-left light edge (shared Day-one chrome) */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 z-30">
+          <CardLightEdge />
+        </div>
         {/* window top bar */}
         <div className="flex items-center gap-3 border-b border-black/[0.07] px-3 py-2 text-xs dark:border-white/[0.08]">
           <span className="flex items-center gap-1.5 font-semibold">

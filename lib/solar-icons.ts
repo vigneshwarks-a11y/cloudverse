@@ -11,6 +11,7 @@ export { default as AltArrowLeft } from "@solar-icons/react/arrows/AltArrowLeft"
 export { default as AltArrowRight } from "@solar-icons/react/arrows/AltArrowRight";
 export { default as ArrowLeft } from "@solar-icons/react/arrows/ArrowLeft";
 export { default as ArrowRight } from "@solar-icons/react/arrows/ArrowRight";
+export { default as ArrowUp } from "@solar-icons/react/arrows/ArrowUp";
 export { default as Bell } from "@solar-icons/react/notifications/Bell";
 export { default as Bill } from "@solar-icons/react/money/Bill";
 export { default as BillList } from "@solar-icons/react/money/BillList";

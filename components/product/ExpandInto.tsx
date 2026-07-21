@@ -23,7 +23,7 @@ export function ExpandInto({ current }: { current: ModuleKey }) {
               <div className="cv-label" style={{ color: m.color }}>{m.name}</div>
               <p className="text-cv-ink/75 text-sm mt-4 leading-relaxed">{m.tagline}.</p>
               <div className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium" style={{ color: m.color }}>
-                Learn more <ArrowRight weight="Linear" size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                Learn more <ArrowRight weight="Linear" size={14} className="group-hover:translate-x-0.5 transition-transform motion-reduce:transition-none" />
               </div>
             </Link>
           ))}

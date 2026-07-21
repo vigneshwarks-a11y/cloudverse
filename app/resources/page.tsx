@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "@/lib/solar-icons";
 import { GUIDES, DOCS, FAQS, BLOG_POSTS } from "@/lib/resources";
+import { PageHero } from "@/components/PageHero";
 import { DEMO_URL } from "@/lib/links";
 
 export const metadata: Metadata = {
@@ -37,23 +38,20 @@ export default function ResourcesPage() {
   return (
     <>
       {/* HERO */}
-      <section className="cv-hero-bg pt-[120px] sm:pt-[160px] pb-12 lg:pt-[240px] lg:pb-16 relative">
-        <div className="cv-container relative z-10 max-w-4xl">
-          <span className="cv-label inline-block mb-4">CloudVerse&trade; Resources</span>
-          <h1 className="cv-h1 text-cv-ink mb-4">
-            Guides and Documentation for Infrastructure Economics
-          </h1>
-          <p className="cv-body-lg text-cv-ink/75 mb-8 max-w-2xl">
-            Practical guidance on visibility, allocation, anomalies, and automation across cloud, data, and AI platforms.
-          </p>
-          <div className="flex flex-wrap items-start gap-3">
+      <PageHero
+        eyebrow={<>CloudVerse&trade; Resources</>}
+        accent="blue"
+        title="Guides and Documentation for Infrastructure Economics"
+        subtitle="Practical guidance on visibility, allocation, anomalies, and automation across cloud, data, and AI platforms."
+        actions={
+          <>
             <a href="#guides" className="cv-btn-primary" data-testid="button-browse-guides">Browse guides</a>
             <a href="#docs" className="cv-btn-ghost" data-testid="button-browse-docs">Documentation</a>
             <a href="#faq" className="cv-btn-ghost" data-testid="button-browse-faq">FAQ</a>
             <a href="#blog" className="cv-btn-ghost" data-testid="button-browse-blog">Blog</a>
-          </div>
-        </div>
-      </section>
+          </>
+        }
+      />
 
       {/* FEATURED GUIDES */}
       <section id="guides" className="cv-section bg-cv-surface border-t border-cv-line">

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Buildings, ChatRound, Letter, MapPoint } from "@/lib/solar-icons";
 import { DEMO_URL } from "@/lib/links";
+import { PageHero } from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "Contact CloudVerse",
@@ -26,12 +27,12 @@ const CHANNELS = [
 export default function Page() {
   return (
     <>
-      <section className="cv-hero-bg pt-[120px] sm:pt-[160px] pb-12 lg:pt-[240px] lg:pb-16 relative">
-        <div className="cv-container relative z-10">
-          <div className="cv-label mb-4">Contact</div>
-          <h1 className="cv-h1 text-cv-ink max-w-3xl">Talk to a Human. We Typically Respond Within One Business Day.</h1>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Contact"
+        accent="blue"
+        title="Talk to a human. We typically respond within one business day."
+        subtitle="Sales, support, partnerships, or press, reach the right team below and we'll get back to you fast."
+      />
 
       <section className="cv-section bg-cv-surface">
         <div className="cv-container">

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Fragment, useLayoutEffect, useRef, useState } from "react";
 import { ArrowRight } from "@/lib/solar-icons";
+import { CardLightEdge, EDGE_FADE } from "@/components/home/cardChrome";
 
 /* ------------------------------------------------------------------ *
  * "Take the driver's seat with AI Governance" — a 2x2 grid of the four
@@ -10,39 +11,6 @@ import { ArrowRight } from "@/lib/solar-icons";
  * Every decision logged, Multi-tenant isolation, and Budget caps.
  * cv-* tokens, theme-aware.
  * ------------------------------------------------------------------ */
-
-// Gentle fade on just the bottom edge of a visual, so it softly dissolves
-// into the card surface without running off it.
-const EDGE_FADE = {
-  WebkitMaskImage: "linear-gradient(to bottom,#000 82%,transparent 100%)",
-  maskImage: "linear-gradient(to bottom,#000 82%,transparent 100%)",
-} as const;
-
-// Shared light-edge treatment: gradient top-bright stroke + ambient top-left glow.
-function CardLightEdge() {
-  return (
-    <>
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 rounded-[14px]"
-        style={{
-          padding: "1.5px",
-          background:
-            "linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 22%, rgba(255,255,255,0) 50%)",
-          WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
-          mask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
-          WebkitMaskComposite: "xor",
-          maskComposite: "exclude",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -left-6 -top-6 h-40 w-40 rounded-full"
-        style={{ background: "radial-gradient(circle, rgba(200,218,255,0.13), transparent 70%)", filter: "blur(26px)" }}
-      />
-    </>
-  );
-}
 
 /* Responsive scaler: visuals are laid out at a fixed pixel "design width". On
    columns wider than `designW` the visual renders naturally; on narrower columns

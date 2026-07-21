@@ -26,6 +26,7 @@ import {
   Widget,
 } from "@/lib/solar-icons";
 import type { IconWeight } from "@solar-icons/react";
+import { CardLightEdge } from "@/components/home/cardChrome";
 
 type IconType = React.ComponentType<{ weight?: IconWeight; size?: number; className?: string }>;
 
@@ -87,15 +88,18 @@ function StageLabel({ children, color }: { children: React.ReactNode; color: str
   );
 }
 
-// Glass surface: translucent fill + blur + thin ring + soft shadow.
-function GlassCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+// Product-mock well: solid surface + single hairline border + soft neutral
+// shadow, matching the "Day one" (AixGovernance) instrument treatment. No
+// glassmorphism — depth comes from the border and the ambient stage glow.
+function PanelCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <div
       className={
-        "relative rounded-2xl border border-cv-line/70 bg-white/70 shadow-[0_18px_44px_-26px_rgba(16,24,40,0.30)] backdrop-blur-xl dark:border-white/10 dark:bg-white/[0.045] dark:shadow-[0_30px_70px_-30px_rgba(0,0,0,0.7)] " +
+        "relative overflow-hidden rounded-2xl border border-cv-line bg-white shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:border-white/10 dark:bg-black dark:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)] " +
         className
       }
     >
+      <CardLightEdge />
       {children}
     </div>
   );
@@ -183,7 +187,7 @@ function AixCore() {
         className="pointer-events-none absolute -inset-x-3 -bottom-3 top-3 -z-10 rounded-2xl border border-[#6954D4]/20 bg-[#6954D4]/[0.04]"
       />
 
-      <GlassCard className="p-4 ring-1 ring-[#6954D4]/25 sm:p-5">
+      <PanelCard className="p-4 sm:p-5">
         {/* top-edge sheen */}
         <div
           aria-hidden
@@ -260,7 +264,7 @@ function AixCore() {
             </span>
           </div>
         </Tile>
-      </GlassCard>
+      </PanelCard>
     </div>
   );
 }
@@ -283,7 +287,7 @@ export function AixDeployment() {
         </div>
 
         {/* Floating call-path composition */}
-        <div className="relative mt-10 overflow-hidden rounded-[28px] border border-cv-line/50 bg-cv-surface2/50 p-6 sm:p-10 dark:border-white/10 dark:bg-[#0b0b0f]">
+        <div className="relative mt-10 overflow-hidden rounded-2xl border border-cv-line/60 bg-cv-surface2 p-6 sm:p-10 dark:border-white/10 dark:bg-[#0D0D0D]">
           {/* ambient gradient blobs behind the glass */}
           <div aria-hidden className="pointer-events-none absolute -left-16 top-1/4 h-64 w-64 rounded-full" style={{ background: `radial-gradient(circle, ${BLUE}22, transparent 70%)`, filter: "blur(50px)" }} />
           <div aria-hidden className="pointer-events-none absolute -right-16 top-1/3 h-64 w-64 rounded-full" style={{ background: `radial-gradient(circle, ${GREEN}22, transparent 70%)`, filter: "blur(50px)" }} />
@@ -306,11 +310,11 @@ export function AixDeployment() {
             <div className="flex flex-1 flex-col">
               <StageLabel color={BLUE}>Your AI surfaces</StageLabel>
               <div className="flex flex-1 items-center">
-                <GlassCard className="w-full space-y-2 p-3">
+                <PanelCard className="w-full space-y-2 p-3">
                   {SURFACES.map((s) => (
                     <NodeRow key={s.label} Icon={s.Icon} label={s.label} accent={BLUE} />
                   ))}
-                </GlassCard>
+                </PanelCard>
               </div>
             </div>
 
@@ -330,11 +334,11 @@ export function AixDeployment() {
             <div className="flex flex-1 flex-col">
               <StageLabel color={GREEN}>Model providers</StageLabel>
               <div className="flex flex-1 items-center">
-                <GlassCard className="w-full space-y-2 p-3">
+                <PanelCard className="w-full space-y-2 p-3">
                   {PROVIDERS.map((p) => (
                     <NodeRow key={p.label} Icon={p.Icon} label={p.label} meta={p.meta} accent={GREEN} />
                   ))}
-                </GlassCard>
+                </PanelCard>
               </div>
             </div>
           </div>

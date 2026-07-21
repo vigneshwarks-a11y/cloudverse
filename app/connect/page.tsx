@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CheckCircle } from "@/lib/solar-icons";
+import { HeroSquares, HeroEyebrow } from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "Book a Demo: CloudVerse",
@@ -27,11 +28,12 @@ const PROOF = [
 
 export default function ConnectPage() {
   return (
-    <section className="cv-hero-bg pt-[120px] sm:pt-[160px] lg:pt-[240px] pb-24 min-h-[80vh]">
+    <section className="cv-hero-bg pt-[120px] sm:pt-[160px] lg:pt-[240px] pb-24 min-h-[80vh]" style={{ background: "hsl(var(--cv-surface))" }}>
+      <HeroSquares />
       <div className="cv-container relative z-10">
         <div className="grid lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-6">
-            <div className="cv-label mb-3">Get a Demo</div>
+            <div className="mb-4"><HeroEyebrow accent="blue">Get a Demo</HeroEyebrow></div>
             <h1 className="cv-h1 text-cv-ink">
               See What's Driving Your Cloud Bill.
             </h1>

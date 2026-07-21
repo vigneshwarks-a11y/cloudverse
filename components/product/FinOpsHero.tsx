@@ -1,43 +1,24 @@
 import Link from "next/link";
-import { ArrowRight, ChartSquare, Bell, Layers, ChatDots } from "@/lib/solar-icons";
+import { ArrowRight } from "@/lib/solar-icons";
 import { DEMO_URL } from "@/lib/links";
-import { PlatformHeroMockup } from "@/components/product/PlatformHeroMockup";
-
-const FINOPS_TABS = [
-  { id: "anomalies", label: "Anomalies", copy: "Find the team and the charge behind a spike within hours, not at month-end.", icon: Bell },
-  { id: "recommendations", label: "Recommendations", copy: "Ranked by impact, specific enough to act on today.", icon: ChartSquare },
-  { id: "allocation", label: "Allocation", copy: "One model across every cloud. Reconciles to finance.", icon: Layers },
-  { id: "platform-ai", label: "Platform AI", copy: "Ask about spend, trends, and savings in plain English.", icon: ChatDots},
-];
+import { PageHero } from "@/components/PageHero";
 
 export function FinOpsHero() {
   return (
-    <div className="cv-hero-bg">
-      <section className="pt-[120px] sm:pt-[160px] pb-16 lg:pt-[240px] lg:pb-20 relative">
-        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
-            <div className="flex-1 min-w-0 lg:max-w-2xl xl:max-w-3xl">
-              <span className="block text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8]">
-                CloudVerse Technology Spend
-              </span>
-              <h1 className="cv-h1 mt-4 leading-[1.25] text-cv-ink">Every technology dollar. Explained, owned, and optimized.</h1>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link href={DEMO_URL} className="cv-btn-primary">
-                  <span>Book a demo</span>
-                  <ArrowRight weight="Linear" size={16} />
-                </Link>
-                <Link href="/contact" className="cv-btn-ghost">Request a technology spend assessment</Link>
-              </div>
-            </div>
-            <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-sm shrink-0">
-              <p className="cv-body text-cv-ink/70">
-                Manage cloud, AI, data-platform, and SaaS spend through one intelligent control plane. CloudVerse connects billing, usage, contracts, and ownership into one data model, no disconnected cost-management tools.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <PlatformHeroMockup tabs={FINOPS_TABS} />
-    </div>
+    <PageHero
+      eyebrow="CloudVerse Technology Spend"
+      accent="blue"
+      title="Every technology dollar. Explained, owned, and optimized."
+      subtitle="Manage cloud, AI, data-platform, and SaaS spend through one intelligent control plane. CloudVerse connects billing, usage, contracts, and ownership into one data model, no disconnected cost-management tools."
+      actions={
+        <>
+          <Link href={DEMO_URL} className="cv-btn-primary">
+            <span>Book a demo</span>
+            <ArrowRight weight="Linear" size={16} />
+          </Link>
+          <Link href="/contact" className="cv-btn-ghost">Request a technology spend assessment</Link>
+        </>
+      }
+    />
   );
 }

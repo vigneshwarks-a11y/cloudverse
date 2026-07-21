@@ -35,11 +35,11 @@ const ROWS: Row[] = [
 
 function Tags({ platforms }: { platforms: string[] }) {
   return (
-    <div className="flex flex-wrap gap-1.5">
+    <div className="flex max-w-[26rem] flex-wrap gap-2">
       {platforms.map((p) => (
         <span
           key={p}
-          className="rounded-full border border-cv-line/70 bg-cv-surface2 px-2 py-0.5 text-[11px] font-medium text-cv-ink/70 dark:border-white/15 dark:bg-white/[0.04]"
+          className="rounded-full border border-cv-line/70 bg-cv-surface2 px-2.5 py-1 text-xs font-medium text-cv-ink/75 dark:border-white/15 dark:bg-white/[0.04]"
         >
           {p}
         </span>
@@ -52,34 +52,37 @@ export function NamedCustomers() {
   return (
     <section className="cv-section bg-cv-surface" data-testid="section-named-customers">
       <div className="cv-container">
-        <div className="grid gap-8 lg:grid-cols-2 lg:gap-14">
-          <div>
-            <p className="cv-label mb-4">Named customer use cases</p>
-            <h2 className="cv-h2 text-cv-ink">Governed in production, across the estate.</h2>
-          </div>
-          <p className="cv-body-lg text-cv-ink/70">
+        <div className="mx-auto max-w-5xl text-center">
+          <p className="cv-label mb-4">Named customer use cases</p>
+          <h2 className="cv-h2 mx-auto max-w-3xl text-cv-ink">Governed in production, across the estate.</h2>
+          <p className="mt-5 cv-body-lg text-cv-ink/70">
             Expansion pattern: Cloud, then Data, then SaaS, then AI, as enterprises bring their full
             technology estate under one model.
           </p>
         </div>
 
         <div className="mt-10 overflow-x-auto rounded-2xl border border-cv-line/60 dark:border-white/10">
-          <table className="w-full min-w-[720px] border-collapse text-sm">
+          <table className="w-full min-w-[760px] border-collapse text-left">
+            <colgroup>
+              <col className="w-[22%]" />
+              <col className="w-[32%]" />
+              <col className="w-[46%]" />
+            </colgroup>
             <thead>
               <tr className="bg-cv-surface2 dark:bg-[#0D0D0D]">
-                <th className="px-5 py-4 text-left text-[11px] font-semibold uppercase tracking-wider text-cv-muted">Customer</th>
-                <th className="px-5 py-4 text-left text-[11px] font-semibold uppercase tracking-wider text-cv-muted">Platforms in scope</th>
-                <th className="px-5 py-4 text-left text-[11px] font-semibold uppercase tracking-wider text-cv-muted">What CloudVerse governs</th>
+                <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-cv-muted">Customer</th>
+                <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-cv-muted">Platforms in scope</th>
+                <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-cv-muted">What CloudVerse governs</th>
               </tr>
             </thead>
             <tbody>
               {ROWS.map((r) => (
                 <tr key={r.customer} className="border-t border-cv-line/50 dark:border-white/10">
-                  <th className="px-5 py-4 text-left align-top text-[14px] font-semibold text-cv-ink">{r.customer}</th>
-                  <td className="px-5 py-4 align-top">
+                  <th className="px-6 py-6 align-top text-base font-semibold text-cv-ink">{r.customer}</th>
+                  <td className="px-6 py-6 align-top">
                     <Tags platforms={r.platforms} />
                   </td>
-                  <td className="px-5 py-4 align-top text-[14px] leading-relaxed text-cv-ink/70">{r.governs}</td>
+                  <td className="px-6 py-6 align-top text-sm leading-relaxed text-cv-ink/70">{r.governs}</td>
                 </tr>
               ))}
             </tbody>

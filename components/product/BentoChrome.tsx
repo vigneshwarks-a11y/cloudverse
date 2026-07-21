@@ -106,7 +106,7 @@ export function FeatureCard({
       </div>
       <div className="flex flex-1 flex-col px-5 pt-6 pb-6 md:px-6 md:pb-7">
         <h3 className="mb-2 text-base font-semibold text-cv-ink md:text-lg">{title}</h3>
-        <p className="text-sm text-cv-muted md:text-base">{desc}</p>
+        <p className="text-sm text-cv-ink/70 md:text-base">{desc}</p>
       </div>
     </div>
   );

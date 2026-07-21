@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle } from "@/lib/solar-icons";
-import { IconChartPie2, IconInvestment, IconShield, IconReceipt } from "nucleo-isometric";
+import { ArrowRight, CheckCircle, ChartSquare, DangerTriangle, Graph, BillList } from "@/lib/solar-icons";
+import { PlatformHeroMockup, type MockupTab } from "@/components/product/PlatformHeroMockup";
+import { LifecycleFlow } from "@/components/product/finops/LifecycleFlow";
 import { IntegrationsMarquee } from "@/components/home/IntegrationsMarquee";
 import { FinopsVarianceMock } from "@/components/product/FinopsVarianceMock";
 import { FaqBlock } from "@/components/FaqBlock";
@@ -45,10 +46,19 @@ const FAQ = [
   ["How does CloudVerse manage AI spend specifically?", "CloudVerse connects provider, model, and workload expenditure to teams, applications, and business outcomes. For runtime AI governance, including workload identity, policy enforcement, approvals, and execution controls, CloudVerse provides AIX."],
 ];
 
+const FINOPS_TABS: MockupTab[] = [
+  { id: "allocation", label: "Cost Allocation", copy: "Every dollar of cloud, AI, data, and SaaS spend mapped to a team, a product, and an owner.", icon: ChartSquare },
+  { id: "anomaly", label: "Anomaly Detection", copy: "Spend spikes traced to a driver and an owner as they happen, not at month-end close.", icon: DangerTriangle },
+  { id: "budgets", label: "Budgets & Forecasts", copy: "Budgets that forecast where spend lands and flag the overrun before it arrives.", icon: Graph },
+  { id: "chargeback", label: "Chargeback", copy: "Audit-ready showback and chargeback every team can reconcile against the bill.", icon: BillList },
+];
+
 export default function FinOpsPage() {
   return (
     <>
       <FinOpsHero />
+
+      <PlatformHeroMockup tabs={FINOPS_TABS} />
 
       {/* DOMAINS OVERVIEW */}
       <FeatureShowcase />
@@ -63,18 +73,20 @@ export default function FinOpsPage() {
         />
 
         <div className="cv-container relative z-10">
-          {/* Heading - two-column left/right */}
-          <div className="grid gap-8 lg:grid-cols-2 lg:gap-14 lg:items-end">
-            <h2 className="cv-h2 text-cv-ink">
+          {/* Heading — centered vertical stack */}
+          <div className="mx-auto max-w-5xl text-center">
+            <h2 className="cv-h2 mx-auto max-w-3xl text-cv-ink">
               Connects to the stack you already run.
             </h2>
-            <p className="cv-body text-cv-ink/60 lg:max-w-md lg:justify-self-end">
+            <p className="mt-5 cv-body-lg text-cv-ink/70">
               AWS, Azure, and Google Cloud for infrastructure. AIX for AI spend, DataX for warehouses, and DevX for the engineering workflow. One view across all of it.
             </p>
           </div>
 
-          {/* Logos marquee - two rows of app-icon tiles */}
-          <IntegrationsMarquee />
+          {/* Logos marquee - full connector breadth */}
+          <div className="mt-14">
+            <IntegrationsMarquee />
+          </div>
 
           {/* Trust line + CTA */}
           <div className="mt-16 flex flex-col items-center gap-4">
@@ -95,16 +107,14 @@ export default function FinOpsPage() {
 
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-2 lg:gap-14">
-            <h2 className="cv-h2 text-cv-ink">Spend is visible. Decisions are still hard.</h2>
-            <div>
-              <p className="cv-body-lg text-cv-ink/80">
-                Across cloud, AI, data, and SaaS, every team gets stuck on the same four questions, and today they get asked in four different tools, by four different owners, with no shared answer.
-              </p>
-              <p className="cv-body-lg text-cv-ink/80 mt-4">
-                What changed, who owns it, whether the spend is justified, and what to do next, answered once, on one record, prioritized by impact across your whole technology budget.
-              </p>
-            </div>
+          <div className="mx-auto max-w-5xl text-center">
+            <h2 className="cv-h2 mx-auto max-w-3xl text-cv-ink">Spend is visible. Decisions are still hard.</h2>
+            <p className="mt-5 cv-body-lg text-cv-ink/70">
+              Across cloud, AI, data, and SaaS, every team gets stuck on the same four questions, and today they get asked in four different tools, by four different owners, with no shared answer.
+            </p>
+            <p className="mt-4 cv-body-lg text-cv-ink/70">
+              What changed, who owns it, whether the spend is justified, and what to do next, answered once, on one record, prioritized by impact across your whole technology budget.
+            </p>
           </div>
           <FinopsVarianceMock />
         </div>
@@ -116,52 +126,24 @@ export default function FinOpsPage() {
         </div>
       </section>
 
-      {/* LIFECYCLE — CloudZero-style split: heading left, isometric icon rows right */}
-      <section className="cv-section bg-cv-surface2 dark:bg-black">
-        <div className="cv-container">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
-            {/* left: eyebrow + heading + lead */}
-            <div className="lg:pt-2">
+      {/* LIFECYCLE — heading band over a flat 2×2 grid of the four lifecycle
+          stages, each framing one real instrument on a cinematic dark field */}
+      <section className="cv-section relative overflow-hidden bg-cv-surface2 dark:bg-black">
+        <div className="cv-container relative">
+          {/* header band — centered vertical stack over a full-width divider */}
+          <div className="border-b border-cv-line/60 pb-10 dark:border-white/10">
+            <div className="mx-auto max-w-5xl text-center">
               <p className="cv-label mb-4">The lifecycle</p>
-              <h2 className="cv-h2 text-cv-ink">Understand. Optimize. Govern. Prove.</h2>
-              <p className="cv-body-lg mt-5 max-w-md text-cv-ink/70">
+              <h2 className="cv-h2 mx-auto max-w-3xl text-cv-ink">Understand. Optimize. Govern. Prove.</h2>
+              <p className="mt-5 cv-body-lg text-cv-ink/70">
                 One model carries every domain from fragmented invoices to continuous economic control: understand what changed and who owns it, optimize toward the highest-impact fix, govern it with budgets and policy, and prove the realized result.
               </p>
             </div>
+          </div>
 
-            {/* right: isometric icon rows */}
-            <div className="divide-y divide-cv-line/60 overflow-hidden rounded-2xl border border-cv-line/60 bg-cv-surface dark:divide-white/10 dark:border-white/10 dark:bg-[#0D0D0D]">
-              {[
-                {
-                  Icon: IconChartPie2,
-                  title: "Understand",
-                  body: "What changed and who owns it. Every dollar mapped to an owner and a driver, across every domain.",
-                },
-                {
-                  Icon: IconInvestment,
-                  title: "Optimize",
-                  body: "Toward the highest-impact fix. Rightsizing, commitments, and waste, ranked by impact and confidence.",
-                },
-                {
-                  Icon: IconShield,
-                  title: "Govern",
-                  body: "Budgets and policy that hold. Guardrails, approvals, and chargeback that survive an audit.",
-                },
-                {
-                  Icon: IconReceipt,
-                  title: "Prove",
-                  body: "The realized result. Savings and unit economics reconciled to the bill, as evidence.",
-                },
-              ].map(({ Icon, title, body }) => (
-                <div key={title} className="flex items-start gap-5 p-6 md:p-7">
-                  <Icon size={46} aria-hidden className="shrink-0 text-[#1664C0] dark:text-[#7CB8F8]" />
-                  <div className="min-w-0">
-                    <h3 className="text-lg font-semibold text-cv-ink">{title}</h3>
-                    <p className="mt-1.5 text-[15px] leading-relaxed text-cv-muted">{body}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+          {/* the four stages as a 2×2 bento */}
+          <div className="mt-12 lg:mt-14">
+            <LifecycleFlow />
           </div>
         </div>
       </section>
@@ -183,7 +165,7 @@ export default function FinOpsPage() {
 
       <section className="cv-section">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-10">Built for every stakeholder</h2>
+          <h2 className="cv-h2 text-cv-ink mb-10 text-center">Built for every stakeholder</h2>
           <WhoUsesItCards
             items={[
               ["FinOps Manager", "Allocation and chargeback that hold up, and a queue of ranked actions instead of a spreadsheet."],

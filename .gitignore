@@ -9,6 +9,8 @@ dist
 .agents
 .claude
 .local
+.impeccable
+skills-lock.json
 
 # Large files (exceed GitHub 100MB limit)
 zirfsNuE

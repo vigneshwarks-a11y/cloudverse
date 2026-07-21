@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import type { ComponentType } from "react";
 import type { IconProps } from "@solar-icons/react";
 import { DEMO_URL } from "@/lib/links";
+import { PageHero } from "@/components/PageHero";
 import AixProvidersMarquee from "@/components/product/AixProvidersMarquee";
 import IntegrationSteps from "@/components/product/IntegrationSteps";
 import IntegrationsCatalog from "@/components/product/IntegrationsCatalog";
@@ -68,42 +69,35 @@ export default function IntegrationsPage() {
   return (
     <>
       {/* HERO */}
-      <div className="cv-hero-bg">
-        <section className="pt-[120px] sm:pt-[160px] pb-16 lg:pt-[240px] lg:pb-24 relative">
-          <div className="cv-container relative z-10">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
-              {/* Left: eyebrow + headline + CTAs */}
-              <div className="flex-1 min-w-0 lg:max-w-2xl xl:max-w-3xl">
-                <p className="cv-label mb-5">Integrations</p>
-                <h1 className="cv-h1 text-cv-ink max-w-3xl">
-                  Connects to the stack<br />
-                  <span className="text-cv-blue dark:text-cv-blue-light">your teams already use.</span>
-                </h1>
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <Link href={DEMO_URL} className="cv-btn-primary">
-                    <span>Set up your integrations</span><ArrowRight weight="Linear" size={16} />
-                  </Link>
-                  <Link href="/contact" className="cv-btn-ghost !text-cv-ink !border-cv-ink/30 hover:!border-cv-ink/60 hover:!bg-cv-ink/10 dark:!text-white dark:!border-white/40 dark:hover:!border-white/70 dark:hover:!bg-white/10">
-                    Request a connector
-                  </Link>
-                </div>
-              </div>
-
-              {/* Right: subhead + trust line */}
-              <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-sm shrink-0">
-                <p className="cv-body text-cv-ink/70">
-                  Add your integration once. CloudVerse handles routing, attribution, and cost tracking across all of them. No code changes when you add a new provider.
-                </p>
-                <div className="mt-5 inline-flex items-center gap-2 text-xs text-cv-muted">
-                  <CheckCircle weight="Linear" size={13} className="text-cv-teal shrink-0" />
-                  Read-only by default. Automation is opt-in, scoped, and logged.
-                </div>
-              </div>
-            </div>
+      <PageHero
+        eyebrow="Integrations"
+        accent="blue"
+        title={
+          <>
+            Connects to the stack{" "}
+            <span className="text-cv-blue dark:text-cv-blue-light">your teams already use.</span>
+          </>
+        }
+        subtitle="Add your integration once. CloudVerse handles routing, attribution, and cost tracking across all of them. No code changes when you add a new provider."
+        actions={
+          <>
+            <Link href={DEMO_URL} className="cv-btn-primary">
+              <span>Set up your integrations</span>
+              <ArrowRight weight="Linear" size={16} />
+            </Link>
+            <Link href="/contact" className="cv-btn-ghost">
+              Request a connector
+            </Link>
+          </>
+        }
+      >
+        <div className="mt-8 flex justify-center">
+          <div className="inline-flex items-center gap-2 text-xs text-cv-muted">
+            <CheckCircle weight="Linear" size={13} className="text-cv-teal shrink-0" />
+            Read-only by default. Automation is opt-in, scoped, and logged.
           </div>
-        </section>
-
-      </div>
+        </div>
+      </PageHero>
 
       {/* AI PROVIDERS — reuse the home marquee design */}
       <section className="cv-section relative overflow-hidden bg-cv-surface2 dark:bg-black">

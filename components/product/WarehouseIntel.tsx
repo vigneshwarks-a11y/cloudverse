@@ -15,7 +15,7 @@ function QueryAttributionViz() {
   ];
   return (
     <Panel className="text-xs">
-      <div className="grid grid-cols-[1.4fr_auto_auto] gap-3 border-b border-cv-line px-3 py-2 text-[10px] uppercase tracking-wide text-cv-muted dark:border-white/10">
+      <div className="grid grid-cols-[1.4fr_auto_auto] gap-3 border-b border-cv-line px-3 py-2 text-[10px] uppercase tracking-wide text-cv-ink/70 dark:border-white/10">
         <span>Query</span>
         <span>Team</span>
         <span className="text-right">Cost</span>
@@ -27,7 +27,7 @@ function QueryAttributionViz() {
           style={hot ? { background: `${BLUE}0d` } : undefined}
         >
           <span className="truncate font-mono text-cv-ink/75">{q}</span>
-          <span className="text-cv-muted">{team}</span>
+          <span className="text-cv-ink/70">{team}</span>
           <span className="text-right font-mono font-medium" style={{ color: hot ? "#D97706" : "hsl(var(--cv-ink))" }}>{cost}</span>
         </div>
       ))}
@@ -43,9 +43,12 @@ function PatternDetectionViz() {
     ["Missing prune", "×64", "info"],
   ];
   return (
-    <Panel className="gap-2.5 p-4 text-xs">
+    <Panel className="gap-1 p-4 text-xs">
       {patterns.map(([label, count, kind]) => (
-        <div key={label} className="flex items-center justify-between rounded-lg border border-cv-line/70 px-3 py-2 dark:border-white/10">
+        <div
+          key={label}
+          className="flex items-center justify-between border-t border-cv-line/70 px-1 py-2.5 first:border-t-0 dark:border-white/10"
+        >
           <span className="flex items-center gap-2 text-cv-ink/75">
             <StatusPill kind={kind} label={count} />
             {label}
@@ -66,7 +69,7 @@ function ForecastViz() {
     <Panel className="p-4 text-xs">
       <div className="mb-3 flex items-end justify-between">
         <div>
-          <div className="text-[10px] uppercase tracking-wide text-cv-muted">Projected close</div>
+          <div className="text-[10px] uppercase tracking-wide text-cv-ink/70">Projected close</div>
           <div className="mt-0.5 font-mono text-xl font-bold text-cv-ink">$128k</div>
         </div>
         <StatusPill kind="flag" label="regression · +38%" />
@@ -88,7 +91,7 @@ function ForecastViz() {
           );
         })}
       </div>
-      <div className="mt-3 text-[11px] text-cv-muted">Flagged before month close</div>
+      <div className="mt-3 text-[11px] text-cv-ink/70">Flagged before month close</div>
     </Panel>
   );
 }
@@ -102,14 +105,14 @@ function AutomationViz() {
   ];
   return (
     <Panel className="text-xs">
-      <div className="border-b border-cv-line px-3 py-2 text-[10px] uppercase tracking-wide text-cv-muted dark:border-white/10">Automation actions</div>
+      <div className="border-b border-cv-line px-3 py-2 text-[10px] uppercase tracking-wide text-cv-ink/70 dark:border-white/10">Automation actions</div>
       {actions.map(([label, kind, status]) => (
         <div key={label} className="flex items-center justify-between gap-3 border-t border-cv-line px-3 py-2.5 first:border-t-0 dark:border-white/10">
           <span className="truncate text-cv-ink/75">{label}</span>
           <StatusPill kind={kind} label={status} />
         </div>
       ))}
-      <div className="border-t border-cv-line px-3 py-2 text-[11px] text-cv-muted dark:border-white/10">Reversible · audited</div>
+      <div className="border-t border-cv-line px-3 py-2 text-[11px] text-cv-ink/70 dark:border-white/10">Reversible · audited</div>
     </Panel>
   );
 }

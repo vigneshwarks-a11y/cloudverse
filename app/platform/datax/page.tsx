@@ -6,6 +6,7 @@ import WarehouseIntel from "@/components/product/WarehouseIntel";
 import { FaqBlock } from "@/components/FaqBlock";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { PlatformHeroMockup } from "@/components/product/PlatformHeroMockup";
+import { PageHero } from "@/components/PageHero";
 import { IntegrationsMarquee } from "@/components/home/IntegrationsMarquee";
 import { BeforeAfterCards, type BeforeAfterRow } from "@/components/product/BeforeAfterCards";
 import { DataxFindingMock, DataxAutomationMock, DataxConnectionMock, DataxPricingMock } from "@/components/product/DataxVisuals";
@@ -59,32 +60,20 @@ const FAQ = [
 export default function DataXPage() {
   return (
     <>
-      <div className="cv-hero-bg">
-        <section className="pt-[120px] sm:pt-[160px] pb-16 lg:pt-[240px] lg:pb-20 relative">
+      <PageHero
+        eyebrow="DataX"
+        accent="amber"
+        title="Find the queries quietly running up your bill."
+        subtitle="Trace warehouse and pipeline cost to the query, the dashboard, the dbt model, and the team that ran it, across Snowflake, Databricks, BigQuery, Fabric, and Synapse."
+        actions={
+          <>
+            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
+            <Link href="/integrations" className="cv-btn-ghost">Explore the platform</Link>
+          </>
+        }
+      />
 
-          <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:gap-20">
-              <div className="flex-1 min-w-0 lg:max-w-2xl xl:max-w-3xl">
-                <span className="block text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8]">
-                  DataX
-                </span>
-                <h1 className="cv-h1 mt-6 leading-[1.25] text-cv-ink">Find the queries quietly running up your bill.</h1>
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
-                  <Link href="/integrations" className="cv-btn-ghost">Explore the platform</Link>
-                </div>
-              </div>
-
-              <div className="mt-10 lg:mt-0 lg:max-w-xs xl:max-w-sm shrink-0">
-                <p className="cv-body text-cv-ink/70">
-                  Trace warehouse and pipeline cost to the query, the dashboard, the dbt model, and the team that ran it, across Snowflake, Databricks, BigQuery, Fabric, and Synapse.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-        <PlatformHeroMockup tabs={DATAX_TABS} />
-      </div>
+      <PlatformHeroMockup tabs={DATAX_TABS} />
 
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">

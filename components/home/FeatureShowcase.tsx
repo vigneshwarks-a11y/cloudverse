@@ -155,15 +155,14 @@ export function FeatureShowcase() {
   return (
     <section className="bg-cv-surface cv-section overflow-hidden">
       <div className="cv-container">
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
-          One platform · Five domains
-        </span>
-
-        <div className="mt-5 flex flex-col lg:flex-row lg:items-start lg:gap-16">
-          <h2 className="cv-h2 flex-1 text-cv-ink">
+        <div className="flex flex-col items-center text-center">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
+            One platform · Five domains
+          </span>
+          <h2 className="cv-h2 mt-5 max-w-3xl text-balance text-cv-ink">
             Every domain of technology spend, one record.
           </h2>
-          <p className="cv-body-lg mt-4 flex-1 text-cv-muted lg:mt-1">
+          <p className="cv-body-lg mt-5 max-w-5xl text-pretty text-cv-muted">
             Cloud taught enterprises what ungoverned spend costs. AI is repeating
             it faster. CloudVerse puts every domain on one record: for AI and
             engineering we sit at the execution path itself; for cloud, data, and

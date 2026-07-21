@@ -13,7 +13,7 @@ function PrDiffViz() {
           cost impact
         </span>
       </div>
-      <div className="mt-1 flex items-center justify-between rounded px-2 py-1.5 bg-[#EF4444]/[0.08] text-cv-ink/55">
+      <div className="mt-1 flex items-center justify-between rounded px-2 py-1.5 bg-[#EF4444]/[0.08] text-cv-ink/70">
         <span>- t3.large</span>
         <span>$2,400/mo</span>
       </div>
@@ -35,7 +35,7 @@ function PolicyViz() {
   ];
   return (
     <Panel className="text-xs">
-      <div className="grid grid-cols-[auto_1fr] gap-3 border-b border-cv-line px-4 py-2 text-[10px] uppercase tracking-wide text-cv-muted dark:border-white/10">
+      <div className="grid grid-cols-[auto_1fr] gap-3 border-b border-cv-line px-4 py-2 text-[10px] uppercase tracking-wide text-cv-ink/70 dark:border-white/10">
         <span>Mode</span>
         <span>Trigger</span>
       </div>
@@ -45,7 +45,7 @@ function PolicyViz() {
           <span className="text-cv-ink/70">{trigger}</span>
         </div>
       ))}
-      <div className="border-t border-cv-line px-4 py-2.5 text-[11px] text-cv-muted dark:border-white/10">Rules versioned in the repo</div>
+      <div className="border-t border-cv-line px-4 py-2.5 text-[11px] text-cv-ink/70 dark:border-white/10">Rules versioned in the repo</div>
     </Panel>
   );
 }
@@ -53,9 +53,12 @@ function PolicyViz() {
 function CiViz() {
   const platforms = ["GitHub Actions", "GitLab CI", "Azure Pipelines", "Jenkins", "Argo"];
   return (
-    <Panel className="gap-2 p-4 text-xs">
+    <Panel className="gap-1 p-4 text-xs">
       {platforms.map((p) => (
-        <div key={p} className="flex items-center justify-between rounded-lg border border-cv-line/70 px-3 py-2 dark:border-white/10">
+        <div
+          key={p}
+          className="flex items-center justify-between border-t border-cv-line/70 px-1 py-2.5 first:border-t-0 dark:border-white/10"
+        >
           <span className="text-cv-ink/80">{p}</span>
           <StatusPill kind="ok" label="connected" />
         </div>
