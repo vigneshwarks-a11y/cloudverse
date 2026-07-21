@@ -44,7 +44,7 @@ function FaqRow({ item, isOpen, onToggle, index }: {
       >
         <div className="overflow-hidden">
           <div
-            className="px-5 pb-4 text-[16px] text-cv-ink/60 leading-relaxed"
+            className="px-5 pb-4 text-[16px] text-cv-ink/70 leading-relaxed"
             style={{
               opacity: isOpen ? 1 : 0,
               transform: isOpen ? "translateY(0)" : "translateY(-4px)",

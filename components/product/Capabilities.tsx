@@ -134,7 +134,7 @@ function RoutingMock() {
     <div className="w-full rounded-xl border border-cv-line/70 px-3.5 py-3.5 dark:border-white/10">
       <div className="mb-3 flex items-baseline justify-between">
         <span className="text-[13px] font-medium text-cv-ink">Routing</span>
-        <span className="font-mono text-[12px] tabular-nums text-cv-ink/60">Balanced</span>
+        <span className="font-mono text-[12px] tabular-nums text-cv-ink/70">Balanced</span>
       </div>
       <div className="relative h-1.5 w-full rounded-full bg-cv-ink/[0.07] dark:bg-white/[0.08]">
         <div className="h-full rounded-full" style={{ width: "52%", background: PURPLE }} />
@@ -234,7 +234,7 @@ export function Capabilities({
   return (
     <section className="cv-section bg-cv-surface">
       <div className="cv-container">
-        <div className="mb-10 max-w-3xl">
+        <div className="mx-auto mb-10 max-w-3xl text-center">
           <div className="cv-label mb-3" style={{ color }}>{label}</div>
           <h2 className="cv-h2 text-cv-ink">{heading}</h2>
         </div>

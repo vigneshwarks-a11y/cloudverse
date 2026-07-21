@@ -31,13 +31,13 @@ export default function ConnectPage() {
     <section className="cv-hero-bg pt-[120px] sm:pt-[160px] lg:pt-[240px] pb-24 min-h-[80vh]" style={{ background: "hsl(var(--cv-surface))" }}>
       <HeroSquares />
       <div className="cv-container relative z-10">
-        <div className="grid lg:grid-cols-12 gap-10 items-start">
-          <div className="lg:col-span-6">
+        <div className="flex flex-col items-center gap-10">
+          <div className="mx-auto max-w-2xl text-center">
             <div className="mb-4"><HeroEyebrow accent="blue">Get a Demo</HeroEyebrow></div>
             <h1 className="cv-h1 text-cv-ink">
               See What's Driving Your Cloud Bill.
             </h1>
-            <p className="cv-body-lg mt-6 text-cv-ink/75 max-w-xl">
+            <p className="cv-body-lg mt-6 text-cv-ink/75 max-w-xl mx-auto">
               A 30-minute working session with our solutions team. We connect a sample account live and walk you through your first findings.
             </p>
             <ul className="mt-8 space-y-3">
@@ -56,7 +56,7 @@ export default function ConnectPage() {
             </div>
           </div>
 
-          <div className="lg:col-span-6">
+          <div className="mx-auto w-full max-w-xl">
             <div
               className="rounded-2xl border border-cv-line/10 p-7 sm:p-8"
               style={{ background: "rgba(255,255,255,0.04)", backdropFilter: "blur(8px)" }}

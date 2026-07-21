@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { CheckCircle } from "@/lib/solar-icons";
 
-const BLUE = "#2278E0";
+const BLUE = "#6954D4";
 
 /* Shared with the "Four problems AIX fixes" cards: a soft bottom fade on
    every mock panel + a semantic status palette surfaced as small rounded
@@ -53,13 +53,13 @@ function FeatureCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-xl border border-cv-line/60 bg-cv-surface dark:border-white/10 dark:bg-[#0D0D0D]">
+    <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-cv-line/60 bg-cv-surface shadow-[0_20px_50px_-30px_rgba(16,24,40,0.28)] transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-white/[0.07] dark:bg-[#0D0D0D] dark:shadow-[0_38px_84px_-34px_rgba(0,0,0,0.82)]">
       <div className="relative flex h-64 shrink-0 items-center justify-center overflow-hidden bg-cv-surface2 p-6 dark:bg-black">
-        {/* soft radial blue glow, upper-right */}
+        {/* soft radial module glow, upper-right */}
         <div
           aria-hidden
           className="pointer-events-none absolute -right-16 -top-20 h-48 w-48 rounded-full blur-3xl"
-          style={{ background: "radial-gradient(circle, rgba(34,120,224,0.18), transparent 70%)" }}
+          style={{ background: "radial-gradient(circle, rgba(105,84,212,0.18), transparent 70%)" }}
         />
         <div className="relative flex h-full w-full flex-col justify-center">{children}</div>
       </div>

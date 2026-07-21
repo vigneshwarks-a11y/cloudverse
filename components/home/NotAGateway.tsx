@@ -30,16 +30,14 @@ export function NotAGateway() {
   return (
     <section className="cv-section bg-cv-surface" data-testid="section-not-a-gateway">
       <div className="cv-container">
-        <div className="grid gap-8 lg:grid-cols-2 lg:gap-14 lg:items-end">
-          <div>
-            <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
-              How AIX compares
-            </span>
-            <h2 className="cv-h2 text-balance text-cv-ink">
-              Not a gateway. Not observability. Not a cost tool.
-            </h2>
-          </div>
-          <p className="cv-body text-cv-ink/70 lg:max-w-md lg:justify-self-end">
+        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
+            How AIX compares
+          </span>
+          <h2 className="cv-h2 text-balance text-cv-ink">
+            Not a gateway. Not observability. Not a cost tool.
+          </h2>
+          <p className="cv-body mt-4 text-cv-ink/70">
             Adjacent tools see pieces. AIX governs the whole.
           </p>
         </div>
@@ -92,7 +90,7 @@ export function NotAGateway() {
           </table>
         </div>
 
-        <p className="mt-4 max-w-3xl text-sm italic text-cv-ink/60">
+        <p className="mt-4 max-w-3xl text-sm italic text-cv-ink/70">
           Each adjacent category is good at its piece. None combines cross-estate discovery, in-path
           enforcement, and an economics ledger deployable inside your own boundary.
         </p>

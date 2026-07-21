@@ -86,9 +86,9 @@ export default function DevXPage() {
 
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-2 lg:gap-14">
+          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
             <h2 className="cv-h2 text-cv-ink">Infrastructure cost mistakes don&apos;t look like mistakes.</h2>
-            <div>
+            <div className="mt-4">
               <p className="cv-body-lg text-cv-ink/80">
                 A change ships. It passes review, it passes tests, it looks fine. The cost shows up weeks later on a bill nobody connects back to that pull request. By then the fix means unwinding work already in production.
               </p>

@@ -73,8 +73,8 @@ export default function FinOpsTeamsPage() {
       {/* THE SITUATION — two-column lead-in */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-stretch lg:gap-16">
-            <div>
+          <div className="flex flex-col items-center gap-10">
+            <div className="mx-auto max-w-2xl text-center">
               <SectionEyebrow className="mb-4">The situation</SectionEyebrow>
               <h2 className="cv-h2 text-cv-ink text-balance">The situation FinOps teams are in.</h2>
               <p className="cv-body-lg text-cv-ink/80 mt-6">
@@ -84,7 +84,7 @@ export default function FinOpsTeamsPage() {
                 And now AI spend is landing in places where the value isn&apos;t quantified yet. One model across infrastructure, data, and AI is the only way the numbers reconcile.
               </p>
             </div>
-            <div className="flex">
+            <div className="mx-auto w-full max-w-3xl">
               <Panel className="justify-between p-6" chrome="finops.app/variance">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] uppercase tracking-wide text-cv-muted">This month&apos;s variance</span>
@@ -111,8 +111,10 @@ export default function FinOpsTeamsPage() {
       {/* WHAT IT'S COSTING YOU TODAY — card grid */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">The cost of the gap</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink mb-8">What that&apos;s costing you today.</h2>
+          <div className="mx-auto max-w-2xl mb-8 text-center">
+            <SectionEyebrow className="mb-4">The cost of the gap</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">What that&apos;s costing you today.</h2>
+          </div>
           <BulletGrid items={COSTS} tone="negative" />
         </div>
       </section>
@@ -120,8 +122,10 @@ export default function FinOpsTeamsPage() {
       {/* WHAT FINOPS TEAMS SHIP */}
       <section className="cv-section">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">What you ship</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink mb-10">What FinOps teams ship faster with CloudVerse</h2>
+          <div className="mx-auto max-w-2xl mb-10 text-center">
+            <SectionEyebrow className="mb-4">What you ship</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">What FinOps teams ship faster with CloudVerse</h2>
+          </div>
           <FinopsShips
             items={[
               ["Allocation everyone agrees on", "Shared spend mapped to teams, products, and environments automatically. Chargeback that survives an audit."],
@@ -136,15 +140,17 @@ export default function FinOpsTeamsPage() {
       {/* HOW IT WORKS — flow diagram */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink">How compute economics works.</h2>
-          <div className="mt-4 max-w-3xl space-y-4 mb-12">
-            <p className="cv-body-lg text-cv-muted">
-              Modern AI stacks have observability and orchestration. What they lack is economic control at the decision point.
-            </p>
-            <p className="cv-body-lg text-cv-muted">
-              CloudVerse embeds economic decision logic across model selection, workload execution, and capacity commitments, so every compute decision is evaluated for cost, performance, and risk before it scales.
-            </p>
+          <div className="mx-auto max-w-3xl mb-12 text-center">
+            <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">How compute economics works.</h2>
+            <div className="mt-4 space-y-4">
+              <p className="cv-body-lg text-cv-muted">
+                Modern AI stacks have observability and orchestration. What they lack is economic control at the decision point.
+              </p>
+              <p className="cv-body-lg text-cv-muted">
+                CloudVerse embeds economic decision logic across model selection, workload execution, and capacity commitments, so every compute decision is evaluated for cost, performance, and risk before it scales.
+              </p>
+            </div>
           </div>
           <FinopsHowItWorks />
         </div>
@@ -153,14 +159,14 @@ export default function FinOpsTeamsPage() {
       {/* CUSTOMER PROOF */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:items-center lg:gap-16">
-            <div>
+          <div className="flex flex-col items-center gap-10">
+            <div className="mx-auto max-w-2xl text-center">
               <SectionEyebrow className="mb-4">Customer proof</SectionEyebrow>
-              <h2 className="cv-h2 text-cv-ink max-w-xl">How Berkshire Hathaway HomeServices recovered $738,983</h2>
-              <p className="mt-6 leading-relaxed text-cv-ink/80 max-w-xl">
+              <h2 className="cv-h2 text-cv-ink">How Berkshire Hathaway HomeServices recovered $738,983</h2>
+              <p className="mt-6 leading-relaxed text-cv-ink/80">
                 A growing AWS estate, fragmented tagging, and no team-level attribution. CloudVerse tied spend to teams, surfaced the anomalies that mattered, and gave finance a model that held up under review.
               </p>
-              <div className="mt-8 flex flex-wrap gap-6">
+              <div className="mt-8 flex flex-wrap justify-center gap-6">
                 <div>
                   <div className="font-mono text-2xl font-bold text-cv-ink tracking-tight">$101,736</div>
                   <p className="mt-1 text-xs text-cv-muted">annual recovery</p>
@@ -172,7 +178,9 @@ export default function FinOpsTeamsPage() {
                 </div>
               </div>
             </div>
-            <FinopsClusterMock />
+            <div className="mx-auto w-full max-w-3xl">
+              <FinopsClusterMock />
+            </div>
           </div>
         </div>
       </section>
@@ -180,12 +188,10 @@ export default function FinOpsTeamsPage() {
       {/* HOW THIS IS DIFFERENT — two-column lead-in */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="grid gap-8 lg:grid-cols-2 lg:gap-14">
-            <div>
-              <SectionEyebrow className="mb-4">The difference</SectionEyebrow>
-              <h2 className="cv-h2 text-cv-ink text-balance">How this is different</h2>
-            </div>
-            <p className="cv-body-lg text-cv-ink/80 lg:self-end">
+          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+            <SectionEyebrow className="mb-4">The difference</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink text-balance">How this is different</h2>
+            <p className="cv-body-lg mt-4 text-cv-ink/80">
               Dashboards explain the invoice. CloudVerse governs the decisions that shape it: PR-level checks in engineering workflows, AI and GPU economics, and warehouse query attribution. All on one model.
             </p>
           </div>
@@ -200,8 +206,10 @@ export default function FinOpsTeamsPage() {
       {/* OUTCOMES — card grid with bolded lead */}
       <section className="cv-section">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">Outcomes</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink mb-8">Outcomes you can defend.</h2>
+          <div className="mx-auto max-w-2xl mb-8 text-center">
+            <SectionEyebrow className="mb-4">Outcomes</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">Outcomes you can defend.</h2>
+          </div>
           <BulletGrid items={OUTCOMES} tone="positive" />
         </div>
       </section>
@@ -209,8 +217,10 @@ export default function FinOpsTeamsPage() {
       {/* PLATFORM */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">Platform</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink mb-8">Platform that powers this solution</h2>
+          <div className="mx-auto max-w-2xl mb-8 text-center">
+            <SectionEyebrow className="mb-4">Platform</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">Platform that powers this solution</h2>
+          </div>
           <PlatformCards
             items={[
               ["FinOps Platform", "Allocation, forecasting, anomalies, commitments", "/platform/finops"],

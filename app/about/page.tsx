@@ -73,14 +73,12 @@ export default function Page() {
       {/* Mission */}
       <section className="cv-section bg-cv-surface">
         <div className="cv-container">
-          <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16 items-start">
-            <div>
-              <Eyebrow>Our Mission</Eyebrow>
-              <h2 className="cv-h2 text-cv-ink max-w-md">
-                Transparent, predictable, and profitable.
-              </h2>
-            </div>
-            <p className="text-cv-ink/70 leading-relaxed text-lg">
+          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+            <Eyebrow>Our Mission</Eyebrow>
+            <h2 className="cv-h2 text-cv-ink">
+              Transparent, predictable, and profitable.
+            </h2>
+            <p className="text-cv-ink/70 leading-relaxed text-lg mt-4">
               CloudVerse™ is building the compute economics layer the cloud era was always
               missing. As AI workloads multiply and cloud spend becomes a defining business
               variable, enterprises need more than dashboards. They need an intelligent platform
@@ -93,8 +91,10 @@ export default function Page() {
       {/* Story */}
       <section className="cv-section bg-cv-surface2">
         <div className="cv-container">
-          <Eyebrow>Our Story</Eyebrow>
-          <h2 className="cv-h2 text-cv-ink max-w-2xl">Why we built CloudVerse™</h2>
+          <div className="mx-auto max-w-2xl text-center">
+            <Eyebrow>Our Story</Eyebrow>
+            <h2 className="cv-h2 text-cv-ink">Why we built CloudVerse™</h2>
+          </div>
           <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-5">
             <div className="rounded-2xl border border-cv-line/40 bg-cv-card dark:bg-black p-6">
               <p className="text-cv-ink/75 leading-relaxed">
@@ -125,11 +125,13 @@ export default function Page() {
       {/* Values */}
       <section className="cv-section bg-cv-surface">
         <div className="cv-container">
-          <Eyebrow>What we believe</Eyebrow>
-          <h2 className="cv-h2 text-cv-ink max-w-2xl">Principles that guide our platform</h2>
-          <p className="mt-4 cv-body text-cv-ink/70 max-w-xl">
-            Four ideas shape every product decision we make.
-          </p>
+          <div className="mx-auto max-w-2xl text-center">
+            <Eyebrow>What we believe</Eyebrow>
+            <h2 className="cv-h2 text-cv-ink">Principles that guide our platform</h2>
+            <p className="mt-4 cv-body text-cv-ink/70">
+              Four ideas shape every product decision we make.
+            </p>
+          </div>
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {VALUES.map((v, idx) => {
               const Icon = v.icon;
@@ -143,7 +145,7 @@ export default function Page() {
                     <Icon weight="Linear" className="w-5 h-5 text-cv-blue" />
                   </div>
                   <h3 className="text-base font-semibold text-cv-ink mb-2">{v.title}</h3>
-                  <p className="text-sm text-cv-ink/60 leading-relaxed">{v.desc}</p>
+                  <p className="text-sm text-cv-ink/70 leading-relaxed">{v.desc}</p>
                 </div>
               );
             })}
@@ -154,12 +156,14 @@ export default function Page() {
       {/* Products */}
       <section className="cv-section bg-cv-surface2">
         <div className="cv-container">
-          <Eyebrow>What we build</Eyebrow>
-          <h2 className="cv-h2 text-cv-ink max-w-2xl">One platform, four specialized products</h2>
-          <p className="mt-4 cv-body text-cv-ink/70 max-w-xl">
-            Each module solves a specific layer of the cloud economics problem, together they
-            form an end-to-end decision layer.
-          </p>
+          <div className="mx-auto max-w-2xl text-center">
+            <Eyebrow>What we build</Eyebrow>
+            <h2 className="cv-h2 text-cv-ink">One platform, four specialized products</h2>
+            <p className="mt-4 cv-body text-cv-ink/70">
+              Each module solves a specific layer of the cloud economics problem, together they
+              form an end-to-end decision layer.
+            </p>
+          </div>
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {PRODUCTS.map((p, idx) => {
               const Icon = p.icon;
@@ -178,7 +182,7 @@ export default function Page() {
                   <h3 className="text-base font-semibold text-cv-ink mb-2 group-hover:text-cv-blue transition-colors">
                     {p.name}
                   </h3>
-                  <p className="text-sm text-cv-ink/60 leading-relaxed mb-3">{p.tagline}</p>
+                  <p className="text-sm text-cv-ink/70 leading-relaxed mb-3">{p.tagline}</p>
                   <span className="inline-flex items-center gap-1 text-xs font-medium text-cv-blue group-hover:gap-2 transition-all">
                     Learn more <ArrowRight weight="Linear" size={12} />
                   </span>
@@ -192,8 +196,8 @@ export default function Page() {
       {/* Vision */}
       <section className="cv-section bg-cv-surface">
         <div className="cv-container">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-center">
-            <div className="max-w-2xl">
+          <div className="flex flex-col items-center gap-8">
+            <div className="mx-auto max-w-2xl text-center">
               <Eyebrow>Where we&apos;re going</Eyebrow>
               <h2 className="cv-h2 text-cv-ink">
                 An AI-native economic decision layer for every enterprise

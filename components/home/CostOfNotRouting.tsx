@@ -52,14 +52,12 @@ export function CostOfNotRouting() {
   return (
     <section className="cv-section bg-cv-surface2 dark:bg-black" data-testid="section-cost-of-not-routing">
       <div className="cv-container">
-        <div className="grid gap-8 lg:grid-cols-2 lg:gap-14 lg:items-end">
-          <div>
-            <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
-              Economics
-            </span>
-            <h2 className="cv-h2 text-cv-ink">The cost of not routing.</h2>
-          </div>
-          <p className="cv-body text-cv-ink/70 lg:max-w-md lg:justify-self-end">
+        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
+            Economics
+          </span>
+          <h2 className="cv-h2 text-cv-ink">The cost of not routing.</h2>
+          <p className="cv-body mt-4 text-cv-ink/70">
             Every hardcoded endpoint spends money without making a decision. The same work, on the right
             model, often costs a fraction, at the same or better quality.
           </p>
@@ -85,7 +83,7 @@ export function CostOfNotRouting() {
                   {SCALE_ROWS.map(([vol, hard, aix, save]) => (
                     <tr key={vol} className="border-b border-cv-line/30 last:border-0 dark:border-white/[0.06]">
                       <td className="px-5 py-3.5 text-cv-ink/80">{vol}</td>
-                      <td className="px-5 py-3.5 text-right font-mono text-cv-ink/60">{hard}</td>
+                      <td className="px-5 py-3.5 text-right font-mono text-cv-ink/70">{hard}</td>
                       <td className="px-5 py-3.5 text-right font-mono text-cv-ink">{aix}</td>
                       <td className="px-5 py-3.5 text-right font-mono font-semibold text-cv-teal">{save}</td>
                     </tr>

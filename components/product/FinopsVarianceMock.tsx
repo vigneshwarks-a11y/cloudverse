@@ -223,9 +223,9 @@ export function FinopsVarianceMock() {
           <div className="cv-record-rise flex items-baseline justify-between" style={{ animationDelay: "0ms" }}>
             <span className="flex items-baseline gap-2">
               <span className="font-mono text-[19px] font-semibold tabular-nums cv-amber-text">+$18,400</span>
-              <span className="text-[11px] font-medium text-cv-ink/60">variance</span>
+              <span className="text-[11px] font-medium text-cv-ink/70">variance</span>
             </span>
-            <span className="text-[10.5px] text-cv-ink/60">vs. forecast</span>
+            <span className="text-[10.5px] text-cv-ink/70">vs. forecast</span>
           </div>
 
           <div className="mt-4 grid flex-1 grid-cols-1 gap-2.5 sm:grid-cols-2">

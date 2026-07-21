@@ -4,7 +4,7 @@ export function WhoUsesIt({ color, items }: { color: string; items: Audience[] }
   return (
     <section className="cv-section bg-cv-surface">
       <div className="cv-container">
-        <div className="max-w-3xl mb-10">
+        <div className="mx-auto max-w-3xl mb-10 text-center">
           <div className="cv-label mb-3" style={{ color }}>Who uses it</div>
           <h2 className="cv-h2 text-cv-ink">Built for the teams accountable for the bill.</h2>
         </div>

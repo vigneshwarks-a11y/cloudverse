@@ -77,9 +77,9 @@ export default function DataXPage() {
 
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-2 lg:gap-14">
+          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
             <h2 className="cv-h2 text-cv-ink">Your data warehouse is a blank check.</h2>
-            <div>
+            <div className="mt-4">
               <p className="cv-body-lg text-cv-ink/80">
                 Warehouse and pipeline cost scales with how people use it, and it rarely maps back to a team or a product. A single query can scan hundreds of gigabytes and cost more than a server. Run it on a schedule and it compounds, quietly, on someone else&apos;s budget.
               </p>
@@ -104,8 +104,8 @@ export default function DataXPage() {
       {/* $117 FINDING */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-3">We find the leaks billing dashboards miss.</h2>
-          <p className="text-cv-ink/70 italic mb-10">This is a real DataX finding. Not a mock. Not an illustration.</p>
+          <h2 className="cv-h2 text-cv-ink mb-3 mx-auto max-w-3xl text-center">We find the leaks billing dashboards miss.</h2>
+          <p className="text-cv-ink/70 italic mb-10 mx-auto max-w-3xl text-center">This is a real DataX finding. Not a mock. Not an illustration.</p>
           <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-14">
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
               {[
@@ -130,8 +130,8 @@ export default function DataXPage() {
       {/* PRICING PHILOSOPHY */}
       <section className="cv-section bg-cv-surface">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-5">DataX doesn&apos;t profit from your inefficiency.</h2>
-          <p className="cv-body-lg text-cv-ink/75 mb-10">
+          <h2 className="cv-h2 text-cv-ink mb-5 mx-auto max-w-3xl text-center">DataX doesn&apos;t profit from your inefficiency.</h2>
+          <p className="cv-body-lg text-cv-ink/75 mb-10 mx-auto max-w-3xl text-center">
             DataX prices on the structural drivers of your data platform cost, not on billing noise.
           </p>
           <div className="grid gap-5 lg:grid-cols-[1.5fr_1fr] lg:items-stretch">
@@ -171,13 +171,13 @@ export default function DataXPage() {
       {/* SAFE AUTOMATION */}
       <section className="cv-section">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-5">Automation without losing control.</h2>
-          <p className="cv-body-lg text-cv-ink/75 mb-2">
+          <h2 className="cv-h2 text-cv-ink mb-5 mx-auto max-w-3xl text-center">Automation without losing control.</h2>
+          <p className="cv-body-lg text-cv-ink/75 mb-2 mx-auto max-w-3xl text-center">
             DataX applies approved optimisations within the policies you define.
           </p>
-          <p className="text-cv-ink/70 italic mb-10">The automation model is about DataX behaviour, not your pipelines.</p>
-          <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-14">
-            <div className="grid gap-8 sm:grid-cols-2">
+          <p className="text-cv-ink/70 italic mb-10 mx-auto max-w-3xl text-center">The automation model is about DataX behaviour, not your pipelines.</p>
+          <div className="flex flex-col items-center gap-10">
+            <div className="mx-auto w-full max-w-2xl grid gap-8 sm:grid-cols-2 text-center">
               <div>
                 <div className="cv-label mb-3">Controls</div>
                 <ul className="space-y-2 text-cv-ink/85">
@@ -197,7 +197,9 @@ export default function DataXPage() {
                 </ul>
               </div>
             </div>
-            <DataxAutomationMock />
+            <div className="mx-auto w-full max-w-3xl">
+              <DataxAutomationMock />
+            </div>
           </div>
           <p className="text-cv-ink font-medium mt-10 italic">If it was not logged, it did not happen.</p>
         </div>
@@ -218,7 +220,7 @@ export default function DataXPage() {
             <h2 className="cv-h2 text-cv-ink mx-auto max-w-2xl">
               Connects to the stack your teams already run.
             </h2>
-            <p className="mt-5 cv-body text-cv-ink/60 max-w-lg mx-auto">
+            <p className="mt-5 cv-body text-cv-ink/70 max-w-lg mx-auto">
               Cloud, models, GPUs, data warehouses, and CI, connected once.
             </p>
           </div>
@@ -246,11 +248,11 @@ export default function DataXPage() {
       {/* CONNECTION MODEL — least-privilege story */}
       <section className="cv-section">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-5">Built for least privilege.</h2>
-          <p className="cv-body-lg text-cv-ink/75 mb-10 max-w-3xl">
+          <h2 className="cv-h2 text-cv-ink mb-5 mx-auto max-w-3xl text-center">Built for least privilege.</h2>
+          <p className="cv-body-lg text-cv-ink/75 mb-10 max-w-3xl mx-auto text-center">
             Connect platforms using read-only access by default. Enable automation only when you are ready: scoped, auditable, reversible.
           </p>
-          <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-14">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>
               <div className="cv-label mb-4">Connection model</div>
               <ol className="space-y-2 text-cv-ink/85">
@@ -264,7 +266,9 @@ export default function DataXPage() {
                 Read-only means read-only. DataX ingests metadata, query logs, and billing telemetry. It never touches your underlying data, workload code, or runtime configuration unless you explicitly grant automation permissions.
               </p>
             </div>
-            <DataxConnectionMock />
+            <div className="w-full">
+              <DataxConnectionMock />
+            </div>
           </div>
         </div>
       </section>

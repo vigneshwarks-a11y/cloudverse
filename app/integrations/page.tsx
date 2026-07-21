@@ -109,7 +109,7 @@ export default function IntegrationsPage() {
         <div className="cv-container relative z-10">
           <div className="text-center">
             <h2 className="cv-h2 text-cv-ink mx-auto max-w-2xl">Every model provider, one endpoint.</h2>
-            <p className="mt-5 cv-body text-cv-ink/60 max-w-lg mx-auto">
+            <p className="mt-5 cv-body text-cv-ink/70 max-w-lg mx-auto">
               Route across managed APIs and private deployments without changing your application code.
             </p>
           </div>
@@ -121,8 +121,10 @@ export default function IntegrationsPage() {
       {/* INTEGRATIONS DIRECTORY — searchable catalog */}
       <section className="cv-section">
         <div className="cv-container">
-          <p className="cv-label mb-4">Integration directory</p>
-          <h2 className="cv-h2 text-cv-ink max-w-2xl">Browse every connector.</h2>
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="cv-label mb-4">Integration directory</p>
+            <h2 className="cv-h2 text-cv-ink">Browse every connector.</h2>
+          </div>
           <div className="mt-10">
             <IntegrationsCatalog />
           </div>
@@ -132,8 +134,10 @@ export default function IntegrationsPage() {
       {/* INTEGRATION CATEGORIES — bento */}
       <section className="cv-section">
         <div className="cv-container">
-          <p className="cv-label mb-4">What we connect</p>
-          <h2 className="cv-h2 text-cv-ink max-w-2xl">Every layer of your compute stack, in one place.</h2>
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="cv-label mb-4">What we connect</p>
+            <h2 className="cv-h2 text-cv-ink">Every layer of your compute stack, in one place.</h2>
+          </div>
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {CATEGORIES.map(({ title, body, Icon }) => (
               <div
@@ -161,8 +165,8 @@ export default function IntegrationsPage() {
       {/* SECURITY / PERMISSIONS MODEL */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
-            <div>
+          <div className="flex flex-col items-center gap-10">
+            <div className="mx-auto max-w-2xl text-center">
               <p className="cv-label mb-4">Security model</p>
               <h2 className="cv-h2 text-cv-ink">Read-only by default. Automation is opt-in.</h2>
               <p className="cv-body-lg text-cv-ink/75 mt-6">
@@ -173,7 +177,7 @@ export default function IntegrationsPage() {
               </Link>
             </div>
 
-            <div className="rounded-2xl border border-cv-line/60 bg-cv-surface2 dark:bg-[#0D0D0D] p-6 lg:p-8">
+            <div className="mx-auto w-full max-w-2xl rounded-2xl border border-cv-line/60 bg-cv-surface2 dark:bg-[#0D0D0D] p-6 lg:p-8">
               <div className="mb-5 flex items-center gap-2.5">
                 <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#1664C0]/12 text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
                   <ShieldCheck weight="Bold" size={18} />
@@ -198,8 +202,10 @@ export default function IntegrationsPage() {
       {/* ENTERPRISE ACCESS — bento */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <p className="cv-label mb-4">Enterprise-ready</p>
-          <h2 className="cv-h2 text-cv-ink max-w-2xl">Built for enterprise access patterns.</h2>
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="cv-label mb-4">Enterprise-ready</p>
+            <h2 className="cv-h2 text-cv-ink">Built for enterprise access patterns.</h2>
+          </div>
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {ENTERPRISE.map(([t, b]) => (
               <div key={t} className="rounded-2xl border border-cv-line/60 bg-cv-surface dark:bg-[#0D0D0D] p-6 lg:p-8">
@@ -215,9 +221,9 @@ export default function IntegrationsPage() {
       {/* PRIVATE DEPLOYMENTS + GPU */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-            {/* left: eyebrow + heading + body */}
-            <div>
+          <div className="flex flex-col items-center gap-10">
+            {/* top: eyebrow + heading + body */}
+            <div className="mx-auto max-w-2xl text-center">
               <p className="cv-label mb-4">Private compute</p>
               <h2 className="cv-h2 text-cv-ink">Private deployments and GPU infrastructure.</h2>
               <p className="cv-body-lg text-cv-ink/75 mt-6">
@@ -225,8 +231,8 @@ export default function IntegrationsPage() {
               </p>
             </div>
 
-            {/* right: bordered grid of icon-cell rows */}
-            <div className="overflow-hidden rounded-2xl border border-cv-line/70 divide-y divide-cv-line/70 dark:border-white/10 dark:divide-white/10">
+            {/* below: bordered grid of icon-cell rows */}
+            <div className="mx-auto w-full max-w-2xl overflow-hidden rounded-2xl border border-cv-line/70 divide-y divide-cv-line/70 dark:border-white/10 dark:divide-white/10">
               {GPU_ITEMS.map(({ title, body, Icon }) => (
                 <div key={title} className="grid grid-cols-[auto_1fr] items-stretch">
                   <div className="flex items-center justify-center border-r border-cv-line/70 px-7 py-6 text-cv-blue dark:border-white/10 dark:text-cv-blue-light sm:px-9">
@@ -246,8 +252,10 @@ export default function IntegrationsPage() {
       {/* THREE STEPS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <p className="cv-label mb-4">Getting started</p>
-          <h2 className="cv-h2 text-cv-ink max-w-2xl">Three steps to go live.</h2>
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="cv-label mb-4">Getting started</p>
+            <h2 className="cv-h2 text-cv-ink">Three steps to go live.</h2>
+          </div>
           <div className="mt-12">
             <IntegrationSteps />
           </div>

@@ -4,7 +4,7 @@ export function Lifecycle({ color, stages }: { color: string; stages: [Lifecycle
   return (
     <section className="cv-section bg-cv-surface2">
       <div className="cv-container">
-        <div className="max-w-3xl mb-12">
+        <div className="mx-auto max-w-3xl mb-12 text-center">
           <div className="cv-label mb-3" style={{ color }}>Lifecycle</div>
           <h2 className="cv-h2 text-cv-ink">Inform. Optimize. Operate.</h2>
         </div>

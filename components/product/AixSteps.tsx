@@ -72,7 +72,7 @@ const STEPS: Step[] = [
   },
 ];
 
-const ACCENT = "#2278E0";
+const ACCENT = "#6954D4";
 const DWELL_MS = 5000;
 
 function Line({ variant = "dashed" }: { variant?: "dashed" | "solid" }) {
@@ -175,7 +175,7 @@ export default function AixSteps() {
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0"
-            style={{ background: "radial-gradient(70% 90% at 78% 20%, rgba(34,120,224,0.12), transparent 70%)" }}
+            style={{ background: "radial-gradient(70% 90% at 78% 20%, rgba(105,84,212,0.14), transparent 70%)" }}
           />
           {/* CloudVerse product screen (the "One system of record" dashboard),
               full-width edge to edge */}

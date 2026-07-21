@@ -77,7 +77,7 @@ function GlassCard({
   wide?: boolean;
 }) {
   return (
-    <article className="relative flex h-full flex-col overflow-hidden rounded-[22px] border border-cv-line/50 bg-cv-surface2 p-6 shadow-[0_20px_50px_-30px_rgba(16,24,40,0.28)] dark:border-white/[0.07] dark:bg-cv-card dark:shadow-[0_38px_84px_-34px_rgba(0,0,0,0.82)] lg:p-7">
+    <article className="cv-visual-well relative flex h-full flex-col overflow-hidden rounded-[22px] border border-cv-line/50 bg-cv-surface2 p-6 shadow-[0_20px_50px_-30px_rgba(16,24,40,0.28)] dark:border-white/[0.07] dark:bg-black dark:shadow-[0_38px_84px_-34px_rgba(0,0,0,0.82)] lg:p-7">
       {/* mockup — static (non-interactive). Wide cards flex-fill; narrow cards
           use a fixed height so all three visuals match regardless of copy. */}
       <div
@@ -159,7 +159,6 @@ export function DomainDepth() {
     <section className="cv-section bg-cv-surface" data-testid="section-domain-depth">
       <div className="cv-container">
         <div className="mx-auto max-w-5xl text-center">
-          <p className="cv-label mb-4">Domain depth</p>
           <h2 className="cv-h2 mx-auto max-w-3xl text-cv-ink">What each domain gets, in depth.</h2>
           <p className="mt-5 cv-body-lg text-cv-ink/70">
             The same model runs across every domain, with capabilities tuned to how each one actually

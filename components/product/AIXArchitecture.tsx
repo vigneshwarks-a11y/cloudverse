@@ -13,7 +13,7 @@ const ENGINE = [
   { label: "Policy guardrails", color: "#6954D4" },
   { label: "Route scoring", color: "#1664C0" },
   { label: "Cost attribution", color: "#D97706" },
-  { label: "Compliance enforcement", color: "#DC2626" },
+  { label: "Compliance enforcement", color: "#E5484D" },
 ];
 
 const PROVIDERS = ["OpenAI", "Anthropic", "Bedrock", "Vertex AI", "CoreWeave", "Azure OAI", "Lambda Labs", "+ more"];
@@ -22,7 +22,7 @@ export function AIXArchitecture() {
   return (
     <section className="cv-section bg-cv-surface2">
       <div className="cv-container">
-        <div className="max-w-3xl mb-10">
+        <div className="mx-auto max-w-3xl mb-10 text-center">
           <div className="cv-label mb-3" style={{ color: "#6954D4" }}>Decision engine</div>
           <h2 className="cv-h2 text-cv-ink">Every AI workload, routed with policy and proof.</h2>
         </div>
@@ -81,12 +81,12 @@ export function AIXArchitecture() {
             <div className="cv-label mb-3 text-[#1664C0] dark:text-[#7CB8F8]">Decision output</div>
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <div className="text-cv-ink/60 text-[11px] uppercase tracking-wider">Primary route</div>
+                <div className="text-cv-ink/70 text-[11px] uppercase tracking-wider">Primary route</div>
                 <div className="text-cv-ink font-medium mt-1">Anthropic Claude (us-east-1)</div>
                 <div className="text-cv-ink/55 text-xs mt-1 font-mono">$0.0042 / req · 480ms p95</div>
               </div>
               <div>
-                <div className="text-cv-ink/60 text-[11px] uppercase tracking-wider">Fallback</div>
+                <div className="text-cv-ink/70 text-[11px] uppercase tracking-wider">Fallback</div>
                 <div className="text-cv-ink font-medium mt-1">OpenAI GPT-4o (us-west-2)</div>
                 <div className="text-cv-ink/55 text-xs mt-1 font-mono">$0.0061 / req · 540ms p95</div>
               </div>

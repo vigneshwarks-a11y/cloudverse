@@ -206,7 +206,7 @@ function RegistryViz() {
         >
           <span className="truncate font-mono text-cv-ink/80">{name}</span>
           <span style={{ color: BLUE }}>{version}</span>
-          <span className="flex items-center justify-end gap-1.5 text-cv-ink/60">
+          <span className="flex items-center justify-end gap-1.5 text-cv-ink/70">
             <span className="h-1.5 w-1.5 rounded-full" style={{ background: color }} />
             {status}
           </span>

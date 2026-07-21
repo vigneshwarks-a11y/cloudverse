@@ -223,12 +223,14 @@ export function TestimonialsCarousel() {
   return (
     <section className="cv-section bg-cv-surface" ref={sectionRef}>
       <div className="cv-container">
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 dark:bg-[#7CB8F8]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8] mb-4">
-          Customer Stories
-        </span>
-        <h2 className="cv-h2 text-cv-ink mb-10 max-w-2xl">
-          Trusted by teams running AI in production.
-        </h2>
+        <div className="mx-auto mb-10 max-w-2xl text-center">
+          <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 dark:bg-[#7CB8F8]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8]">
+            Customer Stories
+          </span>
+          <h2 className="cv-h2 text-cv-ink">
+            Trusted by teams running AI in production.
+          </h2>
+        </div>
 
         <div
           ref={containerRef}
@@ -362,7 +364,7 @@ export function TestimonialsCarousel() {
                       {ct.tags.map((tag) => (
                         <span
                           key={tag.label}
-                          className="flex items-center gap-1.5 text-xs font-mono text-cv-ink/60 border border-cv-blue/30 bg-cv-blue/10 rounded-full px-2.5 py-1 whitespace-nowrap"
+                          className="flex items-center gap-1.5 text-xs font-mono text-cv-ink/70 border border-cv-blue/30 bg-cv-blue/10 rounded-full px-2.5 py-1 whitespace-nowrap"
                         >
                           {tag.icon} {tag.label}
                         </span>

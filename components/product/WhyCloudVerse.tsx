@@ -18,7 +18,6 @@ export function WhyCloudVerse() {
       <div className="cv-container">
         <div>
           <div className="mx-auto max-w-5xl text-center">
-            <p className="cv-label mb-4">Why CloudVerse</p>
             <h2 className="cv-h2 mx-auto max-w-3xl text-cv-ink">One platform, not a portfolio.</h2>
             <p className="mt-5 cv-body-lg text-cv-ink/70">
               Flexera and IBM Apptio both grew by acquiring separate products (Cloud Cost Optimization,

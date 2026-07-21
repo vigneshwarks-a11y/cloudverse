@@ -28,7 +28,7 @@ export function FeatureShowcase({
   return (
     <section id="features" className="cv-section cv-section-band bg-cv-surface2">
       <div className="cv-container">
-        <div className="max-w-3xl mb-10">
+        <div className="mx-auto max-w-3xl mb-10 text-center">
           <div className="cv-label mb-3" style={{ color }}>{label}</div>
           <h2 className="cv-h2 text-cv-ink">{heading}</h2>
         </div>

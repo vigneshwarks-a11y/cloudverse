@@ -153,7 +153,7 @@ function WasteIllo() {
       <div className="relative my-2 h-1.5 rounded-full bg-cv-ink/[0.06] dark:bg-white/[0.08]">
         <div
           className="absolute inset-y-0 left-0 w-[45%] rounded-full"
-          style={{ background: `linear-gradient(to right, ${ACCENT}, #6366F1)` }}
+          style={{ background: `linear-gradient(to right, ${ACCENT}, #6954D4)` }}
         />
       </div>
       <div className="flex justify-between text-xs text-cv-muted">

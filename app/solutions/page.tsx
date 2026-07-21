@@ -69,14 +69,14 @@ export default function Page() {
       {/* THE SHARED IDEA */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-stretch lg:gap-16">
-            <div>
-              <h2 className="cv-h2 text-cv-ink mb-5 max-w-2xl">Different jobs. The same missing piece.</h2>
+          <div className="flex flex-col items-center gap-10">
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="cv-h2 text-cv-ink mb-5">Different jobs. The same missing piece.</h2>
               <p className="cv-body-lg text-cv-ink/80">
                 Finance can&apos;t explain the bill. Engineering commits the spend but never sees it. AI runs as a side process no one owns. Every team is accountable for a slice of the same problem: cost decided in one place, felt in another. CloudVerse connects the decision to the dollar, so each team works from one record instead of four tools.
               </p>
             </div>
-            <div className="flex">
+            <div className="mx-auto w-full max-w-3xl">
               <Panel className="justify-between p-6" chrome="cloudverse.app/estate">
                 <span className="text-[10px] uppercase tracking-wide text-cv-muted">Four teams, four partial views</span>
                 <div className="grid grid-cols-2 gap-3">
@@ -105,8 +105,10 @@ export default function Page() {
       {/* WHAT CHANGES */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">What changes</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink mb-8 max-w-2xl">What changes when spend has an owner.</h2>
+          <div className="mx-auto max-w-2xl mb-8 text-center">
+            <SectionEyebrow className="mb-4">What changes</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">What changes when spend has an owner.</h2>
+          </div>
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
               "Spend ownership reaches every team, not just the FinOps function.",

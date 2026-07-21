@@ -93,17 +93,19 @@ export function AixOrchestration() {
   return (
     <section ref={rootRef} className="cv-section overflow-hidden bg-cv-surface2" data-testid="section-aix-orchestration">
       <div className="cv-container">
-        <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
-          One system of record
-        </span>
-        <h2 className="cv-h2 max-w-2xl text-cv-ink max-sm:text-[22px]">
-          Enterprise AI is fragmented. AIX makes it one system of record.
-        </h2>
-        <p className="mt-4 max-w-2xl cv-body text-cv-ink/70">
-          Not a gateway that runs your routing rules. Not observability that tells you what a request
-          cost after it ran. AIX gives every asset (agent, app, RAG system, model) an identity, a
-          contract, an operational record, and measurable economics.
-        </p>
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
+            One system of record
+          </span>
+          <h2 className="cv-h2 text-cv-ink max-sm:text-[22px]">
+            Enterprise AI is fragmented. AIX makes it one system of record.
+          </h2>
+          <p className="mt-4 cv-body text-cv-ink/70">
+            Not a gateway that runs your routing rules. Not observability that tells you what a request
+            cost after it ran. AIX gives every asset (agent, app, RAG system, model) an identity, a
+            contract, an operational record, and measurable economics.
+          </p>
+        </div>
 
         <div className="mt-12 grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-14">
           {/* LEFT - accordion (desktop) */}

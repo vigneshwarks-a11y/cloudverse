@@ -273,14 +273,12 @@ export function AixDeployment() {
   return (
     <section className="cv-section bg-cv-surface2 dark:bg-black" data-testid="section-architecture">
       <div className="cv-container">
-        <div className="grid gap-8 lg:grid-cols-2 lg:gap-14 lg:items-end">
-          <div>
-            <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#6954D4]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#6954D4] dark:text-[#B7A9F5]">
-              Architecture
-            </span>
-            <h2 className="cv-h2 text-balance text-cv-ink">In the call path. Deployed in your environment.</h2>
-          </div>
-          <p className="cv-body text-cv-ink/70 lg:max-w-md lg:justify-self-end">
+        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#6954D4]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#6954D4] dark:text-[#B7A9F5]">
+            Architecture
+          </span>
+          <h2 className="cv-h2 text-balance text-cv-ink">In the call path. Deployed in your environment.</h2>
+          <p className="cv-body mt-4 text-cv-ink/70">
             AIX sits between your AI surfaces (agents, apps, IDEs, RAG pipelines, copilots)
             and your model providers, whether commercial APIs, cloud-hosted, or sovereign/local models.
           </p>

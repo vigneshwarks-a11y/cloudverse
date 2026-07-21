@@ -26,11 +26,11 @@ export function GuidesResources() {
   return (
     <section className="cv-section bg-cv-surface">
       <div className="cv-container">
-        <div className="flex items-end justify-between mb-10 gap-6">
-          <h2 className="cv-h2 text-cv-ink sm:whitespace-nowrap">Latest guides and resources</h2>
+        <div className="mx-auto mb-10 flex max-w-2xl flex-col items-center gap-4 text-center">
+          <h2 className="cv-h2 text-cv-ink">Latest guides and resources</h2>
           <Link
             href="/resources"
-            className="hidden sm:inline-flex items-center gap-1 text-sm font-medium text-[#1664C0] dark:text-[#7CB8F8] hover:opacity-80 transition-opacity shrink-0"
+            className="inline-flex items-center gap-1 text-sm font-medium text-[#1664C0] dark:text-[#7CB8F8] hover:opacity-80 transition-opacity"
           >
             View all <ArrowRight weight="Linear" size={14} />
           </Link>
@@ -57,16 +57,6 @@ export function GuidesResources() {
               </span>
             </Link>
           ))}
-        </div>
-
-        {/* Mobile view-all */}
-        <div className="mt-6 flex sm:hidden justify-center">
-          <Link
-            href="/resources"
-            className="inline-flex items-center gap-1 text-sm font-medium text-[#1664C0] dark:text-[#7CB8F8]"
-          >
-            View all resources <ArrowRight weight="Linear" size={14} />
-          </Link>
         </div>
       </div>
     </section>

@@ -123,9 +123,9 @@ export default function AIXPage() {
       {/* PROBLEM */}
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-2 lg:gap-14">
+          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
             <h2 className="cv-h2 text-cv-ink">AI compute is becoming too expensive to hardcode.</h2>
-            <div>
+            <div className="mt-4">
               <p className="cv-body-lg text-cv-ink/80">
                 Most teams pick a model once, wire it into the app, and move on. Six months later a cheaper model handles 70% of those requests just as well, and nobody notices.
               </p>
@@ -137,7 +137,7 @@ export default function AIXPage() {
 
           <div className="grid gap-5 md:grid-cols-2 mt-12 items-stretch">
             {/* Before - legacy / static */}
-            <div className="relative overflow-hidden rounded-2xl border border-cv-line/50 bg-cv-card dark:bg-[#0D0D0D]">
+            <div className="cv-visual-well relative overflow-hidden rounded-2xl border border-cv-line/50 bg-cv-card dark:bg-black">
               {/* Faint static node pattern */}
               <div
                 aria-hidden
@@ -174,7 +174,7 @@ export default function AIXPage() {
             </div>
 
             {/* After - dynamic / active */}
-            <div className="relative overflow-hidden rounded-2xl border border-[#2278E0]/25 bg-cv-card dark:bg-[#0D0D0D] shadow-[0_0_50px_-24px_rgba(34,120,224,0.5)]">
+            <div className="cv-visual-well relative overflow-hidden rounded-2xl border border-[#2278E0]/25 bg-cv-card dark:bg-black shadow-[0_0_50px_-24px_rgba(34,120,224,0.5)]">
               {/* Dynamic blue grid pattern */}
               <div
                 aria-hidden
@@ -231,11 +231,11 @@ export default function AIXPage() {
           style={{ background: "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(34,120,224,0.16), transparent 70%)" }}
         />
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative">
-          <h2 className="cv-h2 text-cv-ink mb-5">How AIX controls every AI request.</h2>
-          <p className="cv-body-lg text-cv-muted mb-2">
+          <h2 className="cv-h2 text-cv-ink mb-5 mx-auto max-w-3xl text-center">How AIX controls every AI request.</h2>
+          <p className="cv-body-lg text-cv-muted mb-2 mx-auto max-w-3xl text-center">
             AIX sits between your application and every AI provider you use. On each request it scores the available routes against the rules your team set, then returns the best one with a fallback and a full decision log.
           </p>
-          <p className="text-cv-muted italic mb-10">A gateway runs the rule you wrote. AIX works out whether that rule is still right.</p>
+          <p className="text-cv-muted italic mb-10 mx-auto max-w-3xl text-center">A gateway runs the rule you wrote. AIX works out whether that rule is still right.</p>
           <AixSteps />
         </div>
       </section>
@@ -243,8 +243,8 @@ export default function AIXPage() {
       {/* ROI */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <h2 className="cv-h2 text-cv-ink mb-5">The cost of not routing.</h2>
-          <p className="cv-body-lg text-cv-ink/75 mb-10">
+          <h2 className="cv-h2 text-cv-ink mb-5 mx-auto max-w-3xl text-center">The cost of not routing.</h2>
+          <p className="cv-body-lg text-cv-ink/75 mb-10 mx-auto max-w-3xl text-center">
             Every hardcoded endpoint spends money without making a decision. The same work, on the right model, often costs a fraction, at the same or better quality.
           </p>
           <AixRoiSplit roi={ROI} />
@@ -254,8 +254,8 @@ export default function AIXPage() {
       {/* GOVERNANCE */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <h2 className="cv-h2 text-cv-ink mb-5">Built for enterprise AI governance.</h2>
-          <p className="cv-body-lg text-cv-ink/75 mb-10">
+          <h2 className="cv-h2 text-cv-ink mb-5 mx-auto max-w-3xl text-center">Built for enterprise AI governance.</h2>
+          <p className="cv-body-lg text-cv-ink/75 mb-10 mx-auto max-w-3xl text-center">
             Every routing decision AIX makes is recorded, auditable, and explainable. Governance is on by default, not bolted on.
           </p>
           <GovernanceBento />

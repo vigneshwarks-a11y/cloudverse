@@ -7,7 +7,7 @@ import type { IconProps } from "@solar-icons/react";
 
 type Icon = ComponentType<IconProps>;
 
-const BLUE = "#007CFF";
+const BLUE = "#1664C0";
 
 const ICONS: Record<string, Icon> = {
   "FinOps Platform": Wallet,

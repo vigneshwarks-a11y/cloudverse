@@ -51,10 +51,24 @@ export default function NoBlackBoxes({ traceJson }: { traceJson: string }) {
       <div className="cv-container relative">
         <div
           ref={ref}
-          className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-12 lg:gap-20"
+          className="flex flex-col items-center gap-10"
         >
-          {/* LEFT: decision-trace card (raw JSON) */}
-          <div className="h-full lg:col-span-6" style={rise(0)}>
+          {/* headline + description */}
+          <div
+            className="mx-auto flex max-w-2xl flex-col items-center text-center"
+            style={rise(1)}
+          >
+            <h2 className="cv-h2 text-cv-ink">No black boxes.</h2>
+            <p className="cv-body-lg text-cv-ink/75 mt-5">
+              Every routing decision includes an evidence summary: the constraints active, the routes evaluated, the one selected, and why. If you can&apos;t explain a decision, you can&apos;t govern it.
+            </p>
+            <p className="text-cv-ink/75 mt-8">
+              SOC2 and ISO-aligned architecture. Audit trails, access controls, and policy enforcement structured to support compliance documentation. Specific certification status confirmed during your evaluation.
+            </p>
+          </div>
+
+          {/* decision-trace card (raw JSON) */}
+          <div className="mx-auto w-full max-w-3xl" style={rise(0)}>
             <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-cv-line/60 bg-cv-card shadow-[0_10px_30px_-16px_rgba(15,23,42,0.15)] dark:border-white/10 dark:bg-[#0D0D0D] dark:shadow-[0_24px_60px_-24px_rgba(0,0,0,0.8)]">
               {/* chrome header: mac dots + JSON label */}
               <div className="flex items-center justify-between gap-3 border-b border-cv-line bg-cv-ink/[0.03] px-4 py-3">
@@ -72,20 +86,6 @@ export default function NoBlackBoxes({ traceJson }: { traceJson: string }) {
                 {traceJson}
               </pre>
             </div>
-          </div>
-
-          {/* RIGHT: headline + description */}
-          <div
-            className="flex flex-col justify-center lg:col-span-6 lg:pl-4"
-            style={rise(1)}
-          >
-            <h2 className="cv-h2 text-cv-ink">No black boxes.</h2>
-            <p className="cv-body-lg text-cv-ink/75 mt-5">
-              Every routing decision includes an evidence summary: the constraints active, the routes evaluated, the one selected, and why. If you can&apos;t explain a decision, you can&apos;t govern it.
-            </p>
-            <p className="text-cv-ink/75 mt-8">
-              SOC2 and ISO-aligned architecture. Audit trails, access controls, and policy enforcement structured to support compliance documentation. Specific certification status confirmed during your evaluation.
-            </p>
           </div>
         </div>
       </div>

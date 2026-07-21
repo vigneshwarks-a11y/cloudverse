@@ -84,7 +84,7 @@ export function PlatformSurfaces() {
   return (
     <section className="cv-section bg-cv-surface" data-testid="section-platform-surfaces">
       <div className="cv-container">
-        <div className="max-w-3xl mb-12">
+        <div className="mx-auto max-w-3xl mb-12 text-center">
           <div className="cv-label mb-3">Platform overview</div>
           <h2 className="cv-h2 text-cv-ink">One control plane. Four compute surfaces.</h2>
         </div>
@@ -108,7 +108,7 @@ export function PlatformSurfaces() {
                     data-testid={`surface-tab-${slug}`}
                   >
                     <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: s.color }} />
-                    <h3 className={`cv-h3 transition-colors ${isActive ? "text-cv-ink" : "text-cv-ink/60"}`}>
+                    <h3 className={`cv-h3 transition-colors ${isActive ? "text-cv-ink" : "text-cv-ink/70"}`}>
                       {s.name}
                     </h3>
                   </button>

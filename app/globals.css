@@ -199,6 +199,23 @@
   }
   .cv-btn-outline:hover { background: hsl(var(--cv-ink) / 0.06); }
 
+  /* Keyboard focus — visible ring on every button variant (mouse clicks stay
+     ring-free via :focus-visible). Offset so it reads even on the filled blue
+     primary; brightens to blue-light in dark mode. */
+  .cv-btn-primary:focus-visible,
+  .cv-btn-ghost:focus-visible,
+  .cv-btn-inverse:focus-visible,
+  .cv-btn-outline:focus-visible {
+    outline: 2px solid #1664C0;
+    outline-offset: 2px;
+  }
+  .dark .cv-btn-primary:focus-visible,
+  .dark .cv-btn-ghost:focus-visible,
+  .dark .cv-btn-inverse:focus-visible,
+  .dark .cv-btn-outline:focus-visible {
+    outline-color: #7CB8F8;
+  }
+
   .cv-section-break {
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(22, 100, 192, 0.4), transparent);
@@ -298,6 +315,30 @@
 }
 .dark .cv-edge-tl::before {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05) 42%, rgba(255, 255, 255, 0.02));
+}
+
+/* Site-wide product-visual well — the home "mock-well" treatment as a utility:
+   pair with `dark:bg-black` for the pure-black surface, and this adds the
+   bright top-left light edge (a 135° gradient stroke masked to a 1.5px border,
+   brightest at the upper-left corner, fading out by mid-card). Light mode uses a
+   faint dark stroke; the element's own `border` carries the rest. Apply to any
+   product-visual/mockup container across the site. */
+.cv-visual-well { position: relative; }
+.cv-visual-well::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(135deg, rgba(2, 6, 23, 0.18) 0%, rgba(2, 6, 23, 0.05) 22%, rgba(2, 6, 23, 0) 50%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+}
+.dark .cv-visual-well::before {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.2) 22%, rgba(255, 255, 255, 0) 50%);
 }
 
 /* Staggered rise for the record's blocks. Enhances an already-visible

@@ -13,7 +13,7 @@ const AMBER = "#D97706";
    footers stay crisp when used standalone in a section column. */
 function VizPanel({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-cv-line bg-white shadow-[0_16px_40px_-24px_rgba(16,24,40,0.18)] dark:border-white/10 dark:bg-black dark:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.5)]">
+    <div className="group relative overflow-hidden rounded-2xl border border-cv-line/60 bg-cv-surface shadow-[0_16px_40px_-24px_rgba(16,24,40,0.18)] transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-white/[0.07] dark:bg-[#101014] dark:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.5)]">
       <CardLightEdge />
       <div className={`relative ${className}`}>{children}</div>
     </div>
@@ -46,9 +46,9 @@ WHERE  event = 'click'
           ["Avg cost", "$1.52"],
           ["Total", "$117.16"],
         ].map(([l, v], i) => (
-          <div key={l} className="bg-white px-4 py-3 dark:bg-black">
+          <div key={l} className="bg-cv-surface px-4 py-3 dark:bg-[#101014]">
             <div className="text-[10px] uppercase tracking-wide text-cv-muted">{l}</div>
-            <div className="mt-0.5 font-mono text-base font-bold" style={{ color: i === 3 ? AMBER : "hsl(var(--cv-ink))" }}>{v}</div>
+            <div className={`mt-0.5 font-mono text-base font-bold ${i === 3 ? "cv-amber-text" : "text-cv-ink"}`}>{v}</div>
           </div>
         ))}
       </div>

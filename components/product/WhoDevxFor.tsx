@@ -18,19 +18,19 @@ const PERSONAS: Persona[] = [
     title: "Platform Engineering",
     body: "Cost guardrails that don't slow delivery.",
     Icon: Tuning2,
-    color: "#007CFF",
+    color: "#1664C0",
   },
   {
     title: "DevOps / SRE",
     body: "Fewer surprise bills reaching production.",
     Icon: Code,
-    color: "#007CFF",
+    color: "#1664C0",
   },
   {
     title: "FinOps",
     body: "Engineering adoption and clear ownership, at last.",
     Icon: FileText,
-    color: "#007CFF",
+    color: "#1664C0",
   },
 ];
 
@@ -57,7 +57,7 @@ export default function WhoDevxFor() {
   return (
     <section className="cv-section bg-cv-surface2 dark:bg-black">
       <div className="cv-container">
-        <h2 className="cv-h2 text-cv-ink mb-10">Who DevX is for</h2>
+        <h2 className="cv-h2 text-cv-ink mb-10 mx-auto max-w-3xl text-center">Who DevX is for</h2>
         <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
           {PERSONAS.map(({ title, body, Icon, color }, i) => (
             <div

@@ -278,7 +278,7 @@ export function WhoThisIsFor({
         style={{ background: `radial-gradient(circle, ${accent}22, transparent 70%)` }}
       />
       <div className="cv-container relative z-10">
-        <div className="mb-10 flex items-baseline gap-3">
+        <div className="mx-auto mb-10 flex max-w-3xl items-baseline justify-center gap-3 text-center">
           <h2 className="cv-h2 text-cv-ink">Who this is for.</h2>
           <span className="hidden text-sm text-cv-muted sm:inline">The people who own the number.</span>
         </div>

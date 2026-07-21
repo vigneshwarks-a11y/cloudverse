@@ -162,7 +162,7 @@ export function FeatureShowcase() {
           <h2 className="cv-h2 mt-5 max-w-3xl text-balance text-cv-ink">
             Every domain of technology spend, one record.
           </h2>
-          <p className="cv-body-lg mt-5 max-w-5xl text-pretty text-cv-muted">
+          <p className="cv-body-lg mt-5 max-w-5xl text-pretty text-cv-ink/70">
             Cloud taught enterprises what ungoverned spend costs. AI is repeating
             it faster. CloudVerse puts every domain on one record: for AI and
             engineering we sit at the execution path itself; for cloud, data, and

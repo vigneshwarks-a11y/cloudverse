@@ -45,15 +45,17 @@ export function DomainsOverview() {
   return (
     <section className="cv-section bg-cv-surface2" data-testid="section-domains-overview">
       <div className="cv-container">
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 dark:bg-[#7CB8F8]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8] mb-4">
-          One platform · Five domains
-        </span>
-        <h2 className="cv-h2 text-cv-ink max-w-2xl">Every domain of technology spend, one record.</h2>
-        <p className="mt-4 cv-body text-cv-ink/70 max-w-2xl">
-          Cloud taught enterprises what ungoverned spend costs. AI is repeating it faster. CloudVerse puts
-          every domain on one record: for AI and engineering we sit at the execution path itself; for
-          cloud, data, and SaaS we make every dollar accountable with allocation, chargeback, and evidence.
-        </p>
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 dark:bg-[#7CB8F8]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8] mb-4">
+            One platform · Five domains
+          </span>
+          <h2 className="cv-h2 text-cv-ink">Every domain of technology spend, one record.</h2>
+          <p className="mt-4 cv-body text-cv-ink/70">
+            Cloud taught enterprises what ungoverned spend costs. AI is repeating it faster. CloudVerse puts
+            every domain on one record: for AI and engineering we sit at the execution path itself; for
+            cloud, data, and SaaS we make every dollar accountable with allocation, chargeback, and evidence.
+          </p>
+        </div>
 
         <div className="mt-10 border border-cv-line/40 rounded-2xl overflow-hidden bg-cv-surface">
           <div className="hidden md:grid grid-cols-[140px_1fr_220px_180px] gap-4 px-6 py-3 border-b border-cv-line/40 bg-cv-ink/[0.02] text-[11px] uppercase tracking-widest text-cv-ink/45 font-medium">
@@ -78,7 +80,7 @@ export function DomainsOverview() {
           ))}
         </div>
 
-        <p className="mt-6 text-xs text-cv-muted text-center md:text-left">
+        <p className="mt-6 text-xs text-cv-muted text-center">
           The data model holds every domain to the same standard. Read-only by default: connect in under
           30 minutes.
         </p>

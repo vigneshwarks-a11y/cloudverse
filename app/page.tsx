@@ -133,17 +133,15 @@ export default function HomePage() {
         />
 
         <div className="cv-container relative z-10">
-          {/* Heading - two-column left/right */}
-          <div className="grid gap-8 lg:grid-cols-2 lg:gap-14 lg:items-end">
-            <div>
-              <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
-                Integrations
-              </span>
-              <h2 className="cv-h2 text-cv-ink">
-                Connects to the stack your teams already run.
-              </h2>
-            </div>
-            <p className="cv-body text-cv-ink/60 lg:max-w-md lg:justify-self-end">
+          {/* Heading - centered */}
+          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+            <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
+              Integrations
+            </span>
+            <h2 className="cv-h2 text-cv-ink">
+              Connects to the stack your teams already run.
+            </h2>
+            <p className="cv-body mt-4 text-cv-ink/70">
               Cloud, models, GPUs, data warehouses, and CI, connected once.
             </p>
           </div>

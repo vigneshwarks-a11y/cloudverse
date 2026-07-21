@@ -52,10 +52,11 @@ export function BookADemo() {
       />
 
       <div className="cv-container relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-0 items-center min-h-[420px]">
+        <div className="flex flex-col items-center gap-12 min-h-[420px]">
 
-          {/* ── Left: text content ── */}
+          {/* ── Top: text content ── */}
           <div
+            className="mx-auto max-w-2xl text-center"
             style={{
               opacity: entered ? 1 : 0,
               transform: entered ? "translateY(0)" : "translateY(20px)",
@@ -63,23 +64,23 @@ export function BookADemo() {
             }}
           >
             {/* Eyebrow */}
-            <div className="flex items-center gap-2 mb-6">
+            <div className="flex items-center justify-center gap-2 mb-6">
               <Calendar weight="Linear" size={15} className="text-cv-muted" />
               <span className="cv-label text-cv-muted">Book a Demo</span>
             </div>
 
             {/* Headline */}
-            <h2 className="cv-h1 text-cv-ink max-w-md">
+            <h2 className="cv-h1 text-cv-ink max-w-md mx-auto">
               See CloudVerse<br />in action.
             </h2>
 
             {/* Description */}
-            <p className="cv-body-lg text-cv-muted mt-6 max-w-sm">
+            <p className="cv-body-lg text-cv-muted mt-6 max-w-sm mx-auto">
               Connect your first account in under 30 minutes. Most teams find something they didn&apos;t expect the same day.
             </p>
 
             {/* CTA */}
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-demo-cta">
                 Book a Demo <ArrowRight weight="Linear" size={16} />
               </Link>
@@ -94,8 +95,8 @@ export function BookADemo() {
             </p>
           </div>
 
-          {/* ── Right: floating logo bubbles ── */}
-          <div className="relative hidden lg:block" style={{ height: 420 }}>
+          {/* ── Below: floating logo bubbles ── */}
+          <div className="relative mx-auto w-full max-w-2xl hidden lg:block" style={{ height: 420 }}>
             {BUBBLES.map(([src, size, top, left, opacity, delay], i) => (
               <div
                 key={i}

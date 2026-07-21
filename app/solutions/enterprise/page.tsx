@@ -91,8 +91,8 @@ export default function EnterprisePage() {
       {/* THE PROBLEM */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-stretch lg:gap-16">
-            <div>
+          <div className="flex flex-col items-center gap-10">
+            <div className="mx-auto max-w-2xl text-center">
               <SectionEyebrow className="mb-4">The situation</SectionEyebrow>
               <h2 className="cv-h2 text-cv-ink">The situation CIOs and CTOs are in.</h2>
               <p className="cv-body-lg text-cv-ink/80 mt-6">
@@ -102,7 +102,7 @@ export default function EnterprisePage() {
                 Chargeback and showback creak across business units. No one owns the total, day to day. One control plane is how you take it back.
               </p>
             </div>
-            <div className="flex">
+            <div className="mx-auto w-full max-w-3xl">
               <Panel className="justify-between p-6" chrome="enterprise.app/situation">
                 <span className="text-[10px] uppercase tracking-wide text-cv-muted">Four tools, four totals</span>
                 <div className="grid grid-cols-2 gap-3">
@@ -131,8 +131,10 @@ export default function EnterprisePage() {
       {/* WHAT IT'S COSTING YOU TODAY */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">The cost of the gap</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink mb-8">What that&apos;s costing you today.</h2>
+          <div className="mx-auto max-w-2xl mb-8 text-center">
+            <SectionEyebrow className="mb-4">The cost of the gap</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">What that&apos;s costing you today.</h2>
+          </div>
           <BulletGrid items={COSTS} tone="negative" />
         </div>
       </section>
@@ -140,8 +142,10 @@ export default function EnterprisePage() {
       {/* WHAT YOU SHIP */}
       <section className="cv-section">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">What you ship</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink mb-10">What enterprise teams operationalise on day one</h2>
+          <div className="mx-auto max-w-2xl mb-10 text-center">
+            <SectionEyebrow className="mb-4">What you ship</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">What enterprise teams operationalise on day one</h2>
+          </div>
           <EnterpriseDayOne
             items={[
               ["One model across the estate", "A single allocation model for cloud, AI, and warehouse spend."],
@@ -156,15 +160,17 @@ export default function EnterprisePage() {
       {/* HOW IT WORKS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink">How the control plane runs the estate.</h2>
-          <div className="mt-4 max-w-3xl space-y-4 mb-12">
-            <p className="cv-body-lg text-cv-muted">
-              CloudVerse connects every cloud, AI provider, warehouse, and pipeline read-only, then provisions access, governs policy and residency, and reports chargeback that reconciles across business units.
-            </p>
-            <p className="cv-body-lg text-cv-muted">
-              Four tools show four slices of the estate. One control plane shows the total, and who owns it.
-            </p>
+          <div className="mx-auto max-w-3xl mb-12 text-center">
+            <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">How the control plane runs the estate.</h2>
+            <div className="mt-4 space-y-4">
+              <p className="cv-body-lg text-cv-muted">
+                CloudVerse connects every cloud, AI provider, warehouse, and pipeline read-only, then provisions access, governs policy and residency, and reports chargeback that reconciles across business units.
+              </p>
+              <p className="cv-body-lg text-cv-muted">
+                Four tools show four slices of the estate. One control plane shows the total, and who owns it.
+              </p>
+            </div>
           </div>
           <HowItWorksFlow
             workloads={HOW_IT_WORKS_WORKLOADS}
@@ -180,8 +186,10 @@ export default function EnterprisePage() {
       {/* OUTCOMES */}
       <section className="cv-section">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">Outcomes</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink mb-8">Outcomes leadership owns.</h2>
+          <div className="mx-auto max-w-2xl mb-8 text-center">
+            <SectionEyebrow className="mb-4">Outcomes</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">Outcomes leadership owns.</h2>
+          </div>
           <BulletGrid items={OUTCOMES} tone="positive" />
         </div>
       </section>
@@ -189,8 +197,10 @@ export default function EnterprisePage() {
       {/* PLATFORM */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">Platform</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink mb-8">Modules that power enterprise deployments</h2>
+          <div className="mx-auto max-w-2xl mb-8 text-center">
+            <SectionEyebrow className="mb-4">Platform</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">Modules that power enterprise deployments</h2>
+          </div>
           <PlatformCards
             items={[
               ["AIX", "The control plane for enterprise AI", "/platform/aix"],

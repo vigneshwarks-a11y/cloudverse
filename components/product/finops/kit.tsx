@@ -40,7 +40,7 @@ export function GlassCard({
       )}
       <div
         className={
-          "relative overflow-hidden rounded-2xl border border-cv-line/70 bg-white/80 shadow-[0_18px_44px_-24px_rgba(16,24,40,0.28)] backdrop-blur-xl dark:border-white/10 dark:bg-[#101014]/85 dark:shadow-[0_30px_70px_-28px_rgba(0,0,0,0.75)] " +
+          "cv-visual-well relative overflow-hidden rounded-2xl border border-cv-line/70 bg-white/80 shadow-[0_18px_44px_-24px_rgba(16,24,40,0.28)] backdrop-blur-xl dark:border-white/10 dark:bg-black dark:shadow-[0_30px_70px_-28px_rgba(0,0,0,0.75)] " +
           className
         }
       >

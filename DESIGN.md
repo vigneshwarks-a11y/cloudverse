@@ -10,6 +10,7 @@ colors:
   aix-purple: "#6954D4"
   finops-teal: "#0E9E7A"
   datax-amber: "#D97706"
+  danger-red: "#E5484D"
   ink-light: "#1D1D1F"
   ink-dark: "#F5F5F7"
   muted-light: "#86868B"

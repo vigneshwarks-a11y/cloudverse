@@ -206,18 +206,16 @@ export default function AixFeatureCarousel() {
     <section className="cv-section overflow-hidden">
       <div className="cv-container">
         {/* header */}
-        <div className="grid items-end gap-6 md:grid-cols-2 md:gap-12">
-          <h2 className="cv-h2 max-w-md text-cv-ink">One decision layer for every AI request.</h2>
-          <div className="flex items-end justify-between gap-6">
-            <p className="cv-body-lg text-cv-muted">
-              AIX routes, governs, and proves every call across your models and providers. The right route is chosen per request, with the evidence to back it.
-            </p>
-            {/* controls (desktop) */}
-            <div className="hidden shrink-0 gap-2 md:flex">
-              <CarouselButton dir="prev" disabled={!canPrev} onClick={() => embla?.scrollPrev()} />
-              <CarouselButton dir="next" disabled={!canNext} onClick={() => embla?.scrollNext()} />
-            </div>
-          </div>
+        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <h2 className="cv-h2 text-cv-ink">One decision layer for every AI request.</h2>
+          <p className="cv-body-lg text-cv-muted mt-4">
+            AIX routes, governs, and proves every call across your models and providers. The right route is chosen per request, with the evidence to back it.
+          </p>
+        </div>
+        {/* controls (desktop) */}
+        <div className="mt-6 hidden justify-center gap-2 md:flex">
+          <CarouselButton dir="prev" disabled={!canPrev} onClick={() => embla?.scrollPrev()} />
+          <CarouselButton dir="next" disabled={!canNext} onClick={() => embla?.scrollNext()} />
         </div>
 
         {/* carousel */}

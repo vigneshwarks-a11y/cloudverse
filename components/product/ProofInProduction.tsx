@@ -11,7 +11,7 @@ import { ShieldCheck, DangerTriangle, CheckCircle } from "@/lib/solar-icons";
 /* Shared card chrome: floating surface, soft depth, no harsh border, subtle lift. */
 function Card({ children }: { children: ReactNode }) {
   return (
-    <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-cv-line/60 bg-cv-surface p-5 transition-[transform,border-color] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-0.5 hover:border-cv-line motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-white/[0.07] dark:bg-[#0C0C0C] dark:hover:border-white/[0.16] lg:p-6">
+    <article className="cv-visual-well group relative flex flex-col overflow-hidden rounded-2xl border border-cv-line/60 bg-cv-surface p-5 transition-[transform,border-color] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-0.5 hover:border-cv-line motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-white/[0.07] dark:bg-black dark:hover:border-white/[0.16] lg:p-6">
       {children}
     </article>
   );
@@ -25,7 +25,7 @@ function Stage({ children }: { children: ReactNode }) {
       {children}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-cv-surface to-transparent dark:from-[#0C0C0C]"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-cv-surface to-transparent dark:from-black"
       />
     </div>
   );
@@ -36,7 +36,7 @@ function Title({ children }: { children: ReactNode }) {
 }
 
 function Desc({ children }: { children: ReactNode }) {
-  return <p className="mt-2 text-[15px] leading-relaxed text-cv-ink/60">{children}</p>;
+  return <p className="mt-2 text-[15px] leading-relaxed text-cv-ink/70">{children}</p>;
 }
 
 /* Small framed sub-panel used inside a few of the mockups. */

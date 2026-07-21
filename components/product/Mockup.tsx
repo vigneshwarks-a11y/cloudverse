@@ -10,7 +10,6 @@ export function SplitMockup({
   stat,
   mockTitle,
   mockBody,
-  reverse,
 }: {
   color: string;
   label: string;
@@ -24,8 +23,8 @@ export function SplitMockup({
   return (
     <section className="cv-section bg-cv-surface">
       <div className="cv-container">
-        <div className={`grid lg:grid-cols-2 gap-10 lg:gap-14 items-center ${reverse ? "lg:[&>*:first-child]:order-2" : ""}`}>
-          <div>
+        <div className="flex flex-col items-center gap-10">
+          <div className="mx-auto max-w-2xl text-center">
             <div className="cv-label mb-3" style={{ color }}>{label}</div>
             <h2 className="cv-h2 text-cv-ink">{heading}</h2>
             <div className="cv-body-lg mt-5 text-cv-ink/75">{body}</div>
@@ -38,9 +37,11 @@ export function SplitMockup({
               </div>
             )}
           </div>
-          <BrowserFrame title={mockTitle} color={color}>
-            {mockBody}
-          </BrowserFrame>
+          <div className="mx-auto w-full max-w-3xl">
+            <BrowserFrame title={mockTitle} color={color}>
+              {mockBody}
+            </BrowserFrame>
+          </div>
         </div>
       </div>
     </section>

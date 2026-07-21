@@ -87,8 +87,8 @@ export default function PlatformEngPage() {
 
       <section className="cv-section">
         <div className="cv-container">
-          <div className="grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-stretch lg:gap-16">
-            <div>
+          <div className="flex flex-col items-center gap-10">
+            <div className="mx-auto max-w-2xl text-center">
               <SectionEyebrow className="mb-4">The situation</SectionEyebrow>
               <h2 className="cv-h2 text-cv-ink">The situation platform engineering teams are in.</h2>
               <p className="cv-body-lg text-cv-ink/80 mt-6">
@@ -98,7 +98,7 @@ export default function PlatformEngPage() {
                 By then the expensive change is in production and the fix means rework. DevX puts the cost estimate in the pull request, where the person who wrote the change can still cheaply change it.
               </p>
             </div>
-            <div className="flex">
+            <div className="mx-auto w-full max-w-3xl">
               <Panel className="justify-between p-6" chrome="devx.app/pull/1042">
                 <span className="text-[10px] uppercase tracking-wide text-cv-muted">Merge checks</span>
                 <div className="flex items-center justify-between rounded-md border border-cv-line/60 px-3.5 py-4 text-xs dark:border-white/10">
@@ -127,8 +127,10 @@ export default function PlatformEngPage() {
       {/* WHAT IT'S COSTING YOU TODAY */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">The cost of the gap</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink mb-8">What that&apos;s costing you today.</h2>
+          <div className="mx-auto max-w-2xl mb-8 text-center">
+            <SectionEyebrow className="mb-4">The cost of the gap</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">What that&apos;s costing you today.</h2>
+          </div>
           <BulletGrid items={COSTS} tone="negative" />
         </div>
       </section>
@@ -136,8 +138,10 @@ export default function PlatformEngPage() {
       {/* WHAT YOU SHIP */}
       <section className="cv-section">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">What you ship</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink mb-10">What platform teams ship with CloudVerse</h2>
+          <div className="mx-auto max-w-2xl mb-10 text-center">
+            <SectionEyebrow className="mb-4">What you ship</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">What platform teams ship with CloudVerse</h2>
+          </div>
           <PlatformShips
             items={[
               ["PR cost diff", "Every infra PR gets an inline cost impact estimate before reviewers see it. Advisory or required, your choice. The governance happens where the work happens."],
@@ -152,15 +156,17 @@ export default function PlatformEngPage() {
       {/* HOW IT WORKS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink">How DevX controls every infra change.</h2>
-          <div className="mt-4 max-w-3xl space-y-4 mb-12">
-            <p className="cv-body-lg text-cv-muted">
-              DevX sits in your CI pipeline and every pull request. On each infra change it estimates the cost delta against policy your team wrote, then posts it inline with a fallback path and a full decision log.
-            </p>
-            <p className="cv-body-lg text-cv-muted">
-              A linter runs the rule you wrote. DevX works out whether that rule is still right.
-            </p>
+          <div className="mx-auto max-w-3xl mb-12 text-center">
+            <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">How DevX controls every infra change.</h2>
+            <div className="mt-4 space-y-4">
+              <p className="cv-body-lg text-cv-muted">
+                DevX sits in your CI pipeline and every pull request. On each infra change it estimates the cost delta against policy your team wrote, then posts it inline with a fallback path and a full decision log.
+              </p>
+              <p className="cv-body-lg text-cv-muted">
+                A linter runs the rule you wrote. DevX works out whether that rule is still right.
+              </p>
+            </div>
           </div>
           <HowItWorksFlow
             workloads={HOW_IT_WORKS_WORKLOADS}
@@ -205,8 +211,10 @@ export default function PlatformEngPage() {
       {/* OUTCOMES */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">Outcomes</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink mb-8">Outcomes your team feels.</h2>
+          <div className="mx-auto max-w-2xl mb-8 text-center">
+            <SectionEyebrow className="mb-4">Outcomes</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">Outcomes your team feels.</h2>
+          </div>
           <BulletGrid items={OUTCOMES} tone="positive" />
         </div>
       </section>
@@ -214,8 +222,10 @@ export default function PlatformEngPage() {
       {/* PLATFORM */}
       <section className="cv-section">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">Platform</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink mb-8">Platform that powers this solution</h2>
+          <div className="mx-auto max-w-2xl mb-8 text-center">
+            <SectionEyebrow className="mb-4">Platform</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">Platform that powers this solution</h2>
+          </div>
           <PlatformCards
             items={[
               ["DevX", "Cost context in the pull request", "/platform/devx"],

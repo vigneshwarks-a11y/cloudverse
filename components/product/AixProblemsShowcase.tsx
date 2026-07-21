@@ -51,7 +51,7 @@ function CardLightEdge() {
       <div
         aria-hidden
         className="pointer-events-none absolute -left-6 -top-6 h-40 w-40 rounded-full"
-        style={{ background: "radial-gradient(circle, rgba(200,218,255,0.13), transparent 70%)", filter: "blur(26px)" }}
+        style={{ background: "radial-gradient(circle, rgba(185,172,240,0.14), transparent 70%)", filter: "blur(26px)" }}
       />
     </>
   );
@@ -96,7 +96,7 @@ function StatusPill({ kind, label }: { kind: Kind; label: string }) {
 function MockCard({ heading, children }: { heading: string; children: ReactNode }) {
   return (
     <div
-      className="relative flex h-[430px] flex-col overflow-hidden rounded-2xl border border-cv-line bg-white p-4 shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:border-white/10 dark:bg-black dark:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)]"
+      className="relative flex h-[430px] flex-col overflow-hidden rounded-2xl border border-cv-line/60 bg-cv-surface p-4 shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:border-white/[0.07] dark:bg-[#101014] dark:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)]"
       style={EDGE_FADE}
     >
       <CardLightEdge />
@@ -319,7 +319,7 @@ const PROBLEMS: Problem[] = [
 ];
 
 const CELL =
-  "flex h-full flex-col rounded-2xl border border-cv-line/40 bg-cv-surface p-6 lg:p-8 dark:bg-[#0D0D0D]";
+  "group flex h-full flex-col rounded-2xl border border-cv-line/60 bg-cv-surface p-6 shadow-[0_20px_50px_-30px_rgba(16,24,40,0.28)] transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-white/[0.07] dark:bg-[#0D0D0D] dark:shadow-[0_38px_84px_-34px_rgba(0,0,0,0.82)] lg:p-8";
 
 function Cell({ title, body, heading, Mock }: Problem) {
   return (
@@ -328,7 +328,7 @@ function Cell({ title, body, heading, Mock }: Problem) {
       <p className="mt-2 text-base leading-relaxed text-cv-ink/55">{body}</p>
       <Link
         href={DEMO_URL}
-        className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-[#1664C0] transition-colors hover:text-[#0e4fa0] dark:text-[#7CB8F8] dark:hover:text-[#A9C8F8]"
+        className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-[#6954D4] transition-colors hover:text-[#5842c0] dark:text-[#A99CF0] dark:hover:text-[#C2B8F5]"
       >
         Learn More <ArrowRight weight="Linear" size={12} />
       </Link>
@@ -393,18 +393,16 @@ export default function AixProblemsShowcase() {
     >
       <div className="cv-container">
         {/* header */}
-        <div className="mb-12 grid items-end gap-6 md:grid-cols-2 md:gap-12">
-          <h2 className="cv-h2 max-w-md text-cv-ink">Four problems AIX fixes.</h2>
-          <div className="flex items-end justify-between gap-6">
-            <p className="cv-body-lg text-cv-muted">
-              The routing problems teams actually hit in production — and how AIX resolves each one at decision time.
-            </p>
-            {/* controls (desktop) */}
-            <div className="hidden shrink-0 gap-2 md:flex">
-              <CarouselButton dir="prev" disabled={!canPrev} onClick={() => embla?.scrollPrev()} />
-              <CarouselButton dir="next" disabled={!canNext} onClick={() => embla?.scrollNext()} />
-            </div>
-          </div>
+        <div className="mx-auto mb-6 flex max-w-3xl flex-col items-center text-center">
+          <h2 className="cv-h2 text-cv-ink">Four problems AIX fixes.</h2>
+          <p className="cv-body-lg text-cv-muted mt-4">
+            The routing problems teams actually hit in production — and how AIX resolves each one at decision time.
+          </p>
+        </div>
+        {/* controls (desktop) */}
+        <div className="mb-12 hidden justify-center gap-2 md:flex">
+          <CarouselButton dir="prev" disabled={!canPrev} onClick={() => embla?.scrollPrev()} />
+          <CarouselButton dir="next" disabled={!canNext} onClick={() => embla?.scrollNext()} />
         </div>
 
         {/* carousel */}

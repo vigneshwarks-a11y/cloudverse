@@ -89,8 +89,8 @@ export default function DataTeamsPage() {
 
       <section className="cv-section">
         <div className="cv-container">
-          <div className="grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-stretch lg:gap-16">
-            <div>
+          <div className="flex flex-col items-center gap-10">
+            <div className="mx-auto max-w-2xl text-center">
               <SectionEyebrow className="mb-4">The situation</SectionEyebrow>
               <h2 className="cv-h2 text-cv-ink">The situation data teams are in.</h2>
               <p className="cv-body-lg text-cv-ink/80 mt-6">
@@ -100,7 +100,7 @@ export default function DataTeamsPage() {
                 And now AI workloads are reading from your warehouses at scale, on budgets that were never sized for them, often from AI-assisted code with no obvious owner. DataX finds these automatically, with attribution down to the SQL.
               </p>
             </div>
-            <div className="flex">
+            <div className="mx-auto w-full max-w-3xl">
               <Panel className="justify-between p-6" chrome="datax.app/situation">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] uppercase tracking-wide text-cv-muted">Scheduled query · nightly</span>
@@ -133,8 +133,10 @@ export default function DataTeamsPage() {
       {/* WHAT IT'S COSTING YOU TODAY */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">The cost of the gap</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink mb-8">What that&apos;s costing you today.</h2>
+          <div className="mx-auto max-w-2xl mb-8 text-center">
+            <SectionEyebrow className="mb-4">The cost of the gap</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">What that&apos;s costing you today.</h2>
+          </div>
           <BulletGrid items={COSTS} tone="negative" />
         </div>
       </section>
@@ -142,8 +144,10 @@ export default function DataTeamsPage() {
       {/* WHAT YOU SHIP */}
       <section className="cv-section">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">What you ship</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink mb-10">What data teams unlock with DataX</h2>
+          <div className="mx-auto max-w-2xl mb-10 text-center">
+            <SectionEyebrow className="mb-4">What you ship</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">What data teams unlock with DataX</h2>
+          </div>
           <DataXUnlocks
             items={[
               ["Query attribution", "Every query tied to a user, role, dashboard, dbt model, or job."],
@@ -158,15 +162,17 @@ export default function DataTeamsPage() {
       {/* HOW IT WORKS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink">How DataX controls every warehouse dollar.</h2>
-          <div className="mt-4 max-w-3xl space-y-4 mb-12">
-            <p className="cv-body-lg text-cv-muted">
-              DataX sits alongside your warehouses over a read-only role. On every query it attributes the cost to an owner through the dbt DAG, catches the patterns that compound, and applies the fix once you approve it.
-            </p>
-            <p className="cv-body-lg text-cv-muted">
-              A cost explorer shows the spend. DataX works out who caused it, and what to do next.
-            </p>
+          <div className="mx-auto max-w-3xl mb-12 text-center">
+            <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">How DataX controls every warehouse dollar.</h2>
+            <div className="mt-4 space-y-4">
+              <p className="cv-body-lg text-cv-muted">
+                DataX sits alongside your warehouses over a read-only role. On every query it attributes the cost to an owner through the dbt DAG, catches the patterns that compound, and applies the fix once you approve it.
+              </p>
+              <p className="cv-body-lg text-cv-muted">
+                A cost explorer shows the spend. DataX works out who caused it, and what to do next.
+              </p>
+            </div>
           </div>
           <HowItWorksFlow
             workloads={HOW_IT_WORKS_WORKLOADS}
@@ -182,14 +188,14 @@ export default function DataTeamsPage() {
       {/* CUSTOMER PROOF */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:items-center lg:gap-16">
-            <div>
+          <div className="flex flex-col items-center gap-10">
+            <div className="mx-auto max-w-2xl text-center">
               <SectionEyebrow className="mb-4">Customer proof</SectionEyebrow>
-              <h2 className="cv-h2 text-cv-ink max-w-xl">From invisible spend to accountable architecture.</h2>
-              <p className="mt-6 leading-relaxed text-cv-ink/80 max-w-xl">
+              <h2 className="cv-h2 text-cv-ink">From invisible spend to accountable architecture.</h2>
+              <p className="mt-6 leading-relaxed text-cv-ink/80">
                 A Southeast Asian digital and telecommunications group ran 129 applications across four clouds with no reliable owner. CloudVerse mapped spend to how the business works and surfaced Rp964.80M in savings before optimization began.
               </p>
-              <div className="mt-8 flex flex-wrap gap-6">
+              <div className="mt-8 flex flex-wrap justify-center gap-6">
                 <div>
                   <div className="font-mono text-2xl font-bold text-cv-ink tracking-tight">Rp964.80M</div>
                   <p className="mt-1 text-xs text-cv-muted">surfaced before optimization</p>
@@ -201,7 +207,9 @@ export default function DataTeamsPage() {
                 </div>
               </div>
             </div>
-            <DataXAttributionMock />
+            <div className="mx-auto w-full max-w-3xl">
+              <DataXAttributionMock />
+            </div>
           </div>
         </div>
       </section>
@@ -209,8 +217,10 @@ export default function DataTeamsPage() {
       {/* OUTCOMES */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">Outcomes</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink mb-8">Outcomes you can defend.</h2>
+          <div className="mx-auto max-w-2xl mb-8 text-center">
+            <SectionEyebrow className="mb-4">Outcomes</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">Outcomes you can defend.</h2>
+          </div>
           <BulletGrid items={OUTCOMES} tone="positive" />
         </div>
       </section>
@@ -218,8 +228,10 @@ export default function DataTeamsPage() {
       {/* PLATFORM */}
       <section className="cv-section">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">Platform</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink mb-8">Platform that powers this solution</h2>
+          <div className="mx-auto max-w-2xl mb-8 text-center">
+            <SectionEyebrow className="mb-4">Platform</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">Platform that powers this solution</h2>
+          </div>
           <PlatformCards
             items={[
               ["DataX", "Query attribution, pattern detection, safe automation", "/platform/datax"],

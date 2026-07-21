@@ -88,8 +88,8 @@ export default function AIEngineeringPage() {
 
       <section className="cv-section">
         <div className="cv-container">
-          <div className="grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-stretch lg:gap-16">
-            <div>
+          <div className="flex flex-col items-center gap-10">
+            <div className="mx-auto max-w-2xl text-center">
               <SectionEyebrow className="mb-4">The situation</SectionEyebrow>
               <h2 className="cv-h2 text-cv-ink">The situation AI engineering teams are in.</h2>
               <p className="cv-body-lg text-cv-ink/80 mt-6">
@@ -100,7 +100,7 @@ export default function AIEngineeringPage() {
               </p>
               <p className="cv-body-lg text-cv-ink font-medium mt-4">AIX closes both gaps.</p>
             </div>
-            <div className="flex">
+            <div className="mx-auto w-full max-w-3xl">
               <Panel className="justify-between p-6" chrome="aix.app/situation">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] uppercase tracking-wide text-cv-muted">Current route · hardcoded</span>
@@ -119,7 +119,7 @@ export default function AIEngineeringPage() {
                     ["llama-3-70b", "$0.003/1k"],
                   ].map(([name, price]) => (
                     <div key={name} className="flex items-center justify-between gap-3 rounded-md border border-cv-line/60 px-3.5 py-3 text-xs dark:border-white/10">
-                      <span className="min-w-0 flex-1 truncate text-cv-ink/60">{name}</span>
+                      <span className="min-w-0 flex-1 truncate text-cv-ink/70">{name}</span>
                       <span className="flex shrink-0 flex-col items-end gap-0.5">
                         <span className="whitespace-nowrap font-mono tabular-nums text-cv-muted">{price}</span>
                         <span className="whitespace-nowrap text-[10px] text-cv-ink/35">blocked · code change</span>
@@ -140,8 +140,10 @@ export default function AIEngineeringPage() {
       {/* WHAT IT'S COSTING YOU TODAY */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">The cost of the gap</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink mb-8">What that&apos;s costing you today.</h2>
+          <div className="mx-auto max-w-2xl mb-8 text-center">
+            <SectionEyebrow className="mb-4">The cost of the gap</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">What that&apos;s costing you today.</h2>
+          </div>
           <BulletGrid items={COSTS} tone="negative" />
         </div>
       </section>
@@ -149,8 +151,10 @@ export default function AIEngineeringPage() {
       {/* WHAT YOU SHIP */}
       <section className="cv-section">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">What you ship</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink mb-10">What AIX unlocks for AI engineering teams.</h2>
+          <div className="mx-auto max-w-2xl mb-10 text-center">
+            <SectionEyebrow className="mb-4">What you ship</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">What AIX unlocks for AI engineering teams.</h2>
+          </div>
           <AixUnlocks />
         </div>
       </section>
@@ -158,15 +162,17 @@ export default function AIEngineeringPage() {
       {/* HOW IT WORKS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink">How AIX controls every AI request.</h2>
-          <div className="mt-4 max-w-3xl space-y-4 mb-12">
-            <p className="cv-body-lg text-cv-muted">
-              AIX sits between your application and every AI provider you use. On each request it scores the available routes against the rules your team set, then returns the best one with a fallback and a full decision log.
-            </p>
-            <p className="cv-body-lg text-cv-muted">
-              A gateway runs the rule you wrote. AIX works out whether that rule is still right.
-            </p>
+          <div className="mx-auto max-w-3xl mb-12 text-center">
+            <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">How AIX controls every AI request.</h2>
+            <div className="mt-4 space-y-4">
+              <p className="cv-body-lg text-cv-muted">
+                AIX sits between your application and every AI provider you use. On each request it scores the available routes against the rules your team set, then returns the best one with a fallback and a full decision log.
+              </p>
+              <p className="cv-body-lg text-cv-muted">
+                A gateway runs the rule you wrote. AIX works out whether that rule is still right.
+              </p>
+            </div>
           </div>
           <HowItWorksFlow
             workloads={HOW_IT_WORKS_WORKLOADS}
@@ -182,8 +188,10 @@ export default function AIEngineeringPage() {
       {/* THE NUMBERS */}
       <section className="cv-section">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">The numbers</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink">The numbers.</h2>
+          <div className="mx-auto max-w-2xl text-center">
+            <SectionEyebrow className="mb-4">The numbers</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">The numbers.</h2>
+          </div>
           <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
             {[
               "40–90% cost reduction across production workloads",
@@ -202,8 +210,10 @@ export default function AIEngineeringPage() {
       {/* OUTCOMES */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">Outcomes</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink mb-8">Outcomes you can take to the board.</h2>
+          <div className="mx-auto max-w-2xl mb-8 text-center">
+            <SectionEyebrow className="mb-4">Outcomes</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">Outcomes you can take to the board.</h2>
+          </div>
           <BulletGrid items={OUTCOMES} tone="positive" />
         </div>
       </section>
@@ -211,8 +221,10 @@ export default function AIEngineeringPage() {
       {/* PLATFORM */}
       <section className="cv-section">
         <div className="cv-container">
-          <SectionEyebrow className="mb-4">Platform</SectionEyebrow>
-          <h2 className="cv-h2 text-cv-ink mb-8">Platform that powers this solution</h2>
+          <div className="mx-auto max-w-2xl mb-8 text-center">
+            <SectionEyebrow className="mb-4">Platform</SectionEyebrow>
+            <h2 className="cv-h2 text-cv-ink">Platform that powers this solution</h2>
+          </div>
           <PlatformCards
             items={[
               ["AIX", "Routing, governance, and AI unit economics", "/platform/aix"],

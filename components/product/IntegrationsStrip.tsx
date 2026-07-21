@@ -4,7 +4,7 @@ export function IntegrationsStrip({ color, items }: { color: string; items: stri
   return (
     <section className="cv-section bg-cv-surface2">
       <div className="cv-container">
-        <div className="flex flex-col lg:flex-row gap-8 items-start lg:items-center justify-between">
+        <div className="flex flex-col items-center gap-6 text-center">
           <div className="max-w-xl">
             <div className="cv-label mb-3" style={{ color }}>Integrations</div>
             <h2 className="cv-h2 text-cv-ink">Connects to the stack your teams already use.</h2>

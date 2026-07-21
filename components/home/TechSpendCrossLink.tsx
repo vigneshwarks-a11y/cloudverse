@@ -15,8 +15,8 @@ export function TechSpendCrossLink() {
             className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full blur-3xl"
             style={{ background: "radial-gradient(circle, rgba(34,120,224,0.16), transparent 70%)" }}
           />
-          <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-            <div className="max-w-2xl">
+          <div className="relative flex flex-col items-center gap-6 text-center">
+            <div className="mx-auto max-w-2xl">
               <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
                 One platform
               </span>

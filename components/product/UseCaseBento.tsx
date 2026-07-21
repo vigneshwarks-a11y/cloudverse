@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const BLUE = "#007CFF";
+const BLUE = "#1664C0";
 const CYAN = "#38BDF8";
 const RED = "#E5484D";
 
