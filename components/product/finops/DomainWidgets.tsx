@@ -8,6 +8,7 @@
 
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { CardLightEdge } from "@/components/product/BentoChrome";
 import { StatusPill } from "@/components/product/finops/kit";
 import { AreaChart } from "@/components/charts/area-chart";
 import { Area } from "@/components/charts/area";
@@ -51,10 +52,11 @@ function Panel({
   return (
     <div
       className={cn(
-        "flex flex-col overflow-hidden rounded-xl border border-cv-line/70 bg-cv-surface/70 shadow-[0_10px_30px_-20px_rgba(16,24,40,0.35)] backdrop-blur-sm dark:border-white/[0.08] dark:bg-white/[0.035] dark:shadow-[0_20px_50px_-28px_rgba(0,0,0,0.7)]",
+        "relative flex flex-col overflow-hidden rounded-xl border border-cv-line/70 bg-cv-surface/70 shadow-[0_10px_30px_-20px_rgba(16,24,40,0.35)] backdrop-blur-sm dark:border-white/[0.08] dark:bg-black dark:shadow-[0_20px_50px_-28px_rgba(0,0,0,0.7)]",
         className,
       )}
     >
+      <CardLightEdge />
       <div className="flex shrink-0 items-center justify-between border-b border-cv-line/60 px-3.5 py-2.5 dark:border-white/[0.06]">
         <span className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wide text-cv-ink/70">
           <span className="h-1.5 w-1.5 rounded-full" style={{ background: dot }} />

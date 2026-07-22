@@ -5,27 +5,31 @@
    SVG/CSS — safe with no client hooks). */
 
 import type { ReactNode } from "react";
+import { CardLightEdge } from "@/components/product/BentoChrome";
 import { AreaChart, Bars, Meter, StatusPill, C } from "@/components/product/finops/kit";
 import { ShieldCheck, DangerTriangle, CheckCircle } from "@/lib/solar-icons";
 
-/* Shared card chrome: floating surface, soft depth, no harsh border, subtle lift. */
+/* Shared card chrome: floating surface, soft depth, no harsh border, subtle lift.
+   Container stays a lifted surface (not pure black) so the black visual card
+   inside it reads as a distinct framed panel. */
 function Card({ children }: { children: ReactNode }) {
   return (
-    <article className="cv-visual-well group relative flex flex-col overflow-hidden rounded-2xl border border-cv-line/60 bg-cv-surface p-5 transition-[transform,border-color] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-0.5 hover:border-cv-line motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-white/[0.07] dark:bg-black dark:hover:border-white/[0.16] lg:p-6">
+    <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-cv-line/60 bg-cv-surface p-5 transition-[transform,border-color] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-0.5 hover:border-cv-line motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-white/[0.07] dark:bg-white/[0.03] dark:hover:border-white/[0.16] lg:p-6">
       {children}
     </article>
   );
 }
 
-/* Fixed-height mockup stage; content is cropped and dissolved into the card
-   surface at the bottom edge so each mockup reads as one slice of live UI. */
+/* Fixed-height mockup stage — a framed black visual card carrying the top-left
+   light edge; content is cropped and dissolved into the panel at the bottom. */
 function Stage({ children }: { children: ReactNode }) {
   return (
-    <div className="relative mb-6 h-[188px] overflow-hidden">
-      {children}
+    <div className="relative mb-6 h-[188px] overflow-hidden rounded-xl border border-cv-line/60 bg-cv-surface2 p-3.5 dark:border-white/[0.08] dark:bg-black">
+      <CardLightEdge />
+      <div className="relative h-full">{children}</div>
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-cv-surface to-transparent dark:from-black"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-cv-surface2 to-transparent dark:from-black"
       />
     </div>
   );

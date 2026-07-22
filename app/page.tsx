@@ -90,22 +90,11 @@ export default function HomePage() {
                   </Link>
                 </div>
               </div>
-              {/* Right: subhead → deployment note → utility links */}
+              {/* Right: subhead */}
               <div className="flex flex-col items-start text-left">
                 <p className="cv-body text-pretty text-cv-ink/70">
                   One system of record for every agent, model route, prompt, and dollar of AI spend, with governance enforced in the execution path, not a report after the fact.
                 </p>
-                <p className="mt-6 text-sm italic text-cv-muted">
-                  Private deployment. Your cloud, your data plane, your keys.
-                </p>
-                <div className="mt-4 flex flex-col items-start gap-2">
-                  <Link href="/platform/agentry" className="text-sm text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-2 transition-colors flex items-center gap-1" data-testid="link-hero-platform">
-                    See the platform <ArrowRight weight="Linear" size={13} />
-                  </Link>
-                  <Link href="/connect" className="text-sm text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-2 transition-colors flex items-center gap-1" data-testid="link-hero-walkthrough">
-                    Walkthrough on your own data, in 30 minutes <ArrowRight weight="Linear" size={13} />
-                  </Link>
-                </div>
               </div>
             </div>
           </div>

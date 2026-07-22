@@ -7,6 +7,7 @@
    a hard cut. cv-* tokens, theme-aware. Server component (widgets are client). */
 
 import type { ReactNode } from "react";
+import { CardLightEdge } from "@/components/product/BentoChrome";
 import { CloudWidget, AIWidget, DataWidget, SaasWidget } from "@/components/product/finops/DomainWidgets";
 
 /* module hue + AA-tuned text token per domain */
@@ -77,7 +78,7 @@ function GlassCard({
   wide?: boolean;
 }) {
   return (
-    <article className="cv-visual-well relative flex h-full flex-col overflow-hidden rounded-[22px] border border-cv-line/50 bg-cv-surface2 p-6 shadow-[0_20px_50px_-30px_rgba(16,24,40,0.28)] dark:border-white/[0.07] dark:bg-black dark:shadow-[0_38px_84px_-34px_rgba(0,0,0,0.82)] lg:p-7">
+    <article className="relative flex h-full flex-col overflow-hidden rounded-[22px] border border-cv-line/50 bg-cv-surface2 p-6 shadow-[0_20px_50px_-30px_rgba(16,24,40,0.28)] dark:border-white/[0.07] dark:bg-black dark:shadow-[0_38px_84px_-34px_rgba(0,0,0,0.82)] lg:p-7">
       {/* mockup — static (non-interactive). Wide cards flex-fill; narrow cards
           use a fixed height so all three visuals match regardless of copy. */}
       <div
@@ -121,7 +122,8 @@ const SHARED_CHIPS: [string, string][] = [
 ];
 function SharedMockup() {
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-xl border border-cv-line/70 bg-cv-surface/70 shadow-[0_10px_30px_-20px_rgba(16,24,40,0.35)] dark:border-white/[0.08] dark:bg-white/[0.035]">
+    <div className="relative flex h-full flex-col overflow-hidden rounded-xl border border-cv-line/70 bg-cv-surface/70 shadow-[0_10px_30px_-20px_rgba(16,24,40,0.35)] dark:border-white/[0.08] dark:bg-black">
+      <CardLightEdge />
       <div className="flex items-center justify-between border-b border-cv-line/60 px-3.5 py-2.5 dark:border-white/[0.06]">
         <span className="font-mono text-[10px] uppercase tracking-wide text-cv-ink/70">one data model</span>
         <span className="font-mono text-[10px] text-cv-ink/50">4 domains</span>

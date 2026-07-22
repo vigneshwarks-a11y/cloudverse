@@ -330,7 +330,7 @@ export function Dashboard({ full = false }: { full?: boolean }) {
     <div className="aspect-video w-full rounded-2xl shadow-[0_16px_40px_-24px_rgba(16,24,40,0.18)] dark:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.5)]">
       <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-cv-line bg-white text-[#1d1d1f] dark:border-white/10 dark:bg-[#0c0c0f] dark:text-[#e5e5e7]">
         {/* top-left light edge (shared Day-one chrome) */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 z-30">
+        <div aria-hidden className="pointer-events-none absolute inset-0 z-30 rounded-2xl">
           <CardLightEdge />
         </div>
         {/* window top bar */}
