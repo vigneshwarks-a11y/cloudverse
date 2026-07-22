@@ -90,9 +90,11 @@ export default function DataTeamsPage() {
       <section className="cv-section">
         <div className="cv-container">
           <div className="flex flex-col items-start gap-10">
-            <div className="max-w-2xl text-left">
+            <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
+<div className="text-left">
               <SectionEyebrow className="mb-4">The situation</SectionEyebrow>
-              <h2 className="cv-h2 text-cv-ink">The situation data teams are in.</h2>
+              <h2 className="cv-h2 text-cv-ink">The situation data teams are in.</h2></div>
+<div className="text-left">
               <p className="cv-body-lg text-cv-ink/80 mt-6">
                 Warehouse spend is unpredictable and rarely maps to a team or product. A single unpruned query scans hundreds of gigabytes; run on a schedule, it compounds.
               </p>
@@ -100,6 +102,7 @@ export default function DataTeamsPage() {
                 And now AI workloads are reading from your warehouses at scale, on budgets that were never sized for them, often from AI-assisted code with no obvious owner. DataX finds these automatically, with attribution down to the SQL.
               </p>
             </div>
+</div>
             <div className="mx-auto w-full max-w-3xl">
               <Panel className="justify-between p-6" chrome="datax.app/situation">
                 <div className="flex items-center justify-between">
@@ -162,9 +165,11 @@ export default function DataTeamsPage() {
       {/* HOW IT WORKS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="max-w-3xl mb-12 text-left">
+          <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16 mb-12">
+<div className="text-left">
             <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
-            <h2 className="cv-h2 text-cv-ink">How DataX controls every warehouse dollar.</h2>
+            <h2 className="cv-h2 text-cv-ink">How DataX controls every warehouse dollar.</h2></div>
+<div className="text-left">
             <div className="mt-4 space-y-4">
               <p className="cv-body-lg text-cv-muted">
                 DataX sits alongside your warehouses over a read-only role. On every query it attributes the cost to an owner through the dbt DAG, catches the patterns that compound, and applies the fix once you approve it.
@@ -174,6 +179,7 @@ export default function DataTeamsPage() {
               </p>
             </div>
           </div>
+</div>
           <HowItWorksFlow
             workloads={HOW_IT_WORKS_WORKLOADS}
             chips={HOW_IT_WORKS_CHIPS}
@@ -189,9 +195,11 @@ export default function DataTeamsPage() {
       <section className="cv-section">
         <div className="cv-container">
           <div className="flex flex-col items-start gap-10">
-            <div className="max-w-2xl text-left">
+            <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
+<div className="text-left">
               <SectionEyebrow className="mb-4">Customer proof</SectionEyebrow>
-              <h2 className="cv-h2 text-cv-ink">From invisible spend to accountable architecture.</h2>
+              <h2 className="cv-h2 text-cv-ink">From invisible spend to accountable architecture.</h2></div>
+<div className="text-left">
               <p className="mt-6 leading-relaxed text-cv-ink/80">
                 A Southeast Asian digital and telecommunications group ran 129 applications across four clouds with no reliable owner. CloudVerse mapped spend to how the business works and surfaced Rp964.80M in savings before optimization began.
               </p>
@@ -211,6 +219,7 @@ export default function DataTeamsPage() {
               <DataXAttributionMock />
             </div>
           </div>
+</div>
         </div>
       </section>
 

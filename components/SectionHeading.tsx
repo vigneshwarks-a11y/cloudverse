@@ -55,10 +55,13 @@ export function SectionHeading({
     return <div className={"max-w-3xl " + className}>{heading}</div>;
   }
 
+  // Bottom-align the two columns: the description's last line sits level with
+  // the heading's last line (eyebrow floats above on the left). Maintained
+  // site-wide via this component.
   return (
-    <div className={"grid gap-6 lg:grid-cols-2 lg:items-start lg:gap-16 " + className}>
+    <div className={"grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16 " + className}>
       {heading}
-      <div className={(lead ? "cv-body-lg" : "cv-body") + " text-pretty text-cv-ink/70 lg:pt-1"}>
+      <div className={(lead ? "cv-body-lg" : "cv-body") + " text-pretty text-cv-ink/70"}>
         {children}
       </div>
     </div>

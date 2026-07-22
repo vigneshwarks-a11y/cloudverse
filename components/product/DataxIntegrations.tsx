@@ -50,12 +50,16 @@ export function DataxIntegrations() {
       />
 
       <div className="cv-container relative z-10">
-        {/* Heading */}
-        <div className="text-center">
-          <h2 className="cv-h2 text-cv-ink max-w-2xl">Connects to the stack your teams already use.</h2>
-          <p className="mt-5 cv-body text-cv-ink/70 max-w-lg mx-auto">
-            Warehouses, lakehouses, and pipelines, connected once.
-          </p>
+        {/* Heading — two-column */}
+        <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
+          <div className="text-left">
+            <h2 className="cv-h2 text-cv-ink">Connects to the stack your teams already use.</h2>
+          </div>
+          <div className="text-left">
+            <p className="cv-body text-cv-ink/70">
+              Warehouses, lakehouses, and pipelines, connected once.
+            </p>
+          </div>
         </div>
 
         {/* Warehouse logo tiles */}

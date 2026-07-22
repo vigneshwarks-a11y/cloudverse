@@ -311,14 +311,11 @@ export default function AgentryPage() {
       {/* INTEGRATIONS */}
       <section className="cv-section">
         <div className="cv-container">
-          {/* Heading */}
-          <div className="text-center">
-            <h2 className="cv-h2 text-cv-ink max-w-2xl">Connect once. Route everywhere.</h2>
-            <p className="mt-5 cv-body-lg text-cv-ink/75 max-w-2xl mx-auto">
-              Add your providers once. Agentry handles routing, fallback, and cost tracking across all of them. No code changes when you add a new provider.
-            </p>
-            <h3 className="cv-label mt-8 text-[#1664C0] dark:text-[#7CB8F8]">Supported model providers</h3>
-          </div>
+          {/* Heading — two-column */}
+          <SectionHeading title="Connect once. Route everywhere." lead>
+            Add your providers once. Agentry handles routing, fallback, and cost tracking across all of them. No code changes when you add a new provider.
+          </SectionHeading>
+          <h3 className="cv-label mt-8 text-[#1664C0] dark:text-[#7CB8F8]">Supported model providers</h3>
 
           {/* Provider logos - two rows of app-icon tiles */}
           <div className="mt-8">

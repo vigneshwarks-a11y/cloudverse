@@ -107,11 +107,15 @@ export default function IntegrationsPage() {
           style={{ background: "radial-gradient(ellipse 60% 60% at 50% 0%, rgba(22,100,192,0.16), transparent 70%)" }}
         />
         <div className="cv-container relative z-10">
-          <div className="text-center">
-            <h2 className="cv-h2 text-cv-ink max-w-2xl">Every model provider, one endpoint.</h2>
-            <p className="mt-5 cv-body text-cv-ink/70 max-w-lg mx-auto">
-              Route across managed APIs and private deployments without changing your application code.
-            </p>
+          <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
+            <div className="text-left">
+              <h2 className="cv-h2 text-cv-ink">Every model provider, one endpoint.</h2>
+            </div>
+            <div className="text-left">
+              <p className="cv-body text-cv-ink/70">
+                Route across managed APIs and private deployments without changing your application code.
+              </p>
+            </div>
           </div>
           <AgentryProvidersMarquee />
           <p className="mt-14 text-center text-sm italic text-cv-muted">More providers added regularly.</p>
@@ -166,9 +170,11 @@ export default function IntegrationsPage() {
       <section className="cv-section">
         <div className="cv-container">
           <div className="flex flex-col items-start gap-10">
-            <div className="max-w-2xl text-left">
+            <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
+<div className="text-left">
               <p className="cv-label mb-4">Security model</p>
-              <h2 className="cv-h2 text-cv-ink">Read-only by default. Automation is opt-in.</h2>
+              <h2 className="cv-h2 text-cv-ink">Read-only by default. Automation is opt-in.</h2></div>
+<div className="text-left">
               <p className="cv-body-lg text-cv-ink/75 mt-6">
                 CloudVerse connects to your infrastructure using read-only access. It reads metadata, query logs, billing telemetry, and policy signals, and never touches your data or runtime unless you explicitly grant automation permissions.
               </p>
@@ -176,6 +182,7 @@ export default function IntegrationsPage() {
                 Review our security posture <ArrowRight weight="Linear" size={14} />
               </Link>
             </div>
+</div>
 
             <div className="mx-auto w-full max-w-2xl rounded-2xl border border-cv-line/60 bg-cv-surface2 dark:bg-[#0D0D0D] p-6 lg:p-8">
               <div className="mb-5 flex items-center gap-2.5">
@@ -223,13 +230,16 @@ export default function IntegrationsPage() {
         <div className="cv-container">
           <div className="flex flex-col items-start gap-10">
             {/* top: eyebrow + heading + body */}
-            <div className="max-w-2xl text-left">
+            <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
+<div className="text-left">
               <p className="cv-label mb-4">Private compute</p>
-              <h2 className="cv-h2 text-cv-ink">Private deployments and GPU infrastructure.</h2>
+              <h2 className="cv-h2 text-cv-ink">Private deployments and GPU infrastructure.</h2></div>
+<div className="text-left">
               <p className="cv-body-lg text-cv-ink/75 mt-6">
                 Agentry treats private GPU capacity as a first-class routing target alongside managed APIs. If you run models on dedicated hardware or a NeoCloud provider, Agentry routes to them with the same cost and policy logic.
               </p>
             </div>
+</div>
 
             {/* below: bordered grid of icon-cell rows */}
             <div className="mx-auto w-full max-w-2xl overflow-hidden rounded-2xl border border-cv-line/70 divide-y divide-cv-line/70 dark:border-white/10 dark:divide-white/10">

@@ -17,8 +17,10 @@ export function WhyCloudVerse() {
     <section className="cv-section bg-cv-surface2 dark:bg-black" data-testid="section-why-cloudverse">
       <div className="cv-container">
         <div>
-          <div className="max-w-5xl text-left">
-            <h2 className="cv-h2 max-w-3xl text-cv-ink">One platform, not a portfolio.</h2>
+          <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
+<div className="text-left">
+            <h2 className="cv-h2 max-w-3xl text-cv-ink">One platform, not a portfolio.</h2></div>
+<div className="text-left">
             <p className="mt-5 cv-body-lg text-cv-ink/70">
               Flexera and IBM Apptio both grew by acquiring separate products (Cloud Cost Optimization,
               Cloud Commitment Management, Kubecost, Turbonomic) and bundling them under one brand, with
@@ -26,6 +28,7 @@ export function WhyCloudVerse() {
               license, one data model, shared infrastructure from day one.
             </p>
           </div>
+</div>
 
           <ul className="mx-auto mt-12 max-w-2xl space-y-4">
             {POINTS.map((p) => (

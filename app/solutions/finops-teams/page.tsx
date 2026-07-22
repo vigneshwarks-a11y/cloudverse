@@ -74,9 +74,11 @@ export default function FinOpsTeamsPage() {
       <section className="cv-section">
         <div className="cv-container">
           <div className="flex flex-col items-start gap-10">
-            <div className="max-w-2xl text-left">
+            <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
+<div className="text-left">
               <SectionEyebrow className="mb-4">The situation</SectionEyebrow>
-              <h2 className="cv-h2 text-cv-ink text-balance">The situation FinOps teams are in.</h2>
+              <h2 className="cv-h2 text-cv-ink text-balance">The situation FinOps teams are in.</h2></div>
+<div className="text-left">
               <p className="cv-body-lg text-cv-ink/80 mt-6">
                 The invoice is on time. The explanation isn&apos;t. Your dashboards are accurate and your recommendations get ignored, because they don&apos;t reach the person who can act, with the context to act on.
               </p>
@@ -84,6 +86,7 @@ export default function FinOpsTeamsPage() {
                 And now AI spend is landing in places where the value isn&apos;t quantified yet. One model across infrastructure, data, and AI is the only way the numbers reconcile.
               </p>
             </div>
+</div>
             <div className="mx-auto w-full max-w-3xl">
               <Panel className="justify-between p-6" chrome="finops.app/variance">
                 <div className="flex items-center justify-between">
@@ -140,9 +143,11 @@ export default function FinOpsTeamsPage() {
       {/* HOW IT WORKS — flow diagram */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="max-w-3xl mb-12 text-left">
+          <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16 mb-12">
+<div className="text-left">
             <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
-            <h2 className="cv-h2 text-cv-ink">How compute economics works.</h2>
+            <h2 className="cv-h2 text-cv-ink">How compute economics works.</h2></div>
+<div className="text-left">
             <div className="mt-4 space-y-4">
               <p className="cv-body-lg text-cv-muted">
                 Modern AI stacks have observability and orchestration. What they lack is economic control at the decision point.
@@ -152,6 +157,7 @@ export default function FinOpsTeamsPage() {
               </p>
             </div>
           </div>
+</div>
           <FinopsHowItWorks />
         </div>
       </section>
@@ -160,9 +166,11 @@ export default function FinOpsTeamsPage() {
       <section className="cv-section">
         <div className="cv-container">
           <div className="flex flex-col items-start gap-10">
-            <div className="max-w-2xl text-left">
+            <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
+<div className="text-left">
               <SectionEyebrow className="mb-4">Customer proof</SectionEyebrow>
-              <h2 className="cv-h2 text-cv-ink">How Berkshire Hathaway HomeServices recovered $738,983</h2>
+              <h2 className="cv-h2 text-cv-ink">How Berkshire Hathaway HomeServices recovered $738,983</h2></div>
+<div className="text-left">
               <p className="mt-6 leading-relaxed text-cv-ink/80">
                 A growing AWS estate, fragmented tagging, and no team-level attribution. CloudVerse tied spend to teams, surfaced the anomalies that mattered, and gave finance a model that held up under review.
               </p>
@@ -182,19 +190,23 @@ export default function FinOpsTeamsPage() {
               <FinopsClusterMock />
             </div>
           </div>
+</div>
         </div>
       </section>
 
       {/* HOW THIS IS DIFFERENT — two-column lead-in */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="flex max-w-3xl flex-col items-start text-left">
+          <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
+<div className="text-left">
             <SectionEyebrow className="mb-4">The difference</SectionEyebrow>
-            <h2 className="cv-h2 text-cv-ink text-balance">How this is different</h2>
+            <h2 className="cv-h2 text-cv-ink text-balance">How this is different</h2></div>
+<div className="text-left">
             <p className="cv-body-lg mt-4 text-cv-ink/80">
               Dashboards explain the invoice. CloudVerse governs the decisions that shape it: PR-level checks in engineering workflows, AI and GPU economics, and warehouse query attribution. All on one model.
             </p>
           </div>
+</div>
 
           {/* Product screen mockup (reused from the home Agentry orchestration section) */}
           <div className="mt-12 lg:mt-16">

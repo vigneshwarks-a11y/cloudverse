@@ -1,3 +1,4 @@
+import { SectionHeading } from "@/components/SectionHeading";
 /* "In the call path. Deployed in your environment." — a premium, floating
    product-style composition of the Agentry call path: AI surfaces → CloudVerse Agentry
    (focal, glowing, layered) → model providers, joined by animated connector
@@ -273,16 +274,10 @@ export function AgentryDeployment() {
   return (
     <section className="cv-section bg-cv-surface2 dark:bg-black" data-testid="section-architecture">
       <div className="cv-container">
-        <div className="flex max-w-3xl flex-col items-start text-left">
-          <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#6954D4]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#6954D4] dark:text-[#B7A9F5]">
-            Architecture
-          </span>
-          <h2 className="cv-h2 text-balance text-cv-ink">In the call path. Deployed in your environment.</h2>
-          <p className="cv-body mt-4 text-cv-ink/70">
-            Agentry sits between your AI surfaces (agents, apps, IDEs, RAG pipelines, copilots)
-            and your model providers, whether commercial APIs, cloud-hosted, or sovereign/local models.
-          </p>
-        </div>
+        <SectionHeading eyebrow="Architecture" accent="purple" title="In the call path. Deployed in your environment.">
+          Agentry sits between your AI surfaces (agents, apps, IDEs, RAG pipelines, copilots)
+          and your model providers, whether commercial APIs, cloud-hosted, or sovereign/local models.
+        </SectionHeading>
 
         {/* Floating call-path composition */}
         <div className="relative mt-10 overflow-hidden rounded-2xl border border-cv-line/60 bg-cv-surface2 p-6 sm:p-10 dark:border-white/10 dark:bg-[#0D0D0D]">

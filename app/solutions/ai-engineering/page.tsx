@@ -6,6 +6,7 @@ import { HowItWorksFlow, type FlowChip, type FlowWorkload, type FlowRightNode } 
 import { PlatformCards } from "@/components/solution/PlatformCards";
 import { SolutionHero } from "@/components/solution/SolutionHero";
 import { SectionEyebrow } from "@/components/solution/SectionEyebrow";
+import { SectionHeading } from "@/components/SectionHeading";
 import { BulletGrid } from "@/components/solution/BulletGrid";
 import { WhoThisIsFor } from "@/components/solution/WhoThisIsFor";
 import { FaqBlock } from "@/components/FaqBlock";
@@ -89,17 +90,13 @@ export default function AIEngineeringPage() {
       <section className="cv-section">
         <div className="cv-container">
           <div className="flex flex-col items-start gap-10">
-            <div className="max-w-2xl text-left">
-              <SectionEyebrow className="mb-4">The situation</SectionEyebrow>
-              <h2 className="cv-h2 text-cv-ink">The situation AI engineering teams are in.</h2>
-              <p className="cv-body-lg text-cv-ink/80 mt-6">
-                You picked a model once and wired it in. There are now cheaper models that clear the same quality bar, but changing means a code change nobody has time for.
-              </p>
-              <p className="cv-body-lg text-cv-ink/80 mt-4">
+            <SectionHeading eyebrow="The situation" title="The situation AI engineering teams are in." lead>
+              You picked a model once and wired it in. There are now cheaper models that clear the same quality bar, but changing means a code change nobody has time for.
+              <span className="mt-4 block">
                 Meanwhile AI-assisted coding and agents are moving your inference and GPU cost week to week, and the bill arrives with no owner attached.
-              </p>
-              <p className="cv-body-lg text-cv-ink font-medium mt-4">Agentry closes both gaps.</p>
-            </div>
+              </span>
+              <span className="mt-4 block font-medium text-cv-ink">Agentry closes both gaps.</span>
+            </SectionHeading>
             <div className="mx-auto w-full max-w-3xl">
               <Panel className="justify-between p-6" chrome="agentry.app/situation">
                 <div className="flex items-center justify-between">
@@ -162,18 +159,12 @@ export default function AIEngineeringPage() {
       {/* HOW IT WORKS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="max-w-3xl mb-12 text-left">
-            <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
-            <h2 className="cv-h2 text-cv-ink">How Agentry controls every AI request.</h2>
-            <div className="mt-4 space-y-4">
-              <p className="cv-body-lg text-cv-muted">
-                Agentry sits between your application and every AI provider you use. On each request it scores the available routes against the rules your team set, then returns the best one with a fallback and a full decision log.
-              </p>
-              <p className="cv-body-lg text-cv-muted">
-                A gateway runs the rule you wrote. Agentry works out whether that rule is still right.
-              </p>
-            </div>
-          </div>
+          <SectionHeading className="mb-12" eyebrow="How it works" title="How Agentry controls every AI request." lead>
+            Agentry sits between your application and every AI provider you use. On each request it scores the available routes against the rules your team set, then returns the best one with a fallback and a full decision log.
+            <span className="mt-4 block">
+              A gateway runs the rule you wrote. Agentry works out whether that rule is still right.
+            </span>
+          </SectionHeading>
           <HowItWorksFlow
             workloads={HOW_IT_WORKS_WORKLOADS}
             chips={HOW_IT_WORKS_CHIPS}

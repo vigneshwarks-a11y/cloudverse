@@ -30,17 +30,20 @@ export function NotAGateway() {
   return (
     <section className="cv-section bg-cv-surface" data-testid="section-not-a-gateway">
       <div className="cv-container">
-        <div className="flex max-w-3xl flex-col items-start text-left">
+        <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
+<div className="text-left">
           <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
             How Agentry compares
           </span>
           <h2 className="cv-h2 text-balance text-cv-ink">
             Not a gateway. Not observability. Not a cost tool.
-          </h2>
+          </h2></div>
+<div className="text-left">
           <p className="cv-body mt-4 text-cv-ink/70">
             Adjacent tools see pieces. Agentry governs the whole.
           </p>
         </div>
+</div>
 
         <div className="mt-10 overflow-x-auto rounded-2xl border border-cv-line/60 dark:border-white/10">
           <table className="w-full min-w-[860px] border-collapse text-sm">

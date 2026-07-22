@@ -241,15 +241,10 @@ export default function DataXPage() {
         />
 
         <div className="cv-container relative z-10">
-          {/* Heading */}
-          <div className="text-center">
-            <h2 className="cv-h2 text-cv-ink max-w-2xl">
-              Connects to the stack your teams already run.
-            </h2>
-            <p className="mt-5 cv-body text-cv-ink/70 max-w-lg mx-auto">
-              Cloud, models, GPUs, data warehouses, and CI, connected once.
-            </p>
-          </div>
+          {/* Heading — two-column */}
+          <SectionHeading title="Connects to the stack your teams already run.">
+            Cloud, models, GPUs, data warehouses, and CI, connected once.
+          </SectionHeading>
 
           {/* Logos marquee - two rows of app-icon tiles */}
           <IntegrationsMarquee />

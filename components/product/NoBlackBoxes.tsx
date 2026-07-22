@@ -55,16 +55,20 @@ export default function NoBlackBoxes({ traceJson }: { traceJson: string }) {
         >
           {/* headline + description */}
           <div
-            className="flex max-w-2xl flex-col items-start text-left"
+            className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16"
             style={rise(1)}
           >
-            <h2 className="cv-h2 text-cv-ink">No black boxes.</h2>
-            <p className="cv-body-lg text-cv-ink/75 mt-5">
-              Every routing decision includes an evidence summary: the constraints active, the routes evaluated, the one selected, and why. If you can&apos;t explain a decision, you can&apos;t govern it.
-            </p>
-            <p className="text-cv-ink/75 mt-8">
-              SOC2 and ISO-aligned architecture. Audit trails, access controls, and policy enforcement structured to support compliance documentation. Specific certification status confirmed during your evaluation.
-            </p>
+            <div className="text-left">
+              <h2 className="cv-h2 text-cv-ink">No black boxes.</h2>
+            </div>
+            <div className="text-left">
+              <p className="cv-body-lg text-cv-ink/75">
+                Every routing decision includes an evidence summary: the constraints active, the routes evaluated, the one selected, and why. If you can&apos;t explain a decision, you can&apos;t govern it.
+              </p>
+              <p className="text-cv-ink/75 mt-8">
+                SOC2 and ISO-aligned architecture. Audit trails, access controls, and policy enforcement structured to support compliance documentation. Specific certification status confirmed during your evaluation.
+              </p>
+            </div>
           </div>
 
           {/* decision-trace card (raw JSON) */}

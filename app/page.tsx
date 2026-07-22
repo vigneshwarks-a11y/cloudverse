@@ -15,6 +15,7 @@ import { AgentryOrchestration } from "@/components/home/AgentryOrchestration";
 import { TestimonialsCarousel } from "@/components/home/TestimonialsCarousel";
 import { FeatureShowcase } from "@/components/home/FeatureShowcase";
 import { InlineCta } from "@/components/home/InlineCta";
+import { SectionHeading } from "@/components/SectionHeading";
 import { DEMO_URL } from "@/lib/links";
 import { GuidesResources } from "@/components/home/GuidesResources";
 
@@ -167,18 +168,10 @@ export default function HomePage() {
         />
 
         <div className="cv-container relative z-10">
-          {/* Heading - centered */}
-          <div className="flex max-w-3xl flex-col items-start text-left">
-            <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
-              Integrations
-            </span>
-            <h2 className="cv-h2 text-cv-ink">
-              Connects to the stack your teams already run.
-            </h2>
-            <p className="cv-body mt-4 text-cv-ink/70">
-              Cloud, models, GPUs, data warehouses, and CI, connected once.
-            </p>
-          </div>
+          {/* Heading — two-column */}
+          <SectionHeading eyebrow="Integrations" title="Connects to the stack your teams already run.">
+            Cloud, models, GPUs, data warehouses, and CI, connected once.
+          </SectionHeading>
 
           {/* Logos marquee - two rows of app-icon tiles */}
           <IntegrationsMarquee />
