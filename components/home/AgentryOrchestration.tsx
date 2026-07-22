@@ -1,14 +1,28 @@
 "use client";
 import { SectionHeading } from "@/components/SectionHeading";
-
 import Link from "next/link";
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import Image from "next/image";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+// All GSAP + plugins come from the single registration point.
+import { gsap, ScrollTrigger, getSmoother } from "@/lib/gsap";
 import { CardLightEdge } from "@/components/home/cardChrome";
 
-/* "One system of record" - a left accordion of Agentry capabilities (the active
-   one expands with copy + Learn More + an auto-advance progress bar) beside a
-   product dashboard mock (logs table + trace timeline + request/response). */
+/* "One system of record" — a pinned scroll-scrub stack. As the section holds
+   in place, scroll progress drives which capability is "active": its bullet
+   lights up while the others dim, and the matching product visual crossfades
+   in on the right. All of it lives in one scrubbed GSAP timeline so it tracks
+   the scrollbar smoothly (no React state re-renders mid-scroll).
+
+   Stack runs on lg+ with motion allowed. Below that (or reduced-motion) the
+   GSAP never mounts and everything renders as a plain, fully-legible stack. */
+
+/* Debug toggle for the pinned ScrollTrigger. Flip to true to see start/end
+   and pin-spacing markers while tuning; leave false in production. */
+const SHOW_MARKERS = false;
+
+/* Pixels of scroll spent on each capability while pinned. Total pin distance
+   is CAPABILITIES.length * STEP_DISTANCE. Tune here. */
+const STEP_DISTANCE = 400;
 
 type Capability = { key: string; name: string; accent: string; record: string };
 
@@ -50,49 +64,92 @@ const CAPABILITIES: Capability[] = [
   },
 ];
 
-const DWELL_MS = 6000;
-
 export function AgentryOrchestration() {
-  const [active, setActive] = useState(1);
-  // Bumped on every manual tap so the progress bar remounts and restarts from
-  // 0% even when the already-active item is tapped again.
-  const [cycle, setCycle] = useState(0);
-  const [reduced, setReduced] = useState(false);
-  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
-  // Only run the auto-advance + progress fill once the section is on screen, so
-  // the loader fills from 0 when the user sees it (not already complete).
   const rootRef = useRef<HTMLElement | null>(null);
-  const inView = useInView(rootRef, { margin: "-20% 0px -20% 0px" });
 
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const sync = () => setReduced(mq.matches);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
+    // gsap.context scopes every selector/trigger created inside it to the
+    // section, and ctx.revert() on cleanup kills the pin, its pin-spacer, and
+    // all tweens — so navigating away or re-rendering never leaves a dangling
+    // ScrollTrigger behind (the classic React/Next double-mount hazard).
+    const ctx = gsap.context(() => {
+      const n = CAPABILITIES.length;
+
+      // matchMedia so the pin only exists on desktop with motion allowed; it
+      // auto-tears-down when the query stops matching (e.g. resize to mobile),
+      // and is still captured by the surrounding context for ctx.revert().
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
+        const bullets = gsap.utils.toArray<HTMLElement>("[data-bullet]");
+        const panels = gsap.utils.toArray<HTMLElement>("[data-panel]");
+        const fill = rootRef.current?.querySelector<HTMLElement>("[data-progress-fill]");
+
+        // Start state: first capability active, first panel shown.
+        gsap.set(panels, { autoAlpha: 0, scale: 0.98 });
+        gsap.set(panels[0], { autoAlpha: 1, scale: 1 });
+        if (fill) gsap.set(fill, { scaleY: 0, transformOrigin: "top" });
+        paintBullets(bullets, 0);
+
+        let current = 0;
+        const paint = (progress: number) => {
+          const idx = Math.round(progress * (n - 1));
+          if (idx !== current) {
+            current = idx;
+            paintBullets(bullets, idx);
+          }
+        };
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: rootRef.current,
+            start: "top top",
+            end: "+=" + n * STEP_DISTANCE,
+            pin: true,
+            scrub: 1,
+            markers: SHOW_MARKERS,
+            onUpdate: (self) => paint(self.progress),
+          },
+        });
+
+        // Vertical progress fill grows across the whole pinned duration.
+        if (fill) tl.to(fill, { scaleY: 1, ease: "none", duration: n - 1 }, 0);
+
+        // Crossfade each panel into the next as the scrollbar scrubs through.
+        for (let i = 1; i < n; i++) {
+          tl.to(panels[i - 1], { autoAlpha: 0, scale: 0.98, duration: 0.5 }, i - 1)
+            .to(panels[i], { autoAlpha: 1, scale: 1, duration: 0.5 }, "<");
+        }
+      });
+    }, rootRef);
+
+    // Logos, images and the self-hosted font settle after mount and change
+    // section heights, which shifts every trigger's start/end. Refresh once
+    // the window fully loads so the pin math is measured against final layout.
+    // (ScrollSmoother already refreshes on document.fonts.ready.)
+    const onLoad = () => ScrollTrigger.refresh();
+    if (document.readyState === "complete") ScrollTrigger.refresh();
+    else window.addEventListener("load", onLoad);
+
+    return () => {
+      window.removeEventListener("load", onLoad);
+      ctx.revert();
+    };
   }, []);
 
-  const startTimer = useCallback(() => {
-    if (timer.current) clearInterval(timer.current);
-    if (reduced || !inView) return;
-    timer.current = setInterval(() => setActive((i) => (i + 1) % CAPABILITIES.length), DWELL_MS);
-  }, [reduced, inView]);
-
-  useEffect(() => {
-    startTimer();
-    return () => {
-      if (timer.current) clearInterval(timer.current);
-    };
-  }, [startTimer]);
-
-  const select = (i: number) => {
-    setActive(i);
-    setCycle((c) => c + 1);
-    startTimer();
+  // Clicking a bullet jumps the pinned timeline to that step. Works through
+  // ScrollSmoother when present, native scroll otherwise.
+  const goTo = (i: number) => {
+    const st = ScrollTrigger.getAll().find((t) => t.pin && t.trigger === rootRef.current);
+    if (!st) return; // not pinned (mobile / reduced-motion): let the anchor be a no-op
+    const y = st.start + (i / (CAPABILITIES.length - 1)) * (st.end - st.start);
+    const smoother = getSmoother();
+    if (smoother) smoother.scrollTo(y, true);
+    else window.scrollTo({ top: y, behavior: "smooth" });
   };
 
   return (
-    <section ref={rootRef} className="cv-section overflow-hidden bg-cv-surface2" data-testid="section-agentry-orchestration">
+    <section ref={rootRef} className="cv-section bg-cv-surface2" data-testid="section-agentry-orchestration">
       <div className="cv-container">
         <SectionHeading eyebrow="One system of record" title="Enterprise AI is fragmented. Agentry makes it one system of record.">
           Not a gateway that runs your routing rules. Not observability that tells you what a request
@@ -101,149 +158,57 @@ export function AgentryOrchestration() {
         </SectionHeading>
 
         <div className="mt-12 grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-14">
-          {/* LEFT - accordion (desktop) */}
-          <ul className="hidden divide-y divide-cv-line lg:block">
-            {CAPABILITIES.map((c, i) => {
-              const isActive = i === active;
-              return (
-                <li key={c.key} className="relative">
+          {/* LEFT — capability list. Every record is always rendered (dimmed
+              when inactive) so the pinned section never changes height. */}
+          <div className="relative">
+            {/* vertical progress rail (desktop, animated) */}
+            <span aria-hidden className="pointer-events-none absolute left-0 top-1 hidden h-[calc(100%-0.5rem)] w-px bg-cv-line lg:block">
+              <span data-progress-fill className="absolute inset-0 block bg-[#1664C0]" />
+            </span>
+
+            <ul className="lg:pl-6">
+              {CAPABILITIES.map((c, i) => (
+                <li key={c.key} data-bullet className="py-4 transition-opacity duration-300 lg:opacity-100">
                   <button
                     type="button"
-                    onClick={() => select(i)}
-                    aria-pressed={isActive}
-                    className="block w-full py-5 text-left"
+                    onClick={() => goTo(i)}
+                    className="block w-full text-left lg:cursor-pointer"
                   >
                     <span
-                      className="text-lg font-semibold leading-snug transition-colors duration-300"
-                      style={{ color: isActive ? "hsl(var(--cv-ink))" : "hsl(var(--cv-muted))" }}
+                      data-bullet-name
+                      className="text-lg font-semibold leading-snug text-cv-ink transition-colors duration-300"
                     >
                       {c.name}
                     </span>
-
-                    <div
-                      className="grid transition-[grid-template-rows,opacity] duration-500 ease-out"
-                      style={{
-                        gridTemplateRows: isActive ? "1fr" : "0fr",
-                        opacity: isActive ? 1 : 0,
-                      }}
-                    >
-                      <div className="overflow-hidden">
-                        <p className="mt-3 max-w-md text-sm leading-relaxed text-cv-muted">{c.record}</p>
-                        <Link
-                          href="/platform/agentry"
-                          className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-cv-blue dark:text-cv-blue-light"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          Learn More
-                          <svg viewBox="0 0 24 24" className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                            <path d="M9 6l6 6-6 6" />
-                          </svg>
-                        </Link>
-                      </div>
-                    </div>
+                    <p className="mt-2 max-w-md text-sm leading-relaxed text-cv-muted">{c.record}</p>
                   </button>
-
-                  {/* auto-advance progress bar under the active item: solid
-                      fill that grows left-to-right */}
-                  {isActive && !reduced && inView && (
-                    <motion.span
-                      key={`${active}-${cycle}`}
-                      className="absolute bottom-0 left-0 h-[2px] rounded-full bg-[#1664C0]"
-                      initial={{ width: "0%" }}
-                      animate={{ width: "100%" }}
-                      transition={{ duration: DWELL_MS / 1000, ease: "linear" }}
-                    />
-                  )}
-                  {isActive && reduced && (
-                    <span className="absolute bottom-0 left-0 h-[2px] w-full rounded-full" style={{ background: "#1664C0" }} />
-                  )}
                 </li>
-              );
-            })}
-          </ul>
+              ))}
+            </ul>
 
-          {/* LEFT - accordion (mobile): title + divider, active item reveals
-              copy, Learn More, and a track + gradient-fill progress bar whose
-              glowing leading edge advances to 100% before auto-advancing. */}
-          <ul className="lg:hidden">
-            {CAPABILITIES.map((c, i) => {
-              const isActive = i === active;
-              return (
-                <li key={c.key}>
-                  <button
-                    type="button"
-                    onClick={() => select(i)}
-                    aria-pressed={isActive}
-                    className="block w-full pb-3 pt-5 text-left"
-                  >
-                    <span
-                      className="text-lg font-semibold leading-snug transition-colors duration-300"
-                      style={{ color: isActive ? "hsl(var(--cv-ink))" : "hsl(var(--cv-muted))" }}
-                    >
-                      {c.name}
-                    </span>
-                  </button>
+            <Link
+              href="/platform/agentry"
+              className="group mt-3 inline-flex items-center gap-1 text-sm font-medium text-cv-blue dark:text-cv-blue-light lg:ml-6"
+            >
+              Learn more about Agentry
+              <svg viewBox="0 0 24 24" className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <path d="M9 6l6 6-6 6" />
+              </svg>
+            </Link>
+          </div>
 
-                  {/* full-width divider below the title */}
-                  <div className="h-px w-full bg-cv-line" />
-
-                  {/* expanded body - only for the active item */}
-                  <div
-                    className="grid transition-[grid-template-rows,opacity] duration-500 ease-out"
-                    style={{ gridTemplateRows: isActive ? "1fr" : "0fr", opacity: isActive ? 1 : 0 }}
-                  >
-                    <div className="overflow-hidden">
-                      <p className="mt-3 text-sm leading-relaxed text-cv-muted">{c.record}</p>
-                      <Link
-                        href="/platform/agentry"
-                        className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-cv-blue dark:text-cv-blue-light"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        Learn More
-                        <svg viewBox="0 0 24 24" className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                          <path d="M9 6l6 6-6 6" />
-                        </svg>
-                      </Link>
-
-                      {/* auto-advance progress bar - matches the desktop loader:
-                          a muted track with a solid fill that grows and a glow
-                          riding its leading edge */}
-                      {isActive && (
-                        <div className="relative mt-5 h-[2px] w-full rounded-full bg-cv-line">
-                          {reduced ? (
-                            <div className="absolute inset-y-0 left-0 w-full rounded-full bg-[#1664C0]" />
-                          ) : !inView ? (
-                            <div className="absolute inset-y-0 left-0 w-0 rounded-full bg-[#1664C0]" />
-                          ) : (
-                            <motion.div
-                              key={`${active}-${cycle}`}
-                              className="absolute inset-y-0 left-0 rounded-full bg-[#1664C0]"
-                              initial={{ width: "0%" }}
-                              animate={{ width: "100%" }}
-                              transition={{ duration: DWELL_MS / 1000, ease: "linear" }}
-                            />
-                          )}
-                        </div>
-                      )}
-
-                      {/* the dashboard visual, inside the active item — full desktop
-                          layout scaled down at a locked 16:9 ratio */}
-                      {isActive && (
-                        <div className="mb-6 mt-6">
-                          <ScaledDashboard />
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-
-          {/* RIGHT - dashboard mock (desktop; on mobile it lives inside the
-              active accordion item instead) */}
-          <div className="hidden lg:block">
-            <Dashboard />
+          {/* RIGHT — visual stack. Panels overlay (absolute) on lg and crossfade;
+              on mobile they flow as a plain stack (all visible, no GSAP). */}
+          <div className="relative lg:aspect-video">
+            {CAPABILITIES.map((c) => (
+              <div
+                key={c.key}
+                data-panel
+                className="[&:not(:first-child)]:mt-6 lg:mt-0 lg:absolute lg:inset-0"
+              >
+                <CapabilityPanel cap={c} />
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -253,8 +218,218 @@ export function AgentryOrchestration() {
 
 export default AgentryOrchestration;
 
+/* Highlight the active capability, dim the rest — driven by scroll, applied
+   straight to the DOM (no React state) so it stays smooth under scrub. */
+function paintBullets(bullets: HTMLElement[], active: number) {
+  bullets.forEach((b, idx) => {
+    const on = idx === active;
+    b.style.opacity = on ? "1" : "0.45";
+    const name = b.querySelector<HTMLElement>("[data-bullet-name]");
+    if (name) name.style.color = on ? "hsl(var(--cv-ink))" : "hsl(var(--cv-muted))";
+  });
+}
+
+/* ------------------------------------------------------------------ *
+ * Capability visuals — five compact product panels sharing one window
+ * chrome, each accented in its capability hue, crossfaded on scroll.
+ * ------------------------------------------------------------------ */
+
+function CapabilityPanel({ cap }: { cap: Capability }) {
+  return (
+    <div className="aspect-video w-full rounded-2xl shadow-[0_16px_40px_-24px_rgba(16,24,40,0.18)] dark:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.5)]">
+      <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-cv-line bg-white text-[#1d1d1f] dark:border-white/10 dark:bg-[#0c0c0f] dark:text-[#e5e5e7]">
+        <div aria-hidden className="pointer-events-none absolute inset-0 z-30 rounded-2xl">
+          <CardLightEdge />
+        </div>
+        {/* window top bar with capability tab */}
+        <div className="flex items-center gap-3 border-b border-black/[0.07] px-3 py-2 text-xs dark:border-white/[0.08]">
+          <span className="flex items-center gap-1.5 font-semibold">
+            <Image src="/cv-logo.png" alt="" width={16} height={16} className="h-4 w-4 object-contain" />
+            Cloudverse
+          </span>
+          <span className="font-semibold text-[#1d1d1f] dark:text-white">{PANEL_TITLE[cap.key]}</span>
+        </div>
+        <div className="min-h-0 flex-1 p-3.5">{PANEL_BODY[cap.key](cap.accent)}</div>
+      </div>
+    </div>
+  );
+}
+
+const PANEL_TITLE: Record<string, string> = {
+  visibility: "System of record",
+  lifecycle: "Trace · agent run",
+  routing: "Routing decision",
+  unit: "Unit economics",
+  resilience: "Filtered views",
+};
+
+/* Small shared bits */
+function Dot({ color }: { color: string }) {
+  return <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: color }} />;
+}
+function Bar({ pct, color }: { pct: number; color: string }) {
+  return (
+    <span className="block h-1.5 w-full overflow-hidden rounded-full bg-black/[0.06] dark:bg-white/[0.08]">
+      <span className="block h-full rounded-full" style={{ width: `${pct}%`, background: color }} />
+    </span>
+  );
+}
+
+const PANEL_BODY: Record<string, (accent: string) => React.ReactNode> = {
+  // 1 · Visibility — asset inventory (system of record)
+  visibility: (accent) => {
+    const rows: [string, string][] = [
+      ["Agents", "128"],
+      ["Models", "42"],
+      ["RAG systems", "9"],
+      ["APIs", "311"],
+      ["Subscriptions", "17"],
+    ];
+    return (
+      <div className="flex h-full flex-col">
+        <div className="mb-2 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-wider text-[#a1a1a6] dark:text-[#6f6f76]">
+          <Dot color={accent} /> Every asset · one record
+        </div>
+        <div className="grid flex-1 grid-cols-1 gap-1.5">
+          {rows.map(([k, v]) => (
+            <div key={k} className="flex items-center justify-between rounded-md border border-black/[0.05] bg-black/[0.015] px-3 py-2 text-[11px] dark:border-white/[0.06] dark:bg-white/[0.02]">
+              <span className="flex items-center gap-2 text-[#57575c] dark:text-[#c7c7cc]"><Dot color={accent} />{k}</span>
+              <span className="flex items-center gap-2">
+                <span className="font-mono font-semibold text-[#1d1d1f] dark:text-white">{v}</span>
+                <span className="rounded-sm bg-black/[0.05] px-1.5 py-0.5 text-[9px] text-[#86868b] dark:bg-white/[0.08] dark:text-[#8a8a90]">identity · contract</span>
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  },
+
+  // 2 · Lifecycle — trace timeline of one agent run
+  lifecycle: (accent) => {
+    const spans: [string, string, number][] = [
+      ["Crew.kickoff", "1.51 s", 0],
+      ["Crew Created", "0.31 ms", 1],
+      ["Task.execute_sync", "1.1 s", 1],
+      ["Agent.execute", "1.1 s", 2],
+      ["Completions.create", "1.08 s", 3],
+      ["Task.execute", "399.97 ms", 1],
+      ["Agent.execute", "396.66 ms", 2],
+    ];
+    return (
+      <div className="flex h-full flex-col">
+        <div className="mb-2 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-wider text-[#a1a1a6] dark:text-[#6f6f76]">
+          <Dot color={accent} /> Timeline · trace 9480ca99
+        </div>
+        <div className="flex-1 space-y-1">
+          {spans.map(([label, dur, indent], i) => (
+            <div key={i} className="flex items-center justify-between text-[11px]" style={{ paddingLeft: indent * 12 }}>
+              <span className="flex items-center gap-1.5 truncate text-[#57575c] dark:text-[#a1a1a6]"><Dot color={accent} />{label}</span>
+              <span className="shrink-0 font-mono text-[#a1a1a6] dark:text-[#6f6f76]">{dur}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  },
+
+  // 3 · Routing — live scoring, best-fit model wins
+  routing: (accent) => {
+    const dims: [string, number][] = [
+      ["Cost", 96],
+      ["Latency", 72],
+      ["Quality", 88],
+      ["Compliance", 100],
+    ];
+    return (
+      <div className="flex h-full flex-col">
+        <div className="mb-2 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-wider text-[#a1a1a6] dark:text-[#6f6f76]">
+          <Dot color={accent} /> Scored live · this request
+        </div>
+        <div className="grid flex-1 grid-cols-2 gap-x-4 gap-y-2.5 content-center">
+          {dims.map(([k, pct]) => (
+            <div key={k}>
+              <div className="mb-1 flex items-center justify-between text-[10px] text-[#57575c] dark:text-[#a1a1a6]"><span>{k}</span><span className="font-mono">{pct}</span></div>
+              <Bar pct={pct} color={accent} />
+            </div>
+          ))}
+        </div>
+        <div className="mt-2 flex items-center justify-between rounded-md px-3 py-2 text-[11px]" style={{ background: `${accent}14` }}>
+          <span className="text-[#57575c] dark:text-[#c7c7cc]">Best fit</span>
+          <span className="font-mono font-semibold" style={{ color: accent }}>GPT-4o-mini →</span>
+        </div>
+      </div>
+    );
+  },
+
+  // 4 · Unit economics — cost attributed per request / feature / tenant
+  unit: (accent) => {
+    const rows: [string, string, string][] = [
+      ["Per request", "$0.00010", "Support bot"],
+      ["Per feature", "$1,240 / mo", "Onboarding"],
+      ["Per tenant", "$318 / mo", "Acme Corp"],
+      ["Per team", "$4,902 / mo", "Growth"],
+    ];
+    return (
+      <div className="flex h-full flex-col">
+        <div className="mb-2 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-wider text-[#a1a1a6] dark:text-[#6f6f76]">
+          <Dot color={accent} /> Attributed cost · not infra averages
+        </div>
+        <div className="flex-1 space-y-1.5">
+          {rows.map(([k, v, tag]) => (
+            <div key={k} className="flex items-center justify-between rounded-md border border-black/[0.05] bg-black/[0.015] px-3 py-2 text-[11px] dark:border-white/[0.06] dark:bg-white/[0.02]">
+              <span className="text-[#57575c] dark:text-[#c7c7cc]">{k}</span>
+              <span className="flex items-center gap-2">
+                <span className="rounded-sm bg-black/[0.05] px-1.5 py-0.5 text-[9px] text-[#86868b] dark:bg-white/[0.08] dark:text-[#8a8a90]">{tag}</span>
+                <span className="font-mono font-semibold" style={{ color: accent }}>{v}</span>
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  },
+
+  // 5 · Resilience — filtered views surface the problems
+  resilience: (accent) => {
+    const findings: [string, string, string][] = [
+      ["Oversized model", "GPT-4o on classify", "high"],
+      ["Wasteful prompt", "12k tokens · summarise", "med"],
+      ["Provider down", "Anthropic · rerouted", "live"],
+    ];
+    const sev: Record<string, string> = { high: "#E05A2B", med: "#D97706", live: "#0E9E7A" };
+    return (
+      <div className="flex h-full flex-col">
+        <div className="mb-2 flex items-center gap-1.5 text-[10px]">
+          {["model", "team", "route"].map((f) => (
+            <span key={f} className="rounded-full border border-black/[0.08] px-2 py-0.5 text-[#86868b] dark:border-white/10 dark:text-[#8a8a90]">{f}</span>
+          ))}
+          <span className="ml-auto flex items-center gap-1 font-semibold uppercase tracking-wider text-[#a1a1a6] dark:text-[#6f6f76]"><Dot color={accent} />filtered</span>
+        </div>
+        <div className="flex-1 space-y-1.5">
+          {findings.map(([title, detail, s]) => (
+            <div key={title} className="flex items-center justify-between rounded-md border border-black/[0.05] bg-black/[0.015] px-3 py-2.5 text-[11px] dark:border-white/[0.06] dark:bg-white/[0.02]">
+              <span className="flex items-center gap-2">
+                <Dot color={sev[s]} />
+                <span className="font-medium text-[#1d1d1f] dark:text-white">{title}</span>
+                <span className="text-[#86868b] dark:text-[#8a8a90]">{detail}</span>
+              </span>
+              <span className="font-mono text-[9px] uppercase" style={{ color: sev[s] }}>{s}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  },
+};
+
 /* ------------------------------------------------------------------ *
  * Product dashboard mock (Logs · Trace · Request details)
+ *
+ * Retained and exported because other surfaces reuse it
+ * (components/product/AgentrySteps, app/solutions/finops-teams). The
+ * home "one system of record" section no longer renders it directly —
+ * it uses the crossfading CapabilityPanel stack above.
  * ------------------------------------------------------------------ */
 
 const NAV_GROUPS: { title: string; items: string[] }[] = [
@@ -336,7 +511,7 @@ export function Dashboard({ full = false }: { full?: boolean }) {
         {/* window top bar */}
         <div className="flex items-center gap-3 border-b border-black/[0.07] px-3 py-2 text-xs dark:border-white/[0.08]">
           <span className="flex items-center gap-1.5 font-semibold">
-            <span className="grid h-4 w-4 place-items-center rounded-full bg-[#1664C0] text-[8px] text-white">C</span>
+            <Image src="/cv-logo.png" alt="" width={16} height={16} className="h-4 w-4 object-contain" />
             Cloudverse
           </span>
           <span className="font-semibold text-[#1d1d1f] dark:text-white">Logs</span>

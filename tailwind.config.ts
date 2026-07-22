@@ -39,7 +39,7 @@ const config: Config = {
         mono: ["var(--font-inter)", "system-ui", "sans-serif"],
       },
       maxWidth: {
-        cv: "1240px",
+        cv: "1360px",
         "cv-content": "1120px",
       },
       borderRadius: {

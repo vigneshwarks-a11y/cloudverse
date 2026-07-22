@@ -2,8 +2,9 @@
 
 // Two-row infinite logo marquee: row 1 scrolls right-to-left, row 2 scrolls
 // left-to-right for visual rhythm. Each row holds two identical copies of its
-// logo list so translating -50% loops seamlessly (shared .cv-marquee-track /
-// .cv-marquee-track-reverse / cv-marquee keyframes in globals.css).
+// logo list so translating the track -50% loops seamlessly. Driven by GSAP
+// (gsap.to xPercent -50, repeat: -1, ease "none") rather than a CSS keyframe,
+// per the site's GSAP motion pass; reduced-motion leaves the rows static.
 //
 // Logos sit directly on cv-surface (no chip), at their original brand
 // colours, all normalised to the same rendered height so the rows line up
@@ -27,11 +28,14 @@
 // NOTE: Autoflow's single asset is white-on-transparent — fine in dark mode,
 // nearly invisible on the light surface; still needs a light-mode variant.
 
-type LogoItem = { name: string; src: string; srcDark?: string };
+import { useRef } from "react";
+import { gsap, useGSAP } from "@/lib/gsap";
+
+type LogoItem = { name: string; src: string; srcDark?: string; invertDark?: boolean };
 
 const LOGOS: LogoItem[] = [
   { name: "Dr. Reddy's",             src: "/logos/cv-drreddys.svg" },
-  { name: "Infogain",                src: "/logos/Infogain_B.svg", srcDark: "/logos/Infogain_W.svg" },
+  { name: "Infogain",                src: "/logos/dk-infogain.png", invertDark: true },
   { name: "Axis Max Life Insurance", src: "/logos/cv-axismaxlife.svg" },
   { name: "Berkshire Hathaway HomeServices EWM Realty", src: "/logos/cv-bhhs-b.png", srcDark: "/logos/cv-bhhs-w.png" },
   { name: "SISL Infotech",           src: "/logos/cv-sisl.png" },
@@ -64,16 +68,41 @@ function Logo({ item, dup }: { item: LogoItem; dup?: boolean }) {
           <img src={item.srcDark} alt="" aria-hidden loading="lazy" className={`hidden dark:block ${imgClass}`} />
         </>
       ) : (
-        <img src={item.src} alt={dup ? "" : item.name} loading="lazy" className={imgClass} />
+        <img
+          src={item.src}
+          alt={dup ? "" : item.name}
+          loading="lazy"
+          className={item.invertDark ? `${imgClass} dark:invert` : imgClass}
+        />
       )}
     </div>
   );
 }
 
 function Row({ items, reverse }: { items: LogoItem[]; reverse?: boolean }) {
+  const scope = useRef<HTMLDivElement | null>(null);
+  const track = useRef<HTMLDivElement | null>(null);
+
+  useGSAP(
+    () => {
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduce || !track.current) return;
+
+      // Two identical copies sit side by side; shifting the track by half its
+      // width lands copy 2 exactly where copy 1 began, so the loop is seamless.
+      // reverse rows run 0 → -50 played backwards (i.e. left-to-right).
+      gsap.fromTo(
+        track.current,
+        { xPercent: reverse ? -50 : 0 },
+        { xPercent: reverse ? 0 : -50, ease: "none", duration: 30, repeat: -1 },
+      );
+    },
+    { scope },
+  );
+
   return (
-    <div className="relative w-full overflow-hidden" style={MASK}>
-      <div className={`flex w-max gap-14 sm:gap-20 ${reverse ? "cv-marquee-track-reverse" : "cv-marquee-track"}`}>
+    <div ref={scope} className="relative w-full overflow-hidden" style={MASK}>
+      <div ref={track} className="flex w-max gap-14 sm:gap-20">
         <div className="flex items-center gap-14 sm:gap-20">
           {items.map((l) => (
             <Logo key={l.name} item={l} />

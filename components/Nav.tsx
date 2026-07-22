@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { AltArrowDown, AltArrowRight, Buildings, Chart, Code2, Cpu, Database, HamburgerMenu, Layers, UsersGroupRounded, Widget2 } from "@/lib/solar-icons";
 import { X } from "lucide-react";
-import { NAV, DEMO_URL, SIGNIN_URL } from "@/lib/links";
+import { NAV, DEMO_URL } from "@/lib/links";
 import { ModeToggle } from "./ModeToggle";
 
 const PLATFORM_ICONS: Record<string, React.ReactNode> = {
@@ -57,7 +57,7 @@ export function Nav() {
       className="fixed top-0 inset-x-0 z-50 bg-cv-surface"
       data-testid="site-nav"
     >
-      <div className="cv-container flex items-center justify-between h-[56px]">
+      <div className="cv-container flex items-center justify-between h-[84px]">
         {/* Logo */}
         <Link href="/" className="flex items-center shrink-0" data-testid="link-logo" onClick={() => setOpen(false)}>
           <Image
@@ -147,13 +147,6 @@ export function Nav() {
           >
             Book a demo
           </Link>
-          <Link
-            href={SIGNIN_URL}
-            className="cv-btn-ghost !text-cv-ink !border-cv-line hover:!bg-cv-ink/10"
-            data-testid="link-sign-in"
-          >
-            Sign in
-          </Link>
         </div>
 
         {/* Mobile controls - theme toggle + hamburger */}
@@ -172,7 +165,7 @@ export function Nav() {
 
       {/* Mobile menu - full-screen overlay panel */}
       {open && (
-        <div className="lg:hidden fixed inset-0 top-[56px] z-40 bg-cv-surface overflow-y-auto">
+        <div className="lg:hidden fixed inset-0 top-[84px] z-40 bg-cv-surface overflow-y-auto">
           <div className="cv-container py-3 flex flex-col">
             <MobileSection label="Platform" defaultOpen>
               {NAV.platform.map((it) => (
@@ -229,13 +222,6 @@ export function Nav() {
             <div className="flex flex-col gap-2 mt-6 mb-4">
               <Link href={DEMO_URL} className="cv-btn-primary w-full" onClick={() => setOpen(false)}>
                 Book a demo
-              </Link>
-              <Link
-                href={SIGNIN_URL}
-                className="cv-btn-ghost !text-cv-ink !border-cv-line hover:!bg-cv-ink/10 w-full"
-                onClick={() => setOpen(false)}
-              >
-                Sign in
               </Link>
             </div>
           </div>

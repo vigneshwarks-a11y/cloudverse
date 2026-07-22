@@ -50,12 +50,16 @@ function Check() {
 function CompCell({ value }: { value: string }) {
   if (value === "—") {
     return (
-      <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-cv-ink/[0.05] text-cv-ink/40 dark:bg-white/[0.06] dark:text-white/35" aria-label="Not covered">
-        <span className="h-px w-2 bg-current" />
+      <span
+        className="inline-flex h-5 items-center gap-1.5 rounded-md bg-cv-ink/[0.06] px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide text-cv-ink/55 dark:bg-white/[0.07] dark:text-white/55"
+        aria-label="Not covered"
+      >
+        <span className="h-[1.5px] w-2.5 rounded-full bg-current" />
+        No
       </span>
     );
   }
-  return <span className="text-cv-ink/80">{value}</span>;
+  return <span className="font-medium text-cv-ink/90">{value}</span>;
 }
 
 export function NotAGateway() {
@@ -117,7 +121,7 @@ export function NotAGateway() {
                 return (
                   <tr
                     key={cap}
-                    className="group border-t border-cv-line/50 dark:border-white/[0.08]"
+                    className="group border-t border-cv-line/70 dark:border-white/[0.12]"
                   >
                     <th
                       scope="row"
@@ -160,9 +164,8 @@ export function NotAGateway() {
           </table>
         </div>
 
-        <p className="mt-5 max-w-3xl text-[15px] leading-relaxed text-cv-ink/70">
-          Each adjacent category is good at its piece. None combines cross-estate discovery, in-path
-          enforcement, and an economics ledger deployable inside your own boundary.
+        <p className="mt-5 text-[14px] leading-relaxed text-cv-ink/70 lg:whitespace-nowrap">
+          Each adjacent category is good at its piece. None combines cross-estate discovery, in-path enforcement, and an economics ledger deployable inside your own boundary.
         </p>
       </div>
     </section>

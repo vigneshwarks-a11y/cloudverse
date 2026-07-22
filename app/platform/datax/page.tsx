@@ -80,7 +80,7 @@ export default function DataXPage() {
 
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <SectionHeading title="Your data warehouse is a blank check." lead>
+          <SectionHeading title="Your data warehouse is a blank check." className="mb-12">
             Warehouse and pipeline cost scales with how people use it, and it rarely maps back to a team or a product. A single query can scan hundreds of gigabytes and cost more than a server. Run it on a schedule and it compounds, quietly, on someone else&apos;s budget.
             <span className="mt-4 block font-medium italic text-cv-ink">
               Stop waiting for the monthly bill to see who burned the budget.
@@ -131,7 +131,7 @@ export default function DataXPage() {
       {/* PRICING PHILOSOPHY */}
       <section className="cv-section bg-cv-surface">
         <div className="cv-container">
-          <SectionHeading title="DataX doesn't profit from your inefficiency." lead>
+          <SectionHeading title="DataX doesn't profit from your inefficiency." className="mb-12">
             DataX prices on the structural drivers of your data platform cost, not on billing noise.
           </SectionHeading>
           <div className="grid gap-5 lg:grid-cols-[1.5fr_1fr] lg:items-stretch">
@@ -171,7 +171,7 @@ export default function DataXPage() {
       {/* SAFE AUTOMATION */}
       <section className="cv-section">
         <div className="cv-container">
-          <SectionHeading title="Automation without losing control." lead>
+          <SectionHeading title="Automation without losing control." className="mb-12">
             DataX applies approved optimisations within the policies you define.
           </SectionHeading>
           <p className="text-cv-ink/70 italic mb-10 max-w-3xl text-left">The automation model is about DataX behaviour, not your pipelines.</p>
@@ -207,7 +207,7 @@ export default function DataXPage() {
       {/* CONNECTION MODEL — least-privilege story precedes the connect ask */}
       <section className="cv-section">
         <div className="cv-container">
-          <SectionHeading title="Built for least privilege." lead>
+          <SectionHeading title="Built for least privilege." className="mb-12">
             Connect platforms using read-only access by default. Enable automation only when you are ready: scoped, auditable, reversible.
           </SectionHeading>
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
@@ -242,7 +242,7 @@ export default function DataXPage() {
 
         <div className="cv-container relative z-10">
           {/* Heading — two-column */}
-          <SectionHeading title="Connects to the stack your teams already run.">
+          <SectionHeading title="Connects to the stack your teams already run." className="mb-12">
             Cloud, models, GPUs, data warehouses, and CI, connected once.
           </SectionHeading>
 

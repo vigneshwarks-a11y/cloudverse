@@ -185,7 +185,7 @@ export function ConnectForm() {
         </div>
       )}
 
-      <button type="submit" disabled={status === "submitting"} className="cv-btn-primary mt-2 w-full justify-center px-7 py-4 text-sm disabled:opacity-60" data-testid="button-submit-demo">
+      <button type="submit" disabled={status === "submitting"} className="cv-btn-primary mt-2 w-full justify-center text-sm disabled:opacity-60" data-testid="button-submit-demo">
         {status === "submitting" ? "Sending…" : "Request demo"}
       </button>
 

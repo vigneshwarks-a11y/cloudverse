@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { Footer } from "@/components/Footer";
 import GlobalClosingCta from "@/components/GlobalClosingCta";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -70,9 +71,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           <Nav />
-          <main>{children}</main>
-          <GlobalClosingCta />
-          <Footer />
+          <SmoothScroll>
+            <main>{children}</main>
+            <GlobalClosingCta />
+            <Footer />
+          </SmoothScroll>
         </ThemeProvider>
         <Script
           id="org-jsonld"

@@ -183,16 +183,22 @@ export default function Page() {
       {/* Vision */}
       <section className="cv-section bg-cv-surface">
         <div className="cv-container">
-          <div className="flex flex-col items-start gap-8">
-            <SectionHeading lead eyebrow="Where we're going" title="An AI-native economic decision layer for every enterprise">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-16">
+            <div className="lg:flex-1">
+              <Eyebrow>Where we&apos;re going</Eyebrow>
+              <h2 className="cv-h2 text-balance text-cv-ink">
+                An AI-native economic decision layer for every enterprise
+              </h2>
+              <Link href={DEMO_URL} className="cv-btn-primary mt-6" data-testid="link-book-demo-about">
+                Book a demo <ArrowRight weight="Linear" size={16} />
+              </Link>
+            </div>
+            <p className="cv-body-lg text-pretty text-cv-ink/70 lg:w-full lg:max-w-xl lg:shrink-0 lg:pt-1">
               The next decade of compute will be defined by how well teams allocate scarce GPU,
               storage, and network capacity. CloudVerse™ is building the economic decision layer
               that makes those choices automatic, auditable, and aligned with business outcomes,
               across every cloud, every model, and every team.
-            </SectionHeading>
-            <Link href={DEMO_URL} className="cv-btn-primary shrink-0" data-testid="link-book-demo-about">
-              Book a demo <ArrowRight weight="Linear" size={16} />
-            </Link>
+            </p>
           </div>
         </div>
       </section>

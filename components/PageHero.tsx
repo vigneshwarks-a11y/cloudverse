@@ -40,6 +40,7 @@ export function PageHero({
   subtitle,
   actions,
   children,
+  fullHeight = false,
   className = "",
 }: {
   eyebrow?: ReactNode;
@@ -49,10 +50,12 @@ export function PageHero({
   actions?: ReactNode;
   /** Optional content rendered full-width below the split (mockups, etc.). */
   children?: ReactNode;
+  /** Fill the viewport (min-height 100dvh) with content vertically centered. */
+  fullHeight?: boolean;
   className?: string;
 }) {
   return (
-    <div className={"cv-hero-bg " + className}>
+    <div className={"cv-hero-bg " + (fullHeight ? "cv-hero-full " : "") + className}>
       <section className="relative pt-36 pb-16 sm:pt-48 lg:pt-56 lg:pb-24">
         <div className="max-w-cv relative z-10 mx-auto px-5 sm:px-6 lg:px-8">
           {/* Eyebrow on top */}
@@ -62,7 +65,7 @@ export function PageHero({
           <div className="mt-4 flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
             <h1 className="cv-h1 text-balance leading-[1.08] text-cv-ink lg:flex-1">{title}</h1>
             {subtitle && (
-              <p className="cv-body max-w-[60ch] text-pretty text-cv-ink/70 lg:w-80 lg:shrink-0 lg:pt-2">{subtitle}</p>
+              <p className="cv-body max-w-[60ch] text-pretty text-cv-ink/70 lg:w-96 lg:shrink-0 lg:pt-2">{subtitle}</p>
             )}
           </div>
           {actions && (

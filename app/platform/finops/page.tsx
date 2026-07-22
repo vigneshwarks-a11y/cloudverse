@@ -17,7 +17,6 @@ import { DomainDepth } from "@/components/product/DomainDepth";
 import { InlineCta } from "@/components/home/InlineCta";
 import { ProofInProduction } from "@/components/product/ProofInProduction";
 import { NamedCustomers } from "@/components/product/NamedCustomers";
-import { WhyCloudVerse } from "@/components/product/WhyCloudVerse";
 import { GettingStarted } from "@/components/product/GettingStarted";
 
 export const metadata: Metadata = {
@@ -75,7 +74,7 @@ export default function FinOpsPage() {
         />
 
         <div className="cv-container relative z-10">
-          <SectionHeading title="Connects to the stack you already run." lead>
+          <SectionHeading title="Connects to the stack you already run." className="mb-12">
             AWS, Azure, and Google Cloud for infrastructure.{" "}
             <Link href="/platform/agentry" className="text-cv-blue dark:text-cv-blue-light hover:underline underline-offset-2">Agentry</Link> for AI spend,{" "}
             <Link href="/platform/datax" className="text-cv-blue dark:text-cv-blue-light hover:underline underline-offset-2">DataX</Link> for warehouses, and{" "}
@@ -106,7 +105,7 @@ export default function FinOpsPage() {
 
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <SectionHeading title="Spend is visible. Decisions are still hard." lead>
+          <SectionHeading title="Spend is visible. Decisions are still hard." className="mb-12">
             Across cloud, AI, data, and SaaS, every team gets stuck on the same four questions, and today they get asked in four different tools, by four different owners, with no shared answer.
             <span className="mt-4 block">
               What changed, who owns it, whether the spend is justified, and what to do next, answered once, on one record, prioritized by impact across your whole technology budget.
@@ -128,7 +127,7 @@ export default function FinOpsPage() {
         <div className="cv-container relative">
           {/* header band — centered vertical stack over a full-width divider */}
           <div className="border-b border-cv-line/60 pb-10 dark:border-white/10">
-            <SectionHeading eyebrow="The lifecycle" title="Understand. Optimize. Govern. Prove." lead>
+            <SectionHeading eyebrow="The lifecycle" title="Understand. Optimize. Govern. Prove." className="mb-12">
               One model carries every domain from fragmented invoices to continuous economic control: understand what changed and who owns it, optimize toward the highest-impact fix, govern it with budgets and policy, and prove the realized result.
             </SectionHeading>
           </div>
@@ -151,9 +150,6 @@ export default function FinOpsPage() {
 
       {/* NAMED CUSTOMER USE CASES */}
       <NamedCustomers />
-
-      {/* WHY CLOUDVERSE OVER FLEXERA / IBM APPTIO */}
-      <WhyCloudVerse />
 
       {/* GETTING STARTED — 30/60/90 */}
       <GettingStarted />

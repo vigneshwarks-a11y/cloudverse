@@ -1,15 +1,35 @@
+"use client";
+
+import { useRef } from "react";
+import { gsap, useGSAP } from "@/lib/gsap";
 import { SectionHeading } from "@/components/SectionHeading";
 /* "The cost of not routing" — quantifies hardcoded spend versus Agentry-routed
    spend: a monthly at-scale savings table beside a single-request Without/With
-   comparison, closed by a result banner. cv-* tokens, theme-aware. Server
-   component. */
+   comparison, closed by a result banner. cv-* tokens, theme-aware.
 
-const SCALE_ROWS: [string, string, string, string][] = [
-  ["1M requests", "$2,980", "$298", "$2,682"],
-  ["5M requests", "$14,900", "$1,490", "$13,410"],
-  ["10M requests", "$29,800", "$2,980", "$26,820"],
-  ["50M requests", "$149,000", "$14,900", "$134,100"],
+   Motion: the at-scale dollar figures count up from 0 to their target once the
+   table scrolls into view (GSAP onUpdate, plays once). SSR renders the final
+   values, so no-JS / reduced-motion always shows the real numbers. */
+
+// [label, hardcoded, withAgentry, monthlySaving] — raw dollars; formatted below.
+const SCALE_ROWS: [string, number, number, number][] = [
+  ["1M requests", 2980, 298, 2682],
+  ["5M requests", 14900, 1490, 13410],
+  ["10M requests", 29800, 2980, 26820],
+  ["50M requests", 149000, 14900, 134100],
 ];
+
+const money = (n: number) => "$" + Math.round(n).toLocaleString("en-US");
+
+/* A dollar figure that counts up on scroll-in. Renders the final value for SSR
+   (data-count-value drives the client animation). */
+function Money({ value, className }: { value: number; className?: string }) {
+  return (
+    <span data-count data-count-value={value} className={className}>
+      {money(value)}
+    </span>
+  );
+}
 
 function CompareCard({
   label,
@@ -50,8 +70,37 @@ function CompareCard({
 }
 
 export function CostOfNotRouting() {
+  const scope = useRef<HTMLElement | null>(null);
+
+  useGSAP(
+    () => {
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduce) return; // SSR already rendered the final figures
+
+      gsap.utils.toArray<HTMLElement>("[data-count]").forEach((el) => {
+        const target = parseFloat(el.dataset.countValue || "0");
+        const obj = { v: 0 };
+        el.textContent = money(0); // start at zero before the trigger fires
+        gsap.to(obj, {
+          v: target,
+          duration: 1.4,
+          ease: "power2.out",
+          onUpdate: () => {
+            el.textContent = money(obj.v);
+          },
+          scrollTrigger: {
+            trigger: scope.current,
+            start: "top 80%",
+            toggleActions: "play none none none", // count up once, on first entry
+          },
+        });
+      });
+    },
+    { scope },
+  );
+
   return (
-    <section className="cv-section bg-cv-surface2 dark:bg-black" data-testid="section-cost-of-not-routing">
+    <section ref={scope} className="cv-section bg-cv-surface2 dark:bg-black" data-testid="section-cost-of-not-routing">
       <div className="cv-container">
         <SectionHeading eyebrow="Economics" title="The cost of not routing.">
           Every hardcoded endpoint spends money without making a decision. The same work, on the right
@@ -78,9 +127,9 @@ export function CostOfNotRouting() {
                   {SCALE_ROWS.map(([vol, hard, agentry, save]) => (
                     <tr key={vol} className="border-b border-cv-line/30 last:border-0 dark:border-white/[0.06]">
                       <td className="px-5 py-3.5 text-cv-ink/80">{vol}</td>
-                      <td className="px-5 py-3.5 text-right font-mono text-cv-ink/70">{hard}</td>
-                      <td className="px-5 py-3.5 text-right font-mono text-cv-ink">{agentry}</td>
-                      <td className="px-5 py-3.5 text-right font-mono font-semibold text-cv-teal">{save}</td>
+                      <td className="px-5 py-3.5 text-right font-mono text-cv-ink/70"><Money value={hard} /></td>
+                      <td className="px-5 py-3.5 text-right font-mono text-cv-ink"><Money value={agentry} /></td>
+                      <td className="px-5 py-3.5 text-right font-mono font-semibold text-cv-teal"><Money value={save} /></td>
                     </tr>
                   ))}
                 </tbody>

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle } from "@/lib/solar-icons";
 import type { Metadata } from "next";
 import { CustomerLogos } from "@/components/CustomerLogos";
-import { HeroEyebrow } from "@/components/PageHero";
+import { HomeHero } from "@/components/home/HomeHero";
 import { FaqBlock } from "@/components/FaqBlock";
 import { HardcodeCost } from "@/components/home/HardcodeCost";
 import { BeforeAfterAgentry } from "@/components/home/BeforeAfterAgentry";
@@ -16,7 +16,6 @@ import { TestimonialsCarousel } from "@/components/home/TestimonialsCarousel";
 import { FeatureShowcase } from "@/components/home/FeatureShowcase";
 import { InlineCta } from "@/components/home/InlineCta";
 import { SectionHeading } from "@/components/SectionHeading";
-import { DEMO_URL } from "@/lib/links";
 import { GuidesResources } from "@/components/home/GuidesResources";
 
 export const metadata: Metadata = {
@@ -70,32 +69,8 @@ export default function HomePage() {
     <>
       {/* HERO wrapper carries the gradient background */}
       <div className="cv-hero-bg">
-        {/* HERO */}
-        <section className="relative pt-36 pb-16 sm:pt-48 lg:pt-56 lg:pb-24">
-          <div className="max-w-cv relative z-10 mx-auto px-5 sm:px-6 lg:px-8">
-            {/* Eyebrow on top */}
-            <HeroEyebrow accent="blue">The Enterprise AI Control Plane</HeroEyebrow>
-            {/* Headline + subhead grouped in one row (stacks below lg) */}
-            <div className="mt-4 flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
-              <h1 className="cv-h1 text-balance leading-[1.08] text-cv-ink lg:flex-1">
-                Govern every AI execution.{" "}
-                <span className="text-cv-blue dark:text-cv-blue-light">Prove the economics behind it.</span>
-              </h1>
-              <p className="cv-body max-w-[60ch] text-pretty text-cv-ink/70 lg:w-80 lg:shrink-0 lg:pt-2">
-                One system of record for every agent, model route, prompt, and dollar of AI spend, with governance enforced in the execution path, not a report after the fact.
-              </p>
-            </div>
-            <div className="mt-10 flex flex-col items-start gap-3 sm:mt-12 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
-              <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-hero-demo">
-                Book a demo
-              </Link>
-              <Link href="/contact" className="cv-btn-ghost" data-testid="link-hero-audit">
-                Request a free AI cost &amp; risk audit
-              </Link>
-            </div>
-          </div>
-        </section>
-
+        {/* HERO — client component; on-load entrance stagger via GSAP */}
+        <HomeHero />
       </div>
 
       {/* CUSTOMER LOGOS */}
@@ -109,13 +84,6 @@ export default function HomePage() {
 
       {/* THE COST OF NOT ROUTING — the money story, consolidated with the before/after */}
       <CostOfNotRouting />
-
-      {/* MID-PAGE CTA — capture at the economics peak */}
-      <InlineCta
-        label="Request a free AI cost audit"
-        href="/contact"
-        testid="section-inline-cta-audit"
-      />
 
       {/* HOW AGENTRY WORKS — DISCOVER · GOVERN · PROVE */}
       <HowAgentryWorks />
@@ -131,6 +99,7 @@ export default function HomePage() {
 
       {/* MID-PAGE CTA — capture the convinced evaluator */}
       <InlineCta
+        filled
         label="Start a 3-week private pilot"
         href="/connect"
         sub="Most teams find at least one ungoverned agent in the first onboarding call."

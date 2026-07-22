@@ -89,7 +89,7 @@ export default function TorbPage() {
 
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <SectionHeading title="Infrastructure cost mistakes don't look like mistakes." lead>
+          <SectionHeading title="Infrastructure cost mistakes don't look like mistakes." className="mb-12">
             A change ships. It passes review, it passes tests, it looks fine. The cost shows up weeks later on a bill nobody connects back to that pull request. By then the fix means unwinding work already in production.
             <span className="mt-4 block font-medium text-cv-ink">
               The cheapest moment to catch a regression is before it merges, in front of the person who wrote it.

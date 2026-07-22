@@ -1,8 +1,15 @@
+"use client";
+
 /* "Before / After Agentry" — two comparison cards: a static, hardcoded setup
    (faint node pattern, muted CloseCircle rows) versus a dynamic, per-request
    setup (blue grid + glow, CheckCircle rows). Design ported from the Agentry
-   platform page. cv-* tokens, theme-aware. Server component. */
+   platform page. cv-* tokens, theme-aware.
 
+   Motion: a one-time fade/slide-in reveal as the section enters the viewport
+   (scrub:false, plays once — toggleActions play/none/none/none). */
+
+import { useRef } from "react";
+import { gsap, useGSAP } from "@/lib/gsap";
 import { TrashBin2, Bolt, CloseCircle, CheckCircle } from "@/lib/solar-icons";
 
 const ROWS: { k: string; before: string; after: string }[] = [
@@ -14,12 +21,40 @@ const ROWS: { k: string; before: string; after: string }[] = [
 ];
 
 export function BeforeAfterAgentry() {
+  const scope = useRef<HTMLElement | null>(null);
+
+  useGSAP(
+    () => {
+      // Scope to THIS section — [data-reveal] is shared with other sections;
+      // an unscoped query would animate their cards too.
+      const cards = gsap.utils.toArray<HTMLElement>("[data-reveal]", scope.current!);
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduce) {
+        gsap.set(cards, { autoAlpha: 1, y: 0 });
+        return;
+      }
+      gsap.from(cards, {
+        autoAlpha: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: scope.current,
+          start: "top 80%",
+          toggleActions: "play none none none", // one-time reveal
+        },
+      });
+    },
+    { scope },
+  );
+
   return (
-    <section className="pt-8 lg:pt-10 pb-16 sm:pb-20 lg:pb-28 bg-cv-surface2 dark:bg-black" data-testid="section-before-after-agentry">
+    <section ref={scope} className="pt-8 lg:pt-10 pb-16 sm:pb-20 lg:pb-28 bg-cv-surface2 dark:bg-black" data-testid="section-before-after-agentry">
       <div className="cv-container">
         <div className="grid gap-5 md:grid-cols-2 items-stretch">
           {/* Before - legacy / static */}
-          <div className="relative overflow-hidden rounded-2xl border border-cv-line/50 bg-cv-card dark:bg-[#0D0D0D]">
+          <div data-reveal className="relative overflow-hidden rounded-2xl border border-cv-line/50 bg-cv-card dark:bg-[#0D0D0D]">
             {/* Faint static node pattern */}
             <div
               aria-hidden
@@ -56,7 +91,7 @@ export function BeforeAfterAgentry() {
           </div>
 
           {/* After - dynamic / active */}
-          <div className="relative overflow-hidden rounded-2xl border border-[#2278E0]/25 bg-cv-card dark:bg-[#0D0D0D] shadow-[0_0_50px_-24px_rgba(34,120,224,0.5)]">
+          <div data-reveal className="relative overflow-hidden rounded-2xl border border-[#2278E0]/25 bg-cv-card dark:bg-[#0D0D0D] shadow-[0_0_50px_-24px_rgba(34,120,224,0.5)]">
             {/* Dynamic blue grid pattern */}
             <div
               aria-hidden

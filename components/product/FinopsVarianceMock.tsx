@@ -38,7 +38,7 @@ function Frame({
   return (
     <div
       className={
-        "cv-edge-tl relative flex flex-1 flex-col overflow-hidden rounded-[18px] bg-white dark:bg-[#0C0C0E] " +
+        "cv-visual-well relative flex flex-1 flex-col overflow-hidden rounded-[18px] border border-cv-line/70 bg-white dark:border-white/10 dark:bg-black " +
         (focal
           ? "shadow-[0_28px_70px_-34px_rgba(22,100,192,0.4)] dark:shadow-[0_34px_80px_-32px_rgba(0,0,0,0.85)]"
           : "shadow-[0_18px_50px_-34px_rgba(16,24,40,0.28)] dark:shadow-[0_26px_60px_-38px_rgba(0,0,0,0.7)]") +

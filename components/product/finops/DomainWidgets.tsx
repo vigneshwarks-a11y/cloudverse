@@ -159,7 +159,7 @@ export function AIWidget() {
           data={AI_DATA}
           xDataKey="date"
           aspectRatio="16 / 7"
-          margin={{ top: 8, right: 10, bottom: 22, left: 30 }}
+          margin={{ top: 8, right: 10, bottom: 34, left: 32 }}
           animationDuration={0}
           enterTransition={{ duration: 0 }}
         >
@@ -213,7 +213,7 @@ export function DataWidget() {
           xDataKey="name"
           orientation="vertical"
           aspectRatio="16 / 7"
-          margin={{ top: 10, right: 8, bottom: 24, left: 8 }}
+          margin={{ top: 10, right: 8, bottom: 34, left: 8 }}
           animationDuration={0}
         >
           <Grid horizontal />

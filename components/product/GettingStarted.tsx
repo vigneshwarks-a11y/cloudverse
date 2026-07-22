@@ -29,12 +29,14 @@ export function GettingStarted() {
   return (
     <section className="cv-section bg-cv-surface" data-testid="section-getting-started">
       <div className="cv-container">
-        <div className="max-w-5xl text-left">
+        <div className="max-w-5xl">
           <p className="cv-label mb-4">Getting started</p>
-          <h2 className="cv-h2 max-w-3xl text-cv-ink">30, 60, 90.</h2>
-          <p className="mt-5 cv-body-lg text-cv-ink/70">
-            Customers can begin with cloud, AI, data, or SaaS according to their immediate priority.
-          </p>
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-16">
+            <h2 className="cv-h2 text-cv-ink lg:flex-1">30, 60, 90.</h2>
+            <p className="cv-body text-cv-ink/70 lg:w-full lg:max-w-xl lg:shrink-0 lg:pt-1">
+              Customers can begin with cloud, AI, data, or SaaS according to their immediate priority.
+            </p>
+          </div>
         </div>
 
         <div className="mt-12 grid grid-cols-1 border-y border-cv-line/60 dark:border-white/10 md:grid-cols-3">

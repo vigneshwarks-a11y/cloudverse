@@ -50,9 +50,9 @@ export function SectionHeading({
       {children ? (
         // Header + intro grouped in one row: heading left, intro right,
         // top-aligned; stacks to a single column below lg.
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
-          <h2 className="cv-h2 text-balance text-cv-ink lg:max-w-2xl">{title}</h2>
-          <div className={(lead ? "cv-body-lg" : "cv-body") + " text-pretty text-cv-ink/70 lg:max-w-md lg:pt-1"}>
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-16">
+          <h2 className="cv-h2 text-balance text-cv-ink lg:flex-1">{title}</h2>
+          <div className={(lead ? "cv-body-lg" : "cv-body") + " text-pretty text-cv-ink/70 lg:w-full lg:max-w-xl lg:shrink-0 lg:pt-1"}>
             {children}
           </div>
         </div>

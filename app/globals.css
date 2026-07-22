@@ -55,7 +55,12 @@
     --viz-accent: #7CB8F8;
   }
 
-  html { scroll-behavior: smooth; color-scheme: light dark; }
+  /* scroll-behavior handled by ScrollSmoother (JS); native smooth would fight
+     it. Reduced-motion / no-JS falls back to the browser default. */
+  html { color-scheme: light dark; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: smooth; }
+  }
 
   a { text-decoration: none; }
   a:hover { text-decoration: none; }
@@ -167,20 +172,42 @@
     z-index: 1;
   }
 
+  /* Full-viewport hero: the gradient element fills the screen and its content
+     is vertically centered. 100vh first as the fallback, then 100dvh where
+     supported (avoids the mobile URL-bar jump). Opt-in — home & about only. */
+  .cv-hero-full {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+  .cv-hero-full > section {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   /* Buttons */
   .cv-btn-primary {
-    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm whitespace-nowrap transition-colors;
+    @apply inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full font-medium text-sm whitespace-nowrap transition-colors;
     background: #1447E6;
     color: #fff;
   }
   .cv-btn-primary:hover { background: #2E5CF0; }
 
   .cv-btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm whitespace-nowrap transition-colors text-cv-ink;
-    border: 1px solid hsl(var(--cv-line));
+    @apply inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full font-medium text-sm whitespace-nowrap transition-colors text-cv-ink;
+    /* Ink-based border so the outline reads on any surface: near-white on the
+       dark hero, near-black on light sections. --cv-line was too faint on the
+       blue hero gradient. */
+    border: 1px solid hsl(var(--cv-ink) / 0.35);
     background: transparent;
   }
-  .cv-btn-ghost:hover { background: hsl(var(--cv-line) / 0.5); }
+  .cv-btn-ghost:hover {
+    border-color: hsl(var(--cv-ink) / 0.55);
+    background: hsl(var(--cv-ink) / 0.06);
+  }
 
   /* Inverted button - ink bg, surface text; works in both themes */
   .cv-btn-inverse {
@@ -459,7 +486,18 @@
 .cv-marquee-track-reverse {
   animation: cv-marquee 32s linear infinite reverse;
 }
+
+/* Home-hero entrance: start hidden + nudged down; GSAP animates to visible on
+   load (see components/home/HomeHero.tsx). Reduced-motion / no-JS reveal via
+   the override below so content is never permanently hidden. */
+.hero-anim {
+  opacity: 0;
+  transform: translateY(24px);
+  will-change: transform, opacity;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .hero-anim { opacity: 1; transform: none; }
   .cv-video-ring { animation: none; }
   .cv-ring-blue { animation: none; }
   .cv-video-rise { animation: none; opacity: 1; transform: none; }

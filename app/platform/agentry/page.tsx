@@ -156,7 +156,7 @@ export default function AgentryPage() {
       {/* PROBLEM */}
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <SectionHeading title="AI compute is becoming too expensive to hardcode." lead>
+          <SectionHeading title="AI compute is becoming too expensive to hardcode." className="mb-12">
             Most teams pick a model once, wire it into the app, and move on. Six months later a cheaper model handles 70% of those requests just as well, and nobody notices.
             <span className="mt-4 block">
               A hardcoded choice doesn&apos;t update when prices drop. It doesn&apos;t reroute when a provider slows down. That gap is where the budget quietly goes.
@@ -259,7 +259,7 @@ export default function AgentryPage() {
           style={{ background: "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(34,120,224,0.16), transparent 70%)" }}
         />
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative">
-          <SectionHeading title="How Agentry controls every AI request." lead>
+          <SectionHeading title="How Agentry controls every AI request." className="mb-12">
             Agentry sits between your application and every AI provider you use. On each request it scores the available routes against the rules your team set, then returns the best one with a fallback and a full decision log.
           </SectionHeading>
           <p className="text-cv-muted italic mb-10 max-w-3xl text-left">A gateway runs the rule you wrote. Agentry works out whether that rule is still right.</p>
@@ -270,7 +270,7 @@ export default function AgentryPage() {
       {/* ROI */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <SectionHeading title="The cost of not routing." lead>
+          <SectionHeading title="The cost of not routing." className="mb-12">
             Every hardcoded endpoint spends money without making a decision. The same work, on the right model, often costs a fraction, at the same or better quality.
           </SectionHeading>
           <AgentryRoiSplit roi={ROI} />
@@ -283,7 +283,7 @@ export default function AgentryPage() {
       {/* GOVERNANCE */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <SectionHeading title="Built for enterprise AI governance." lead>
+          <SectionHeading title="Built for enterprise AI governance." className="mb-12">
             Every routing decision Agentry makes is recorded, auditable, and explainable. Governance is on by default, not bolted on.
           </SectionHeading>
           <GovernanceBento />
@@ -311,7 +311,7 @@ export default function AgentryPage() {
       <section className="cv-section">
         <div className="cv-container">
           {/* Heading — two-column */}
-          <SectionHeading title="Connect once. Route everywhere." lead>
+          <SectionHeading title="Connect once. Route everywhere." className="mb-12">
             Add your providers once. Agentry handles routing, fallback, and cost tracking across all of them. No code changes when you add a new provider.
           </SectionHeading>
           <h3 className="cv-label mt-8 text-[#1664C0] dark:text-[#7CB8F8]">Supported model providers</h3>
