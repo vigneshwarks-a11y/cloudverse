@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight } from "@/lib/solar-icons";
+import { SectionHeading } from "@/components/SectionHeading";
 
 /* ────────────────────────────────────────────────────────────────────────
    "Every domain of technology spend, one record."
@@ -170,21 +171,13 @@ export function FeatureShowcase({ withLinks = false }: { withLinks?: boolean }) 
   return (
     <section className="bg-cv-surface cv-section overflow-hidden">
       <div className="cv-container">
-        <div className="flex flex-col items-start text-left">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
-            One platform · Five domains
-          </span>
-          <h2 className="cv-h2 mt-5 max-w-3xl text-balance text-cv-ink">
-            Every domain of technology spend, one record.
-          </h2>
-          <p className="cv-body-lg mt-5 max-w-5xl text-pretty text-cv-ink/70">
-            Cloud taught enterprises what ungoverned spend costs. AI is repeating
-            it faster. CloudVerse puts every domain on one record: for AI and
-            engineering we sit at the execution path itself; for cloud, data, and
-            SaaS we make every dollar accountable with allocation, chargeback, and
-            evidence.
-          </p>
-        </div>
+        <SectionHeading eyebrow="One platform · Five domains" title="Every domain of technology spend, one record." lead>
+          Cloud taught enterprises what ungoverned spend costs. AI is repeating
+          it faster. CloudVerse puts every domain on one record: for AI and
+          engineering we sit at the execution path itself; for cloud, data, and
+          SaaS we make every dollar accountable with allocation, chargeback, and
+          evidence.
+        </SectionHeading>
 
         <div className="mt-12 hidden items-center gap-12 lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
           {/* ── LEFT: tab list ── */}

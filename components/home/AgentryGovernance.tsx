@@ -1,4 +1,5 @@
 "use client";
+import { SectionHeading } from "@/components/SectionHeading";
 
 import Link from "next/link";
 import { Fragment, useLayoutEffect, useRef, useState } from "react";
@@ -436,19 +437,13 @@ export function AgentryGovernance() {
       />
       <div className="cv-container relative z-10">
         {/* Section header */}
-        <div className="mb-20 lg:mb-28 lg:pt-8">
-          <div className="flex max-w-3xl flex-col items-start text-left">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 dark:bg-[#7CB8F8]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8] mb-5">
-              Day one
-            </span>
-            <h2 className="cv-h2 text-cv-ink">
-              What it does for you<br className="hidden lg:block" /> on day one
-            </h2>
-            <p className="mt-4 text-cv-ink/70 leading-relaxed">
-              Not a roadmap. The things Agentry handles the moment it&apos;s in the execution path: rogue agents, audit-grade evidence, shadow AI, and runaway cost stopped in flight.
-            </p>
-          </div>
-        </div>
+        <SectionHeading
+          className="mb-20 lg:mb-28 lg:pt-8"
+          eyebrow="Day one"
+          title="What it does for you on day one"
+        >
+          Not a roadmap. The things Agentry handles the moment it&apos;s in the execution path: rogue agents, audit-grade evidence, shadow AI, and runaway cost stopped in flight.
+        </SectionHeading>
 
         {/* 2x2 grid of governance capabilities. Each ROW is its own grid so the
             two cells in a row stretch to equal height and their visuals (pushed

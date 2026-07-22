@@ -1,3 +1,4 @@
+import { SectionHeading } from "@/components/SectionHeading";
 import { ShieldCheck } from "@/lib/solar-icons";
 import type { ReactNode } from "react";
 
@@ -128,18 +129,12 @@ export function VendorSovereignty() {
   return (
     <section className="cv-section bg-cv-surface" data-testid="section-vendor-sovereignty">
       <div className="cv-container">
-        {/* lead-in - centered header */}
-        <div className="flex max-w-3xl flex-col items-start text-left">
-          <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
-            Governance
-          </span>
-          <h2 className="cv-h2 text-balance text-cv-ink">Own your stuff, or your vendor owns your advantage.</h2>
-          <p className="cv-body mt-4 text-cv-ink/70">
-            A frontier model going dark by government order. A price shock. A deprecation. Model access is now
-            conditional infrastructure. When the vendor changes, your prompts, your data policy, your routes, and your
-            audit trail have to keep working, because they live in your control plane, not theirs.
-          </p>
-        </div>
+        {/* lead-in — two-column header */}
+        <SectionHeading eyebrow="Governance" title="Own your stuff, or your vendor owns your advantage.">
+          A frontier model going dark by government order. A price shock. A deprecation. Model access is now
+          conditional infrastructure. When the vendor changes, your prompts, your data policy, your routes, and your
+          audit trail have to keep working, because they live in your control plane, not theirs.
+        </SectionHeading>
 
         {/* 3-column subgrid card - full layout width */}
         <div className="mt-12 w-full overflow-hidden rounded-2xl border border-cv-line/60 bg-cv-surface dark:border-white/10 dark:bg-[#0D0D0D] max-lg:mx-auto max-lg:max-w-sm">

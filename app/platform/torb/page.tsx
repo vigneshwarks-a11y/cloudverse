@@ -4,6 +4,7 @@ import { FaqBlock } from "@/components/FaqBlock";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { PlatformHeroMockup } from "@/components/product/PlatformHeroMockup";
 import { PageHero } from "@/components/PageHero";
+import { SectionHeading } from "@/components/SectionHeading";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import WhoTorbFor from "@/components/product/WhoTorbFor";
@@ -88,17 +89,12 @@ export default function TorbPage() {
 
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="flex max-w-3xl flex-col items-start text-left">
-            <h2 className="cv-h2 text-cv-ink">Infrastructure cost mistakes don&apos;t look like mistakes.</h2>
-            <div className="mt-4">
-              <p className="cv-body-lg text-cv-ink/80">
-                A change ships. It passes review, it passes tests, it looks fine. The cost shows up weeks later on a bill nobody connects back to that pull request. By then the fix means unwinding work already in production.
-              </p>
-              <p className="cv-body-lg text-cv-ink font-medium mt-4">
-                The cheapest moment to catch a regression is before it merges, in front of the person who wrote it.
-              </p>
-            </div>
-          </div>
+          <SectionHeading title="Infrastructure cost mistakes don't look like mistakes." lead>
+            A change ships. It passes review, it passes tests, it looks fine. The cost shows up weeks later on a bill nobody connects back to that pull request. By then the fix means unwinding work already in production.
+            <span className="mt-4 block font-medium text-cv-ink">
+              The cheapest moment to catch a regression is before it merges, in front of the person who wrote it.
+            </span>
+          </SectionHeading>
 
           <div className="mt-12">
             <BeforeAfterCards

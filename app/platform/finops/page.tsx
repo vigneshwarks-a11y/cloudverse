@@ -10,6 +10,7 @@ import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import { WhoUsesItCards } from "@/components/product/WhoUsesItCards";
 import { FinOpsHero } from "@/components/product/FinOpsHero";
+import { SectionHeading } from "@/components/SectionHeading";
 import { FeatureShowcase } from "@/components/home/FeatureShowcase";
 import FinopsSurfaces from "@/components/product/FinopsSurfaces";
 import { DomainDepth } from "@/components/product/DomainDepth";
@@ -74,18 +75,12 @@ export default function FinOpsPage() {
         />
 
         <div className="cv-container relative z-10">
-          {/* Heading — centered vertical stack */}
-          <div className="max-w-5xl text-left">
-            <h2 className="cv-h2 max-w-3xl text-cv-ink">
-              Connects to the stack you already run.
-            </h2>
-            <p className="mt-5 cv-body-lg text-cv-ink/70">
-              AWS, Azure, and Google Cloud for infrastructure.{" "}
-              <Link href="/platform/agentry" className="text-cv-blue dark:text-cv-blue-light hover:underline underline-offset-2">Agentry</Link> for AI spend,{" "}
-              <Link href="/platform/datax" className="text-cv-blue dark:text-cv-blue-light hover:underline underline-offset-2">DataX</Link> for warehouses, and{" "}
-              <Link href="/platform/torb" className="text-cv-blue dark:text-cv-blue-light hover:underline underline-offset-2">Torb</Link> for the engineering workflow. One view across all of it.
-            </p>
-          </div>
+          <SectionHeading title="Connects to the stack you already run." lead>
+            AWS, Azure, and Google Cloud for infrastructure.{" "}
+            <Link href="/platform/agentry" className="text-cv-blue dark:text-cv-blue-light hover:underline underline-offset-2">Agentry</Link> for AI spend,{" "}
+            <Link href="/platform/datax" className="text-cv-blue dark:text-cv-blue-light hover:underline underline-offset-2">DataX</Link> for warehouses, and{" "}
+            <Link href="/platform/torb" className="text-cv-blue dark:text-cv-blue-light hover:underline underline-offset-2">Torb</Link> for the engineering workflow. One view across all of it.
+          </SectionHeading>
 
           {/* Logos marquee - full connector breadth */}
           <div className="mt-14">
@@ -111,15 +106,12 @@ export default function FinOpsPage() {
 
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="max-w-5xl text-left">
-            <h2 className="cv-h2 max-w-3xl text-cv-ink">Spend is visible. Decisions are still hard.</h2>
-            <p className="mt-5 cv-body-lg text-cv-ink/70">
-              Across cloud, AI, data, and SaaS, every team gets stuck on the same four questions, and today they get asked in four different tools, by four different owners, with no shared answer.
-            </p>
-            <p className="mt-4 cv-body-lg text-cv-ink/70">
+          <SectionHeading title="Spend is visible. Decisions are still hard." lead>
+            Across cloud, AI, data, and SaaS, every team gets stuck on the same four questions, and today they get asked in four different tools, by four different owners, with no shared answer.
+            <span className="mt-4 block">
               What changed, who owns it, whether the spend is justified, and what to do next, answered once, on one record, prioritized by impact across your whole technology budget.
-            </p>
-          </div>
+            </span>
+          </SectionHeading>
           <FinopsVarianceMock />
         </div>
       </section>
@@ -136,13 +128,9 @@ export default function FinOpsPage() {
         <div className="cv-container relative">
           {/* header band — centered vertical stack over a full-width divider */}
           <div className="border-b border-cv-line/60 pb-10 dark:border-white/10">
-            <div className="max-w-5xl text-left">
-              <p className="cv-label mb-4">The lifecycle</p>
-              <h2 className="cv-h2 max-w-3xl text-cv-ink">Understand. Optimize. Govern. Prove.</h2>
-              <p className="mt-5 cv-body-lg text-cv-ink/70">
-                One model carries every domain from fragmented invoices to continuous economic control: understand what changed and who owns it, optimize toward the highest-impact fix, govern it with budgets and policy, and prove the realized result.
-              </p>
-            </div>
+            <SectionHeading eyebrow="The lifecycle" title="Understand. Optimize. Govern. Prove." lead>
+              One model carries every domain from fragmented invoices to continuous economic control: understand what changed and who owns it, optimize toward the highest-impact fix, govern it with budgets and policy, and prove the realized result.
+            </SectionHeading>
           </div>
 
           {/* the four stages as a 2×2 bento */}

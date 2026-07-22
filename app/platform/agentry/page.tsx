@@ -8,6 +8,7 @@ import NoBlackBoxes from "@/components/product/NoBlackBoxes";
 import AgentryRoiSplit from "@/components/product/AgentryRoiSplit";
 import { PlatformHeroMockup, type MockupTab } from "@/components/product/PlatformHeroMockup";
 import { PageHero } from "@/components/PageHero";
+import { SectionHeading } from "@/components/SectionHeading";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import AgentrySteps from "@/components/product/AgentrySteps";
 import AgentryProvidersMarquee from "@/components/product/AgentryProvidersMarquee";
@@ -156,17 +157,12 @@ export default function AgentryPage() {
       {/* PROBLEM */}
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="flex max-w-3xl flex-col items-start text-left">
-            <h2 className="cv-h2 text-cv-ink">AI compute is becoming too expensive to hardcode.</h2>
-            <div className="mt-4">
-              <p className="cv-body-lg text-cv-ink/80">
-                Most teams pick a model once, wire it into the app, and move on. Six months later a cheaper model handles 70% of those requests just as well, and nobody notices.
-              </p>
-              <p className="cv-body-lg text-cv-ink/80 mt-4">
-                A hardcoded choice doesn&apos;t update when prices drop. It doesn&apos;t reroute when a provider slows down. That gap is where the budget quietly goes.
-              </p>
-            </div>
-          </div>
+          <SectionHeading title="AI compute is becoming too expensive to hardcode." lead>
+            Most teams pick a model once, wire it into the app, and move on. Six months later a cheaper model handles 70% of those requests just as well, and nobody notices.
+            <span className="mt-4 block">
+              A hardcoded choice doesn&apos;t update when prices drop. It doesn&apos;t reroute when a provider slows down. That gap is where the budget quietly goes.
+            </span>
+          </SectionHeading>
 
           <div className="grid gap-5 md:grid-cols-2 mt-12 items-stretch">
             {/* Before - legacy / static */}
@@ -264,10 +260,9 @@ export default function AgentryPage() {
           style={{ background: "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(34,120,224,0.16), transparent 70%)" }}
         />
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative">
-          <h2 className="cv-h2 text-cv-ink mb-5 max-w-3xl text-left">How Agentry controls every AI request.</h2>
-          <p className="cv-body-lg text-cv-muted mb-2 max-w-3xl text-left">
+          <SectionHeading title="How Agentry controls every AI request." lead>
             Agentry sits between your application and every AI provider you use. On each request it scores the available routes against the rules your team set, then returns the best one with a fallback and a full decision log.
-          </p>
+          </SectionHeading>
           <p className="text-cv-muted italic mb-10 max-w-3xl text-left">A gateway runs the rule you wrote. Agentry works out whether that rule is still right.</p>
           <AgentrySteps />
         </div>
@@ -276,10 +271,9 @@ export default function AgentryPage() {
       {/* ROI */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <h2 className="cv-h2 text-cv-ink mb-5 max-w-3xl text-left">The cost of not routing.</h2>
-          <p className="cv-body-lg text-cv-ink/75 mb-10 max-w-3xl text-left">
+          <SectionHeading title="The cost of not routing." lead>
             Every hardcoded endpoint spends money without making a decision. The same work, on the right model, often costs a fraction, at the same or better quality.
-          </p>
+          </SectionHeading>
           <AgentryRoiSplit roi={ROI} />
         </div>
       </section>
@@ -290,10 +284,9 @@ export default function AgentryPage() {
       {/* GOVERNANCE */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <h2 className="cv-h2 text-cv-ink mb-5 max-w-3xl text-left">Built for enterprise AI governance.</h2>
-          <p className="cv-body-lg text-cv-ink/75 mb-10 max-w-3xl text-left">
+          <SectionHeading title="Built for enterprise AI governance." lead>
             Every routing decision Agentry makes is recorded, auditable, and explainable. Governance is on by default, not bolted on.
-          </p>
+          </SectionHeading>
           <GovernanceBento />
         </div>
       </section>

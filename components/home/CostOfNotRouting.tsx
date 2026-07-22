@@ -1,3 +1,4 @@
+import { SectionHeading } from "@/components/SectionHeading";
 /* "The cost of not routing" — quantifies hardcoded spend versus Agentry-routed
    spend: a monthly at-scale savings table beside a single-request Without/With
    comparison, closed by a result banner. cv-* tokens, theme-aware. Server
@@ -52,16 +53,10 @@ export function CostOfNotRouting() {
   return (
     <section className="cv-section bg-cv-surface2 dark:bg-black" data-testid="section-cost-of-not-routing">
       <div className="cv-container">
-        <div className="flex max-w-3xl flex-col items-start text-left">
-          <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
-            Economics
-          </span>
-          <h2 className="cv-h2 text-cv-ink">The cost of not routing.</h2>
-          <p className="cv-body mt-4 text-cv-ink/70">
-            Every hardcoded endpoint spends money without making a decision. The same work, on the right
-            model, often costs a fraction, at the same or better quality.
-          </p>
-        </div>
+        <SectionHeading eyebrow="Economics" title="The cost of not routing.">
+          Every hardcoded endpoint spends money without making a decision. The same work, on the right
+          model, often costs a fraction, at the same or better quality.
+        </SectionHeading>
 
         <div className="mt-10 grid gap-4 lg:grid-cols-[1.25fr_1fr] lg:gap-5">
           {/* At-scale monthly savings table */}

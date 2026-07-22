@@ -4,6 +4,7 @@
    pill chip, rounded-2xl bordered cards. Server component. */
 
 import { IconFileSearch, IconShield, IconReceipt } from "nucleo-isometric";
+import { SectionHeading } from "@/components/SectionHeading";
 
 type Step = {
   n: string;
@@ -41,18 +42,10 @@ export function HowAgentryWorks() {
   return (
     <section className="cv-section bg-cv-surface" data-testid="section-how-agentry-works">
       <div className="cv-container">
-        <div className="flex max-w-3xl flex-col items-start text-left">
-          <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
-            How Agentry works
-          </span>
-          <h2 className="cv-h2 text-balance text-cv-ink">
-            Three things have to be true before you can trust AI spend.
-          </h2>
-          <p className="cv-body mt-4 text-cv-ink/70">
-            Agentry does all three: discover what&apos;s running, govern it in the execution path, and
-            prove the economics after.
-          </p>
-        </div>
+        <SectionHeading eyebrow="How Agentry works" title="Three things have to be true before you can trust AI spend.">
+          Agentry does all three: discover what&apos;s running, govern it in the execution path, and
+          prove the economics after.
+        </SectionHeading>
 
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {STEPS.map((s) => (

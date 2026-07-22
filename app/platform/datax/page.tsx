@@ -7,6 +7,7 @@ import { FaqBlock } from "@/components/FaqBlock";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { PlatformHeroMockup } from "@/components/product/PlatformHeroMockup";
 import { PageHero } from "@/components/PageHero";
+import { SectionHeading } from "@/components/SectionHeading";
 import { IntegrationsMarquee } from "@/components/home/IntegrationsMarquee";
 import { BeforeAfterCards, type BeforeAfterRow } from "@/components/product/BeforeAfterCards";
 import { DataxFindingMock, DataxAutomationMock, DataxConnectionMock, DataxPricingMock } from "@/components/product/DataxVisuals";
@@ -79,17 +80,12 @@ export default function DataXPage() {
 
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="flex max-w-3xl flex-col items-start text-left">
-            <h2 className="cv-h2 text-cv-ink">Your data warehouse is a blank check.</h2>
-            <div className="mt-4">
-              <p className="cv-body-lg text-cv-ink/80">
-                Warehouse and pipeline cost scales with how people use it, and it rarely maps back to a team or a product. A single query can scan hundreds of gigabytes and cost more than a server. Run it on a schedule and it compounds, quietly, on someone else&apos;s budget.
-              </p>
-              <p className="cv-body-lg text-cv-ink font-medium italic mt-4">
-                Stop waiting for the monthly bill to see who burned the budget.
-              </p>
-            </div>
-          </div>
+          <SectionHeading title="Your data warehouse is a blank check." lead>
+            Warehouse and pipeline cost scales with how people use it, and it rarely maps back to a team or a product. A single query can scan hundreds of gigabytes and cost more than a server. Run it on a schedule and it compounds, quietly, on someone else&apos;s budget.
+            <span className="mt-4 block font-medium italic text-cv-ink">
+              Stop waiting for the monthly bill to see who burned the budget.
+            </span>
+          </SectionHeading>
 
           <div className="mt-12">
             <BeforeAfterCards
@@ -135,10 +131,9 @@ export default function DataXPage() {
       {/* PRICING PHILOSOPHY */}
       <section className="cv-section bg-cv-surface">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-5 max-w-3xl text-left">DataX doesn&apos;t profit from your inefficiency.</h2>
-          <p className="cv-body-lg text-cv-ink/75 mb-10 max-w-3xl text-left">
+          <SectionHeading title="DataX doesn't profit from your inefficiency." lead>
             DataX prices on the structural drivers of your data platform cost, not on billing noise.
-          </p>
+          </SectionHeading>
           <div className="grid gap-5 lg:grid-cols-[1.5fr_1fr] lg:items-stretch">
             <div className="grid gap-5 sm:grid-cols-2">
               <div className="rounded-2xl border border-cv-line/40 bg-cv-surface dark:bg-[#0D0D0D] p-6">
@@ -176,10 +171,9 @@ export default function DataXPage() {
       {/* SAFE AUTOMATION */}
       <section className="cv-section">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-5 max-w-3xl text-left">Automation without losing control.</h2>
-          <p className="cv-body-lg text-cv-ink/75 mb-2 max-w-3xl text-left">
+          <SectionHeading title="Automation without losing control." lead>
             DataX applies approved optimisations within the policies you define.
-          </p>
+          </SectionHeading>
           <p className="text-cv-ink/70 italic mb-10 max-w-3xl text-left">The automation model is about DataX behaviour, not your pipelines.</p>
           <div className="flex flex-col items-start gap-10">
             <div className="mx-auto w-full max-w-2xl grid gap-8 sm:grid-cols-2 text-center">
@@ -213,10 +207,9 @@ export default function DataXPage() {
       {/* CONNECTION MODEL — least-privilege story precedes the connect ask */}
       <section className="cv-section">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-5 max-w-3xl text-left">Built for least privilege.</h2>
-          <p className="cv-body-lg text-cv-ink/75 mb-10 max-w-3xl text-left">
+          <SectionHeading title="Built for least privilege." lead>
             Connect platforms using read-only access by default. Enable automation only when you are ready: scoped, auditable, reversible.
-          </p>
+          </SectionHeading>
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>
               <div className="cv-label mb-4">Connection model</div>
