@@ -11,8 +11,8 @@ const BLUE = "#6954D4";
    brand accent for neutral resource visuals (bars, map dots, tree node);
    status colors (ok/blocked/flag) carry meaning on rule/decision pills. */
 const EDGE_FADE = {
-  WebkitMaskImage: "linear-gradient(to bottom,#000 88%,transparent 100%)",
-  maskImage: "linear-gradient(to bottom,#000 88%,transparent 100%)",
+  WebkitMaskImage: "linear-gradient(to bottom,#000 82%,transparent 100%)",
+  maskImage: "linear-gradient(to bottom,#000 82%,transparent 100%)",
 } as const;
 
 type Kind = "ok" | "blocked" | "flag" | "info";
@@ -27,7 +27,7 @@ function StatusPill({ kind, label }: { kind: Kind; label: string }) {
   const c = KIND_COLOR[kind];
   return (
     <span
-      className="justify-self-start rounded-full px-2 py-0.5 text-[10px] font-medium"
+      className="justify-self-start rounded-full px-2.5 py-1 text-[11px] font-medium"
       style={{ color: c, background: `${c}1A` }}
     >
       {label}

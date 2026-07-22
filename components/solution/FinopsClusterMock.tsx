@@ -4,9 +4,10 @@
 
 import { Planet } from "@/lib/solar-icons";
 
-/* Home product-screenshot chrome: hairline ring + soft shadow. */
+/* Home product-screenshot chrome: hairline border + soft shadow, matching
+   components/home/cardChrome.tsx exactly. */
 const CARD =
-  "relative overflow-hidden rounded-2xl bg-white p-5 shadow-[0_0_0_1px_rgba(15,23,42,0.06),0_10px_30px_rgba(15,23,42,0.06)] dark:bg-[#0D0D0D] dark:shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_18px_44px_rgba(0,0,0,0.55)]";
+  "relative overflow-hidden rounded-2xl border border-cv-line bg-white p-5 shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:border-white/10 dark:bg-black dark:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)]";
 
 /* Top-left linear light stroke + ambient glow — the home visuals treatment. */
 function CardLightEdge() {
@@ -17,7 +18,7 @@ function CardLightEdge() {
         className="pointer-events-none absolute inset-0 z-[1] rounded-[inherit]"
         style={{
           padding: "1.5px",
-          background: "linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.18) 22%, rgba(255,255,255,0) 50%)",
+          background: "linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 22%, rgba(255,255,255,0) 50%)",
           WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
           mask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
           WebkitMaskComposite: "xor",
@@ -26,8 +27,8 @@ function CardLightEdge() {
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-8 -top-8 h-40 w-40 rounded-full"
-        style={{ background: "radial-gradient(circle, rgba(200,218,255,0.12), transparent 70%)", filter: "blur(28px)" }}
+        className="pointer-events-none absolute -left-6 -top-6 h-40 w-40 rounded-full"
+        style={{ background: "radial-gradient(circle, rgba(200,218,255,0.13), transparent 70%)", filter: "blur(26px)" }}
       />
     </>
   );

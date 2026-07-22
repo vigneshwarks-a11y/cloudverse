@@ -15,7 +15,8 @@ export type FlowLogoNode = { kind: "logo"; src: string; name: string; invert?: b
 export type FlowTileNode = { kind: "tile"; label: string; color: string; Icon: IconCmp };
 export type FlowRightNode = FlowLogoNode | FlowTileNode;
 
-const PANEL = "relative overflow-hidden rounded-2xl border border-cv-line bg-cv-surface2 p-5 dark:border-white/10 dark:bg-[#0D0D0D]";
+const PANEL =
+  "relative overflow-hidden rounded-2xl border border-cv-line bg-cv-surface2 p-5 shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:border-white/10 dark:bg-black dark:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)]";
 
 function CardLightEdge() {
   return (
@@ -25,7 +26,7 @@ function CardLightEdge() {
         className="pointer-events-none absolute inset-0 z-[1] rounded-[inherit]"
         style={{
           padding: "1.5px",
-          background: "linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.18) 22%, rgba(255,255,255,0) 50%)",
+          background: "linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 22%, rgba(255,255,255,0) 50%)",
           WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
           mask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
           WebkitMaskComposite: "xor",
@@ -34,8 +35,8 @@ function CardLightEdge() {
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-8 -top-8 h-40 w-40 rounded-full"
-        style={{ background: "radial-gradient(circle, rgba(200,218,255,0.12), transparent 70%)", filter: "blur(28px)" }}
+        className="pointer-events-none absolute -left-6 -top-6 h-40 w-40 rounded-full"
+        style={{ background: "radial-gradient(circle, rgba(200,218,255,0.13), transparent 70%)", filter: "blur(26px)" }}
       />
     </>
   );

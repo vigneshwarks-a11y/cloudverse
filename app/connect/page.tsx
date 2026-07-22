@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight, CheckCircle } from "@/lib/solar-icons";
-import { HeroSquares, HeroEyebrow } from "@/components/PageHero";
+import { CheckCircle } from "@/lib/solar-icons";
+import { PageHero } from "@/components/PageHero";
+import { ConnectForm } from "@/components/ConnectForm";
 
 export const metadata: Metadata = {
   title: "Book a Demo: CloudVerse",
@@ -17,8 +17,6 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: "Book a CloudVerse Demo", description: "Connect your first cloud account in under 30 minutes. Non-obvious findings the same day." },
 };
 
-const HUBSPOT_URL = "https://meetings.hubspot.com";
-
 const PROOF = [
   "Connect in under 30 minutes. read-only by default",
   "First non-obvious finding the same day",
@@ -28,61 +26,26 @@ const PROOF = [
 
 export default function ConnectPage() {
   return (
-    <section className="cv-hero-bg pt-[120px] sm:pt-[160px] lg:pt-[240px] pb-24 min-h-[80vh]" style={{ background: "hsl(var(--cv-surface))" }}>
-      <HeroSquares />
-      <div className="cv-container relative z-10">
-        <div className="flex flex-col items-center gap-10">
-          <div className="mx-auto max-w-2xl text-center">
-            <div className="mb-4"><HeroEyebrow accent="blue">Get a Demo</HeroEyebrow></div>
-            <h1 className="cv-h1 text-cv-ink">
-              See What's Driving Your Cloud Bill.
-            </h1>
-            <p className="cv-body-lg mt-6 text-cv-ink/75 max-w-xl mx-auto">
-              A 30-minute working session with our solutions team. We connect a sample account live and walk you through your first findings.
-            </p>
-            <ul className="mt-8 space-y-3">
-              {PROOF.map((p) => (
-                <li key={p} className="flex gap-3 text-cv-ink/85 text-[15px]">
-                  <CheckCircle weight="Linear" size={18} className="shrink-0 mt-0.5 text-cv-blue dark:text-cv-blue-light" />
-                  <span>{p}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-10 pt-8 border-t border-cv-line/10">
-              <div className="cv-label mb-3 text-cv-ink/50">Prefer to talk to sales?</div>
-              <Link href="/contact" className="cv-btn-ghost">
-                Contact sales <ArrowRight weight="Linear" size={14} />
-              </Link>
-            </div>
-          </div>
+    <PageHero eyebrow="Get a Demo" accent="blue" title="See What's Driving Your Cloud Bill.">
+      <div className="mx-auto mt-8 sm:mt-10 flex max-w-6xl flex-col-reverse gap-10 lg:flex-row lg:items-start lg:gap-16">
+        <div className="max-w-lg text-center lg:flex-1 lg:pt-1 lg:text-left">
+          <p className="text-sm text-cv-ink/75">
+            A 30-minute working session with our solutions team. We connect a sample account live and walk you through your first findings.
+          </p>
+          <ul className="mt-6 space-y-3 text-left">
+            {PROOF.map((p) => (
+              <li key={p} className="flex gap-3 text-cv-ink/85 text-sm">
+                <CheckCircle weight="Linear" size={16} className="shrink-0 mt-0.5 text-cv-blue dark:text-cv-blue-light" />
+                <span>{p}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-          <div className="mx-auto w-full max-w-xl">
-            <div
-              className="rounded-2xl border border-cv-line/10 p-7 sm:p-8"
-              style={{ background: "rgba(255,255,255,0.04)", backdropFilter: "blur(8px)" }}
-            >
-              <div className="font-display text-cv-ink text-2xl font-bold mb-2">
-                Book your slot
-              </div>
-              <p className="text-cv-ink/65 text-sm mb-6">
-                Pick a time that works. You'll get a calendar invite with the join link and a short pre-call form.
-              </p>
-              <a
-                href={HUBSPOT_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="cv-btn-primary w-full justify-center"
-                data-testid="link-hubspot-booking"
-              >
-                Open booking calendar <ArrowRight weight="Linear" size={16} />
-              </a>
-              <div className="mt-6 pt-6 border-t border-cv-line/10 text-cv-ink/55 text-xs">
-                CloudVerse™ never sells your data. Connections are read-only by default and can be revoked at any time.
-              </div>
-            </div>
-          </div>
+        <div className="w-full max-w-2xl shrink-0 lg:mx-0">
+          <ConnectForm />
         </div>
       </div>
-    </section>
+    </PageHero>
   );
 }

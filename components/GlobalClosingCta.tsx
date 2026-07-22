@@ -3,9 +3,10 @@
 import { usePathname } from "next/navigation";
 import ClosingCtaBand from "@/components/ClosingCtaBand";
 
-// Routes that render their own customised ClosingCtaBand, so the global
-// default one must be suppressed to avoid two stacked closing bands.
-const HIDE_ON = ["/integrations"];
+// Routes that render their own customised ClosingCtaBand, or that are
+// themselves the conversion destination, so the global default one must be
+// suppressed to avoid a redundant/duplicate closing band.
+const HIDE_ON = ["/integrations", "/connect"];
 
 export default function GlobalClosingCta() {
   const pathname = usePathname();

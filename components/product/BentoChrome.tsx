@@ -22,7 +22,7 @@ export function StatusPill({ kind, label }: { kind: Kind; label: string }) {
   const c = KIND_COLOR[kind];
   return (
     <span
-      className="justify-self-start rounded-full px-2 py-0.5 text-[10px] font-medium"
+      className="justify-self-start rounded-full px-2.5 py-1 text-[11px] font-medium"
       style={{ color: c, background: `${c}1A` }}
     >
       {label}
@@ -41,8 +41,8 @@ export function ScopeTag({ children }: { children: ReactNode }) {
 
 // Soft bottom fade so mock panels dissolve into the screenshot slot.
 const EDGE_FADE = {
-  WebkitMaskImage: "linear-gradient(to bottom,#000 88%,transparent 100%)",
-  maskImage: "linear-gradient(to bottom,#000 88%,transparent 100%)",
+  WebkitMaskImage: "linear-gradient(to bottom,#000 82%,transparent 100%)",
+  maskImage: "linear-gradient(to bottom,#000 82%,transparent 100%)",
 } as const;
 
 export function CardLightEdge() {
@@ -52,9 +52,9 @@ export function CardLightEdge() {
         aria-hidden
         className="pointer-events-none absolute inset-0 rounded-[inherit]"
         style={{
-          padding: "1px",
+          padding: "1.5px",
           background:
-            "linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.14) 16%, rgba(255,255,255,0) 40%)",
+            "linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 22%, rgba(255,255,255,0) 50%)",
           WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
           mask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
           WebkitMaskComposite: "xor",
@@ -63,8 +63,8 @@ export function CardLightEdge() {
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-8 -top-8 h-36 w-36 rounded-full"
-        style={{ background: "radial-gradient(circle, rgba(200,218,255,0.10), transparent 70%)", filter: "blur(28px)" }}
+        className="pointer-events-none absolute -left-6 -top-6 h-40 w-40 rounded-full"
+        style={{ background: "radial-gradient(circle, rgba(200,218,255,0.13), transparent 70%)", filter: "blur(26px)" }}
       />
     </>
   );
@@ -74,7 +74,7 @@ export function CardLightEdge() {
 export function Panel({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
     <div
-      className="relative flex flex-1 flex-col overflow-hidden rounded-[14px] border border-cv-line bg-white shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:border-white/10 dark:bg-black dark:shadow-[0_12px_30px_-12px_rgba(0,0,0,0.6)]"
+      className="relative flex flex-1 flex-col overflow-hidden rounded-[14px] border border-cv-line bg-white shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:border-white/10 dark:bg-black dark:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)]"
       style={EDGE_FADE}
     >
       <CardLightEdge />

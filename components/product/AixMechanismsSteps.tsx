@@ -71,7 +71,7 @@ function CardLightEdge() {
 // home-page mock cards.
 function MockFrame({ children }: { children: ReactNode }) {
   return (
-    <div className="relative w-full overflow-hidden rounded-[14px] border border-cv-line bg-white p-4 shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:border-white/10 dark:bg-black dark:shadow-[0_12px_30px_-12px_rgba(0,0,0,0.6)]">
+    <div className="relative w-full overflow-hidden rounded-[14px] border border-cv-line bg-white p-4 shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:border-white/10 dark:bg-black dark:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)]">
       <CardLightEdge />
       <div className="relative">{children}</div>
     </div>

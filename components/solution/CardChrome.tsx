@@ -17,8 +17,8 @@ export const VIZ_RED = "#EF4444";
 export const VIZ_GRAY = "#94969C";
 
 export const EDGE_FADE = {
-  WebkitMaskImage: "linear-gradient(to bottom,#000 90%,transparent 100%)",
-  maskImage: "linear-gradient(to bottom,#000 90%,transparent 100%)",
+  WebkitMaskImage: "linear-gradient(to bottom,#000 82%,transparent 100%)",
+  maskImage: "linear-gradient(to bottom,#000 82%,transparent 100%)",
 } as const;
 
 export function CardLightEdge() {
@@ -60,7 +60,7 @@ export function Panel({
 }) {
   return (
     <div
-      className="relative flex flex-1 flex-col overflow-hidden rounded-t-[14px] rounded-b-none border border-cv-line/70 bg-white shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:border-white/[0.08] dark:bg-[#111114] dark:shadow-[0_12px_30px_-12px_rgba(0,0,0,0.6)]"
+      className="relative flex flex-1 flex-col overflow-hidden rounded-t-[14px] rounded-b-none border border-cv-line/70 bg-white shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:border-white/[0.08] dark:bg-black dark:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)]"
       style={EDGE_FADE}
     >
       <CardLightEdge />
@@ -98,7 +98,7 @@ export function FeatureCard({ title, desc, children }: { title: string; desc: st
 
 export function Pill({ color, children }: { color: string; children: React.ReactNode }) {
   return (
-    <span className="justify-self-start rounded-full px-2 py-0.5 text-[10px] font-medium" style={{ color, background: `${color}1A` }}>
+    <span className="justify-self-start rounded-full px-2.5 py-1 text-[11px] font-medium" style={{ color, background: `${color}1A` }}>
       {children}
     </span>
   );
