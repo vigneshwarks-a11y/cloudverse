@@ -1,6 +1,6 @@
-/* "Before / After AIX" — two comparison cards: a static, hardcoded setup
+/* "Before / After Agentry" — two comparison cards: a static, hardcoded setup
    (faint node pattern, muted CloseCircle rows) versus a dynamic, per-request
-   setup (blue grid + glow, CheckCircle rows). Design ported from the AIX
+   setup (blue grid + glow, CheckCircle rows). Design ported from the Agentry
    platform page. cv-* tokens, theme-aware. Server component. */
 
 import { TrashBin2, Bolt, CloseCircle, CheckCircle } from "@/lib/solar-icons";
@@ -35,7 +35,7 @@ export function BeforeAfterAix() {
                 <TrashBin2 weight="Linear" size={18} />
               </span>
               <div>
-                <div className="text-[15px] font-semibold text-cv-ink">Before AIX</div>
+                <div className="text-[15px] font-semibold text-cv-ink">Before Agentry</div>
                 <div className="text-xs text-cv-muted">Hardcoded, static</div>
               </div>
             </div>
@@ -81,7 +81,7 @@ export function BeforeAfterAix() {
                 <Bolt weight="Bold" size={18} />
               </span>
               <div>
-                <div className="text-[15px] font-semibold text-cv-ink">After AIX</div>
+                <div className="text-[15px] font-semibold text-cv-ink">After Agentry</div>
                 <div className="text-xs text-[#1664C0] dark:text-[#7CB8F8]">Dynamic, per request</div>
               </div>
             </div>

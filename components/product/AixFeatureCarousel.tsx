@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState, type ReactElement } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
-/* Draggable feature carousel for the AIX page. Each slide is a card with a
+/* Draggable feature carousel for the Agentry page. Each slide is a card with a
    lightweight product-mockup illustration on top and a title + description
    pinned to the bottom (fixed illustration height keeps the titles aligned
    across slides of different widths). cv-* tokens throughout for light/dark. */
@@ -209,7 +209,7 @@ export default function AixFeatureCarousel() {
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <h2 className="cv-h2 text-cv-ink">One decision layer for every AI request.</h2>
           <p className="cv-body-lg text-cv-muted mt-4">
-            AIX routes, governs, and proves every call across your models and providers. The right route is chosen per request, with the evidence to back it.
+            Agentry routes, governs, and proves every call across your models and providers. The right route is chosen per request, with the evidence to back it.
           </p>
         </div>
         {/* controls (desktop) */}

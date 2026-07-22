@@ -2,7 +2,7 @@ import { CheckCircle } from "@/lib/solar-icons";
 import { FeatureCard, Panel, StatusPill, BLUE } from "@/components/product/BentoChrome";
 
 /* "Cost review, in the workflow engineers already use" — a bento of product
-   screenshot mocks on the shared AIX chrome (FeatureCard + Panel). */
+   screenshot mocks on the shared Agentry chrome (FeatureCard + Panel). */
 
 function PrDiffViz() {
   return (

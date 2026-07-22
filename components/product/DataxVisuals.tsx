@@ -1,5 +1,5 @@
 /* DataX section visuals — self-sizing product-screenshot mocks in the shared
-   AIX panel language (CardLightEdge + soft shadow), one per content section:
+   Agentry panel language (CardLightEdge + soft shadow), one per content section:
    a query finding, the automation policy + audit event, the least-privilege
    connection scopes, and a unit-cost trend. cv-* tokens, theme-aware.
    Server components. */

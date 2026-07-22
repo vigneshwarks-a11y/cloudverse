@@ -17,6 +17,13 @@ export function FinOpsHero() {
             <ArrowRight weight="Linear" size={16} />
           </Link>
           <Link href="/contact" className="cv-btn-ghost">Request a technology spend assessment</Link>
+          <Link
+            href="/efficiency-snapshot"
+            className="basis-full inline-flex items-center justify-center gap-1 text-sm text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-2 transition-colors"
+            data-testid="link-efficiency-snapshot"
+          >
+            Upload any cloud invoice. Get an actionable savings report in 30 seconds <ArrowRight weight="Linear" size={13} />
+          </Link>
         </>
       }
     />

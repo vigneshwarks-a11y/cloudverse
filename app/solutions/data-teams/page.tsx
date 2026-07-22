@@ -13,7 +13,7 @@ import { FaqBlock } from "@/components/FaqBlock";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
-  title: "For Data Teams: Find the Queries Quietly Running Up Your Bill | CloudVerse",
+  title: "For Data Teams: Find the Queries Quietly Running Up Your Bill",
   description: "Query, dashboard, and dbt-model-level attribution across Snowflake, Databricks, BigQuery, Microsoft Fabric, and Synapse.",
   keywords: ["data team cost optimization", "warehouse cost visibility", "dbt cost attribution", "Snowflake FinOps", "Databricks cost management"],
   alternates: { canonical: "/solutions/data-teams" },
@@ -236,7 +236,7 @@ export default function DataTeamsPage() {
             items={[
               ["DataX", "Query attribution, pattern detection, safe automation", "/platform/datax"],
               ["FinOps Platform", "Warehouse spend folded into one allocation model", "/platform/finops"],
-              ["AIX", "Attributes the model pipelines and RAG agents driving warehouse load", "/platform/aix"],
+              ["Agentry", "Attributes the model pipelines and RAG agents driving warehouse load", "/platform/agentry"],
             ]}
           />
         </div>

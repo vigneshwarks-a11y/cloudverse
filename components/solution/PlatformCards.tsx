@@ -11,9 +11,9 @@ const BLUE = "#1664C0";
 
 const ICONS: Record<string, Icon> = {
   "FinOps Platform": Wallet,
-  DevX: Code,
+  Torb: Code,
   DataX: Database,
-  AIX: Cpu,
+  Agentry: Cpu,
 };
 
 export type PlatformItem = [title: string, blurb: string, href: string];

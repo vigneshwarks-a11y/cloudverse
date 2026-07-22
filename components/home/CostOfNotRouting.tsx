@@ -1,4 +1,4 @@
-/* "The cost of not routing" — quantifies hardcoded spend versus AIX-routed
+/* "The cost of not routing" — quantifies hardcoded spend versus Agentry-routed
    spend: a monthly at-scale savings table beside a single-request Without/With
    comparison, closed by a result banner. cv-* tokens, theme-aware. Server
    component. */
@@ -75,7 +75,7 @@ export function CostOfNotRouting() {
                   <tr className="border-b border-cv-line/50 text-left text-[11px] uppercase tracking-wider text-cv-muted dark:border-white/10">
                     <th className="px-5 py-3 font-medium">Monthly volume</th>
                     <th className="px-5 py-3 text-right font-medium">Hardcoded spend</th>
-                    <th className="px-5 py-3 text-right font-medium">With AIX</th>
+                    <th className="px-5 py-3 text-right font-medium">With Agentry</th>
                     <th className="px-5 py-3 text-right font-medium">Monthly saving</th>
                   </tr>
                 </thead>
@@ -100,7 +100,7 @@ export function CostOfNotRouting() {
           {/* Single-request Without / With comparison */}
           <div className="flex flex-col gap-4">
             <CompareCard
-              label="Example · without AIX"
+              label="Example · without Agentry"
               tone="without"
               rows={[
                 { k: "Model", v: "Claude Sonnet" },
@@ -109,7 +109,7 @@ export function CostOfNotRouting() {
               ]}
             />
             <CompareCard
-              label="Example · with AIX"
+              label="Example · with Agentry"
               tone="with"
               rows={[
                 { k: "Model", v: "GPT-4o-mini" },

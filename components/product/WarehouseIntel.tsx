@@ -2,7 +2,7 @@ import { CheckCircle } from "@/lib/solar-icons";
 import { FeatureCard, Panel, StatusPill, BLUE } from "@/components/product/BentoChrome";
 
 /* "Warehouse cost intelligence, not just dashboards" — a bento of product
-   screenshot mocks on the shared AIX chrome. Each mock matches its card:
+   screenshot mocks on the shared Agentry chrome. Each mock matches its card:
    query-level attribution, cost-amplifying patterns, a unit-cost forecast, and
    policy-bound automation actions. cv-* tokens, theme-aware. */
 

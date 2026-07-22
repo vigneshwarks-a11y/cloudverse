@@ -12,7 +12,7 @@ import { FaqBlock } from "@/components/FaqBlock";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
-  title: "For AI Engineering: Run Every AI Workload Where It Costs Least and Runs Best | CloudVerse",
+  title: "For AI Engineering: Run Every AI Workload Where It Costs Least and Runs Best",
   description: "Live cost-quality routing across 8+ GPU and LLM providers. Policy-bound at execution. FinOps attribution included.",
   keywords: ["AI engineering cost", "LLM provider routing", "GPU cost optimization", "AI FinOps", "machine learning cost management"],
   alternates: { canonical: "/solutions/ai-engineering" },
@@ -68,7 +68,7 @@ const HOW_IT_WORKS_RIGHT: FlowRightNode[] = [
 ];
 
 const FAQ = [
-  ["How is this different from an LLM gateway?", "A gateway runs the rule you wrote. AIX scores every route live and decides what the rule should be, then logs why."],
+  ["How is this different from an LLM gateway?", "A gateway runs the rule you wrote. Agentry scores every route live and decides what the rule should be, then logs why."],
   ["Can we mix hosted and self-hosted models?", "Yes. Managed APIs and private GPU pools (vLLM/TGI, CoreWeave, Lambda, RunPod, on-prem) are all first-class routing targets."],
   ["What about prompt privacy?", "PII is detected and handled (mask, tokenize, or block) before a request reaches any provider."],
   ["How does cost attribution work?", "Every request is tagged to a team, feature, and tenant at routing time, so allocation needs no manual clean-up."],
@@ -83,7 +83,7 @@ export default function AIEngineeringPage() {
         eyebrow="For AI Engineering"
         h1="Run every AI workload where it costs least and runs best."
         sub="Live cost-quality routing across 8+ GPU and LLM providers. Policy-bound at execution. Full attribution included."
-        platformHref="/platform/aix"
+        platformHref="/platform/agentry"
       />
 
       <section className="cv-section">
@@ -98,7 +98,7 @@ export default function AIEngineeringPage() {
               <p className="cv-body-lg text-cv-ink/80 mt-4">
                 Meanwhile AI-assisted coding and agents are moving your inference and GPU cost week to week, and the bill arrives with no owner attached.
               </p>
-              <p className="cv-body-lg text-cv-ink font-medium mt-4">AIX closes both gaps.</p>
+              <p className="cv-body-lg text-cv-ink font-medium mt-4">Agentry closes both gaps.</p>
             </div>
             <div className="mx-auto w-full max-w-3xl">
               <Panel className="justify-between p-6" chrome="aix.app/situation">
@@ -153,7 +153,7 @@ export default function AIEngineeringPage() {
         <div className="cv-container">
           <div className="mx-auto max-w-2xl mb-10 text-center">
             <SectionEyebrow className="mb-4">What you ship</SectionEyebrow>
-            <h2 className="cv-h2 text-cv-ink">What AIX unlocks for AI engineering teams.</h2>
+            <h2 className="cv-h2 text-cv-ink">What Agentry unlocks for AI engineering teams.</h2>
           </div>
           <AixUnlocks />
         </div>
@@ -164,13 +164,13 @@ export default function AIEngineeringPage() {
         <div className="cv-container">
           <div className="mx-auto max-w-3xl mb-12 text-center">
             <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
-            <h2 className="cv-h2 text-cv-ink">How AIX controls every AI request.</h2>
+            <h2 className="cv-h2 text-cv-ink">How Agentry controls every AI request.</h2>
             <div className="mt-4 space-y-4">
               <p className="cv-body-lg text-cv-muted">
-                AIX sits between your application and every AI provider you use. On each request it scores the available routes against the rules your team set, then returns the best one with a fallback and a full decision log.
+                Agentry sits between your application and every AI provider you use. On each request it scores the available routes against the rules your team set, then returns the best one with a fallback and a full decision log.
               </p>
               <p className="cv-body-lg text-cv-muted">
-                A gateway runs the rule you wrote. AIX works out whether that rule is still right.
+                A gateway runs the rule you wrote. Agentry works out whether that rule is still right.
               </p>
             </div>
           </div>
@@ -197,7 +197,7 @@ export default function AIEngineeringPage() {
               "40–90% cost reduction across production workloads",
               "Under 15ms routing overhead",
               "96.8% lower cost than a hardcoded Claude Sonnet setup, 28.5% faster",
-              "Agent spend variance down from 3x to under 15% after AIX",
+              "Agent spend variance down from 3x to under 15% after Agentry",
             ].map((b) => (
               <div key={b} className="flex items-start gap-3 rounded-2xl border border-cv-line/40 bg-cv-surface dark:bg-[#0D0D0D] p-5 text-cv-ink/85">
                 <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cv-teal" /> {b}
@@ -227,8 +227,8 @@ export default function AIEngineeringPage() {
           </div>
           <PlatformCards
             items={[
-              ["AIX", "Routing, governance, and AI unit economics", "/platform/aix"],
-              ["DevX", "Catches the new model call or chatty agent loop in the pull request", "/platform/devx"],
+              ["Agentry", "Routing, governance, and AI unit economics", "/platform/agentry"],
+              ["Torb", "Catches the new model call or chatty agent loop in the pull request", "/platform/torb"],
               ["DataX", "Attributes the warehouse cost your RAG and model pipelines drive", "/platform/datax"],
             ]}
           />

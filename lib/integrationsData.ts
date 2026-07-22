@@ -18,7 +18,7 @@ export type Integration = {
     alt: string;
     invert?: boolean;
   };
-  products?: ("AIX" | "DevX" | "DataX")[];
+  products?: ("Agentry" | "Torb" | "DataX")[];
 };
 
 export const integrationsData: Integration[] = [
@@ -28,7 +28,7 @@ export const integrationsData: Integration[] = [
     name: "AWS",
     category: "Cloud",
     status: "Available",
-    products: ["AIX", "DevX", "DataX"],
+    products: ["Agentry", "Torb", "DataX"],
     short: "Billing and usage ingestion with allocation dimensions.",
     logo: { src: "/logos/aws.svg", alt: "AWS" },
     whatWeIngest: [
@@ -56,7 +56,7 @@ export const integrationsData: Integration[] = [
     aliases: ["Azure"],
     category: "Cloud",
     status: "Available",
-    products: ["AIX", "DevX", "DataX"],
+    products: ["Agentry", "Torb", "DataX"],
     short: "Billing, subscriptions, and cost dimensions across tenants.",
     logo: { src: "/logos/azure.svg", alt: "Microsoft Azure" },
     whatWeIngest: [
@@ -84,7 +84,7 @@ export const integrationsData: Integration[] = [
     aliases: ["GCP"],
     category: "Cloud",
     status: "Available",
-    products: ["AIX", "DevX", "DataX"],
+    products: ["Agentry", "Torb", "DataX"],
     short: "Billing and usage via BigQuery-backed exports and APIs.",
     logo: { src: "/logos/gcp.svg", alt: "Google Cloud" },
     whatWeIngest: [
@@ -112,7 +112,7 @@ export const integrationsData: Integration[] = [
     aliases: ["OCI"],
     category: "Cloud",
     status: "Available",
-    products: ["AIX", "DevX", "DataX"],
+    products: ["Agentry", "Torb", "DataX"],
     short: "Billing and usage across tenancy compartments.",
     logo: { src: "/logos/oci.svg", alt: "Oracle Cloud" },
     whatWeIngest: [
@@ -139,7 +139,7 @@ export const integrationsData: Integration[] = [
     aliases: ["AliCloud", "Alibaba"],
     category: "Cloud",
     status: "Available",
-    products: ["AIX", "DevX", "DataX"],
+    products: ["Agentry", "Torb", "DataX"],
     short: "Billing and usage ingestion for multi-cloud visibility.",
     logo: { src: "/logos/alibaba.svg", alt: "Alibaba Cloud" },
     whatWeIngest: [
@@ -165,7 +165,7 @@ export const integrationsData: Integration[] = [
     name: "Huawei Cloud",
     category: "Cloud",
     status: "Available",
-    products: ["AIX", "DevX", "DataX"],
+    products: ["Agentry", "Torb", "DataX"],
     short: "Billing and usage ingestion for enterprise reporting.",
     logo: { src: "/logos/huawei.svg", alt: "Huawei Cloud" },
     whatWeIngest: [
@@ -191,7 +191,7 @@ export const integrationsData: Integration[] = [
     name: "Tencent Cloud",
     category: "Cloud",
     status: "Available",
-    products: ["AIX", "DevX", "DataX"],
+    products: ["Agentry", "Torb", "DataX"],
     short: "Billing and usage ingestion across accounts and regions.",
     logo: { src: "/logos/tencent.svg", alt: "Tencent Cloud" },
     whatWeIngest: [
@@ -275,7 +275,7 @@ export const integrationsData: Integration[] = [
     name: "OpenAI",
     category: "AI",
     status: "Available",
-    products: ["AIX"],
+    products: ["Agentry"],
     short: "API usage, token consumption, and cost signals.",
     logo: { src: "/logos/openai.svg", alt: "OpenAI" },
     whatWeIngest: [
@@ -303,7 +303,7 @@ export const integrationsData: Integration[] = [
     name: "Kubernetes",
     category: "Kubernetes",
     status: "Available",
-    products: ["DevX"],
+    products: ["Torb"],
     short: "Cluster usage and workload attribution via agent.",
     logo: { src: "/logos/kubernetes.svg", alt: "Kubernetes" },
     whatWeIngest: [
@@ -330,7 +330,7 @@ export const integrationsData: Integration[] = [
     name: "OpenShift",
     category: "Kubernetes",
     status: "Available",
-    products: ["DevX"],
+    products: ["Torb"],
     short: "Cluster and namespace attribution for enterprise platforms.",
     logo: { src: "/logos/openshift.svg", alt: "OpenShift" },
     whatWeIngest: [
@@ -359,7 +359,7 @@ export const integrationsData: Integration[] = [
     aliases: ["VMware"],
     category: "Infrastructure",
     status: "Available",
-    products: ["DevX"],
+    products: ["Torb"],
     short: "Virtual infrastructure inventory and usage attribution.",
     logo: { src: "/logos/vcenter.svg", alt: "vCenter" },
     whatWeIngest: [
@@ -387,7 +387,7 @@ export const integrationsData: Integration[] = [
     name: "OAuth: Microsoft",
     category: "Identity",
     status: "Available",
-    products: ["DevX"],
+    products: ["Torb"],
     short: "SSO via Microsoft OAuth for secure login.",
     logo: { src: "/logos/microsoft-oauth.svg", alt: "Microsoft OAuth" },
     whatWeIngest: [
@@ -414,7 +414,7 @@ export const integrationsData: Integration[] = [
     name: "OAuth: Google",
     category: "Identity",
     status: "Available",
-    products: ["DevX"],
+    products: ["Torb"],
     short: "SSO via Google OAuth for secure login.",
     logo: { src: "/logos/google-oauth.svg", alt: "Google OAuth" },
     whatWeIngest: [
@@ -442,7 +442,7 @@ export const integrationsData: Integration[] = [
     aliases: ["Azure AD"],
     category: "Identity",
     status: "Available",
-    products: ["DevX"],
+    products: ["Torb"],
     short: "Directory sync for identity-based allocation and access control.",
     logo: { src: "/logos/entra.svg", alt: "Microsoft Entra ID" },
     whatWeIngest: [
@@ -470,7 +470,7 @@ export const integrationsData: Integration[] = [
     name: "Jira",
     category: "Ticketing",
     status: "Available",
-    products: ["DevX"],
+    products: ["Torb"],
     short: "Tickets and ownership context for allocation and ops.",
     logo: { src: "/logos/jira.svg", alt: "Jira" },
     whatWeIngest: [
@@ -497,7 +497,7 @@ export const integrationsData: Integration[] = [
     name: "ServiceNow",
     category: "Ticketing",
     status: "Available",
-    products: ["DevX"],
+    products: ["Torb"],
     short: "ITSM + ownership context for accountability and workflow integration.",
     logo: { src: "/logos/servicenow.svg", alt: "ServiceNow" },
     whatWeIngest: [
@@ -525,7 +525,7 @@ export const integrationsData: Integration[] = [
     name: "Slack",
     category: "Collaboration",
     status: "Available",
-    products: ["DevX"],
+    products: ["Torb"],
     short: "Alerts and notifications delivery for anomalies and automation.",
     logo: { src: "/logos/slack.svg", alt: "Slack" },
     whatWeIngest: [
@@ -552,7 +552,7 @@ export const integrationsData: Integration[] = [
     name: "Microsoft Teams",
     category: "Collaboration",
     status: "Available",
-    products: ["DevX"],
+    products: ["Torb"],
     short: "Notifications and approvals for automation workflows.",
     logo: { src: "/logos/teams.svg", alt: "Microsoft Teams" },
     whatWeIngest: [
@@ -581,7 +581,7 @@ export const integrationsData: Integration[] = [
     aliases: ["CloudWatch", "Azure Monitor", "Google Monitoring", "GCP Monitoring", "Ops Suite"],
     category: "Observability",
     status: "Available",
-    products: ["DevX"],
+    products: ["Torb"],
     short: "Signals from major cloud monitoring suites.",
     logo: { src: "/logos/cloud-monitoring.svg", alt: "Cloud Monitoring" },
     whatWeIngest: [
@@ -607,7 +607,7 @@ export const integrationsData: Integration[] = [
     name: "Top SaaS (Top 10)",
     category: "SaaS",
     status: "Coming soon",
-    products: ["DevX"],
+    products: ["Torb"],
     short: "Key SaaS spend and usage normalization.",
     logo: { src: "/logos/saas.svg", alt: "SaaS" },
     whatWeIngest: [
@@ -629,13 +629,13 @@ export const integrationsData: Integration[] = [
     }
   },
 
-  // AIX - Coming Soon (AI Providers)
+  // Agentry - Coming Soon (AI Providers)
   {
     id: "anthropic",
     name: "Anthropic",
     category: "AI",
     status: "Coming soon",
-    products: ["AIX"],
+    products: ["Agentry"],
     short: "Claude API usage and cost attribution for model economics.",
     logo: { src: "/logos/saas.svg", alt: "Anthropic" },
     whatWeIngest: [
@@ -661,7 +661,7 @@ export const integrationsData: Integration[] = [
     name: "Azure OpenAI",
     category: "AI",
     status: "Coming soon",
-    products: ["AIX"],
+    products: ["Agentry"],
     short: "Managed OpenAI deployment cost and usage signals.",
     logo: { src: "/logos/azure.svg", alt: "Azure OpenAI" },
     whatWeIngest: [
@@ -687,7 +687,7 @@ export const integrationsData: Integration[] = [
     name: "AWS Bedrock",
     category: "AI",
     status: "Coming soon",
-    products: ["AIX"],
+    products: ["Agentry"],
     short: "Foundation model invocation costs and usage attribution.",
     logo: { src: "/logos/aws.svg", alt: "AWS Bedrock" },
     whatWeIngest: [
@@ -713,7 +713,7 @@ export const integrationsData: Integration[] = [
     name: "Google Vertex AI",
     category: "AI",
     status: "Coming soon",
-    products: ["AIX"],
+    products: ["Agentry"],
     short: "Vertex AI model and pipeline cost attribution.",
     logo: { src: "/logos/gcp.svg", alt: "Google Vertex AI" },
     whatWeIngest: [
@@ -735,13 +735,13 @@ export const integrationsData: Integration[] = [
     }
   },
 
-  // DevX - Coming Soon (Dev workflow)
+  // Torb - Coming Soon (Dev workflow)
   {
     id: "github",
     name: "GitHub",
     category: "SaaS",
     status: "Coming soon",
-    products: ["DevX"],
+    products: ["Torb"],
     short: "PR-level economic gates and infrastructure change detection.",
     logo: { src: "/logos/saas.svg", alt: "GitHub" },
     whatWeIngest: [
@@ -767,7 +767,7 @@ export const integrationsData: Integration[] = [
     name: "GitLab",
     category: "SaaS",
     status: "Coming soon",
-    products: ["DevX"],
+    products: ["Torb"],
     short: "Merge request gates and pipeline cost attribution.",
     logo: { src: "/logos/saas.svg", alt: "GitLab" },
     whatWeIngest: [
@@ -793,7 +793,7 @@ export const integrationsData: Integration[] = [
     name: "Azure DevOps",
     category: "SaaS",
     status: "Coming soon",
-    products: ["DevX"],
+    products: ["Torb"],
     short: "Pipeline and repo integration for shift-left economics.",
     logo: { src: "/logos/azure.svg", alt: "Azure DevOps" },
     whatWeIngest: [
@@ -819,7 +819,7 @@ export const integrationsData: Integration[] = [
     name: "Terraform",
     category: "Infrastructure",
     status: "Coming soon",
-    products: ["DevX"],
+    products: ["Torb"],
     short: "Infrastructure-as-code cost estimation and drift detection.",
     logo: { src: "/logos/saas.svg", alt: "Terraform" },
     whatWeIngest: [

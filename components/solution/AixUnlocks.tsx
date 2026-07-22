@@ -14,7 +14,7 @@ import {
   VIZ_GRAY as GRAY,
 } from "@/components/solution/CardChrome";
 
-/* AI Engineering "what AIX unlocks" bento — same image-topped FeatureCard
+/* AI Engineering "what Agentry unlocks" bento — same image-topped FeatureCard
    idiom as FinopsShips: a bordered panel with a lit top-left edge + ambient
    glow on a dark surface, tables/charts/meters inside. Theme-aware via
    cv-* tokens. */

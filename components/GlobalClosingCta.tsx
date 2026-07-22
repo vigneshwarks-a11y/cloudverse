@@ -11,7 +11,7 @@ const HIDE_ON = ["/integrations", "/connect"];
 export default function GlobalClosingCta() {
   const pathname = usePathname();
   if (pathname && HIDE_ON.includes(pathname)) return null;
-  // The homepage (AIX root) closes on its own agent-governance CTA.
+  // The homepage (Agentry root) closes on its own agent-governance CTA.
   if (pathname === "/") {
     return (
       <ClosingCtaBand

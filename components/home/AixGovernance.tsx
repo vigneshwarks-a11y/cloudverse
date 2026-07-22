@@ -400,7 +400,7 @@ const FEATURES = [
   },
   {
     title: "Guardrail shadow AI, don't just ban it",
-    body: "Teams have quietly built agents on Bedrock, Copilot Studio, Kubernetes, and raw OpenAI keys. AIX discovers them across clouds, SaaS platforms, and clusters, ranks them by spend, and gives each a one-step on-ramp: point it at the governed endpoint, policy applies, nothing gets rewritten.",
+    body: "Teams have quietly built agents on Bedrock, Copilot Studio, Kubernetes, and raw OpenAI keys. Agentry discovers them across clouds, SaaS platforms, and clusters, ranks them by spend, and gives each a one-step on-ramp: point it at the governed endpoint, policy applies, nothing gets rewritten.",
     Visual: MockTenantVisual,
   },
   {
@@ -445,7 +445,7 @@ export function AixGovernance() {
               What it does for you<br className="hidden lg:block" /> on day one
             </h2>
             <p className="mt-4 text-cv-ink/70 leading-relaxed">
-              Not a roadmap. The things AIX handles the moment it&apos;s in the execution path: rogue agents, audit-grade evidence, shadow AI, and runaway cost stopped in flight.
+              Not a roadmap. The things Agentry handles the moment it&apos;s in the execution path: rogue agents, audit-grade evidence, shadow AI, and runaway cost stopped in flight.
             </p>
           </div>
         </div>
@@ -463,7 +463,7 @@ export function AixGovernance() {
                 <div key={title} className={CELL}>
                   <h3 className="text-lg font-semibold text-cv-ink">{title}</h3>
                   <p className="mt-2 text-base text-cv-ink/55 leading-relaxed">{body}</p>
-                  <Link href="/platform/aix" className="mt-3 inline-flex items-center gap-1 text-xs text-[#1664C0] hover:text-[#0e4fa0] dark:text-[#7CB8F8] dark:hover:text-[#A9C8F8] transition-colors font-medium">
+                  <Link href="/platform/agentry" className="mt-3 inline-flex items-center gap-1 text-xs text-[#1664C0] hover:text-[#0e4fa0] dark:text-[#7CB8F8] dark:hover:text-[#A9C8F8] transition-colors font-medium">
                     Learn More <ArrowRight weight="Linear" size={12} />
                   </Link>
                   <div className="mt-auto"><ScaledVisual><Visual /></ScaledVisual></div>

@@ -6,7 +6,7 @@ import { HowItWorksFlow, type FlowChip, type FlowWorkload, type FlowRightNode } 
 
 const CHIPS: FlowChip[] = [
   { label: "Model Routing", color: "#1664C0", Icon: Routing },
-  { label: "DevX Guardrails", color: "#0E9E7A", Icon: ShieldCheck },
+  { label: "Torb Guardrails", color: "#0E9E7A", Icon: ShieldCheck },
   { label: "DataX Policies", color: "#D97706", Icon: DocumentText },
   { label: "Commitments Optimizer", color: "#6954D4", Icon: Tuning },
 ];

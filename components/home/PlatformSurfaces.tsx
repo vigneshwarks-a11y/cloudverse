@@ -17,8 +17,8 @@ type Surface = {
 
 const SURFACES: Surface[] = [
   {
-    name: "AIX",
-    href: "/platform/aix",
+    name: "Agentry",
+    href: "/platform/agentry",
     color: "#6954D4",
     body: "Routes every AI request to the lowest-cost model that meets your quality and latency requirements. Budget caps applied before spend occurs. Full decision trace on every request.",
     image: "/legacy/platform/dash-vis.svg",
@@ -31,8 +31,8 @@ const SURFACES: Surface[] = [
     image: "/legacy/platform/dash-opti.svg",
   },
   {
-    name: "DevX",
-    href: "/platform/devx",
+    name: "Torb",
+    href: "/platform/torb",
     color: "#0E9E7A",
     body: "Catches infrastructure cost regressions in pull requests before they reach production. Engineers see what their changes cost at the moment they can still change something.",
     image: "/legacy/platform/dash-main.svg",

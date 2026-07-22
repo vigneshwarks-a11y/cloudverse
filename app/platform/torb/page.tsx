@@ -10,22 +10,24 @@ import WhoDevxFor from "@/components/product/WhoDevxFor";
 import DevxPrExample from "@/components/product/DevxPrExample";
 import CostGates from "@/components/product/CostGates";
 import { BeforeAfterCards, type BeforeAfterRow } from "@/components/product/BeforeAfterCards";
+import { CustomerLogos } from "@/components/CustomerLogos";
+import { InlineCta } from "@/components/home/InlineCta";
 
 export const metadata: Metadata = {
-  title: "DevX: Catch Cost Regressions Before They Reach Production | CloudVerse",
+  title: "Torb: Catch Cost Regressions Before They Reach Production",
   description:
     "Every infrastructure PR gets an inline cost impact comment before reviewers see it. Engineers see what their changes cost at the moment they can still change something.",
   keywords: ["infrastructure cost review", "PR cost analysis", "cloud cost drift", "FinOps developer tools", "shift-left cost governance", "IaC cost"],
-  alternates: { canonical: "/platform/devx" },
+  alternates: { canonical: "/platform/torb" },
   openGraph: {
-    title: "DevX: Catch Cost Regressions Before They Reach Production",
+    title: "Torb: Catch Cost Regressions Before They Reach Production",
     description: "Every infrastructure PR gets an inline cost impact comment before reviewers see it. Engineers see costs when they can still change something.",
-    url: "/platform/devx",
-    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse DevX: Developer-First Cost Governance" }],
+    url: "/platform/torb",
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse Torb: Developer-First Cost Governance" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DevX: Catch Cost Regressions Before They Reach Production",
+    title: "Torb: Catch Cost Regressions Before They Reach Production",
     description: "Every infrastructure PR gets an inline cost impact comment. See costs before they hit production.",
   },
 };
@@ -37,7 +39,7 @@ const DEVX_TABS = [
   { id: "policy", label: "Policy Engine", copy: "Cost rules written as code, versioned with the repo, applied across every team.", icon: ShieldCheck },
 ];
 
-// Attribute-by-attribute contrast between the old review flow and DevX. Same
+// Attribute-by-attribute contrast between the old review flow and Torb. Same
 // keys on both sides so the two cards read as an aligned before/after.
 const DEVX_VS: BeforeAfterRow[] = [
   { k: "Signal", before: "Discovered on next month's bill", after: "Commented inline on the PR" },
@@ -70,7 +72,7 @@ export default function DevXPage() {
   return (
     <>
       <PageHero
-        eyebrow="DevX"
+        eyebrow="Torb"
         accent="blue"
         title="Catch cost regressions before they reach production."
         subtitle="Cost context lands in the pull request, for infrastructure, application code, and AI calls. Velocity stays high. Governance finally keeps up."
@@ -100,9 +102,9 @@ export default function DevXPage() {
 
           <div className="mt-12">
             <BeforeAfterCards
-              beforeLabel="Before DevX"
+              beforeLabel="Before Torb"
               beforeSub="Cost found after merge"
-              afterLabel="With DevX"
+              afterLabel="With Torb"
               afterSub="Cost seen in the PR"
               rows={DEVX_VS}
             />
@@ -116,8 +118,14 @@ export default function DevXPage() {
       {/* WHAT PLATFORM TEAMS SHIP */}
       <CostGates />
 
-      {/* WHO DEVX IS FOR */}
+      {/* CUSTOMER LOGOS — proof */}
+      <CustomerLogos />
+
+      {/* WHO TORB IS FOR */}
       <WhoDevxFor />
+
+      {/* MID-PAGE CTA */}
+      <InlineCta label="Book a Demo" href={DEMO_URL} testid="section-inline-cta-demo" />
 
       {/* FAQ */}
       <section className="cv-section">
@@ -129,7 +137,7 @@ export default function DevXPage() {
         </div>
       </section>
 
-      <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Platform", href: "/platform/finops" }, { name: "DevX", href: "/platform/devx" }]} />
+      <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Platform", href: "/platform/torb" }, { name: "Torb", href: "/platform/torb" }]} />
     </>
   );
 }

@@ -1,4 +1,4 @@
-/* Before / After comparison cards — the AIX platform signature: a static,
+/* Before / After comparison cards — the Agentry platform signature: a static,
    "before" card (faint node pattern, muted CloseCircle rows) beside a dynamic,
    "after" card (blue grid + glow, CheckCircle rows). Shared across the platform
    pages so each reads with the same layout. cv-* tokens, theme-aware. */

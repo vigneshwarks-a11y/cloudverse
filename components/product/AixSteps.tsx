@@ -7,7 +7,7 @@ import type { IconProps } from "@solar-icons/react";
 import type { ComponentType } from "react";
 import { Dashboard } from "@/components/home/AixOrchestration";
 
-/* "How AIX controls every AI request" — a horizontal step tab-bar (each step a
+/* "How Agentry controls every AI request" — a horizontal step tab-bar (each step a
    title + subtitle) with a dashed line above and a solid line below, and a
    content holder underneath (dashed top/bottom) that cross-fades to the active
    step. Steps auto-advance and are tappable; respects reduced-motion. */
@@ -122,7 +122,7 @@ export default function AixSteps() {
       {/* ── Step tab-bar: dashed line on top, solid line below ── */}
       <div className="relative">
         <Line variant="dashed" />
-        <div role="tablist" aria-label="How AIX controls a request" className="flex overflow-x-auto">
+        <div role="tablist" aria-label="How Agentry controls a request" className="flex overflow-x-auto">
           {STEPS.map((s, i) => {
             const isActive = i === active;
             return (

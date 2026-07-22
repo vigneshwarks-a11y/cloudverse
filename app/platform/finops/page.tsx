@@ -13,13 +13,14 @@ import { FinOpsHero } from "@/components/product/FinOpsHero";
 import { FeatureShowcase } from "@/components/home/FeatureShowcase";
 import FinopsSurfaces from "@/components/product/FinopsSurfaces";
 import { DomainDepth } from "@/components/product/DomainDepth";
+import { InlineCta } from "@/components/home/InlineCta";
 import { ProofInProduction } from "@/components/product/ProofInProduction";
 import { NamedCustomers } from "@/components/product/NamedCustomers";
 import { WhyCloudVerse } from "@/components/product/WhyCloudVerse";
 import { GettingStarted } from "@/components/product/GettingStarted";
 
 export const metadata: Metadata = {
-  title: "CloudVerse Technology Spend: Cloud, AI, Data & SaaS on One Model | CloudVerse",
+  title: "CloudVerse Technology Spend: Cloud, AI, Data & SaaS on One Model",
   description:
     "Every technology dollar, explained, owned, and optimized. Manage cloud, AI, data-platform, and SaaS spend through one intelligent control plane that connects billing, usage, contracts, and ownership into one data model.",
   keywords: ["technology spend management", "FinOps platform", "cloud cost management", "AI spend", "data platform cost", "SaaS spend", "chargeback", "multi-cloud allocation"],
@@ -43,7 +44,7 @@ const FAQ = [
   ["Can we start with only one spend category?", "Yes. Organizations can begin with cloud, AI, data, or SaaS and expand through the same ownership, allocation, reporting, and workflow model."],
   ["Does it work across all our clouds?", "Yes. One allocation model across AWS, Azure, and GCP, with Oracle, Alibaba, Huawei, and Tencent supported."],
   ["Does automation touch our accounts?", "Read-only by default. Any action is opt-in, scoped, and logged."],
-  ["How does CloudVerse manage AI spend specifically?", "CloudVerse connects provider, model, and workload expenditure to teams, applications, and business outcomes. For runtime AI governance, including workload identity, policy enforcement, approvals, and execution controls, CloudVerse provides AIX."],
+  ["How does CloudVerse manage AI spend specifically?", "CloudVerse connects provider, model, and workload expenditure to teams, applications, and business outcomes. For runtime AI governance, including workload identity, policy enforcement, approvals, and execution controls, CloudVerse provides Agentry."],
 ];
 
 const FINOPS_TABS: MockupTab[] = [
@@ -79,7 +80,10 @@ export default function FinOpsPage() {
               Connects to the stack you already run.
             </h2>
             <p className="mt-5 cv-body-lg text-cv-ink/70">
-              AWS, Azure, and Google Cloud for infrastructure. AIX for AI spend, DataX for warehouses, and DevX for the engineering workflow. One view across all of it.
+              AWS, Azure, and Google Cloud for infrastructure.{" "}
+              <Link href="/platform/agentry" className="text-cv-blue dark:text-cv-blue-light hover:underline underline-offset-2">Agentry</Link> for AI spend,{" "}
+              <Link href="/platform/datax" className="text-cv-blue dark:text-cv-blue-light hover:underline underline-offset-2">DataX</Link> for warehouses, and{" "}
+              <Link href="/platform/torb" className="text-cv-blue dark:text-cv-blue-light hover:underline underline-offset-2">Torb</Link> for the engineering workflow. One view across all of it.
             </p>
           </div>
 
@@ -150,6 +154,9 @@ export default function FinOpsPage() {
 
       {/* DOMAIN DEPTH */}
       <DomainDepth />
+
+      {/* MID-PAGE CTA */}
+      <InlineCta label="Request a technology spend assessment" href="/contact" testid="section-inline-cta-assessment" />
 
       {/* PROOF IN PRODUCTION */}
       <ProofInProduction />

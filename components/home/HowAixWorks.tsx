@@ -1,4 +1,4 @@
-/* "How AIX works — Discover, Govern, Prove" — the three things that have to be
+/* "How Agentry works — Discover, Govern, Prove" — the three things that have to be
    true before you can trust AI spend, as three numbered capability cards with an
    accent per step. Matches the home card design language: cv-* tokens,
    pill chip, rounded-2xl bordered cards. Server component. */
@@ -43,13 +43,13 @@ export function HowAixWorks() {
       <div className="cv-container">
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
-            How AIX works
+            How Agentry works
           </span>
           <h2 className="cv-h2 text-balance text-cv-ink">
             Three things have to be true before you can trust AI spend.
           </h2>
           <p className="cv-body mt-4 text-cv-ink/70">
-            AIX does all three: discover what&apos;s running, govern it in the execution path, and
+            Agentry does all three: discover what&apos;s running, govern it in the execution path, and
             prove the economics after.
           </p>
         </div>

@@ -12,7 +12,7 @@ import { FaqBlock } from "@/components/FaqBlock";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
-  title: "For Enterprise: One Control Plane for Multi-Cloud, AI Infrastructure, and Data Economics | CloudVerse",
+  title: "For Enterprise: One Control Plane for Multi-Cloud, AI Infrastructure, and Data Economics",
   description: "SSO, SCIM provisioning, granular RBAC, audit logs, customer-managed encryption keys, and the procurement options the office of the CIO expects.",
   keywords: ["enterprise cloud cost management", "multi-cloud governance", "enterprise FinOps", "SSO cloud platform", "RBAC cloud cost", "CIO cloud economics"],
   alternates: { canonical: "/solutions/enterprise" },
@@ -71,7 +71,7 @@ const HOW_IT_WORKS_RIGHT: FlowRightNode[] = [
 const FAQ = [
   ["What controls ship for enterprise?", "SSO, SCIM, RBAC, audit logs, data residency, and customer-managed encryption keys."],
   ["Where is our data stored?", "In the region you choose (US, EU, APAC), with private-link and VPC options."],
-  ["Do you support air-gapped or on-prem?", "Private GPU and on-prem inference are first-class in AIX; deployment options are available."],
+  ["Do you support air-gapped or on-prem?", "Private GPU and on-prem inference are first-class in Agentry; deployment options are available."],
   ["How does procurement work?", "Redeem committed cloud spend through marketplace listings."],
   ["What does rollout look like?", "Read-only connection in under 30 minutes, then a phased, no-fee proof of value over two to four weeks."],
 ];
@@ -203,9 +203,9 @@ export default function EnterprisePage() {
           </div>
           <PlatformCards
             items={[
-              ["AIX", "The control plane for enterprise AI", "/platform/aix"],
+              ["Agentry", "The control plane for enterprise AI", "/platform/agentry"],
               ["FinOps Platform", "Multi-cloud cost intelligence", "/platform/finops"],
-              ["DevX", "Cost context in the engineering workflow", "/platform/devx"],
+              ["Torb", "Cost context in the engineering workflow", "/platform/torb"],
               ["DataX", "Allocable warehouse and pipeline spend", "/platform/datax"],
             ]}
           />

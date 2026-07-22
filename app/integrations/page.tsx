@@ -12,7 +12,7 @@ import ClosingCtaBand from "@/components/ClosingCtaBand";
 import { FaqBlock } from "@/components/FaqBlock";
 
 export const metadata: Metadata = {
-  title: "Integrations: Connects to the Stack Your Teams Already Use | CloudVerse",
+  title: "Integrations: Connects to the Stack Your Teams Already Use",
   description: "Add your integration once. CloudVerse handles routing, attribution, and cost tracking across all of them. No code changes when you add a new provider.",
   keywords: ["cloud integrations", "AWS integration", "Snowflake integration", "OpenAI cost tracking", "cloud provider connectors"],
   alternates: { canonical: "/integrations" },
@@ -227,7 +227,7 @@ export default function IntegrationsPage() {
               <p className="cv-label mb-4">Private compute</p>
               <h2 className="cv-h2 text-cv-ink">Private deployments and GPU infrastructure.</h2>
               <p className="cv-body-lg text-cv-ink/75 mt-6">
-                AIX treats private GPU capacity as a first-class routing target alongside managed APIs. If you run models on dedicated hardware or a NeoCloud provider, AIX routes to them with the same cost and policy logic.
+                Agentry treats private GPU capacity as a first-class routing target alongside managed APIs. If you run models on dedicated hardware or a NeoCloud provider, Agentry routes to them with the same cost and policy logic.
               </p>
             </div>
 

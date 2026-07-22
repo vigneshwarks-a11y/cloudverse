@@ -41,9 +41,9 @@ export default function DevxPrExample({ diff }: { diff: string }) {
       <div className="cv-container">
         <div ref={ref}>
           <div className="mx-auto max-w-3xl mb-8 text-center" style={rise(0)}>
-            <h2 className="cv-h2 text-cv-ink">This is what a DevX PR comment looks like.</h2>
+            <h2 className="cv-h2 text-cv-ink">This is what a Torb PR comment looks like.</h2>
             <p className="text-cv-ink/75 mt-4">
-              This is a real DevX output. An infrastructure change that looked routine. NAT gateway flag and a compute resize.
+              This is a real Torb output. An infrastructure change that looked routine. NAT gateway flag and a compute resize.
             </p>
           </div>
 
@@ -69,9 +69,9 @@ export default function DevxPrExample({ diff }: { diff: string }) {
 
             {/* RIGHT: two stacked cards, equal combined height to code window */}
             <div className="flex h-full flex-col gap-6">
-              {/* TOP: DevX cost estimate dark, thin border */}
+              {/* TOP: Torb cost estimate dark, thin border */}
               <div className="rounded-2xl border border-cv-line bg-cv-surface dark:bg-[#0D0D0D] p-6" style={rise(2)}>
-                <div className="cv-label mb-2 text-[#1664C0] dark:text-[#38BDF8]">DevX cost estimate</div>
+                <div className="cv-label mb-2 text-[#1664C0] dark:text-[#38BDF8]">Torb cost estimate</div>
                 <div className="text-3xl font-display font-semibold text-cv-ink">+$1.1k to $1.4k</div>
                 <div className="text-sm text-cv-muted">per month</div>
                 <div className="cv-label mt-5 mb-2 text-[#1664C0] dark:text-[#38BDF8]">Primary drivers</div>

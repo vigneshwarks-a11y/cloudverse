@@ -1,4 +1,4 @@
-/* Shared bento chrome — the AIX GovernanceBento visual language, factored out so
+/* Shared bento chrome — the Agentry GovernanceBento visual language, factored out so
    every platform page's "what you get" grid reads in the same design:
    an image-topped FeatureCard whose top slot holds a polished Panel mock
    (white/black surface, top-left light edge, ambient corner glow, soft bottom

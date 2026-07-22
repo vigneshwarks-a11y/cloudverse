@@ -8,9 +8,9 @@ import type { IconProps } from "@solar-icons/react";
 /* Full integrations directory: searchable + filterable by module, category,
    and status. Client component (interactive filtering). Card + control styling
    uses the cv-* design tokens so it stays theme-aware; module accent colours
-   match the platform brand hues (AIX violet, DevX blue, DataX pink). */
+   match the platform brand hues (Agentry violet, Torb blue, DataX pink). */
 
-type ModuleTag = "AIX" | "DevX" | "DataX";
+type ModuleTag = "Agentry" | "Torb" | "DataX";
 type Status = "Available" | "Coming soon";
 type Category =
   | "Cloud" | "Data" | "AI" | "Kubernetes" | "Infrastructure"
@@ -27,8 +27,8 @@ type Integration = {
 };
 
 const MODULE_COLOR: Record<ModuleTag, string> = {
-  AIX: "#6954D4",
-  DevX: "#2278E0",
+  Agentry: "#6954D4",
+  Torb: "#2278E0",
   DataX: "#DB4A8B",
 };
 
@@ -46,42 +46,42 @@ const CAT_ICON: Record<Category, ComponentType<IconProps>> = {
 };
 
 const INTEGRATIONS: Integration[] = [
-  { name: "AWS", desc: "Billing and usage ingestion with allocation dimensions.", status: "Available", category: "Cloud", modules: ["AIX", "DevX", "DataX"], src: "/icons/aws.svg" },
-  { name: "Microsoft Azure", desc: "Billing, subscriptions, and cost dimensions across tenants.", status: "Available", category: "Cloud", modules: ["AIX", "DevX", "DataX"], src: "/icons/azure.svg" },
-  { name: "Google Cloud", desc: "Billing and usage via BigQuery-backed exports and APIs.", status: "Available", category: "Cloud", modules: ["AIX", "DevX", "DataX"], src: "/icons/googlecloud.svg" },
-  { name: "Oracle Cloud Infrastructure", desc: "Billing and usage across tenancy compartments.", status: "Available", category: "Cloud", modules: ["AIX", "DevX", "DataX"], src: "/icons/oracle.svg" },
-  { name: "Alibaba Cloud", desc: "Billing and usage ingestion for multi-cloud visibility.", status: "Available", category: "Cloud", modules: ["AIX", "DevX", "DataX"], src: "/icons/alibabacloud.svg" },
-  { name: "Huawei Cloud", desc: "Billing and usage ingestion for enterprise reporting.", status: "Available", category: "Cloud", modules: ["AIX", "DevX", "DataX"] },
-  { name: "Tencent Cloud", desc: "Billing and usage ingestion across accounts and regions.", status: "Available", category: "Cloud", modules: ["AIX", "DevX", "DataX"], src: "/icons/tencentcloud.svg" },
+  { name: "AWS", desc: "Billing and usage ingestion with allocation dimensions.", status: "Available", category: "Cloud", modules: ["Agentry", "Torb", "DataX"], src: "/icons/aws.svg" },
+  { name: "Microsoft Azure", desc: "Billing, subscriptions, and cost dimensions across tenants.", status: "Available", category: "Cloud", modules: ["Agentry", "Torb", "DataX"], src: "/icons/azure.svg" },
+  { name: "Google Cloud", desc: "Billing and usage via BigQuery-backed exports and APIs.", status: "Available", category: "Cloud", modules: ["Agentry", "Torb", "DataX"], src: "/icons/googlecloud.svg" },
+  { name: "Oracle Cloud Infrastructure", desc: "Billing and usage across tenancy compartments.", status: "Available", category: "Cloud", modules: ["Agentry", "Torb", "DataX"], src: "/icons/oracle.svg" },
+  { name: "Alibaba Cloud", desc: "Billing and usage ingestion for multi-cloud visibility.", status: "Available", category: "Cloud", modules: ["Agentry", "Torb", "DataX"], src: "/icons/alibabacloud.svg" },
+  { name: "Huawei Cloud", desc: "Billing and usage ingestion for enterprise reporting.", status: "Available", category: "Cloud", modules: ["Agentry", "Torb", "DataX"] },
+  { name: "Tencent Cloud", desc: "Billing and usage ingestion across accounts and regions.", status: "Available", category: "Cloud", modules: ["Agentry", "Torb", "DataX"], src: "/icons/tencentcloud.svg" },
   { name: "Databricks", desc: "Workspace usage and compute costs for analytics spend.", status: "Available", category: "Data", modules: ["DataX"] },
   { name: "Snowflake", desc: "Warehouse consumption and credits for data spend.", status: "Coming soon", category: "Data", modules: ["DataX"], src: "/icons/snowflake.svg" },
-  { name: "OpenAI", desc: "API usage, token consumption, and cost signals.", status: "Available", category: "AI", modules: ["AIX"], src: "/icons/openai.svg", invert: true },
-  { name: "Kubernetes", desc: "Cluster usage and workload attribution via agent.", status: "Available", category: "Kubernetes", modules: ["DevX"], src: "/icons/kubernetes.svg" },
-  { name: "OpenShift", desc: "Cluster and namespace attribution for enterprise platforms.", status: "Available", category: "Kubernetes", modules: ["DevX"] },
-  { name: "vCenter", desc: "Virtual infrastructure inventory and usage attribution.", status: "Available", category: "Infrastructure", modules: ["DevX"], src: "/icons/vmware.svg" },
-  { name: "OAuth: Microsoft", desc: "SSO via Microsoft OAuth for secure login.", status: "Available", category: "Identity", modules: ["DevX"] },
-  { name: "OAuth: Google", desc: "SSO via Google OAuth for secure login.", status: "Available", category: "Identity", modules: ["DevX"] },
-  { name: "Microsoft Entra ID", desc: "Directory sync for identity-based allocation and access control.", status: "Available", category: "Identity", modules: ["DevX"] },
-  { name: "Jira", desc: "Tickets and ownership context for allocation and ops.", status: "Available", category: "Ticketing", modules: ["DevX"] },
-  { name: "ServiceNow", desc: "ITSM and ownership context for accountability and workflow.", status: "Available", category: "Ticketing", modules: ["DevX"] },
-  { name: "Slack", desc: "Alerts and notifications delivery for anomalies and automation.", status: "Available", category: "Collaboration", modules: ["DevX"] },
-  { name: "Microsoft Teams", desc: "Notifications and approvals for automation workflows.", status: "Available", category: "Collaboration", modules: ["DevX"] },
-  { name: "Cloud Monitoring", desc: "Signals from major cloud monitoring suites.", status: "Available", category: "Observability", modules: ["DevX"] },
-  { name: "Top SaaS (Top 10)", desc: "Key SaaS spend and usage normalization.", status: "Coming soon", category: "SaaS", modules: ["DevX"] },
-  { name: "Anthropic", desc: "Claude API usage and cost attribution for model economics.", status: "Coming soon", category: "AI", modules: ["AIX"], src: "/icons/anthropic.svg", invert: true },
-  { name: "Azure OpenAI", desc: "Managed OpenAI deployment cost and usage signals.", status: "Coming soon", category: "AI", modules: ["AIX"], src: "/icons/azure.svg" },
-  { name: "AWS Bedrock", desc: "Foundation model invocation costs and usage attribution.", status: "Coming soon", category: "AI", modules: ["AIX"], src: "/icons/aws.svg" },
-  { name: "Google Vertex AI", desc: "Vertex AI model and pipeline cost attribution.", status: "Coming soon", category: "AI", modules: ["AIX"], src: "/icons/gemini.svg" },
-  { name: "GitHub", desc: "PR-level economic gates and infrastructure change detection.", status: "Coming soon", category: "SaaS", modules: ["DevX"] },
-  { name: "GitLab", desc: "Merge request gates and pipeline cost attribution.", status: "Coming soon", category: "SaaS", modules: ["DevX"] },
-  { name: "Azure DevOps", desc: "Pipeline and repo integration for shift-left economics.", status: "Coming soon", category: "SaaS", modules: ["DevX"], src: "/icons/azure.svg" },
-  { name: "Terraform", desc: "Infrastructure-as-code cost estimation and drift detection.", status: "Coming soon", category: "Infrastructure", modules: ["DevX"] },
+  { name: "OpenAI", desc: "API usage, token consumption, and cost signals.", status: "Available", category: "AI", modules: ["Agentry"], src: "/icons/openai.svg", invert: true },
+  { name: "Kubernetes", desc: "Cluster usage and workload attribution via agent.", status: "Available", category: "Kubernetes", modules: ["Torb"], src: "/icons/kubernetes.svg" },
+  { name: "OpenShift", desc: "Cluster and namespace attribution for enterprise platforms.", status: "Available", category: "Kubernetes", modules: ["Torb"] },
+  { name: "vCenter", desc: "Virtual infrastructure inventory and usage attribution.", status: "Available", category: "Infrastructure", modules: ["Torb"], src: "/icons/vmware.svg" },
+  { name: "OAuth: Microsoft", desc: "SSO via Microsoft OAuth for secure login.", status: "Available", category: "Identity", modules: ["Torb"] },
+  { name: "OAuth: Google", desc: "SSO via Google OAuth for secure login.", status: "Available", category: "Identity", modules: ["Torb"] },
+  { name: "Microsoft Entra ID", desc: "Directory sync for identity-based allocation and access control.", status: "Available", category: "Identity", modules: ["Torb"] },
+  { name: "Jira", desc: "Tickets and ownership context for allocation and ops.", status: "Available", category: "Ticketing", modules: ["Torb"] },
+  { name: "ServiceNow", desc: "ITSM and ownership context for accountability and workflow.", status: "Available", category: "Ticketing", modules: ["Torb"] },
+  { name: "Slack", desc: "Alerts and notifications delivery for anomalies and automation.", status: "Available", category: "Collaboration", modules: ["Torb"] },
+  { name: "Microsoft Teams", desc: "Notifications and approvals for automation workflows.", status: "Available", category: "Collaboration", modules: ["Torb"] },
+  { name: "Cloud Monitoring", desc: "Signals from major cloud monitoring suites.", status: "Available", category: "Observability", modules: ["Torb"] },
+  { name: "Top SaaS (Top 10)", desc: "Key SaaS spend and usage normalization.", status: "Coming soon", category: "SaaS", modules: ["Torb"] },
+  { name: "Anthropic", desc: "Claude API usage and cost attribution for model economics.", status: "Coming soon", category: "AI", modules: ["Agentry"], src: "/icons/anthropic.svg", invert: true },
+  { name: "Azure OpenAI", desc: "Managed OpenAI deployment cost and usage signals.", status: "Coming soon", category: "AI", modules: ["Agentry"], src: "/icons/azure.svg" },
+  { name: "AWS Bedrock", desc: "Foundation model invocation costs and usage attribution.", status: "Coming soon", category: "AI", modules: ["Agentry"], src: "/icons/aws.svg" },
+  { name: "Google Vertex AI", desc: "Vertex AI model and pipeline cost attribution.", status: "Coming soon", category: "AI", modules: ["Agentry"], src: "/icons/gemini.svg" },
+  { name: "GitHub", desc: "PR-level economic gates and infrastructure change detection.", status: "Coming soon", category: "SaaS", modules: ["Torb"] },
+  { name: "GitLab", desc: "Merge request gates and pipeline cost attribution.", status: "Coming soon", category: "SaaS", modules: ["Torb"] },
+  { name: "Azure DevOps", desc: "Pipeline and repo integration for shift-left economics.", status: "Coming soon", category: "SaaS", modules: ["Torb"], src: "/icons/azure.svg" },
+  { name: "Terraform", desc: "Infrastructure-as-code cost estimation and drift detection.", status: "Coming soon", category: "Infrastructure", modules: ["Torb"] },
   { name: "BigQuery", desc: "Query-level cost enforcement and workload economics.", status: "Coming soon", category: "Data", modules: ["DataX"], src: "/icons/googlecloud.svg" },
   { name: "Amazon Redshift", desc: "Cluster workload economics and query cost enforcement.", status: "Coming soon", category: "Data", modules: ["DataX"], src: "/icons/aws.svg" },
   { name: "Azure Synapse / Fabric", desc: "Data platform workload economics and capacity management.", status: "Coming soon", category: "Data", modules: ["DataX"], src: "/icons/azure.svg" },
 ];
 
-const MODULE_FILTERS = ["All", "AIX", "DevX", "DataX"] as const;
+const MODULE_FILTERS = ["All", "Agentry", "Torb", "DataX"] as const;
 const CATEGORY_FILTERS = ["All", "Cloud", "Data", "AI", "Kubernetes", "Infrastructure", "Identity", "Ticketing", "Collaboration", "Observability", "SaaS"] as const;
 const STATUS_FILTERS = ["All", "Available", "Coming soon"] as const;
 

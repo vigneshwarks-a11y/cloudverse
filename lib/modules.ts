@@ -10,8 +10,8 @@ export type ModuleConfig = {
 
 export const MODULES: Record<ModuleKey, ModuleConfig> = {
   finops: { key: "finops", name: "FinOps Platform", href: "/platform/finops", color: "#1664C0", tagline: "Multi-cloud cost intelligence" },
-  aix:    { key: "aix",    name: "AIX",             href: "/platform/aix",    color: "#6954D4", tagline: "GPU & LLM economics" },
-  devx:   { key: "devx",   name: "DevX",            href: "/platform/devx",   color: "#0E9E7A", tagline: "Shift-left cost intelligence" },
+  aix:    { key: "aix",    name: "Agentry",             href: "/platform/agentry",    color: "#6954D4", tagline: "GPU & LLM economics" },
+  devx:   { key: "devx",   name: "Torb",            href: "/platform/torb",   color: "#0E9E7A", tagline: "Shift-left cost intelligence" },
   datax:  { key: "datax",  name: "DataX",           href: "/platform/datax",  color: "#D97706", tagline: "Warehouse intelligence" },
 };
 

@@ -13,9 +13,9 @@ export const PRODUCT_URLS = {
 export const NAV = {
   platform: [
     { label: "FinOps Platform", href: "/platform/finops", desc: "Multi-cloud cost intelligence", color: "#1664C0", icon: "finops" },
-    { label: "DevX", href: "/platform/devx", desc: "Shift-left cost checks for engineering teams", color: "#0E9E7A", icon: "devx" },
+    { label: "Torb", href: "/platform/torb", desc: "Shift-left cost checks for engineering teams", color: "#0E9E7A", icon: "devx" },
     { label: "DataX", href: "/platform/datax", desc: "Warehouse spend intelligence", color: "#D97706", icon: "datax" },
-    { label: "AIX", href: "/platform/aix", desc: "Optimizing the future of enterprise AI consumption.", color: "#6954D4", icon: "aix" },
+    { label: "Agentry", href: "/platform/agentry", desc: "Optimizing the future of enterprise AI consumption.", color: "#6954D4", icon: "aix" },
   ],
   solutions: [
     { label: "FinOps Teams", href: "/solutions/finops-teams", desc: "Cloud cost ownership at scale", icon: "finops-teams" },
