@@ -1,9 +1,10 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { ArrowRight } from "@/lib/solar-icons";
 import { DEMO_URL } from "@/lib/links";
 import { PageHero } from "@/components/PageHero";
 
-export function FinOpsHero() {
+export function FinOpsHero({ children }: { children?: ReactNode }) {
   return (
     <PageHero
       eyebrow="CloudVerse Technology Spend"
@@ -26,6 +27,8 @@ export function FinOpsHero() {
           </Link>
         </>
       }
-    />
+    >
+      {children}
+    </PageHero>
   );
 }

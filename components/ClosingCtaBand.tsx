@@ -7,7 +7,7 @@ import { DEMO_URL } from "@/lib/links";
  * Copy defaults match the prior ClosingCTA section.
  */
 
-const BASE_BLUE = "#2D4EE4"; // deep, muted royal blue (matched to ref)
+const BASE_BLUE = "#1447E6"; // brand royal blue
 
 export interface ClosingCtaBandProps {
   heading?: string;
@@ -32,8 +32,8 @@ export default function ClosingCtaBand({
   return (
     <section className="relative overflow-hidden" style={{ background: BASE_BLUE }}>
       {/* Content */}
-      <div className="cv-container relative flex flex-col items-center py-10 text-center md:py-32">
-        <h2 className="mx-auto max-w-4xl text-balance text-[clamp(19px,5vw,22px)] font-medium leading-[1.3] text-white sm:text-[32px] sm:leading-[1.1] md:text-3xl md:leading-[1.05] lg:text-[48px] lg:leading-[1.05]">
+      <div className="cv-container relative flex flex-col items-start py-10 md:py-32">
+        <h2 className="max-w-4xl text-balance text-[clamp(19px,5vw,22px)] font-medium leading-[1.3] text-white sm:text-[32px] sm:leading-[1.1] md:text-3xl md:leading-[1.05] lg:text-[48px] lg:leading-[1.05]">
           {(() => {
             // Break after the first sentence so the second line starts with the
             // next sentence (e.g. "Find Out Exactly Where.").
@@ -48,13 +48,13 @@ export default function ClosingCtaBand({
             );
           })()}
         </h2>
-        {subtext && <p className="mx-auto mt-4 max-w-3xl text-pretty text-lg text-[#A8EFFF]">{subtext}</p>}
+        {subtext && <p className="mt-4 max-w-3xl text-pretty text-lg text-[#A8EFFF]">{subtext}</p>}
 
-        <div className="mt-10 flex flex-row flex-wrap justify-center gap-6 font-medium">
+        <div className="mt-10 flex flex-row flex-wrap justify-start gap-6 font-medium">
           <Link
             href={primaryHref}
             aria-label={primaryLabel}
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm text-[#2D4EE4] transition-colors duration-100 hover:bg-neutral-100"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm text-[#1447E6] transition-colors duration-100 hover:bg-neutral-100"
           >
             {primaryLabel}
           </Link>

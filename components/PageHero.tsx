@@ -52,7 +52,7 @@ export function PageHero({
   className?: string;
 }) {
   return (
-    <div className={"cv-hero-bg " + className} style={{ background: "hsl(var(--cv-surface))" }}>
+    <div className={"cv-hero-bg " + className}>
       <section className="relative pt-36 pb-16 sm:pt-48 lg:pt-56 lg:pb-24">
         <div className="max-w-cv relative z-10 mx-auto px-5 sm:px-6 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:items-center lg:gap-16">
