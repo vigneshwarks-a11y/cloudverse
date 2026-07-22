@@ -59,7 +59,7 @@ const EMPTY: FormState = {
 };
 
 const inputClass =
-  "w-full bg-cv-surface2 dark:bg-white/[0.03] border border-cv-line rounded-lg px-3 py-2 text-sm text-cv-ink placeholder:text-cv-muted/70 outline-none transition-colors focus:border-cv-blue focus:ring-2 focus:ring-cv-blue/30";
+  "w-full bg-cv-surface2 dark:bg-white/[0.03] border border-cv-line rounded-lg px-3.5 py-2.5 text-sm text-cv-ink placeholder:text-cv-muted/70 outline-none transition-colors focus:border-cv-blue focus:ring-2 focus:ring-cv-blue/30";
 
 function FieldLabel({ children, required, optional }: { children: React.ReactNode; required?: boolean; optional?: boolean }) {
   return (
@@ -131,11 +131,11 @@ export function ConnectForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-2xl border border-cv-line/60 bg-cv-surface2 dark:bg-cv-card p-6 sm:p-7 text-center" data-testid="connect-form-success">
-        <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-[#0E9E7A]/15">
-          <CheckCircle weight="Linear" size={20} className="text-[#0E9E7A]" />
+      <div className="rounded-3xl border border-cv-line/60 bg-cv-surface2 dark:bg-cv-card p-8 sm:p-10 text-center" data-testid="connect-form-success">
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#0E9E7A]/15">
+          <CheckCircle weight="Linear" size={24} className="text-[#0E9E7A]" />
         </div>
-        <div className="font-display text-cv-ink text-lg font-semibold mb-1.5">Request received</div>
+        <div className="font-display text-cv-ink text-xl font-semibold mb-2">Request received</div>
         <p className="text-cv-ink/70 text-sm max-w-sm mx-auto">
           Someone from our solutions team will reach out within one business day to schedule your working session.
         </p>
@@ -144,8 +144,13 @@ export function ConnectForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-2xl border border-cv-line/60 bg-cv-surface2 dark:bg-cv-card p-6 sm:p-7 space-y-3.5" data-testid="connect-form">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+    <form onSubmit={handleSubmit} className="rounded-3xl border border-cv-line/60 bg-cv-surface2 dark:bg-cv-card p-8 sm:p-10 space-y-4 shadow-[0_20px_60px_-30px_rgba(15,23,42,0.25)] dark:shadow-[0_30px_80px_-40px_rgba(0,0,0,0.7)]" data-testid="connect-form">
+      <div className="mb-1">
+        <div className="font-display text-cv-ink text-xl font-semibold">Request a demo</div>
+        <p className="mt-1.5 text-sm text-cv-ink/60">No credit card. A 30-minute working session on your own data.</p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <FieldLabel required>First name</FieldLabel>
           <input required type="text" placeholder="John" value={form.firstName} onChange={(e) => set({ firstName: e.target.value })} className={inputClass} data-testid="input-first-name" />
@@ -168,7 +173,7 @@ export function ConnectForm() {
 
       <Select id="role" label="Your role" value={form.role} options={ROLE_OPTIONS} onChange={(v) => set({ role: v })} testid="select-role" />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Select id="focus" label="What do you want to fix?" optional value={form.focus} options={FOCUS_OPTIONS} onChange={(v) => set({ focus: v })} testid="select-focus" />
         <Select id="spend" label="Monthly spend" optional value={form.estimatedSpend} options={SPEND_OPTIONS} onChange={(v) => set({ estimatedSpend: v })} testid="select-spend" />
       </div>
