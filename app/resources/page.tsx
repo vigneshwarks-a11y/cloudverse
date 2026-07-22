@@ -68,7 +68,7 @@ export default function ResourcesPage() {
 
           {moreGuides.length > 0 && (
             <>
-              <h3 className="cv-h3 text-cv-ink mt-14 mb-6 mx-auto max-w-2xl text-center">More guides</h3>
+              <h3 className="cv-h3 text-cv-ink mt-14 mb-6 max-w-2xl text-left">More guides</h3>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {moreGuides.map((r) => (
                   <ResourceCard key={r.slug} r={r} />
@@ -82,7 +82,7 @@ export default function ResourcesPage() {
       {/* DOCS */}
       <section id="docs" className="cv-section bg-cv-surface2 border-t border-cv-line">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-8 mx-auto max-w-2xl text-center">Documentation</h2>
+          <h2 className="cv-h2 text-cv-ink mb-8 max-w-2xl text-left">Documentation</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {DOCS.map((d) => (
               <Link
@@ -110,7 +110,7 @@ export default function ResourcesPage() {
       {/* BLOG */}
       <section id="blog" className="cv-section bg-cv-surface border-t border-cv-line">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-8 mx-auto max-w-2xl text-center">Featured blog</h2>
+          <h2 className="cv-h2 text-cv-ink mb-8 max-w-2xl text-left">Featured blog</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredBlog.map((post) => (
               <BlogCard key={post.id} post={post} dark />
@@ -119,7 +119,7 @@ export default function ResourcesPage() {
 
           {recentBlog.length > 0 && (
             <>
-              <h3 className="cv-h3 text-cv-ink mt-14 mb-6 mx-auto max-w-2xl text-center">Recent posts</h3>
+              <h3 className="cv-h3 text-cv-ink mt-14 mb-6 max-w-2xl text-left">Recent posts</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {recentBlog.map((post) => (
                   <BlogCard key={post.id} post={post} />

@@ -393,7 +393,7 @@ export default function AgentryProblemsShowcase() {
     >
       <div className="cv-container">
         {/* header */}
-        <div className="mx-auto mb-6 flex max-w-3xl flex-col items-center text-center">
+        <div className="mb-6 flex max-w-3xl flex-col items-start text-left">
           <h2 className="cv-h2 text-cv-ink">Four problems Agentry fixes.</h2>
           <p className="cv-body-lg text-cv-muted mt-4">
             The routing problems teams actually hit in production — and how Agentry resolves each one at decision time.

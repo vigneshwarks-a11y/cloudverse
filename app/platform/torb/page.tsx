@@ -88,7 +88,7 @@ export default function TorbPage() {
 
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <div className="flex max-w-3xl flex-col items-start text-left">
             <h2 className="cv-h2 text-cv-ink">Infrastructure cost mistakes don&apos;t look like mistakes.</h2>
             <div className="mt-4">
               <p className="cv-body-lg text-cv-ink/80">

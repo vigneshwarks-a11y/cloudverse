@@ -40,7 +40,7 @@ export default function TorbPrExample({ diff }: { diff: string }) {
     <section id="pr-example" className="cv-section bg-cv-surface2 dark:bg-black">
       <div className="cv-container">
         <div ref={ref}>
-          <div className="mx-auto max-w-3xl mb-8 text-center" style={rise(0)}>
+          <div className="max-w-3xl mb-8 text-left" style={rise(0)}>
             <h2 className="cv-h2 text-cv-ink">This is what a Torb PR comment looks like.</h2>
             <p className="text-cv-ink/75 mt-4">
               This is a real Torb output. An infrastructure change that looked routine. NAT gateway flag and a compute resize.

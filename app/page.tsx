@@ -72,33 +72,39 @@ export default function HomePage() {
         {/* HERO */}
         <section className="relative pt-36 pb-16 sm:pt-48 lg:pt-56 lg:pb-24">
           <div className="max-w-cv relative z-10 mx-auto px-5 sm:px-6 lg:px-8">
-            <div className="max-w-3xl">
-              <HeroEyebrow accent="blue">The Enterprise AI Control Plane</HeroEyebrow>
-              <h1 className="cv-h1 mt-4 text-balance leading-[1.08] text-cv-ink">
-                Govern every AI execution.{" "}
-                <span className="text-cv-blue dark:text-cv-blue-light">Prove the economics behind it.</span>
-              </h1>
-              <p className="cv-body mt-6 max-w-[60ch] text-pretty text-cv-ink/70 sm:mt-7">
-                One system of record for every agent, model route, prompt, and dollar of AI spend, with governance enforced in the execution path, not a report after the fact.
-              </p>
-              <div className="mt-10 flex flex-col gap-3 sm:mt-12 sm:flex-row sm:gap-4">
-                <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-hero-demo">
-                  Book a demo
-                </Link>
-                <Link href="/contact" className="cv-btn-ghost" data-testid="link-hero-audit">
-                  Request a free AI cost &amp; risk audit
-                </Link>
+            <div className="grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:items-center lg:gap-16">
+              {/* Left: eyebrow → headline → CTAs */}
+              <div className="flex flex-col items-start text-left">
+                <HeroEyebrow accent="blue">The Enterprise AI Control Plane</HeroEyebrow>
+                <h1 className="cv-h1 mt-4 text-balance leading-[1.08] text-cv-ink">
+                  Govern every AI execution.{" "}
+                  <span className="text-cv-blue dark:text-cv-blue-light">Prove the economics behind it.</span>
+                </h1>
+                <div className="mt-10 flex flex-col items-start gap-3 sm:mt-12 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+                  <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-hero-demo">
+                    Book a demo
+                  </Link>
+                  <Link href="/contact" className="cv-btn-ghost" data-testid="link-hero-audit">
+                    Request a free AI cost &amp; risk audit
+                  </Link>
+                </div>
               </div>
-              <p className="mt-6 text-sm italic text-cv-muted">
-                Private deployment. Your cloud, your data plane, your keys.
-              </p>
-              <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:gap-6">
-                <Link href="/platform/agentry" className="text-sm text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-2 transition-colors flex items-center gap-1" data-testid="link-hero-platform">
-                  See the platform <ArrowRight weight="Linear" size={13} />
-                </Link>
-                <Link href="/connect" className="text-sm text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-2 transition-colors flex items-center gap-1" data-testid="link-hero-walkthrough">
-                  Walkthrough on your own data, in 30 minutes <ArrowRight weight="Linear" size={13} />
-                </Link>
+              {/* Right: subhead → deployment note → utility links */}
+              <div className="flex flex-col items-start text-left">
+                <p className="cv-body text-pretty text-cv-ink/70">
+                  One system of record for every agent, model route, prompt, and dollar of AI spend, with governance enforced in the execution path, not a report after the fact.
+                </p>
+                <p className="mt-6 text-sm italic text-cv-muted">
+                  Private deployment. Your cloud, your data plane, your keys.
+                </p>
+                <div className="mt-4 flex flex-col items-start gap-2">
+                  <Link href="/platform/agentry" className="text-sm text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-2 transition-colors flex items-center gap-1" data-testid="link-hero-platform">
+                    See the platform <ArrowRight weight="Linear" size={13} />
+                  </Link>
+                  <Link href="/connect" className="text-sm text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-2 transition-colors flex items-center gap-1" data-testid="link-hero-walkthrough">
+                    Walkthrough on your own data, in 30 minutes <ArrowRight weight="Linear" size={13} />
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -162,7 +168,7 @@ export default function HomePage() {
 
         <div className="cv-container relative z-10">
           {/* Heading - centered */}
-          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <div className="flex max-w-3xl flex-col items-start text-left">
             <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
               Integrations
             </span>

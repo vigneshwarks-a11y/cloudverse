@@ -1,6 +1,7 @@
-/* Shared page hero — the site-wide hero treatment: a plain cv-hero-bg
-   gradient wrapper (no dotted-grid overlay) with a left-aligned eyebrow
-   pill → big headline → subhead → left-aligned CTAs. Used across content,
+/* Shared page hero — the site-wide hero treatment: a plain cv-hero-bg gradient
+   wrapper (no dotted-grid overlay). Two-column, left-aligned split: eyebrow →
+   big headline → CTAs on the left, subhead on the right (vertically centered),
+   collapsing to a single stacked column below lg. Used across content,
    solution, and platform pages so every hero shares one look. cv-* tokens,
    theme-aware. */
 
@@ -46,7 +47,7 @@ export function PageHero({
   title: ReactNode;
   subtitle?: ReactNode;
   actions?: ReactNode;
-  /** Optional content rendered full-width below the centered stack (mockups, etc.). */
+  /** Optional content rendered full-width below the split (mockups, etc.). */
   children?: ReactNode;
   className?: string;
 }) {
@@ -54,16 +55,20 @@ export function PageHero({
     <div className={"cv-hero-bg " + className} style={{ background: "hsl(var(--cv-surface))" }}>
       <section className="relative pt-36 pb-16 sm:pt-48 lg:pt-56 lg:pb-24">
         <div className="max-w-cv relative z-10 mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            {eyebrow && <HeroEyebrow accent={accent}>{eyebrow}</HeroEyebrow>}
-            <h1 className="cv-h1 mt-4 text-balance leading-[1.08] text-cv-ink">{title}</h1>
+          <div className="grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:items-center lg:gap-16">
+            {/* Left: eyebrow → headline → CTAs */}
+            <div className="flex flex-col items-start text-left">
+              {eyebrow && <HeroEyebrow accent={accent}>{eyebrow}</HeroEyebrow>}
+              <h1 className="cv-h1 mt-4 text-balance leading-[1.08] text-cv-ink">{title}</h1>
+              {actions && (
+                <div className="mt-10 flex flex-col items-start gap-3 sm:mt-12 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+                  {actions}
+                </div>
+              )}
+            </div>
+            {/* Right: subhead, vertically centered against the headline */}
             {subtitle && (
-              <p className="cv-body mt-6 max-w-[60ch] text-pretty text-cv-ink/70 sm:mt-7">{subtitle}</p>
-            )}
-            {actions && (
-              <div className="mt-10 flex flex-col gap-3 sm:mt-12 sm:flex-row sm:gap-4">
-                {actions}
-              </div>
+              <p className="cv-body max-w-[52ch] text-pretty text-cv-ink/70">{subtitle}</p>
             )}
           </div>
           {children}

@@ -97,7 +97,7 @@ export default function CostGates() {
   return (
     <section className="cv-section">
       <div className="cv-container">
-        <div className="mb-10 mx-auto max-w-3xl text-center">
+        <div className="mb-10 max-w-3xl text-left">
           <h2 className="cv-h2 text-cv-ink lg:whitespace-nowrap">Cost review, in the workflow engineers already use.</h2>
         </div>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">

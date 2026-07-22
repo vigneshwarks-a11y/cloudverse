@@ -73,7 +73,7 @@ export default function Page() {
       {/* Mission */}
       <section className="cv-section bg-cv-surface">
         <div className="cv-container">
-          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <div className="flex max-w-3xl flex-col items-start text-left">
             <Eyebrow>Our Mission</Eyebrow>
             <h2 className="cv-h2 text-cv-ink">
               Transparent, predictable, and profitable.
@@ -91,7 +91,7 @@ export default function Page() {
       {/* Story */}
       <section className="cv-section bg-cv-surface2">
         <div className="cv-container">
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="max-w-2xl text-left">
             <Eyebrow>Our Story</Eyebrow>
             <h2 className="cv-h2 text-cv-ink">Why we built CloudVerse™</h2>
           </div>
@@ -125,7 +125,7 @@ export default function Page() {
       {/* Values */}
       <section className="cv-section bg-cv-surface">
         <div className="cv-container">
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="max-w-2xl text-left">
             <Eyebrow>What we believe</Eyebrow>
             <h2 className="cv-h2 text-cv-ink">Principles that guide our platform</h2>
             <p className="mt-4 cv-body text-cv-ink/70">
@@ -156,7 +156,7 @@ export default function Page() {
       {/* Products */}
       <section className="cv-section bg-cv-surface2">
         <div className="cv-container">
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="max-w-2xl text-left">
             <Eyebrow>What we build</Eyebrow>
             <h2 className="cv-h2 text-cv-ink">One platform, four specialized products</h2>
             <p className="mt-4 cv-body text-cv-ink/70">
@@ -196,8 +196,8 @@ export default function Page() {
       {/* Vision */}
       <section className="cv-section bg-cv-surface">
         <div className="cv-container">
-          <div className="flex flex-col items-center gap-8">
-            <div className="mx-auto max-w-2xl text-center">
+          <div className="flex flex-col items-start gap-8">
+            <div className="max-w-2xl text-left">
               <Eyebrow>Where we&apos;re going</Eyebrow>
               <h2 className="cv-h2 text-cv-ink">
                 An AI-native economic decision layer for every enterprise

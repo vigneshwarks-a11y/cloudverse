@@ -75,8 +75,8 @@ export default function FinOpsPage() {
 
         <div className="cv-container relative z-10">
           {/* Heading — centered vertical stack */}
-          <div className="mx-auto max-w-5xl text-center">
-            <h2 className="cv-h2 mx-auto max-w-3xl text-cv-ink">
+          <div className="max-w-5xl text-left">
+            <h2 className="cv-h2 max-w-3xl text-cv-ink">
               Connects to the stack you already run.
             </h2>
             <p className="mt-5 cv-body-lg text-cv-ink/70">
@@ -111,8 +111,8 @@ export default function FinOpsPage() {
 
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-5xl text-center">
-            <h2 className="cv-h2 mx-auto max-w-3xl text-cv-ink">Spend is visible. Decisions are still hard.</h2>
+          <div className="max-w-5xl text-left">
+            <h2 className="cv-h2 max-w-3xl text-cv-ink">Spend is visible. Decisions are still hard.</h2>
             <p className="mt-5 cv-body-lg text-cv-ink/70">
               Across cloud, AI, data, and SaaS, every team gets stuck on the same four questions, and today they get asked in four different tools, by four different owners, with no shared answer.
             </p>
@@ -136,9 +136,9 @@ export default function FinOpsPage() {
         <div className="cv-container relative">
           {/* header band — centered vertical stack over a full-width divider */}
           <div className="border-b border-cv-line/60 pb-10 dark:border-white/10">
-            <div className="mx-auto max-w-5xl text-center">
+            <div className="max-w-5xl text-left">
               <p className="cv-label mb-4">The lifecycle</p>
-              <h2 className="cv-h2 mx-auto max-w-3xl text-cv-ink">Understand. Optimize. Govern. Prove.</h2>
+              <h2 className="cv-h2 max-w-3xl text-cv-ink">Understand. Optimize. Govern. Prove.</h2>
               <p className="mt-5 cv-body-lg text-cv-ink/70">
                 One model carries every domain from fragmented invoices to continuous economic control: understand what changed and who owns it, optimize toward the highest-impact fix, govern it with budgets and policy, and prove the realized result.
               </p>
@@ -172,7 +172,7 @@ export default function FinOpsPage() {
 
       <section className="cv-section">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-10 text-center">Built for every stakeholder</h2>
+          <h2 className="cv-h2 text-cv-ink mb-10 text-left">Built for every stakeholder</h2>
           <WhoUsesItCards
             items={[
               ["FinOps Manager", "Allocation and chargeback that hold up, and a queue of ranked actions instead of a spreadsheet."],

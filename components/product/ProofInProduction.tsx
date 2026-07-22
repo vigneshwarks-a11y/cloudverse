@@ -222,7 +222,7 @@ export function ProofInProduction() {
   return (
     <section className="cv-section bg-cv-surface2 dark:bg-black" data-testid="section-proof-in-production">
       <div className="cv-container">
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="max-w-3xl text-left">
           <p className="cv-label mb-4">Proof in production</p>
           <h2 className="cv-h2 text-balance text-cv-ink">Real numbers from a live cloud deployment.</h2>
           <p className="mx-auto mt-5 max-w-2xl text-pretty cv-body-lg text-cv-ink/70">
@@ -240,7 +240,7 @@ export function ProofInProduction() {
           <CardGovernance />
         </div>
 
-        <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-cv-muted">
+        <p className="mt-8 max-w-2xl text-left text-sm text-cv-muted">
           Figures from a production deployment, anonymized per client NDA.
         </p>
       </div>

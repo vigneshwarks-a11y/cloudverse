@@ -79,7 +79,7 @@ export default function DataXPage() {
 
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <div className="flex max-w-3xl flex-col items-start text-left">
             <h2 className="cv-h2 text-cv-ink">Your data warehouse is a blank check.</h2>
             <div className="mt-4">
               <p className="cv-body-lg text-cv-ink/80">
@@ -106,8 +106,8 @@ export default function DataXPage() {
       {/* $117 FINDING */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-3 mx-auto max-w-3xl text-center">We find the leaks billing dashboards miss.</h2>
-          <p className="text-cv-ink/70 italic mb-10 mx-auto max-w-3xl text-center">This is a real DataX finding. Not a mock. Not an illustration.</p>
+          <h2 className="cv-h2 text-cv-ink mb-3 max-w-3xl text-left">We find the leaks billing dashboards miss.</h2>
+          <p className="text-cv-ink/70 italic mb-10 max-w-3xl text-left">This is a real DataX finding. Not a mock. Not an illustration.</p>
           <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-14">
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
               {[
@@ -135,8 +135,8 @@ export default function DataXPage() {
       {/* PRICING PHILOSOPHY */}
       <section className="cv-section bg-cv-surface">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-5 mx-auto max-w-3xl text-center">DataX doesn&apos;t profit from your inefficiency.</h2>
-          <p className="cv-body-lg text-cv-ink/75 mb-10 mx-auto max-w-3xl text-center">
+          <h2 className="cv-h2 text-cv-ink mb-5 max-w-3xl text-left">DataX doesn&apos;t profit from your inefficiency.</h2>
+          <p className="cv-body-lg text-cv-ink/75 mb-10 max-w-3xl text-left">
             DataX prices on the structural drivers of your data platform cost, not on billing noise.
           </p>
           <div className="grid gap-5 lg:grid-cols-[1.5fr_1fr] lg:items-stretch">
@@ -176,12 +176,12 @@ export default function DataXPage() {
       {/* SAFE AUTOMATION */}
       <section className="cv-section">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-5 mx-auto max-w-3xl text-center">Automation without losing control.</h2>
-          <p className="cv-body-lg text-cv-ink/75 mb-2 mx-auto max-w-3xl text-center">
+          <h2 className="cv-h2 text-cv-ink mb-5 max-w-3xl text-left">Automation without losing control.</h2>
+          <p className="cv-body-lg text-cv-ink/75 mb-2 max-w-3xl text-left">
             DataX applies approved optimisations within the policies you define.
           </p>
-          <p className="text-cv-ink/70 italic mb-10 mx-auto max-w-3xl text-center">The automation model is about DataX behaviour, not your pipelines.</p>
-          <div className="flex flex-col items-center gap-10">
+          <p className="text-cv-ink/70 italic mb-10 max-w-3xl text-left">The automation model is about DataX behaviour, not your pipelines.</p>
+          <div className="flex flex-col items-start gap-10">
             <div className="mx-auto w-full max-w-2xl grid gap-8 sm:grid-cols-2 text-center">
               <div>
                 <div className="cv-label mb-3">Controls</div>
@@ -213,8 +213,8 @@ export default function DataXPage() {
       {/* CONNECTION MODEL — least-privilege story precedes the connect ask */}
       <section className="cv-section">
         <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-5 mx-auto max-w-3xl text-center">Built for least privilege.</h2>
-          <p className="cv-body-lg text-cv-ink/75 mb-10 max-w-3xl mx-auto text-center">
+          <h2 className="cv-h2 text-cv-ink mb-5 max-w-3xl text-left">Built for least privilege.</h2>
+          <p className="cv-body-lg text-cv-ink/75 mb-10 max-w-3xl text-left">
             Connect platforms using read-only access by default. Enable automation only when you are ready: scoped, auditable, reversible.
           </p>
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
@@ -250,7 +250,7 @@ export default function DataXPage() {
         <div className="cv-container relative z-10">
           {/* Heading */}
           <div className="text-center">
-            <h2 className="cv-h2 text-cv-ink mx-auto max-w-2xl">
+            <h2 className="cv-h2 text-cv-ink max-w-2xl">
               Connects to the stack your teams already run.
             </h2>
             <p className="mt-5 cv-body text-cv-ink/70 max-w-lg mx-auto">

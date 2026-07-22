@@ -206,7 +206,7 @@ export default function AgentryFeatureCarousel() {
     <section className="cv-section overflow-hidden">
       <div className="cv-container">
         {/* header */}
-        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+        <div className="flex max-w-3xl flex-col items-start text-left">
           <h2 className="cv-h2 text-cv-ink">One decision layer for every AI request.</h2>
           <p className="cv-body-lg text-cv-muted mt-4">
             Agentry routes, governs, and proves every call across your models and providers. The right route is chosen per request, with the evidence to back it.

@@ -130,7 +130,7 @@ export default function AgentryPage() {
           </>
         }
       >
-        <p className="mt-6 text-center text-sm italic text-cv-muted">Optimizing the future of enterprise AI consumption.</p>
+        <p className="mt-6 text-left text-sm italic text-cv-muted">Optimizing the future of enterprise AI consumption.</p>
       </PageHero>
 
       {/* HERO MOCKUP */}
@@ -156,7 +156,7 @@ export default function AgentryPage() {
       {/* PROBLEM */}
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <div className="flex max-w-3xl flex-col items-start text-left">
             <h2 className="cv-h2 text-cv-ink">AI compute is becoming too expensive to hardcode.</h2>
             <div className="mt-4">
               <p className="cv-body-lg text-cv-ink/80">
@@ -264,11 +264,11 @@ export default function AgentryPage() {
           style={{ background: "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(34,120,224,0.16), transparent 70%)" }}
         />
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative">
-          <h2 className="cv-h2 text-cv-ink mb-5 mx-auto max-w-3xl text-center">How Agentry controls every AI request.</h2>
-          <p className="cv-body-lg text-cv-muted mb-2 mx-auto max-w-3xl text-center">
+          <h2 className="cv-h2 text-cv-ink mb-5 max-w-3xl text-left">How Agentry controls every AI request.</h2>
+          <p className="cv-body-lg text-cv-muted mb-2 max-w-3xl text-left">
             Agentry sits between your application and every AI provider you use. On each request it scores the available routes against the rules your team set, then returns the best one with a fallback and a full decision log.
           </p>
-          <p className="text-cv-muted italic mb-10 mx-auto max-w-3xl text-center">A gateway runs the rule you wrote. Agentry works out whether that rule is still right.</p>
+          <p className="text-cv-muted italic mb-10 max-w-3xl text-left">A gateway runs the rule you wrote. Agentry works out whether that rule is still right.</p>
           <AgentrySteps />
         </div>
       </section>
@@ -276,8 +276,8 @@ export default function AgentryPage() {
       {/* ROI */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <h2 className="cv-h2 text-cv-ink mb-5 mx-auto max-w-3xl text-center">The cost of not routing.</h2>
-          <p className="cv-body-lg text-cv-ink/75 mb-10 mx-auto max-w-3xl text-center">
+          <h2 className="cv-h2 text-cv-ink mb-5 max-w-3xl text-left">The cost of not routing.</h2>
+          <p className="cv-body-lg text-cv-ink/75 mb-10 max-w-3xl text-left">
             Every hardcoded endpoint spends money without making a decision. The same work, on the right model, often costs a fraction, at the same or better quality.
           </p>
           <AgentryRoiSplit roi={ROI} />
@@ -290,8 +290,8 @@ export default function AgentryPage() {
       {/* GOVERNANCE */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <h2 className="cv-h2 text-cv-ink mb-5 mx-auto max-w-3xl text-center">Built for enterprise AI governance.</h2>
-          <p className="cv-body-lg text-cv-ink/75 mb-10 mx-auto max-w-3xl text-center">
+          <h2 className="cv-h2 text-cv-ink mb-5 max-w-3xl text-left">Built for enterprise AI governance.</h2>
+          <p className="cv-body-lg text-cv-ink/75 mb-10 max-w-3xl text-left">
             Every routing decision Agentry makes is recorded, auditable, and explainable. Governance is on by default, not bolted on.
           </p>
           <GovernanceBento />
@@ -320,7 +320,7 @@ export default function AgentryPage() {
         <div className="cv-container">
           {/* Heading */}
           <div className="text-center">
-            <h2 className="cv-h2 text-cv-ink mx-auto max-w-2xl">Connect once. Route everywhere.</h2>
+            <h2 className="cv-h2 text-cv-ink max-w-2xl">Connect once. Route everywhere.</h2>
             <p className="mt-5 cv-body-lg text-cv-ink/75 max-w-2xl mx-auto">
               Add your providers once. Agentry handles routing, fallback, and cost tracking across all of them. No code changes when you add a new provider.
             </p>

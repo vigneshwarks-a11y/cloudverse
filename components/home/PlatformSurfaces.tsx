@@ -84,7 +84,7 @@ export function PlatformSurfaces() {
   return (
     <section className="cv-section bg-cv-surface" data-testid="section-platform-surfaces">
       <div className="cv-container">
-        <div className="mx-auto max-w-3xl mb-12 text-center">
+        <div className="max-w-3xl mb-12 text-left">
           <div className="cv-label mb-3">Platform overview</div>
           <h2 className="cv-h2 text-cv-ink">One control plane. Four compute surfaces.</h2>
         </div>

@@ -93,7 +93,7 @@ export function AgentryOrchestration() {
   return (
     <section ref={rootRef} className="cv-section overflow-hidden bg-cv-surface2" data-testid="section-agentry-orchestration">
       <div className="cv-container">
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="max-w-2xl text-left">
           <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
             One system of record
           </span>

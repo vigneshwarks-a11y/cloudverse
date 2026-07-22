@@ -73,8 +73,8 @@ export default function FinOpsTeamsPage() {
       {/* THE SITUATION — two-column lead-in */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="flex flex-col items-center gap-10">
-            <div className="mx-auto max-w-2xl text-center">
+          <div className="flex flex-col items-start gap-10">
+            <div className="max-w-2xl text-left">
               <SectionEyebrow className="mb-4">The situation</SectionEyebrow>
               <h2 className="cv-h2 text-cv-ink text-balance">The situation FinOps teams are in.</h2>
               <p className="cv-body-lg text-cv-ink/80 mt-6">
@@ -111,7 +111,7 @@ export default function FinOpsTeamsPage() {
       {/* WHAT IT'S COSTING YOU TODAY — card grid */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="mx-auto max-w-2xl mb-8 text-center">
+          <div className="max-w-2xl mb-8 text-left">
             <SectionEyebrow className="mb-4">The cost of the gap</SectionEyebrow>
             <h2 className="cv-h2 text-cv-ink">What that&apos;s costing you today.</h2>
           </div>
@@ -122,7 +122,7 @@ export default function FinOpsTeamsPage() {
       {/* WHAT FINOPS TEAMS SHIP */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="mx-auto max-w-2xl mb-10 text-center">
+          <div className="max-w-2xl mb-10 text-left">
             <SectionEyebrow className="mb-4">What you ship</SectionEyebrow>
             <h2 className="cv-h2 text-cv-ink">What FinOps teams ship faster with CloudVerse</h2>
           </div>
@@ -140,7 +140,7 @@ export default function FinOpsTeamsPage() {
       {/* HOW IT WORKS — flow diagram */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="mx-auto max-w-3xl mb-12 text-center">
+          <div className="max-w-3xl mb-12 text-left">
             <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
             <h2 className="cv-h2 text-cv-ink">How compute economics works.</h2>
             <div className="mt-4 space-y-4">
@@ -159,8 +159,8 @@ export default function FinOpsTeamsPage() {
       {/* CUSTOMER PROOF */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="flex flex-col items-center gap-10">
-            <div className="mx-auto max-w-2xl text-center">
+          <div className="flex flex-col items-start gap-10">
+            <div className="max-w-2xl text-left">
               <SectionEyebrow className="mb-4">Customer proof</SectionEyebrow>
               <h2 className="cv-h2 text-cv-ink">How Berkshire Hathaway HomeServices recovered $738,983</h2>
               <p className="mt-6 leading-relaxed text-cv-ink/80">
@@ -188,7 +188,7 @@ export default function FinOpsTeamsPage() {
       {/* HOW THIS IS DIFFERENT — two-column lead-in */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <div className="flex max-w-3xl flex-col items-start text-left">
             <SectionEyebrow className="mb-4">The difference</SectionEyebrow>
             <h2 className="cv-h2 text-cv-ink text-balance">How this is different</h2>
             <p className="cv-body-lg mt-4 text-cv-ink/80">
@@ -206,7 +206,7 @@ export default function FinOpsTeamsPage() {
       {/* OUTCOMES — card grid with bolded lead */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="mx-auto max-w-2xl mb-8 text-center">
+          <div className="max-w-2xl mb-8 text-left">
             <SectionEyebrow className="mb-4">Outcomes</SectionEyebrow>
             <h2 className="cv-h2 text-cv-ink">Outcomes you can defend.</h2>
           </div>
@@ -217,7 +217,7 @@ export default function FinOpsTeamsPage() {
       {/* PLATFORM */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="mx-auto max-w-2xl mb-8 text-center">
+          <div className="max-w-2xl mb-8 text-left">
             <SectionEyebrow className="mb-4">Platform</SectionEyebrow>
             <h2 className="cv-h2 text-cv-ink">Platform that powers this solution</h2>
           </div>

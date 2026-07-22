@@ -52,8 +52,8 @@ export function NamedCustomers() {
   return (
     <section className="cv-section bg-cv-surface" data-testid="section-named-customers">
       <div className="cv-container">
-        <div className="mx-auto max-w-5xl text-center">
-          <h2 className="cv-h2 mx-auto max-w-3xl text-cv-ink">Governed in production, across the estate.</h2>
+        <div className="max-w-5xl text-left">
+          <h2 className="cv-h2 max-w-3xl text-cv-ink">Governed in production, across the estate.</h2>
           <p className="mt-5 cv-body-lg text-cv-ink/70">
             Expansion pattern: Cloud, then Data, then SaaS, then AI, as enterprises bring their full
             technology estate under one model.

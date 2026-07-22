@@ -17,7 +17,7 @@ export function Outcomes({
   return (
     <section className="cv-section bg-cv-surface">
       <div className="cv-container">
-        <div className="mx-auto max-w-3xl mb-10 text-center">
+        <div className="max-w-3xl mb-10 text-left">
           <div className="cv-label mb-3">{label}</div>
           <h2 className="cv-h2 text-cv-ink">{heading}</h2>
         </div>

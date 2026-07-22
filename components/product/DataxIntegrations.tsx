@@ -52,7 +52,7 @@ export function DataxIntegrations() {
       <div className="cv-container relative z-10">
         {/* Heading */}
         <div className="text-center">
-          <h2 className="cv-h2 text-cv-ink mx-auto max-w-2xl">Connects to the stack your teams already use.</h2>
+          <h2 className="cv-h2 text-cv-ink max-w-2xl">Connects to the stack your teams already use.</h2>
           <p className="mt-5 cv-body text-cv-ink/70 max-w-lg mx-auto">
             Warehouses, lakehouses, and pipelines, connected once.
           </p>

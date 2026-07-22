@@ -30,7 +30,7 @@ export function NotAGateway() {
   return (
     <section className="cv-section bg-cv-surface" data-testid="section-not-a-gateway">
       <div className="cv-container">
-        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+        <div className="flex max-w-3xl flex-col items-start text-left">
           <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
             How Agentry compares
           </span>

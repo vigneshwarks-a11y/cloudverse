@@ -437,7 +437,7 @@ export function AgentryGovernance() {
       <div className="cv-container relative z-10">
         {/* Section header */}
         <div className="mb-20 lg:mb-28 lg:pt-8">
-          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <div className="flex max-w-3xl flex-col items-start text-left">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 dark:bg-[#7CB8F8]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8] mb-5">
               Day one
             </span>

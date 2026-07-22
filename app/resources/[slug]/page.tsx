@@ -83,7 +83,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       {related.length > 0 && (
         <section className="cv-section bg-cv-surface2 border-t border-cv-line">
           <div className="cv-container max-w-5xl">
-            <h2 className="cv-h3 text-cv-ink mb-6 mx-auto max-w-2xl text-center">Related {r.type === "Guide" ? "guides" : "docs"}</h2>
+            <h2 className="cv-h3 text-cv-ink mb-6 max-w-2xl text-left">Related {r.type === "Guide" ? "guides" : "docs"}</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {related.map((rel) => (
                 <Link

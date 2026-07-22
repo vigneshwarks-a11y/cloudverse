@@ -26,7 +26,7 @@ export function GuidesResources() {
   return (
     <section className="cv-section bg-cv-surface">
       <div className="cv-container">
-        <div className="mx-auto mb-10 flex max-w-2xl flex-col items-center gap-4 text-center">
+        <div className="mb-10 flex max-w-2xl flex-col items-start gap-4 text-left">
           <h2 className="cv-h2 text-cv-ink">Latest guides and resources</h2>
           <Link
             href="/resources"

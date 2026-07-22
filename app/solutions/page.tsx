@@ -69,8 +69,8 @@ export default function Page() {
       {/* THE SHARED IDEA */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="flex flex-col items-center gap-10">
-            <div className="mx-auto max-w-2xl text-center">
+          <div className="flex flex-col items-start gap-10">
+            <div className="max-w-2xl text-left">
               <h2 className="cv-h2 text-cv-ink mb-5">Different jobs. The same missing piece.</h2>
               <p className="cv-body-lg text-cv-ink/80">
                 Finance can&apos;t explain the bill. Engineering commits the spend but never sees it. AI runs as a side process no one owns. Every team is accountable for a slice of the same problem: cost decided in one place, felt in another. CloudVerse connects the decision to the dollar, so each team works from one record instead of four tools.
@@ -105,7 +105,7 @@ export default function Page() {
       {/* WHAT CHANGES */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="mx-auto max-w-2xl mb-8 text-center">
+          <div className="max-w-2xl mb-8 text-left">
             <SectionEyebrow className="mb-4">What changes</SectionEyebrow>
             <h2 className="cv-h2 text-cv-ink">What changes when spend has an owner.</h2>
           </div>

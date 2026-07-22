@@ -45,7 +45,7 @@ export function DomainsOverview() {
   return (
     <section className="cv-section bg-cv-surface2" data-testid="section-domains-overview">
       <div className="cv-container">
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="max-w-2xl text-left">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 dark:bg-[#7CB8F8]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8] mb-4">
             One platform · Five domains
           </span>

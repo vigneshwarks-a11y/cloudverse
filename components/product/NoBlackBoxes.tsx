@@ -51,11 +51,11 @@ export default function NoBlackBoxes({ traceJson }: { traceJson: string }) {
       <div className="cv-container relative">
         <div
           ref={ref}
-          className="flex flex-col items-center gap-10"
+          className="flex flex-col items-start gap-10"
         >
           {/* headline + description */}
           <div
-            className="mx-auto flex max-w-2xl flex-col items-center text-center"
+            className="flex max-w-2xl flex-col items-start text-left"
             style={rise(1)}
           >
             <h2 className="cv-h2 text-cv-ink">No black boxes.</h2>

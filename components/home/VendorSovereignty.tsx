@@ -129,7 +129,7 @@ export function VendorSovereignty() {
     <section className="cv-section bg-cv-surface" data-testid="section-vendor-sovereignty">
       <div className="cv-container">
         {/* lead-in - centered header */}
-        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+        <div className="flex max-w-3xl flex-col items-start text-left">
           <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
             Governance
           </span>
@@ -147,7 +147,7 @@ export function VendorSovereignty() {
             {PILLARS.map((p) => (
               <div key={p.title} className="row-span-2 grid grid-rows-subgrid gap-8 p-8">
                 <div className="self-center">{p.illustration}</div>
-                <div className="mx-auto max-w-sm text-center">
+                <div className="max-w-sm text-left">
                   <div className="mb-2 text-[11px] font-semibold uppercase tracking-widest text-cv-muted">{p.eyebrow}</div>
                   <h3 className="text-balance text-base font-semibold text-cv-ink">{p.title}</h3>
                   <p className="mt-3 text-balance cv-body text-cv-ink/65">{p.body}</p>
@@ -157,7 +157,7 @@ export function VendorSovereignty() {
           </div>
         </div>
 
-        <p className="mx-auto mt-8 max-w-2xl text-center italic text-cv-ink/70">
+        <p className="mt-8 max-w-2xl text-left italic text-cv-ink/70">
           &quot;Switching models without losing institutional learning is the sovereignty test.&quot;
         </p>
       </div>

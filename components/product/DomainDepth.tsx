@@ -158,8 +158,8 @@ export function DomainDepth() {
   return (
     <section className="cv-section bg-cv-surface" data-testid="section-domain-depth">
       <div className="cv-container">
-        <div className="mx-auto max-w-5xl text-center">
-          <h2 className="cv-h2 mx-auto max-w-3xl text-cv-ink">What each domain gets, in depth.</h2>
+        <div className="max-w-5xl text-left">
+          <h2 className="cv-h2 max-w-3xl text-cv-ink">What each domain gets, in depth.</h2>
           <p className="mt-5 cv-body-lg text-cv-ink/70">
             The same model runs across every domain, with capabilities tuned to how each one actually
             spends.

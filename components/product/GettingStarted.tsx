@@ -29,9 +29,9 @@ export function GettingStarted() {
   return (
     <section className="cv-section bg-cv-surface" data-testid="section-getting-started">
       <div className="cv-container">
-        <div className="mx-auto max-w-5xl text-center">
+        <div className="max-w-5xl text-left">
           <p className="cv-label mb-4">Getting started</p>
-          <h2 className="cv-h2 mx-auto max-w-3xl text-cv-ink">30, 60, 90.</h2>
+          <h2 className="cv-h2 max-w-3xl text-cv-ink">30, 60, 90.</h2>
           <p className="mt-5 cv-body-lg text-cv-ink/70">
             Customers can begin with cloud, AI, data, or SaaS according to their immediate priority.
           </p>

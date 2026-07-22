@@ -108,7 +108,7 @@ export default function IntegrationsPage() {
         />
         <div className="cv-container relative z-10">
           <div className="text-center">
-            <h2 className="cv-h2 text-cv-ink mx-auto max-w-2xl">Every model provider, one endpoint.</h2>
+            <h2 className="cv-h2 text-cv-ink max-w-2xl">Every model provider, one endpoint.</h2>
             <p className="mt-5 cv-body text-cv-ink/70 max-w-lg mx-auto">
               Route across managed APIs and private deployments without changing your application code.
             </p>
@@ -121,7 +121,7 @@ export default function IntegrationsPage() {
       {/* INTEGRATIONS DIRECTORY — searchable catalog */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="max-w-2xl text-left">
             <p className="cv-label mb-4">Integration directory</p>
             <h2 className="cv-h2 text-cv-ink">Browse every connector.</h2>
           </div>
@@ -134,7 +134,7 @@ export default function IntegrationsPage() {
       {/* INTEGRATION CATEGORIES — bento */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="max-w-2xl text-left">
             <p className="cv-label mb-4">What we connect</p>
             <h2 className="cv-h2 text-cv-ink">Every layer of your compute stack, in one place.</h2>
           </div>
@@ -165,8 +165,8 @@ export default function IntegrationsPage() {
       {/* SECURITY / PERMISSIONS MODEL */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="flex flex-col items-center gap-10">
-            <div className="mx-auto max-w-2xl text-center">
+          <div className="flex flex-col items-start gap-10">
+            <div className="max-w-2xl text-left">
               <p className="cv-label mb-4">Security model</p>
               <h2 className="cv-h2 text-cv-ink">Read-only by default. Automation is opt-in.</h2>
               <p className="cv-body-lg text-cv-ink/75 mt-6">
@@ -202,7 +202,7 @@ export default function IntegrationsPage() {
       {/* ENTERPRISE ACCESS — bento */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="max-w-2xl text-left">
             <p className="cv-label mb-4">Enterprise-ready</p>
             <h2 className="cv-h2 text-cv-ink">Built for enterprise access patterns.</h2>
           </div>
@@ -221,9 +221,9 @@ export default function IntegrationsPage() {
       {/* PRIVATE DEPLOYMENTS + GPU */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="flex flex-col items-center gap-10">
+          <div className="flex flex-col items-start gap-10">
             {/* top: eyebrow + heading + body */}
-            <div className="mx-auto max-w-2xl text-center">
+            <div className="max-w-2xl text-left">
               <p className="cv-label mb-4">Private compute</p>
               <h2 className="cv-h2 text-cv-ink">Private deployments and GPU infrastructure.</h2>
               <p className="cv-body-lg text-cv-ink/75 mt-6">
@@ -252,7 +252,7 @@ export default function IntegrationsPage() {
       {/* THREE STEPS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="max-w-2xl text-left">
             <p className="cv-label mb-4">Getting started</p>
             <h2 className="cv-h2 text-cv-ink">Three steps to go live.</h2>
           </div>

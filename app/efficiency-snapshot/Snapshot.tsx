@@ -8,7 +8,7 @@ export default function Snapshot() {
     <>
       <section className="cv-hero-bg pt-[120px] sm:pt-[160px] pb-12 lg:pt-[240px] lg:pb-14 relative">
         <div className="cv-container relative z-10">
-          <div className="mx-auto max-w-3xl text-center">
+          <div className="max-w-3xl text-left">
             <div className="cv-label mb-4">Efficiency snapshot</div>
             <h1 className="cv-h1 text-cv-ink">
               Upload a cloud invoice. Get an <span className="text-cv-blue dark:text-cv-blue-light">actionable savings report</span> in 30 seconds.

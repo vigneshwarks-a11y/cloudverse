@@ -28,7 +28,7 @@ export default function Page() {
   return (
     <section className="cv-hero-bg pt-[120px] sm:pt-[160px] pb-16 lg:pt-[240px] lg:pb-24 relative min-h-[80vh]" style={{ background: "hsl(var(--cv-surface))" }}>
       <div className="cv-container relative z-10">
-        <div className="max-w-2xl mx-auto text-center">
+        <div className="max-w-2xl text-left">
           <div className="mb-4"><HeroEyebrow accent="blue">Get started</HeroEyebrow></div>
           <h1 className="cv-h1 text-cv-ink">
             See Where Your Cloud Bill Is <span className="text-cv-blue dark:text-cv-blue-light">Actually Going.</span>

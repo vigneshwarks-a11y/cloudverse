@@ -88,8 +88,8 @@ export default function AIEngineeringPage() {
 
       <section className="cv-section">
         <div className="cv-container">
-          <div className="flex flex-col items-center gap-10">
-            <div className="mx-auto max-w-2xl text-center">
+          <div className="flex flex-col items-start gap-10">
+            <div className="max-w-2xl text-left">
               <SectionEyebrow className="mb-4">The situation</SectionEyebrow>
               <h2 className="cv-h2 text-cv-ink">The situation AI engineering teams are in.</h2>
               <p className="cv-body-lg text-cv-ink/80 mt-6">
@@ -140,7 +140,7 @@ export default function AIEngineeringPage() {
       {/* WHAT IT'S COSTING YOU TODAY */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="mx-auto max-w-2xl mb-8 text-center">
+          <div className="max-w-2xl mb-8 text-left">
             <SectionEyebrow className="mb-4">The cost of the gap</SectionEyebrow>
             <h2 className="cv-h2 text-cv-ink">What that&apos;s costing you today.</h2>
           </div>
@@ -151,7 +151,7 @@ export default function AIEngineeringPage() {
       {/* WHAT YOU SHIP */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="mx-auto max-w-2xl mb-10 text-center">
+          <div className="max-w-2xl mb-10 text-left">
             <SectionEyebrow className="mb-4">What you ship</SectionEyebrow>
             <h2 className="cv-h2 text-cv-ink">What Agentry unlocks for AI engineering teams.</h2>
           </div>
@@ -162,7 +162,7 @@ export default function AIEngineeringPage() {
       {/* HOW IT WORKS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="mx-auto max-w-3xl mb-12 text-center">
+          <div className="max-w-3xl mb-12 text-left">
             <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
             <h2 className="cv-h2 text-cv-ink">How Agentry controls every AI request.</h2>
             <div className="mt-4 space-y-4">
@@ -188,7 +188,7 @@ export default function AIEngineeringPage() {
       {/* THE NUMBERS */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="max-w-2xl text-left">
             <SectionEyebrow className="mb-4">The numbers</SectionEyebrow>
             <h2 className="cv-h2 text-cv-ink">The numbers.</h2>
           </div>
@@ -210,7 +210,7 @@ export default function AIEngineeringPage() {
       {/* OUTCOMES */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="mx-auto max-w-2xl mb-8 text-center">
+          <div className="max-w-2xl mb-8 text-left">
             <SectionEyebrow className="mb-4">Outcomes</SectionEyebrow>
             <h2 className="cv-h2 text-cv-ink">Outcomes you can take to the board.</h2>
           </div>
@@ -221,7 +221,7 @@ export default function AIEngineeringPage() {
       {/* PLATFORM */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="mx-auto max-w-2xl mb-8 text-center">
+          <div className="max-w-2xl mb-8 text-left">
             <SectionEyebrow className="mb-4">Platform</SectionEyebrow>
             <h2 className="cv-h2 text-cv-ink">Platform that powers this solution</h2>
           </div>

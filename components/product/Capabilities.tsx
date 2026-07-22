@@ -234,7 +234,7 @@ export function Capabilities({
   return (
     <section className="cv-section bg-cv-surface">
       <div className="cv-container">
-        <div className="mx-auto mb-10 max-w-3xl text-center">
+        <div className="mb-10 max-w-3xl text-left">
           <div className="cv-label mb-3" style={{ color }}>{label}</div>
           <h2 className="cv-h2 text-cv-ink">{heading}</h2>
         </div>

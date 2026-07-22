@@ -23,8 +23,8 @@ export function SplitMockup({
   return (
     <section className="cv-section bg-cv-surface">
       <div className="cv-container">
-        <div className="flex flex-col items-center gap-10">
-          <div className="mx-auto max-w-2xl text-center">
+        <div className="flex flex-col items-start gap-10">
+          <div className="max-w-2xl text-left">
             <div className="cv-label mb-3" style={{ color }}>{label}</div>
             <h2 className="cv-h2 text-cv-ink">{heading}</h2>
             <div className="cv-body-lg mt-5 text-cv-ink/75">{body}</div>

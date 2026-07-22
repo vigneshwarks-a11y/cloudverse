@@ -56,7 +56,7 @@ export function BookADemo() {
 
           {/* ── Top: text content ── */}
           <div
-            className="mx-auto max-w-2xl text-center"
+            className="max-w-2xl text-left"
             style={{
               opacity: entered ? 1 : 0,
               transform: entered ? "translateY(0)" : "translateY(20px)",

@@ -22,7 +22,7 @@ export function AgentryArchitecture() {
   return (
     <section className="cv-section bg-cv-surface2">
       <div className="cv-container">
-        <div className="mx-auto max-w-3xl mb-10 text-center">
+        <div className="max-w-3xl mb-10 text-left">
           <div className="cv-label mb-3" style={{ color: "#6954D4" }}>Decision engine</div>
           <h2 className="cv-h2 text-cv-ink">Every AI workload, routed with policy and proof.</h2>
         </div>

@@ -7,7 +7,7 @@ export function ExpandInto({ current }: { current: ModuleKey }) {
   return (
     <section className="cv-section bg-cv-surface">
       <div className="cv-container">
-        <div className="mx-auto max-w-3xl mb-10 text-center">
+        <div className="max-w-3xl mb-10 text-left">
           <div className="cv-label mb-3">Expand into</div>
           <h2 className="cv-h2 text-cv-ink">One control plane. Add modules as you scale.</h2>
         </div>

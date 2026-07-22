@@ -144,7 +144,7 @@ export default function WarehouseIntel() {
   return (
     <section className="cv-section">
       <div className="cv-container">
-        <div className="mx-auto max-w-3xl mb-10 text-center">
+        <div className="max-w-3xl mb-10 text-left">
           <h2 className="cv-h2 text-cv-ink">Warehouse cost intelligence, not just dashboards.</h2>
         </div>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
