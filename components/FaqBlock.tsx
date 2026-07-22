@@ -63,13 +63,20 @@ export function FaqBlock({
   items,
   title,
   subtitle,
+  previewCount,
 }: {
   items: FaqItem[];
   accent?: string;
   title?: string;
   subtitle?: string;
+  /** Show only the first N rows behind a "Show all" button. Omit to show all. */
+  previewCount?: number;
 }) {
   const [open, setOpen] = useState<number | null>(0);
+  const [showAll, setShowAll] = useState(false);
+
+  const canCollapse = typeof previewCount === "number" && items.length > previewCount;
+  const visible = canCollapse && !showAll ? items.slice(0, previewCount) : items;
 
   return (
     <>
@@ -98,7 +105,7 @@ export function FaqBlock({
           )}
 
           <div className="grid grid-cols-1 gap-2.5">
-            {items.map((it, i) => (
+            {visible.map((it, i) => (
               <FaqRow
                 key={it.q}
                 item={it}
@@ -107,6 +114,19 @@ export function FaqBlock({
                 onToggle={() => setOpen(open === i ? null : i)}
               />
             ))}
+            {canCollapse && !showAll && (
+              <button
+                onClick={() => setShowAll(true)}
+                className="flex w-full items-center justify-between gap-4 rounded-xl border border-cv-ink/10 px-5 py-4 text-left transition-colors hover:border-cv-ink/20 hover:bg-cv-ink/[0.02] dark:border-white/[0.08] dark:hover:border-white/15 dark:hover:bg-white/[0.03]"
+              >
+                <span className="text-[18px] font-semibold text-cv-ink leading-snug">
+                  Show all {items.length} FAQs
+                </span>
+                <span className="shrink-0 flex items-center justify-center w-6 h-6 text-cv-blue dark:text-cv-blue-light text-xl leading-none font-normal">
+                  +
+                </span>
+              </button>
+            )}
           </div>
         </div>
       </div>

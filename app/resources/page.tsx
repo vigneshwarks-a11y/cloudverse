@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "@/lib/solar-icons";
 import { GUIDES, DOCS, FAQS, BLOG_POSTS } from "@/lib/resources";
 import { PageHero } from "@/components/PageHero";
+import { FaqBlock } from "@/components/FaqBlock";
 import { DEMO_URL } from "@/lib/links";
 
 export const metadata: Metadata = {
@@ -33,7 +34,6 @@ export default function ResourcesPage() {
   const moreGuides = GUIDES.filter((g) => !g.featured).slice(0, 6);
   const featuredBlog = BLOG_POSTS.slice(0, 3);
   const recentBlog = BLOG_POSTS.slice(3, 9);
-  const featuredFaqs = FAQS.slice(0, 6);
 
   return (
     <>
@@ -133,40 +133,10 @@ export default function ResourcesPage() {
       {/* FAQ */}
       <section id="faq" className="cv-section bg-cv-surface2 border-t border-cv-line">
         <div className="cv-container max-w-4xl">
-          <div className="flex items-end justify-between mb-8 flex-wrap gap-3">
-            <h2 className="cv-h2 text-cv-ink">Frequently asked</h2>
-            <span className="text-sm text-cv-muted">{FAQS.length} answers covering cloud, AI, GPU, FinOps</span>
-          </div>
-          <div className="space-y-3">
-            {featuredFaqs.map((faq) => (
-              <details key={faq.id} className="rounded-xl border border-cv-line bg-cv-surface dark:bg-[#0D0D0D] p-5 group" data-testid={`faq-${faq.id}`}>
-                <summary className="cursor-pointer font-medium text-cv-ink flex items-start gap-3">
-                  <span className="text-cv-muted text-sm shrink-0">{faq.id}.</span>
-                  <span>{faq.question}</span>
-                </summary>
-                <p className="text-sm sm:text-[15px] leading-relaxed text-cv-ink/75 mt-4">{faq.answer}</p>
-                <span className="inline-flex items-center text-xs font-medium px-2 py-1 rounded border border-cv-line bg-cv-surface2 dark:bg-[#0D0D0D] text-cv-muted mt-4">
-                  {faq.tag}
-                </span>
-              </details>
-            ))}
-          </div>
-          <details className="mt-6 rounded-xl border border-cv-line bg-cv-surface dark:bg-[#0D0D0D] p-5">
-            <summary className="cursor-pointer font-medium text-cv-ink">
-              Show all {FAQS.length} FAQs
-            </summary>
-            <div className="space-y-3 mt-5">
-              {FAQS.slice(6).map((faq) => (
-                <details key={faq.id} className="rounded-lg border border-cv-line bg-cv-surface2 dark:bg-[#0D0D0D] p-4" data-testid={`faq-${faq.id}`}>
-                  <summary className="cursor-pointer text-sm font-medium text-cv-ink flex items-start gap-3">
-                    <span className="text-cv-muted text-xs shrink-0">{faq.id}.</span>
-                    <span>{faq.question}</span>
-                  </summary>
-                  <p className="text-sm leading-relaxed text-cv-ink/75 mt-3">{faq.answer}</p>
-                </details>
-              ))}
-            </div>
-          </details>
+          <FaqBlock
+            title="Frequently asked"
+            items={FAQS.slice(0, 6).map((faq) => ({ q: faq.question, a: faq.answer }))}
+          />
         </div>
       </section>
 
