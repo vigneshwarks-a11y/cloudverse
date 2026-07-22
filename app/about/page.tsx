@@ -7,6 +7,7 @@ import type { IconProps } from "@solar-icons/react";
 type Icon = ComponentType<IconProps>;
 import { CTABand } from "@/components/CTABand";
 import { PageHero } from "@/components/PageHero";
+import { SectionHeading } from "@/components/SectionHeading";
 import { DEMO_URL, PRODUCT_URLS } from "@/lib/links";
 
 export const metadata: Metadata = {
@@ -73,21 +74,12 @@ export default function Page() {
       {/* Mission */}
       <section className="cv-section bg-cv-surface">
         <div className="cv-container">
-          <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
-<div className="text-left">
-            <Eyebrow>Our Mission</Eyebrow>
-            <h2 className="cv-h2 text-cv-ink">
-              Transparent, predictable, and profitable.
-            </h2></div>
-<div className="text-left">
-            <p className="text-cv-ink/70 leading-relaxed text-lg mt-4">
-              CloudVerse™ is building the compute economics layer the cloud era was always
-              missing. As AI workloads multiply and cloud spend becomes a defining business
-              variable, enterprises need more than dashboards. They need an intelligent platform
-              that transforms raw compute costs into strategic financial decisions.
-            </p>
-          </div>
-</div>
+          <SectionHeading lead eyebrow="Our Mission" title="Transparent, predictable, and profitable.">
+            CloudVerse™ is building the compute economics layer the cloud era was always
+            missing. As AI workloads multiply and cloud spend becomes a defining business
+            variable, enterprises need more than dashboards. They need an intelligent platform
+            that transforms raw compute costs into strategic financial decisions.
+          </SectionHeading>
         </div>
       </section>
 
@@ -128,16 +120,9 @@ export default function Page() {
       {/* Values */}
       <section className="cv-section bg-cv-surface">
         <div className="cv-container">
-          <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
-<div className="text-left">
-            <Eyebrow>What we believe</Eyebrow>
-            <h2 className="cv-h2 text-cv-ink">Principles that guide our platform</h2></div>
-<div className="text-left">
-            <p className="mt-4 cv-body text-cv-ink/70">
-              Four ideas shape every product decision we make.
-            </p>
-          </div>
-</div>
+          <SectionHeading eyebrow="What we believe" title="Principles that guide our platform">
+            Four ideas shape every product decision we make.
+          </SectionHeading>
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {VALUES.map((v, idx) => {
               const Icon = v.icon;
@@ -162,17 +147,10 @@ export default function Page() {
       {/* Products */}
       <section className="cv-section bg-cv-surface2">
         <div className="cv-container">
-          <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
-<div className="text-left">
-            <Eyebrow>What we build</Eyebrow>
-            <h2 className="cv-h2 text-cv-ink">One platform, four specialized products</h2></div>
-<div className="text-left">
-            <p className="mt-4 cv-body text-cv-ink/70">
-              Each module solves a specific layer of the cloud economics problem, together they
-              form an end-to-end decision layer.
-            </p>
-          </div>
-</div>
+          <SectionHeading eyebrow="What we build" title="One platform, four specialized products">
+            Each module solves a specific layer of the cloud economics problem, together they
+            form an end-to-end decision layer.
+          </SectionHeading>
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {PRODUCTS.map((p, idx) => {
               const Icon = p.icon;
@@ -206,21 +184,12 @@ export default function Page() {
       <section className="cv-section bg-cv-surface">
         <div className="cv-container">
           <div className="flex flex-col items-start gap-8">
-            <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
-<div className="text-left">
-              <Eyebrow>Where we&apos;re going</Eyebrow>
-              <h2 className="cv-h2 text-cv-ink">
-                An AI-native economic decision layer for every enterprise
-              </h2></div>
-<div className="text-left">
-              <p className="mt-5 text-lg text-cv-ink/70 leading-relaxed">
-                The next decade of compute will be defined by how well teams allocate scarce GPU,
-                storage, and network capacity. CloudVerse™ is building the economic decision layer
-                that makes those choices automatic, auditable, and aligned with business outcomes,
-                across every cloud, every model, and every team.
-              </p>
-            </div>
-</div>
+            <SectionHeading lead eyebrow="Where we're going" title="An AI-native economic decision layer for every enterprise">
+              The next decade of compute will be defined by how well teams allocate scarce GPU,
+              storage, and network capacity. CloudVerse™ is building the economic decision layer
+              that makes those choices automatic, auditable, and aligned with business outcomes,
+              across every cloud, every model, and every team.
+            </SectionHeading>
             <Link href={DEMO_URL} className="cv-btn-primary shrink-0" data-testid="link-book-demo-about">
               Book a demo <ArrowRight weight="Linear" size={16} />
             </Link>

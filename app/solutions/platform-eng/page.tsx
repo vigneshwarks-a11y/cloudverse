@@ -6,6 +6,7 @@ import { HowItWorksFlow, type FlowChip, type FlowWorkload, type FlowRightNode } 
 import { PlatformShips } from "@/components/solution/PlatformShips";
 import { SolutionHero } from "@/components/solution/SolutionHero";
 import { SectionEyebrow } from "@/components/solution/SectionEyebrow";
+import { SectionHeading } from "@/components/SectionHeading";
 import { BulletGrid } from "@/components/solution/BulletGrid";
 import { WhoThisIsFor } from "@/components/solution/WhoThisIsFor";
 import { FaqBlock } from "@/components/FaqBlock";
@@ -88,19 +89,14 @@ export default function PlatformEngPage() {
       <section className="cv-section">
         <div className="cv-container">
           <div className="flex flex-col items-start gap-10">
-            <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
-<div className="text-left">
-              <SectionEyebrow className="mb-4">The situation</SectionEyebrow>
-              <h2 className="cv-h2 text-cv-ink">The situation platform engineering teams are in.</h2></div>
-<div className="text-left">
-              <p className="cv-body-lg text-cv-ink/80 mt-6">
+            <SectionHeading lead eyebrow="The situation" title="The situation platform engineering teams are in.">
+              <p className="cv-body-lg text-cv-ink/80">
                 You already gate code on tests and static analysis. Cost is the one thing that ships unreviewed and shows up weeks later on a bill nobody connects back to that pull request.
               </p>
               <p className="cv-body-lg text-cv-ink/85 mt-4">
                 By then the expensive change is in production and the fix means rework. Torb puts the cost estimate in the pull request, where the person who wrote the change can still cheaply change it.
               </p>
-            </div>
-</div>
+            </SectionHeading>
             <div className="mx-auto w-full max-w-3xl">
               <Panel className="justify-between p-6" chrome="torb.app/pull/1042">
                 <span className="text-[10px] uppercase tracking-wide text-cv-muted">Merge checks</span>
@@ -159,12 +155,8 @@ export default function PlatformEngPage() {
       {/* HOW IT WORKS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16 mb-12">
-<div className="text-left">
-            <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
-            <h2 className="cv-h2 text-cv-ink">How Torb controls every infra change.</h2></div>
-<div className="text-left">
-            <div className="mt-4 space-y-4">
+          <SectionHeading lead eyebrow="How it works" title="How Torb controls every infra change." className="mb-12">
+            <div className="space-y-4">
               <p className="cv-body-lg text-cv-muted">
                 Torb sits in your CI pipeline and every pull request. On each infra change it estimates the cost delta against policy your team wrote, then posts it inline with a fallback path and a full decision log.
               </p>
@@ -172,8 +164,7 @@ export default function PlatformEngPage() {
                 A linter runs the rule you wrote. Torb works out whether that rule is still right.
               </p>
             </div>
-          </div>
-</div>
+          </SectionHeading>
           <HowItWorksFlow
             workloads={HOW_IT_WORKS_WORKLOADS}
             chips={HOW_IT_WORKS_CHIPS}
@@ -188,16 +179,11 @@ export default function PlatformEngPage() {
       {/* THE PAYBACK */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
-<div className="text-left">
-            <SectionEyebrow className="mb-4">The payback</SectionEyebrow>
-            <h2 className="cv-h2 text-cv-ink">Most teams recover the cost from a single prevented regression.</h2></div>
-<div className="text-left">
-            <p className="cv-body-lg text-cv-ink/75 mt-5">
+          <SectionHeading lead eyebrow="The payback" title="Most teams recover the cost from a single prevented regression.">
+            <p className="cv-body-lg text-cv-ink/75">
               In a typical pre-production review, Torb flags around $2,400 of monthly spend before it ships. One catch pays for the tool.
             </p>
-          </div>
-</div>
+          </SectionHeading>
           <div className="mx-auto mt-10 max-w-md">
             <Panel className="justify-center gap-2.5 p-4" chrome="torb.app/payback">
               <div className="flex items-center justify-between rounded-md border border-cv-line/60 px-3.5 py-4 text-xs dark:border-white/10">

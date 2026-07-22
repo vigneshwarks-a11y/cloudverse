@@ -8,6 +8,7 @@
 
 import type { ReactNode } from "react";
 import { CardLightEdge } from "@/components/product/BentoChrome";
+import { SectionHeading } from "@/components/SectionHeading";
 import { CloudWidget, AIWidget, DataWidget, SaasWidget } from "@/components/product/finops/DomainWidgets";
 
 /* module hue + AA-tuned text token per domain */
@@ -160,16 +161,10 @@ export function DomainDepth() {
   return (
     <section className="cv-section bg-cv-surface" data-testid="section-domain-depth">
       <div className="cv-container">
-        <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
-<div className="text-left">
-          <h2 className="cv-h2 max-w-3xl text-cv-ink">What each domain gets, in depth.</h2></div>
-<div className="text-left">
-          <p className="mt-5 cv-body-lg text-cv-ink/70">
-            The same model runs across every domain, with capabilities tuned to how each one actually
-            spends.
-          </p>
-        </div>
-</div>
+        <SectionHeading lead title="What each domain gets, in depth.">
+          The same model runs across every domain, with capabilities tuned to how each one actually
+          spends.
+        </SectionHeading>
 
         {/* Row 1 — two wide cards */}
         <div className="mt-12 grid gap-5 lg:grid-cols-2">

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, CheckCircle } from "@/lib/solar-icons";
+import { SectionHeading } from "@/components/SectionHeading";
 
 /* DataX integrations — the home-style logo section (centered heading + logo
    tiles + trust line + "View all integrations"), scoped to the warehouses and
@@ -51,16 +52,9 @@ export function DataxIntegrations() {
 
       <div className="cv-container relative z-10">
         {/* Heading — two-column */}
-        <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
-          <div className="text-left">
-            <h2 className="cv-h2 text-cv-ink">Connects to the stack your teams already use.</h2>
-          </div>
-          <div className="text-left">
-            <p className="cv-body text-cv-ink/70">
-              Warehouses, lakehouses, and pipelines, connected once.
-            </p>
-          </div>
-        </div>
+        <SectionHeading title="Connects to the stack your teams already use.">
+          Warehouses, lakehouses, and pipelines, connected once.
+        </SectionHeading>
 
         {/* Warehouse logo tiles */}
         <div className="mt-14 flex flex-wrap justify-center gap-x-8 gap-y-10 sm:gap-x-14">

@@ -1,6 +1,7 @@
-/* Shared subsection header — the site-wide "lead-in" rhythm that mirrors the
-   hero: eyebrow pill + heading on the LEFT, supporting intro paragraph on the
-   RIGHT, collapsing to a stacked left-aligned column below lg. When no intro is
+/* Shared subsection header — the site-wide "lead-in" rhythm. The eyebrow pill
+   sits on top; below it, the heading and the supporting intro paragraph are
+   grouped together in one row (heading LEFT, intro RIGHT, top-aligned),
+   collapsing to a stacked left-aligned column below lg. When no intro is
    passed it renders a single left-aligned heading block (no empty column).
    cv-* tokens, theme-aware. Server component. */
 
@@ -34,8 +35,8 @@ export function SectionHeading({
   lead?: boolean;
   className?: string;
 }) {
-  const heading = (
-    <div className="flex flex-col items-start text-left">
+  return (
+    <div className={"text-left " + className}>
       {eyebrow && (
         <span
           className={
@@ -46,24 +47,18 @@ export function SectionHeading({
           {eyebrow}
         </span>
       )}
-      <h2 className="cv-h2 text-balance text-cv-ink">{title}</h2>
-    </div>
-  );
-
-  // No intro → single left-aligned heading block, no empty second column.
-  if (!children) {
-    return <div className={"max-w-3xl " + className}>{heading}</div>;
-  }
-
-  // Bottom-align the two columns: the description's last line sits level with
-  // the heading's last line (eyebrow floats above on the left). Maintained
-  // site-wide via this component.
-  return (
-    <div className={"grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16 " + className}>
-      {heading}
-      <div className={(lead ? "cv-body-lg" : "cv-body") + " text-pretty text-cv-ink/70"}>
-        {children}
-      </div>
+      {children ? (
+        // Header + intro grouped in one row: heading left, intro right,
+        // top-aligned; stacks to a single column below lg.
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
+          <h2 className="cv-h2 text-balance text-cv-ink lg:max-w-2xl">{title}</h2>
+          <div className={(lead ? "cv-body-lg" : "cv-body") + " text-pretty text-cv-ink/70 lg:max-w-md lg:pt-1"}>
+            {children}
+          </div>
+        </div>
+      ) : (
+        <h2 className="cv-h2 max-w-3xl text-balance text-cv-ink">{title}</h2>
+      )}
     </div>
   );
 }

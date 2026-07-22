@@ -5,6 +5,7 @@ import type { ComponentType } from "react";
 import type { IconProps } from "@solar-icons/react";
 import { DEMO_URL } from "@/lib/links";
 import { PageHero } from "@/components/PageHero";
+import { SectionHeading } from "@/components/SectionHeading";
 import AgentryProvidersMarquee from "@/components/product/AgentryProvidersMarquee";
 import IntegrationSteps from "@/components/product/IntegrationSteps";
 import IntegrationsCatalog from "@/components/product/IntegrationsCatalog";
@@ -107,16 +108,9 @@ export default function IntegrationsPage() {
           style={{ background: "radial-gradient(ellipse 60% 60% at 50% 0%, rgba(22,100,192,0.16), transparent 70%)" }}
         />
         <div className="cv-container relative z-10">
-          <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
-            <div className="text-left">
-              <h2 className="cv-h2 text-cv-ink">Every model provider, one endpoint.</h2>
-            </div>
-            <div className="text-left">
-              <p className="cv-body text-cv-ink/70">
-                Route across managed APIs and private deployments without changing your application code.
-              </p>
-            </div>
-          </div>
+          <SectionHeading title="Every model provider, one endpoint.">
+            Route across managed APIs and private deployments without changing your application code.
+          </SectionHeading>
           <AgentryProvidersMarquee />
           <p className="mt-14 text-center text-sm italic text-cv-muted">More providers added regularly.</p>
         </div>

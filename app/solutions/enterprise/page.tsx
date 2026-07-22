@@ -6,6 +6,7 @@ import { Panel, VIZ_RED } from "@/components/solution/CardChrome";
 import { PlatformCards } from "@/components/solution/PlatformCards";
 import { SolutionHero } from "@/components/solution/SolutionHero";
 import { SectionEyebrow } from "@/components/solution/SectionEyebrow";
+import { SectionHeading } from "@/components/SectionHeading";
 import { BulletGrid } from "@/components/solution/BulletGrid";
 import { WhoThisIsFor } from "@/components/solution/WhoThisIsFor";
 import { FaqBlock } from "@/components/FaqBlock";
@@ -92,19 +93,14 @@ export default function EnterprisePage() {
       <section className="cv-section">
         <div className="cv-container">
           <div className="flex flex-col items-start gap-10">
-            <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
-<div className="text-left">
-              <SectionEyebrow className="mb-4">The situation</SectionEyebrow>
-              <h2 className="cv-h2 text-cv-ink">The situation CIOs and CTOs are in.</h2></div>
-<div className="text-left">
-              <p className="cv-body-lg text-cv-ink/80 mt-6">
+            <SectionHeading lead eyebrow="The situation" title="The situation CIOs and CTOs are in.">
+              <p className="cv-body-lg text-cv-ink/80">
                 Cloud, AI, data, and engineering each sit in a separate tool, and cost decisions get made in places you don&apos;t have line of sight to. AI is reshaping the operational picture faster than governance can keep up.
               </p>
               <p className="cv-body-lg text-cv-ink/85 mt-4">
                 Chargeback and showback creak across business units. No one owns the total, day to day. One control plane is how you take it back.
               </p>
-            </div>
-</div>
+            </SectionHeading>
             <div className="mx-auto w-full max-w-3xl">
               <Panel className="justify-between p-6" chrome="enterprise.app/situation">
                 <span className="text-[10px] uppercase tracking-wide text-cv-muted">Four tools, four totals</span>
@@ -163,12 +159,8 @@ export default function EnterprisePage() {
       {/* HOW IT WORKS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16 mb-12">
-<div className="text-left">
-            <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
-            <h2 className="cv-h2 text-cv-ink">How the control plane runs the estate.</h2></div>
-<div className="text-left">
-            <div className="mt-4 space-y-4">
+          <SectionHeading lead eyebrow="How it works" title="How the control plane runs the estate." className="mb-12">
+            <div className="space-y-4">
               <p className="cv-body-lg text-cv-muted">
                 CloudVerse connects every cloud, AI provider, warehouse, and pipeline read-only, then provisions access, governs policy and residency, and reports chargeback that reconciles across business units.
               </p>
@@ -176,8 +168,7 @@ export default function EnterprisePage() {
                 Four tools show four slices of the estate. One control plane shows the total, and who owns it.
               </p>
             </div>
-          </div>
-</div>
+          </SectionHeading>
           <HowItWorksFlow
             workloads={HOW_IT_WORKS_WORKLOADS}
             chips={HOW_IT_WORKS_CHIPS}

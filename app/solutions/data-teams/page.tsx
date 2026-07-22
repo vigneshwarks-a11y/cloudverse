@@ -7,6 +7,7 @@ import { DataXAttributionMock } from "@/components/solution/DataXAttributionMock
 import { Panel, CodeLine, Pill, VIZ_AMBER, VIZ_RED } from "@/components/solution/CardChrome";
 import { SolutionHero } from "@/components/solution/SolutionHero";
 import { SectionEyebrow } from "@/components/solution/SectionEyebrow";
+import { SectionHeading } from "@/components/SectionHeading";
 import { BulletGrid } from "@/components/solution/BulletGrid";
 import { WhoThisIsFor } from "@/components/solution/WhoThisIsFor";
 import { FaqBlock } from "@/components/FaqBlock";
@@ -90,19 +91,14 @@ export default function DataTeamsPage() {
       <section className="cv-section">
         <div className="cv-container">
           <div className="flex flex-col items-start gap-10">
-            <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
-<div className="text-left">
-              <SectionEyebrow className="mb-4">The situation</SectionEyebrow>
-              <h2 className="cv-h2 text-cv-ink">The situation data teams are in.</h2></div>
-<div className="text-left">
-              <p className="cv-body-lg text-cv-ink/80 mt-6">
+            <SectionHeading lead eyebrow="The situation" title="The situation data teams are in.">
+              <p className="cv-body-lg text-cv-ink/80">
                 Warehouse spend is unpredictable and rarely maps to a team or product. A single unpruned query scans hundreds of gigabytes; run on a schedule, it compounds.
               </p>
               <p className="cv-body-lg text-cv-ink font-medium mt-4">
                 And now AI workloads are reading from your warehouses at scale, on budgets that were never sized for them, often from AI-assisted code with no obvious owner. DataX finds these automatically, with attribution down to the SQL.
               </p>
-            </div>
-</div>
+            </SectionHeading>
             <div className="mx-auto w-full max-w-3xl">
               <Panel className="justify-between p-6" chrome="datax.app/situation">
                 <div className="flex items-center justify-between">
@@ -165,12 +161,8 @@ export default function DataTeamsPage() {
       {/* HOW IT WORKS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16 mb-12">
-<div className="text-left">
-            <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
-            <h2 className="cv-h2 text-cv-ink">How DataX controls every warehouse dollar.</h2></div>
-<div className="text-left">
-            <div className="mt-4 space-y-4">
+          <SectionHeading lead eyebrow="How it works" title="How DataX controls every warehouse dollar." className="mb-12">
+            <div className="space-y-4">
               <p className="cv-body-lg text-cv-muted">
                 DataX sits alongside your warehouses over a read-only role. On every query it attributes the cost to an owner through the dbt DAG, catches the patterns that compound, and applies the fix once you approve it.
               </p>
@@ -178,8 +170,7 @@ export default function DataTeamsPage() {
                 A cost explorer shows the spend. DataX works out who caused it, and what to do next.
               </p>
             </div>
-          </div>
-</div>
+          </SectionHeading>
           <HowItWorksFlow
             workloads={HOW_IT_WORKS_WORKLOADS}
             chips={HOW_IT_WORKS_CHIPS}

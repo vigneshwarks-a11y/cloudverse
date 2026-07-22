@@ -10,6 +10,7 @@ import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { Dashboard } from "@/components/home/AgentryOrchestration";
 import { SolutionHero } from "@/components/solution/SolutionHero";
 import { SectionEyebrow } from "@/components/solution/SectionEyebrow";
+import { SectionHeading } from "@/components/SectionHeading";
 import { BulletGrid } from "@/components/solution/BulletGrid";
 
 export const metadata: Metadata = {
@@ -74,19 +75,14 @@ export default function FinOpsTeamsPage() {
       <section className="cv-section">
         <div className="cv-container">
           <div className="flex flex-col items-start gap-10">
-            <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
-<div className="text-left">
-              <SectionEyebrow className="mb-4">The situation</SectionEyebrow>
-              <h2 className="cv-h2 text-cv-ink text-balance">The situation FinOps teams are in.</h2></div>
-<div className="text-left">
-              <p className="cv-body-lg text-cv-ink/80 mt-6">
+            <SectionHeading lead eyebrow="The situation" title="The situation FinOps teams are in.">
+              <p className="cv-body-lg text-cv-ink/80">
                 The invoice is on time. The explanation isn&apos;t. Your dashboards are accurate and your recommendations get ignored, because they don&apos;t reach the person who can act, with the context to act on.
               </p>
               <p className="cv-body-lg text-cv-ink/85 mt-4">
                 And now AI spend is landing in places where the value isn&apos;t quantified yet. One model across infrastructure, data, and AI is the only way the numbers reconcile.
               </p>
-            </div>
-</div>
+            </SectionHeading>
             <div className="mx-auto w-full max-w-3xl">
               <Panel className="justify-between p-6" chrome="finops.app/variance">
                 <div className="flex items-center justify-between">
@@ -143,12 +139,8 @@ export default function FinOpsTeamsPage() {
       {/* HOW IT WORKS — flow diagram */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16 mb-12">
-<div className="text-left">
-            <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
-            <h2 className="cv-h2 text-cv-ink">How compute economics works.</h2></div>
-<div className="text-left">
-            <div className="mt-4 space-y-4">
+          <SectionHeading lead eyebrow="How it works" title="How compute economics works." className="mb-12">
+            <div className="space-y-4">
               <p className="cv-body-lg text-cv-muted">
                 Modern AI stacks have observability and orchestration. What they lack is economic control at the decision point.
               </p>
@@ -156,8 +148,7 @@ export default function FinOpsTeamsPage() {
                 CloudVerse embeds economic decision logic across model selection, workload execution, and capacity commitments, so every compute decision is evaluated for cost, performance, and risk before it scales.
               </p>
             </div>
-          </div>
-</div>
+          </SectionHeading>
           <FinopsHowItWorks />
         </div>
       </section>
@@ -197,16 +188,11 @@ export default function FinOpsTeamsPage() {
       {/* HOW THIS IS DIFFERENT — two-column lead-in */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
-<div className="text-left">
-            <SectionEyebrow className="mb-4">The difference</SectionEyebrow>
-            <h2 className="cv-h2 text-cv-ink text-balance">How this is different</h2></div>
-<div className="text-left">
-            <p className="cv-body-lg mt-4 text-cv-ink/80">
+          <SectionHeading lead eyebrow="The difference" title="How this is different">
+            <p className="cv-body-lg text-cv-ink/80">
               Dashboards explain the invoice. CloudVerse governs the decisions that shape it: PR-level checks in engineering workflows, AI and GPU economics, and warehouse query attribution. All on one model.
             </p>
-          </div>
-</div>
+          </SectionHeading>
 
           {/* Product screen mockup (reused from the home Agentry orchestration section) */}
           <div className="mt-12 lg:mt-16">

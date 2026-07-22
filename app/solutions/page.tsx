@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Buildings, CheckCircle, Code2, Cpu, Database, UsersGroupRounded } from "@/lib/solar-icons";
 import { SolutionHero } from "@/components/solution/SolutionHero";
 import { SectionEyebrow } from "@/components/solution/SectionEyebrow";
+import { SectionHeading } from "@/components/SectionHeading";
 import { Panel, VIZ_BLUE } from "@/components/solution/CardChrome";
 
 export const metadata: Metadata = {
@@ -70,15 +71,9 @@ export default function Page() {
       <section className="cv-section">
         <div className="cv-container">
           <div className="flex flex-col items-start gap-10">
-            <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
-<div className="text-left">
-              <h2 className="cv-h2 text-cv-ink mb-5">Different jobs. The same missing piece.</h2></div>
-<div className="text-left">
-              <p className="cv-body-lg text-cv-ink/80">
-                Finance can&apos;t explain the bill. Engineering commits the spend but never sees it. AI runs as a side process no one owns. Every team is accountable for a slice of the same problem: cost decided in one place, felt in another. CloudVerse connects the decision to the dollar, so each team works from one record instead of four tools.
-              </p>
-            </div>
-</div>
+            <SectionHeading lead title="Different jobs. The same missing piece.">
+              Finance can&apos;t explain the bill. Engineering commits the spend but never sees it. AI runs as a side process no one owns. Every team is accountable for a slice of the same problem: cost decided in one place, felt in another. CloudVerse connects the decision to the dollar, so each team works from one record instead of four tools.
+            </SectionHeading>
             <div className="mx-auto w-full max-w-3xl">
               <Panel className="justify-between p-6" chrome="cloudverse.app/estate">
                 <span className="text-[10px] uppercase tracking-wide text-cv-muted">Four teams, four partial views</span>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { SectionHeading } from "@/components/SectionHeading";
 
 /* "No black boxes." — a designed decision-trace card showing the raw JSON of a
    routing decision, so nothing is hidden. */
@@ -54,21 +55,15 @@ export default function NoBlackBoxes({ traceJson }: { traceJson: string }) {
           className="flex flex-col items-start gap-10"
         >
           {/* headline + description */}
-          <div
-            className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16"
-            style={rise(1)}
-          >
-            <div className="text-left">
-              <h2 className="cv-h2 text-cv-ink">No black boxes.</h2>
-            </div>
-            <div className="text-left">
-              <p className="cv-body-lg text-cv-ink/75">
+          <div style={rise(1)}>
+            <SectionHeading lead title="No black boxes.">
+              <p>
                 Every routing decision includes an evidence summary: the constraints active, the routes evaluated, the one selected, and why. If you can&apos;t explain a decision, you can&apos;t govern it.
               </p>
-              <p className="text-cv-ink/75 mt-8">
+              <p className="mt-8 text-base">
                 SOC2 and ISO-aligned architecture. Audit trails, access controls, and policy enforcement structured to support compliance documentation. Specific certification status confirmed during your evaluation.
               </p>
-            </div>
+            </SectionHeading>
           </div>
 
           {/* decision-trace card (raw JSON) */}

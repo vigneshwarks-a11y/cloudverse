@@ -73,29 +73,25 @@ export default function HomePage() {
         {/* HERO */}
         <section className="relative pt-36 pb-16 sm:pt-48 lg:pt-56 lg:pb-24">
           <div className="max-w-cv relative z-10 mx-auto px-5 sm:px-6 lg:px-8">
-            <div className="grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:items-center lg:gap-16">
-              {/* Left: eyebrow → headline → CTAs */}
-              <div className="flex flex-col items-start text-left">
-                <HeroEyebrow accent="blue">The Enterprise AI Control Plane</HeroEyebrow>
-                <h1 className="cv-h1 mt-4 text-balance leading-[1.08] text-cv-ink">
-                  Govern every AI execution.{" "}
-                  <span className="text-cv-blue dark:text-cv-blue-light">Prove the economics behind it.</span>
-                </h1>
-                <div className="mt-10 flex flex-col items-start gap-3 sm:mt-12 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
-                  <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-hero-demo">
-                    Book a demo
-                  </Link>
-                  <Link href="/contact" className="cv-btn-ghost" data-testid="link-hero-audit">
-                    Request a free AI cost &amp; risk audit
-                  </Link>
-                </div>
-              </div>
-              {/* Right: subhead */}
-              <div className="flex flex-col items-start text-left">
-                <p className="cv-body text-pretty text-cv-ink/70">
-                  One system of record for every agent, model route, prompt, and dollar of AI spend, with governance enforced in the execution path, not a report after the fact.
-                </p>
-              </div>
+            {/* Eyebrow on top */}
+            <HeroEyebrow accent="blue">The Enterprise AI Control Plane</HeroEyebrow>
+            {/* Headline + subhead grouped in one row (stacks below lg) */}
+            <div className="mt-4 flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
+              <h1 className="cv-h1 text-balance leading-[1.08] text-cv-ink lg:flex-1">
+                Govern every AI execution.{" "}
+                <span className="text-cv-blue dark:text-cv-blue-light">Prove the economics behind it.</span>
+              </h1>
+              <p className="cv-body max-w-[60ch] text-pretty text-cv-ink/70 lg:w-80 lg:shrink-0 lg:pt-2">
+                One system of record for every agent, model route, prompt, and dollar of AI spend, with governance enforced in the execution path, not a report after the fact.
+              </p>
+            </div>
+            <div className="mt-10 flex flex-col items-start gap-3 sm:mt-12 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+              <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-hero-demo">
+                Book a demo
+              </Link>
+              <Link href="/contact" className="cv-btn-ghost" data-testid="link-hero-audit">
+                Request a free AI cost &amp; risk audit
+              </Link>
             </div>
           </div>
         </section>
