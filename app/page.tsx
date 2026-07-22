@@ -6,16 +6,16 @@ import { HeroSquares, HeroEyebrow } from "@/components/PageHero";
 import { ProductVideo } from "@/components/home/ProductVideo";
 import { FaqBlock } from "@/components/FaqBlock";
 import { HardcodeCost } from "@/components/home/HardcodeCost";
-import { BeforeAfterAix } from "@/components/home/BeforeAfterAix";
-import { HowAixWorks } from "@/components/home/HowAixWorks";
+import { BeforeAfterAgentry } from "@/components/home/BeforeAfterAgentry";
+import { HowAgentryWorks } from "@/components/home/HowAgentryWorks";
 import { CostOfNotRouting } from "@/components/home/CostOfNotRouting";
 import { NotAGateway } from "@/components/home/NotAGateway";
-import { AixGovernance } from "@/components/home/AixGovernance";
-import { AixDeployment } from "@/components/home/AixDeployment";
+import { AgentryGovernance } from "@/components/home/AgentryGovernance";
+import { AgentryDeployment } from "@/components/home/AgentryDeployment";
 import { TechSpendCrossLink } from "@/components/home/TechSpendCrossLink";
 import { IntegrationsMarquee } from "@/components/home/IntegrationsMarquee";
 import { VendorSovereignty } from "@/components/home/VendorSovereignty";
-import { AixOrchestration } from "@/components/home/AixOrchestration";
+import { AgentryOrchestration } from "@/components/home/AgentryOrchestration";
 import { TestimonialsCarousel } from "@/components/home/TestimonialsCarousel";
 import { DEMO_URL } from "@/lib/links";
 import { GuidesResources } from "@/components/home/GuidesResources";
@@ -45,20 +45,20 @@ const HOME_FAQS = [
     a: "The system that discovers every AI agent and model in use, governs execution in real time (budgets, policy, routing, kill switch), and records every call as evidence. It sets policy before a request runs and proves cost and outcome after.",
   },
   {
-    q: "How is AIX different from an AI gateway?",
-    a: "A gateway runs the routing rule you already wrote. AIX discovers what's actually running across your estate, including agents nobody told you about, and enforces budget, identity, and policy on every call, not just the ones already wired through a gateway.",
+    q: "How is Agentry different from an AI gateway?",
+    a: "A gateway runs the routing rule you already wrote. Agentry discovers what's actually running across your estate, including agents nobody told you about, and enforces budget, identity, and policy on every call, not just the ones already wired through a gateway.",
   },
   {
-    q: "Does AIX proxy my traffic or add latency?",
-    a: "Routing overhead is under 15ms per request. AIX can operate as a decision layer without mediating all traffic. Execution stays in your control.",
+    q: "Does Agentry proxy my traffic or add latency?",
+    a: "Routing overhead is under 15ms per request. Agentry can operate as a decision layer without mediating all traffic. Execution stays in your control.",
   },
   {
     q: "What happens when a model is deprecated or a provider goes down?",
-    a: "Every route carries a fallback. AIX reroutes within your constraints, and your prompts, policies, and audit trail keep working because they live in your control plane, not the vendor's.",
+    a: "Every route carries a fallback. Agentry reroutes within your constraints, and your prompts, policies, and audit trail keep working because they live in your control plane, not the vendor's.",
   },
   {
-    q: "Can AIX run entirely inside our own environment?",
-    a: "Yes. AIX deploys into your cloud tenancy or on-premises; the data plane stays inside your boundary, and prompt capture is a per-workload policy: full capture, redacted, or metadata-only.",
+    q: "Can Agentry run entirely inside our own environment?",
+    a: "Yes. Agentry deploys into your cloud tenancy or on-premises; the data plane stays inside your boundary, and prompt capture is a per-workload policy: full capture, redacted, or metadata-only.",
   },
   {
     q: "How fast can we see this on real workloads?",
@@ -96,7 +96,7 @@ export default function HomePage() {
                 Private deployment. Your cloud, your data plane, your keys.
               </p>
               <div className="mt-4 flex flex-col items-center gap-2 sm:flex-row sm:gap-6">
-                <Link href="/platform/aix" className="text-sm text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-2 transition-colors flex items-center gap-1" data-testid="link-hero-platform">
+                <Link href="/platform/agentry" className="text-sm text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-2 transition-colors flex items-center gap-1" data-testid="link-hero-platform">
                   See the platform <ArrowRight weight="Linear" size={13} />
                 </Link>
                 <Link href="/connect" className="text-sm text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-2 transition-colors flex items-center gap-1" data-testid="link-hero-walkthrough">
@@ -117,11 +117,11 @@ export default function HomePage() {
       {/* AI COMPUTE IS TOO EXPENSIVE TO HARDCODE */}
       <HardcodeCost />
 
-      {/* BEFORE / AFTER AIX */}
-      <BeforeAfterAix />
+      {/* BEFORE / AFTER AGENTRY */}
+      <BeforeAfterAgentry />
 
-      {/* HOW AIX WORKS — DISCOVER · GOVERN · PROVE */}
-      <HowAixWorks />
+      {/* HOW AGENTRY WORKS — DISCOVER · GOVERN · PROVE */}
+      <HowAgentryWorks />
 
       {/* INTEGRATIONS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black relative overflow-hidden">
@@ -167,10 +167,10 @@ export default function HomePage() {
       </section>
 
       {/* WHAT IT DOES FOR YOU ON DAY ONE */}
-      <AixGovernance />
+      <AgentryGovernance />
 
       {/* ARCHITECTURE — DEPLOYED IN YOUR ENVIRONMENT */}
-      <AixDeployment />
+      <AgentryDeployment />
 
       {/* THE COST OF NOT ROUTING */}
       <CostOfNotRouting />
@@ -181,8 +181,8 @@ export default function HomePage() {
       {/* VENDOR SOVEREIGNTY - Own your stuff */}
       <VendorSovereignty />
 
-      {/* AIX ORCHESTRATION - One system of record */}
-      <AixOrchestration />
+      {/* AGENTRY ORCHESTRATION - One system of record */}
+      <AgentryOrchestration />
 
       {/* TESTIMONIALS / PROOF */}
       <TestimonialsCarousel />

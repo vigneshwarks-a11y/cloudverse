@@ -60,8 +60,8 @@ function Card({ uc }: { uc: UseCase }) {
         <div className="flex flex-1 flex-col gap-5">
           <Block label="Situation" text={uc.sit} accent={CYAN} />
           <Block label="The problem" text={uc.prob} accent={RED} />
-          <Block label="How AIX solves it" text={uc.how} accent={CYAN} />
-          <Block label="After AIX" text={uc.after} accent={RED} />
+          <Block label="How Agentry solves it" text={uc.how} accent={CYAN} />
+          <Block label="After Agentry" text={uc.after} accent={RED} />
         </div>
       </div>
     </div>

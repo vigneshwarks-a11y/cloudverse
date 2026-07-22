@@ -34,7 +34,7 @@ const PERSONAS: Persona[] = [
   },
 ];
 
-export default function WhoDevxFor() {
+export default function WhoTorbFor() {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -57,7 +57,7 @@ export default function WhoDevxFor() {
   return (
     <section className="cv-section bg-cv-surface2 dark:bg-black">
       <div className="cv-container">
-        <h2 className="cv-h2 text-cv-ink mb-10 mx-auto max-w-3xl text-center">Who DevX is for</h2>
+        <h2 className="cv-h2 text-cv-ink mb-10 mx-auto max-w-3xl text-center">Who Torb is for</h2>
         <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
           {PERSONAS.map(({ title, body, Icon, color }, i) => (
             <div

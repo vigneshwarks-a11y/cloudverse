@@ -37,9 +37,9 @@ export const blogPosts: BlogPost[] = [
     author: "CloudVerse Team"
   },
   {
-    title: "How DevX Catches Cost Regressions Before Production",
-    slug: "devx-cost-regressions",
-    summary: "Engineering changes account for the majority of cloud cost variance. DevX evaluates IaC and application code across 14+ languages to surface economic impact pre-merge.",
+    title: "How Torb Catches Cost Regressions Before Production",
+    slug: "torb-cost-regressions",
+    summary: "Engineering changes account for the majority of cloud cost variance. Torb evaluates IaC and application code across 14+ languages to surface economic impact pre-merge.",
     category: "Developer FinOps",
     readingTime: "7 min",
     date: "2026-01-20",
@@ -48,7 +48,7 @@ export const blogPosts: BlogPost[] = [
   {
     title: "Rightsizing AI Inference: Matching Models to Workloads",
     slug: "rightsizing-ai-inference",
-    summary: "Not every prompt needs GPT-4. AIx evaluates cost-performance curves at runtime so teams can select the most economical model without quality regressions.",
+    summary: "Not every prompt needs GPT-4. Agentry evaluates cost-performance curves at runtime so teams can select the most economical model without quality regressions.",
     category: "AI Infrastructure",
     readingTime: "9 min",
     date: "2026-01-12",

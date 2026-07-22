@@ -170,7 +170,7 @@ const STEPS: Step[] = [
   {
     n: "1",
     title: "Cost arbitrage",
-    body: "AIX routes to the lowest-cost model that clears your quality floor.",
+    body: "Agentry routes to the lowest-cost model that clears your quality floor.",
     illo: <CostIllo />,
   },
   {
@@ -187,7 +187,7 @@ const STEPS: Step[] = [
   },
 ];
 
-export default function AixMechanismsSteps() {
+export default function AgentryMechanismsSteps() {
   return (
     <div className="relative w-full">
       {/* corner cross-marks */}

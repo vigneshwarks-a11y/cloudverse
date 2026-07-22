@@ -1,6 +1,6 @@
 # CloudVerse — Website Content & Implementation Specification
 
-**Version 2.0 · AIX-led rebuild · For design, content, and engineering**
+**Version 2.0 · Agentry-led rebuild · For design, content, and engineering**
 
 > The single source of truth for the CloudVerse rebuild. It covers strategy, information
 > architecture, page-by-page copy (written to ship), the media/asset system (videos,
@@ -41,10 +41,10 @@
 ## 1. How to use this document
 
 Today there are two sites telling two stories. `CloudVerse-Website 2` (Next.js) sells a
-broad, equal-weight four-module platform. `cloudverse-aix-changes` (Vite SPA) sells AIX as a
+broad, equal-weight four-module platform. `cloudverse-agentry-changes` (Vite SPA) sells Agentry as a
 "system of record for AI execution." We're picking one story and one codebase.
 
-**The story:** lead with AI. AIX is the headline. FinOps, DevX, and DataX are the proof that
+**The story:** lead with AI. Agentry is the headline. FinOps, Torb, and DataX are the proof that
 we've done this before and the reason a buyer trusts us with their AI.
 
 **The codebase:** build on the Next.js App Router site. It's the only one of the two that's
@@ -81,7 +81,7 @@ Conventions:
 
 > **CloudVerse is the control plane for enterprise AI. The FinOps platform underneath is how we prove it pays for itself.**
 
-Lead with AIX everywhere a prospect first meets us. FinOps, DevX, and DataX hold up the
+Lead with Agentry everywhere a prospect first meets us. FinOps, Torb, and DataX hold up the
 foundation. They don't open the conversation.
 
 ### 2.2 The core idea — an operating system for the AI you're already running
@@ -91,8 +91,8 @@ Copilots. Internal assistants. RAG pipelines. Fine-tuned models. A drawer full o
 subscriptions nobody renews on purpose. None of it shows up on an org chart, and no single
 person can tell you what it costs, who's using it, or whether it's earning its keep.
 
-AIX is the system that runs that workforce. The way an HRMS holds the record for every
-employee, AIX holds the record for every model and agent:
+Agentry is the system that runs that workforce. The way an HRMS holds the record for every
+employee, Agentry holds the record for every model and agent:
 
 - **Onboarded** — every model call, agent run, RAG workflow, GPU job, and inference API gets
   discovered and put on the books.
@@ -101,7 +101,7 @@ employee, AIX holds the record for every model and agent:
 - **Reviewed** — evals, quality and latency scoring, KPIs, and the ROI to back them up.
 - **Audited** — every decision logged, explainable, and ready for a compliance review.
 
-Use the HRMS line where it earns its place (the hero support copy, the AIX page, a sales
+Use the HRMS line where it earns its place (the hero support copy, the Agentry page, a sales
 deck). It makes an abstract category land in one sentence for a CFO, a CIO, or a Head of AI.
 
 ### 2.3 Before, during, and after execution
@@ -109,7 +109,7 @@ deck). It makes an abstract category land in one sentence for a CFO, a CIO, or a
 This is the diagram everything hangs off. Each competitor owns one of these windows. We own
 all three.
 
-| Window | What's happening | What AIX does |
+| Window | What's happening | What Agentry does |
 |---|---|---|
 | **Before** | A request, agent run, or job is about to fire | Apply the owner, budget, policy, allowed providers, residency, and quality floor before a token leaves |
 | **During** | The request routes and runs | Score every route live on cost, latency, quality, and compliance. Pick the best fit, hold a fallback, enforce the cap in real time |
@@ -120,9 +120,9 @@ all three.
 - FinOps tools (Apptio, Flexera, CloudHealth, Finout) live in **after**, cloud only.
 - CloudVerse is the only one in all three, across AI, cloud, data, and engineering.
 
-### 2.4 The five things AIX does
+### 2.4 The five things Agentry does
 
-Every AIX section maps back to one of these.
+Every Agentry section maps back to one of these.
 
 1. **Routing** — send each workload to the right model for its cost, latency, quality, and compliance needs, automatically.
 2. **Visibility** — one view across models, tokens, teams, projects, agents, subscriptions, and APIs.
@@ -139,10 +139,10 @@ A visitor should recognize themselves in the first five seconds. Trigger languag
 
 | Persona | Titles | What they're on the hook for | Leads with |
 |---|---|---|---|
-| **Head of AI / CAIO** (primary) | Head of AI, Chief AI Officer, VP/Dir MLOps, Head of ML Eng | Making AI spend defensible and scalable without slowing teams down | **AIX** |
-| CIO / CTO | CIO, CTO, VP Eng, Head of Cloud/Infra | Governing one estate — cloud, AI, data, engineering — from one place | AIX + FinOps + DevX |
-| CFO / Finance | CFO, VP Finance, FP&A, Tech Finance | Explaining, allocating, and forecasting spend, AI included, and defending it | FinOps + AIX |
-| Platform Eng | Platform/DevX leads, SRE leadership | Putting cost in the workflow before changes ship | DevX + AIX |
+| **Head of AI / CAIO** (primary) | Head of AI, Chief AI Officer, VP/Dir MLOps, Head of ML Eng | Making AI spend defensible and scalable without slowing teams down | **Agentry** |
+| CIO / CTO | CIO, CTO, VP Eng, Head of Cloud/Infra | Governing one estate — cloud, AI, data, engineering — from one place | Agentry + FinOps + Torb |
+| CFO / Finance | CFO, VP Finance, FP&A, Tech Finance | Explaining, allocating, and forecasting spend, AI included, and defending it | FinOps + Agentry |
+| Platform Eng | Platform/Torb leads, SRE leadership | Putting cost in the workflow before changes ship | Torb + Agentry |
 | Data | Head of Data, Data Platform leads | Making shared warehouse and pipeline spend allocable | DataX + FinOps |
 
 ### 2.6 The outcomes we sell
@@ -218,9 +218,9 @@ These are the fingerprints of AI copy. None of them ship.
 ### 3.4 Naming, locked
 
 - Company / platform: **CloudVerse**
-- Flagship: **AIX** (one spelling, brand-wide — confirm AIX vs AIx in §14)
-- Modules: **AIX**, **FinOps Platform**, **DevX**, **DataX**
-- AIX tagline: **"Optimizing the future of enterprise AI consumption."**
+- Flagship: **Agentry** (one spelling, brand-wide — lock it per §14)
+- Modules: **Agentry**, **FinOps Platform**, **Torb**, **DataX**
+- Agentry tagline: **"Optimizing the future of enterprise AI consumption."**
 - Category line: **"the control plane for enterprise AI."**
 - Phrases that recur: **before, during, and after execution** · **the run ledger** ·
   **read-only by default** · **no black boxes** · **decision-time.**
@@ -243,8 +243,8 @@ the same pass.
 
 **Where the line sits on rule-of-three.** The audit kills *decorative* triads, padding that
 exists for rhythm ("fast, reliable, and scalable"). It keeps *functional* lists, where each
-item is a real, distinct thing: the four modules, the providers AIX routes across, the cost
-signals it scores on. "Route, govern, and meter" stays because AIX does three separate things.
+item is a real, distinct thing: the four modules, the providers Agentry routes across, the cost
+signals it scores on. "Route, govern, and meter" stays because Agentry does three separate things.
 "Visibility, control, and savings" goes, because it's three words for one vague promise.
 
 **Em-dash policy for ship copy.** Inside a quoted on-page string, default to a period or a
@@ -267,16 +267,16 @@ register" to avoid repeating yourself is the AI tell. Pick the term and keep it.
 
 | Stat | What it means | Use on |
 |---|---|---|
-| **40–90%** | AI cost cut on production workloads | Home, AIX, Solutions (Head of AI) |
-| **96.8%** | Lower inference cost vs a hardcoded Claude Sonnet setup (benchmarked) | AIX |
-| **28.5%** | Faster than that same hardcoded baseline (benchmarked) | AIX |
-| **<15ms** | Routing overhead AIX adds | AIX |
-| **10–100x** | Cost gap between the right model and the wrong one for a job | Home, AIX |
+| **40–90%** | AI cost cut on production workloads | Home, Agentry, Solutions (Head of AI) |
+| **96.8%** | Lower inference cost vs a hardcoded Claude Sonnet setup (benchmarked) | Agentry |
+| **28.5%** | Faster than that same hardcoded baseline (benchmarked) | Agentry |
+| **<15ms** | Routing overhead Agentry adds | Agentry |
+| **10–100x** | Cost gap between the right model and the wrong one for a job | Home, Agentry |
 | **$738,983** | Annualized cloud savings realized at Berkshire Hathaway HomeServices | Home, FinOps, About |
 | **$101,736 / $61,582** | Annual recovery / single-month recovery, same account | Home case study, FinOps |
-| **$2,400** | Spend caught in one pre-production review, before it shipped | DevX |
+| **$2,400** | Spend caught in one pre-production review, before it shipped | Torb |
 | **2–4 weeks** | No-fee proof-of-value | CTAs, demo page |
-| **30 minutes** | To connect your first account | Home, AIX |
+| **30 minutes** | To connect your first account | Home, Agentry |
 
 ### 4.2 Customers / logos
 
@@ -338,7 +338,7 @@ integrations explorer UX, the AI run-ledger card, and the before/during/after fr
 
 | Routes | Strategy | Why |
 |---|---|---|
-| Home, Platform, AIX, FinOps, DevX, DataX, Solutions, About, Integrations, Pricing | SSG | Rarely changes, needs to be fast and crawlable |
+| Home, Platform, Agentry, FinOps, Torb, DataX, Solutions, About, Integrations, Pricing | SSG | Rarely changes, needs to be fast and crawlable |
 | Resources, blog, glossary, case studies, comparisons (P2) | ISR (revalidate ~1h) | Updates without a redeploy |
 | Efficiency Snapshot, demo/connect forms, the app | SSR / client | Dynamic, user-specific |
 
@@ -364,7 +364,7 @@ voice). GEO is getting cited by generative engines. The tactics overlap.
   `twitter`, `alternates.canonical`.
 - Real semantic HTML. Comparison tables are `<table>` elements, not styled divs, so engines
   can parse and quote them.
-- Lowercase, hyphenated URLs (already good: `/platform/aix`).
+- Lowercase, hyphenated URLs (already good: `/platform/agentry`).
 - `sitemap.ts` and `robots.ts`.
 - `alt` text on every meaningful image; `next/image` everywhere.
 - Deliberate internal links: each page points to its parent module, its sibling modules, the
@@ -378,7 +378,7 @@ A small `<JsonLd>` component injects these:
 |---|---|
 | `Organization` (+ logo, `sameAs`) | Root layout |
 | `WebSite` (+ `SearchAction`) | Root layout |
-| `SoftwareApplication` / `Product`, one per module | AIX, FinOps, DevX, DataX |
+| `SoftwareApplication` / `Product`, one per module | Agentry, FinOps, Torb, DataX |
 | `BreadcrumbList` | Every nested page |
 | `FAQPage` | Any page with a FAQ block — high AEO value |
 | `Article` / `BlogPosting` | Blog and guides |
@@ -389,9 +389,9 @@ A small `<JsonLd>` component injects these:
   implied question, then expands. ("An AI control plane is the system that governs, routes, and
   meters every AI request across providers. CloudVerse runs that in all three windows of
   execution.")
-- **FAQ blocks** on home, AIX, FinOps, pricing, and solutions, marked up as `FAQPage`. Source
+- **FAQ blocks** on home, Agentry, FinOps, pricing, and solutions, marked up as `FAQPage`. Source
   them from §12 and from the real questions in the persona call-prep scripts.
-- **Question-shaped H2s** where they fit: "How does AIX cut AI costs?" "What does AIX cost?"
+- **Question-shaped H2s** where they fit: "How does Agentry cut AI costs?" "What does Agentry cost?"
 - **Tight definitions** for every category term (AI control plane, LLM routing, AI FinOps, unit
   economics, run ledger). Those sentences are what gets quoted.
 
@@ -399,7 +399,7 @@ A small `<JsonLd>` component injects these:
 
 - **Be the source of the number.** Put stats in plain text next to the claim, not locked inside
   an image or a chart. Generative engines quote text.
-- **Entity clarity.** Name CloudVerse, AIX, and the category the same way everywhere. A strong,
+- **Entity clarity.** Name CloudVerse, Agentry, and the category the same way everywhere. A strong,
   factual About page is what knowledge graphs read.
 - **`/llms.txt`** at the domain root: a plain-text map of the site and the key facts, for AI
   crawlers.
@@ -411,7 +411,7 @@ A small `<JsonLd>` component injects these:
 
 LCP < 2.5s, INP < 200ms, CLS < 0.1. `next/font` (Inter is already self-hosted), `next/image`,
 route-level code splitting, defer non-critical JS, keep hero text in the first HTML payload.
-Lighthouse ≥ 95 on home, AIX, and FinOps before launch. Note: the home and product heroes
+Lighthouse ≥ 95 on home, Agentry, and FinOps before launch. Note: the home and product heroes
 autoplay video — see §8.4 for keeping that off the critical path.
 
 ### 6.6 Keyword / intent map (starter)
@@ -419,9 +419,9 @@ autoplay video — see §8.4 for keeping that off the critical path.
 | Page | Intent cluster |
 |---|---|
 | Home | enterprise AI control plane, manage AI costs, AI governance platform |
-| AIX | LLM routing, AI gateway alternative, AI cost optimization, LLM FinOps |
+| Agentry | LLM routing, AI gateway alternative, AI cost optimization, LLM FinOps |
 | FinOps | FinOps platform, cloud cost management, multi-cloud cost allocation |
-| DevX | cost in pull request, engineering cost visibility, infracost alternative |
+| Torb | cost in pull request, engineering cost visibility, infracost alternative |
 | DataX | Snowflake cost allocation, warehouse chargeback, data platform cost |
 | Solutions/AI | AI spend governance, AI unit economics, Chief AI Officer tools |
 
@@ -438,15 +438,15 @@ design and build stay aligned.
 |---|---|---|
 | Primary blue | `#1664C0` | CTAs, links, FinOps identity |
 | Blue light | `#7CB8F8` / `#7C9BFF` | Highlights, hero accent text |
-| Routing blue | `#007CFF` / `#0066CC` | AIX "live/active" states |
+| Routing blue | `#007CFF` / `#0066CC` | Agentry "live/active" states |
 | Navy bg | `#050F1C` / `#0A0C14` / `#0B0B0F` | Dark heroes and sections |
-| AIX purple | `#6954D4` | AIX module identity |
+| Agentry purple | `#6954D4` | Agentry module identity |
 | FinOps teal | `#0E9E7A` / `--cv-teal` | FinOps, positive checks |
 | DataX amber | `#D97706` | DataX identity |
-| DevX | `#1664C0` (blue) | DevX identity |
+| Torb | `#1664C0` (blue) | Torb identity |
 | Ink / muted / line / surface | theme vars | Text, captions, borders, panels |
 
-Module color-coding is wayfinding — keep it consistent: AIX purple, FinOps teal, DevX blue,
+Module color-coding is wayfinding — keep it consistent: Agentry purple, FinOps teal, Torb blue,
 DataX amber.
 
 ### 7.2 Type
@@ -485,7 +485,7 @@ the rebuild should too. Here's the system, what we already have, and what has to
    `playsInline`, `preload="auto"`. 16:9. This is the highest-impact, highest-effort asset.
 2. **Screenshot** — a static product UI image, shipped in light and dark. The platform
    switcher on the home page cycles these. Cheaper than video, still needs real product UI.
-3. **Coded mockup** — a UI built in React, no image file. `BrowserFrame`, the DevX PR diff,
+3. **Coded mockup** — a UI built in React, no image file. `BrowserFrame`, the Torb PR diff,
    and the DataX `WarehouseIntel` chart are all coded. These never go stale and theme
    automatically. Prefer these for anything schematic.
 4. **Diagram** — a designed illustration: the control-plane map, the before/during/after flow,
@@ -507,24 +507,24 @@ the rebuild should too. Here's the system, what we already have, and what has to
 
 ### 8.3 What has to be produced (the gap)
 
-The flagship has no footage. AIX is now the headline and it has no video and no screenshots of
+The flagship has no footage. Agentry is now the headline and it has no video and no screenshots of
 its own. This is the top art-production priority.
 
 **Must produce:**
 
 | Asset | Type | For | Priority |
 |---|---|---|---|
-| AIX hero video | `[VIDEO]` | AIX hero, and likely the new home hero | P0 |
-| Routing decision UI (a request scored across providers, best-fit + fallback chosen) | `[SCREENSHOT]` or `[VIDEO]` | AIX "during execution," home | P0 |
-| Run-ledger card (owner · workload · model · cost · outcome · policy) | `[MOCKUP]` then `[SCREENSHOT]` | AIX, home | P0 |
-| Governance / policy dashboard | `[SCREENSHOT]` | AIX governance | P1 |
-| Cost-per-feature / per-tenant allocation view | `[SCREENSHOT]` | AIX FinOps section, FinOps page | P1 |
-| Before/during/after execution flow | `[DIAGRAM]` | Home, AIX, Platform | P0 |
-| Control-plane map (app → AIX → providers/GPUs) | `[DIAGRAM]` | Home hero bg, Platform | P0 |
-| Observer / Planner / Executor agent loop | `[DIAGRAM]` | AIX autonomous agents | P1 |
-| DevX PR cost comment | `[MOCKUP]` (exists as `DevxPrExample`) | DevX | have/extend |
+| Agentry hero video | `[VIDEO]` | Agentry hero, and likely the new home hero | P0 |
+| Routing decision UI (a request scored across providers, best-fit + fallback chosen) | `[SCREENSHOT]` or `[VIDEO]` | Agentry "during execution," home | P0 |
+| Run-ledger card (owner · workload · model · cost · outcome · policy) | `[MOCKUP]` then `[SCREENSHOT]` | Agentry, home | P0 |
+| Governance / policy dashboard | `[SCREENSHOT]` | Agentry governance | P1 |
+| Cost-per-feature / per-tenant allocation view | `[SCREENSHOT]` | Agentry FinOps section, FinOps page | P1 |
+| Before/during/after execution flow | `[DIAGRAM]` | Home, Agentry, Platform | P0 |
+| Control-plane map (app → Agentry → providers/GPUs) | `[DIAGRAM]` | Home hero bg, Platform | P0 |
+| Observer / Planner / Executor agent loop | `[DIAGRAM]` | Agentry autonomous agents | P1 |
+| Torb PR cost comment | `[MOCKUP]` (exists as `TorbPrExample`) | Torb | have/extend |
 | DataX warehouse attribution | `[MOCKUP]` (exists as `WarehouseIntel`) | DataX | have/extend |
-| AIX dashboard screenshot for the home platform switcher | `[SCREENSHOT]` | Home (replaces the reused `dash-*.svg`) | P1 |
+| Agentry dashboard screenshot for the home platform switcher | `[SCREENSHOT]` | Home (replaces the reused `dash-*.svg`) | P1 |
 | Real testimonial assets (quotes + names + logos/headshots) | content + `[LOGO]` | Home testimonials (currently placeholder slots) | P0 |
 
 **Video production notes (for whoever records):** capture at 2x/retina, hide PII and use
@@ -546,13 +546,13 @@ frame), no cursor jitter, dark UI theme to match the frames. Export `.mp4` (H.26
 
 ## 9. Global components
 
-### 9.1 Top navigation (AIX-led)
+### 9.1 Top navigation (Agentry-led)
 
 Sticky, transparent over the hero, solid on scroll. Desktop is a mega-menu; mobile is a
 full-screen drawer with grouped accordions. Extends `components/Nav.tsx`.
 
-- **Platform** ▾ — AIX first, as a larger featured tile (purple accent, the line "Optimizing
-  the future of enterprise AI consumption"). Then FinOps Platform, DevX, DataX. Footer link:
+- **Platform** ▾ — Agentry first, as a larger featured tile (purple accent, the line "Optimizing
+  the future of enterprise AI consumption"). Then FinOps Platform, Torb, DataX. Footer link:
   "See the whole platform →" `/platform`.
 - **Solutions** ▾ — Head of AI / AI Engineering · CIO / CTO · Finance / FinOps · Platform
   Engineering · Data Teams · Enterprise.
@@ -562,8 +562,8 @@ full-screen drawer with grouped accordions. Extends `components/Nav.tsx`.
 - **Pricing** → `/pricing` _[confirm, §14]_.
 - Right side: `Sign in` (ghost), **`Book a Demo`** (primary, `DEMO_URL`).
 
-That featured AIX tile is how we "lead with AI" structurally, not just on the home page.
-*Media:* `[LOGO]` module icons; AIX tile gets the purple treatment.
+That featured Agentry tile is how we "lead with AI" structurally, not just on the home page.
+*Media:* `[LOGO]` module icons; Agentry tile gets the purple treatment.
 
 ### 9.2 Footer
 
@@ -577,7 +577,7 @@ row: logo, copyright, social links (these are the `sameAs` for schema), SOC 2 / 
 |---|---|---|
 | `ProductVideo` | Glowing hero video frame, rises on scroll | have |
 | `FinOpsHero` | Tabbed video player | have |
-| `PlatformSurfaces` | Module switcher with cycling screenshots | have (reorder AIX first) |
+| `PlatformSurfaces` | Module switcher with cycling screenshots | have (reorder Agentry first) |
 | `Testimonials` | Expanding quote cards | have (needs real quotes — §8.3) |
 | `CTABand` | Closing CTA with orbit visual | have |
 | `CountUpStat` | Animated stat | have |
@@ -585,10 +585,10 @@ row: logo, copyright, social links (these are the `sameAs` for schema), SOC 2 / 
 | `FaqBlock` | Accordion FAQ | have (add `FAQPage` JSON-LD) |
 | `Lifecycle` | Before/during/after | have (re-point to execution framing) |
 | `SplitMockup` / `FeatureShowcase` / `BrowserFrame` | Copy + coded UI mockups | have |
-| `GovernanceBento` / `UseCaseBento` / `NoBlackBoxes` / `AixRoiSplit` | AIX blocks | have |
-| `DevxPrExample` / `WarehouseIntel` | DevX / DataX mockups | have |
+| `GovernanceBento` / `UseCaseBento` / `NoBlackBoxes` / `AgentryRoiSplit` | Agentry blocks | have |
+| `TorbPrExample` / `WarehouseIntel` | Torb / DataX mockups | have |
 | `RunLedgerCard` | Owner · cost · outcome record card | build (port `AIRecordCard`) |
-| `ControlPlaneDiagram` | App → AIX → providers | build |
+| `ControlPlaneDiagram` | App → Agentry → providers | build |
 | `JsonLd` | Structured-data injector | build |
 | `AnswerBlock` | Answer-first lead paragraph (AEO) | build |
 
@@ -596,15 +596,15 @@ row: logo, copyright, social links (these are the `sameAs` for schema), SOC 2 / 
 
 ## 10. Sitemap & information architecture
 
-Following the Next.js structure (the Portkey-derived north star), reordered so AIX leads.
+Following the Next.js structure (the Portkey-derived north star), reordered so Agentry leads.
 ✅ exists · ➕ new or renamed.
 
 ```
-/                              ✅ Home (AIX-led rebuild)
-/platform                      ➕ Platform overview (AIX first)
-/platform/aix                  ✅ AIX — flagship (major rewrite)
+/                              ✅ Home (Agentry-led rebuild)
+/platform                      ➕ Platform overview (Agentry first)
+/platform/agentry                  ✅ Agentry — flagship (major rewrite)
 /platform/finops               ✅ FinOps Platform
-/platform/devx                 ✅ DevX
+/platform/torb                 ✅ Torb
 /platform/datax                ✅ DataX
 /solutions                     ✅ Solutions index
 /solutions/ai-engineering      ✅ Head of AI / AI Engineering (lead persona)
@@ -642,7 +642,7 @@ its matching solution and a resource. Every page has a path to Book a Demo.
 
 ---
 
-### 11.1 Home (AIX-led)
+### 11.1 Home (Agentry-led)
 
 **Route:** `/` · **Goal:** in one scroll, a Head of AI, CIO, or CFO understands that CloudVerse
 runs enterprise AI, believes the proof, and books a demo. **Rendering:** SSG.
@@ -656,16 +656,16 @@ runs enterprise AI, believes the proof, and books a demo. **Rendering:** SSG.
 **Section 1 — Hero.** *Component:* `product/Hero` over `cv-hero-bg`.
 - **Eyebrow:** "THE CONTROL PLANE FOR ENTERPRISE AI"
 - **H1:** "Run your AI like you run the business."
-- **Subhead:** "Most companies can't tell you what their AI costs, who's running it, or whether it's any good. CloudVerse can. AIX puts every model and agent on one record: what ran, who owned it, what it cost, what it came back with. It runs on the same platform we already use for cloud, data, and engineering spend at companies like Berkshire Hathaway."
+- **Subhead:** "Most companies can't tell you what their AI costs, who's running it, or whether it's any good. CloudVerse can. Agentry puts every model and agent on one record: what ran, who owned it, what it cost, what it came back with. It runs on the same platform we already use for cloud, data, and engineering spend at companies like Berkshire Hathaway."
 - **Primary CTA:** "Book a Demo" → `DEMO_URL`
-- **Secondary CTA:** "See how AIX works" → `/platform/aix`
+- **Secondary CTA:** "See how Agentry works" → `/platform/agentry`
 - **Under CTAs:** "Connect your first account in under 30 minutes. No-fee proof of value in two to four weeks."
-- *Media:* `[DIAGRAM]` `ControlPlaneDiagram` as the hero backdrop — an app on the left, AIX in
+- *Media:* `[DIAGRAM]` `ControlPlaneDiagram` as the hero backdrop — an app on the left, Agentry in
   the middle, a fan of model and GPU providers on the right, one request animating through.
   **(design, P0.)**
 
 **Section 2 — Hero video.** *Component:* `ProductVideo`.
-- *Media:* `[VIDEO]` the AIX hero video, in the rising glow frame. **(record, P0.)** Until it
+- *Media:* `[VIDEO]` the Agentry hero video, in the rising glow frame. **(record, P0.)** Until it
   exists, fall back to `product-video.mp4` with a `poster` still.
 
 **Section 3 — Logo bar.** *Component:* `CustomerLogos`.
@@ -691,9 +691,9 @@ runs enterprise AI, believes the proof, and books a demo. **Rendering:** SSG.
   - **After it runs:** "Cost lands against the request, the feature, and the tenant. The run goes on the ledger with its outcome and an audit trail."
 - *Media:* `[DIAGRAM]` the before/during/after flow. **(design, P0.)**
 
-**Section 6 — What AIX does.** *Component:* 5-card grid (or bento), purple accent.
-- **H2:** "AIX is the operating system for your AI."
-- **Support line:** "An HRMS holds the record for every employee. AIX holds it for every model
+**Section 6 — What Agentry does.** *Component:* 5-card grid (or bento), purple accent.
+- **H2:** "Agentry is the operating system for your AI."
+- **Support line:** "An HRMS holds the record for every employee. Agentry holds it for every model
   and agent. Onboard it, route it, budget it, review it, audit it."
 - Five cards:
   1. **Routing** — "Every workload goes to the model that fits its cost, latency, and quality needs. Automatically. No code change when prices move."
@@ -701,20 +701,20 @@ runs enterprise AI, believes the proof, and books a demo. **Rendering:** SSG.
   3. **Optimization** — "Find the oversized model, the wasteful prompt, the subscription you're paying for twice. See the saving before you commit."
   4. **Governance & evals** — "Policy, access control, residency, vendor oversight, and quality checks. On by default, not bolted on."
   5. **Productivity** — "Measure what AI changed about engineering output, in hours and in dollars."
-- **CTA:** "Go deeper on AIX →" `/platform/aix`
+- **CTA:** "Go deeper on Agentry →" `/platform/agentry`
 - *Media:* `[SCREENSHOT]` the routing decision UI behind or beside the grid. **(capture, P0.)**
 
 **Section 7 — Proof band.** *Component:* `CountUpStat` row.
 - Stats: **40–90%** less AI spend · **96.8%** cheaper inference than a hardcoded setup (benchmarked) · **$738,983** recovered by one customer · **10–100x** the cost when the wrong model runs the job.
 
-**Section 8 — The platform (AIX leads).** *Component:* `PlatformSurfaces` (reorder AIX first).
+**Section 8 — The platform (Agentry leads).** *Component:* `PlatformSurfaces` (reorder Agentry first).
 - **Eyebrow:** "Platform overview"
-- **H2:** "AIX runs on the platform that already handles everything else."
+- **H2:** "Agentry runs on the platform that already handles everything else."
 - **Body:** "AI doesn't run in a vacuum. It sits on cloud infrastructure, pulls from your data
   platforms, and ships out of engineering. CloudVerse covers all of it from one place."
-- Module panels (AIX first, then FinOps, DevX, DataX), each with the existing one-liner and a
+- Module panels (Agentry first, then FinOps, Torb, DataX), each with the existing one-liner and a
   "Learn more →" link.
-- *Media:* `[SCREENSHOT]` the cycling dashboard per module. **AIX needs its own** (currently
+- *Media:* `[SCREENSHOT]` the cycling dashboard per module. **Agentry needs its own** (currently
   reuses `dash-vis.svg`) — **(capture, P1.)** Others have `dash-*.svg`.
 
 **Section 9 — Case study.** Keep the current Berkshire Hathaway block; it's strong and on-brand.
@@ -758,17 +758,17 @@ keep Section 5's execution framing as the conceptual diagram and reuse this bloc
 
 ### 11.2 Platform overview
 
-**Route:** `/platform` ➕ · **Goal:** show the whole platform, AIX leading, route people to the
+**Route:** `/platform` ➕ · **Goal:** show the whole platform, Agentry leading, route people to the
 right module. **Rendering:** SSG. **JSON-LD:** `BreadcrumbList`, `SoftwareApplication`.
 
 **Metadata:** title "The CloudVerse Platform — AI, Cloud, Data & Engineering" · description "One
-control plane across AI (AIX), cloud (FinOps), engineering (DevX), and data (DataX). Decide,
+control plane across AI (Agentry), cloud (FinOps), engineering (Torb), and data (DataX). Decide,
 run, and account for every dollar of compute."
 
 - **Hero H1:** "One platform for the economics of everything you compute."
-- **Subhead:** "AIX leads. It's the control plane for your AI. FinOps, DevX, and DataX run the same playbook across cloud, engineering, and data."
+- **Subhead:** "Agentry leads. It's the control plane for your AI. FinOps, Torb, and DataX run the same playbook across cloud, engineering, and data."
 - *Media:* `[DIAGRAM]` `ControlPlaneDiagram` / platform map. **(design, P0 — shared with home.)**
-- **Four modules:** a large card each, AIX first, with the one-liner, three capability bullets,
+- **Four modules:** a large card each, Agentry first, with the one-liner, three capability bullets,
   and "Explore →." *Media:* `[SCREENSHOT]` per module where available.
 - **How they fit:** "Cost decided in one place lands in another. We connect the decision to the
   dollar, across all four." *Media:* the platform map again, annotated.
@@ -777,27 +777,27 @@ run, and account for every dollar of compute."
 
 ---
 
-### 11.3 AIX — the flagship
+### 11.3 Agentry — the flagship
 
-**Route:** `/platform/aix` · **Goal:** convince a Head of AI or CIO that AIX is *the* control
+**Route:** `/platform/agentry` · **Goal:** convince a Head of AI or CIO that Agentry is *the* control
 plane for enterprise AI. Deepest, most technical, most proof on the site. **Rendering:** SSG.
-**JSON-LD:** `SoftwareApplication` (AIX), `BreadcrumbList`, `FAQPage`.
+**JSON-LD:** `SoftwareApplication` (Agentry), `BreadcrumbList`, `FAQPage`.
 
 **Metadata:**
-- title: "AIX — The Control Plane for Enterprise AI | CloudVerse"
+- title: "CloudVerse Agentry — The Control Plane for Enterprise AI | CloudVerse"
 - description: "Route, govern, and meter every AI request across models, clouds, GPUs, and private endpoints. Cut AI cost 40–90%. The decision happens before the request, not after the bill."
 
-> The existing `app/platform/aix/page.tsx` structure is strong. Keep the skeleton, sharpen the
+> The existing `app/platform/agentry/page.tsx` structure is strong. Keep the skeleton, sharpen the
 > copy, and add the media it's missing. Reuse `GovernanceBento`, `NoBlackBoxes`, `UseCaseBento`,
-> `AixRoiSplit`. Add `RunLedgerCard` and `ControlPlaneDiagram`.
+> `AgentryRoiSplit`. Add `RunLedgerCard` and `ControlPlaneDiagram`.
 
 **Hero.**
-- **Eyebrow:** "AIX — AI CONTROL PLANE"
+- **Eyebrow:** "Agentry — AI CONTROL PLANE"
 - **H1:** "The control plane for enterprise AI."
 - **Subhead:** "Route, govern, and meter every AI request across your models, clouds, GPUs, and private endpoints. The cost decision gets made before the request goes out, not in a spreadsheet after the bill lands."
 - **Tagline strip:** "Optimizing the future of enterprise AI consumption."
 - **CTAs:** "Book a Demo" · "See the platform" → `/platform`
-- *Media:* `[VIDEO]` AIX hero video. **(record, P0.)** `poster` still required.
+- *Media:* `[VIDEO]` Agentry hero video. **(record, P0.)** `poster` still required.
 
 **Stats band.** **40–90%** cost cut · **<15ms** routing overhead · **96.8%** cheaper than a
 hardcoded Sonnet setup (benchmarked) · **28.5%** faster than that baseline.
@@ -808,24 +808,24 @@ hardcoded Sonnet setup (benchmarked) · **28.5%** faster than that baseline.
   cheaper model handles 70% of those requests just as well, and nobody notices. The hardcoded
   choice doesn't update when prices drop. It doesn't reroute when a provider slows down. That
   gap is where the budget quietly goes."
-- *Media:* `[MOCKUP]` the existing before/after panel ("Before AIX — hardcoded" vs "After AIX
+- *Media:* `[MOCKUP]` the existing before/after panel ("Before Agentry — hardcoded" vs "After Agentry
   — dynamic"). Keep it.
 
-**How AIX controls every request.**
+**How Agentry controls every request.**
 - **H2:** "Every request, decided before it runs."
-- **Body:** "AIX sits between your application and every provider you use. On each request it
+- **Body:** "Agentry sits between your application and every provider you use. On each request it
   scores the available routes against the rules your team set, then returns the best one with a
   fallback and a full decision log."
-- **Contrast line:** "A gateway runs the rule you wrote. AIX works out whether that rule is still right."
+- **Contrast line:** "A gateway runs the rule you wrote. Agentry works out whether that rule is still right."
 - *Component:* the six-step grid — **Connect · Govern · Score · Route · Measure · Audit** (keep
   the copy; it maps cleanly onto before/during/after). *Media:* `[SCREENSHOT]` or short
   `[VIDEO]` of the routing decision at the "Route" step. **(capture, P0.)**
 
-**What AIX isn't.**
-- **H2:** "A gateway runs your rule. AIX decides what the rule should be."
-- *Component:* the HTML comparison `<table>` (Gateway · LLM Gateway · Observability · **AIX**).
+**What Agentry isn't.**
+- **H2:** "A gateway runs your rule. Agentry decides what the rule should be."
+- *Component:* the HTML comparison `<table>` (Gateway · LLM Gateway · Observability · **Agentry**).
   Keep the rows. It needs to stay a real `<table>` for AEO (§6.3).
-- **Close:** "Observability tells you what a request cost after it ran. AIX settles that before it does."
+- **Close:** "Observability tells you what a request cost after it ran. Agentry settles that before it does."
 
 **The five layers.**
 - **H2:** "Five layers, one platform."
@@ -837,7 +837,7 @@ hardcoded Sonnet setup (benchmarked) · **28.5%** faster than that baseline.
 
 **The run ledger** (new).
 - **H2:** "Every run, on the record."
-- **Body:** "AIX keeps a ledger of every model call, agent run, and GPU job: who owned it, what
+- **Body:** "Agentry keeps a ledger of every model call, agent run, and GPU job: who owned it, what
   it used, what it cost, and what it returned. That's the record finance, security, and the
   board can all read the same way."
 - *Media:* `[MOCKUP]` `RunLedgerCard` (port the SPA's `AIRecordCard`), then a real
@@ -845,14 +845,14 @@ hardcoded Sonnet setup (benchmarked) · **28.5%** faster than that baseline.
 
 **Autonomous agents.**
 - **H2:** "Optimization that runs itself, with the approvals you set."
-- **Body:** "AIX watches usage, ranks the optimizations worth making, and carries out the ones
+- **Body:** "Agentry watches usage, ranks the optimizations worth making, and carries out the ones
   you've approved. You decide what runs on its own and what waits for a person."
 - *Media:* `[DIAGRAM]` Observer → Planner → Executor loop, with an approval-gate callout.
   **(design, P1.)**
 
 **ROI.**
 - **H2:** "The cost of not routing."
-- *Component:* `AixRoiSplit` (keep the table). Three mechanisms: cost arbitrage, latency wins,
+- *Component:* `AgentryRoiSplit` (keep the table). Three mechanisms: cost arbitrage, latency wins,
   waste elimination.
 
 **For finance.**
@@ -872,8 +872,8 @@ compliance-bound routing, GPU cost control for agents, multi-model product infra
 - *Media:* `[LOGO]` provider marks (have).
 
 **Who it's for.** Keep the qualifier list; add the trigger (25+ tools, multiple providers,
-internal agents, climbing bill). **FAQ** (`FaqBlock`, AIX set §12). **Final CTA** (`CTABand`):
-"See AIX route your workloads end to end."
+internal agents, climbing bill). **FAQ** (`FaqBlock`, Agentry set §12). **Final CTA** (`CTABand`):
+"See Agentry route your workloads end to end."
 
 ---
 
@@ -902,7 +902,7 @@ frames, or `[SCREENSHOT]` where real UI exists):
 - **Forecasting** — "Forecasts finance can stand behind, AI spend included."
 - **Anomalies** — "Spikes flagged before they compound."
 - **Commitments** — "RIs, Savings Plans, and CUDs, with the realized payback tracked, not assumed."
-- **AI bridge** — "AI and GPU spend turned into unit economics by team, model, and use case." → link to AIX.
+- **AI bridge** — "AI and GPU spend turned into unit economics by team, model, and use case." → link to Agentry.
 
 **Differentiation** (frame, don't name): decision-first over reporting-first; built for
 engineers to actually use; AI-native; a real path from recommendation to automation.
@@ -910,24 +910,24 @@ engineers to actually use; AI-native; a real path from recommendation to automat
 
 ---
 
-### 11.5 DevX
+### 11.5 Torb
 
-**Route:** `/platform/devx` · **Goal:** win platform and engineering — cost in the workflow,
+**Route:** `/platform/torb` · **Goal:** win platform and engineering — cost in the workflow,
 before ship. **Rendering:** SSG.
 
-**Metadata:** title "DevX — Cost Context in the Pull Request | CloudVerse" · description "Every
-deployment commits cloud and AI spend. DevX flags the expensive change in the PR, before it ships."
+**Metadata:** title "CloudVerse Torb — Cost Context in the Pull Request | CloudVerse" · description "Every
+deployment commits cloud and AI spend. Torb flags the expensive change in the PR, before it ships."
 
-- **Eyebrow:** "DevX" (blue)
-- **H1:** "Every deploy commits spend. DevX shows it before you ship."
+- **Eyebrow:** "Torb" (blue)
+- **H1:** "Every deploy commits spend. Torb shows it before you ship."
 - **Subhead:** "Cost context lands in the pull request, for infrastructure, application code, and AI calls. Velocity stays high. Governance finally keeps up."
 - **Stat:** "$2,400 of monthly spend caught in a single pre-production review, before the change shipped."
-- *Media:* `[MOCKUP]` `DevxPrExample` — the PR cost comment with a diff (have, feed it real
+- *Media:* `[MOCKUP]` `TorbPrExample` — the PR cost comment with a diff (have, feed it real
   `DIFF` data).
 - **Sections:** PR-level cost visibility · high-impact changes flagged pre-merge · the safer
   option offered in the same review · prevented spend tracked over time · AI-aware (catches the
   new model call or chatty agent loop an AI-assisted commit just introduced).
-- **Who it's for** (`WhoDevxFor`). *Component:* `CostGates`. **FAQ.** `CTABand`.
+- **Who it's for** (`WhoTorbFor`). *Component:* `CostGates`. **FAQ.** `CTABand`.
 
 ---
 
@@ -972,7 +972,7 @@ them). `[LOGO]` module marks on the "modules used" block.
 - Outcomes: clean attribution; routing that kills 10–100x waste; AI-native unit economics (cost
   per request, per feature, per user); governance (policy, access, residency, vendor oversight);
   visibility into the AI cost shipping out of engineering (Copilot, Cursor, agents); a number you
-  can stand behind in front of finance and the board. Modules: **AIX** lead, then DevX, DataX,
+  can stand behind in front of finance and the board. Modules: **Agentry** lead, then Torb, DataX,
   FinOps. Stats: 40–90%, 96.8%.
 
 **`/solutions/enterprise` — CIO / CTO / Enterprise:**
@@ -987,15 +987,15 @@ them). `[LOGO]` module marks on the "modules used" block.
 - **Subhead:** "Explainability, allocation, and forecasts finance can defend, across cloud, AI, and data, with AI turned into unit economics."
 - Outcomes: variance to drivers in hours; automatic allocation; defensible forecasts and
   chargeback; AI and GPU unit economics; upstream visibility; one view. Modules: FinOps lead,
-  then AIX. Stat: $738,983 / $100K+ a month.
+  then Agentry. Stat: $738,983 / $100K+ a month.
 
 **`/solutions/platform-eng` — Platform Engineering:**
 - **H1:** "Put cost in the workflow, before the change ships."
-- **Subhead:** "Infrastructure, code, and AI changes flagged in the pull request. Velocity stays. Governance catches up." Modules: DevX lead, then AIX, FinOps. Stat: $2,400 a review.
+- **Subhead:** "Infrastructure, code, and AI changes flagged in the pull request. Velocity stays. Governance catches up." Modules: Torb lead, then Agentry, FinOps. Stat: $2,400 a review.
 
 **`/solutions/data-teams` — Data Teams:**
 - **H1:** "Make shared data spend allocable."
-- **Subhead:** "Trace warehouse and pipeline cost to the query, pipeline, and team, including the data spend your AI workloads now drive." Modules: DataX lead, then FinOps, AIX.
+- **Subhead:** "Trace warehouse and pipeline cost to the query, pipeline, and team, including the data spend your AI workloads now drive." Modules: DataX lead, then FinOps, Agentry.
 
 ---
 
@@ -1032,7 +1032,7 @@ we built CloudVerse: to make cloud, AI, and data spend something you can explain
 - **Mission paragraph** — one tight, factual paragraph: what CloudVerse is, who it's for, what
   it does. This is the entity definition GEO reads, so keep it plain and quotable.
 - **The four values** (§3.5), a line each.
-- **The products** — AIX, FinOps, DevX, DataX, short, link out.
+- **The products** — Agentry, FinOps, Torb, DataX, short, link out.
 - **The team** — *Media:* `[LOGO]`/headshots (`public/team/chaand-deshwal.png`,
   `public/legacy/aboutUs/*.png`, have). _[confirm which leaders to feature.]_
 - **Trust** — *Media:* cert badges (`iso.png`, `aicpa.png`, have). Link to `/security`.
@@ -1119,24 +1119,24 @@ more from the persona call-prep questions in the brand streams.
 - *What is an AI control plane?* — "An AI control plane is the system that governs, routes, and
   meters every AI request across your models and providers. It sets policy and budget before a
   request runs, scores routes while it runs, and records cost and outcome after."
-- *How is this different from an AI gateway?* — "A gateway runs the routing rule you wrote. AIX
+- *How is this different from an AI gateway?* — "A gateway runs the routing rule you wrote. Agentry
   works out what the rule should be, scoring every route live on cost, latency, quality, and
   compliance, and records the cost and outcome of each one."
 - *How is it different from LLM observability?* — "Observability tells you what a request cost
-  after it ran. AIX settles that before it does, and enforces budget and policy in real time."
-- *Does CloudVerse only do AI, or cloud cost too?* — "Both. AIX runs the AI. FinOps, DevX, and
+  after it ran. Agentry settles that before it does, and enforces budget and policy in real time."
+- *Does CloudVerse only do AI, or cloud cost too?* — "Both. Agentry runs the AI. FinOps, Torb, and
   DataX run cloud, engineering, and data on the same platform."
 - *How fast is this live?* — "First account connected in under 30 minutes. Most teams find
   something they didn't expect the same day, inside a no-fee, two-to-four-week proof of value."
 
-**AIX:**
-- *How much can AIX cut AI costs?* — "40–90% on production workloads, and up to 96.8% cheaper
+**Agentry:**
+- *How much can Agentry cut AI costs?* — "40–90% on production workloads, and up to 96.8% cheaper
   inference than a hardcoded model in benchmark testing, once routing is in place."
-- *Does AIX add latency?* — "Routing overhead is under 15ms. The routed model is often faster
+- *Does Agentry add latency?* — "Routing overhead is under 15ms. The routed model is often faster
   than the hardcoded one, 28.5% faster in our benchmark."
 - *Which providers does it support?* — "OpenAI, Anthropic, Google Gemini, Cohere, Mistral,
   Llama/Ollama, Together AI, Groq, DeepSeek, HuggingFace, plus private GPU and on-prem."
-- *Do we change our application code?* — "No. AIX sits between your app and your providers.
+- *Do we change our application code?* — "No. Agentry sits between your app and your providers.
   Routing and policy change at the rule layer, not in code."
 - *Can we automate safely?* — "Yes. Read-only to start, automation opt-in, with an approval
   step and a full audit trail on every action."
@@ -1151,13 +1151,13 @@ Deferred, but the IA is built to take them. The biggest growth lever for an AI-c
 worth starting soon after launch:
 
 - **Comparisons** `/compare/[competitor]` — vs Portkey, Kong, TrueFoundry, LiteLLM, Langfuse,
-  Helicone, Maxim, Tyk (AIX), and Flexera, CloudHealth, Apptio, Finout (FinOps). Honest table,
+  Helicone, Maxim, Tyk (Agentry), and Flexera, CloudHealth, Apptio, Finout (FinOps). Honest table,
   "when each one wins," a migration note. Source material is already here: the competitor
   keyword CSVs and `Brand Context/Category Battlecard.docx`.
 - **Alternatives** `/[competitor]-alternative` — high-intent capture.
 - **Glossary** `/glossary/[term]` — AI control plane, LLM routing, AI FinOps, unit economics,
   the run ledger, GPU optimization, model governance. Pure AEO/GEO.
-- **Use cases** `/use-cases/[case]` — the four AIX use cases, each as a full page.
+- **Use cases** `/use-cases/[case]` — the four Agentry use cases, each as a full page.
 - All ISR, `Article` + `FAQPage` schema, linked into the hub-and-spoke.
 
 ---
@@ -1166,7 +1166,7 @@ worth starting soon after launch:
 
 Confirm these early:
 
-1. **Spelling:** AIX vs AIx. This doc uses **AIX**. Lock it brand-wide.
+1. **Spelling:** flagship module is spelled **Agentry** (one spelling, capitalized as a proper noun). Lock it brand-wide.
 2. **Pricing page:** publish conceptual pricing, or contact-sales only? (Recommend publishing — §11.11.)
 3. **CMS vs MDX** for blog/resources. (Recommend MDX at launch — §5.3.)
 4. **Certifications:** `iso.png` and `aicpa.png` are in the repo, so SOC 2 / ISO appear to
@@ -1175,7 +1175,7 @@ Confirm these early:
 6. **Benchmark provenance:** keep the methodology for 96.8% / 28.5% / 40–90% documented, for
    when a prospect (or an AI engine) asks "according to what?"
 7. **Testimonials:** three real quotes are needed to fill the home component (§8.3, §11.1).
-8. **AIX media:** the flagship needs a hero video and product screenshots produced (§8.3). This
+8. **Agentry media:** the flagship needs a hero video and product screenshots produced (§8.3). This
    is the top art dependency for launch.
 9. **About:** which leaders and what company facts are public.
 10. **Analytics** beyond Mixpanel (GA4 / PostHog), and **i18n** (English-only at launch?).

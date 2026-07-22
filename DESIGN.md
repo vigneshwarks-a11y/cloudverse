@@ -7,7 +7,7 @@ colors:
   blue-light: "#7CB8F8"
   blue-fill: "#E8F3FF"
   navy: "#050F1C"
-  aix-purple: "#6954D4"
+  agentry-purple: "#6954D4"
   finops-teal: "#0E9E7A"
   datax-amber: "#D97706"
   danger-red: "#E5484D"
@@ -102,7 +102,7 @@ components:
 
 CloudVerse is the control plane for enterprise AI, and the site should feel like standing in one: calm command over real complexity. The canvas is quiet — pure white or pure black — and the signal comes from precise, glowing instruments laid on top of it: cost meters, allocation bars, anomaly charts, ring gauges, run ledgers. Nothing decorates; every element on screen is an instrument reading something real. Boldness comes from clarity and live data, not from loud color fields or ornament.
 
-Color is how the room stays legible. Each domain owns a channel — AIX purple, DevX blue, FinOps teal, DataX amber — so a glance tells you which system you're looking at. Type is a single voice, Inter, worked hard across weight and size rather than paired with a second family. Depth is deliberately suppressed: surfaces sit flat, and the eye is drawn by contrast and color, not by shadow.
+Color is how the room stays legible. Each domain owns a channel — Agentry purple, Torb blue, FinOps teal, DataX amber — so a glance tells you which system you're looking at. Type is a single voice, Inter, worked hard across weight and size rather than paired with a second family. Depth is deliberately suppressed: surfaces sit flat, and the eye is drawn by contrast and color, not by shadow.
 
 This system explicitly rejects the look of legacy FinOps and IT-cost tooling — Apptio, Flexera, CloudHealth, Finout — which lean on dense gray dashboards and enterprise-beige chrome. It equally rejects the two interchangeable AI-SaaS reflexes: the cream/sand editorial-restraint page and the navy-and-gold fintech page. CloudVerse is neither soft nor safe; it's instrument-precise and confident.
 
@@ -118,10 +118,10 @@ This system explicitly rejects the look of legacy FinOps and IT-cost tooling —
 A near-monochrome ink-on-canvas base, charged by one signal blue and four module accents used strictly for domain coding.
 
 ### Primary
-- **Signal Blue** (#1664C0): The CloudVerse brand accent and DevX's module color. Carries the primary button, section eyebrows (light mode), links, focus, and the connective glows/wires that tie sections together. In dark mode the accent lightens to **Sky Signal** (#7CB8F8) for contrast; hover deepens to **Bright Signal** (#2278E0). **Blue Fill** (#E8F3FF) is the faint tint behind selected/active blue states.
+- **Signal Blue** (#1664C0): The CloudVerse brand accent and Torb's module color. Carries the primary button, section eyebrows (light mode), links, focus, and the connective glows/wires that tie sections together. In dark mode the accent lightens to **Sky Signal** (#7CB8F8) for contrast; hover deepens to **Bright Signal** (#2278E0). **Blue Fill** (#E8F3FF) is the faint tint behind selected/active blue states.
 
 ### Secondary
-- **AIX Purple** (#6954D4): The AI module. Leads because AIX is the headline; used for AI-domain charts, tags, and accents.
+- **Agentry Purple** (#6954D4): The AI module. Leads because Agentry is the headline; used for AI-domain charts, tags, and accents.
 - **FinOps Teal** (#0E9E7A): The FinOps module and the site's "good outcome / reconciled / savings" color (spend down, healthy, on-policy).
 - **DataX Amber** (#D97706): The Data module and the site's "attention / anomaly / spike" color.
 
@@ -142,7 +142,7 @@ When a single-hue breakdown needs more than one shade (e.g. a cost-by-service do
 ### Named Rules
 **The Canvas-Is-Quiet Rule.** The page background is pure white or pure black — never a tinted wash, never cream. All color enters as an instrument reading or a domain code, never as decoration.
 
-**The Domain-Code Rule.** Purple means AI, blue means cloud/DevX, teal means FinOps and good outcomes, amber means data and anomalies. A hue never means two things on the same screen; color always pairs with a label or icon so it is never the sole carrier of meaning.
+**The Domain-Code Rule.** Purple means AI, blue means cloud/Torb, teal means FinOps and good outcomes, amber means data and anomalies. A hue never means two things on the same screen; color always pairs with a label or icon so it is never the sole carrier of meaning.
 
 **The Muted-Is-For-Labels Rule.** Muted gray is for 10–12px labels and metadata only. Reading-length text uses Ink at 65–80% opacity, never `muted` on a light surface.
 
@@ -203,7 +203,7 @@ The single sanctioned exception is the floating **product mockup** (the glass in
 - **Focus:** Border shifts to Signal Blue with a soft blue ring; never remove the focus indicator.
 
 ### Navigation
-- **Style:** Transparent top bar over the hero, ink text, Inter medium. AIX is featured first (purple tile). Primary CTA "Book a demo" as the blue pill; "Sign in" as ghost. Active/hover links shift toward Signal Blue.
+- **Style:** Transparent top bar over the hero, ink text, Inter medium. Agentry is featured first (purple tile). Primary CTA "Book a demo" as the blue pill; "Sign in" as ghost. Active/hover links shift toward Signal Blue.
 
 ### Signature Component — Product Instruments (FinOps kit)
 The glass instrument cards (`components/product/finops/kit.tsx`) — cost meters, allocation bars, area/bar/ring charts, KPI tiles, status pills, run-ledger rows — are the site's signature pattern. They are cropped slices of real product UI, theme-aware, colored by domain hue, and the one place ambient shadow + glow is allowed. Treat them as the proof layer: when a claim needs backing, show an instrument, not an adjective.
@@ -212,7 +212,7 @@ The glass instrument cards (`components/product/finops/kit.tsx`) — cost meters
 
 ### Do:
 - **Do** keep the page canvas pure white or pure black; let color enter only as an instrument reading or a domain code.
-- **Do** code domains by hue consistently: purple = AI, blue = cloud/DevX, teal = FinOps/good, amber = data/anomaly — always paired with a label or icon.
+- **Do** code domains by hue consistently: purple = AI, blue = cloud/Torb, teal = FinOps/good, amber = data/anomaly — always paired with a label or icon.
 - **Do** carry all type in Inter, using weight and size for hierarchy; keep headings at −0.02em with `text-wrap: balance`.
 - **Do** set reading-length body text in Ink at 65–80% opacity, weight 500, capped at 65–75ch.
 - **Do** convey depth with tonal steps (surface → surface-2 → card) and hairline borders; reserve shadow for floating product instruments.

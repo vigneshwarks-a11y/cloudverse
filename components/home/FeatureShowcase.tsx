@@ -74,7 +74,7 @@ const FEATURES: Feature[] = [
   {
     key: "ai",
     title: "AI",
-    desc: "Spend visibility, budgets, and chargeback across every model and provider your teams use. Technology Spend explains the economics; AIX adds execution-path governance.",
+    desc: "Spend visibility, budgets, and chargeback across every model and provider your teams use. Technology Spend explains the economics; Agentry adds execution-path governance.",
     accent: ACCENT.ai,
     lineItems: ["Tokens", "Models", "Agents"],
     users: "AI & platform teams",
@@ -546,7 +546,7 @@ function AiState() {
             <span className="text-[#ff5470]">Policy violation: token budget exceeded</span>
           </p>
           <div className="mt-2 space-y-1 border-l border-cv-line dark:border-white/10 pl-4">
-            <p>class: <span className="text-[#ff5470]">AIX\Policy\BudgetExceeded</span></p>
+            <p>class: <span className="text-[#ff5470]">Agentry\Policy\BudgetExceeded</span></p>
             <p>agent: <span className="text-[#ff5470]">agent:billing-sync · model: gpt-4o</span></p>
             <p>requested: <span className="text-[#ff5470]">12,000 tokens · allowed: 5,000 tokens</span></p>
             <p className="-mx-1.5 inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 hover:bg-[#ff003f]/10">

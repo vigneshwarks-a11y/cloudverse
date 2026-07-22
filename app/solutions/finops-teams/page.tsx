@@ -7,7 +7,7 @@ import { FinopsClusterMock } from "@/components/solution/FinopsClusterMock";
 import { WhoThisIsFor } from "@/components/solution/WhoThisIsFor";
 import { FaqBlock } from "@/components/FaqBlock";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
-import { Dashboard } from "@/components/home/AixOrchestration";
+import { Dashboard } from "@/components/home/AgentryOrchestration";
 import { SolutionHero } from "@/components/solution/SolutionHero";
 import { SectionEyebrow } from "@/components/solution/SectionEyebrow";
 import { BulletGrid } from "@/components/solution/BulletGrid";
@@ -52,7 +52,7 @@ const FAQ = [
   ["Will it fit our allocation logic?", "Yes. Virtual tags define cost dimensions that match how your business is structured."],
   ["How long to implement?", "First account connected in under 30 minutes; recoverable spend usually surfaces the same day."],
   ["Multi-currency and tax?", "Chargeback is multi-currency and reconciles to source billing."],
-  ["Does it cover AI spend too?", "Yes. AIX folds AI and GPU spend into the same allocation and forecasting model."],
+  ["Does it cover AI spend too?", "Yes. Agentry folds AI and GPU spend into the same allocation and forecasting model."],
 ];
 
 export default function FinOpsTeamsPage() {
@@ -196,7 +196,7 @@ export default function FinOpsTeamsPage() {
             </p>
           </div>
 
-          {/* Product screen mockup (reused from the home AIX orchestration section) */}
+          {/* Product screen mockup (reused from the home Agentry orchestration section) */}
           <div className="mt-12 lg:mt-16">
             <Dashboard />
           </div>
@@ -224,7 +224,7 @@ export default function FinOpsTeamsPage() {
           <PlatformCards
             items={[
               ["FinOps Platform", "Allocation, forecasting, anomalies, commitments", "/platform/finops"],
-              ["AIX", "Turns AI and GPU spend into unit economics", "/platform/aix"],
+              ["Agentry", "Turns AI and GPU spend into unit economics", "/platform/agentry"],
               ["DataX", "Makes warehouse and pipeline cost allocable", "/platform/datax"],
             ]}
           />

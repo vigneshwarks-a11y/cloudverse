@@ -8,7 +8,7 @@ import { IntegrationLogo } from "./IntegrationLogo";
 
 const CATEGORIES = ["All", "Cloud", "Data", "AI", "Kubernetes", "Infrastructure", "Identity", "Ticketing", "Collaboration", "Observability", "SaaS"] as const;
 const STATUSES = ["All", "Available", "Beta", "Coming soon"] as const;
-const MODULES = ["All", "AIX", "DevX", "DataX"] as const;
+const MODULES = ["All", "Agentry", "Torb", "DataX"] as const;
 
 const STATUS_STYLE: Record<Integration["status"], string> = {
   "Available":   "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
@@ -17,9 +17,9 @@ const STATUS_STYLE: Record<Integration["status"], string> = {
 };
 
 const PRODUCT_STYLE: Record<string, string> = {
-  AIX:   "border-purple-400/40 text-purple-300 bg-purple-400/10",
-  DevX:  "border-emerald-400/40 text-emerald-300 bg-emerald-400/10",
-  DataX: "border-amber-400/40 text-amber-300 bg-amber-400/10",
+  Agentry: "border-purple-400/40 text-purple-300 bg-purple-400/10",
+  Torb:    "border-emerald-400/40 text-emerald-300 bg-emerald-400/10",
+  DataX:   "border-amber-400/40 text-amber-300 bg-amber-400/10",
 };
 
 export function IntegrationsExplorer() {
@@ -46,7 +46,7 @@ export function IntegrationsExplorer() {
     return integrationsData.filter((i) => {
       if (cat !== "All" && i.category !== cat) return false;
       if (status !== "All" && i.status !== status) return false;
-      if (mod !== "All" && !i.products?.includes(mod as "AIX" | "DevX" | "DataX")) return false;
+      if (mod !== "All" && !i.products?.includes(mod as "Agentry" | "Torb" | "DataX")) return false;
       if (!needle) return true;
       return (
         i.name.toLowerCase().includes(needle) ||

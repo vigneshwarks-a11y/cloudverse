@@ -82,7 +82,7 @@ export default function PlatformEngPage() {
         eyebrow="For Platform Engineering"
         h1="Cost gates engineers actually want to use."
         sub="PR-level cost diffs, policy-as-code, and right-sizing recommendations in your IaC pipeline. Guardrails that keep delivery moving."
-        platformHref="/platform/devx"
+        platformHref="/platform/torb"
       />
 
       <section className="cv-section">
@@ -95,11 +95,11 @@ export default function PlatformEngPage() {
                 You already gate code on tests and static analysis. Cost is the one thing that ships unreviewed and shows up weeks later on a bill nobody connects back to that pull request.
               </p>
               <p className="cv-body-lg text-cv-ink/85 mt-4">
-                By then the expensive change is in production and the fix means rework. DevX puts the cost estimate in the pull request, where the person who wrote the change can still cheaply change it.
+                By then the expensive change is in production and the fix means rework. Torb puts the cost estimate in the pull request, where the person who wrote the change can still cheaply change it.
               </p>
             </div>
             <div className="mx-auto w-full max-w-3xl">
-              <Panel className="justify-between p-6" chrome="devx.app/pull/1042">
+              <Panel className="justify-between p-6" chrome="torb.app/pull/1042">
                 <span className="text-[10px] uppercase tracking-wide text-cv-muted">Merge checks</span>
                 <div className="flex items-center justify-between rounded-md border border-cv-line/60 px-3.5 py-4 text-xs dark:border-white/10">
                   <span className="text-cv-ink/75">Unit tests</span>
@@ -146,7 +146,7 @@ export default function PlatformEngPage() {
             items={[
               ["PR cost diff", "Every infra PR gets an inline cost impact estimate before reviewers see it. Advisory or required, your choice. The governance happens where the work happens."],
               ["Policy-as-code", "Cost guardrails versioned in your repo. Advisory mode posts an estimate. Required mode blocks PRs above your defined cost threshold until explicitly approved. Both modes are code, not configuration buried in a third-party portal."],
-              ["Native CI integration", "GitHub Actions, GitLab CI, Azure Pipelines, Jenkins, Argo. No new pipeline. DevX slots into what your teams already use."],
+              ["Native CI integration", "GitHub Actions, GitLab CI, Azure Pipelines, Jenkins, Argo. No new pipeline. Torb slots into what your teams already use."],
               ["Multi-IaC support", "Terraform, OpenTofu, Pulumi, CloudFormation, Helm, Kubernetes. Seven-plus formats. One integration."],
             ]}
           />
@@ -158,13 +158,13 @@ export default function PlatformEngPage() {
         <div className="cv-container">
           <div className="mx-auto max-w-3xl mb-12 text-center">
             <SectionEyebrow className="mb-4">How it works</SectionEyebrow>
-            <h2 className="cv-h2 text-cv-ink">How DevX controls every infra change.</h2>
+            <h2 className="cv-h2 text-cv-ink">How Torb controls every infra change.</h2>
             <div className="mt-4 space-y-4">
               <p className="cv-body-lg text-cv-muted">
-                DevX sits in your CI pipeline and every pull request. On each infra change it estimates the cost delta against policy your team wrote, then posts it inline with a fallback path and a full decision log.
+                Torb sits in your CI pipeline and every pull request. On each infra change it estimates the cost delta against policy your team wrote, then posts it inline with a fallback path and a full decision log.
               </p>
               <p className="cv-body-lg text-cv-muted">
-                A linter runs the rule you wrote. DevX works out whether that rule is still right.
+                A linter runs the rule you wrote. Torb works out whether that rule is still right.
               </p>
             </div>
           </div>
@@ -186,11 +186,11 @@ export default function PlatformEngPage() {
             <SectionEyebrow className="mb-4">The payback</SectionEyebrow>
             <h2 className="cv-h2 text-cv-ink">Most teams recover the cost from a single prevented regression.</h2>
             <p className="cv-body-lg text-cv-ink/75 mt-5">
-              In a typical pre-production review, DevX flags around $2,400 of monthly spend before it ships. One catch pays for the tool.
+              In a typical pre-production review, Torb flags around $2,400 of monthly spend before it ships. One catch pays for the tool.
             </p>
           </div>
           <div className="mx-auto mt-10 max-w-md">
-            <Panel className="justify-center gap-2.5 p-4" chrome="devx.app/payback">
+            <Panel className="justify-center gap-2.5 p-4" chrome="torb.app/payback">
               <div className="flex items-center justify-between rounded-md border border-cv-line/60 px-3.5 py-4 text-xs dark:border-white/10">
                 <span className="text-cv-ink/70">Flagged before merge</span>
                 <span className="font-mono font-semibold" style={{ color: VIZ_AMBER }}>+$2,400/mo</span>
@@ -228,8 +228,8 @@ export default function PlatformEngPage() {
           </div>
           <PlatformCards
             items={[
-              ["DevX", "Cost context in the pull request", "/platform/devx"],
-              ["AIX", "Catches the new model call or agent loop an AI-assisted commit introduces", "/platform/aix"],
+              ["Torb", "Cost context in the pull request", "/platform/torb"],
+              ["Agentry", "Catches the new model call or agent loop an AI-assisted commit introduces", "/platform/agentry"],
               ["FinOps Platform", "The spend those changes commit, allocated and forecast", "/platform/finops"],
             ]}
           />

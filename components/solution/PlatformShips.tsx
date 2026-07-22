@@ -10,7 +10,7 @@ import { FeatureCard, Panel, Tab, CodeLine, Callout, CheckBadge, VIZ_BLUE as BLU
 /* 1. PR cost diff — code-editor-style panel with an inline cost delta. */
 function PrDiffViz() {
   return (
-    <Panel className="p-0" chrome="devx.app/pull/1042">
+    <Panel className="p-0" chrome="torb.app/pull/1042">
       <div className="flex items-center gap-1.5 border-b border-cv-line px-3 py-2 dark:border-white/10">
         <Tab label="infra/ec2.tf" active />
       </div>
@@ -37,7 +37,7 @@ function PrDiffViz() {
    callout, in the idiom of Laravel Cloud's env-var editor tooltip. */
 function PolicyViz() {
   return (
-    <Panel className="p-0" chrome="devx.app/policy.rego">
+    <Panel className="p-0" chrome="torb.app/policy.rego">
       <div className="flex items-center gap-1.5 border-b border-cv-line px-3 py-2 dark:border-white/10">
         <Tab label="Advisory" />
         <Tab label="Required" active />
@@ -70,7 +70,7 @@ function PolicyViz() {
 function CiViz() {
   const rows = ["GitHub Actions", "GitLab CI", "Azure Pipelines", "Jenkins", "Argo"];
   return (
-    <Panel className="p-0" chrome="devx.app/pipelines">
+    <Panel className="p-0" chrome="torb.app/pipelines">
       <div className="grid grid-cols-[1fr_auto] items-center gap-3 border-b border-cv-line px-3 py-1.5 text-[10px] uppercase tracking-wide text-cv-muted dark:border-white/10">
         <span>Pipeline</span>
         <span className="text-right">Status</span>
@@ -91,7 +91,7 @@ function CiViz() {
 function IacViz() {
   const formats = ["Terraform", "OpenTofu", "Pulumi", "CloudFormation", "Helm", "Kubernetes"];
   return (
-    <Panel className="justify-center gap-3 p-4" chrome="devx.app/iac-formats">
+    <Panel className="justify-center gap-3 p-4" chrome="torb.app/iac-formats">
       <div className="flex items-center justify-between">
         <span className="text-[10px] uppercase tracking-wide text-cv-muted">Scanned on every PR</span>
         <span className="text-[10px] font-medium text-cv-muted">7+ formats</span>

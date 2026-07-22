@@ -12,4 +12,4 @@ Before any content, design, or page work, read:
 
 Design principles (from PRODUCT.md): lead with AI and prove with FinOps; own before/during/after; show the product, don't describe it; write like a person; proof over adjectives.
 
-New sections use `cv-*` tokens and are dark/light theme-aware — never hardcode black/white backgrounds. Module hues: AIX purple `#6954D4`, DevX blue `#1664C0`, FinOps teal, DataX amber.
+New sections use `cv-*` tokens and are dark/light theme-aware — never hardcode black/white backgrounds. Module hues: Agentry purple `#6954D4`, Torb blue `#1664C0`, FinOps teal, DataX amber.

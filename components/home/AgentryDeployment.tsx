@@ -1,7 +1,7 @@
 /* "In the call path. Deployed in your environment." — a premium, floating
-   product-style composition of the AIX call path: AI surfaces → CloudVerse AIX
+   product-style composition of the Agentry call path: AI surfaces → CloudVerse Agentry
    (focal, glowing, layered) → model providers, joined by animated connector
-   lines. The AIX core shows live-looking product widgets (policy routing +
+   lines. The Agentry core shows live-looking product widgets (policy routing +
    failover, budget reservation, request settlement, audit ledger) rather than a
    static list. Glassmorphism via translucent cards + backdrop blur over ambient
    gradient blobs. cv-* tokens, theme-aware, reduced-motion friendly.
@@ -89,7 +89,7 @@ function StageLabel({ children, color }: { children: React.ReactNode; color: str
 }
 
 // Product-mock well: solid surface + single hairline border + soft neutral
-// shadow, matching the "Day one" (AixGovernance) instrument treatment. No
+// shadow, matching the "Day one" (AgentryGovernance) instrument treatment. No
 // glassmorphism — depth comes from the border and the ambient stage glow.
 function PanelCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
@@ -147,7 +147,7 @@ function Connector() {
   );
 }
 
-// Small widget frame used inside the AIX core.
+// Small widget frame used inside the Agentry core.
 function Tile({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <div
@@ -170,9 +170,9 @@ function WidgetHead({ Icon, label }: { Icon: IconType; label: string }) {
   );
 }
 
-/* ---- AIX focal core ------------------------------------------------- */
+/* ---- Agentry focal core ------------------------------------------------- */
 
-function AixCore() {
+function AgentryCore() {
   return (
     <div className="relative w-full">
       {/* breathing glow */}
@@ -200,7 +200,7 @@ function AixCore() {
               <span className="absolute inline-flex h-full w-full rounded-full opacity-60" style={{ background: PURPLE }} />
               <span className="relative inline-flex h-2.5 w-2.5 rounded-full" style={{ background: PURPLE, boxShadow: `0 0 8px 2px ${PURPLE}88` }} />
             </span>
-            <span className="text-[14px] font-semibold text-cv-ink">CloudVerse AIX</span>
+            <span className="text-[14px] font-semibold text-cv-ink">CloudVerse Agentry</span>
           </span>
           <span className="inline-flex items-center gap-1 rounded-full border border-[#6954D4]/30 bg-[#6954D4]/[0.08] px-2 py-0.5 text-[10px] font-medium text-[#6954D4] dark:text-[#B7A9F5]">
             <Shield weight="Linear" size={11} /> Inside your boundary
@@ -269,7 +269,7 @@ function AixCore() {
   );
 }
 
-export function AixDeployment() {
+export function AgentryDeployment() {
   return (
     <section className="cv-section bg-cv-surface2 dark:bg-black" data-testid="section-architecture">
       <div className="cv-container">
@@ -279,7 +279,7 @@ export function AixDeployment() {
           </span>
           <h2 className="cv-h2 text-balance text-cv-ink">In the call path. Deployed in your environment.</h2>
           <p className="cv-body mt-4 text-cv-ink/70">
-            AIX sits between your AI surfaces (agents, apps, IDEs, RAG pipelines, copilots)
+            Agentry sits between your AI surfaces (agents, apps, IDEs, RAG pipelines, copilots)
             and your model providers, whether commercial APIs, cloud-hosted, or sovereign/local models.
           </p>
         </div>
@@ -318,11 +318,11 @@ export function AixDeployment() {
 
             <Connector />
 
-            {/* AIX focal core */}
+            {/* Agentry focal core */}
             <div className="flex flex-[1.55] flex-col">
-              <StageLabel color={PURPLE}>CloudVerse AIX</StageLabel>
+              <StageLabel color={PURPLE}>CloudVerse Agentry</StageLabel>
               <div className="flex flex-1 items-center">
-                <AixCore />
+                <AgentryCore />
               </div>
             </div>
 
@@ -362,4 +362,4 @@ export function AixDeployment() {
   );
 }
 
-export default AixDeployment;
+export default AgentryDeployment;

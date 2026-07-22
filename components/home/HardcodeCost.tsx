@@ -1,5 +1,5 @@
 /* "AI compute is becoming too expensive to hardcode" — a lead-in section that
-   sets up the Before/After AIX comparison that follows. Two-column: heading left,
+   sets up the Before/After Agentry comparison that follows. Two-column: heading left,
    supporting copy right, matching the home lead-in rhythm. cv-* tokens,
    theme-aware. Server component. */
 

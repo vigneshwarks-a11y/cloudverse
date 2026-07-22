@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 
-/* Shared "Day one" mock-well chrome, factored out of AixGovernance so every
+/* Shared "Day one" mock-well chrome, factored out of AgentryGovernance so every
    product visual on the home page reads with the same treatment:
    a black/white well with a top-left light edge (bright gradient stroke +
    faint ambient blue corner bloom), and an optional bottom dissolve. */

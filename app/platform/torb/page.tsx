@@ -6,40 +6,40 @@ import { PlatformHeroMockup } from "@/components/product/PlatformHeroMockup";
 import { PageHero } from "@/components/PageHero";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
-import WhoDevxFor from "@/components/product/WhoDevxFor";
-import DevxPrExample from "@/components/product/DevxPrExample";
+import WhoTorbFor from "@/components/product/WhoTorbFor";
+import TorbPrExample from "@/components/product/TorbPrExample";
 import CostGates from "@/components/product/CostGates";
 import { BeforeAfterCards, type BeforeAfterRow } from "@/components/product/BeforeAfterCards";
 
 export const metadata: Metadata = {
-  title: "DevX: Catch Cost Regressions Before They Reach Production | CloudVerse",
+  title: "CloudVerse Torb: Catch Cost Regressions Before They Reach Production | CloudVerse",
   description:
     "Every infrastructure PR gets an inline cost impact comment before reviewers see it. Engineers see what their changes cost at the moment they can still change something.",
   keywords: ["infrastructure cost review", "PR cost analysis", "cloud cost drift", "FinOps developer tools", "shift-left cost governance", "IaC cost"],
-  alternates: { canonical: "/platform/devx" },
+  alternates: { canonical: "/platform/torb" },
   openGraph: {
-    title: "DevX: Catch Cost Regressions Before They Reach Production",
+    title: "CloudVerse Torb: Catch Cost Regressions Before They Reach Production",
     description: "Every infrastructure PR gets an inline cost impact comment before reviewers see it. Engineers see costs when they can still change something.",
-    url: "/platform/devx",
-    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse DevX: Developer-First Cost Governance" }],
+    url: "/platform/torb",
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse Torb: Developer-First Cost Governance" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DevX: Catch Cost Regressions Before They Reach Production",
+    title: "CloudVerse Torb: Catch Cost Regressions Before They Reach Production",
     description: "Every infrastructure PR gets an inline cost impact comment. See costs before they hit production.",
   },
 };
 
-const DEVX_TABS = [
+const TORB_TABS = [
   { id: "pr-estimate", label: "PR Cost Estimate", copy: "The monthly cost impact of a change, commented inline on the pull request.", icon: CodeSquare },
   { id: "cost-gates", label: "Cost Gates", copy: "A threshold breach can warn or block, by policy, before merge.", icon: DollarMinimalistic },
   { id: "ci-scan", label: "CI Scan", copy: "Automated cost scan runs on every push. Regressions flagged before merge. No manual review step required.", icon: Chart },
   { id: "policy", label: "Policy Engine", copy: "Cost rules written as code, versioned with the repo, applied across every team.", icon: ShieldCheck },
 ];
 
-// Attribute-by-attribute contrast between the old review flow and DevX. Same
+// Attribute-by-attribute contrast between the old review flow and Torb. Same
 // keys on both sides so the two cards read as an aligned before/after.
-const DEVX_VS: BeforeAfterRow[] = [
+const TORB_VS: BeforeAfterRow[] = [
   { k: "Signal", before: "Discovered on next month's bill", after: "Commented inline on the PR" },
   { k: "Timing", before: "Weeks after it merged", after: "Before review, before merge" },
   { k: "Owner", before: "Nobody links it back", after: "In front of who wrote it" },
@@ -66,11 +66,11 @@ const FAQ = [
   ["How does this pay for itself?", "Most teams recover the cost from a single prevented regression, around $2,400 in a typical review."],
 ];
 
-export default function DevXPage() {
+export default function TorbPage() {
   return (
     <>
       <PageHero
-        eyebrow="DevX"
+        eyebrow="CloudVerse Torb"
         accent="blue"
         title="Catch cost regressions before they reach production."
         subtitle="Cost context lands in the pull request, for infrastructure, application code, and AI calls. Velocity stays high. Governance finally keeps up."
@@ -82,7 +82,7 @@ export default function DevXPage() {
         }
       />
 
-      <PlatformHeroMockup tabs={DEVX_TABS} />
+      <PlatformHeroMockup tabs={TORB_TABS} />
 
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
@@ -100,24 +100,24 @@ export default function DevXPage() {
 
           <div className="mt-12">
             <BeforeAfterCards
-              beforeLabel="Before DevX"
+              beforeLabel="Before Torb"
               beforeSub="Cost found after merge"
-              afterLabel="With DevX"
+              afterLabel="With Torb"
               afterSub="Cost seen in the PR"
-              rows={DEVX_VS}
+              rows={TORB_VS}
             />
           </div>
         </div>
       </section>
 
       {/* PR EXAMPLE */}
-      <DevxPrExample diff={DIFF} />
+      <TorbPrExample diff={DIFF} />
 
       {/* WHAT PLATFORM TEAMS SHIP */}
       <CostGates />
 
-      {/* WHO DEVX IS FOR */}
-      <WhoDevxFor />
+      {/* WHO TORB IS FOR */}
+      <WhoTorbFor />
 
       {/* FAQ */}
       <section className="cv-section">
@@ -129,7 +129,7 @@ export default function DevXPage() {
         </div>
       </section>
 
-      <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Platform", href: "/platform/finops" }, { name: "DevX", href: "/platform/devx" }]} />
+      <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Platform", href: "/platform/finops" }, { name: "Torb", href: "/platform/torb" }]} />
     </>
   );
 }

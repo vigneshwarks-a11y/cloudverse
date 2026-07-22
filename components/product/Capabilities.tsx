@@ -10,7 +10,7 @@ import { Magnifer, CheckCircle } from "@/lib/solar-icons";
    cv-* tokens, theme-aware, server component. Responsive: both rows collapse to
    a single column below md. */
 
-const PURPLE = "#6954D4"; // AIX / control-plane accent
+const PURPLE = "#6954D4"; // Agentry / control-plane accent
 const TEAL = "#0E9E7A"; // good / on / reconciled
 const AMBER = "#D97706"; // attention
 

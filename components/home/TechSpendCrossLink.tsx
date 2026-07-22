@@ -1,4 +1,4 @@
-/* "Cross-link to Technology Spend" — a banner pointing AIX visitors who also own
+/* "Cross-link to Technology Spend" — a banner pointing Agentry visitors who also own
    cloud/data/SaaS spend to the Technology Spend platform. Matches home design
    language: cv-* tokens, bordered card, primary CTA. Server component. */
 
@@ -24,7 +24,7 @@ export function TechSpendCrossLink() {
                 Already governing your cloud, data, or SaaS spend?
               </h2>
               <p className="mt-4 cv-body text-cv-ink/70">
-                AIX runs on the same platform as CloudVerse Technology Spend: one data model, one
+                Agentry runs on the same platform as CloudVerse Technology Spend: one data model, one
                 login, no re-procurement. If cloud, data, or SaaS spend is also on your plate, see the
                 Technology Spend Platform.
               </p>

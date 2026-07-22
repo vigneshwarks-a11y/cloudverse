@@ -14,7 +14,7 @@ import {
   VIZ_GRAY as GRAY,
 } from "@/components/solution/CardChrome";
 
-/* FinOps "what you ship" bento — image-topped cards in the home/AixGovernance
+/* FinOps "what you ship" bento — image-topped cards in the home/AgentryGovernance
    idiom: a polished product-screenshot mock fills a top "screenshot" slot
    (bordered panel with a lit top-left edge + ambient glow on a dark surface,
    content fading at the bottom), with the title + description in a footer

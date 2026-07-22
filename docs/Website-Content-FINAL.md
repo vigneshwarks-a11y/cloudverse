@@ -6,8 +6,8 @@
 > standard: specific, operator-toned, short + long sentences, no power words, no rule-of-three padding.
 > `[CONFIRM]` = verify before launch. Passes run on every page: copywriting → copy-editing → humanizer.
 
-**Scope in this file:** Homepage (reworked) · AIX · FinOps · DevX · DataX · Solutions index + 5 persona pages.
-**Decision applied:** AIX is the hero of the site; FinOps is the proven core underneath it.
+**Scope in this file:** Homepage (reworked) · Agentry · FinOps · Torb · DataX · Solutions index + 5 persona pages.
+**Decision applied:** Agentry is the hero of the site; FinOps is the proven core underneath it.
 
 **Verified stats (the only numbers used):** $739K+ annualized cloud savings (Berkshire Hathaway HomeServices; $101,736/yr, $61,582 single month) · 40–90% AI cost cut on production workloads · 96.8% lower inference cost vs a hardcoded model · 28.5% faster than that baseline · <15ms routing overhead · 10–100x wrong-model cost gap · $2.4K+ caught per pre-production review · 30 min to first account · 2–4 week no-fee proof of value.
 
@@ -16,29 +16,29 @@
 
 # PAGE 1 — HOMEPAGE  ·  `/`
 
-*Built onto the live homepage sections. Only the hero is restructured (per feedback: AIX leads, FinOps
+*Built onto the live homepage sections. Only the hero is restructured (per feedback: Agentry leads, FinOps
 supports). Customer Stories fixed for honesty. Everything else sharpened in place.*
 
 ---
 
-## SECTION 1 — HERO  *(reworked: AIX-led)*
+## SECTION 1 — HERO  *(reworked: Agentry-led)*
 
-**Eyebrow:** AIX · THE CONTROL PLANE FOR ENTERPRISE AI
+**Eyebrow:** Agentry · THE CONTROL PLANE FOR ENTERPRISE AI
 
-**H1:** Cloud governance solved infrastructure chaos. AIX solves AI chaos.
+**H1:** Cloud governance solved infrastructure chaos. Agentry solves AI chaos.
 
-**Subhead:** AIX routes, governs, and meters every model, agent, and GPU job across your stack. It runs on CloudVerse, the AI-native FinOps platform enterprises already trust to own their cloud and data spend.
+**Subhead:** Agentry routes, governs, and meters every model, agent, and GPU job across your stack. It runs on CloudVerse, the AI-native FinOps platform enterprises already trust to own their cloud and data spend.
 
 **CTA (primary):** Book a Demo
 **CTA (secondary):** Request a free AI cost audit
 
 **Under-CTA microcopy:** Connect your first account in under 30 minutes. No-fee proof of value in two to four weeks.
 
-**Utility link 1:** See how AIX works →
+**Utility link 1:** See how Agentry works →
 **Utility link 2:** Explore the platform →
 
-> **— Grounding + notes —** H1 is verbatim from the AIX one-pager ("Cloud governance solved
-> infrastructure chaos. AIX solves AI chaos."). Subhead executes the decision: AIX is the subject,
+> **— Grounding + notes —** H1 is verbatim from the Agentry one-pager ("Cloud governance solved
+> infrastructure chaos. Agentry solves AI chaos."). Subhead executes the decision: Agentry is the subject,
 > FinOps is named as the trusted foundation. The under-CTA line is real (30 min / 2–4 weeks) and
 > gives the hero a third content row, which also helps the whitespace you flagged without a design
 > change. The platform tagline "Every dollar of cloud, data, and AI spend. Owned." moves down to the
@@ -69,7 +69,7 @@ supports). Customer Stories fixed for honesty. Everything else sharpened in plac
 
 **Card 1 — Set the rules before the request runs**
 Owner, budget, allowed providers, residency, and a quality floor are applied before a single token leaves. Read-only to start. Automation is opt-in.
-*Tab switcher (roles): Finance · FinOps Admin · Engineering · DevX Viewer · Data · DataX Editor* · **Learn More**
+*Tab switcher (roles): Finance · FinOps Admin · Engineering · Torb Viewer · Data · DataX Editor* · **Learn More**
 
 **Card 2 — Every decision logged and traceable**
 Every model call, agent run, and workflow is on the record: who owned it, what it used, what it cost, what it returned.
@@ -89,16 +89,16 @@ Track every action with detailed activity logs across teams, providers, and work
 **SSO block — Single sign-on, scoped from day one**
 Onboard teams instantly and have CloudVerse follow your access rules from the start. RBAC, SCIM, and audit logging included. **Learn More**
 
-> **— Notes —** Card 3 (PII) is grounded in the AIX governance surface (PII handling rules: mask /
-> tokenize / block) shown on the live AIX page. Card copy tightened; kept the 4-card + quote + SSO
+> **— Notes —** Card 3 (PII) is grounded in the Agentry governance surface (PII handling rules: mask /
+> tokenize / block) shown on the live Agentry page. Card copy tightened; kept the 4-card + quote + SSO
 > layout intact.
 
 ---
 
-## SECTION 5 — AIX, THE FLAGSHIP  *(H2 + 5 cards)*
+## SECTION 5 — AGENTRY, THE FLAGSHIP  *(H2 + 5 cards)*
 
-**H2:** Enterprise AI is fragmented. AIX makes it one system.
-**Support line:** An HRMS holds the record for every employee. AIX holds it for every model and agent. Onboard it, route it, budget it, govern it, prove it.
+**H2:** Enterprise AI is fragmented. Agentry makes it one system.
+**Support line:** An HRMS holds the record for every employee. Agentry holds it for every model and agent. Onboard it, route it, budget it, govern it, prove it.
 
 **Card 1 — One view of everything**
 Every model, token, team, project, agent, subscription, and API in a single view. **Learn More**
@@ -113,9 +113,9 @@ Oversized models, wasteful prompts, duplicate subscriptions. Surfaced with the s
 Cost per request, per feature, per tenant. Built for AI, not borrowed from infrastructure metrics. **Learn More**
 
 **Card 5 — No code change when the market moves**
-Prices drop or a provider slows down, AIX reroutes at the policy layer. Your application never changes. **Learn More**
+Prices drop or a provider slows down, Agentry reroutes at the policy layer. Your application never changes. **Learn More**
 
-**Section CTA:** Go deeper on AIX →
+**Section CTA:** Go deeper on Agentry →
 
 ---
 
@@ -172,9 +172,9 @@ Prices drop or a provider slows down, AIX reroutes at the policy layer. Your app
 **Subhead:** The questions we get asked the most.
 
 1. **What is an AI control plane?** — The system that governs, routes, and meters every AI request across your models and providers. It sets policy and budget before a request runs, scores routes while it runs, and records cost and outcome after.
-2. **How is this different from an AI gateway?** — A gateway runs the routing rule you wrote. AIX works out what the rule should be, scoring every route live on cost, latency, quality, and compliance, and records the cost and outcome of each.
-3. **How is it different from LLM observability?** — Observability tells you what a request cost after it ran. AIX settles that before it runs, and enforces budget and policy in real time.
-4. **Does CloudVerse only do AI, or cloud cost too?** — Both. AIX runs the AI. The FinOps platform, DevX, and DataX run cloud, engineering, and data on the same system.
+2. **How is this different from an AI gateway?** — A gateway runs the routing rule you wrote. Agentry works out what the rule should be, scoring every route live on cost, latency, quality, and compliance, and records the cost and outcome of each.
+3. **How is it different from LLM observability?** — Observability tells you what a request cost after it ran. Agentry settles that before it runs, and enforces budget and policy in real time.
+4. **Does CloudVerse only do AI, or cloud cost too?** — Both. Agentry runs the AI. The FinOps platform, Torb, and DataX run cloud, engineering, and data on the same system.
 5. **How fast is this live?** — First account connected in under 30 minutes. Most teams find something they didn't expect the same day, inside a no-fee two-to-four-week proof of value.
 
 ---
@@ -186,16 +186,16 @@ Prices drop or a provider slows down, AIX reroutes at the policy layer. Your app
 **CTA (secondary):** Request a free AI cost audit
 
 ---
-# PAGE 2 — AIX  ·  `/platform/aix`
+# PAGE 2 — AGENTRY  ·  `/platform/agentry`
 
-*The flagship. Deepest, most technical page. Grounded in the AIx Feature Directory (17 feature areas)
+*The flagship. Deepest, most technical page. Grounded in the Agentry Feature Directory (17 feature areas)
 and the Head of AI stream. Matches the live UI section-for-section.*
 
 ---
 
 ## SECTION 1 — HERO
 
-**Eyebrow:** AIX
+**Eyebrow:** CloudVerse Agentry
 **H1:** The control plane for enterprise AI.
 **Body:** Route, govern, and meter every AI request across your models, clouds, GPUs, and private endpoints. The cost decision gets made before the request goes out, not in a spreadsheet after the bill lands.
 **Tagline strip:** Optimizing the future of enterprise AI consumption.
@@ -205,7 +205,7 @@ and the Head of AI stream. Matches the live UI section-for-section.*
 ---
 
 ## SECTION 2 — ROUTING PREVIEW
-*Video coming soon. Poster still required for first paint. `[MEDIA: AIX routing video, record — P0]`*
+*Video coming soon. Poster still required for first paint. `[MEDIA: Agentry routing video, record — P0]`*
 
 ---
 
@@ -225,14 +225,14 @@ and the Head of AI stream. Matches the live UI section-for-section.*
 **H2:** AI compute is becoming too expensive to hardcode.
 **Body:** Most teams pick a model once, wire it into the app, and move on. Six months later a cheaper model handles 70% of those requests just as well, and nobody notices. A hardcoded choice doesn't update when prices drop. It doesn't reroute when a provider slows down. That gap is where the budget quietly goes.
 
-**Before AIX (hardcoded):**
+**Before Agentry (hardcoded):**
 - Model — one, chosen once
 - Provider — fixed
 - Region — fixed
 - Routing — none; every request goes the same place
 - Cost — an assumption, not a measurement
 
-**After AIX (dynamic):**
+**After Agentry (dynamic):**
 - Model — the best fit for each request
 - Provider — scored live, with a fallback
 - Region — chosen by residency rule
@@ -241,10 +241,10 @@ and the Head of AI stream. Matches the live UI section-for-section.*
 
 ---
 
-## SECTION 5 — HOW AIX WORKS  *(H2 + intro + 6 steps)*
+## SECTION 5 — HOW AGENTRY WORKS  *(H2 + intro + 6 steps)*
 
-**H2:** How AIX controls every AI request.
-**Intro:** AIX sits between your application and every AI provider you use. On each request it scores the available routes against the rules your team set, then returns the best one with a fallback and a full decision log.
+**H2:** How Agentry controls every AI request.
+**Intro:** Agentry sits between your application and every AI provider you use. On each request it scores the available routes against the rules your team set, then returns the best one with a fallback and a full decision log.
 
 1. **Connect** — Add your provider API keys and endpoints. Minutes per provider, no application change.
 2. **Govern** — Set the constraints: latency ceiling, budget cap, allowed providers, residency, quality floor.
@@ -253,15 +253,15 @@ and the Head of AI stream. Matches the live UI section-for-section.*
 5. **Measure** — Cost per request, per feature, and per tenant, tracked as it happens.
 6. **Audit** — Every decision logged: constraints active, routes considered, and why one won.
 
-**Contrast line:** A gateway runs the rule you wrote. AIX works out whether that rule is still right.
+**Contrast line:** A gateway runs the rule you wrote. Agentry works out whether that rule is still right.
 
 ---
 
-## SECTION 6 — WHAT AIX ISN'T  *(H2 + comparison table 8×4 + close)*
+## SECTION 6 — WHAT AGENTRY ISN'T  *(H2 + comparison table 8×4 + close)*
 
-**H2:** A gateway executes a rule you wrote. AIX decides what the rule should be.
+**H2:** A gateway executes a rule you wrote. Agentry decides what the rule should be.
 
-| Capability | Gateway / Proxy | LLM Gateway | Observability | AIX |
+| Capability | Gateway / Proxy | LLM Gateway | Observability | Agentry |
 |---|---|---|---|---|
 | Live multi-signal route scoring | No | Partial | No | Yes |
 | Constraint-driven intent model | No | No | No | Yes |
@@ -272,7 +272,7 @@ and the Head of AI stream. Matches the live UI section-for-section.*
 | GPU + managed API routing | No | No | No | Yes |
 | No vendor lock-in | Partial | Partial | N/A | Yes |
 
-**Close:** Observability tells you what a request cost after it ran. AIX settles that before it does.
+**Close:** Observability tells you what a request cost after it ran. Agentry settles that before it does.
 
 ---
 
@@ -281,7 +281,7 @@ and the Head of AI stream. Matches the live UI section-for-section.*
 **H2:** The cost of not routing.
 **Body:** Every hardcoded endpoint spends money without making a decision. The same work, on the right model, often costs a fraction, at the same or better quality.
 
-| Monthly volume | Hardcoded spend | With AIX | Monthly saving |
+| Monthly volume | Hardcoded spend | With Agentry | Monthly saving |
 |---|---|---|---|
 | 1M requests | $2,980 | $298 | $2,682 |
 | 5M requests | $14,900 | $1,490 | $13,410 |
@@ -291,8 +291,8 @@ and the Head of AI stream. Matches the live UI section-for-section.*
 *Assumption: 40–90% reduction applied at an 89% average. Your mix will differ; the audit measures yours.*
 
 **Real example (benchmarked):**
-- Without AIX: Claude Sonnet · 5,537ms · $0.00298/req
-- With AIX: GPT-4o-mini · 3,962ms · $0.00010/req
+- Without Agentry: Claude Sonnet · 5,537ms · $0.00298/req
+- With Agentry: GPT-4o-mini · 3,962ms · $0.00010/req
 - Result: **96.8% lower cost. 28.5% faster.**
 
 **Three mechanisms:**
@@ -305,7 +305,7 @@ and the Head of AI stream. Matches the live UI section-for-section.*
 ## SECTION 8 — FOR FINANCE  *(H2 + 5 bullets)*
 
 **H2:** From cloud cost reporting to AI compute economics.
-**Body:** AIX gives AI its own unit economics: cost per request, per feature, per tenant, allocated automatically.
+**Body:** Agentry gives AI its own unit economics: cost per request, per feature, per tenant, allocated automatically.
 
 - Cost per request, per feature, and per tenant, allocated without manual clean-up
 - Budget caps enforced before a request goes out, not reconciled after
@@ -318,7 +318,7 @@ and the Head of AI stream. Matches the live UI section-for-section.*
 ## SECTION 9 — GOVERNANCE  *(H2 + intro + 6 subsections)*
 
 **H2:** Built for enterprise AI governance.
-**Intro:** Every routing decision AIX makes is recorded, auditable, and explainable. Governance is on by default, not bolted on.
+**Intro:** Every routing decision Agentry makes is recorded, auditable, and explainable. Governance is on by default, not bolted on.
 
 1. **Multi-tenant isolation** — Each team's workloads, policies, and cost data stay separated. *(GPU allocation: Tenant A 42% · B 31% · C 27%)*
 2. **Data residency controls** — Route by region to meet sovereignty rules. *(EU · US · APAC routing)*
@@ -339,12 +339,12 @@ and the Head of AI stream. Matches the live UI section-for-section.*
 
 ## SECTION 11 — USE CASES  *(H2 + 4 problems, Situation / Problem / Solution / Outcome)*
 
-**H2:** Four problems AIX fixes.
+**H2:** Four problems Agentry fixes.
 
 **1 — Multi-provider cost arbitrage**
 - *Situation:* A SaaS company runs 15M AI requests a month.
 - *Problem:* $44,700/month, and 70% of it could run on a smaller model at the same quality.
-- *Solution:* AIX profiles each request by task complexity and routes accordingly.
+- *Solution:* Agentry profiles each request by task complexity and routes accordingly.
 - *Outcome:* ~$12,600/month. 30% on premium models, 70% cost-optimized.
 
 **2 — Compliance-bound routing**
@@ -362,7 +362,7 @@ and the Head of AI stream. Matches the live UI section-for-section.*
 **4 — Multi-model AI product infrastructure**
 - *Situation:* A product team ships an AI-native app with five distinct features.
 - *Problem:* Six months in, two routing choices are quietly wrong.
-- *Solution:* Each feature is its own AIX workload with its own constraint profile.
+- *Solution:* Each feature is its own Agentry workload with its own constraint profile.
 - *Outcome:* The team responds to model-market changes in hours, not a sprint.
 
 ---
@@ -370,7 +370,7 @@ and the Head of AI stream. Matches the live UI section-for-section.*
 ## SECTION 12 — SUPPORTED PROVIDERS  *(H2 + provider table + private deployments)*
 
 **H2:** Connect once. Route everywhere.
-**Intro:** Add your providers once. AIX handles routing, fallback, and cost tracking across all of them.
+**Intro:** Add your providers once. Agentry handles routing, fallback, and cost tracking across all of them.
 
 | Provider | Models |
 |---|---|
@@ -385,16 +385,16 @@ and the Head of AI stream. Matches the live UI section-for-section.*
 | DeepSeek | DeepSeek-V3, DeepSeek-R1 |
 | HuggingFace | Hosted inference endpoints and open models |
 
-**Private deployments:** AIX treats private GPU capacity as a first-class routing target: vLLM / TGI / custom inference · CoreWeave, Lambda Labs, RunPod · on-premises infrastructure.
+**Private deployments:** Agentry treats private GPU capacity as a first-class routing target: vLLM / TGI / custom inference · CoreWeave, Lambda Labs, RunPod · on-premises infrastructure.
 
 ---
 
-## SECTION 13 — POSITIONING  *(H2 + body + "when AIX is right" 5 bullets)*
+## SECTION 13 — POSITIONING  *(H2 + body + "when Agentry is right" 5 bullets)*
 
-**H2:** Most tools route traffic. AIX decides where it should go.
-**Body:** A gateway executes whatever rule you gave it. AIX is the layer that works out what the rule should be, request by request, and proves the decision afterward. It isn't a gateway replacement; it's the decision layer above one.
+**H2:** Most tools route traffic. Agentry decides where it should go.
+**Body:** A gateway executes whatever rule you gave it. Agentry is the layer that works out what the rule should be, request by request, and proves the decision afterward. It isn't a gateway replacement; it's the decision layer above one.
 
-**AIX is right when you have:**
+**Agentry is right when you have:**
 - Workloads across more than one model or provider
 - AI spend large enough that the wrong model matters
 - Compliance or residency rules to enforce
@@ -414,7 +414,7 @@ and the Head of AI stream. Matches the live UI section-for-section.*
 
 # PAGE 3 — FINOPS PLATFORM  ·  `/platform/finops`
 
-*The proven core underneath AIX. Wins the finance buyer. Grounded in the FinOps Feature Directory
+*The proven core underneath Agentry. Wins the finance buyer. Grounded in the FinOps Feature Directory
 (Observe / Optimize / Act & Govern, 16 features) and the Finance stream. Matches the live UI.*
 
 ---
@@ -493,7 +493,7 @@ and the Head of AI stream. Matches the live UI section-for-section.*
 ## SECTION 8 — INTEGRATIONS  *(H2 + body)*
 
 **H2:** Connects to the stack you already run.
-**Body:** AWS, Azure, and Google Cloud for infrastructure. AIX for AI spend, DataX for warehouses, DevX for the engineering workflow. One view across all of it.
+**Body:** AWS, Azure, and Google Cloud for infrastructure. Agentry for AI spend, DataX for warehouses, Torb for the engineering workflow. One view across all of it.
 
 ---
 
@@ -504,10 +504,10 @@ and the Head of AI stream. Matches the live UI section-for-section.*
 **CTA (secondary):** Request a free AI cost audit
 
 ---
-# PAGE 4 — DEVX  ·  `/platform/devx`
+# PAGE 4 — TORB  ·  `/platform/torb`
 
-*Wins platform and engineering: cost in the workflow, before ship. Grounded in the DevX one-pager
-and the DevX stream. Matches the live UI.*
+*Wins platform and engineering: cost in the workflow, before ship. Grounded in the Torb one-pager
+and the Torb stream. Matches the live UI.*
 
 ---
 
@@ -517,7 +517,7 @@ and the DevX stream. Matches the live UI.*
 **Subhead:** Cost context lands in the pull request, for infrastructure, application code, and AI calls. Velocity stays high. Governance finally keeps up.
 **CTA (primary):** Book a Demo
 **CTA (secondary):** See a real PR example
-*Video coming soon. `[MEDIA: DevX PR comment walkthrough]`*
+*Video coming soon. `[MEDIA: Torb PR comment walkthrough]`*
 
 ---
 
@@ -538,7 +538,7 @@ and the DevX stream. Matches the live UI.*
 
 ## SECTION 4 — REAL EXAMPLE  *(H3 + code block + estimate + 3 mini-lists of 2)*
 
-**H3:** This is what a DevX PR comment looks like.
+**H3:** This is what a Torb PR comment looks like.
 *Code block: the resource diff*
 **Cost estimate:** +$1.1k to $1.4k per month
 
@@ -561,13 +561,13 @@ and the DevX stream. Matches the live UI.*
 
 ## SECTION 6 — WHO IT'S FOR + ROI  *(H2 + 3 personas + H3 + text)*
 
-**H2:** Who DevX is for.
+**H2:** Who Torb is for.
 - **Platform Engineering** — cost guardrails that don't slow delivery.
 - **DevOps / SRE** — fewer surprise bills reaching production.
 - **FinOps** — engineering adoption and clear ownership, at last.
 
-**H3:** Most customers recover the cost of DevX from a single prevented regression.
-**Text:** One caught change pays for the tool. In an average pre-production review, DevX flags around $2,400 of monthly spend before it ships, spend that would otherwise have been discovered and unwound later.
+**H3:** Most customers recover the cost of Torb from a single prevented regression.
+**Text:** One caught change pays for the tool. In an average pre-production review, Torb flags around $2,400 of monthly spend before it ships, spend that would otherwise have been discovered and unwound later.
 
 ---
 
@@ -758,7 +758,7 @@ the lead-module rule.*
 
 # PAGE 7 — AI ENGINEERING  ·  `/solutions/ai-engineering`
 
-*Lead persona. Grounded in Stream 3 (Head of AI). Lead module: AIX.*
+*Lead persona. Grounded in Stream 3 (Head of AI). Lead module: Agentry.*
 
 ---
 
@@ -777,7 +777,7 @@ the lead-module rule.*
 ## SECTION 2 — THE PROBLEM
 
 **H2:** The situation AI engineering teams are in.
-**Body:** You picked a model once and wired it in. There are now cheaper models that clear the same quality bar, but changing means a code change nobody has time for. Meanwhile AI-assisted coding and agents are moving your inference and GPU cost week to week, and the bill arrives with no owner attached. AIX closes both gaps.
+**Body:** You picked a model once and wired it in. There are now cheaper models that clear the same quality bar, but changing means a code change nobody has time for. Meanwhile AI-assisted coding and agents are moving your inference and GPU cost week to week, and the bill arrives with no owner attached. Agentry closes both gaps.
 
 ---
 
@@ -792,9 +792,9 @@ the lead-module rule.*
 
 ---
 
-## SECTION 4 — WHAT AIX UNLOCKS  *(6 subsections; expands live's 4)*
+## SECTION 4 — WHAT AGENTRY UNLOCKS  *(6 subsections; expands live's 4)*
 
-**H2:** What AIX unlocks for AI engineering teams.
+**H2:** What Agentry unlocks for AI engineering teams.
 
 1. **Multi-provider routing** — Every request scored across providers on cost, latency, and quality. Best-fit wins, fallback attached.
 2. **Policy guardrails** — Allowed providers, residency, and budget enforced before execution.
@@ -822,7 +822,7 @@ the lead-module rule.*
 - 40–90% cost reduction across production workloads
 - Under 15ms routing overhead
 - 96.8% lower cost than a hardcoded Claude Sonnet setup, 28.5% faster
-- Agent spend variance down from 3x to under 15% after AIX
+- Agent spend variance down from 3x to under 15% after Agentry
 
 ---
 
@@ -838,11 +838,11 @@ the lead-module rule.*
 
 ---
 
-## SECTION 8 — PLATFORM THAT POWERS THIS  *(3 cards, AIX lead)*
+## SECTION 8 — PLATFORM THAT POWERS THIS  *(3 cards, Agentry lead)*
 
 **H2:** The platform that powers this solution.
-- **AIX** — routing, governance, and AI unit economics.
-- **DevX** — catches the new model call or chatty agent loop in the pull request.
+- **Agentry** — routing, governance, and AI unit economics.
+- **Torb** — catches the new model call or chatty agent loop in the pull request.
 - **DataX** — attributes the warehouse cost your RAG and model pipelines drive.
 
 ---
@@ -856,7 +856,7 @@ Head of AI · Chief AI Officer · VP / Director of MLOps · Head of Data Science
 
 ## SECTION 10 — FAQ  *(5–6, expands live's 4)*
 
-1. **How is this different from an LLM gateway?** — A gateway runs the rule you wrote. AIX scores every route live and decides what the rule should be, then logs why.
+1. **How is this different from an LLM gateway?** — A gateway runs the rule you wrote. Agentry scores every route live and decides what the rule should be, then logs why.
 2. **Can we mix hosted and self-hosted models?** — Yes. Managed APIs and private GPU pools (vLLM/TGI, CoreWeave, Lambda, RunPod, on-prem) are all first-class routing targets.
 3. **What about prompt privacy?** — PII is detected and handled (mask, tokenize, or block) before a request reaches any provider.
 4. **How does cost attribution work?** — Every request is tagged to a team, feature, and tenant at routing time, so allocation needs no manual clean-up.
@@ -955,7 +955,7 @@ Head of AI · Chief AI Officer · VP / Director of MLOps · Head of Data Science
 
 **H2:** The platform that powers this solution.
 - **FinOps Platform** — allocation, forecasting, anomalies, commitments.
-- **AIX** — turns AI and GPU spend into unit economics.
+- **Agentry** — turns AI and GPU spend into unit economics.
 - **DataX** — makes warehouse and pipeline cost allocable.
 
 ---
@@ -973,7 +973,7 @@ CFO · VP / Director of Finance · Head of FP&A · Head of Technology / IT Finan
 2. **Will it fit our allocation logic?** — Yes. Virtual tags define cost dimensions that match how your business is structured.
 3. **How long to implement?** — First account connected in under 30 minutes; recoverable spend usually surfaces the same day.
 4. **Multi-currency and tax?** — Chargeback is multi-currency and reconciles to source billing. `[CONFIRM tax handling]`
-5. **Does it cover AI spend too?** — Yes. AIX folds AI and GPU spend into the same allocation and forecasting model.
+5. **Does it cover AI spend too?** — Yes. Agentry folds AI and GPU spend into the same allocation and forecasting model.
 
 ---
 
@@ -986,7 +986,7 @@ CFO · VP / Director of Finance · Head of FP&A · Head of Technology / IT Finan
 ---
 # PAGE 9 — PLATFORM ENGINEERING  ·  `/solutions/platform-eng`
 
-*Grounded in Stream 5 (DevX / Platform). Lead module: DevX.*
+*Grounded in Stream 5 (Torb / Platform). Lead module: Torb.*
 
 ---
 
@@ -1005,7 +1005,7 @@ CFO · VP / Director of Finance · Head of FP&A · Head of Technology / IT Finan
 ## SECTION 2 — THE PROBLEM
 
 **H2:** The situation platform engineering teams are in.
-**Body:** You already gate code on tests and static analysis. Cost is the one thing that ships unreviewed and shows up weeks later on a bill. By then the expensive change is in production and the fix is rework. DevX puts the cost estimate in the pull request, where the person who wrote the change can still cheaply change it.
+**Body:** You already gate code on tests and static analysis. Cost is the one thing that ships unreviewed and shows up weeks later on a bill. By then the expensive change is in production and the fix is rework. Torb puts the cost estimate in the pull request, where the person who wrote the change can still cheaply change it.
 
 ---
 
@@ -1043,7 +1043,7 @@ CFO · VP / Director of Finance · Head of FP&A · Head of Technology / IT Finan
 ## SECTION 6 — ROI
 
 **H2:** Most teams recover the cost from a single prevented regression.
-**Body:** In a typical pre-production review, DevX flags around $2,400 of monthly spend before it ships. One catch pays for the tool.
+**Body:** In a typical pre-production review, Torb flags around $2,400 of monthly spend before it ships. One catch pays for the tool.
 
 ---
 
@@ -1059,11 +1059,11 @@ CFO · VP / Director of Finance · Head of FP&A · Head of Technology / IT Finan
 
 ---
 
-## SECTION 8 — PLATFORM THAT POWERS THIS  *(3 cards, DevX lead)*
+## SECTION 8 — PLATFORM THAT POWERS THIS  *(3 cards, Torb lead)*
 
 **H2:** The platform that powers this solution.
-- **DevX** — cost context in the pull request.
-- **AIX** — catches the new model call or agent loop an AI-assisted commit introduces.
+- **Torb** — cost context in the pull request.
+- **Agentry** — catches the new model call or agent loop an AI-assisted commit introduces.
 - **FinOps Platform** — the spend those changes commit, allocated and forecast.
 
 ---
@@ -1175,7 +1175,7 @@ Head of Platform Engineering · Head of Development · Head of Infrastructure Au
 **H2:** The platform that powers this solution.
 - **DataX** — query attribution, pattern detection, safe automation.
 - **FinOps Platform** — warehouse spend folded into one allocation model.
-- **AIX** — attributes the model pipelines and RAG agents driving warehouse load.
+- **Agentry** — attributes the model pipelines and RAG agents driving warehouse load.
 
 ---
 
@@ -1276,9 +1276,9 @@ Head of Data / Chief Data Officer · VP / Director of Data Engineering · Head o
 ## SECTION 7 — MODULES THAT POWER ENTERPRISE  *(3–4 cards)*
 
 **H2:** Modules that power enterprise deployments.
-- **AIX** — the control plane for enterprise AI.
+- **Agentry** — the control plane for enterprise AI.
 - **FinOps Platform** — multi-cloud cost intelligence.
-- **DevX** — cost context in the engineering workflow.
+- **Torb** — cost context in the engineering workflow.
 - **DataX** — allocable warehouse and pipeline spend.
 
 ---
@@ -1294,7 +1294,7 @@ CIO · CTO · VP / Director of Engineering · Head of Cloud / Infrastructure.
 
 1. **What controls ship for enterprise?** — SSO, SCIM, RBAC, audit logs, data residency, and customer-managed encryption keys.
 2. **Where is our data stored?** — In the region you choose (US, EU, APAC), with private-link and VPC options. `[CONFIRM residency regions]`
-3. **Do you support air-gapped or on-prem?** — Private GPU and on-prem inference are first-class in AIX; deployment options are available. `[CONFIRM air-gapped]`
+3. **Do you support air-gapped or on-prem?** — Private GPU and on-prem inference are first-class in Agentry; deployment options are available. `[CONFIRM air-gapped]`
 4. **How does procurement work?** — Redeem committed cloud spend through marketplace listings. `[CONFIRM marketplaces]`
 5. **What does rollout look like?** — Read-only connection in under 30 minutes, then a phased, no-fee proof of value over two to four weeks.
 
@@ -1309,6 +1309,6 @@ CIO · CTO · VP / Director of Engineering · Head of Cloud / Infrastructure.
 ---
 ---
 
-*End of file — Homepage · AIX · FinOps · DevX · DataX · Solutions index + 5 persona pages.
+*End of file — Homepage · Agentry · FinOps · Torb · DataX · Solutions index + 5 persona pages.
 All product claims grounded in the Brand Context folder. `[CONFIRM]` items to verify before launch.*
 

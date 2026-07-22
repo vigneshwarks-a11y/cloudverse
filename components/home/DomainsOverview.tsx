@@ -11,7 +11,7 @@ const DOMAINS = [
     name: "AI",
     color: "#6954D4",
     record:
-      "Governed AI execution: tokens, models, agents, and GPUs: policy set before the request, metered during, ROI evidence after. This is AIX.",
+      "Governed AI execution: tokens, models, agents, and GPUs: policy set before the request, metered during, ROI evidence after. This is Agentry.",
     lineItems: "Tokens · Models · Agents",
     users: "AI & platform teams",
   },

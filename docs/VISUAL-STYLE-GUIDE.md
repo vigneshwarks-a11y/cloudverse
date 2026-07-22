@@ -19,8 +19,8 @@ rules, chart series, and hover blooms — sparingly, as an accent, never as a fi
 
 | Module | Hex | Use for |
 |---|---|---|
-| Signal blue | `#1664C0` (light) / `#7CB8F8` (dark) | Home, FinOps, general/content pages, DevX |
-| AIX purple | `#6954D4` | `/platform/aix` |
+| Signal blue | `#1664C0` (light) / `#7CB8F8` (dark) | Home, FinOps, general/content pages, Torb |
+| Agentry purple | `#6954D4` | `/platform/agentry` |
 | DataX amber | `#D97706` | `/platform/datax` |
 | FinOps teal | `#0E9E7A` | success/healthy states, savings, "good" deltas |
 | Danger red | `#E5484D` | anomalies, spend-up deltas, high severity |
@@ -69,7 +69,7 @@ The canonical hero (home, FinOps, About, Solutions, Platform, Integrations…) i
 - Match the eyebrow **accent** to the page's module (Platform pages tint; content
   pages use `blue`).
 - A product **mockup** (e.g. `PlatformHeroMockup`) renders as the next sibling
-  **after** `PageHero`, not inside it — see [app/platform/aix/page.tsx](../app/platform/aix/page.tsx).
+  **after** `PageHero`, not inside it — see [app/platform/agentry/page.tsx](../app/platform/agentry/page.tsx).
 
 For special heroes that can't be fully centered (form pages, two-column), import
 the pieces directly: `import { HeroSquares, HeroEyebrow } from "@/components/PageHero"`

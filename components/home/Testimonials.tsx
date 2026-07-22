@@ -29,7 +29,7 @@ const TESTIMONIALS: Testimonial[] = [
     name: "Engineering Leader",
     title: "Platform / cloud team",
     initials: "E2",
-    product: "DevX",
+    product: "Torb",
     tags: ["Automation paths", "Policy guardrails", "Rollback readiness"],
   },
   {

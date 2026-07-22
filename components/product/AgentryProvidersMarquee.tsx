@@ -84,7 +84,7 @@ function MarqueeRow({ items, duration }: { items: Provider[]; duration: string }
   );
 }
 
-export default function AixProvidersMarquee() {
+export default function AgentryProvidersMarquee() {
   return (
     <div className="mt-4 flex flex-col gap-10">
       <MarqueeRow items={ROW_A} duration="48s" />

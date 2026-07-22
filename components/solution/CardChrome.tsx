@@ -1,5 +1,5 @@
 /* Shared card chrome for solution-page bento/feature grids — the
-   image-topped-card idiom from the home/AixGovernance section: a bordered
+   image-topped-card idiom from the home/AgentryGovernance section: a bordered
    panel with a lit top-left edge + ambient glow on a dark surface, content
    fading at the bottom. Theme-aware via cv-* tokens. Reused across every
    Solutions page so the illustration language matches FinOps Teams. */

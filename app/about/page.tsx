@@ -45,8 +45,8 @@ const VALUES: { title: string; desc: string; icon: Icon }[] = [
 ];
 
 const PRODUCTS: { name: string; tagline: string; icon: Icon; href: string }[] = [
-  { name: "AIX", tagline: "Catch cloud cost mistakes before they hit production.", icon: MagicStick2, href: PRODUCT_URLS.aix },
-  { name: "DevX", tagline: "Cut AI costs without breaking latency or quality.", icon: Box, href: PRODUCT_URLS.devx },
+  { name: "Agentry", tagline: "Catch cloud cost mistakes before they hit production.", icon: MagicStick2, href: PRODUCT_URLS.agentry },
+  { name: "Torb", tagline: "Cut AI costs without breaking latency or quality.", icon: Box, href: PRODUCT_URLS.torb },
   { name: "DataX", tagline: "Workload-level visibility and control for analytics platforms.", icon: Database, href: PRODUCT_URLS.datax },
   { name: "CloudBillOps", tagline: "Unified billing, allocation, and chargeback across clouds.", icon: Bill, href: PRODUCT_URLS.billops },
 ];

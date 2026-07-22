@@ -24,18 +24,18 @@ function CompareCard({
   tone: "without" | "with";
   rows: { k: string; v: string; delta?: string }[];
 }) {
-  const withAix = tone === "with";
+  const withAgentry = tone === "with";
   return (
     <div
       className={`flex flex-1 flex-col rounded-2xl border p-5 ${
-        withAix
+        withAgentry
           ? "border-[#6954D4]/40 bg-[#6954D4]/[0.06] dark:border-[#A99CF0]/25 dark:bg-[#6954D4]/[0.12]"
           : "border-cv-line/60 bg-cv-card/60 dark:border-white/[0.07] dark:bg-[#0D0D0D]"
       }`}
     >
       <div
         className={`text-xs font-semibold uppercase tracking-widest ${
-          withAix ? "text-[#6954D4] dark:text-[#A99CF0]" : "text-cv-muted"
+          withAgentry ? "text-[#6954D4] dark:text-[#A99CF0]" : "text-cv-muted"
         }`}
       >
         {label}
@@ -57,7 +57,7 @@ function CompareCard({
   );
 }
 
-export default function AixRoiSplit({ roi }: { roi: string[][] }) {
+export default function AgentryRoiSplit({ roi }: { roi: string[][] }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
@@ -106,7 +106,7 @@ export default function AixRoiSplit({ roi }: { roi: string[][] }) {
                 <tr className="border-b border-cv-line/50 text-left text-[11px] uppercase tracking-wider text-cv-muted dark:border-white/10">
                   <th className="px-5 py-3 font-medium">Monthly volume</th>
                   <th className="px-5 py-3 text-right font-medium">Hardcoded spend</th>
-                  <th className="px-5 py-3 text-right font-medium">With AIX</th>
+                  <th className="px-5 py-3 text-right font-medium">With Agentry</th>
                   <th className="px-5 py-3 text-right font-medium">Monthly saving</th>
                 </tr>
               </thead>
@@ -134,10 +134,10 @@ export default function AixRoiSplit({ roi }: { roi: string[][] }) {
         {/* Single-request Without / With comparison */}
         <div className="flex flex-col gap-4">
           <div className="flex flex-1" style={rise(1)}>
-            <CompareCard label="Example · without AIX" tone="without" rows={WITHOUT} />
+            <CompareCard label="Example · without Agentry" tone="without" rows={WITHOUT} />
           </div>
           <div className="flex flex-1" style={rise(2)}>
-            <CompareCard label="Example · with AIX" tone="with" rows={WITH} />
+            <CompareCard label="Example · with Agentry" tone="with" rows={WITH} />
           </div>
         </div>
       </div>

@@ -14,7 +14,7 @@ import {
   VIZ_GRAY as GRAY,
 } from "@/components/solution/CardChrome";
 
-/* AI Engineering "what AIX unlocks" bento — same image-topped FeatureCard
+/* AI Engineering "what Agentry unlocks" bento — same image-topped FeatureCard
    idiom as FinopsShips: a bordered panel with a lit top-left edge + ambient
    glow on a dark surface, tables/charts/meters inside. Theme-aware via
    cv-* tokens. */
@@ -30,7 +30,7 @@ function RoutingViz() {
     ["Vertex", 14, GRAY, "$0.009/1k"],
   ];
   return (
-    <Panel className="p-0" chrome="aix.app/routing">
+    <Panel className="p-0" chrome="agentry.app/routing">
       <div className="flex items-center gap-1.5 border-b border-cv-line px-3 py-2 dark:border-white/10">
         <Tab label="Cost" active />
         <Tab label="Latency" />
@@ -67,7 +67,7 @@ function RoutingViz() {
 function GuardrailsViz() {
   const rules = ["PII handling", "Data residency", "Provider allowlist", "Budget cap"];
   return (
-    <Panel className="justify-center gap-3 p-4" chrome="aix.app/policy">
+    <Panel className="justify-center gap-3 p-4" chrome="agentry.app/policy">
       <div className="flex items-center justify-between">
         <span className="text-[10px] uppercase tracking-wide text-cv-muted">Pre-execution policy</span>
         <span className="text-[10px] font-medium text-cv-muted">4 rules</span>
@@ -90,7 +90,7 @@ function GpuViz() {
     ["Dedicated pools", "$0.85/hr", 38, OK],
   ];
   return (
-    <Panel className="justify-center gap-3 p-4" chrome="aix.app/gpu-pools">
+    <Panel className="justify-center gap-3 p-4" chrome="agentry.app/gpu-pools">
       <span className="text-[10px] uppercase tracking-wide text-cv-muted">Cost per GPU-hour, by pool</span>
       {pools.map(([name, rate, pct, color]) => (
         <div key={name}>
@@ -121,7 +121,7 @@ function AttributionViz() {
     ["Workload", 25, "#7CB8F8", "$15.6k"],
   ];
   return (
-    <Panel className="justify-center gap-3 p-4" chrome="aix.app/attribution">
+    <Panel className="justify-center gap-3 p-4" chrome="agentry.app/attribution">
       <span className="text-[10px] uppercase tracking-wide text-cv-muted">Spend attribution · live</span>
       <div className="flex h-2.5 w-full overflow-hidden rounded-full">
         {segments.map(([name, pct, color]) => (
@@ -151,7 +151,7 @@ function TokenChartViz({ reduced }: VizProps) {
   const TOKEN_LINE = "0,42 20,36 40,38 60,28 80,32 100,18 120,24";
   const GPU_LINE = "0,30 20,24 40,26 60,14 80,20 100,10 120,16";
   return (
-    <Panel className="justify-center gap-4 p-4" chrome="aix.app/telemetry">
+    <Panel className="justify-center gap-4 p-4" chrome="agentry.app/telemetry">
       <div>
         <div className="flex items-center justify-between text-[10px] uppercase tracking-wide text-cv-muted">
           <span>Tokens · last 24h</span>
@@ -193,7 +193,7 @@ function RegistryViz() {
     ["llama-3", "v3.0", "Active", OK],
   ];
   return (
-    <Panel className="p-0" chrome="aix.app/model-registry">
+    <Panel className="p-0" chrome="agentry.app/model-registry">
       <div className="grid grid-cols-[1.3fr_0.8fr_1fr] items-center gap-3 border-b border-cv-line px-3 py-1.5 text-[10px] uppercase tracking-wide text-cv-muted dark:border-white/10">
         <span>Model</span>
         <span>Version</span>
@@ -234,7 +234,7 @@ const CARDS: [title: string, desc: string][] = [
   ["Model registry and failover", "Versioned models with automatic failover when a provider degrades."],
 ];
 
-export function AixUnlocks() {
+export function AgentryUnlocks() {
   const [reduced, setReduced] = useState(false);
   useEffect(() => {
     setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);

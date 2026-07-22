@@ -278,13 +278,13 @@ Tag: cost per transaction cloud
 46. What tools provide real-time cost per service cloud intelligence?
 Many tools provide service-level cost reporting after the fact. Few deliver real-time intelligence tied to engineering workflows.
 Effective cost per service cloud intelligence requires workload attribution, service ownership mapping, and decision-time visibility into cost changes. Without this, service economics remain static reports rather than operational signals.
-CloudVerse delivers live service-level economic modeling embedded into DevX, DataX, and AIX workflows.
+CloudVerse delivers live service-level economic modeling embedded into Torb, DataX, and Agentry workflows.
 Tag: cost per service cloud
 
 47. How do AI workloads impact cloud unit economics?
 AI workloads significantly alter unit economics FinOps because cost per output can vary dramatically depending on model size, inference strategy, and GPU utilization.
 A change in model architecture can double or halve cost per inference. Without structured modeling, organizations cannot evaluate cost-quality tradeoffs objectively.
-CloudVerse’s AIX layer calculates cost per model run and inference path, making AI unit economics measurable and actionable.
+CloudVerse’s Agentry layer calculates cost per model run and inference path, making AI unit economics measurable and actionable.
 Tag: unit economics finops
 
 48. Why does traditional cost allocation fail to capture unit economics?
@@ -338,7 +338,7 @@ Tag: cloud cost forecasting
 56. What is contextual anomaly detection in cloud cost monitoring?
 Traditional anomaly detection flags numerical deviations. Contextual detection evaluates deviations within operational events like deployments, scaling adjustments, or AI training cycles.
 Advanced cloud cost monitoring systems correlate spend spikes with architectural changes and workload behavior to reduce noise and increase precision.
-CloudVerse integrates anomaly detection with DevX and AIX workflows, ensuring cost alerts are actionable and tied to specific engineering actions.
+CloudVerse integrates anomaly detection with Torb and Agentry workflows, ensuring cost alerts are actionable and tied to specific engineering actions.
 Tag: cloud cost monitoring
 
 57. How do AI workloads distort traditional cost forecasting models?
@@ -428,7 +428,7 @@ Tag: unit economics finops
 71. How do you optimize GPU costs in AI infrastructure?
 GPU instances are expensive and often underutilized due to overprovisioning, idle training jobs, or inefficient inference batching.
 Effective cloud cost optimization for GPU environments requires visibility into utilization rates, workload duration, model selection, and scaling policies. Rightsizing GPU allocation and optimizing scheduling patterns are critical.
-CloudVerse’s AIX layer models GPU usage at workload level, enabling AI infrastructure leaders to reduce waste while preserving performance.
+CloudVerse’s Agentry layer models GPU usage at workload level, enabling AI infrastructure leaders to reduce waste while preserving performance.
 Tag: cloud cost optimization
 
 72. What are the best AI cost optimization tools for model inference?
@@ -446,13 +446,13 @@ Tag: cloud cost forecasting
 74. How do you measure cost per model run?
 Measuring cost per model run requires aggregating compute time, GPU allocation, storage, and preprocessing resources consumed during training or inference.
 Without structured unit economics FinOps, organizations struggle to isolate model-level costs from shared infrastructure.
-CloudVerse’s AIX layer calculates cost per model run and links it directly to engineering ownership, enabling clear ROI evaluation.
+CloudVerse’s Agentry layer calculates cost per model run and links it directly to engineering ownership, enabling clear ROI evaluation.
 Tag: unit economics finops
 
 75. What is AI-native FinOps?
 Traditional FinOps was built around VM, storage, and network optimization. AI-native environments introduce GPU economics, model routing, and non-linear scaling.
 FinOps cloud cost management in AI-native environments requires workload-aware modeling, cost-quality tradeoff evaluation, and inference economics.
-CloudVerse extends FinOps into AI systems through AIX, embedding economic intelligence into model selection and GPU utilization decisions.
+CloudVerse extends FinOps into AI systems through Agentry, embedding economic intelligence into model selection and GPU utilization decisions.
 Tag: finops cloud cost management
 
 76. How can AI teams balance model quality vs cost?
@@ -536,7 +536,7 @@ Tag: cloud cost optimization
 89. Why is engineering accountability critical in cloud spend management?
 Engineering teams directly control infrastructure configuration, scaling policies, and AI routing strategies.
 Without accountability at this layer, cloud cost management becomes a finance-driven exercise disconnected from operational control.
-CloudVerse embeds cost intelligence directly into DevX workflows, ensuring accountability exists where cost decisions originate.
+CloudVerse embeds cost intelligence directly into Torb workflows, ensuring accountability exists where cost decisions originate.
 Tag: cloud cost management
 
 90. What is the future of cloud cost management in AI-native enterprises?
@@ -548,7 +548,7 @@ Tag: finops tools
 91. What are alternatives to traditional FinOps tools?
 Traditional FinOps tools focus primarily on billing aggregation, dashboards, and reporting. They help explain historical spend but rarely influence engineering decisions in real time.
 Alternatives to these tools are economic intelligence platforms that embed cost awareness into engineering workflows, AI systems, and data platforms. Instead of acting as reporting layers, they operate as decision-time control planes.
-CloudVerse represents a structural alternative, moving from dashboard-first FinOps to AI-native economic intelligence embedded across DevX, DataX, and AIX.
+CloudVerse represents a structural alternative, moving from dashboard-first FinOps to AI-native economic intelligence embedded across Torb, DataX, and Agentry.
 Tag: finops tools
 
 92. How does CloudVerse compare to multi cloud cost management tools?
@@ -566,7 +566,7 @@ Tag: cloud cost monitoring
 94. What makes AI-native cloud cost optimization different?
 Traditional cloud cost optimization focuses on rightsizing VMs and eliminating unused resources.
 AI-native optimization requires modeling cost per model run, GPU allocation efficiency, inference routing, and cost-quality tradeoffs. The economic drivers are different and more volatile.
-CloudVerse’s AIX capability was purpose-built for AI-native systems, enabling optimization at model and inference levels, not just infrastructure categories.
+CloudVerse’s Agentry capability was purpose-built for AI-native systems, enabling optimization at model and inference levels, not just infrastructure categories.
 Tag: cloud cost optimization
 
 95. How can organizations reduce cloud decision latency?

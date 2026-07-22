@@ -5,34 +5,34 @@ import { DEMO_URL } from "@/lib/links";
 import { CountUpStat } from "@/components/CountUpStat";
 import GovernanceBento from "@/components/product/GovernanceBento";
 import NoBlackBoxes from "@/components/product/NoBlackBoxes";
-import AixRoiSplit from "@/components/product/AixRoiSplit";
+import AgentryRoiSplit from "@/components/product/AgentryRoiSplit";
 import { PlatformHeroMockup, type MockupTab } from "@/components/product/PlatformHeroMockup";
 import { PageHero } from "@/components/PageHero";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
-import AixSteps from "@/components/product/AixSteps";
-import AixProvidersMarquee from "@/components/product/AixProvidersMarquee";
-import AixProblemsShowcase from "@/components/product/AixProblemsShowcase";
+import AgentrySteps from "@/components/product/AgentrySteps";
+import AgentryProvidersMarquee from "@/components/product/AgentryProvidersMarquee";
+import AgentryProblemsShowcase from "@/components/product/AgentryProblemsShowcase";
 
 export const metadata: Metadata = {
-  title: "AIX: The Control Plane for Enterprise AI | CloudVerse",
+  title: "CloudVerse Agentry: The Control Plane for Enterprise AI | CloudVerse",
   description:
     "Route, govern, and meter every AI request across models, clouds, GPUs, and private endpoints. Cut AI cost 40–90%. The decision happens before the request, not after the bill.",
   keywords: ["AI cost optimization", "LLM routing", "GPU cost management", "enterprise AI governance", "AI gateway", "model routing"],
-  alternates: { canonical: "/platform/aix" },
+  alternates: { canonical: "/platform/agentry" },
   openGraph: {
-    title: "AIX: The Control Plane for Enterprise AI",
+    title: "CloudVerse Agentry: The Control Plane for Enterprise AI",
     description: "Route, govern, and meter every AI request across models, clouds, GPUs, and private endpoints. Cut AI cost 40–90%.",
-    url: "/platform/aix",
-    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse AIX: AI Cost Control Plane" }],
+    url: "/platform/agentry",
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse Agentry: AI Cost Control Plane" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AIX: The Control Plane for Enterprise AI",
+    title: "CloudVerse Agentry: The Control Plane for Enterprise AI",
     description: "Route, govern, and meter every AI request. Cut AI cost 40–90%. Decision-time governance.",
   },
 };
 
-const AIX_TABS: MockupTab[] = [
+const AGENTRY_TABS: MockupTab[] = [
   { id: "routing", label: "Routing", copy: "Every request scored live on cost, latency, and quality. The best-fit route wins, with a fallback attached.", icon: Route },
   { id: "governance", label: "Governance", copy: "Policy, access, residency, and provider trust enforced before a request runs.", icon: ShieldCheck },
   { id: "attribution", label: "Cost Attribution", copy: "Every run lands against a team, feature, and tenant. Automatically.", icon: DollarMinimalistic },
@@ -46,7 +46,7 @@ const STATS = [
   { v: "28.5%", l: "faster than that baseline" },
 ];
 
-// Attribute-by-attribute contrast between a hardcoded setup and AIX. Same keys
+// Attribute-by-attribute contrast between a hardcoded setup and Agentry. Same keys
 // on both sides so the two cards read as an aligned before/after comparison.
 const HARDCODED_VS: { k: string; before: string; after: string }[] = [
   { k: "Model", before: "One, chosen once", after: "Best fit, per request" },
@@ -81,12 +81,12 @@ const TRACE_JSON = `{
   }
 }`;
 
-export default function AIXPage() {
+export default function AgentryPage() {
   return (
     <>
       {/* HERO */}
       <PageHero
-        eyebrow="AIX"
+        eyebrow="CloudVerse Agentry"
         accent="purple"
         title="The control plane for enterprise AI."
         subtitle="Route, govern, and meter every AI request across your models, clouds, GPUs, and private endpoints. The cost decision gets made before the request goes out, not in a spreadsheet after the bill lands."
@@ -101,7 +101,7 @@ export default function AIXPage() {
       </PageHero>
 
       {/* HERO MOCKUP */}
-      <PlatformHeroMockup tabs={AIX_TABS} />
+      <PlatformHeroMockup tabs={AGENTRY_TABS} />
 
       {/* STATS */}
       <section className="pt-8 pb-12 lg:pt-10 lg:pb-16">
@@ -153,7 +153,7 @@ export default function AIXPage() {
                   <TrashBin2 weight="Linear" size={18} />
                 </span>
                 <div>
-                  <div className="text-[15px] font-semibold text-cv-ink">Before AIX</div>
+                  <div className="text-[15px] font-semibold text-cv-ink">Before Agentry</div>
                   <div className="text-xs text-cv-muted">Hardcoded, static</div>
                 </div>
               </div>
@@ -199,7 +199,7 @@ export default function AIXPage() {
                   <Bolt weight="Bold" size={18} />
                 </span>
                 <div>
-                  <div className="text-[15px] font-semibold text-cv-ink">After AIX</div>
+                  <div className="text-[15px] font-semibold text-cv-ink">After Agentry</div>
                   <div className="text-xs text-[#1664C0] dark:text-[#7CB8F8]">Dynamic, per request</div>
                 </div>
               </div>
@@ -222,7 +222,7 @@ export default function AIXPage() {
         </div>
       </section>
 
-      {/* WHAT AIX DOES */}
+      {/* WHAT AGENTRY DOES */}
       <section className="cv-section relative overflow-hidden bg-cv-surface">
         {/* Top-center brand radial gradient */}
         <div
@@ -231,12 +231,12 @@ export default function AIXPage() {
           style={{ background: "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(34,120,224,0.16), transparent 70%)" }}
         />
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative">
-          <h2 className="cv-h2 text-cv-ink mb-5 mx-auto max-w-3xl text-center">How AIX controls every AI request.</h2>
+          <h2 className="cv-h2 text-cv-ink mb-5 mx-auto max-w-3xl text-center">How Agentry controls every AI request.</h2>
           <p className="cv-body-lg text-cv-muted mb-2 mx-auto max-w-3xl text-center">
-            AIX sits between your application and every AI provider you use. On each request it scores the available routes against the rules your team set, then returns the best one with a fallback and a full decision log.
+            Agentry sits between your application and every AI provider you use. On each request it scores the available routes against the rules your team set, then returns the best one with a fallback and a full decision log.
           </p>
-          <p className="text-cv-muted italic mb-10 mx-auto max-w-3xl text-center">A gateway runs the rule you wrote. AIX works out whether that rule is still right.</p>
-          <AixSteps />
+          <p className="text-cv-muted italic mb-10 mx-auto max-w-3xl text-center">A gateway runs the rule you wrote. Agentry works out whether that rule is still right.</p>
+          <AgentrySteps />
         </div>
       </section>
 
@@ -247,7 +247,7 @@ export default function AIXPage() {
           <p className="cv-body-lg text-cv-ink/75 mb-10 mx-auto max-w-3xl text-center">
             Every hardcoded endpoint spends money without making a decision. The same work, on the right model, often costs a fraction, at the same or better quality.
           </p>
-          <AixRoiSplit roi={ROI} />
+          <AgentryRoiSplit roi={ROI} />
         </div>
       </section>
 
@@ -256,7 +256,7 @@ export default function AIXPage() {
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
           <h2 className="cv-h2 text-cv-ink mb-5 mx-auto max-w-3xl text-center">Built for enterprise AI governance.</h2>
           <p className="cv-body-lg text-cv-ink/75 mb-10 mx-auto max-w-3xl text-center">
-            Every routing decision AIX makes is recorded, auditable, and explainable. Governance is on by default, not bolted on.
+            Every routing decision Agentry makes is recorded, auditable, and explainable. Governance is on by default, not bolted on.
           </p>
           <GovernanceBento />
         </div>
@@ -266,7 +266,7 @@ export default function AIXPage() {
       <NoBlackBoxes traceJson={TRACE_JSON} />
 
       {/* FOUR PROBLEMS — carousel */}
-      <AixProblemsShowcase />
+      <AgentryProblemsShowcase />
 
       {/* INTEGRATIONS */}
       <section className="cv-section">
@@ -275,20 +275,20 @@ export default function AIXPage() {
           <div className="text-center">
             <h2 className="cv-h2 text-cv-ink mx-auto max-w-2xl">Connect once. Route everywhere.</h2>
             <p className="mt-5 cv-body-lg text-cv-ink/75 max-w-2xl mx-auto">
-              Add your providers once. AIX handles routing, fallback, and cost tracking across all of them. No code changes when you add a new provider.
+              Add your providers once. Agentry handles routing, fallback, and cost tracking across all of them. No code changes when you add a new provider.
             </p>
             <h3 className="cv-label mt-8 text-[#1664C0] dark:text-[#7CB8F8]">Supported model providers</h3>
           </div>
 
           {/* Provider logos - two rows of app-icon tiles */}
           <div className="mt-8">
-            <AixProvidersMarquee />
+            <AgentryProvidersMarquee />
           </div>
         </div>
       </section>
 
       {/* FINAL CTA */}
-      <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Platform", href: "/platform/finops" }, { name: "AIX", href: "/platform/aix" }]} />
+      <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Platform", href: "/platform/finops" }, { name: "Agentry", href: "/platform/agentry" }]} />
     </>
   );
 }

@@ -5,7 +5,7 @@ import type { ComponentType } from "react";
 import type { IconProps } from "@solar-icons/react";
 import { DEMO_URL } from "@/lib/links";
 import { PageHero } from "@/components/PageHero";
-import AixProvidersMarquee from "@/components/product/AixProvidersMarquee";
+import AgentryProvidersMarquee from "@/components/product/AgentryProvidersMarquee";
 import IntegrationSteps from "@/components/product/IntegrationSteps";
 import IntegrationsCatalog from "@/components/product/IntegrationsCatalog";
 import ClosingCtaBand from "@/components/ClosingCtaBand";
@@ -113,7 +113,7 @@ export default function IntegrationsPage() {
               Route across managed APIs and private deployments without changing your application code.
             </p>
           </div>
-          <AixProvidersMarquee />
+          <AgentryProvidersMarquee />
           <p className="mt-14 text-center text-sm italic text-cv-muted">More providers added regularly.</p>
         </div>
       </section>
@@ -227,7 +227,7 @@ export default function IntegrationsPage() {
               <p className="cv-label mb-4">Private compute</p>
               <h2 className="cv-h2 text-cv-ink">Private deployments and GPU infrastructure.</h2>
               <p className="cv-body-lg text-cv-ink/75 mt-6">
-                AIX treats private GPU capacity as a first-class routing target alongside managed APIs. If you run models on dedicated hardware or a NeoCloud provider, AIX routes to them with the same cost and policy logic.
+                Agentry treats private GPU capacity as a first-class routing target alongside managed APIs. If you run models on dedicated hardware or a NeoCloud provider, Agentry routes to them with the same cost and policy logic.
               </p>
             </div>
 

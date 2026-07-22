@@ -1,5 +1,5 @@
 /* "Not a gateway. Not observability. Not a cost tool." — a capability matrix
-   contrasting adjacent tool categories against CloudVerse AIX. The AIX column is
+   contrasting adjacent tool categories against CloudVerse Agentry. The Agentry column is
    highlighted; a dash renders as a muted "—". Horizontally scrollable on small
    screens. Matches home design language: cv-* tokens, pill chip. Server
    component. */
@@ -11,7 +11,7 @@ const COLS = [
   "IT Cost Tools\n(Apptio, Flexera)",
 ];
 
-// Each row: [capability, obs, guardrails, registries, costtools, AIX]
+// Each row: [capability, obs, guardrails, registries, costtools, Agentry]
 const ROWS: [string, string, string, string, string, string][] = [
   ["Discover agents across clouds, SaaS, frameworks, K8s", "—", "Own platform only", "Catalog focus", "—", "Cross-estate"],
   ["Enforce budgets per call, in flight", "Observe only", "Quota-level", "—", "After the invoice", "Reserve → settle"],
@@ -21,9 +21,9 @@ const ROWS: [string, string, string, string, string, string][] = [
   ["Private / sovereign deployment", "Varies", "Their cloud", "—", "Varies", "Your tenancy"],
 ];
 
-function Cell({ value, aix }: { value: string; aix?: boolean }) {
+function Cell({ value, agentry }: { value: string; agentry?: boolean }) {
   if (value === "—") return <span className="text-cv-muted/50">—</span>;
-  return <span className={aix ? "font-semibold text-cv-ink" : "text-cv-ink/70"}>{value}</span>;
+  return <span className={agentry ? "font-semibold text-cv-ink" : "text-cv-ink/70"}>{value}</span>;
 }
 
 export function NotAGateway() {
@@ -32,13 +32,13 @@ export function NotAGateway() {
       <div className="cv-container">
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
-            How AIX compares
+            How Agentry compares
           </span>
           <h2 className="cv-h2 text-balance text-cv-ink">
             Not a gateway. Not observability. Not a cost tool.
           </h2>
           <p className="cv-body mt-4 text-cv-ink/70">
-            Adjacent tools see pieces. AIX governs the whole.
+            Adjacent tools see pieces. Agentry governs the whole.
           </p>
         </div>
 
@@ -58,7 +58,7 @@ export function NotAGateway() {
                   </th>
                 ))}
                 <th className="whitespace-pre-line bg-[#1664C0]/[0.06] px-4 py-4 text-left text-[11px] font-semibold uppercase leading-tight tracking-wider text-[#1664C0] dark:bg-[#1664C0]/15 dark:text-[#7CB8F8]">
-                  CloudVerse AIX
+                  CloudVerse Agentry
                 </th>
               </tr>
             </thead>
@@ -71,15 +71,15 @@ export function NotAGateway() {
                       {cap}
                     </th>
                     {cells.map((v, i) => {
-                      const isAix = i === cells.length - 1;
+                      const isAgentry = i === cells.length - 1;
                       return (
                         <td
                           key={i}
                           className={`px-4 py-4 align-top text-[13px] ${
-                            isAix ? "bg-[#1664C0]/[0.06] dark:bg-[#1664C0]/[0.10]" : ""
+                            isAgentry ? "bg-[#1664C0]/[0.06] dark:bg-[#1664C0]/[0.10]" : ""
                           }`}
                         >
-                          <Cell value={v} aix={isAix} />
+                          <Cell value={v} agentry={isAgentry} />
                         </td>
                       );
                     })}

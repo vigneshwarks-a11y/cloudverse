@@ -3,18 +3,18 @@
 > CloudVerse is the Compute Economics Platform for the AI Era. Cloud, AI, data, and engineering spend governed in one place.
 
 ## About
-CloudVerse gives enterprises economic control over AI, cloud, and data infrastructure across every major provider: AWS, Azure, GCP, Snowflake, Databricks, OpenAI, Anthropic, CoreWeave, and more. Four modules (FinOps Platform, AIX, DevX, and DataX) share one control plane.
+CloudVerse gives enterprises economic control over AI, cloud, and data infrastructure across every major provider: AWS, Azure, GCP, Snowflake, Databricks, OpenAI, Anthropic, CoreWeave, and more. Four modules (FinOps Platform, CloudVerse Agentry, CloudVerse Torb, and DataX) share one control plane.
 
 ## Proof
 - Berkshire Hathaway HomeServices: $738,983 in annualised savings (2026)
-- DevX caught +$2.4k–$2.9k/mo in cost impact from a single PR
+- Torb caught +$2.4k–$2.9k/mo in cost impact from a single PR
 - DataX detected a $117.16 full scan across 334.6 GB on BigQuery
 
 ## Key Pages
 - Homepage: https://cloudverse.ai/
 - FinOps Platform: https://cloudverse.ai/platform/finops
-- AIX (GPU & LLM economics): https://cloudverse.ai/platform/aix
-- DevX (shift-left cost): https://cloudverse.ai/platform/devx
+- CloudVerse Agentry (GPU & LLM economics): https://cloudverse.ai/platform/agentry
+- CloudVerse Torb (shift-left cost): https://cloudverse.ai/platform/torb
 - DataX (warehouse intelligence): https://cloudverse.ai/platform/datax
 - Integrations: https://cloudverse.ai/integrations
 - About: https://cloudverse.ai/about

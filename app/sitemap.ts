@@ -8,8 +8,8 @@ type RouteConfig = { path: string; priority: number; changeFreq: "weekly" | "mon
 const STATIC_ROUTES: RouteConfig[] = [
   { path: "/",                        priority: 1.0,  changeFreq: "weekly"  },
   { path: "/platform/finops",         priority: 0.9,  changeFreq: "monthly" },
-  { path: "/platform/aix",            priority: 0.9,  changeFreq: "monthly" },
-  { path: "/platform/devx",           priority: 0.9,  changeFreq: "monthly" },
+  { path: "/platform/agentry",         priority: 0.9,  changeFreq: "monthly" },
+  { path: "/platform/torb",            priority: 0.9,  changeFreq: "monthly" },
   { path: "/platform/datax",          priority: 0.9,  changeFreq: "monthly" },
   { path: "/solutions",               priority: 0.8,  changeFreq: "monthly" },
   { path: "/solutions/finops-teams",  priority: 0.8,  changeFreq: "monthly" },

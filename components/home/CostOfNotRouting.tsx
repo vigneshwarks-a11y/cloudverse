@@ -1,4 +1,4 @@
-/* "The cost of not routing" — quantifies hardcoded spend versus AIX-routed
+/* "The cost of not routing" — quantifies hardcoded spend versus Agentry-routed
    spend: a monthly at-scale savings table beside a single-request Without/With
    comparison, closed by a result banner. cv-* tokens, theme-aware. Server
    component. */
@@ -19,16 +19,16 @@ function CompareCard({
   tone: "without" | "with";
   rows: { k: string; v: string; delta?: string }[];
 }) {
-  const withAix = tone === "with";
+  const withAgentry = tone === "with";
   return (
     <div
       className={`rounded-2xl border p-5 ${
-        withAix
+        withAgentry
           ? "border-[#1664C0]/40 bg-[#1664C0]/[0.05] dark:border-[#7CB8F8]/25 dark:bg-[#1664C0]/[0.10]"
           : "border-cv-line/50 bg-cv-card/60 dark:border-white/10 dark:bg-[#0D0D0D]"
       }`}
     >
-      <div className={`text-xs font-semibold uppercase tracking-widest ${withAix ? "text-[#1664C0] dark:text-[#7CB8F8]" : "text-cv-muted"}`}>
+      <div className={`text-xs font-semibold uppercase tracking-widest ${withAgentry ? "text-[#1664C0] dark:text-[#7CB8F8]" : "text-cv-muted"}`}>
         {label}
       </div>
       <dl className="mt-4 space-y-3">
@@ -75,16 +75,16 @@ export function CostOfNotRouting() {
                   <tr className="border-b border-cv-line/50 text-left text-[11px] uppercase tracking-wider text-cv-muted dark:border-white/10">
                     <th className="px-5 py-3 font-medium">Monthly volume</th>
                     <th className="px-5 py-3 text-right font-medium">Hardcoded spend</th>
-                    <th className="px-5 py-3 text-right font-medium">With AIX</th>
+                    <th className="px-5 py-3 text-right font-medium">With Agentry</th>
                     <th className="px-5 py-3 text-right font-medium">Monthly saving</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {SCALE_ROWS.map(([vol, hard, aix, save]) => (
+                  {SCALE_ROWS.map(([vol, hard, agentry, save]) => (
                     <tr key={vol} className="border-b border-cv-line/30 last:border-0 dark:border-white/[0.06]">
                       <td className="px-5 py-3.5 text-cv-ink/80">{vol}</td>
                       <td className="px-5 py-3.5 text-right font-mono text-cv-ink/70">{hard}</td>
-                      <td className="px-5 py-3.5 text-right font-mono text-cv-ink">{aix}</td>
+                      <td className="px-5 py-3.5 text-right font-mono text-cv-ink">{agentry}</td>
                       <td className="px-5 py-3.5 text-right font-mono font-semibold text-cv-teal">{save}</td>
                     </tr>
                   ))}
@@ -100,7 +100,7 @@ export function CostOfNotRouting() {
           {/* Single-request Without / With comparison */}
           <div className="flex flex-col gap-4">
             <CompareCard
-              label="Example · without AIX"
+              label="Example · without Agentry"
               tone="without"
               rows={[
                 { k: "Model", v: "Claude Sonnet" },
@@ -109,7 +109,7 @@ export function CostOfNotRouting() {
               ]}
             />
             <CompareCard
-              label="Example · with AIX"
+              label="Example · with Agentry"
               tone="with"
               rows={[
                 { k: "Model", v: "GPT-4o-mini" },

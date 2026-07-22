@@ -25,7 +25,7 @@ Semantic tokens map to light/dark mode values. Use these in code, never raw hex.
 | `success` | — | `#0E9E7A` | `#0E9E7A` | Positive states |
 | `warning` | — | `#D97706` | `#D97706` | Warning states |
 | `danger` | — | `#DC2626` | `#EF4444` | Error / destructive |
-| `purple` | `text-cv-purple` | `#6954D4` | `#6954D4` | AIX module accent |
+| `purple` | `text-cv-purple` | `#6954D4` | `#6954D4` | Agentry module accent |
 
 > **Contrast rule:** For light mode use `#1664C0` for blue text (passes WCAG AA). For dark mode use `#7CB8F8`. Never use `#7CB8F8` on a white/light background.
 

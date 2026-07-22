@@ -1,11 +1,11 @@
-# AIX Product Page — Full Text Content
-`/app/platform/aix/page.tsx` and all rendered components, top to bottom
+# CloudVerse Agentry Product Page — Full Text Content
+`/app/platform/agentry/page.tsx` and all rendered components, top to bottom
 
 ---
 
 ## Hero
 
-**Eyebrow label:** AIX
+**Eyebrow label:** CloudVerse Agentry
 
 **H1:** The control plane for enterprise AI.
 
@@ -49,8 +49,8 @@ Most teams pick a model once, wire it into the app, and move on. Six months late
 
 A hardcoded choice doesn't update when prices drop. It doesn't reroute when a provider slows down. That gap is where the budget quietly goes.
 
-### OrbitCore diagram (AIX brand cube with orbiting labeled pills)
-Center wordmark: AIX
+### OrbitCore diagram (Agentry brand cube with orbiting labeled pills)
+Center wordmark: CloudVerse Agentry
 
 Orbiting pill labels:
 - Model selection
@@ -60,9 +60,9 @@ Orbiting pill labels:
 - Latency routing
 - Compliance log
 
-### Before / After AIX comparison cards
+### Before / After Agentry comparison cards
 
-**Before AIX** — *Hardcoded, static*
+**Before Agentry** — *Hardcoded, static*
 
 | Attribute | Before |
 |---|---|
@@ -72,7 +72,7 @@ Orbiting pill labels:
 | Routing | None — every request goes the same place |
 | Cost | An assumption, not a measurement |
 
-**After AIX** — *Dynamic, per request*
+**After Agentry** — *Dynamic, per request*
 
 | Attribute | After |
 |---|---|
@@ -84,13 +84,13 @@ Orbiting pill labels:
 
 ---
 
-## How AIX controls every AI request.
+## How Agentry controls every AI request.
 
-**H2:** How AIX controls every AI request.
+**H2:** How Agentry controls every AI request.
 
-AIX sits between your application and every AI provider you use. On each request it scores the available routes against the rules your team set, then returns the best one with a fallback and a full decision log.
+Agentry sits between your application and every AI provider you use. On each request it scores the available routes against the rules your team set, then returns the best one with a fallback and a full decision log.
 
-*A gateway runs the rule you wrote. AIX works out whether that rule is still right.*
+*A gateway runs the rule you wrote. Agentry works out whether that rule is still right.*
 
 ### Step tab-bar (auto-advancing, 6 steps)
 
@@ -179,7 +179,7 @@ Every hardcoded endpoint spends money without making a decision. The same work, 
 
 **Left card label:** At scale (monthly)
 
-| Monthly volume | Hardcoded spend | With AIX | Monthly saving |
+| Monthly volume | Hardcoded spend | With Agentry | Monthly saving |
 |---|---|---|---|
 | 1M requests | $2,980 | $298 | $2,682 |
 | 5M requests | $14,900 | $1,490 | $13,410 |
@@ -190,12 +190,12 @@ Every hardcoded endpoint spends money without making a decision. The same work, 
 
 **Right cards:**
 
-"Without AIX" (neutral card)
+"Without Agentry" (neutral card)
 - Model — Claude Sonnet
 - Latency — 5,537 ms
 - Cost / request — $0.00298
 
-"With AIX" (blue highlighted card)
+"With Agentry" (blue highlighted card)
 - Model — GPT-4o-mini
 - Latency — 3,962 ms (chip: -28.5%)
 - Cost / request — $0.00010 (chip: -96.8%)
@@ -209,7 +209,7 @@ Same task, same-or-better quality.
 
 **H2:** Built for enterprise AI governance.
 
-Every routing decision AIX makes is recorded, auditable, and explainable. Governance is on by default, not bolted on.
+Every routing decision Agentry makes is recorded, auditable, and explainable. Governance is on by default, not bolted on.
 
 ### Governance feature grid (6 cards)
 
@@ -297,11 +297,11 @@ SOC2 and ISO-aligned architecture. Audit trails, access controls, and policy enf
 
 ---
 
-## Four problems AIX fixes.
+## Four problems Agentry fixes.
 
-**H2:** Four problems AIX fixes.
+**H2:** Four problems Agentry fixes.
 
-The routing problems teams actually hit in production — and how AIX resolves each one at decision time.
+The routing problems teams actually hit in production — and how Agentry resolves each one at decision time.
 
 *(Carousel controls: "Previous" / "Next" — aria-labels only)*
 
@@ -354,7 +354,7 @@ Mock panel — "Workloads" (2×2 tiles, example)
 
 **H2:** Connect once. Route everywhere.
 
-Add your providers once. AIX handles routing, fallback, and cost tracking across all of them. No code changes when you add a new provider.
+Add your providers once. Agentry handles routing, fallback, and cost tracking across all of them. No code changes when you add a new provider.
 
 **H3 (label):** Supported model providers
 
@@ -364,4 +364,4 @@ OpenAI, Anthropic, Google Gemini, Mistral AI, Cohere, Llama, Ollama, Groq, DeepS
 ---
 
 ## Structured data (not visible)
-A `BreadcrumbJsonLd` component renders breadcrumb schema (Home → Platform → AIX) — this is JSON-LD metadata, not rendered visible text, so it is noted here for completeness only and not included as body copy.
+A `BreadcrumbJsonLd` component renders breadcrumb schema (Home → Platform → Agentry) — this is JSON-LD metadata, not rendered visible text, so it is noted here for completeness only and not included as body copy.

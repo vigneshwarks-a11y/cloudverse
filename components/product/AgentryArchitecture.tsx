@@ -1,4 +1,4 @@
-// Pattern 3 AIX decision engine architecture
+// Pattern 3 Agentry decision engine architecture
 
 const INTENT = [
   "Latency ceiling",
@@ -18,7 +18,7 @@ const ENGINE = [
 
 const PROVIDERS = ["OpenAI", "Anthropic", "Bedrock", "Vertex AI", "CoreWeave", "Azure OAI", "Lambda Labs", "+ more"];
 
-export function AIXArchitecture() {
+export function AgentryArchitecture() {
   return (
     <section className="cv-section bg-cv-surface2">
       <div className="cv-container">
@@ -46,7 +46,7 @@ export function AIXArchitecture() {
 
             {/* Engine */}
             <div className="rounded-xl border border-cv-line/15 bg-cv-ink/[0.04] p-5">
-              <div className="cv-label mb-4" style={{ color: "#6954D4" }}>cloudverse AIX</div>
+              <div className="cv-label mb-4" style={{ color: "#6954D4" }}>cloudverse Agentry</div>
               <div className="flex flex-wrap gap-2">
                 {ENGINE.map((e) => (
                   <span

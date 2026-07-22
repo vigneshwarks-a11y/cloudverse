@@ -6,7 +6,7 @@ import { Fragment, useCallback, useEffect, useRef, useState, type ReactElement, 
 import useEmblaCarousel from "embla-carousel-react";
 import { DEMO_URL } from "@/lib/links";
 
-/* "Four problems AIX fixes" — draggable carousel of feature cells (title + body
+/* "Four problems Agentry fixes" — draggable carousel of feature cells (title + body
    + Learn More + a product-mock card). Every mock shares one design language —
    a titled dark panel with the CardLightEdge stroke/glow, bottom EDGE_FADE,
    cv-* tokens, status colors and mono metrics — but each problem gets its own
@@ -343,7 +343,7 @@ function Cell({ title, body, heading, Mock }: Problem) {
 
 const DWELL_MS = 2200;
 
-export default function AixProblemsShowcase() {
+export default function AgentryProblemsShowcase() {
   const [emblaRef, embla] = useEmblaCarousel({ align: "start", loop: true, containScroll: "trimSnaps", duration: 14 });
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(true);
@@ -394,9 +394,9 @@ export default function AixProblemsShowcase() {
       <div className="cv-container">
         {/* header */}
         <div className="mx-auto mb-6 flex max-w-3xl flex-col items-center text-center">
-          <h2 className="cv-h2 text-cv-ink">Four problems AIX fixes.</h2>
+          <h2 className="cv-h2 text-cv-ink">Four problems Agentry fixes.</h2>
           <p className="cv-body-lg text-cv-muted mt-4">
-            The routing problems teams actually hit in production — and how AIX resolves each one at decision time.
+            The routing problems teams actually hit in production — and how Agentry resolves each one at decision time.
           </p>
         </div>
         {/* controls (desktop) */}

@@ -23,6 +23,8 @@ const nextConfig = {
       { source: "/platform", destination: "/platform/finops", permanent: true },
       { source: "/signin", destination: "https://id.cloudverse.ai", permanent: false, basePath: false },
       { source: "/demo", destination: "/connect", permanent: false },
+      { source: "/platform/aix", destination: "/platform/agentry", permanent: true },
+      { source: "/platform/devx", destination: "/platform/torb", permanent: true },
     ];
   },
 };

@@ -5,7 +5,7 @@ import { CheckCircle } from "@/lib/solar-icons";
 
 const BLUE = "#6954D4";
 
-/* Shared with the "Four problems AIX fixes" cards: a soft bottom fade on
+/* Shared with the "Four problems Agentry fixes" cards: a soft bottom fade on
    every mock panel + a semantic status palette surfaced as small rounded
    pills, so this grid reads in the same design language. Blue stays the
    brand accent for neutral resource visuals (bars, map dots, tree node);

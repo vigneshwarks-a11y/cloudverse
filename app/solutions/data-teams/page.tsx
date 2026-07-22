@@ -236,7 +236,7 @@ export default function DataTeamsPage() {
             items={[
               ["DataX", "Query attribution, pattern detection, safe automation", "/platform/datax"],
               ["FinOps Platform", "Warehouse spend folded into one allocation model", "/platform/finops"],
-              ["AIX", "Attributes the model pipelines and RAG agents driving warehouse load", "/platform/aix"],
+              ["Agentry", "Attributes the model pipelines and RAG agents driving warehouse load", "/platform/agentry"],
             ]}
           />
         </div>

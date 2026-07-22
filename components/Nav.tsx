@@ -9,9 +9,9 @@ import { NAV, DEMO_URL, SIGNIN_URL } from "@/lib/links";
 import { ModeToggle } from "./ModeToggle";
 
 const PLATFORM_ICONS: Record<string, React.ReactNode> = {
-  aix: <Cpu weight="Linear" size={22} />,
+  agentry: <Cpu weight="Linear" size={22} />,
   finops: <Chart weight="Linear" size={22} />,
-  devx: <Code2 weight="Linear" size={22} />,
+  torb: <Code2 weight="Linear" size={22} />,
   datax: <Database weight="Linear" size={22} />,
 };
 
