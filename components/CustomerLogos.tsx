@@ -9,53 +9,44 @@
 // colours, all normalised to the same rendered height so the rows line up
 // evenly.
 //
-// 10 of 17 logos below are pulled from Brandfetch's CDN (verified domain
-// matches, see brandId in each URL's path). Infogain, PiChain, Optimile,
-// Aura ML, Autoflow, and Doqfy use real logo files supplied directly, after
-// Brandfetch's own scrapes for Aura ML and Optimile turned out wrong
-// (Webflow's mark for Aura ML, a generic sun icon for Optimile). Skylark
-// still has no confident domain match at all (generic name), so it's on its
-// original placeholder /logos/ asset.
+// All logos are now self-hosted under /public/logos (no runtime Brandfetch
+// CDN dependency — the CDN could serve an attribution/placeholder mark and
+// added a third-party request on every page load). The `cv-*` files were
+// pulled once from Brandfetch's verified brand records and committed to the
+// repo; the rest (Infogain, PiChain, Optimile, Aura ML, Autoflow, Doqfy,
+// Skylark) are supplied assets.
 //
-// Several logos carry a light/dark pair and swap per theme via `srcDark` —
-// two stacked <img>s toggled with the dark: variant, no JS theme detection
-// needed. Two kinds of pair are in use:
-//   - Local supplied files (Infogain, Doqfy, Optimile, Aura ML): a real
-//     dark-ink asset for light mode + white asset for dark mode.
-//   - Brandfetch theme pair (Dr. Reddy's, Berkshire/EWM, Ginesys): these
-//     brands' logos are dark/near-black, so the default `theme/dark` asset
-//     (dark-COLOURED, meant for light backgrounds) was invisible on the
-//     black dark-mode surface and left blank gaps in the marquee. Their
-//     `theme/light` (white) variant is used as `srcDark` so they show up in
-//     dark mode. Brandfetch logos that are already mid-toned/colourful
-//     (Axis Max, SISL, Ken42, PiChain, Climaty, XLSMART, Carlsberg,
-//     Redington) stay single-asset — they read fine on black in colour, and
-//     their `theme/light` version is pure white, which would drop the brand
-//     colour.
-// Every logo renders bare on cv-surface. NOTE: Autoflow's single asset is
-// white-on-transparent, so it reads well in dark mode but is nearly invisible
-// on the light surface — it still needs a light-mode (dark-ink) variant.
+// Logos sit directly on cv-surface (no chip), at their original brand
+// colours, all normalised to the same rendered height so the rows line up.
+//
+// Several carry a light/dark pair swapped per theme via `srcDark` — two
+// stacked <img>s toggled with the dark: variant, no JS theme detection.
+// Dark-inked marks (Dr. Reddy's, Berkshire/EWM, Ginesys, Infogain, Doqfy,
+// Optimile, Aura ML) pair a dark asset for light mode with a white asset for
+// dark mode. Colourful/mid-toned marks stay single-asset (they read on both).
+// NOTE: Autoflow's single asset is white-on-transparent — fine in dark mode,
+// nearly invisible on the light surface; still needs a light-mode variant.
 
 type LogoItem = { name: string; src: string; srcDark?: string };
 
 const LOGOS: LogoItem[] = [
-  { name: "Dr. Reddy's",             src: "https://cdn.brandfetch.io/idOmE7g2cc/theme/dark/logo.svg?c=1bxcp1ff0nd3xb7v4zxxu48381x3shpjwQX", srcDark: "https://cdn.brandfetch.io/idOmE7g2cc/theme/light/logo.svg?c=1bxcp1ff0nd3xb7v4zxxu48381x3shpjwQX" },
+  { name: "Dr. Reddy's",             src: "/logos/cv-drreddys.svg" },
   { name: "Infogain",                src: "/logos/Infogain_B.svg", srcDark: "/logos/Infogain_W.svg" },
-  { name: "Axis Max Life Insurance", src: "https://cdn.brandfetch.io/id84WPaTnV/theme/dark/logo.svg?c=1bxcp1ff0nd3xb7v4zxxu48381x3shpjwQX" },
-  { name: "Berkshire Hathaway HomeServices EWM Realty", src: "https://cdn.brandfetch.io/idEiIx5A8Y/w/470/h/109/theme/dark/logo.png?c=1bxcp1ff0nd3xb7v4zxxu48381x3shpjwQX", srcDark: "https://cdn.brandfetch.io/idEiIx5A8Y/w/470/h/109/theme/light/logo.png?c=1bxcp1ff0nd3xb7v4zxxu48381x3shpjwQX" },
-  { name: "SISL Infotech",           src: "https://cdn.brandfetch.io/idd_1Ax5DU/w/126/h/35/theme/dark/logo.png?c=1bxcp1ff0nd3xb7v4zxxu48381x3shpjwQX" },
-  { name: "Ginesys",                 src: "https://cdn.brandfetch.io/idkMnF4l3t/theme/dark/logo.svg?c=1bxcp1ff0nd3xb7v4zxxu48381x3shpjwQX", srcDark: "https://cdn.brandfetch.io/idkMnF4l3t/theme/light/logo.svg?c=1bxcp1ff0nd3xb7v4zxxu48381x3shpjwQX" },
-  { name: "Ken42",                   src: "https://cdn.brandfetch.io/idbv-H_Oqk/theme/dark/logo.svg?c=1bxcp1ff0nd3xb7v4zxxu48381x3shpjwQX" },
+  { name: "Axis Max Life Insurance", src: "/logos/cv-axismaxlife.svg" },
+  { name: "Berkshire Hathaway HomeServices EWM Realty", src: "/logos/cv-bhhs-b.png", srcDark: "/logos/cv-bhhs-w.png" },
+  { name: "SISL Infotech",           src: "/logos/cv-sisl.png" },
+  { name: "Ginesys",                 src: "/logos/cv-ginesys-b.svg", srcDark: "/logos/cv-ginesys-w.svg" },
+  { name: "Ken42",                   src: "/logos/cv-ken42.svg" },
   { name: "PiChain",                 src: "/logos/PiChain.webp" },
   { name: "Optimile",                src: "/logos/optimile-logo-b.svg", srcDark: "/logos/optimile-logo-w.svg" },
   { name: "Aura ML",                 src: "/logos/AuraML-B.png", srcDark: "/logos/AuraML-W.png" },
   { name: "Autoflow",                src: "/logos/autoflow.png" },
-  { name: "Climaty AI",              src: "https://cdn.brandfetch.io/idEReYQXhd/theme/dark/logo.svg?c=1bxcp1ff0nd3xb7v4zxxu48381x3shpjwQX" },
+  { name: "Climaty AI",              src: "/logos/cv-climaty.svg" },
   { name: "Doqfy",                   src: "/logos/DOQFY-B.svg", srcDark: "/logos/DOQFY-W.svg" },
   { name: "Skylark",                 src: "/logos/bf-skylark.png" },
-  { name: "XLSMART",                 src: "https://cdn.brandfetch.io/idbeI2bHG3/theme/dark/logo.svg?c=1bxcp1ff0nd3xb7v4zxxu48381x3shpjwQX" },
-  { name: "Carlsberg Group",         src: "https://cdn.brandfetch.io/id0vDuqpCP/theme/dark/logo.svg?c=1bxcp1ff0nd3xb7v4zxxu48381x3shpjwQX" },
-  { name: "Redington Limited",       src: "https://cdn.brandfetch.io/id2gu3PiO0/theme/dark/logo.svg?c=1bxcp1ff0nd3xb7v4zxxu48381x3shpjwQX" },
+  { name: "XLSMART",                 src: "/logos/cv-xlsmart.svg" },
+  { name: "Carlsberg Group",         src: "/logos/cv-carlsberg.svg" },
+  { name: "Redington Limited",       src: "/logos/cv-redington.svg" },
 ];
 
 const MASK = {

@@ -131,7 +131,6 @@ export default function AgentryPage() {
           </>
         }
       >
-        <p className="mt-6 text-left text-sm italic text-cv-muted">Optimizing the future of enterprise AI consumption.</p>
       </PageHero>
 
       {/* HERO MOCKUP */}

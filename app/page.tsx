@@ -69,7 +69,7 @@ export default function HomePage() {
   return (
     <>
       {/* HERO wrapper carries the gradient background */}
-      <div className="cv-hero-bg" style={{ background: "hsl(var(--cv-surface))" }}>
+      <div className="cv-hero-bg">
         {/* HERO */}
         <section className="relative pt-36 pb-16 sm:pt-48 lg:pt-56 lg:pb-24">
           <div className="max-w-cv relative z-10 mx-auto px-5 sm:px-6 lg:px-8">

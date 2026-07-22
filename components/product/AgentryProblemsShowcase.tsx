@@ -399,20 +399,28 @@ export default function AgentryProblemsShowcase() {
             The routing problems teams actually hit in production — and how Agentry resolves each one at decision time.
           </p>
         </div>
-        {/* controls (desktop) */}
-        <div className="mb-12 hidden justify-center gap-2 md:flex">
-          <CarouselButton dir="prev" disabled={!canPrev} onClick={() => embla?.scrollPrev()} />
-          <CarouselButton dir="next" disabled={!canNext} onClick={() => embla?.scrollNext()} />
-        </div>
+        {/* carousel — chevrons flank both sides on desktop, vertically centered */}
+        <div className="relative mt-10">
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex gap-6 lg:gap-8">
+              {PROBLEMS.map((p) => (
+                <div key={p.title} className="min-w-0 flex-[0_0_88%] sm:flex-[0_0_60%] lg:flex-[0_0_46%]">
+                  <Cell {...p} />
+                </div>
+              ))}
+            </div>
+          </div>
 
-        {/* carousel */}
-        <div className="overflow-hidden" ref={emblaRef}>
-          <div className="flex gap-6 lg:gap-8">
-            {PROBLEMS.map((p) => (
-              <div key={p.title} className="min-w-0 flex-[0_0_88%] sm:flex-[0_0_60%] lg:flex-[0_0_46%]">
-                <Cell {...p} />
-              </div>
-            ))}
+          {/* side controls (desktop) */}
+          <div className="pointer-events-none absolute inset-y-0 -left-4 hidden items-center md:flex lg:-left-5">
+            <div className="pointer-events-auto">
+              <CarouselButton dir="prev" disabled={!canPrev} onClick={() => embla?.scrollPrev()} />
+            </div>
+          </div>
+          <div className="pointer-events-none absolute inset-y-0 -right-4 hidden items-center md:flex lg:-right-5">
+            <div className="pointer-events-auto">
+              <CarouselButton dir="next" disabled={!canNext} onClick={() => embla?.scrollNext()} />
+            </div>
           </div>
         </div>
 
@@ -433,7 +441,7 @@ function CarouselButton({ dir, disabled, onClick }: { dir: "prev" | "next"; disa
       onClick={onClick}
       disabled={disabled}
       aria-label={dir === "prev" ? "Previous" : "Next"}
-      className="flex h-10 w-10 items-center justify-center rounded-full border border-cv-line text-cv-ink transition-colors enabled:hover:bg-cv-ink/[0.06] disabled:opacity-35 dark:enabled:hover:bg-white/10"
+      className="flex h-10 w-10 items-center justify-center rounded-full border border-cv-line bg-cv-surface text-cv-ink shadow-[0_8px_24px_-10px_rgba(16,24,40,0.35)] transition-colors enabled:hover:bg-cv-ink/[0.06] disabled:opacity-35 dark:bg-[#0D0D0D] dark:enabled:hover:bg-white/10"
     >
       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
         {dir === "prev" ? <path d="M15 18l-6-6 6-6" /> : <path d="M9 6l6 6-6 6" />}
