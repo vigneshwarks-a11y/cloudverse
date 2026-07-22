@@ -12,7 +12,7 @@ import { FaqBlock } from "@/components/FaqBlock";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
-  title: "For AI Engineering: Run Every AI Workload Where It Costs Least and Runs Best | CloudVerse",
+  title: "For AI Engineering: Run Every AI Workload Where It Costs Least and Runs Best",
   description: "Live cost-quality routing across 8+ GPU and LLM providers. Policy-bound at execution. FinOps attribution included.",
   keywords: ["AI engineering cost", "LLM provider routing", "GPU cost optimization", "AI FinOps", "machine learning cost management"],
   alternates: { canonical: "/solutions/ai-engineering" },

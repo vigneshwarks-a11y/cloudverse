@@ -13,7 +13,7 @@ import { SectionEyebrow } from "@/components/solution/SectionEyebrow";
 import { BulletGrid } from "@/components/solution/BulletGrid";
 
 export const metadata: Metadata = {
-  title: "For FinOps Teams: The Control Plane Your Finance and Engineering Teams Both Trust | CloudVerse",
+  title: "For FinOps Teams: The Control Plane Your Finance and Engineering Teams Both Trust",
   description: "Allocation, anomaly response, commitments, and chargeback on one model. Reconciles to finance. Explains itself to engineering.",
   keywords: ["FinOps team platform", "cloud chargeback", "cloud cost allocation", "anomaly detection cloud", "cloud commitment management"],
   alternates: { canonical: "/solutions/finops-teams" },

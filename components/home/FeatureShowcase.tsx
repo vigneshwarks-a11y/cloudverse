@@ -1,7 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight } from "@/lib/solar-icons";
 
 /* ────────────────────────────────────────────────────────────────────────
    "Every domain of technology spend, one record."
@@ -60,6 +62,9 @@ type Feature = {
   accent: string;
   lineItems: string[];
   users: string;
+  /* Module page this domain routes to (rendered only with `withLinks`). */
+  href: string;
+  linkLabel: string;
 };
 
 const FEATURES: Feature[] = [
@@ -70,6 +75,8 @@ const FEATURES: Feature[] = [
     accent: ACCENT.cloud,
     lineItems: ["Compute", "Storage", "Network"],
     users: "FinOps teams",
+    href: "/platform/finops",
+    linkLabel: "Explore the FinOps Platform",
   },
   {
     key: "ai",
@@ -78,6 +85,8 @@ const FEATURES: Feature[] = [
     accent: ACCENT.ai,
     lineItems: ["Tokens", "Models", "Agents"],
     users: "AI & platform teams",
+    href: "/platform/agentry",
+    linkLabel: "Explore Agentry",
   },
   {
     key: "data",
@@ -86,6 +95,8 @@ const FEATURES: Feature[] = [
     accent: ACCENT.data,
     lineItems: ["Warehouses", "Pipelines", "Queries"],
     users: "Data teams",
+    href: "/platform/datax",
+    linkLabel: "Explore DataX",
   },
   {
     key: "saas",
@@ -94,6 +105,8 @@ const FEATURES: Feature[] = [
     accent: ACCENT.saas,
     lineItems: ["Licenses", "Seats", "Renewals"],
     users: "IT & procurement",
+    href: "/platform/finops",
+    linkLabel: "Explore the FinOps Platform",
   },
   {
     key: "eng",
@@ -102,6 +115,8 @@ const FEATURES: Feature[] = [
     accent: ACCENT.eng,
     lineItems: ["CI/CD", "Kubernetes", "PR checks"],
     users: "Platform engineering",
+    href: "/platform/torb",
+    linkLabel: "Explore Torb",
   },
 ];
 
@@ -116,7 +131,7 @@ const MASK: React.CSSProperties = {
   maskComposite: "intersect",
 };
 
-export function FeatureShowcase() {
+export function FeatureShowcase({ withLinks = false }: { withLinks?: boolean }) {
   const [active, setActive] = useState(0);
   const [reduced, setReduced] = useState(false);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -209,6 +224,18 @@ export function FeatureShowcase() {
                       {f.desc}
                     </span>
                   </button>
+                  {withLinks && isActive && (
+                    <div className="border-l-2 pb-3 pl-5" style={{ borderColor: f.accent }}>
+                      <Link
+                        href={f.href}
+                        className="inline-flex items-center gap-1.5 text-sm font-semibold hover:underline underline-offset-4"
+                        style={{ color: f.accent }}
+                        data-testid={`link-router-${f.key}`}
+                      >
+                        {f.linkLabel} <ArrowRight weight="Linear" size={14} />
+                      </Link>
+                    </div>
+                  )}
                 </li>
               );
             })}
@@ -245,6 +272,16 @@ export function FeatureShowcase() {
                     </button>
                     {isActive && (
                       <p className="pb-1 text-sm leading-relaxed text-cv-muted">{f.desc}</p>
+                    )}
+                    {withLinks && isActive && (
+                      <Link
+                        href={f.href}
+                        className="mb-2 inline-flex items-center gap-1.5 text-sm font-semibold hover:underline underline-offset-4"
+                        style={{ color: f.accent }}
+                        data-testid={`link-router-m-${f.key}`}
+                      >
+                        {f.linkLabel} <ArrowRight weight="Linear" size={14} />
+                      </Link>
                     )}
                   </div>
                   {isActive && (

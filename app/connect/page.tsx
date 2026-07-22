@@ -27,8 +27,8 @@ const PROOF = [
 export default function ConnectPage() {
   return (
     <PageHero eyebrow="Get a Demo" accent="blue" title="See What's Driving Your Cloud Bill.">
-      <div className="mx-auto mt-8 sm:mt-10 flex max-w-6xl flex-col-reverse gap-10 lg:flex-row lg:items-start lg:gap-16">
-        <div className="max-w-lg text-center lg:flex-1 lg:pt-1 lg:text-left">
+      <div className="mt-8 sm:mt-10 flex max-w-6xl flex-col-reverse gap-10 lg:flex-row lg:items-start lg:gap-16">
+        <div className="max-w-lg text-left lg:flex-1 lg:pt-1">
           <p className="text-sm text-cv-ink/75">
             A 30-minute working session with our solutions team. We connect a sample account live and walk you through your first findings.
           </p>

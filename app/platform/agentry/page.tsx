@@ -12,9 +12,15 @@ import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import AgentrySteps from "@/components/product/AgentrySteps";
 import AgentryProvidersMarquee from "@/components/product/AgentryProvidersMarquee";
 import AgentryProblemsShowcase from "@/components/product/AgentryProblemsShowcase";
+import { AgentryDeployment } from "@/components/home/AgentryDeployment";
+import { VendorSovereignty } from "@/components/home/VendorSovereignty";
+import { TechSpendCrossLink } from "@/components/home/TechSpendCrossLink";
+import { TestimonialsCarousel } from "@/components/home/TestimonialsCarousel";
+import { InlineCta } from "@/components/home/InlineCta";
+import { FaqBlock } from "@/components/FaqBlock";
 
 export const metadata: Metadata = {
-  title: "CloudVerse Agentry: The Control Plane for Enterprise AI | CloudVerse",
+  title: "CloudVerse Agentry: The Control Plane for Enterprise AI",
   description:
     "Route, govern, and meter every AI request across models, clouds, GPUs, and private endpoints. Cut AI cost 40–90%. The decision happens before the request, not after the bill.",
   keywords: ["AI cost optimization", "LLM routing", "GPU cost management", "enterprise AI governance", "AI gateway", "model routing"],
@@ -44,6 +50,33 @@ const STATS = [
   { v: "<15ms", l: "routing overhead per request" },
   { v: "96.8%", l: "lower cost vs a hardcoded Claude Sonnet setup" },
   { v: "28.5%", l: "faster than that baseline" },
+];
+
+const AGENTRY_FAQS = [
+  {
+    q: "What is an AI control plane?",
+    a: "The system that discovers every AI agent and model in use, governs execution in real time (budgets, policy, routing, kill switch), and records every call as evidence. It sets policy before a request runs and proves cost and outcome after.",
+  },
+  {
+    q: "How is Agentry different from an AI gateway?",
+    a: "A gateway runs the routing rule you already wrote. Agentry discovers what's actually running across your estate, including agents nobody told you about, and enforces budget, identity, and policy on every call, not just the ones already wired through a gateway.",
+  },
+  {
+    q: "Does Agentry proxy my traffic or add latency?",
+    a: "Routing overhead is under 15ms per request. Agentry can operate as a decision layer without mediating all traffic. Execution stays in your control.",
+  },
+  {
+    q: "What happens when a model is deprecated or a provider goes down?",
+    a: "Every route carries a fallback. Agentry reroutes within your constraints, and your prompts, policies, and audit trail keep working because they live in your control plane, not the vendor's.",
+  },
+  {
+    q: "Can Agentry run entirely inside our own environment?",
+    a: "Yes. Agentry deploys into your cloud tenancy or on-premises; the data plane stays inside your boundary, and prompt capture is a per-workload policy: full capture, redacted, or metadata-only.",
+  },
+  {
+    q: "How fast can we see this on real workloads?",
+    a: "A scoped private pilot in a tenancy you control: discover what's already running, govern one real workload, and read out the evidence, in about three weeks.",
+  },
 ];
 
 // Attribute-by-attribute contrast between a hardcoded setup and Agentry. Same keys
@@ -251,6 +284,9 @@ export default function AgentryPage() {
         </div>
       </section>
 
+      {/* ARCHITECTURE — IN THE CALL PATH, DEPLOYED IN YOUR ENVIRONMENT */}
+      <AgentryDeployment />
+
       {/* GOVERNANCE */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
@@ -265,8 +301,19 @@ export default function AgentryPage() {
       {/* NO BLACK BOXES */}
       <NoBlackBoxes traceJson={TRACE_JSON} />
 
+      {/* VENDOR SOVEREIGNTY — own your prompts, routing, and ledger */}
+      <VendorSovereignty />
+
       {/* FOUR PROBLEMS — carousel */}
       <AgentryProblemsShowcase />
+
+      {/* MID-PAGE CTA — capture the convinced evaluator */}
+      <InlineCta
+        label="Start a 3-week private pilot"
+        href={DEMO_URL}
+        sub="Most teams find at least one ungoverned agent in the first onboarding call."
+        testid="section-inline-cta-pilot"
+      />
 
       {/* INTEGRATIONS */}
       <section className="cv-section">
@@ -284,11 +331,45 @@ export default function AgentryPage() {
           <div className="mt-8">
             <AgentryProvidersMarquee />
           </div>
+
+          {/* Full catalog link */}
+          <div className="mt-10 flex justify-center">
+            <Link
+              href="/integrations"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-4 transition-colors"
+              data-testid="link-integrations"
+            >
+              View all integrations <ArrowRight weight="Linear" size={14} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS / PROOF */}
+      <TestimonialsCarousel />
+
+      {/* CROSS-LINK TO TECHNOLOGY SPEND */}
+      <TechSpendCrossLink />
+
+      {/* FAQ */}
+      <section className="cv-section bg-cv-surface overflow-hidden">
+        <div className="cv-container">
+          <div className="mb-4 text-center">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
+              FAQ
+            </span>
+          </div>
+          <FaqBlock
+            items={AGENTRY_FAQS}
+            accent="#1664C0"
+            title="Frequently Asked Questions"
+            subtitle="Common questions we get asked the most"
+          />
         </div>
       </section>
 
       {/* FINAL CTA */}
-      <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Platform", href: "/platform/finops" }, { name: "Agentry", href: "/platform/agentry" }]} />
+      <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Platform", href: "/platform/agentry" }, { name: "Agentry", href: "/platform/agentry" }]} />
     </>
   );
 }

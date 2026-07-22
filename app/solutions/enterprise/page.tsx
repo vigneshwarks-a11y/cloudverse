@@ -12,7 +12,7 @@ import { FaqBlock } from "@/components/FaqBlock";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
-  title: "For Enterprise: One Control Plane for Multi-Cloud, AI Infrastructure, and Data Economics | CloudVerse",
+  title: "For Enterprise: One Control Plane for Multi-Cloud, AI Infrastructure, and Data Economics",
   description: "SSO, SCIM provisioning, granular RBAC, audit logs, customer-managed encryption keys, and the procurement options the office of the CIO expects.",
   keywords: ["enterprise cloud cost management", "multi-cloud governance", "enterprise FinOps", "SSO cloud platform", "RBAC cloud cost", "CIO cloud economics"],
   alternates: { canonical: "/solutions/enterprise" },

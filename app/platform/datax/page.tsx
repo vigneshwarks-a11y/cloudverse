@@ -10,9 +10,11 @@ import { PageHero } from "@/components/PageHero";
 import { IntegrationsMarquee } from "@/components/home/IntegrationsMarquee";
 import { BeforeAfterCards, type BeforeAfterRow } from "@/components/product/BeforeAfterCards";
 import { DataxFindingMock, DataxAutomationMock, DataxConnectionMock, DataxPricingMock } from "@/components/product/DataxVisuals";
+import { CustomerLogos } from "@/components/CustomerLogos";
+import { InlineCta } from "@/components/home/InlineCta";
 
 export const metadata: Metadata = {
-  title: "DataX: Find the Queries Quietly Running Up Your Bill | CloudVerse",
+  title: "DataX: Find the Queries Quietly Running Up Your Bill",
   description:
     "Query, dashboard, and dbt-model-level attribution across Snowflake, Databricks, BigQuery, Microsoft Fabric, and Synapse. Safe automation when you want it.",
   keywords: ["Snowflake cost optimization", "Databricks cost management", "BigQuery cost attribution", "warehouse FinOps", "data platform cost", "query cost analysis"],
@@ -127,6 +129,9 @@ export default function DataXPage() {
       {/* WHAT DATA TEAMS UNLOCK */}
       <WarehouseIntel />
 
+      {/* MID-PAGE CTA */}
+      <InlineCta label="Request a free AI cost audit" href="/contact" testid="section-inline-cta-audit" />
+
       {/* PRICING PHILOSOPHY */}
       <section className="cv-section bg-cv-surface">
         <div className="cv-container">
@@ -205,6 +210,34 @@ export default function DataXPage() {
         </div>
       </section>
 
+      {/* CONNECTION MODEL — least-privilege story precedes the connect ask */}
+      <section className="cv-section">
+        <div className="cv-container">
+          <h2 className="cv-h2 text-cv-ink mb-5 mx-auto max-w-3xl text-center">Built for least privilege.</h2>
+          <p className="cv-body-lg text-cv-ink/75 mb-10 max-w-3xl mx-auto text-center">
+            Connect platforms using read-only access by default. Enable automation only when you are ready: scoped, auditable, reversible.
+          </p>
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+            <div>
+              <div className="cv-label mb-4">Connection model</div>
+              <ol className="space-y-2 text-cv-ink/85">
+                <li>1. Read-only role</li>
+                <li>2. Metadata only, never your data</li>
+                <li>3. Scoped to what you approve</li>
+                <li>4. Every action logged</li>
+                <li>5. Revoke any time</li>
+              </ol>
+              <p className="text-cv-ink/75 mt-6">
+                Read-only means read-only. DataX ingests metadata, query logs, and billing telemetry. It never touches your underlying data, workload code, or runtime configuration unless you explicitly grant automation permissions.
+              </p>
+            </div>
+            <div className="w-full">
+              <DataxConnectionMock />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* INTEGRATIONS — exact section from the home page */}
       <section className="cv-section bg-cv-surface2 dark:bg-black relative overflow-hidden">
         {/* Ambient blue glow */}
@@ -245,35 +278,9 @@ export default function DataXPage() {
         </div>
       </section>
 
-      {/* CONNECTION MODEL — least-privilege story */}
-      <section className="cv-section">
-        <div className="cv-container">
-          <h2 className="cv-h2 text-cv-ink mb-5 mx-auto max-w-3xl text-center">Built for least privilege.</h2>
-          <p className="cv-body-lg text-cv-ink/75 mb-10 max-w-3xl mx-auto text-center">
-            Connect platforms using read-only access by default. Enable automation only when you are ready: scoped, auditable, reversible.
-          </p>
-          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-            <div>
-              <div className="cv-label mb-4">Connection model</div>
-              <ol className="space-y-2 text-cv-ink/85">
-                <li>1. Read-only role</li>
-                <li>2. Metadata only, never your data</li>
-                <li>3. Scoped to what you approve</li>
-                <li>4. Every action logged</li>
-                <li>5. Revoke any time</li>
-              </ol>
-              <p className="text-cv-ink/75 mt-6">
-                Read-only means read-only. DataX ingests metadata, query logs, and billing telemetry. It never touches your underlying data, workload code, or runtime configuration unless you explicitly grant automation permissions.
-              </p>
-            </div>
-            <div className="w-full">
-              <DataxConnectionMock />
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* CUSTOMER LOGOS — proof */}
+      <CustomerLogos />
 
-      {/* FAQ */}
       {/* FAQ */}
       <section className="cv-section">
         <div className="cv-container">
@@ -284,7 +291,7 @@ export default function DataXPage() {
         </div>
       </section>
 
-      <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Platform", href: "/platform/finops" }, { name: "DataX", href: "/platform/datax" }]} />
+      <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Platform", href: "/platform/datax" }, { name: "DataX", href: "/platform/datax" }]} />
     </>
   );
 }

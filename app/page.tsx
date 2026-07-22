@@ -2,8 +2,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle } from "@/lib/solar-icons";
 import type { Metadata } from "next";
 import { CustomerLogos } from "@/components/CustomerLogos";
-import { HeroSquares, HeroEyebrow } from "@/components/PageHero";
-import { ProductVideo } from "@/components/home/ProductVideo";
+import { HeroEyebrow } from "@/components/PageHero";
 import { FaqBlock } from "@/components/FaqBlock";
 import { HardcodeCost } from "@/components/home/HardcodeCost";
 import { BeforeAfterAgentry } from "@/components/home/BeforeAfterAgentry";
@@ -11,12 +10,11 @@ import { HowAgentryWorks } from "@/components/home/HowAgentryWorks";
 import { CostOfNotRouting } from "@/components/home/CostOfNotRouting";
 import { NotAGateway } from "@/components/home/NotAGateway";
 import { AgentryGovernance } from "@/components/home/AgentryGovernance";
-import { AgentryDeployment } from "@/components/home/AgentryDeployment";
-import { TechSpendCrossLink } from "@/components/home/TechSpendCrossLink";
 import { IntegrationsMarquee } from "@/components/home/IntegrationsMarquee";
-import { VendorSovereignty } from "@/components/home/VendorSovereignty";
 import { AgentryOrchestration } from "@/components/home/AgentryOrchestration";
 import { TestimonialsCarousel } from "@/components/home/TestimonialsCarousel";
+import { FeatureShowcase } from "@/components/home/FeatureShowcase";
+import { InlineCta } from "@/components/home/InlineCta";
 import { DEMO_URL } from "@/lib/links";
 import { GuidesResources } from "@/components/home/GuidesResources";
 
@@ -69,13 +67,12 @@ const HOME_FAQS = [
 export default function HomePage() {
   return (
     <>
-      {/* HERO + VIDEO wrapper shares the same solid grid background */}
+      {/* HERO wrapper carries the gradient background */}
       <div className="cv-hero-bg" style={{ background: "hsl(var(--cv-surface))" }}>
         {/* HERO */}
         <section className="relative pt-36 pb-16 sm:pt-48 lg:pt-56 lg:pb-24">
-          <HeroSquares />
           <div className="max-w-cv relative z-10 mx-auto px-5 sm:px-6 lg:px-8">
-            <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
+            <div className="max-w-3xl">
               <HeroEyebrow accent="blue">The Enterprise AI Control Plane</HeroEyebrow>
               <h1 className="cv-h1 mt-4 text-balance leading-[1.08] text-cv-ink">
                 Govern every AI execution.{" "}
@@ -84,7 +81,7 @@ export default function HomePage() {
               <p className="cv-body mt-6 max-w-[60ch] text-pretty text-cv-ink/70 sm:mt-7">
                 One system of record for every agent, model route, prompt, and dollar of AI spend, with governance enforced in the execution path, not a report after the fact.
               </p>
-              <div className="mt-10 flex flex-col items-center gap-3 sm:mt-12 sm:flex-row sm:justify-center sm:gap-4">
+              <div className="mt-10 flex flex-col gap-3 sm:mt-12 sm:flex-row sm:gap-4">
                 <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-hero-demo">
                   Book a demo
                 </Link>
@@ -95,7 +92,7 @@ export default function HomePage() {
               <p className="mt-6 text-sm italic text-cv-muted">
                 Private deployment. Your cloud, your data plane, your keys.
               </p>
-              <div className="mt-4 flex flex-col items-center gap-2 sm:flex-row sm:gap-6">
+              <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:gap-6">
                 <Link href="/platform/agentry" className="text-sm text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-2 transition-colors flex items-center gap-1" data-testid="link-hero-platform">
                   See the platform <ArrowRight weight="Linear" size={13} />
                 </Link>
@@ -107,23 +104,54 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* PRODUCT VIDEO */}
-        <ProductVideo />
       </div>
 
       {/* CUSTOMER LOGOS */}
       <CustomerLogos />
 
-      {/* AI COMPUTE IS TOO EXPENSIVE TO HARDCODE */}
+      {/* THE PROBLEM — AI COMPUTE IS TOO EXPENSIVE TO HARDCODE */}
       <HardcodeCost />
 
       {/* BEFORE / AFTER AGENTRY */}
       <BeforeAfterAgentry />
 
+      {/* THE COST OF NOT ROUTING — the money story, consolidated with the before/after */}
+      <CostOfNotRouting />
+
+      {/* MID-PAGE CTA — capture at the economics peak */}
+      <InlineCta
+        label="Request a free AI cost audit"
+        href="/contact"
+        testid="section-inline-cta-audit"
+      />
+
       {/* HOW AGENTRY WORKS — DISCOVER · GOVERN · PROVE */}
       <HowAgentryWorks />
 
-      {/* INTEGRATIONS */}
+      {/* WHAT IT DOES FOR YOU ON DAY ONE */}
+      <AgentryGovernance />
+
+      {/* NOT A GATEWAY. NOT OBSERVABILITY. NOT A COST TOOL. */}
+      <NotAGateway />
+
+      {/* AGENTRY ORCHESTRATION - One system of record */}
+      <AgentryOrchestration />
+
+      {/* MID-PAGE CTA — capture the convinced evaluator */}
+      <InlineCta
+        label="Start a 3-week private pilot"
+        href="/connect"
+        sub="Most teams find at least one ungoverned agent in the first onboarding call."
+        testid="section-inline-cta-pilot"
+      />
+
+      {/* PLATFORM ROUTER — one platform, every module (replaces the Tech-Spend banner) */}
+      <FeatureShowcase withLinks />
+
+      {/* GUIDES & RESOURCES */}
+      <GuidesResources />
+
+      {/* INTEGRATIONS — pre-close reassurance */}
       <section className="cv-section bg-cv-surface2 dark:bg-black relative overflow-hidden">
         {/* Ambient blue glow */}
         <div
@@ -166,32 +194,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* WHAT IT DOES FOR YOU ON DAY ONE */}
-      <AgentryGovernance />
-
-      {/* ARCHITECTURE — DEPLOYED IN YOUR ENVIRONMENT */}
-      <AgentryDeployment />
-
-      {/* THE COST OF NOT ROUTING */}
-      <CostOfNotRouting />
-
-      {/* NOT A GATEWAY. NOT OBSERVABILITY. NOT A COST TOOL. */}
-      <NotAGateway />
-
-      {/* VENDOR SOVEREIGNTY - Own your stuff */}
-      <VendorSovereignty />
-
-      {/* AGENTRY ORCHESTRATION - One system of record */}
-      <AgentryOrchestration />
-
-      {/* TESTIMONIALS / PROOF */}
+      {/* TESTIMONIALS / PROOF — adjacent to the ask */}
       <TestimonialsCarousel />
-
-      {/* CROSS-LINK TO TECHNOLOGY SPEND */}
-      <TechSpendCrossLink />
-
-      {/* GUIDES & RESOURCES */}
-      <GuidesResources />
 
       {/* FAQ */}
       <section className="cv-section bg-cv-surface overflow-hidden">

@@ -12,7 +12,7 @@ import { FaqBlock } from "@/components/FaqBlock";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
-  title: "For Platform Engineering: Cost Gates Engineers Actually Want to Use | CloudVerse",
+  title: "For Platform Engineering: Cost Gates Engineers Actually Want to Use",
   description: "PR-level cost diffs, policy-as-code, and right-sizing recommendations in your IaC pipeline. Quantified savings rolled into FinOps.",
   keywords: ["platform engineering FinOps", "IaC cost management", "policy-as-code cost", "infrastructure right-sizing", "cloud cost gates", "PR cost diff"],
   alternates: { canonical: "/solutions/platform-eng" },

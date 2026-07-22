@@ -12,7 +12,7 @@ import ClosingCtaBand from "@/components/ClosingCtaBand";
 import { FaqBlock } from "@/components/FaqBlock";
 
 export const metadata: Metadata = {
-  title: "Integrations: Connects to the Stack Your Teams Already Use | CloudVerse",
+  title: "Integrations: Connects to the Stack Your Teams Already Use",
   description: "Add your integration once. CloudVerse handles routing, attribution, and cost tracking across all of them. No code changes when you add a new provider.",
   keywords: ["cloud integrations", "AWS integration", "Snowflake integration", "OpenAI cost tracking", "cloud provider connectors"],
   alternates: { canonical: "/integrations" },

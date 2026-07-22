@@ -10,9 +10,11 @@ import WhoTorbFor from "@/components/product/WhoTorbFor";
 import TorbPrExample from "@/components/product/TorbPrExample";
 import CostGates from "@/components/product/CostGates";
 import { BeforeAfterCards, type BeforeAfterRow } from "@/components/product/BeforeAfterCards";
+import { CustomerLogos } from "@/components/CustomerLogos";
+import { InlineCta } from "@/components/home/InlineCta";
 
 export const metadata: Metadata = {
-  title: "CloudVerse Torb: Catch Cost Regressions Before They Reach Production | CloudVerse",
+  title: "CloudVerse Torb: Catch Cost Regressions Before They Reach Production",
   description:
     "Every infrastructure PR gets an inline cost impact comment before reviewers see it. Engineers see what their changes cost at the moment they can still change something.",
   keywords: ["infrastructure cost review", "PR cost analysis", "cloud cost drift", "FinOps developer tools", "shift-left cost governance", "IaC cost"],
@@ -116,8 +118,14 @@ export default function TorbPage() {
       {/* WHAT PLATFORM TEAMS SHIP */}
       <CostGates />
 
+      {/* CUSTOMER LOGOS — proof */}
+      <CustomerLogos />
+
       {/* WHO TORB IS FOR */}
       <WhoTorbFor />
+
+      {/* MID-PAGE CTA */}
+      <InlineCta label="Book a Demo" href={DEMO_URL} testid="section-inline-cta-demo" />
 
       {/* FAQ */}
       <section className="cv-section">
@@ -129,7 +137,7 @@ export default function TorbPage() {
         </div>
       </section>
 
-      <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Platform", href: "/platform/finops" }, { name: "Torb", href: "/platform/torb" }]} />
+      <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Platform", href: "/platform/torb" }, { name: "Torb", href: "/platform/torb" }]} />
     </>
   );
 }
