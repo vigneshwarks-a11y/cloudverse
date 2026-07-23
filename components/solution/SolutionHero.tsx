@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "@/lib/solar-icons";
 import { DEMO_URL } from "@/lib/links";
-import { PageHero } from "@/components/PageHero";
+import { PageHero, type HeroAccent } from "@/components/PageHero";
 
 /* Shared Solutions-page hero — now the site-wide centered hero: eyebrow pill,
    big headline, subhead, and centered CTAs over the ambient dotted-grid field.
@@ -12,6 +12,7 @@ export function SolutionHero({
   h1,
   sub,
   platformHref,
+  accent = "blue",
   platformLabel = "Explore the platform",
   primaryLabel = "Book a demo",
   primaryHref = DEMO_URL,
@@ -20,6 +21,7 @@ export function SolutionHero({
   h1: React.ReactNode;
   sub: string;
   platformHref: string;
+  accent?: HeroAccent;
   platformLabel?: string;
   primaryLabel?: string;
   primaryHref?: string;
@@ -27,7 +29,7 @@ export function SolutionHero({
   return (
     <PageHero
       eyebrow={eyebrow}
-      accent="blue"
+      accent={accent}
       title={h1}
       subtitle={sub}
       actions={

@@ -263,11 +263,15 @@ export function WhoThisIsFor({
   personas,
   accent,
   bg,
+  heading = "Who this is for.",
+  subhead = "The people who own the number.",
 }: {
   roles?: string[];
   personas?: Persona[];
   accent: string;
   bg?: boolean;
+  heading?: string;
+  subhead?: string;
 }) {
   return (
     <section className={`cv-section relative overflow-hidden ${bg ? "bg-cv-surface dark:bg-black" : ""}`}>
@@ -279,8 +283,8 @@ export function WhoThisIsFor({
       />
       <div className="cv-container relative z-10">
         <div className="mb-10 flex max-w-3xl items-baseline gap-3 text-left">
-          <h2 className="cv-h2 text-cv-ink">Who this is for.</h2>
-          <span className="hidden text-sm text-cv-muted sm:inline">The people who own the number.</span>
+          <h2 className="cv-h2 text-cv-ink">{heading}</h2>
+          {subhead && <span className="hidden text-sm text-cv-muted sm:inline">{subhead}</span>}
         </div>
 
         {personas?.length ? (

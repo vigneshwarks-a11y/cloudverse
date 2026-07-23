@@ -21,11 +21,11 @@ export const metadata: Metadata = {
 };
 
 const SOLUTIONS = [
-  { href: "/solutions/ai-engineering", icon: Cpu,            label: "AI Engineering",        desc: "Live cost-quality routing across 8+ GPU and LLM providers, policy-bound at execution.", color: "#6954D4" },
-  { href: "/solutions/finops-teams",   icon: UsersGroupRounded,          label: "FinOps Teams",          desc: "Allocation, anomaly response, commitments, and chargeback on one model.", color: "#1664C0" },
-  { href: "/solutions/platform-eng",   icon: Code2, label: "Platform Engineering", desc: "PR-level cost diffs, policy-as-code, native CI integration.", color: "#0E9E7A" },
-  { href: "/solutions/data-teams",     icon: Database,       label: "Data Teams",            desc: "Query-level attribution and safe automation across 6 warehouses.", color: "#D97706" },
-  { href: "/solutions/enterprise",     icon: Buildings,      label: "Enterprise",            desc: "One control plane across the estate, with SSO, RBAC, and residency.", color: "#1664C0" },
+  { href: "/solutions/ai-engineering", icon: Cpu,            label: "AI Engineering",        desc: "Your AI spend outran your governance. Route every workload, attribute every dollar.", color: "#6954D4" },
+  { href: "/solutions/finops-teams",   icon: UsersGroupRounded,          label: "FinOps Teams",          desc: "The invoice is on time. The explanation isn't. Allocation and chargeback finance can defend.", color: "#1664C0" },
+  { href: "/solutions/platform-eng",   icon: Code2, label: "Platform Engineering", desc: "Put cost in the pull request, before the change ships.", color: "#0E9E7A" },
+  { href: "/solutions/data-teams",     icon: Database,       label: "Data Teams",            desc: "Make shared warehouse spend allocable, down to the query that ran it.", color: "#D97706" },
+  { href: "/solutions/enterprise",     icon: Buildings,      label: "Enterprise",            desc: "Cloud, AI, data, and engineering as one estate, governed from one place.", color: "#1664C0" },
 ];
 
 export default function Page() {

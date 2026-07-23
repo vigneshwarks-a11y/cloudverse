@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PlatformCards } from "@/components/solution/PlatformCards";
+import { RelatedSolutions } from "@/components/solution/RelatedSolutions";
 import { Panel, VIZ_AMBER, VIZ_RED, VIZ_GRAY } from "@/components/solution/CardChrome";
 import { FinopsShips } from "@/components/solution/FinopsShips";
 import { FinopsHowItWorks } from "@/components/solution/FinopsHowItWorks";
@@ -14,38 +15,38 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { BulletGrid } from "@/components/solution/BulletGrid";
 
 export const metadata: Metadata = {
-  title: "For FinOps Teams: The Control Plane Your Finance and Engineering Teams Both Trust",
-  description: "Allocation, anomaly response, commitments, and chargeback on one model. Reconciles to finance. Explains itself to engineering.",
+  title: "For FinOps Teams: Allocation, Anomalies, and Chargeback Finance Can Defend",
+  description: "Trace variance to a driver and an owner, allocate shared spend automatically, and produce chargeback that reconciles to source billing, across cloud, AI, and data.",
   keywords: ["FinOps team platform", "cloud chargeback", "cloud cost allocation", "anomaly detection cloud", "cloud commitment management"],
   alternates: { canonical: "/solutions/finops-teams" },
   openGraph: {
-    title: "For FinOps Teams: The Platform Finance and Engineering Both Trust",
-    description: "Allocation, anomaly response, commitments, and chargeback on one model. Reconciles to finance. Explains itself to engineering.",
+    title: "For FinOps Teams: Allocation, Anomalies, and Chargeback Finance Can Defend",
+    description: "Trace variance to a driver and an owner, allocate shared spend automatically, and produce chargeback that reconciles to source billing.",
     url: "/solutions/finops-teams",
     images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse for FinOps Teams" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "For FinOps Teams: The Platform Finance and Engineering Both Trust",
-    description: "Allocation, anomaly response, commitments, and chargeback. Reconciles to finance.",
+    title: "For FinOps Teams: Chargeback Finance Can Defend",
+    description: "Variance traced to a driver and owner, allocation that runs itself, forecasts finance can defend.",
   },
 };
 
 const COSTS = [
-  "Days spent explaining a month-on-month variance by hand",
-  "Shared cost allocated manually, chargeback that doesn't survive scrutiny",
-  "Forecasts that hold for a quarter and then drift",
-  "AI and GPU spend with no unit economics attached",
-  "No single owner accountable for the total across cloud, AI, data, and engineering",
+  "Days spent reconstructing a month-on-month variance by hand.",
+  "Shared spend split with a spreadsheet, chargeback that falls apart under scrutiny.",
+  "Forecasts that hold for a quarter, then drift.",
+  "AI and GPU spend on the bill with no unit economics attached.",
+  "Cloud, AI, data, and engineering each priced in a different tool, never on one model.",
 ];
 
 const OUTCOMES = [
-  "Explainability: variance traced to drivers and owners, not assembled by hand",
-  "Allocation: shared spend mapped automatically, chargeback that holds under scrutiny",
-  "Forecasting: forecasts finance can defend, AI spend included",
-  "AI governance: AI and GPU spend turned into unit economics",
-  "Upstream visibility: cost decisions in data and engineering surfaced before the invoice",
-  "Control: one operational view, with ownership aligned end to end",
+  "Explainability: variance traced to a driver and an owner, not assembled by hand.",
+  "Allocation: shared spend mapped automatically, chargeback that holds under an audit.",
+  "Forecasting: forecasts finance can defend, AI spend included.",
+  "AI economics: AI and GPU spend turned into cost per request, feature, and team.",
+  "Upstream visibility: cost decisions in data and engineering surfaced before the invoice.",
+  "One model: cloud, AI, and data on a single allocation model, owned end to end.",
 ];
 
 const FAQ = [
@@ -63,11 +64,11 @@ export default function FinOpsTeamsPage() {
         eyebrow="For FinOps Teams"
         h1={
           <>
-            The control plane your finance and engineering teams{" "}
-            <span className="text-cv-blue dark:text-cv-blue-light">both trust.</span>
+            The invoice is on time. The explanation isn&apos;t.{" "}
+            <span className="text-cv-blue dark:text-cv-blue-light">We fix that.</span>
           </>
         }
-        sub="Allocation, anomaly response, commitments, and chargeback on one model, across cloud, data, and AI. Reconciles to finance. Explains itself to engineering."
+        sub="Explainability, allocation, and forecasts finance can defend, across cloud, AI, and data, with AI turned into unit economics."
         platformHref="/platform/finops"
       />
 
@@ -75,9 +76,9 @@ export default function FinOpsTeamsPage() {
       <section className="cv-section">
         <div className="cv-container">
           <div className="flex flex-col items-start gap-10">
-            <SectionHeading lead eyebrow="The situation" title="The situation FinOps teams are in.">
+            <SectionHeading lead eyebrow="The situation" title="Accurate to the cent, and still unexplained.">
               <p className="cv-body-lg text-cv-ink/80">
-                The invoice is on time. The explanation isn&apos;t. Your dashboards are accurate and your recommendations get ignored, because they don&apos;t reach the person who can act, with the context to act on.
+                Your dashboards are accurate and your recommendations get ignored, because they don&apos;t reach the person who can act, with the context to act on.
               </p>
               <p className="cv-body-lg text-cv-ink/85 mt-4">
                 And now AI spend is landing in places where the value isn&apos;t quantified yet. One model across infrastructure, data, and AI is the only way the numbers reconcile.
@@ -112,7 +113,7 @@ export default function FinOpsTeamsPage() {
         <div className="cv-container">
           <div className="max-w-2xl mb-8 text-left">
             <SectionEyebrow className="mb-4">The cost of the gap</SectionEyebrow>
-            <h2 className="cv-h2 text-cv-ink">What that&apos;s costing you today.</h2>
+            <h2 className="cv-h2 text-cv-ink">What the gap costs finance every month.</h2>
           </div>
           <BulletGrid items={COSTS} tone="negative" />
         </div>
@@ -123,7 +124,7 @@ export default function FinOpsTeamsPage() {
         <div className="cv-container">
           <div className="max-w-2xl mb-10 text-left">
             <SectionEyebrow className="mb-4">What you ship</SectionEyebrow>
-            <h2 className="cv-h2 text-cv-ink">What FinOps teams ship faster with CloudVerse</h2>
+            <h2 className="cv-h2 text-cv-ink">What FinOps teams ship faster with CloudVerse.</h2>
           </div>
           <FinopsShips
             items={[
@@ -136,16 +137,16 @@ export default function FinOpsTeamsPage() {
         </div>
       </section>
 
-      {/* HOW IT WORKS — flow diagram */}
+      {/* HOW IT WORKS — flow diagram (FinOps allocation, not AI routing) */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionHeading lead eyebrow="How it works" title="How compute economics works." className="mb-12">
+          <SectionHeading lead eyebrow="How it works" title="How allocation and chargeback actually run." className="mb-12">
             <div className="space-y-4">
               <p className="cv-body-lg text-cv-muted">
-                Modern AI stacks have observability and orchestration. What they lack is economic control at the decision point.
+                CloudVerse connects your cloud, AI, and data billing read-only, then maps shared spend to teams and products with virtual tags, and traces every variance to a driver and an owner.
               </p>
               <p className="cv-body-lg text-cv-muted">
-                CloudVerse embeds economic decision logic across model selection, workload execution, and capacity commitments, so every compute decision is evaluated for cost, performance, and risk before it scales.
+                Anomalies arrive with the team and the charge already attached. Chargeback reconciles to source billing. Forecasts hold because they run on the same model finance signs off on.
               </p>
             </div>
           </SectionHeading>
@@ -153,42 +154,46 @@ export default function FinOpsTeamsPage() {
         </div>
       </section>
 
-      {/* CUSTOMER PROOF */}
+      {/* CUSTOMER PROOF — Berkshire (all three figures labeled, proof bank §4.3) */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="flex flex-col items-start gap-10">
-            <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
-<div className="text-left">
+          <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
+            <div className="text-left">
               <SectionEyebrow className="mb-4">Customer proof</SectionEyebrow>
-              <h2 className="cv-h2 text-cv-ink">How Berkshire Hathaway HomeServices recovered $738,983</h2></div>
-<div className="text-left">
-              <p className="mt-6 leading-relaxed text-cv-ink/80">
+              <h2 className="cv-h2 text-cv-ink">How Berkshire Hathaway HomeServices recovered $738,983.</h2>
+            </div>
+            <div className="text-left">
+              <p className="leading-relaxed text-cv-ink/80">
                 A growing AWS estate, fragmented tagging, and no team-level attribution. CloudVerse tied spend to teams, surfaced the anomalies that mattered, and gave finance a model that held up under review.
               </p>
-              <div className="mt-8 flex flex-wrap justify-center gap-6">
+              <div className="mt-8 flex flex-wrap gap-6">
                 <div>
-                  <div className="font-mono text-2xl font-bold text-cv-ink tracking-tight">$101,736</div>
-                  <p className="mt-1 text-xs text-cv-muted">annual recovery</p>
+                  <div className="font-mono text-2xl font-bold tracking-tight text-cv-ink">$738,983</div>
+                  <p className="mt-1 text-xs text-cv-muted">realized in total</p>
                 </div>
                 <div className="hidden sm:block w-px self-stretch bg-cv-line/50" />
                 <div>
-                  <div className="font-mono text-2xl font-bold text-cv-ink tracking-tight">$61,582</div>
+                  <div className="font-mono text-2xl font-bold tracking-tight text-cv-ink">$101,736</div>
+                  <p className="mt-1 text-xs text-cv-muted">recurring, per year</p>
+                </div>
+                <div className="hidden sm:block w-px self-stretch bg-cv-line/50" />
+                <div>
+                  <div className="font-mono text-2xl font-bold tracking-tight text-cv-ink">$61,582</div>
                   <p className="mt-1 text-xs text-cv-muted">in a single month</p>
                 </div>
               </div>
             </div>
-            <div className="mx-auto w-full max-w-3xl">
-              <FinopsClusterMock />
-            </div>
           </div>
-</div>
+          <div className="mx-auto mt-12 w-full max-w-3xl">
+            <FinopsClusterMock />
+          </div>
         </div>
       </section>
 
       {/* HOW THIS IS DIFFERENT — two-column lead-in */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionHeading lead eyebrow="The difference" title="How this is different">
+          <SectionHeading lead eyebrow="The difference" title="What a dashboard can't do.">
             <p className="cv-body-lg text-cv-ink/80">
               Dashboards explain the invoice. CloudVerse governs the decisions that shape it: PR-level checks in engineering workflows, AI and GPU economics, and warehouse query attribution. All on one model.
             </p>
@@ -206,7 +211,7 @@ export default function FinOpsTeamsPage() {
         <div className="cv-container">
           <div className="max-w-2xl mb-8 text-left">
             <SectionEyebrow className="mb-4">Outcomes</SectionEyebrow>
-            <h2 className="cv-h2 text-cv-ink">Outcomes you can defend.</h2>
+            <h2 className="cv-h2 text-cv-ink">Outcomes finance can sign off on.</h2>
           </div>
           <BulletGrid items={OUTCOMES} tone="positive" />
         </div>
@@ -217,7 +222,7 @@ export default function FinOpsTeamsPage() {
         <div className="cv-container">
           <div className="max-w-2xl mb-8 text-left">
             <SectionEyebrow className="mb-4">Platform</SectionEyebrow>
-            <h2 className="cv-h2 text-cv-ink">Platform that powers this solution</h2>
+            <h2 className="cv-h2 text-cv-ink">The modules behind it.</h2>
           </div>
           <PlatformCards
             items={[
@@ -231,11 +236,13 @@ export default function FinOpsTeamsPage() {
 
       <WhoThisIsFor
         accent="#1664C0"
+        heading="Who this is for."
+        subhead="The people who answer for the number."
         personas={[
           {
             role: "CFO",
             category: "Finance leadership",
-            quote: "One number I can take to the board — every dollar of cloud, AI, data, and SaaS tied to an owner.",
+            quote: "One number for the board, with every dollar of cloud, AI, data, and SaaS tied to an owner.",
           },
           {
             role: "VP / Director of Finance",
@@ -245,7 +252,7 @@ export default function FinOpsTeamsPage() {
           {
             role: "Head of FP&A",
             category: "Planning & analysis",
-            quote: "Month-on-month variance explained in minutes — the team and the charge already attached.",
+            quote: "Month-on-month variance explained in minutes, the team and the charge already attached.",
           },
           {
             role: "Head of Technology / IT Finance",
@@ -255,7 +262,7 @@ export default function FinOpsTeamsPage() {
           {
             role: "FinOps leads",
             category: "Cloud & FinOps",
-            quote: "Allocation, commitments, and anomalies in one place — backed by proof, not assumptions.",
+            quote: "Allocation, commitments, and anomalies in one place, backed by proof instead of assumptions.",
           },
         ]}
       />
@@ -264,12 +271,13 @@ export default function FinOpsTeamsPage() {
         <div className="cv-container">
           <FaqBlock
             items={FAQ.map(([q, a]) => ({ q, a }))}
-            accent="#1664C0"
-            title="FinOps Team Questions Answered"
-            subtitle="Common questions we get asked the most"
+            title="FinOps questions, answered."
+            subtitle="What finance and FinOps leads ask first."
           />
         </div>
       </section>
+
+      <RelatedSolutions current="/solutions/finops-teams" />
 
       <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Solutions", href: "/solutions" }, { name: "FinOps Teams", href: "/solutions/finops-teams" }]} />
     </>

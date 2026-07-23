@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Code2, Server2, MagicStick3, BillList, DocumentText, CheckSquare, Tuning, Programming, Widget2, Tuning2, Routing } from "@/lib/solar-icons";
 import { PlatformCards } from "@/components/solution/PlatformCards";
+import { RelatedSolutions } from "@/components/solution/RelatedSolutions";
 import { Panel, CheckBadge, VIZ_AMBER, VIZ_GRAY, VIZ_OK } from "@/components/solution/CardChrome";
 import { HowItWorksFlow, type FlowChip, type FlowWorkload, type FlowRightNode } from "@/components/solution/HowItWorksFlow";
 import { PlatformShips } from "@/components/solution/PlatformShips";
@@ -13,37 +14,37 @@ import { FaqBlock } from "@/components/FaqBlock";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
-  title: "For Platform Engineering: Cost Gates Engineers Actually Want to Use",
-  description: "PR-level cost diffs, policy-as-code, and right-sizing recommendations in your IaC pipeline. Quantified savings rolled into FinOps.",
+  title: "For Platform Engineering: Put Cost in the Workflow, Before the Change Ships",
+  description: "Infrastructure, code, and AI changes flagged in the pull request, with policy-as-code and right-sizing in your IaC pipeline. Velocity stays. Governance catches up.",
   keywords: ["platform engineering FinOps", "IaC cost management", "policy-as-code cost", "infrastructure right-sizing", "cloud cost gates", "PR cost diff"],
   alternates: { canonical: "/solutions/platform-eng" },
   openGraph: {
-    title: "For Platform Engineering: Cost Gates Engineers Actually Want to Use",
+    title: "For Platform Engineering: Put Cost in the Workflow, Before the Change Ships",
     description: "PR-level cost diffs, policy-as-code, and right-sizing recommendations in your IaC pipeline.",
     url: "/solutions/platform-eng",
     images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse for Platform Engineering" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "For Platform Engineering: Cost Gates Engineers Want to Use",
-    description: "PR-level cost diffs, policy-as-code, and right-sizing recommendations in your IaC pipeline.",
+    title: "For Platform Engineering: Cost in the Pull Request",
+    description: "PR-level cost diffs, policy-as-code, and right-sizing in your IaC pipeline.",
   },
 };
 
 const COSTS = [
-  "Cost regressions noticed at the bill, not at review",
-  "Always-on and oversized resources shipping without a second look",
-  "Cost decisions with no clear owner, settled by month-end finger-pointing",
-  "Rework: issues fixed in production instead of once, at the cheapest point",
+  "Cost regressions noticed at the bill, not at review.",
+  "Always-on and oversized resources shipping without a second look.",
+  "Cost decisions with no clear owner, settled by month-end finger-pointing.",
+  "Rework, because issues get fixed in production instead of once, at the cheapest point.",
 ];
 
 const OUTCOMES = [
-  "Cost: expensive changes caught before they ship, prevented at source",
-  "Risk: fewer surprise bills and regressions reaching production",
-  "Control: ownership on the people making the decision",
-  "Productivity: less firefighting; issues fixed once, at the cheapest point",
-  "Velocity: guardrails that keep delivery moving, not blocking it",
-  "Visibility: financial impact inside the workflow, not buried in a bill",
+  "Cost: expensive changes caught before they ship, prevented at source.",
+  "Risk: fewer surprise bills and regressions reaching production.",
+  "Control: ownership on the people making the decision.",
+  "Productivity: less firefighting, issues fixed once at the cheapest point.",
+  "Velocity: guardrails that keep delivery moving, not blocking it.",
+  "Visibility: financial impact inside the workflow, not buried in a bill.",
 ];
 
 const HOW_IT_WORKS_WORKLOADS: FlowWorkload[] = [
@@ -81,15 +82,21 @@ export default function PlatformEngPage() {
     <>
       <SolutionHero
         eyebrow="For Platform Engineering"
-        h1="Cost gates engineers actually want to use."
-        sub="PR-level cost diffs, policy-as-code, and right-sizing recommendations in your IaC pipeline. Guardrails that keep delivery moving."
+        accent="teal"
+        h1={
+          <>
+            Put cost in the workflow,{" "}
+            <span className="text-[#0E9E7A] dark:text-[#5FD3B4]">before the change ships.</span>
+          </>
+        }
+        sub="Infrastructure, code, and AI changes flagged in the pull request. Velocity stays. Governance catches up."
         platformHref="/platform/torb"
       />
 
       <section className="cv-section">
         <div className="cv-container">
           <div className="flex flex-col items-start gap-10">
-            <SectionHeading lead eyebrow="The situation" title="The situation platform engineering teams are in.">
+            <SectionHeading lead eyebrow="The situation" title="Tests gate the merge. Cost doesn't.">
               <p className="cv-body-lg text-cv-ink/80">
                 You already gate code on tests and static analysis. Cost is the one thing that ships unreviewed and shows up weeks later on a bill nobody connects back to that pull request.
               </p>
@@ -128,7 +135,7 @@ export default function PlatformEngPage() {
         <div className="cv-container">
           <div className="max-w-2xl mb-8 text-left">
             <SectionEyebrow className="mb-4">The cost of the gap</SectionEyebrow>
-            <h2 className="cv-h2 text-cv-ink">What that&apos;s costing you today.</h2>
+            <h2 className="cv-h2 text-cv-ink">What ships unreviewed costs you.</h2>
           </div>
           <BulletGrid items={COSTS} tone="negative" />
         </div>
@@ -139,7 +146,7 @@ export default function PlatformEngPage() {
         <div className="cv-container">
           <div className="max-w-2xl mb-10 text-left">
             <SectionEyebrow className="mb-4">What you ship</SectionEyebrow>
-            <h2 className="cv-h2 text-cv-ink">What platform teams ship with CloudVerse</h2>
+            <h2 className="cv-h2 text-cv-ink">What platform teams ship with CloudVerse.</h2>
           </div>
           <PlatformShips
             items={[
@@ -181,7 +188,7 @@ export default function PlatformEngPage() {
         <div className="cv-container">
           <SectionHeading lead eyebrow="The payback" title="Most teams recover the cost from a single prevented regression.">
             <p className="cv-body-lg text-cv-ink/75">
-              In a typical pre-production review, Torb flags around $2,400 of monthly spend before it ships. One catch pays for the tool.
+              In a typical pre-production review, Torb flags around $2,400 of monthly spend before it ships. One catch pays for the tool. The figure below is illustrative of a single review.
             </p>
           </SectionHeading>
           <div className="mx-auto mt-10 max-w-md">
@@ -219,7 +226,7 @@ export default function PlatformEngPage() {
         <div className="cv-container">
           <div className="max-w-2xl mb-8 text-left">
             <SectionEyebrow className="mb-4">Platform</SectionEyebrow>
-            <h2 className="cv-h2 text-cv-ink">Platform that powers this solution</h2>
+            <h2 className="cv-h2 text-cv-ink">The modules behind the gate.</h2>
           </div>
           <PlatformCards
             items={[
@@ -233,11 +240,13 @@ export default function PlatformEngPage() {
 
       <WhoThisIsFor
         accent="#0E9E7A"
+        heading="Who this is for."
+        subhead="The people who ship the change."
         personas={[
           {
             role: "Head of Platform Engineering",
             category: "Platform leadership",
-            quote: "Cost sits next to tests and static analysis — one more gate the team already trusts.",
+            quote: "Cost sits next to tests and static analysis, one more gate the team already trusts.",
           },
           {
             role: "Head of Development",
@@ -247,7 +256,7 @@ export default function PlatformEngPage() {
           {
             role: "Head of Infrastructure Automation",
             category: "Platform engineering",
-            quote: "Policy as code, versioned in the repo — no separate portal to keep in sync.",
+            quote: "Policy as code, versioned in the repo, with no separate portal to keep in sync.",
           },
           {
             role: "DevOps / SRE leads",
@@ -261,12 +270,13 @@ export default function PlatformEngPage() {
         <div className="cv-container">
           <FaqBlock
             items={FAQ.map(([q, a]) => ({ q, a }))}
-            accent="#1664C0"
-            title="Platform Engineering Questions Answered"
-            subtitle="Common questions we get asked the most"
+            title="Platform engineering questions, answered."
+            subtitle="What platform and DevOps leads ask first."
           />
         </div>
       </section>
+
+      <RelatedSolutions current="/solutions/platform-eng" />
 
       <BreadcrumbJsonLd items={[{ name: "Home", href: "/" }, { name: "Solutions", href: "/solutions" }, { name: "Platform Engineering", href: "/solutions/platform-eng" }]} />
     </>
