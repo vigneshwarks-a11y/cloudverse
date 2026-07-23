@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DOCS } from "@/lib/links";
 import { ChartSquare, Layers, MagicStick3, Routing, Filter, Graph, Tuning, Database } from "@/lib/solar-icons";
 import { PlatformCards } from "@/components/solution/PlatformCards";
 import { RelatedSolutions } from "@/components/solution/RelatedSolutions";
@@ -168,7 +169,7 @@ export default function DataTeamsPage() {
       {/* HOW IT WORKS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionHeading lead eyebrow="How it works" title="How DataX controls every warehouse dollar." className="mb-12">
+          <SectionHeading lead eyebrow="How it works" title="How DataX controls every warehouse dollar." className="mb-12" docsHref={DOCS.dataPlatform}>
             <div className="space-y-4">
               <p className="cv-body-lg text-cv-muted">
                 DataX sits alongside your warehouses over a read-only role. On every query it attributes the cost to an owner through the dbt DAG, catches the patterns that compound, and applies the fix once you approve it.

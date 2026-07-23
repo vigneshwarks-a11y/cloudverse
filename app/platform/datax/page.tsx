@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, CheckCircle, ChartSquare, Database, MagicStick, ShieldCheck } from "@/lib/solar-icons";
 import type { Metadata } from "next";
-import { DEMO_URL } from "@/lib/links";
+import { DEMO_URL, DOCS } from "@/lib/links";
 import WarehouseIntel from "@/components/product/WarehouseIntel";
 import { FaqBlock } from "@/components/FaqBlock";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
@@ -9,6 +9,7 @@ import { PlatformHeroMockup } from "@/components/product/PlatformHeroMockup";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Eyebrow } from "@/components/Eyebrow";
+import { DocsLink } from "@/components/DocsLink";
 import { IntegrationsMarquee } from "@/components/home/IntegrationsMarquee";
 import { BeforeAfterCards, type BeforeAfterRow } from "@/components/product/BeforeAfterCards";
 import { DataxFindingMock, DataxAutomationMock, DataxConnectionMock, DataxPricingMock } from "@/components/product/DataxVisuals";
@@ -77,7 +78,7 @@ export default function DataXPage() {
         }
       />
 
-      <PlatformHeroMockup tabs={DATAX_TABS} />
+      <PlatformHeroMockup tabs={DATAX_TABS} docsHref={DOCS.dataPlatform} />
 
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
@@ -105,7 +106,8 @@ export default function DataXPage() {
         <div className="cv-container">
           <Eyebrow accent="amber">Real finding</Eyebrow>
           <h2 className="cv-h2 text-cv-ink mb-3 max-w-3xl text-left">We find the leaks billing dashboards miss.</h2>
-          <p className="text-cv-ink/70 italic mb-10 max-w-3xl text-left">This is a real DataX finding. Not a mock. Not an illustration.</p>
+          <p className="text-cv-ink/70 italic mb-4 max-w-3xl text-left">This is a real DataX finding. Not a mock. Not an illustration.</p>
+          <DocsLink href={DOCS.dataOptimization} className="mb-10" />
           <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-14">
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
               {[
@@ -173,7 +175,7 @@ export default function DataXPage() {
       {/* SAFE AUTOMATION */}
       <section className="cv-section">
         <div className="cv-container">
-          <SectionHeading title="Automation without losing control." className="mb-12">
+          <SectionHeading title="Automation without losing control." className="mb-12" docsHref={DOCS.dataOptimization}>
             DataX applies approved optimisations within the policies you define.
           </SectionHeading>
           <p className="text-cv-ink/70 italic mb-10 max-w-3xl text-left">The automation model is about DataX behaviour, not your pipelines.</p>
@@ -209,7 +211,7 @@ export default function DataXPage() {
       {/* CONNECTION MODEL — least-privilege story precedes the connect ask */}
       <section className="cv-section">
         <div className="cv-container">
-          <SectionHeading title="Built for least privilege." className="mb-12">
+          <SectionHeading title="Built for least privilege." className="mb-12" docsHref={DOCS.governance}>
             Connect platforms using read-only access by default. Enable automation only when you are ready: scoped, auditable, reversible.
           </SectionHeading>
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
@@ -244,7 +246,7 @@ export default function DataXPage() {
 
         <div className="cv-container relative z-10">
           {/* Heading — two-column */}
-          <SectionHeading title="Connects to the stack your teams already run." className="mb-12">
+          <SectionHeading title="Connects to the stack your teams already run." className="mb-12" docsHref={DOCS.integrations} docsLabel="Read the integration docs">
             Cloud, models, GPUs, data warehouses, and CI, connected once.
           </SectionHeading>
 

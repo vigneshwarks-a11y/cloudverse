@@ -6,7 +6,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
-import { NAV, DEMO_URL } from "@/lib/links";
+import { NAV, DEMO_URL, DOCS_URL } from "@/lib/links";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
 
@@ -103,6 +103,7 @@ export function Footer() {
             items={[
               { label: "About", href: "/about" },
               { label: "Resources", href: "/resources" },
+              { label: "Docs", href: DOCS_URL },
               { label: "Integrations", href: "/integrations" },
               { label: "Contact", href: "/contact" },
             ]}
@@ -129,7 +130,11 @@ function FooterCol({ title, items }: { title: string; items: ReadonlyArray<{ lab
       <ul className="space-y-2">
         {items.map((it) => (
           <li key={it.href}>
-            <Link href={it.href} className="text-sm text-cv-muted hover:text-cv-ink">
+            <Link
+              href={it.href}
+              {...(it.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              className="text-sm text-cv-muted hover:text-cv-ink"
+            >
               {it.label}
             </Link>
           </li>

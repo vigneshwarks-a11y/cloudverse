@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DOCS } from "@/lib/links";
 import { Server2, Cpu, Database, LockKeyhole, ShieldCheck, ListCheck, Wallet } from "@/lib/solar-icons";
 import { EnterpriseDayOne } from "@/components/solution/EnterpriseDayOne";
 import { HowItWorksFlow, type FlowChip, type FlowWorkload, type FlowRightNode } from "@/components/solution/HowItWorksFlow";
@@ -165,7 +166,7 @@ export default function EnterprisePage() {
       {/* HOW IT WORKS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionHeading lead eyebrow="How it works" title="How the control plane runs the estate." className="mb-12">
+          <SectionHeading lead eyebrow="How it works" title="How the control plane runs the estate." className="mb-12" docsHref={DOCS.governance}>
             <div className="space-y-4">
               <p className="cv-body-lg text-cv-muted">
                 CloudVerse connects every cloud, AI provider, warehouse, and pipeline read-only, then provisions access, governs policy and residency, and reports chargeback that reconciles across business units.

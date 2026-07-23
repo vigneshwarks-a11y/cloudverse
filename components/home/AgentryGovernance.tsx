@@ -1,5 +1,6 @@
 "use client";
 import { SectionHeading } from "@/components/SectionHeading";
+import { DOCS } from "@/lib/links";
 
 import Link from "next/link";
 import { Fragment, useLayoutEffect, useRef, useState } from "react";
@@ -441,6 +442,7 @@ export function AgentryGovernance() {
           className="mb-20 lg:mb-28 lg:pt-8"
           eyebrow="Day one"
           title="What it does for you on day one"
+          docsHref={DOCS.governance}
         >
           Not a roadmap. The things Agentry handles the moment it&apos;s in the execution path: rogue agents, audit-grade evidence, shadow AI, and runaway cost stopped in flight.
         </SectionHeading>

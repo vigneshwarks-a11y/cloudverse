@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DOCS } from "@/lib/links";
 import { ChatRound, Cpu, Server2, Wallet, CheckSquare, ShieldCheck, Routing } from "@/lib/solar-icons";
 import { AgentryUnlocks } from "@/components/solution/AgentryUnlocks";
 import { Panel, CodeLine, Pill, VIZ_AMBER, VIZ_RED } from "@/components/solution/CardChrome";
@@ -166,7 +167,7 @@ export default function AIEngineeringPage() {
       {/* HOW IT WORKS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionHeading className="mb-12" eyebrow="How it works" title="How Agentry controls every AI request." lead>
+          <SectionHeading className="mb-12" eyebrow="How it works" title="How Agentry controls every AI request." lead docsHref={DOCS.aiEconomics}>
             Agentry sits between your application and every AI provider you use. On each request it scores the available routes against the rules your team set, then returns the best one with a fallback and a full decision log.
             <span className="mt-4 block">
               A gateway runs the rule you wrote. Agentry works out whether that rule is still right.

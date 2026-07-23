@@ -5,6 +5,7 @@ import type { ComponentType } from "react";
 import { AltArrowLeft, AltArrowRight } from "@/lib/solar-icons";
 import type { IconProps } from "@solar-icons/react";
 import { BorderBeam } from "@/components/magicui/border-beam";
+import { DocsLink } from "@/components/DocsLink";
 
 const ACCENT = "#1664C0";
 const AUTO_ADVANCE_MS = 5000;
@@ -16,7 +17,16 @@ export type MockupTab = {
   icon: ComponentType<IconProps>;
 };
 
-export function PlatformHeroMockup({ tabs }: { tabs: MockupTab[] }) {
+export function PlatformHeroMockup({
+  tabs,
+  docsHref,
+  docsLabel,
+}: {
+  tabs: MockupTab[];
+  /** Optional docs deep link — renders a "Read the docs" anchor under the tab copy. */
+  docsHref?: string;
+  docsLabel?: string;
+}) {
   const [active, setActive] = useState(0);
   const tab = tabs[active];
   const Icon = tab.icon;
@@ -190,6 +200,11 @@ export function PlatformHeroMockup({ tabs }: { tabs: MockupTab[] }) {
         >
           {tab.copy}
         </p>
+        {docsHref && (
+          <div className="mt-4 text-center">
+            <DocsLink href={docsHref} label={docsLabel} />
+          </div>
+        )}
       </div>
       </div>
     </div>

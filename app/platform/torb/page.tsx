@@ -7,7 +7,7 @@ import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Eyebrow } from "@/components/Eyebrow";
 import type { Metadata } from "next";
-import { DEMO_URL } from "@/lib/links";
+import { DEMO_URL, DOCS } from "@/lib/links";
 import WhoTorbFor from "@/components/product/WhoTorbFor";
 import TorbPrExample from "@/components/product/TorbPrExample";
 import CostGates from "@/components/product/CostGates";
@@ -86,7 +86,7 @@ export default function TorbPage() {
         }
       />
 
-      <PlatformHeroMockup tabs={TORB_TABS} />
+      <PlatformHeroMockup tabs={TORB_TABS} docsHref={DOCS.infrastructure} />
 
       <section className="cv-section">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">

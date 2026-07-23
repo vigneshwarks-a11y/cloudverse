@@ -7,6 +7,7 @@
 
 import type { ReactNode } from "react";
 import { Eyebrow, type EyebrowAccent } from "@/components/Eyebrow";
+import { DocsLink } from "@/components/DocsLink";
 
 export type SectionAccent = EyebrowAccent;
 
@@ -17,6 +18,8 @@ export function SectionHeading({
   children,
   lead = false,
   className = "",
+  docsHref,
+  docsLabel,
 }: {
   eyebrow?: string;
   accent?: SectionAccent;
@@ -26,6 +29,10 @@ export function SectionHeading({
   /** Use the larger cv-body-lg size for the intro (platform pages). */
   lead?: boolean;
   className?: string;
+  /** Optional docs deep link (a DOCS.* entry) — renders a "Read the docs"
+      anchor under the heading block. Opt-in: feature sections only. */
+  docsHref?: string;
+  docsLabel?: string;
 }) {
   return (
     <div className={"text-left " + className}>
@@ -42,6 +49,7 @@ export function SectionHeading({
       ) : (
         <h2 className="cv-h2 max-w-3xl text-balance text-cv-ink">{title}</h2>
       )}
+      {docsHref && <DocsLink href={docsHref} label={docsLabel} className="mt-5" />}
     </div>
   );
 }

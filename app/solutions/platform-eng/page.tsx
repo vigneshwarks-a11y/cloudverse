@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DOCS } from "@/lib/links";
 import { Code2, Server2, MagicStick3, BillList, DocumentText, CheckSquare, Tuning, Programming, Widget2, Tuning2, Routing } from "@/lib/solar-icons";
 import { PlatformCards } from "@/components/solution/PlatformCards";
 import { RelatedSolutions } from "@/components/solution/RelatedSolutions";
@@ -162,7 +163,7 @@ export default function PlatformEngPage() {
       {/* HOW IT WORKS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionHeading lead eyebrow="How it works" title="How Torb controls every infra change." className="mb-12">
+          <SectionHeading lead eyebrow="How it works" title="How Torb controls every infra change." className="mb-12" docsHref={DOCS.infrastructure}>
             <div className="space-y-4">
               <p className="cv-body-lg text-cv-muted">
                 Torb sits in your CI pipeline and every pull request. On each infra change it estimates the cost delta against policy your team wrote, then posts it inline with a fallback path and a full decision log.

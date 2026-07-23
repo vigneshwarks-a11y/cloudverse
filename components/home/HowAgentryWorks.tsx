@@ -12,6 +12,7 @@ import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { IconFileSearch, IconShield, IconReceipt } from "nucleo-isometric";
 import { SectionHeading } from "@/components/SectionHeading";
+import { DOCS } from "@/lib/links";
 
 type Step = {
   n: string;
@@ -78,7 +79,7 @@ export function HowAgentryWorks() {
   return (
     <section ref={scope} className="cv-section bg-cv-surface" data-testid="section-how-agentry-works">
       <div className="cv-container">
-        <SectionHeading eyebrow="How Agentry works" title="Three things have to be true before you can trust AI spend.">
+        <SectionHeading eyebrow="How Agentry works" title="Three things have to be true before you can trust AI spend." docsHref={DOCS.aiEconomics}>
           Agentry does all three: discover what&apos;s running, govern it in the execution path, and
           prove the economics after.
         </SectionHeading>

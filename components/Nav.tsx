@@ -154,6 +154,7 @@ export function Nav() {
             <Link
               key={it.href}
               href={it.href}
+              {...(it.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               className="px-3 py-2 text-sm text-cv-ink/70 hover:text-cv-ink transition-colors"
               data-testid={`nav-link-${it.label.toLowerCase()}`}
             >
@@ -238,6 +239,7 @@ export function Nav() {
               <Link
                 key={it.href}
                 href={it.href}
+                {...(it.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className="flex items-center justify-between py-4 border-b border-cv-line text-cv-ink text-[15px] font-medium"
                 onClick={() => setOpen(false)}
               >

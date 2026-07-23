@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Bolt, CheckCircle, CloseCircle, Route, ShieldCheck, TrashBin2, DollarMinimalistic, FileText } from "@/lib/solar-icons";
 import type { Metadata } from "next";
-import { DEMO_URL } from "@/lib/links";
+import { DEMO_URL, DOCS } from "@/lib/links";
 import { CountUpStat } from "@/components/CountUpStat";
 import GovernanceBento from "@/components/product/GovernanceBento";
 import NoBlackBoxes from "@/components/product/NoBlackBoxes";
@@ -135,7 +135,7 @@ export default function AgentryPage() {
       </PageHero>
 
       {/* HERO MOCKUP */}
-      <PlatformHeroMockup tabs={AGENTRY_TABS} />
+      <PlatformHeroMockup tabs={AGENTRY_TABS} docsHref={DOCS.aiEconomics} />
 
       {/* STATS */}
       <section className="pt-8 pb-12 lg:pt-10 lg:pb-16">
@@ -260,7 +260,7 @@ export default function AgentryPage() {
           style={{ background: "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(34,120,224,0.16), transparent 70%)" }}
         />
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative">
-          <SectionHeading title="How Agentry controls every AI request." className="mb-12">
+          <SectionHeading title="How Agentry controls every AI request." className="mb-12" docsHref={DOCS.aiEconomics}>
             Agentry sits between your application and every AI provider you use. On each request it scores the available routes against the rules your team set, then returns the best one with a fallback and a full decision log.
           </SectionHeading>
           <p className="text-cv-muted italic mb-10 max-w-3xl text-left">A gateway runs the rule you wrote. Agentry works out whether that rule is still right.</p>
@@ -284,7 +284,7 @@ export default function AgentryPage() {
       {/* GOVERNANCE */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <SectionHeading title="Built for enterprise AI governance." className="mb-12">
+          <SectionHeading title="Built for enterprise AI governance." className="mb-12" docsHref={DOCS.governance}>
             Every routing decision Agentry makes is recorded, auditable, and explainable. Governance is on by default, not bolted on.
           </SectionHeading>
           <GovernanceBento />
@@ -312,7 +312,7 @@ export default function AgentryPage() {
       <section className="cv-section">
         <div className="cv-container">
           {/* Heading — two-column */}
-          <SectionHeading title="Connect once. Route everywhere." className="mb-12">
+          <SectionHeading title="Connect once. Route everywhere." className="mb-12" docsHref={DOCS.integrations} docsLabel="Read the integration docs">
             Add your providers once. Agentry handles routing, fallback, and cost tracking across all of them. No code changes when you add a new provider.
           </SectionHeading>
           <h3 className="cv-label mt-8 text-[#1664C0] dark:text-[#7CB8F8]">Supported model providers</h3>

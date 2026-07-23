@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DOCS } from "@/lib/links";
 import { PlatformCards } from "@/components/solution/PlatformCards";
 import { RelatedSolutions } from "@/components/solution/RelatedSolutions";
 import { Panel, VIZ_AMBER, VIZ_RED, VIZ_GRAY } from "@/components/solution/CardChrome";
@@ -140,7 +141,7 @@ export default function FinOpsTeamsPage() {
       {/* HOW IT WORKS — flow diagram (FinOps allocation, not AI routing) */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionHeading lead eyebrow="How it works" title="How allocation and chargeback actually run." className="mb-12">
+          <SectionHeading lead eyebrow="How it works" title="How allocation and chargeback actually run." className="mb-12" docsHref={DOCS.chargeback}>
             <div className="space-y-4">
               <p className="cv-body-lg text-cv-muted">
                 CloudVerse connects your cloud, AI, and data billing read-only, then maps shared spend to teams and products with virtual tags, and traces every variance to a driver and an owner.
