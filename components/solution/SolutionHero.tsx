@@ -28,10 +28,14 @@ export function SolutionHero({
 }) {
   return (
     <PageHero
+      centered
       eyebrow={eyebrow}
       accent={accent}
       title={h1}
       subtitle={sub}
+      sectionPadding="pt-44 pb-28 sm:pt-56 sm:pb-32 lg:pt-72 lg:pb-40"
+      titleClassName="text-[length:clamp(34px,4.8vw,72px)]"
+      subtitleClassName="text-[length:clamp(17px,1.4vw,20px)]"
       actions={
         <>
           <Link href={primaryHref} className="cv-btn-primary">

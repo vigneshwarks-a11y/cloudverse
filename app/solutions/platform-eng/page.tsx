@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { DOCS } from "@/lib/links";
-import { Code2, Server2, MagicStick3, BillList, DocumentText, CheckSquare, Tuning, Programming, Widget2, Tuning2, Routing } from "@/lib/solar-icons";
+import { Code2, Server2, BillList, Programming } from "@/lib/solar-icons";
 import { PlatformCards } from "@/components/solution/PlatformCards";
 import { RelatedSolutions } from "@/components/solution/RelatedSolutions";
-import { Panel, CheckBadge, VIZ_AMBER, VIZ_GRAY, VIZ_OK } from "@/components/solution/CardChrome";
-import { HowItWorksFlow, type FlowChip, type FlowWorkload, type FlowRightNode } from "@/components/solution/HowItWorksFlow";
+import { Panel, CheckBadge, VIZ_AMBER, VIZ_OK } from "@/components/solution/CardChrome";
+import { SituationConnectorMock, type SituationPickItem } from "@/components/solution/SituationConnectorMock";
+import { WorkflowHero } from "@/components/solution/WorkflowHero";
 import { PlatformShips } from "@/components/solution/PlatformShips";
 import { SolutionHero } from "@/components/solution/SolutionHero";
+import { HeroBlend } from "@/components/solution/HeroBlend";
 import { SectionEyebrow } from "@/components/solution/SectionEyebrow";
 import { SectionHeading } from "@/components/SectionHeading";
 import { BulletGrid } from "@/components/solution/BulletGrid";
@@ -32,6 +34,13 @@ export const metadata: Metadata = {
   },
 };
 
+const TORB_BILL_LINES: SituationPickItem[] = [
+  { label: "Compute · +$2,400/mo", Icon: Server2, bg: "#D9A404", active: true },
+  { label: "Storage", Icon: BillList, bg: "#0E9E7A" },
+  { label: "Network egress", Icon: Code2, bg: "#2E5CF0" },
+  { label: "Unattributed", Icon: Programming, bg: "#94969C" },
+];
+
 const COSTS = [
   "Cost regressions noticed at the bill, not at review.",
   "Always-on and oversized resources shipping without a second look.",
@@ -46,28 +55,6 @@ const OUTCOMES = [
   "Productivity: less firefighting, issues fixed once at the cheapest point.",
   "Velocity: guardrails that keep delivery moving, not blocking it.",
   "Visibility: financial impact inside the workflow, not buried in a bill.",
-];
-
-const HOW_IT_WORKS_WORKLOADS: FlowWorkload[] = [
-  { label: "Pull Requests", sub: "Every infra change", color: "#1664C0", Icon: Code2 },
-  { label: "Infra Changes", sub: "Terraform, Helm, K8s", color: "#0E9E7A", Icon: Server2 },
-  { label: "AI-Assisted Commits", sub: "New model calls & agent loops", color: "#6954D4", Icon: MagicStick3 },
-];
-
-const HOW_IT_WORKS_CHIPS: FlowChip[] = [
-  { label: "Cost Diff", color: "#1664C0", Icon: BillList },
-  { label: "Policy as Code", color: "#D97706", Icon: DocumentText },
-  { label: "CI Checks", color: "#0E9E7A", Icon: CheckSquare },
-  { label: "Right-Sizing", color: "#6954D4", Icon: Tuning },
-];
-
-const HOW_IT_WORKS_RIGHT: FlowRightNode[] = [
-  { kind: "tile", label: "GitHub Actions", color: "#1664C0", Icon: Programming },
-  { kind: "tile", label: "GitLab CI", color: "#D97706", Icon: Code2 },
-  { kind: "tile", label: "Azure Pipelines", color: "#0E9E7A", Icon: Widget2 },
-  { kind: "tile", label: "Jenkins", color: "#6954D4", Icon: Tuning2 },
-  { kind: "tile", label: "Argo", color: "#1664C0", Icon: Routing },
-  { kind: "logo", src: "/icons/kubernetes.svg", name: "Kubernetes" },
 ];
 
 const FAQ = [
@@ -94,8 +81,9 @@ export default function PlatformEngPage() {
         platformHref="/platform/torb"
       />
 
-      <section className="cv-section">
-        <div className="cv-container">
+      <section className="relative overflow-hidden cv-section">
+        <HeroBlend />
+        <div className="cv-container relative z-10">
           <div className="flex flex-col items-start gap-10">
             <SectionHeading lead eyebrow="The situation" title="Tests gate the merge. Cost doesn't.">
               <p className="cv-body-lg text-cv-ink/80">
@@ -105,28 +93,16 @@ export default function PlatformEngPage() {
                 By then the expensive change is in production and the fix means rework. Torb puts the cost estimate in the pull request, where the person who wrote the change can still cheaply change it.
               </p>
             </SectionHeading>
-            <div className="mx-auto w-full max-w-3xl">
-              <Panel className="justify-between p-6" chrome="torb.app/pull/1042">
-                <span className="text-[10px] uppercase tracking-wide text-cv-muted">Merge checks</span>
-                <div className="flex items-center justify-between rounded-md border border-cv-line/60 px-3.5 py-4 text-xs dark:border-white/10">
-                  <span className="text-cv-ink/75">Unit tests</span>
-                  <CheckBadge>Passed</CheckBadge>
-                </div>
-                <div className="flex items-center justify-between rounded-md border border-cv-line/60 px-3.5 py-4 text-xs dark:border-white/10">
-                  <span className="text-cv-ink/75">Static analysis</span>
-                  <CheckBadge>Passed</CheckBadge>
-                </div>
-                <div className="flex items-center justify-between rounded-md border border-dashed border-cv-line/60 px-3.5 py-4 text-xs dark:border-white/15">
-                  <span className="text-cv-ink/50">Cost impact</span>
-                  <span className="font-medium" style={{ color: VIZ_GRAY }}>Not checked</span>
-                </div>
-                <div className="my-1 flex items-center justify-center text-[10px] uppercase tracking-wide text-cv-muted">3 weeks later ↓</div>
-                <div className="flex items-center justify-between gap-3 rounded-md px-3.5 py-4 text-xs" style={{ background: `${VIZ_AMBER}12` }}>
-                  <span className="min-w-0 flex-1" style={{ color: VIZ_AMBER }}>Unattributed regression on the bill</span>
-                  <span className="shrink-0 whitespace-nowrap font-mono font-semibold" style={{ color: VIZ_AMBER }}>+$2,400/mo</span>
-                </div>
-              </Panel>
-            </div>
+            <SituationConnectorMock
+              leftHeading="Pull request"
+              leftValue="#1042 · tests passed"
+              attributeHeading="Cost impact"
+              attributeValue="Not checked at merge"
+              connectorLabel="Regresses to"
+              rightHeading="Bill line"
+              rightSearchPlaceholder="Unattributed, 3 weeks later…"
+              items={TORB_BILL_LINES}
+            />
           </div>
         </div>
       </section>
@@ -163,24 +139,17 @@ export default function PlatformEngPage() {
       {/* HOW IT WORKS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionHeading lead eyebrow="How it works" title="How Torb controls every infra change." className="mb-12" docsHref={DOCS.infrastructure}>
+          <SectionHeading lead eyebrow="How it works" title={<>How Torb controls<br />every infra change.</>} className="mb-12" docsHref={DOCS.infrastructure}>
             <div className="space-y-4">
               <p className="cv-body-lg text-cv-muted">
-                Torb sits in your CI pipeline and every pull request. On each infra change it estimates the cost delta against policy your team wrote, then posts it inline with a fallback path and a full decision log.
+                Torb sits in your CI pipeline. On each infra change it estimates the cost delta against your team's policy and posts it inline, with a fallback and a decision log.
               </p>
               <p className="cv-body-lg text-cv-muted">
                 A linter runs the rule you wrote. Torb works out whether that rule is still right.
               </p>
             </div>
           </SectionHeading>
-          <HowItWorksFlow
-            workloads={HOW_IT_WORKS_WORKLOADS}
-            chips={HOW_IT_WORKS_CHIPS}
-            hubLabel="Cost · Risk · Ownership"
-            hubSub="evaluated before it merges"
-            right={HOW_IT_WORKS_RIGHT}
-            bottomRows={["Terraform / OpenTofu / Pulumi", "CloudFormation / Helm"]}
-          />
+          <WorkflowHero />
         </div>
       </section>
 

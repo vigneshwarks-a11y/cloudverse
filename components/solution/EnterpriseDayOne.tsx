@@ -117,7 +117,7 @@ function MarketplaceViz() {
 }
 
 const VISUALS: Record<string, () => React.JSX.Element> = {
-  "One model across the estate": ModelViz,
+  "One allocation model": ModelViz,
   "Identity and audit": IdentityViz,
   "Regional residency": RegionViz,
   "Marketplace and procurement": MarketplaceViz,

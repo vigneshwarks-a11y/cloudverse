@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { DOCS } from "@/lib/links";
-import { ChatRound, Cpu, Server2, Wallet, CheckSquare, ShieldCheck, Routing } from "@/lib/solar-icons";
+import { Cpu } from "@/lib/solar-icons";
 import { AgentryUnlocks } from "@/components/solution/AgentryUnlocks";
-import { Panel, CodeLine, Pill, VIZ_AMBER, VIZ_RED } from "@/components/solution/CardChrome";
-import { HowItWorksFlow, type FlowChip, type FlowWorkload, type FlowRightNode } from "@/components/solution/HowItWorksFlow";
+import { SituationConnectorMock, type SituationPickItem } from "@/components/solution/SituationConnectorMock";
+import { WorkflowHero } from "@/components/solution/WorkflowHero";
 import { PlatformCards } from "@/components/solution/PlatformCards";
 import { RelatedSolutions } from "@/components/solution/RelatedSolutions";
 import { SolutionHero } from "@/components/solution/SolutionHero";
+import { HeroBlend } from "@/components/solution/HeroBlend";
 import { SectionEyebrow } from "@/components/solution/SectionEyebrow";
 import { SectionHeading } from "@/components/SectionHeading";
 import { BulletGrid } from "@/components/solution/BulletGrid";
@@ -32,6 +33,12 @@ export const metadata: Metadata = {
   },
 };
 
+const AI_ENG_MODELS: SituationPickItem[] = [
+  { label: "claude-3.5-haiku · $0.006/1k", Icon: Cpu, bg: "#0E3F8C" },
+  { label: "gemini-1.5-flash · $0.004/1k", Icon: Cpu, bg: "#1664C0" },
+  { label: "llama-3-70b · $0.003/1k", Icon: Cpu, bg: "#4D9AEF", active: true },
+];
+
 const COSTS = [
   "AI spend you can't cleanly attribute to a team, feature, or use case.",
   "Unit economics borrowed from infrastructure, not sized for tokens and GPUs.",
@@ -46,28 +53,6 @@ const OUTCOMES = [
   "Governance: policy, access, residency, and vendor oversight in one place.",
   "Shadow AI, surfaced: the spend leaving engineering through Copilot, Cursor, and agents.",
   "Credibility: a number that holds up in front of finance, the CEO, and the board.",
-];
-
-const HOW_IT_WORKS_WORKLOADS: FlowWorkload[] = [
-  { label: "Chat & Copilots", sub: "User-facing requests", color: "#1664C0", Icon: ChatRound },
-  { label: "AI Agents", sub: "Autonomous workflows", color: "#6954D4", Icon: Cpu },
-  { label: "Batch Inference", sub: "Scheduled & bulk jobs", color: "#0E9E7A", Icon: Server2 },
-];
-
-const HOW_IT_WORKS_CHIPS: FlowChip[] = [
-  { label: "Cost Scoring", color: "#1664C0", Icon: Wallet },
-  { label: "Quality Scoring", color: "#0E9E7A", Icon: CheckSquare },
-  { label: "Policy Guardrails", color: "#D97706", Icon: ShieldCheck },
-  { label: "Fallback Routing", color: "#6954D4", Icon: Routing },
-];
-
-const HOW_IT_WORKS_RIGHT: FlowRightNode[] = [
-  { kind: "logo", src: "/icons/openai.svg", name: "OpenAI", invert: true },
-  { kind: "logo", src: "/icons/anthropic.svg", name: "Anthropic" },
-  { kind: "logo", src: "/icons/gemini.svg", name: "Gemini" },
-  { kind: "logo", src: "/icons/meta.svg", name: "Meta" },
-  { kind: "logo", src: "/icons/mistral.svg", name: "Mistral" },
-  { kind: "logo", src: "/icons/groq.svg", name: "Groq" },
 ];
 
 const FAQ = [
@@ -95,8 +80,9 @@ export default function AIEngineeringPage() {
         platformHref="/platform/agentry"
       />
 
-      <section className="cv-section">
-        <div className="cv-container">
+      <section className="relative overflow-hidden cv-section">
+        <HeroBlend />
+        <div className="cv-container relative z-10">
           <div className="flex flex-col items-start gap-10">
             <SectionHeading eyebrow="The situation" title="The model you picked once is now the expensive one." lead>
               You picked a model once and wired it in. There are now cheaper models that clear the same quality bar, but changing means a code change nobody has time for.
@@ -105,39 +91,16 @@ export default function AIEngineeringPage() {
               </span>
               <span className="mt-4 block font-medium text-cv-ink">Agentry closes both gaps.</span>
             </SectionHeading>
-            <div className="mx-auto w-full max-w-3xl">
-              <Panel className="justify-between p-6" chrome="agentry.app/situation">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] uppercase tracking-wide text-cv-muted">Current route · hardcoded</span>
-                  <Pill color={VIZ_AMBER}>Locked in code</Pill>
-                </div>
-                <div className="rounded-md border border-cv-line/60 py-2 dark:border-white/10">
-                  <CodeLine n={1}>
-                    <span className="text-cv-ink/75">model: </span>
-                    <span style={{ color: VIZ_AMBER }}>&quot;gpt-4-turbo&quot;</span>
-                  </CodeLine>
-                </div>
-                <div className="space-y-2.5">
-                  {[
-                    ["claude-3.5-haiku", "$0.006/1k"],
-                    ["gemini-1.5-flash", "$0.004/1k"],
-                    ["llama-3-70b", "$0.003/1k"],
-                  ].map(([name, price]) => (
-                    <div key={name} className="flex items-center justify-between gap-3 rounded-md border border-cv-line/60 px-3.5 py-3 text-xs dark:border-white/10">
-                      <span className="min-w-0 flex-1 truncate text-cv-ink/70">{name}</span>
-                      <span className="flex shrink-0 flex-col items-end gap-0.5">
-                        <span className="whitespace-nowrap font-mono tabular-nums text-cv-muted">{price}</span>
-                        <span className="whitespace-nowrap text-[10px] text-cv-ink/35">blocked · code change</span>
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                <div className="flex items-center justify-between gap-3 rounded-md px-3.5 py-4 text-xs" style={{ background: `${VIZ_RED}12` }}>
-                  <span className="min-w-0 flex-1" style={{ color: VIZ_RED }}>GPU + inference spend, rising weekly</span>
-                  <span className="shrink-0 whitespace-nowrap font-mono font-semibold" style={{ color: VIZ_RED }}>No owner</span>
-                </div>
-              </Panel>
-            </div>
+            <SituationConnectorMock
+              leftHeading="Model"
+              leftValue="gpt-4-turbo"
+              attributeHeading="Cost per 1k tokens"
+              attributeValue="$0.030 · locked in code"
+              connectorLabel="Routes to"
+              rightHeading="Cheaper alternative"
+              rightSearchPlaceholder="Same quality bar…"
+              items={AI_ENG_MODELS}
+            />
           </div>
         </div>
       </section>
@@ -167,20 +130,13 @@ export default function AIEngineeringPage() {
       {/* HOW IT WORKS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionHeading className="mb-12" eyebrow="How it works" title="How Agentry controls every AI request." lead docsHref={DOCS.aiEconomics}>
-            Agentry sits between your application and every AI provider you use. On each request it scores the available routes against the rules your team set, then returns the best one with a fallback and a full decision log.
+          <SectionHeading className="mb-12" eyebrow="How it works" title={<>How Agentry controls<br />every AI request.</>} lead docsHref={DOCS.aiEconomics}>
+            Agentry sits between your app and every AI provider. On each request it scores the routes against your team's rules and returns the best one, with a fallback and a full decision log.
             <span className="mt-4 block">
               A gateway runs the rule you wrote. Agentry works out whether that rule is still right.
             </span>
           </SectionHeading>
-          <HowItWorksFlow
-            workloads={HOW_IT_WORKS_WORKLOADS}
-            chips={HOW_IT_WORKS_CHIPS}
-            hubLabel="Cost · Quality · Latency"
-            hubSub="scored on every request"
-            right={HOW_IT_WORKS_RIGHT}
-            bottomRows={["Hosted APIs", "Dedicated GPU pools"]}
-          />
+          <WorkflowHero />
         </div>
       </section>
 

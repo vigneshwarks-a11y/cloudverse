@@ -529,6 +529,226 @@
   animation: cv-marquee 32s linear infinite reverse;
 }
 
+/* ===== Workflow hero (solution pages "How it works" visual) =================
+   Ported from references/cloudverse-workflow-hero.html: a trigger card →
+   web/custom agent → branch into two routing cards, with running/completed
+   badges and pulse-drawn connectors driven by the JS loop in
+   components/solution/WorkflowHero.tsx. All colours are CSS variables scoped
+   to .wf-hero so the theme is adjustable in one place; a .dark override adapts
+   the light "blue theme" to the site's dark surfaces. Animation, mobile
+   collapse (single column, SMB card hidden) and reduced-motion match the
+   reference exactly. */
+.wf-hero {
+  --wf-surface: #eef2f9;          /* outer card frame */
+  --wf-card-bg: #ffffff;          /* inner card */
+  --wf-card-shadow: 0 1px 2px rgba(16, 42, 92, 0.06);
+  --wf-text-primary: #10192e;
+  --wf-text-secondary: #3d4a63;
+  --wf-line-idle: #cdd5e3;
+  --wf-line-active: #0fc27b;      /* completed path — green, matches reference */
+  --wf-node-stroke-idle: #4f8dff;
+  --wf-node-stroke-active: #0fc27b;
+  --wf-dot: rgba(16, 42, 92, 0.08); /* desktop dotted-grid background */
+  --wf-run-border: #d3dcea;
+  --wf-run-bg: #f2f5fa;
+  --wf-run-text: #5c6a82;
+  --wf-run-spin-track: #d5deec;
+  --wf-run-spin-head: #5c6a82;
+  --wf-done-border: #bcd4ff;
+  --wf-done-bg: #dce9ff;
+  --wf-done-text: #1a56db;
+  --wf-chip1-border: #d6e5ff; --wf-chip1-bg: #e5eeff; --wf-chip1-text: #215bc4;
+  --wf-chip2-border: #c9dcff; --wf-chip2-bg: #dce9ff; --wf-chip2-text: #1d4fb8;
+  --wf-chip3-border: #cdd4ff; --wf-chip3-bg: #e2e7ff; --wf-chip3-text: #3f4bc9;
+  --wf-chip4-border: #c4e4fb; --wf-chip4-bg: #ddf1ff; --wf-chip4-text: #0a5f8f;
+  --wf-tag-border: #d6e5ff; --wf-tag-bg: #e5eeff; --wf-tag-text: #266df0;
+  --wf-duration: 2500ms;
+
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* Dark theme — keep the blue accents, swap the light surfaces/text for the
+   site's dark card treatment (matches the other product mockups). */
+.dark .wf-hero {
+  --wf-surface: rgba(255, 255, 255, 0.07);
+  --wf-card-bg: #0e1016;
+  --wf-card-shadow: 0 16px 40px -24px rgba(0, 0, 0, 0.7);
+  --wf-text-primary: #e9edf5;
+  --wf-text-secondary: #9aa6bd;
+  --wf-line-idle: rgba(255, 255, 255, 0.32);
+  --wf-run-border: rgba(255, 255, 255, 0.12);
+  --wf-run-bg: rgba(255, 255, 255, 0.05);
+  --wf-run-text: #9aa6bd;
+  --wf-run-spin-track: rgba(255, 255, 255, 0.18);
+  --wf-run-spin-head: #9aa6bd;
+  --wf-done-border: rgba(47, 123, 255, 0.4);
+  --wf-done-bg: rgba(47, 123, 255, 0.18);
+  --wf-done-text: #93b8ff;
+  --wf-chip1-bg: rgba(79, 141, 255, 0.16); --wf-chip1-border: rgba(79, 141, 255, 0.3); --wf-chip1-text: #93b8ff;
+  --wf-chip2-bg: rgba(79, 141, 255, 0.16); --wf-chip2-border: rgba(79, 141, 255, 0.3); --wf-chip2-text: #93b8ff;
+  --wf-chip3-bg: rgba(99, 108, 255, 0.16); --wf-chip3-border: rgba(99, 108, 255, 0.3); --wf-chip3-text: #a9b0ff;
+  --wf-chip4-bg: rgba(34, 168, 255, 0.16); --wf-chip4-border: rgba(34, 168, 255, 0.3); --wf-chip4-text: #7cc8f8;
+  --wf-tag-bg: rgba(79, 141, 255, 0.16); --wf-tag-border: rgba(79, 141, 255, 0.3); --wf-tag-text: #93b8ff;
+  --wf-dot: rgba(255, 255, 255, 0.06);
+}
+
+/* Fit wrapper — transparent on mobile (hero is the flex stack); on desktop it
+   becomes a container-query box that scales the fixed 980×410 canvas up to
+   fill the available width, so the visual fills the section instead of sitting
+   small in the middle. */
+.wf-fit { display: contents; }
+
+.wf-card {
+  position: relative;
+  width: 300px;
+  border-radius: 12px;
+  background: var(--wf-surface);
+  box-shadow: var(--wf-card-shadow);
+  padding: 1px;
+}
+.wf-card-inner {
+  border-radius: 11px;
+  background: var(--wf-card-bg);
+  padding: 13px 13px 11px;
+}
+.wf-card-head { display: flex; align-items: center; gap: 8px; padding-bottom: 7px; }
+.wf-chip {
+  display: flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; flex-shrink: 0;
+  border-radius: 7px; border: 1px solid;
+}
+.wf-chip.c1 { border-color: var(--wf-chip1-border); background: var(--wf-chip1-bg); color: var(--wf-chip1-text); }
+.wf-chip.c2 { border-color: var(--wf-chip2-border); background: var(--wf-chip2-bg); color: var(--wf-chip2-text); }
+.wf-chip.c3 { border-color: var(--wf-chip3-border); background: var(--wf-chip3-bg); color: var(--wf-chip3-text); }
+.wf-chip.c4 { border-color: var(--wf-chip4-border); background: var(--wf-chip4-bg); color: var(--wf-chip4-text); }
+.wf-card-title {
+  flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  color: var(--wf-text-primary); font-size: 14px; letter-spacing: -0.14px;
+}
+.wf-card-desc {
+  overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  font-size: 13px; color: var(--wf-text-secondary);
+}
+.wf-status {
+  position: absolute; top: -9px; right: 0;
+  display: flex; align-items: center; gap: 4px;
+  border-radius: 8px; padding: 1px 5px; font-size: 12px;
+  opacity: 0; transition: opacity 200ms ease; z-index: 2;
+}
+.wf-status.running { border: 1px solid var(--wf-run-border); background: var(--wf-run-bg); color: var(--wf-run-text); }
+.wf-status.completed { border: 1px solid var(--wf-done-border); background: var(--wf-done-bg); color: var(--wf-done-text); }
+.wf-card.is-running .wf-status.running { opacity: 1; }
+.wf-card.is-done .wf-status.completed { opacity: 1; }
+.wf-spin { animation: wf-spin 0.9s linear infinite; }
+@keyframes wf-spin { to { transform: rotate(360deg); } }
+.wf-tag {
+  position: absolute; top: -22px; left: 0; z-index: -1;
+  display: flex; align-items: center; gap: 3px; min-width: 20px;
+  border-radius: 10px; border: 1px solid var(--wf-tag-border);
+  background: var(--wf-tag-bg); color: var(--wf-tag-text);
+  font-size: 12px; padding: 3px 8px 26px 6px;
+}
+/* Per-card connection node (mobile stack only — desktop draws nodes in the
+   overlay). */
+.wf-node { position: absolute; left: 50%; bottom: 0; transform: translate(-50%, 5.5px); z-index: 2; }
+.wf-node .ring-idle { stroke: var(--wf-node-stroke-idle); }
+.wf-node .ring-active { stroke: var(--wf-node-stroke-active); opacity: 0; transition: opacity 200ms ease; }
+.wf-card.is-done .wf-node .ring-active { opacity: 1; }
+.wf-node circle[fill="#fff"] { fill: var(--wf-card-bg); }
+
+/* Mobile vertical connectors (straight rail + down chevron, drawn between
+   stacked cards). Green pulse draws in when its step completes. */
+.wf-conn { position: relative; width: 12px; height: 70px; margin: -1px 0; }
+.wf-conn svg { display: block; }
+.wf-conn .base { stroke: var(--wf-line-idle); }
+.wf-conn .active {
+  stroke: var(--wf-line-active);
+  stroke-dasharray: 90; stroke-dashoffset: 90;
+  transition: stroke-dashoffset var(--wf-duration) linear;
+}
+.wf-conn.is-active .active { stroke-dashoffset: 0; }
+
+/* Desktop connector overlay (the mixed flow-chart routing). Hidden on mobile. */
+.wf-overlay { display: none; }
+.wf-overlay .base { fill: none; stroke: var(--wf-line-idle); stroke-width: 2; }
+.wf-overlay .active {
+  fill: none; stroke: var(--wf-line-active); stroke-width: 2;
+  stroke-dasharray: 1; stroke-dashoffset: 1;
+  transition: stroke-dashoffset var(--wf-duration) linear;
+}
+.wf-overlay .wf-line.is-active .active { stroke-dashoffset: 0; }
+.wf-overlay .onode { fill: var(--wf-card-bg); stroke-width: 1; }
+.wf-overlay .onode-idle { stroke: var(--wf-node-stroke-idle); }
+.wf-overlay .onode-active { stroke: var(--wf-node-stroke-active); opacity: 0; transition: opacity 200ms ease; }
+.wf-overlay .wf-line.is-active .onode-active { opacity: 1; }
+
+/* ── Desktop: three cards across the top row (Trigger → Web Agent → Custom
+   Agent, joined left-to-right), then Custom Agent branches down into the two
+   routing cards on a second row. Cards are placed absolutely on a fixed
+   980×410 canvas so the SVG overlay lines up exactly. */
+@media (min-width: 1100px) {
+  /* Fluid stage: fills the section width up to a cap, with the canvas aspect
+     locked (980×410) so the % card positions and the stretched SVG overlay
+     stay registered. Cards grow with the width, so the visual fills the space
+     instead of sitting small in the middle. */
+  .wf-fit {
+    display: block;
+    position: relative;
+    width: 100%;
+    max-width: 1180px;
+    margin-inline: auto;
+    aspect-ratio: 980 / 300;
+  }
+  .wf-hero {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    background-image: radial-gradient(circle, var(--wf-dot) 1px, transparent 1px);
+    background-size: 2.24% 7.33%;
+  }
+  .wf-hero > .wf-conn { display: none; }   /* hide mobile rails */
+  .wf-hero .wf-node { display: none; }      /* overlay draws the nodes */
+  .wf-overlay {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .wf-overlay svg { width: 100%; height: 100%; display: block; overflow: visible; }
+  /* Positions as a % of the 980×410 canvas (card width 300 → 30.61%). */
+  .wf-card { position: absolute; width: 30.61%; z-index: 1; }
+  .wf-card[data-step="0"] { left: 0; top: 0; }            /* Trigger      */
+  .wf-card[data-step="1"] { left: 34.69%; top: 0; }       /* Web Agent    */
+  .wf-card[data-step="2"] { left: 69.39%; top: 0; }       /* Custom Agent */
+  .wf-card[data-step="3"]:not(.wf-smb) { left: 15.31%; top: 66.67%; } /* Enterprise */
+  .wf-card.wf-smb { left: 54.08%; top: 66.67%; display: block; }      /* SMB        */
+  /* Slightly larger type at this scale so the enlarged cards read well. */
+  .wf-hero .wf-card-title { font-size: 15px; }
+  .wf-hero .wf-card-desc { font-size: 14px; }
+}
+
+/* Mobile / tablet: single column, hide the SMB branch card (reference behaviour). */
+@media (max-width: 1099px) {
+  .wf-card.wf-smb { display: none; }
+  .wf-conn.wf-mobile-only { display: block; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wf-spin { animation: none; }
+  .wf-conn .active, .wf-overlay .active { transition: none; }
+}
+
 /* Home-hero entrance: start hidden + nudged down; GSAP animates to visible on
    load (see components/home/HomeHero.tsx). Reduced-motion / no-JS reveal via
    the override below so content is never permanently hidden. */

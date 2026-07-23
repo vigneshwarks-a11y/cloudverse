@@ -54,14 +54,14 @@ export default function ClosingCtaBand({
           <Link
             href={primaryHref}
             aria-label={primaryLabel}
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm text-[#1447E6] transition-colors duration-100 hover:bg-neutral-100"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-sm font-medium whitespace-nowrap text-[#1447E6] transition-colors duration-100 hover:bg-neutral-100"
           >
             {primaryLabel}
           </Link>
           <Link
             href={secondaryHref}
             aria-label={secondaryLabel}
-            className="inline-flex items-center justify-center gap-1.5 rounded-full bg-neutral-900/90 px-5 py-2.5 text-sm text-white transition-colors duration-100 hover:bg-neutral-900/80"
+            className="inline-flex items-center justify-center gap-1.5 rounded-full bg-neutral-900/90 px-7 py-4 text-sm font-medium whitespace-nowrap text-white transition-colors duration-100 hover:bg-neutral-900/80"
           >
             <span>{secondaryLabel}</span>
             <svg className="-mr-1 size-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">

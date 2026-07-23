@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import type { ComponentType } from "react";
-import Link from "next/link";
 import { ArrowRight, Bill, Box, Compass, Database, MagicStick2, ShieldCheck, SpeedometerMax } from "@/lib/solar-icons";
 import type { IconProps } from "@solar-icons/react";
 
@@ -8,7 +7,7 @@ type Icon = ComponentType<IconProps>;
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Eyebrow } from "@/components/Eyebrow";
-import { DEMO_URL, PRODUCT_URLS } from "@/lib/links";
+import { PRODUCT_URLS } from "@/lib/links";
 
 export const metadata: Metadata = {
   title: "About CloudVerse | Cloud Economic Intelligence Platform",
@@ -142,7 +141,7 @@ export default function Page() {
                   data-testid={`value-card-${idx}`}
                 >
                   <div className="w-10 h-10 rounded-xl bg-cv-blue/10 flex items-center justify-center mb-4">
-                    <Icon weight="Linear" className="w-5 h-5 text-cv-blue" />
+                    <Icon weight="Linear" className="w-5 h-5 text-cv-blue dark:text-cv-blue-light" />
                   </div>
                   <h3 className="text-base font-semibold text-cv-ink mb-2">{v.title}</h3>
                   <p className="text-sm text-cv-ink/70 leading-relaxed">{v.desc}</p>
@@ -173,13 +172,13 @@ export default function Page() {
                   data-testid={`product-summary-${idx}`}
                 >
                   <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cv-blue/20 to-cv-purple/20 flex items-center justify-center mb-4">
-                    <Icon weight="Linear" className="w-5 h-5 text-cv-blue" />
+                    <Icon weight="Linear" className="w-5 h-5 text-cv-blue dark:text-cv-blue-light" />
                   </div>
-                  <h3 className="text-base font-semibold text-cv-ink mb-2 group-hover:text-cv-blue transition-colors">
+                  <h3 className="text-base font-semibold text-cv-ink mb-2 group-hover:text-cv-blue dark:group-hover:text-cv-blue-light transition-colors">
                     {p.name}
                   </h3>
                   <p className="text-sm text-cv-ink/70 leading-relaxed mb-3">{p.tagline}</p>
-                  <span className="inline-flex items-center gap-1 text-xs font-medium text-cv-blue group-hover:gap-2 transition-all">
+                  <span className="inline-flex items-center gap-1 text-xs font-medium text-cv-blue dark:text-cv-blue-light group-hover:gap-2 transition-all">
                     Learn more <ArrowRight weight="Linear" size={12} />
                   </span>
                 </a>
@@ -192,23 +191,12 @@ export default function Page() {
       {/* Vision */}
       <section className="cv-section bg-cv-surface">
         <div className="cv-container">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-16">
-            <div className="lg:flex-1">
-              <Eyebrow>Where we&apos;re going</Eyebrow>
-              <h2 className="cv-h2 text-balance text-cv-ink">
-                An AI-native economic decision layer for every enterprise
-              </h2>
-              <Link href={DEMO_URL} className="cv-btn-primary mt-6" data-testid="link-book-demo-about">
-                Book a demo <ArrowRight weight="Linear" size={16} />
-              </Link>
-            </div>
-            <p className="cv-body-lg text-pretty text-cv-ink/70 lg:w-full lg:max-w-xl lg:shrink-0 lg:pt-1">
-              The next decade of compute will be defined by how well teams allocate scarce GPU,
-              storage, and network capacity. CloudVerse™ is building the economic decision layer
-              that makes those choices automatic, auditable, and aligned with business outcomes,
-              across every cloud, every model, and every team.
-            </p>
-          </div>
+          <SectionHeading lead eyebrow="Where we're going" title="An AI-native economic decision layer for every enterprise">
+            The next decade of compute will be defined by how well teams allocate scarce GPU,
+            storage, and network capacity. CloudVerse™ is building the economic decision layer
+            that makes those choices automatic, auditable, and aligned with business outcomes,
+            across every cloud, every model, and every team.
+          </SectionHeading>
         </div>
       </section>
     </>

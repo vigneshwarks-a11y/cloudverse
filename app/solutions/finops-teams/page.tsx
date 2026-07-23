@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
 import { DOCS } from "@/lib/links";
+import { UsersGroupRounded, MagicStick, Wallet, ShieldCheck } from "@/lib/solar-icons";
 import { PlatformCards } from "@/components/solution/PlatformCards";
 import { RelatedSolutions } from "@/components/solution/RelatedSolutions";
-import { Panel, VIZ_AMBER, VIZ_RED, VIZ_GRAY } from "@/components/solution/CardChrome";
+import { SituationConnectorMock, type SituationPickItem } from "@/components/solution/SituationConnectorMock";
 import { FinopsShips } from "@/components/solution/FinopsShips";
-import { FinopsHowItWorks } from "@/components/solution/FinopsHowItWorks";
+import { WorkflowHero } from "@/components/solution/WorkflowHero";
 import { FinopsClusterMock } from "@/components/solution/FinopsClusterMock";
 import { WhoThisIsFor } from "@/components/solution/WhoThisIsFor";
 import { FaqBlock } from "@/components/FaqBlock";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { Dashboard } from "@/components/home/AgentryOrchestration";
 import { SolutionHero } from "@/components/solution/SolutionHero";
+import { HeroBlend } from "@/components/solution/HeroBlend";
 import { SectionEyebrow } from "@/components/solution/SectionEyebrow";
 import { SectionHeading } from "@/components/SectionHeading";
 import { BulletGrid } from "@/components/solution/BulletGrid";
@@ -32,6 +34,13 @@ export const metadata: Metadata = {
     description: "Variance traced to a driver and owner, allocation that runs itself, forecasts finance can defend.",
   },
 };
+
+const FINOPS_OWNERS: SituationPickItem[] = [
+  { label: "ML Platform team", Icon: UsersGroupRounded, bg: "#2E5CF0", active: true },
+  { label: "Data Engineering", Icon: MagicStick, bg: "#6954D4" },
+  { label: "Finance ops", Icon: Wallet, bg: "#D9A404" },
+  { label: "Unassigned", Icon: ShieldCheck, bg: "#94969C" },
+];
 
 const COSTS = [
   "Days spent reconstructing a month-on-month variance by hand.",
@@ -74,8 +83,9 @@ export default function FinOpsTeamsPage() {
       />
 
       {/* THE SITUATION — two-column lead-in */}
-      <section className="cv-section">
-        <div className="cv-container">
+      <section className="relative overflow-hidden cv-section">
+        <HeroBlend />
+        <div className="cv-container relative z-10">
           <div className="flex flex-col items-start gap-10">
             <SectionHeading lead eyebrow="The situation" title="Accurate to the cent, and still unexplained.">
               <p className="cv-body-lg text-cv-ink/80">
@@ -85,26 +95,16 @@ export default function FinOpsTeamsPage() {
                 And now AI spend is landing in places where the value isn&apos;t quantified yet. One model across infrastructure, data, and AI is the only way the numbers reconcile.
               </p>
             </SectionHeading>
-            <div className="mx-auto w-full max-w-3xl">
-              <Panel className="justify-between p-6" chrome="finops.app/variance">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] uppercase tracking-wide text-cv-muted">This month&apos;s variance</span>
-                  <span className="font-mono text-base font-bold tabular-nums" style={{ color: VIZ_RED }}>+$42,180</span>
-                </div>
-                <div className="flex items-center justify-between rounded-md border border-dashed border-cv-line/60 px-3.5 py-4 text-xs dark:border-white/15">
-                  <span className="text-cv-ink/55">Explanation</span>
-                  <span className="font-medium" style={{ color: VIZ_GRAY }}>Pending</span>
-                </div>
-                <div className="flex items-center justify-between rounded-md border border-dashed border-cv-line/60 px-3.5 py-4 text-xs dark:border-white/15">
-                  <span className="text-cv-ink/55">Owner assigned</span>
-                  <span className="font-medium" style={{ color: VIZ_GRAY }}>Unassigned</span>
-                </div>
-                <div className="flex items-center justify-between gap-3 rounded-md px-3.5 py-4 text-xs" style={{ background: `${VIZ_AMBER}12` }}>
-                  <span className="min-w-0 flex-1" style={{ color: VIZ_AMBER }}>AI spend, unquantified value</span>
-                  <span className="shrink-0 whitespace-nowrap font-mono font-semibold" style={{ color: VIZ_AMBER }}>$18,400</span>
-                </div>
-              </Panel>
-            </div>
+            <SituationConnectorMock
+              leftHeading="Variance"
+              leftValue="+$42,180 this month"
+              attributeHeading="Explanation"
+              attributeValue="GPU autoscale, EU region"
+              connectorLabel="Attributed to"
+              rightHeading="Owner"
+              rightSearchPlaceholder="Was unassigned…"
+              items={FINOPS_OWNERS}
+            />
           </div>
         </div>
       </section>
@@ -141,17 +141,17 @@ export default function FinOpsTeamsPage() {
       {/* HOW IT WORKS — flow diagram (FinOps allocation, not AI routing) */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionHeading lead eyebrow="How it works" title="How allocation and chargeback actually run." className="mb-12" docsHref={DOCS.chargeback}>
+          <SectionHeading lead eyebrow="How it works" title={<>How allocation and chargeback<br />actually run.</>} className="mb-12" docsHref={DOCS.chargeback}>
             <div className="space-y-4">
               <p className="cv-body-lg text-cv-muted">
-                CloudVerse connects your cloud, AI, and data billing read-only, then maps shared spend to teams and products with virtual tags, and traces every variance to a driver and an owner.
+                CloudVerse connects your cloud, AI, and data billing read-only, maps shared spend with virtual tags, and traces every variance to a driver and an owner.
               </p>
               <p className="cv-body-lg text-cv-muted">
-                Anomalies arrive with the team and the charge already attached. Chargeback reconciles to source billing. Forecasts hold because they run on the same model finance signs off on.
+                Anomalies arrive with the charge attached, chargeback reconciles to source billing, and forecasts run on the model finance signs off on.
               </p>
             </div>
           </SectionHeading>
-          <FinopsHowItWorks />
+          <WorkflowHero />
         </div>
       </section>
 
@@ -185,7 +185,7 @@ export default function FinOpsTeamsPage() {
               </div>
             </div>
           </div>
-          <div className="mx-auto mt-12 w-full max-w-3xl">
+          <div className="mt-12 w-full">
             <FinopsClusterMock />
           </div>
         </div>

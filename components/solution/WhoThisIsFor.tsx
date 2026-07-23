@@ -13,24 +13,27 @@ const COLLAPSED_W = 60;
 // carries its own colour). Cycled by index.
 const PALETTE = ["#1664C0", "#6954D4", "#0E9E7A", "#D97706", "#2278E0"];
 
-// ── Ambient glow behind the active card (home testimonial style) ──────────────
-function AmbientGlow() {
+// ── Ambient glow behind the active card ───────────────────────────────────────
+// Tied to the active persona's accent (so an amber card doesn't get a blue
+// wash) and kept subtle: a soft tint pooled toward the corners rather than a
+// heavy gradient fill, so text stays the hero.
+function AmbientGlow({ accent }: { accent: string }) {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
       <div
         className="absolute"
         style={{
-          left: "-12%", top: "8%", width: "78%", height: "82%",
-          borderRadius: 240, filter: "blur(96px)", opacity: 0.32, transform: "rotate(-24deg)",
-          background: "linear-gradient(90deg, #1664C0 0%, #2278E0 100%)",
+          left: "-16%", top: "-10%", width: "64%", height: "78%",
+          borderRadius: 240, filter: "blur(100px)", opacity: 0.14,
+          background: `radial-gradient(circle, ${accent} 0%, transparent 72%)`,
         }}
       />
       <div
         className="absolute"
         style={{
-          right: "-14%", bottom: "-6%", width: "52%", height: "70%",
-          borderRadius: 200, filter: "blur(90px)", opacity: 0.2, transform: "rotate(18deg)",
-          background: "linear-gradient(90deg, #2278E0 0%, #1664C0 100%)",
+          right: "-14%", bottom: "-12%", width: "48%", height: "64%",
+          borderRadius: 200, filter: "blur(96px)", opacity: 0.09,
+          background: `radial-gradient(circle, ${accent} 0%, transparent 72%)`,
         }}
       />
     </div>
@@ -154,7 +157,7 @@ function PersonaCarousel({ personas }: { personas: Persona[] }) {
           return (
             <div
               key={p.role}
-              className={`relative shrink-0 overflow-hidden rounded-2xl ${isCollapsedOnMobile ? "border-0" : "border border-cv-line/40"}`}
+              className={`relative shrink-0 overflow-hidden rounded-2xl ${isCollapsedOnMobile ? "border-0" : "border border-cv-line dark:border-white/10"}`}
               style={{
                 width: w ?? (isActive ? undefined : COLLAPSED_W),
                 flex: (!w && isActive) ? 1 : undefined,
@@ -173,7 +176,7 @@ function PersonaCarousel({ personas }: { personas: Persona[] }) {
 
               {/* active glow */}
               <div className="absolute inset-0 transition-opacity duration-500" style={{ opacity: isActive ? 1 : 0 }} aria-hidden>
-                <AmbientGlow />
+                <AmbientGlow accent={accent} />
               </div>
 
               {/* collapsed strip */}

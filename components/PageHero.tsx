@@ -47,6 +47,7 @@ export function PageHero({
   className = "",
   titleClassName = "",
   subtitleClassName = "",
+  sectionPadding,
 }: {
   eyebrow?: ReactNode;
   accent?: HeroAccent;
@@ -67,11 +68,17 @@ export function PageHero({
   titleClassName?: string;
   /** Extra classes appended after the default cv-body subtitle classes. */
   subtitleClassName?: string;
+  /** Override the section's default vertical padding — pass the home hero's
+   *  taller values (pt-44 pb-28 sm:pt-56 sm:pb-32 lg:pt-72 lg:pb-40) to make
+   *  the shared cv-hero-bg gradient stretch over the same height as the home
+   *  hero, so it reads as the same ambient wash instead of a compressed band. */
+  sectionPadding?: string;
 }) {
+  const padding = sectionPadding || "pt-36 pb-16 sm:pt-48 lg:pt-56 lg:pb-24";
   if (centered) {
     return (
       <div className={"cv-hero-bg " + (fullHeight ? "cv-hero-full " : "") + className}>
-        <section className="relative pt-36 pb-16 sm:pt-48 lg:pt-56 lg:pb-24">
+        <section className={"relative " + padding}>
           <div className="max-w-cv relative z-10 mx-auto flex flex-col items-center px-5 text-center sm:px-6 lg:px-8">
             {eyebrow && <HeroEyebrow accent={accent}>{eyebrow}</HeroEyebrow>}
             <SplitHeading className={"cv-h1 mt-6 text-balance leading-[1.08] text-cv-ink " + titleClassName}>{title}</SplitHeading>
@@ -92,7 +99,7 @@ export function PageHero({
 
   return (
     <div className={"cv-hero-bg " + (fullHeight ? "cv-hero-full " : "") + className}>
-      <section className="relative pt-36 pb-16 sm:pt-48 lg:pt-56 lg:pb-24">
+      <section className={"relative " + padding}>
         <div className="max-w-cv relative z-10 mx-auto px-5 sm:px-6 lg:px-8">
           {/* Eyebrow on top */}
           {eyebrow && <HeroEyebrow accent={accent}>{eyebrow}</HeroEyebrow>}

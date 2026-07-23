@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { DOCS } from "@/lib/links";
-import { ChartSquare, Layers, MagicStick3, Routing, Filter, Graph, Tuning, Database } from "@/lib/solar-icons";
+import { Layers, MagicStick3, Graph, Database } from "@/lib/solar-icons";
 import { PlatformCards } from "@/components/solution/PlatformCards";
 import { RelatedSolutions } from "@/components/solution/RelatedSolutions";
 import { DataXUnlocks } from "@/components/solution/DataXUnlocks";
-import { HowItWorksFlow, type FlowChip, type FlowWorkload, type FlowRightNode } from "@/components/solution/HowItWorksFlow";
+import { WorkflowHero } from "@/components/solution/WorkflowHero";
 import { DataXAttributionMock } from "@/components/solution/DataXAttributionMock";
-import { Panel, CodeLine, Pill, VIZ_AMBER, VIZ_RED } from "@/components/solution/CardChrome";
+import { SituationConnectorMock, type SituationPickItem } from "@/components/solution/SituationConnectorMock";
 import { SolutionHero } from "@/components/solution/SolutionHero";
+import { HeroBlend } from "@/components/solution/HeroBlend";
 import { SectionEyebrow } from "@/components/solution/SectionEyebrow";
 import { SectionHeading } from "@/components/SectionHeading";
 import { BulletGrid } from "@/components/solution/BulletGrid";
@@ -33,6 +34,13 @@ export const metadata: Metadata = {
   },
 };
 
+const DATAX_TEAMS: SituationPickItem[] = [
+  { label: "Data Engineering", Icon: Database, bg: "#0E9E7A" },
+  { label: "AI agent workload", Icon: MagicStick3, bg: "#D9A404", active: true },
+  { label: "Analytics", Icon: Graph, bg: "#2E5CF0" },
+  { label: "Unowned", Icon: Layers, bg: "#94969C" },
+];
+
 const COSTS = [
   "Data platform spend that surprises you month to month.",
   "Warehouse and pipeline cost you can't cleanly attribute to a team or product.",
@@ -48,28 +56,6 @@ const OUTCOMES = [
   "Engineering visibility: data cost committed by code surfaced before the bill.",
   "Predictive signals: unit-cost regressions before close, not in the post-mortem.",
   "Defendability: data economics that hold up in front of finance and the board.",
-];
-
-const HOW_IT_WORKS_WORKLOADS: FlowWorkload[] = [
-  { label: "Dashboards & BI", sub: "Reports & analytics", color: "#1664C0", Icon: ChartSquare },
-  { label: "dbt Models", sub: "Pipelines & transforms", color: "#0E9E7A", Icon: Layers },
-  { label: "RAG & Agents", sub: "AI-driven warehouse reads", color: "#6954D4", Icon: MagicStick3 },
-];
-
-const HOW_IT_WORKS_CHIPS: FlowChip[] = [
-  { label: "Query Attribution", color: "#1664C0", Icon: Routing },
-  { label: "Pattern Detection", color: "#D97706", Icon: Filter },
-  { label: "Predictive Signals", color: "#6954D4", Icon: Graph },
-  { label: "Safe Automation", color: "#0E9E7A", Icon: Tuning },
-];
-
-const HOW_IT_WORKS_RIGHT: FlowRightNode[] = [
-  { kind: "logo", src: "/icons/snowflake.svg", name: "Snowflake" },
-  { kind: "logo", src: "/logos/databricks.svg", name: "Databricks" },
-  { kind: "tile", label: "BigQuery", color: "#1664C0", Icon: Database },
-  { kind: "tile", label: "Fabric", color: "#0E9E7A", Icon: Database },
-  { kind: "tile", label: "Synapse", color: "#6954D4", Icon: Database },
-  { kind: "tile", label: "+ more", color: "#94969C", Icon: Database },
 ];
 
 const FAQ = [
@@ -88,7 +74,8 @@ export default function DataTeamsPage() {
         accent="amber"
         h1={
           <>
-            Make shared data spend{" "}
+            Make shared data spend
+            <br />
             <span className="text-[#D97706] dark:text-[#F0B366]">allocable.</span>
           </>
         }
@@ -96,8 +83,9 @@ export default function DataTeamsPage() {
         platformHref="/platform/datax"
       />
 
-      <section className="cv-section">
-        <div className="cv-container">
+      <section className="relative overflow-hidden cv-section">
+        <HeroBlend />
+        <div className="cv-container relative z-10">
           <div className="flex flex-col items-start gap-10">
             <SectionHeading lead eyebrow="The situation" title="One unpruned query, times seventy-seven a month.">
               <p className="cv-body-lg text-cv-ink/80">
@@ -107,32 +95,16 @@ export default function DataTeamsPage() {
                 And now AI workloads are reading from your warehouses at scale, on budgets that were never sized for them, often from AI-assisted code with no obvious owner. DataX finds these automatically, with attribution down to the SQL.
               </p>
             </SectionHeading>
-            <div className="mx-auto w-full max-w-3xl">
-              <Panel className="justify-between p-6" chrome="datax.app/situation">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] uppercase tracking-wide text-cv-muted">Scheduled query · nightly</span>
-                  <Pill color={VIZ_AMBER}>Full scan</Pill>
-                </div>
-                <div className="rounded-md border border-cv-line/60 py-2 dark:border-white/10">
-                  <CodeLine n={1}>
-                    <span className="text-cv-ink/75">SELECT * FROM </span>
-                    <span style={{ color: VIZ_AMBER }}>orders</span>
-                  </CodeLine>
-                </div>
-                <div className="flex items-center justify-between rounded-md border border-cv-line/60 px-3.5 py-4 text-xs dark:border-white/10">
-                  <span className="text-cv-ink/70">Data scanned</span>
-                  <span className="font-mono tabular-nums" style={{ color: VIZ_AMBER }}>334.6 GB</span>
-                </div>
-                <div className="flex items-center justify-between rounded-md border border-cv-line/60 px-3.5 py-4 text-xs dark:border-white/10">
-                  <span className="text-cv-ink/70">Runs on schedule</span>
-                  <span className="font-mono tabular-nums text-cv-muted">×77 this month</span>
-                </div>
-                <div className="flex items-center justify-between gap-3 rounded-md px-3.5 py-4 text-xs" style={{ background: `${VIZ_RED}12` }}>
-                  <span className="min-w-0 flex-1" style={{ color: VIZ_RED }}>AI agent reading from warehouse</span>
-                  <span className="shrink-0 whitespace-nowrap font-mono font-semibold" style={{ color: VIZ_RED }}>No owner</span>
-                </div>
-              </Panel>
-            </div>
+            <SituationConnectorMock
+              leftHeading="Query"
+              leftValue="SELECT * FROM orders"
+              attributeHeading="Data scanned"
+              attributeValue="334.6 GB · ×77 this month"
+              connectorLabel="Attributed to"
+              rightHeading="Team"
+              rightSearchPlaceholder="Was unowned…"
+              items={DATAX_TEAMS}
+            />
           </div>
         </div>
       </section>
@@ -169,24 +141,17 @@ export default function DataTeamsPage() {
       {/* HOW IT WORKS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionHeading lead eyebrow="How it works" title="How DataX controls every warehouse dollar." className="mb-12" docsHref={DOCS.dataPlatform}>
+          <SectionHeading lead eyebrow="How it works" title={<>How DataX controls<br />every warehouse dollar.</>} className="mb-12" docsHref={DOCS.dataPlatform}>
             <div className="space-y-4">
               <p className="cv-body-lg text-cv-muted">
-                DataX sits alongside your warehouses over a read-only role. On every query it attributes the cost to an owner through the dbt DAG, catches the patterns that compound, and applies the fix once you approve it.
+                DataX sits alongside your warehouses read-only, attributes every query's cost to an owner through the dbt DAG, and applies the fix once you approve it.
               </p>
               <p className="cv-body-lg text-cv-muted">
-                A cost explorer shows the spend. DataX works out who caused it, and what to do next.
+                A cost explorer shows the spend. DataX shows who caused it, and what to do next.
               </p>
             </div>
           </SectionHeading>
-          <HowItWorksFlow
-            workloads={HOW_IT_WORKS_WORKLOADS}
-            chips={HOW_IT_WORKS_CHIPS}
-            hubLabel="Cost · Owner · Risk"
-            hubSub="attributed on every query"
-            right={HOW_IT_WORKS_RIGHT}
-            bottomRows={["Read-only, metadata only", "6 warehouses connected"]}
-          />
+          <WorkflowHero />
         </div>
       </section>
 
@@ -215,7 +180,7 @@ export default function DataTeamsPage() {
               </div>
             </div>
           </div>
-          <div className="mx-auto mt-12 w-full max-w-3xl">
+          <div className="mt-12 w-full">
             <DataXAttributionMock />
           </div>
         </div>

@@ -32,7 +32,7 @@ export function RelatedSolutions({
             >
               <span className="text-sm font-semibold text-cv-ink">{s.label}</span>
               <span className="mt-1 flex-1 text-sm text-cv-ink/70">{s.desc}</span>
-              <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-cv-blue">
+              <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-cv-blue dark:text-cv-blue-light">
                 View
                 <ArrowRight weight="Linear" size={13} className="transition-transform group-hover:translate-x-0.5" />
               </span>

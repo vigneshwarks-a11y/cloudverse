@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { DOCS } from "@/lib/links";
-import { Server2, Cpu, Database, LockKeyhole, ShieldCheck, ListCheck, Wallet } from "@/lib/solar-icons";
+import { Server2, Cpu, Database, ListCheck } from "@/lib/solar-icons";
 import { EnterpriseDayOne } from "@/components/solution/EnterpriseDayOne";
-import { HowItWorksFlow, type FlowChip, type FlowWorkload, type FlowRightNode } from "@/components/solution/HowItWorksFlow";
-import { Panel, VIZ_RED, VIZ_OK } from "@/components/solution/CardChrome";
+import { WorkflowHero } from "@/components/solution/WorkflowHero";
+import { Panel, VIZ_OK } from "@/components/solution/CardChrome";
+import { SituationConnectorMock, type SituationPickItem } from "@/components/solution/SituationConnectorMock";
 import { PlatformCards } from "@/components/solution/PlatformCards";
 import { RelatedSolutions } from "@/components/solution/RelatedSolutions";
 import { SolutionHero } from "@/components/solution/SolutionHero";
+import { HeroBlend } from "@/components/solution/HeroBlend";
 import { SectionEyebrow } from "@/components/solution/SectionEyebrow";
 import { SectionHeading } from "@/components/SectionHeading";
 import { BulletGrid } from "@/components/solution/BulletGrid";
@@ -32,6 +34,13 @@ export const metadata: Metadata = {
   },
 };
 
+const ENTERPRISE_TOOLS: SituationPickItem[] = [
+  { label: "Cloud console · $1.2M", Icon: Server2, bg: "#0E3F8C" },
+  { label: "AI platform · $310k", Icon: Cpu, bg: "#1664C0" },
+  { label: "Data warehouse · $180k", Icon: Database, bg: "#4D9AEF", active: true },
+  { label: "DevOps tool · $95k", Icon: ListCheck, bg: "#94969C" },
+];
+
 const COSTS = [
   "Four consoles, four totals, and month-end is the first time anyone adds them up.",
   "The cloud bill lands weeks after the decision that drove it.",
@@ -47,28 +56,6 @@ const OUTCOMES = [
   "Cross-unit chargeback: allocation that holds when a cost spans two business units.",
   "Forecasts that survive AI: capacity planning that keeps pace as workloads shift.",
   "One owner of the total: a number the office of the CIO can stand behind.",
-];
-
-const HOW_IT_WORKS_WORKLOADS: FlowWorkload[] = [
-  { label: "Cloud Spend", sub: "AWS, Azure, GCP & more", color: "#1664C0", Icon: Server2 },
-  { label: "AI & GPU Spend", sub: "Every provider & pool", color: "#6954D4", Icon: Cpu },
-  { label: "Data & Warehouse Spend", sub: "Every query & pipeline", color: "#0E9E7A", Icon: Database },
-];
-
-const HOW_IT_WORKS_CHIPS: FlowChip[] = [
-  { label: "SSO & RBAC", color: "#1664C0", Icon: LockKeyhole },
-  { label: "Policy & Residency", color: "#D97706", Icon: ShieldCheck },
-  { label: "Audit Trail", color: "#0E9E7A", Icon: ListCheck },
-  { label: "Chargeback Model", color: "#6954D4", Icon: Wallet },
-];
-
-const HOW_IT_WORKS_RIGHT: FlowRightNode[] = [
-  { kind: "logo", src: "/icons/aws.svg", name: "AWS" },
-  { kind: "logo", src: "/icons/azure.svg", name: "Azure" },
-  { kind: "logo", src: "/icons/googlecloud.svg", name: "Google Cloud" },
-  { kind: "logo", src: "/icons/openai.svg", name: "OpenAI", invert: true },
-  { kind: "logo", src: "/icons/snowflake.svg", name: "Snowflake" },
-  { kind: "logo", src: "/icons/kubernetes.svg", name: "Kubernetes" },
 ];
 
 const FAQ = [
@@ -97,8 +84,9 @@ export default function EnterprisePage() {
       />
 
       {/* THE SITUATION */}
-      <section className="cv-section">
-        <div className="cv-container">
+      <section className="relative overflow-hidden cv-section">
+        <HeroBlend />
+        <div className="cv-container relative z-10">
           <div className="flex flex-col items-start gap-10">
             <SectionHeading lead eyebrow="The situation" title="One estate, four tools, and no reconciled total.">
               <p className="cv-body-lg text-cv-ink/80">
@@ -108,28 +96,16 @@ export default function EnterprisePage() {
                 Chargeback and showback creak across business units. No one owns the total, day to day. One control plane is how you take it back.
               </p>
             </SectionHeading>
-            <div className="mx-auto w-full max-w-3xl">
-              <Panel className="justify-between p-6" chrome="enterprise.app/situation">
-                <span className="text-[10px] uppercase tracking-wide text-cv-muted">Four tools, four totals</span>
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    ["Cloud console", "$1.2M"],
-                    ["AI platform", "$310k"],
-                    ["Data warehouse", "$180k"],
-                    ["DevOps tool", "$95k"],
-                  ].map(([label, amt]) => (
-                    <div key={label} className="rounded-md border border-dashed border-cv-line/60 px-3.5 py-4 text-xs dark:border-white/15">
-                      <div className="text-cv-ink/55">{label}</div>
-                      <div className="mt-1 font-mono font-semibold text-cv-ink/80">{amt}</div>
-                    </div>
-                  ))}
-                </div>
-                <div className="flex items-center justify-between gap-3 rounded-md px-3.5 py-4 text-xs" style={{ background: `${VIZ_RED}12` }}>
-                  <span className="min-w-0 flex-1" style={{ color: VIZ_RED }}>No single reconciled total</span>
-                  <span className="shrink-0 whitespace-nowrap font-mono font-semibold" style={{ color: VIZ_RED }}>Unowned</span>
-                </div>
-              </Panel>
-            </div>
+            <SituationConnectorMock
+              leftHeading="Estate"
+              leftValue="Cloud, AI, data, engineering"
+              attributeHeading="Reconciled total"
+              attributeValue="Unowned · no single total"
+              connectorLabel="Split across"
+              rightHeading="Source tool"
+              rightSearchPlaceholder="Four tools, four totals…"
+              items={ENTERPRISE_TOOLS}
+            />
           </div>
         </div>
       </section>
@@ -166,24 +142,17 @@ export default function EnterprisePage() {
       {/* HOW IT WORKS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionHeading lead eyebrow="How it works" title="How the control plane runs the estate." className="mb-12" docsHref={DOCS.governance}>
+          <SectionHeading lead eyebrow="How it works" title={<>How the control plane<br />runs the estate.</>} className="mb-12" docsHref={DOCS.governance}>
             <div className="space-y-4">
               <p className="cv-body-lg text-cv-muted">
-                CloudVerse connects every cloud, AI provider, warehouse, and pipeline read-only, then provisions access, governs policy and residency, and reports chargeback that reconciles across business units.
+                CloudVerse connects every cloud, AI provider, and warehouse read-only, then governs access, policy, and residency, and reconciles chargeback across business units.
               </p>
               <p className="cv-body-lg text-cv-muted">
-                Four tools show four slices of the estate. One control plane shows the total, and who owns it.
+                Four tools show four slices. One control plane shows the total, and who owns it.
               </p>
             </div>
           </SectionHeading>
-          <HowItWorksFlow
-            workloads={HOW_IT_WORKS_WORKLOADS}
-            chips={HOW_IT_WORKS_CHIPS}
-            hubLabel="Cloud · AI · Data · Engineering"
-            hubSub="one control plane"
-            right={HOW_IT_WORKS_RIGHT}
-            bottomRows={["Marketplace redemption", "Business unit reconciliation"]}
-          />
+          <WorkflowHero />
         </div>
       </section>
 
@@ -217,7 +186,7 @@ export default function EnterprisePage() {
               </div>
             </div>
           </div>
-          <div className="mx-auto mt-12 w-full max-w-3xl">
+          <div className="mt-12 w-full">
             <Panel className="justify-between p-6" chrome="enterprise.app/estate">
               <span className="text-[10px] uppercase tracking-wide text-cv-muted">One reconciled total</span>
               <div className="grid grid-cols-2 gap-3">

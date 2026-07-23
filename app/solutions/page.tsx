@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Buildings, CheckCircle, Code2, Cpu, Database, UsersGroupRounded } from "@/lib/solar-icons";
 import { SolutionHero } from "@/components/solution/SolutionHero";
+import { HeroBlend } from "@/components/solution/HeroBlend";
 import { SectionEyebrow } from "@/components/solution/SectionEyebrow";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Panel, VIZ_BLUE } from "@/components/solution/CardChrome";
@@ -38,8 +39,9 @@ export default function Page() {
         platformHref="/platform/finops"
       />
 
-      <section className="cv-section bg-cv-surface2 dark:bg-black">
-        <div className="cv-container">
+      <section className="relative overflow-hidden cv-section bg-cv-surface2 dark:bg-black">
+        <HeroBlend />
+        <div className="cv-container relative z-10">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {SOLUTIONS.map((s) => {
               const Icon = s.icon;
