@@ -4,6 +4,7 @@
 
 import Link from "next/link";
 import { ArrowRight } from "@/lib/solar-icons";
+import { Eyebrow } from "@/components/Eyebrow";
 
 export function TechSpendCrossLink() {
   return (
@@ -17,9 +18,7 @@ export function TechSpendCrossLink() {
           />
           <div className="relative flex flex-col items-center gap-6 text-center">
             <div className="mx-auto max-w-2xl">
-              <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
-                One platform
-              </span>
+              <Eyebrow>One platform</Eyebrow>
               <h2 className="cv-h2 text-balance text-cv-ink">
                 Already governing your cloud, data, or SaaS spend?
               </h2>

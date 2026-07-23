@@ -8,6 +8,7 @@ import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { PlatformHeroMockup } from "@/components/product/PlatformHeroMockup";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
+import { Eyebrow } from "@/components/Eyebrow";
 import { IntegrationsMarquee } from "@/components/home/IntegrationsMarquee";
 import { BeforeAfterCards, type BeforeAfterRow } from "@/components/product/BeforeAfterCards";
 import { DataxFindingMock, DataxAutomationMock, DataxConnectionMock, DataxPricingMock } from "@/components/product/DataxVisuals";
@@ -102,6 +103,7 @@ export default function DataXPage() {
       {/* $117 FINDING */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
+          <Eyebrow accent="amber">Real finding</Eyebrow>
           <h2 className="cv-h2 text-cv-ink mb-3 max-w-3xl text-left">We find the leaks billing dashboards miss.</h2>
           <p className="text-cv-ink/70 italic mb-10 max-w-3xl text-left">This is a real DataX finding. Not a mock. Not an illustration.</p>
           <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-14">
@@ -273,9 +275,10 @@ export default function DataXPage() {
       <section className="cv-section">
         <div className="cv-container">
           <div className="text-center mb-10">
+            <Eyebrow accent="amber">FAQ</Eyebrow>
             <h2 className="cv-h2 text-cv-ink">Frequently Asked Questions</h2>
           </div>
-          <FaqBlock items={FAQ.map(([q, a]) => ({ q, a }))} accent="#1664C0" />
+          <FaqBlock items={FAQ.map(([q, a]) => ({ q, a }))} accent={ACCENT} />
         </div>
       </section>
 

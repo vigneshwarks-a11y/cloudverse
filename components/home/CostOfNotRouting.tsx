@@ -7,9 +7,10 @@ import { SectionHeading } from "@/components/SectionHeading";
    spend: a monthly at-scale savings table beside a single-request Without/With
    comparison, closed by a result banner. cv-* tokens, theme-aware.
 
-   Motion: the at-scale dollar figures count up from 0 to their target once the
-   table scrolls into view (GSAP onUpdate, plays once). SSR renders the final
-   values, so no-JS / reduced-motion always shows the real numbers. */
+   Motion: the cards (table, both examples, result banner) fade + slide in with
+   a stagger as the section enters the viewport, and the at-scale dollar figures
+   count up from 0 to their target (both play once). SSR renders the final
+   values, so no-JS / reduced-motion always shows the real content. */
 
 // [label, hardcoded, withAgentry, monthlySaving] — raw dollars; formatted below.
 const SCALE_ROWS: [string, number, number, number][] = [
@@ -43,6 +44,7 @@ function CompareCard({
   const withAgentry = tone === "with";
   return (
     <div
+      data-reveal
       className={`rounded-2xl border p-5 ${
         withAgentry
           ? "border-[#1664C0]/40 bg-[#1664C0]/[0.05] dark:border-[#7CB8F8]/25 dark:bg-[#1664C0]/[0.10]"
@@ -75,7 +77,21 @@ export function CostOfNotRouting() {
   useGSAP(
     () => {
       const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (reduce) return; // SSR already rendered the final figures
+      if (reduce) return; // SSR already rendered the final content
+
+      // Cards fade + slide in on scroll-in (scoped to this section).
+      gsap.from(gsap.utils.toArray<HTMLElement>("[data-reveal]", scope.current!), {
+        autoAlpha: 0,
+        y: 40,
+        duration: 0.7,
+        ease: "power3.out",
+        stagger: 0.12,
+        scrollTrigger: {
+          trigger: scope.current,
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      });
 
       gsap.utils.toArray<HTMLElement>("[data-count]").forEach((el) => {
         const target = parseFloat(el.dataset.countValue || "0");
@@ -109,7 +125,7 @@ export function CostOfNotRouting() {
 
         <div className="mt-10 grid gap-4 lg:grid-cols-[1.25fr_1fr] lg:gap-5">
           {/* At-scale monthly savings table */}
-          <div className="overflow-hidden rounded-2xl border border-cv-line/50 bg-cv-surface dark:border-white/10 dark:bg-[#0D0D0D]">
+          <div data-reveal className="overflow-hidden rounded-2xl border border-cv-line/50 bg-cv-surface dark:border-white/10 dark:bg-[#0D0D0D]">
             <div className="border-b border-cv-line/50 px-5 py-3 text-xs font-semibold uppercase tracking-widest text-cv-muted dark:border-white/10">
               At scale (monthly)
             </div>
@@ -165,7 +181,7 @@ export function CostOfNotRouting() {
         </div>
 
         {/* Result banner */}
-        <div className="mt-5 flex flex-col items-center gap-1 rounded-2xl border border-cv-teal/30 bg-cv-teal/[0.06] px-6 py-5 text-center sm:flex-row sm:justify-center sm:gap-3">
+        <div data-reveal className="mt-5 flex flex-col items-center gap-1 rounded-2xl border border-cv-teal/30 bg-cv-teal/[0.06] px-6 py-5 text-center sm:flex-row sm:justify-center sm:gap-3">
           <span className="font-mono text-lg font-bold text-cv-teal">40&ndash;90% lower cost, depending on workload mix.</span>
           <span className="text-sm text-cv-ink/70">The example above is one workload; the audit measures yours.</span>
         </div>

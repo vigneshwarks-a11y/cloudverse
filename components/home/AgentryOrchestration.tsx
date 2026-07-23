@@ -2,7 +2,7 @@
 import { SectionHeading } from "@/components/SectionHeading";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 // All GSAP + plugins come from the single registration point.
 import { gsap, ScrollTrigger, getSmoother } from "@/lib/gsap";
 import { CardLightEdge } from "@/components/home/cardChrome";
@@ -67,7 +67,14 @@ const CAPABILITIES: Capability[] = [
 export function AgentryOrchestration() {
   const rootRef = useRef<HTMLElement | null>(null);
 
-  useEffect(() => {
+  // useLayoutEffect (not useEffect) so the cleanup runs synchronously in
+  // React's mutation phase — before the DOM node is detached on navigation.
+  // pin: true wraps this section in a GSAP pin-spacer; if the revert ran in a
+  // passive useEffect cleanup (after React already detached the node), React
+  // would call removeChild on a section still nested in the spacer and throw
+  // "removeChild … not a child of this node". Layout-effect cleanup unwraps
+  // the spacer first, so the node is back where React expects it.
+  useLayoutEffect(() => {
     // gsap.context scopes every selector/trigger created inside it to the
     // section, and ctx.revert() on cleanup kills the pin, its pin-spacer, and
     // all tweens — so navigating away or re-rendering never leaves a dangling

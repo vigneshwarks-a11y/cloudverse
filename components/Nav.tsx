@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { AltArrowDown, AltArrowRight, Buildings, Chart, Code2, Cpu, Database, HamburgerMenu, Layers, UsersGroupRounded, Widget2 } from "@/lib/solar-icons";
 import { X } from "lucide-react";
@@ -26,12 +27,32 @@ const SOLUTION_ICONS: Record<string, React.ReactNode> = {
 export function Nav() {
   const [open, setOpen] = useState(false);
   const [openDrop, setOpenDrop] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
   const headerRef = useRef<HTMLElement | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [open]);
+
+  /* Transparent over the hero, solid once it scrolls out of view. Observe the
+     page's hero band; when it clears the top of the viewport the bar gains its
+     background. Pages without a hero keep the solid bar. Re-runs per route. */
+  useEffect(() => {
+    const hero = document.querySelector<HTMLElement>(".cv-hero-bg");
+    if (!hero) {
+      setScrolled(true);
+      return;
+    }
+    setScrolled(false);
+    const io = new IntersectionObserver(
+      ([entry]) => setScrolled(!entry.isIntersecting),
+      { rootMargin: "-84px 0px 0px 0px", threshold: 0 },
+    );
+    io.observe(hero);
+    return () => io.disconnect();
+  }, [pathname]);
 
   useEffect(() => {
     if (!openDrop) return;
@@ -54,7 +75,12 @@ export function Nav() {
   return (
     <header
       ref={headerRef}
-      className="fixed top-0 inset-x-0 z-50 bg-cv-surface"
+      className={
+        "fixed top-0 inset-x-0 z-50 transition-colors duration-300 " +
+        (scrolled || open
+          ? "bg-cv-surface border-b border-cv-line/70"
+          : "bg-transparent border-b border-transparent")
+      }
       data-testid="site-nav"
     >
       <div className="cv-container flex items-center justify-between h-[84px]">

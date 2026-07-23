@@ -5,9 +5,9 @@ import { ArrowRight, Bill, Box, Compass, Database, MagicStick2, ShieldCheck, Spe
 import type { IconProps } from "@solar-icons/react";
 
 type Icon = ComponentType<IconProps>;
-import { CTABand } from "@/components/CTABand";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
+import { Eyebrow } from "@/components/Eyebrow";
 import { DEMO_URL, PRODUCT_URLS } from "@/lib/links";
 
 export const metadata: Metadata = {
@@ -52,28 +52,37 @@ const PRODUCTS: { name: string; tagline: string; icon: Icon; href: string }[] = 
   { name: "CloudBillOps", tagline: "Unified billing, allocation, and chargeback across clouds.", icon: Bill, href: PRODUCT_URLS.billops },
 ];
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 dark:bg-[#7CB8F8]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8] mb-4">
-      {children}
-    </span>
-  );
-}
-
 export default function Page() {
   return (
     <>
       {/* Hero */}
       <PageHero
+        centered
         eyebrow="About CloudVerse™"
         accent="blue"
-        title="Building the future of cloud financial management."
+        title={
+          <>
+            Building the future of
+            <br />
+            <span className="text-cv-blue dark:text-cv-blue-light">cloud financial management.</span>
+          </>
+        }
         subtitle="We're the compute economics platform for the AI era, bringing real-time visibility, unit economics, and automated control to every dollar your teams spend on cloud and AI infrastructure."
+        titleClassName="text-[length:clamp(34px,4.8vw,72px)]"
+        subtitleClassName="text-[length:clamp(17px,1.4vw,20px)]"
       />
 
       {/* Mission */}
-      <section className="cv-section bg-cv-surface">
-        <div className="cv-container">
+      <section className="relative overflow-hidden bg-cv-surface cv-section">
+        {/* Continue the hero's blue down over the top of this section and fade
+            it to transparent, so the hero and this section read as one
+            continuous blue band settling into the page base (same treatment
+            as the home hero → CustomerLogos). */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-[34rem] bg-[linear-gradient(180deg,rgba(20,71,230,0.24)_0%,rgba(20,71,230,0.08)_42%,transparent_78%)] dark:bg-[linear-gradient(180deg,rgba(20,71,230,0.5)_0%,rgba(20,71,230,0.16)_42%,transparent_78%)]"
+        />
+        <div className="cv-container relative z-10">
           <SectionHeading lead eyebrow="Our Mission" title="Transparent, predictable, and profitable.">
             CloudVerse™ is building the compute economics layer the cloud era was always
             missing. As AI workloads multiply and cloud spend becomes a defining business
@@ -202,11 +211,6 @@ export default function Page() {
           </div>
         </div>
       </section>
-
-      <CTABand
-        heading="Want to work with us?"
-        sub="We're hiring practitioners across product, engineering, and customer teams."
-      />
     </>
   );
 }

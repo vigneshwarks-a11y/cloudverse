@@ -98,9 +98,9 @@ export function FaqBlock({
         {/* Main content card */}
         <div className="relative mx-3 rounded-[18px] border-[1.5px] border-cv-ink/20 bg-white p-6 dark:border-white/10 dark:bg-black sm:mx-0 sm:rounded-[24px] sm:p-10">
           {(title || subtitle) && (
-            <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-start lg:gap-16">
-              {title && <h2 className="cv-h2 text-cv-ink lg:flex-1">{title}</h2>}
-              {subtitle && <p className="cv-body text-cv-muted lg:w-full lg:max-w-xl lg:shrink-0 lg:pt-1">{subtitle}</p>}
+            <div className="mb-8 flex flex-col items-center gap-4 text-center">
+              {title && <h2 className="cv-h2 text-cv-ink">{title}</h2>}
+              {subtitle && <p className="cv-body max-w-xl text-cv-muted">{subtitle}</p>}
             </div>
           )}
 

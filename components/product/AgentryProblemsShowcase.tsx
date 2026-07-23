@@ -2,15 +2,18 @@
 
 import Link from "next/link";
 import { ArrowRight, Magnifer, DocumentText, Widget, Export } from "@/lib/solar-icons";
-import { Fragment, useCallback, useEffect, useRef, useState, type ReactElement, type ReactNode } from "react";
-import useEmblaCarousel from "embla-carousel-react";
+import { Fragment, useEffect, useState, type ReactElement, type ReactNode } from "react";
 import { DEMO_URL } from "@/lib/links";
+import { Eyebrow } from "@/components/Eyebrow";
 
-/* "Four problems Agentry fixes" — draggable carousel of feature cells (title + body
-   + Learn More + a product-mock card). Every mock shares one design language —
-   a titled dark panel with the CardLightEdge stroke/glow, bottom EDGE_FADE,
-   cv-* tokens, status colors and mono metrics — but each problem gets its own
-   composition so the four cards read as distinct:
+/* "Four problems Agentry fixes" — a 3D coverflow carousel of feature cells
+   (title + body + Learn More + a product-mock card). The active card sits large
+   and centered with a purple highlight glow; its neighbours recede on an arc,
+   rotated inward, scaled down and dimmed (perspective + CSS transforms). Prev/
+   Next pills and clicking a side card change the active index. Reduced-motion
+   drops the transition. Every mock shares one design language — a titled dark
+   panel with the CardLightEdge stroke/glow, bottom EDGE_FADE, cv-* tokens,
+   status colors and mono metrics — but each problem gets its own composition:
      1. Routing decision   → vertical cost-bar comparison of candidates
      2. Policy evaluations  → status-row log (the canonical list look)
      3. Agent budgets       → horizontal per-agent budget meters
@@ -96,7 +99,7 @@ function StatusPill({ kind, label }: { kind: Kind; label: string }) {
 function MockCard({ heading, children }: { heading: string; children: ReactNode }) {
   return (
     <div
-      className="relative flex h-[430px] flex-col overflow-hidden rounded-2xl border border-cv-line/60 bg-cv-surface p-4 shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:border-white/[0.07] dark:bg-[#101014] dark:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)]"
+      className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-cv-line/60 bg-cv-surface p-4 shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:border-white/[0.07] dark:bg-[#101014] dark:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)]"
       style={EDGE_FADE}
     >
       <CardLightEdge />
@@ -318,21 +321,28 @@ const PROBLEMS: Problem[] = [
   },
 ];
 
-const CELL =
-  "group flex h-full flex-col rounded-2xl border border-cv-line/60 bg-cv-surface p-6 shadow-[0_20px_50px_-30px_rgba(16,24,40,0.28)] transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-white/[0.07] dark:bg-[#0D0D0D] dark:shadow-[0_38px_84px_-34px_rgba(0,0,0,0.82)] lg:p-8";
-
-function Cell({ title, body, heading, Mock }: Problem) {
+/* One coverflow card. `active` brightens the border and adds the purple glow so
+   the centered card reads as the focus; side cards keep the quiet base chrome. */
+function Cell({ title, body, heading, Mock, active }: Problem & { active: boolean }) {
   return (
-    <div className={CELL}>
+    <div
+      className={
+        "flex h-full flex-col overflow-hidden rounded-[22px] border bg-cv-surface p-6 transition-[border-color,box-shadow] duration-500 dark:bg-[#0D0D0D] lg:p-7 " +
+        (active
+          ? "border-[#6954D4]/70 shadow-[0_0_0_1px_rgba(105,84,212,0.35),0_30px_80px_-30px_rgba(105,84,212,0.55)] dark:border-[#A99CF0]/70"
+          : "border-cv-line/60 shadow-[0_20px_50px_-30px_rgba(16,24,40,0.28)] dark:border-white/[0.07] dark:shadow-[0_38px_84px_-34px_rgba(0,0,0,0.82)]")
+      }
+    >
       <h3 className="text-lg font-semibold text-cv-ink">{title}</h3>
-      <p className="mt-2 text-base leading-relaxed text-cv-ink/55">{body}</p>
+      <p className="mt-2 text-sm leading-relaxed text-cv-ink/55">{body}</p>
       <Link
         href={DEMO_URL}
-        className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-[#6954D4] transition-colors hover:text-[#5842c0] dark:text-[#A99CF0] dark:hover:text-[#C2B8F5]"
+        tabIndex={active ? 0 : -1}
+        className="mt-3 inline-flex w-fit items-center gap-1 text-xs font-medium text-[#6954D4] transition-colors hover:text-[#5842c0] dark:text-[#A99CF0] dark:hover:text-[#C2B8F5]"
       >
         Learn More <ArrowRight weight="Linear" size={12} />
       </Link>
-      <div className="mt-auto pt-8">
+      <div className="mt-5 min-h-0 flex-1">
         <MockCard heading={heading}>
           <Mock />
         </MockCard>
@@ -341,30 +351,32 @@ function Cell({ title, body, heading, Mock }: Problem) {
   );
 }
 
-const DWELL_MS = 2200;
+/* Per-card 3D placement, keyed off the card's wrapped offset from the active
+   index (0 = centered/front, ±1 = near neighbour, ±2 = far). translateX fans
+   them sideways, rotateY tilts them inward, translateZ + scale + opacity push
+   the outer cards back. Cards beyond ±2 fade out and drop pointer events. */
+function coverStyle(offset: number, reduced: boolean): React.CSSProperties {
+  const abs = Math.abs(offset);
+  const hidden = abs > 2;
+  return {
+    transform: `translateX(${offset * 56}%) translateZ(${-abs * 220}px) rotateY(${-offset * 34}deg) scale(${1 - abs * 0.05})`,
+    opacity: hidden ? 0 : 1 - abs * 0.32,
+    filter: abs >= 2 ? "blur(2px)" : "none",
+    zIndex: 30 - abs,
+    pointerEvents: hidden || offset === 0 ? "none" : "auto",
+    transition: reduced
+      ? "none"
+      : "transform 600ms cubic-bezier(0.32,0.72,0,1), opacity 600ms ease, filter 600ms ease",
+  };
+}
 
 export default function AgentryProblemsShowcase() {
-  const [emblaRef, embla] = useEmblaCarousel({ align: "start", loop: true, containScroll: "trimSnaps", duration: 14 });
-  const [canPrev, setCanPrev] = useState(false);
-  const [canNext, setCanNext] = useState(true);
+  const n = PROBLEMS.length;
+  const [active, setActive] = useState(0);
   const [reduced, setReduced] = useState(false);
-  const [hovered, setHovered] = useState(false);
-  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  const onSelect = useCallback(() => {
-    if (!embla) return;
-    setCanPrev(embla.canScrollPrev());
-    setCanNext(embla.canScrollNext());
-  }, [embla]);
-
-  useEffect(() => {
-    if (!embla) return;
-    onSelect();
-    embla.on("select", onSelect).on("reInit", onSelect);
-    return () => {
-      embla.off("select", onSelect).off("reInit", onSelect);
-    };
-  }, [embla, onSelect]);
+  // Auto-advance pauses while the visitor hovers/focuses the carousel so they
+  // can read a card, and stays off entirely under reduced-motion.
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -374,78 +386,117 @@ export default function AgentryProblemsShowcase() {
     return () => mq.removeEventListener("change", sync);
   }, []);
 
-  // Auto-advance one card at a time; pauses on hover/touch and for
-  // prefers-reduced-motion, and restarts its dwell whenever the user drags
-  // the carousel manually so it doesn't fight their interaction.
+  // Cycle to the next card every 4.5s. Keyed off `active` so any manual nav
+  // (pills, dots, side-card click) restarts the interval from a full beat.
   useEffect(() => {
-    if (!embla || reduced || hovered) return;
-    timer.current = setInterval(() => embla.scrollNext(), DWELL_MS);
-    return () => {
-      if (timer.current) clearInterval(timer.current);
-    };
-  }, [embla, reduced, hovered]);
+    if (reduced || paused) return;
+    const id = window.setInterval(() => setActive((a) => (a + 1) % n), 4500);
+    return () => window.clearInterval(id);
+  }, [reduced, paused, n, active]);
+
+  const go = (dir: number) => setActive((a) => (a + dir + n) % n);
+
+  // Shortest signed distance from the active index, wrapped into [-n/2, n/2].
+  const offsetOf = (i: number) => {
+    let o = i - active;
+    if (o > n / 2) o -= n;
+    if (o < -n / 2) o += n;
+    return o;
+  };
 
   return (
-    <section
-      className="cv-section overflow-hidden bg-cv-surface2 dark:bg-black"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
+    <section className="cv-section overflow-hidden bg-cv-surface2 dark:bg-black">
       <div className="cv-container">
         {/* header */}
         <div className="mb-6 flex max-w-3xl flex-col items-start text-left">
+          <Eyebrow accent="purple">Common failure modes</Eyebrow>
           <h2 className="cv-h2 text-cv-ink">Four problems Agentry fixes.</h2>
           <p className="cv-body-lg text-cv-muted mt-4">
             The routing problems teams actually hit in production — and how Agentry resolves each one at decision time.
           </p>
         </div>
-        {/* carousel — chevrons flank both sides on desktop, vertically centered */}
-        <div className="relative mt-10">
-          <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex gap-6 lg:gap-8">
-              {PROBLEMS.map((p) => (
-                <div key={p.title} className="min-w-0 flex-[0_0_88%] sm:flex-[0_0_60%] lg:flex-[0_0_46%]">
-                  <Cell {...p} />
-                </div>
-              ))}
-            </div>
-          </div>
 
-          {/* side controls (desktop) */}
-          <div className="pointer-events-none absolute inset-y-0 -left-4 hidden items-center md:flex lg:-left-5">
-            <div className="pointer-events-auto">
-              <CarouselButton dir="prev" disabled={!canPrev} onClick={() => embla?.scrollPrev()} />
-            </div>
-          </div>
-          <div className="pointer-events-none absolute inset-y-0 -right-4 hidden items-center md:flex lg:-right-5">
-            <div className="pointer-events-auto">
-              <CarouselButton dir="next" disabled={!canNext} onClick={() => embla?.scrollNext()} />
-            </div>
+        {/* coverflow stage */}
+        <div
+          className="relative mt-14 flex justify-center lg:mt-20"
+          style={{ perspective: "1800px" }}
+          role="group"
+          aria-roledescription="carousel"
+          aria-label="Problems Agentry fixes"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onFocusCapture={() => setPaused(true)}
+          onBlurCapture={() => setPaused(false)}
+        >
+          <div
+            className="relative h-[560px] w-full max-w-[340px] lg:h-[600px] lg:max-w-[380px]"
+            style={{ transformStyle: "preserve-3d" }}
+          >
+            {PROBLEMS.map((p, i) => {
+              const offset = offsetOf(i);
+              const isActive = offset === 0;
+              return (
+                <div
+                  key={p.title}
+                  className="absolute inset-0 cursor-pointer"
+                  style={coverStyle(offset, reduced)}
+                  aria-hidden={!isActive}
+                  onClick={() => !isActive && setActive(i)}
+                >
+                  <Cell {...p} active={isActive} />
+                </div>
+              );
+            })}
           </div>
         </div>
 
-        {/* controls (mobile) */}
-        <div className="mt-6 flex justify-center gap-2 md:hidden">
-          <CarouselButton dir="prev" disabled={!canPrev} onClick={() => embla?.scrollPrev()} />
-          <CarouselButton dir="next" disabled={!canNext} onClick={() => embla?.scrollNext()} />
+        {/* Prev / Next pills */}
+        <div className="mt-12 flex items-center justify-center gap-3">
+          <PillButton dir="prev" onClick={() => go(-1)} />
+          <PillButton dir="next" onClick={() => go(1)} />
+        </div>
+
+        {/* progress dots */}
+        <div className="mt-6 flex justify-center gap-2">
+          {PROBLEMS.map((p, i) => (
+            <button
+              key={p.title}
+              type="button"
+              aria-label={`Go to ${p.title}`}
+              aria-current={i === active}
+              onClick={() => setActive(i)}
+              className={
+                "h-1.5 rounded-full transition-all duration-300 " +
+                (i === active
+                  ? "w-6 bg-[#6954D4] dark:bg-[#A99CF0]"
+                  : "w-1.5 bg-cv-ink/20 hover:bg-cv-ink/40 dark:bg-white/20 dark:hover:bg-white/40")
+              }
+            />
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-function CarouselButton({ dir, disabled, onClick }: { dir: "prev" | "next"; disabled: boolean; onClick: () => void }) {
+function PillButton({ dir, onClick }: { dir: "prev" | "next"; onClick: () => void }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      disabled={disabled}
-      aria-label={dir === "prev" ? "Previous" : "Next"}
-      className="flex h-10 w-10 items-center justify-center rounded-full border border-cv-line bg-cv-surface text-cv-ink shadow-[0_8px_24px_-10px_rgba(16,24,40,0.35)] transition-colors enabled:hover:bg-cv-ink/[0.06] disabled:opacity-35 dark:bg-[#0D0D0D] dark:enabled:hover:bg-white/10"
+      className="inline-flex items-center gap-2 rounded-full border border-cv-line bg-cv-surface px-6 py-3 text-sm font-medium text-cv-ink transition-colors hover:border-cv-ink/30 hover:bg-cv-ink/[0.04] dark:bg-[#0D0D0D] dark:hover:border-white/25 dark:hover:bg-white/[0.06]"
     >
-      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-        {dir === "prev" ? <path d="M15 18l-6-6 6-6" /> : <path d="M9 6l6 6-6 6" />}
-      </svg>
+      {dir === "prev" && (
+        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+      )}
+      {dir === "prev" ? "Prev" : "Next"}
+      {dir === "next" && (
+        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <path d="M9 6l6 6-6 6" />
+        </svg>
+      )}
     </button>
   );
 }

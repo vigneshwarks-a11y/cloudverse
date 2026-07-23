@@ -5,6 +5,8 @@
    The rollout IS an ordered sequence, so each cell keeps its 01–03 marker.
    Pure CSS hover (server component); reduced-motion falls back to a crossfade. */
 
+import { SectionHeading } from "@/components/SectionHeading";
+
 type Phase = { when: string; title: string; body: string };
 
 const PHASES: Phase[] = [
@@ -29,15 +31,9 @@ export function GettingStarted() {
   return (
     <section className="cv-section bg-cv-surface" data-testid="section-getting-started">
       <div className="cv-container">
-        <div className="max-w-5xl">
-          <p className="cv-label mb-4">Getting started</p>
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-16">
-            <h2 className="cv-h2 text-cv-ink lg:flex-1">30, 60, 90.</h2>
-            <p className="cv-body text-cv-ink/70 lg:w-full lg:max-w-xl lg:shrink-0 lg:pt-1">
-              Customers can begin with cloud, AI, data, or SaaS according to their immediate priority.
-            </p>
-          </div>
-        </div>
+        <SectionHeading className="max-w-5xl" eyebrow="Getting started" accent="teal" title="30, 60, 90.">
+          Customers can begin with cloud, AI, data, or SaaS according to their immediate priority.
+        </SectionHeading>
 
         <div className="mt-12 grid grid-cols-1 border-y border-cv-line/60 dark:border-white/10 md:grid-cols-3">
           {PHASES.map((p, i) => (

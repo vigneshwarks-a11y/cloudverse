@@ -5,6 +5,7 @@
    SVG/CSS — safe with no client hooks). */
 
 import type { ReactNode } from "react";
+import { SectionHeading } from "@/components/SectionHeading";
 import { CardLightEdge } from "@/components/product/BentoChrome";
 import { AreaChart, Bars, Meter, StatusPill, C } from "@/components/product/finops/kit";
 import { ShieldCheck, DangerTriangle, CheckCircle } from "@/lib/solar-icons";
@@ -226,16 +227,10 @@ export function ProofInProduction() {
   return (
     <section className="cv-section bg-cv-surface2 dark:bg-black" data-testid="section-proof-in-production">
       <div className="cv-container">
-        <div className="max-w-5xl">
-          <p className="cv-label mb-4">Proof in production</p>
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-16">
-            <h2 className="cv-h2 text-balance text-cv-ink lg:flex-1">Real numbers from a live cloud deployment.</h2>
-            <p className="text-pretty cv-body text-cv-ink/70 lg:w-full lg:max-w-xl lg:shrink-0 lg:pt-1">
-              A leading Southeast Asian telecommunications group, running full cloud spend management across a
-              100+ application estate.
-            </p>
-          </div>
-        </div>
+        <SectionHeading className="max-w-5xl" eyebrow="Proof in production" accent="teal" title="Real numbers from a live cloud deployment.">
+          A leading Southeast Asian telecommunications group, running full cloud spend management across a
+          100+ application estate.
+        </SectionHeading>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           <CardApplications />

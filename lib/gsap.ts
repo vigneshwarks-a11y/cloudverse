@@ -24,10 +24,12 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
+import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
+import { SplitText } from "gsap/SplitText";
 import { useGSAP } from "@gsap/react";
 
 if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
+  gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrambleTextPlugin, SplitText, useGSAP);
 }
 
 /** The live ScrollSmoother instance, or undefined before it mounts / when
@@ -36,4 +38,4 @@ export function getSmoother() {
   return ScrollSmoother.get();
 }
 
-export { gsap, ScrollTrigger, ScrollSmoother, useGSAP };
+export { gsap, ScrollTrigger, ScrollSmoother, ScrambleTextPlugin, SplitText, useGSAP };

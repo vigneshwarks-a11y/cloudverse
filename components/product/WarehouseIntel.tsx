@@ -1,5 +1,6 @@
 import { CheckCircle } from "@/lib/solar-icons";
 import { FeatureCard, Panel, StatusPill, BLUE } from "@/components/product/BentoChrome";
+import { Eyebrow } from "@/components/Eyebrow";
 
 /* "Warehouse cost intelligence, not just dashboards" — a bento of product
    screenshot mocks on the shared Agentry chrome. Each mock matches its card:
@@ -145,6 +146,7 @@ export default function WarehouseIntel() {
     <section className="cv-section">
       <div className="cv-container">
         <div className="max-w-3xl mb-10 text-left">
+          <Eyebrow accent="amber">Warehouse intelligence</Eyebrow>
           <h2 className="cv-h2 text-cv-ink">Warehouse cost intelligence, not just dashboards.</h2>
         </div>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">

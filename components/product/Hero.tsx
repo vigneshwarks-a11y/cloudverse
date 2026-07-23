@@ -21,7 +21,7 @@ export function ProductHero({
     <section className="cv-hero-bg pt-[140px] pb-16 lg:pt-[160px] lg:pb-20 relative">
       <div className="cv-container relative z-10">
         <div
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-[0.14em]"
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-[0.14em]"
           style={{ color, background: `${color}20` }}
         >
           <span className="w-1.5 h-1.5 rounded-full animate-pulse-dot" style={{ background: color }} />

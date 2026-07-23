@@ -6,6 +6,7 @@ import type { IconProps } from "@solar-icons/react";
 import { DEMO_URL } from "@/lib/links";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
+import { Eyebrow } from "@/components/Eyebrow";
 import AgentryProvidersMarquee from "@/components/product/AgentryProvidersMarquee";
 import IntegrationSteps from "@/components/product/IntegrationSteps";
 import IntegrationsCatalog from "@/components/product/IntegrationsCatalog";
@@ -71,15 +72,19 @@ export default function IntegrationsPage() {
     <>
       {/* HERO */}
       <PageHero
+        centered
         eyebrow="Integrations"
         accent="blue"
         title={
           <>
-            Connects to the stack{" "}
+            Connects to the stack
+            <br />
             <span className="text-cv-blue dark:text-cv-blue-light">your teams already use.</span>
           </>
         }
         subtitle="Add your integration once. CloudVerse handles routing, attribution, and cost tracking across all of them. No code changes when you add a new provider."
+        titleClassName="text-[length:clamp(34px,4.8vw,72px)]"
+        subtitleClassName="text-[length:clamp(17px,1.4vw,20px)]"
         actions={
           <>
             <Link href={DEMO_URL} className="cv-btn-primary">
@@ -102,16 +107,21 @@ export default function IntegrationsPage() {
 
       {/* AI PROVIDERS — reuse the home marquee design */}
       <section className="cv-section relative overflow-hidden bg-cv-surface2 dark:bg-black">
+        {/* Continue the hero's blue down over the top of this section and fade
+            it to transparent, so the hero and this section read as one
+            continuous blue band settling into the page base (same treatment
+            as the home hero → CustomerLogos). */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-[32rem]"
-          style={{ background: "radial-gradient(ellipse 60% 60% at 50% 0%, rgba(22,100,192,0.16), transparent 70%)" }}
+          className="pointer-events-none absolute inset-x-0 top-0 h-[34rem] bg-[linear-gradient(180deg,rgba(20,71,230,0.24)_0%,rgba(20,71,230,0.08)_42%,transparent_78%)] dark:bg-[linear-gradient(180deg,rgba(20,71,230,0.5)_0%,rgba(20,71,230,0.16)_42%,transparent_78%)]"
         />
         <div className="cv-container relative z-10">
           <SectionHeading title="Every model provider, one endpoint.">
             Route across managed APIs and private deployments without changing your application code.
           </SectionHeading>
-          <AgentryProvidersMarquee />
+          <div className="mt-12 lg:mt-16">
+            <AgentryProvidersMarquee />
+          </div>
           <p className="mt-14 text-center text-sm italic text-cv-muted">More providers added regularly.</p>
         </div>
       </section>
@@ -119,10 +129,7 @@ export default function IntegrationsPage() {
       {/* INTEGRATIONS DIRECTORY — searchable catalog */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="max-w-2xl text-left">
-            <p className="cv-label mb-4">Integration directory</p>
-            <h2 className="cv-h2 text-cv-ink">Browse every connector.</h2>
-          </div>
+          <SectionHeading className="max-w-2xl" eyebrow="Integration directory" title="Browse every connector." />
           <div className="mt-10">
             <IntegrationsCatalog />
           </div>
@@ -132,10 +139,7 @@ export default function IntegrationsPage() {
       {/* INTEGRATION CATEGORIES — bento */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="max-w-2xl text-left">
-            <p className="cv-label mb-4">What we connect</p>
-            <h2 className="cv-h2 text-cv-ink">Every layer of your compute stack, in one place.</h2>
-          </div>
+          <SectionHeading className="max-w-2xl" eyebrow="What we connect" title="Every layer of your compute stack, in one place." />
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {CATEGORIES.map(({ title, body, Icon }) => (
               <div
@@ -198,10 +202,7 @@ export default function IntegrationsPage() {
       {/* ENTERPRISE ACCESS — bento */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="max-w-2xl text-left">
-            <p className="cv-label mb-4">Enterprise-ready</p>
-            <h2 className="cv-h2 text-cv-ink">Built for enterprise access patterns.</h2>
-          </div>
+          <SectionHeading className="max-w-2xl" eyebrow="Enterprise-ready" title="Built for enterprise access patterns." />
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {ENTERPRISE.map(([t, b]) => (
               <div key={t} className="rounded-2xl border border-cv-line/60 bg-cv-surface dark:bg-[#0D0D0D] p-6 lg:p-8">
@@ -223,17 +224,16 @@ export default function IntegrationsPage() {
               Agentry treats private GPU capacity as a first-class routing target alongside managed APIs. If you run models on dedicated hardware or a NeoCloud provider, Agentry routes to them with the same cost and policy logic.
             </SectionHeading>
 
-            {/* below: bordered grid of icon-cell rows */}
-            <div className="mx-auto w-full max-w-2xl overflow-hidden rounded-2xl border border-cv-line/70 divide-y divide-cv-line/70 dark:border-white/10 dark:divide-white/10">
+            {/* below: bordered grid of icon cells — one row, three columns
+                (stacks to a single column on mobile) */}
+            <div className="w-full overflow-hidden rounded-2xl border border-cv-line/70 divide-y divide-cv-line/70 dark:border-white/10 dark:divide-white/10 sm:grid sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
               {GPU_ITEMS.map(({ title, body, Icon }) => (
-                <div key={title} className="grid grid-cols-[auto_1fr] items-stretch">
-                  <div className="flex items-center justify-center border-r border-cv-line/70 px-7 py-6 text-cv-blue dark:border-white/10 dark:text-cv-blue-light sm:px-9">
+                <div key={title} className="flex flex-col items-start px-7 py-7 sm:px-8">
+                  <div className="text-cv-blue dark:text-cv-blue-light">
                     <Icon weight="Bold" size={28} />
                   </div>
-                  <div className="px-6 py-6 sm:px-8">
-                    <h3 className="font-display text-lg font-semibold text-cv-ink">{title}</h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-cv-muted">{body}</p>
-                  </div>
+                  <h3 className="mt-5 font-display text-lg font-semibold text-cv-ink">{title}</h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-cv-muted">{body}</p>
                 </div>
               ))}
             </div>
@@ -244,10 +244,7 @@ export default function IntegrationsPage() {
       {/* THREE STEPS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <div className="max-w-2xl text-left">
-            <p className="cv-label mb-4">Getting started</p>
-            <h2 className="cv-h2 text-cv-ink">Three steps to go live.</h2>
-          </div>
+          <SectionHeading className="max-w-2xl" eyebrow="Getting started" title="Three steps to go live." />
           <div className="mt-12">
             <IntegrationSteps />
           </div>
@@ -258,6 +255,9 @@ export default function IntegrationsPage() {
       <section className="cv-section">
         <div className="cv-container">
           <div className="text-center mb-10">
+            <div className="mb-4 flex justify-center">
+              <Eyebrow>FAQ</Eyebrow>
+            </div>
             <h2 className="cv-h2 text-cv-ink">Frequently Asked Questions</h2>
           </div>
           <FaqBlock items={FAQ.map(([q, a]) => ({ q, a }))} accent="#1664C0" />

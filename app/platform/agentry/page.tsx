@@ -9,6 +9,7 @@ import AgentryRoiSplit from "@/components/product/AgentryRoiSplit";
 import { PlatformHeroMockup, type MockupTab } from "@/components/product/PlatformHeroMockup";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
+import { Eyebrow } from "@/components/Eyebrow";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import AgentrySteps from "@/components/product/AgentrySteps";
 import AgentryProvidersMarquee from "@/components/product/AgentryProvidersMarquee";
@@ -343,10 +344,8 @@ export default function AgentryPage() {
       {/* FAQ */}
       <section className="cv-section bg-cv-surface overflow-hidden">
         <div className="cv-container">
-          <div className="mb-4 text-center">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
-              FAQ
-            </span>
+          <div className="text-center">
+            <Eyebrow accent="purple">FAQ</Eyebrow>
           </div>
           <FaqBlock
             items={AGENTRY_FAQS}

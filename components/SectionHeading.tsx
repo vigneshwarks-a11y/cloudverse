@@ -6,17 +6,9 @@
    cv-* tokens, theme-aware. Server component. */
 
 import type { ReactNode } from "react";
+import { Eyebrow, type EyebrowAccent } from "@/components/Eyebrow";
 
-/* Eyebrow pill tint per surface — static full class strings so Tailwind's JIT
-   keeps them. Matches the inline eyebrows used across the site. */
-const PILL: Record<"blue" | "purple" | "amber" | "teal", string> = {
-  blue: "bg-[#1664C0]/15 text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]",
-  purple: "bg-[#6954D4]/15 text-[#6954D4] dark:bg-[#A99CF0]/15 dark:text-[#A99CF0]",
-  amber: "bg-[#D97706]/15 text-[#D97706] dark:bg-[#F0B366]/15 dark:text-[#F0B366]",
-  teal: "bg-[#0E9E7A]/15 text-[#0E9E7A] dark:bg-[#5FD3B4]/15 dark:text-[#5FD3B4]",
-};
-
-export type SectionAccent = keyof typeof PILL;
+export type SectionAccent = EyebrowAccent;
 
 export function SectionHeading({
   eyebrow,
@@ -37,16 +29,7 @@ export function SectionHeading({
 }) {
   return (
     <div className={"text-left " + className}>
-      {eyebrow && (
-        <span
-          className={
-            "mb-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest " +
-            PILL[accent]
-          }
-        >
-          {eyebrow}
-        </span>
-      )}
+      {eyebrow && <Eyebrow accent={accent}>{eyebrow}</Eyebrow>}
       {children ? (
         // Header + intro grouped in one row: heading left, intro right,
         // top-aligned; stacks to a single column below lg.

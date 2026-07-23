@@ -11,6 +11,7 @@ import { DEMO_URL } from "@/lib/links";
 import { WhoUsesItCards } from "@/components/product/WhoUsesItCards";
 import { FinOpsHero } from "@/components/product/FinOpsHero";
 import { SectionHeading } from "@/components/SectionHeading";
+import { Eyebrow } from "@/components/Eyebrow";
 import { FeatureShowcase } from "@/components/home/FeatureShowcase";
 import FinopsSurfaces from "@/components/product/FinopsSurfaces";
 import { DomainDepth } from "@/components/product/DomainDepth";
@@ -117,6 +118,9 @@ export default function FinOpsPage() {
 
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
+          <SectionHeading className="mb-12" eyebrow="The fix" accent="teal" title="How CloudVerse fixes it.">
+            What changed, who owns it, whether the spend is justified, and what to do next, answered once, on one record, prioritized by impact across your whole technology budget.
+          </SectionHeading>
           <FinopsSurfaces />
         </div>
       </section>
@@ -156,6 +160,7 @@ export default function FinOpsPage() {
 
       <section className="cv-section">
         <div className="cv-container">
+          <Eyebrow accent="teal">Who it's for</Eyebrow>
           <h2 className="cv-h2 text-cv-ink mb-10 text-left">Built for every stakeholder</h2>
           <WhoUsesItCards
             items={[
@@ -171,9 +176,10 @@ export default function FinOpsPage() {
       <section className="cv-section">
         <div className="cv-container">
           <div className="text-center mb-10">
+            <Eyebrow accent="teal">FAQ</Eyebrow>
             <h2 className="cv-h2 text-cv-ink">Frequently Asked Questions</h2>
           </div>
-          <FaqBlock items={FAQ.map(([q, a]) => ({ q, a }))} accent="#1664C0" />
+          <FaqBlock items={FAQ.map(([q, a]) => ({ q, a }))} accent="#0E9E7A" />
         </div>
       </section>
 

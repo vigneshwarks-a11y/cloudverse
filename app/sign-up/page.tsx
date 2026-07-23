@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ArrowRight, CheckCircle } from "@/lib/solar-icons";
 import { SIGNIN_URL, DEMO_URL } from "@/lib/links";
 import { HeroEyebrow } from "@/components/PageHero";
+import { Eyebrow } from "@/components/Eyebrow";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -47,7 +48,7 @@ export default function Page() {
           </div>
 
           <div className="mt-12 text-left rounded-2xl border border-cv-line/10 bg-cv-ink/[0.02] p-7">
-            <div className="cv-label mb-4">What happens next</div>
+            <Eyebrow>What happens next</Eyebrow>
             <ul className="space-y-3">
               {STEPS.map((s) => (
                 <li key={s} className="flex items-start gap-3">

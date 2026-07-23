@@ -37,9 +37,9 @@ const LOGOS: LogoItem[] = [
   { name: "Dr. Reddy's",             src: "/logos/cv-drreddys.svg" },
   { name: "Infogain",                src: "/logos/dk-infogain.png", invertDark: true },
   { name: "Axis Max Life Insurance", src: "/logos/cv-axismaxlife.svg" },
-  { name: "Berkshire Hathaway HomeServices EWM Realty", src: "/logos/cv-bhhs-b.png", srcDark: "/logos/cv-bhhs-w.png" },
+  { name: "Berkshire Hathaway HomeServices EWM Realty", src: "/logos/cv-bhhs-b.png", invertDark: true },
   { name: "SISL Infotech",           src: "/logos/cv-sisl.png" },
-  { name: "Ginesys",                 src: "/logos/cv-ginesys-b.svg", srcDark: "/logos/cv-ginesys-w.svg" },
+  { name: "Ginesys",                 src: "/logos/ginesys-dark.png", srcDark: "/logos/ginesys-white.svg" },
   { name: "Ken42",                   src: "/logos/cv-ken42.svg" },
   { name: "PiChain",                 src: "/logos/PiChain.webp" },
   { name: "Optimile",                src: "/logos/optimile-logo-b.svg", srcDark: "/logos/optimile-logo-w.svg" },
@@ -124,8 +124,17 @@ export function CustomerLogos() {
   const row2 = LOGOS.slice(mid);
 
   return (
-    <section className="bg-cv-surface py-14 lg:py-20" data-testid="section-customer-logos">
-      <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-cv-surface py-20 lg:py-28" data-testid="section-customer-logos">
+      {/* Continue the hero's blue down over the top of this section and fade it
+          to transparent, so the hero (which ends solid blue) and this section
+          read as one continuous blue band settling into the page base — the
+          same treatment as the platform hero → mockup. Top stop matches the
+          hero gradient's end value (0.50 dark / 0.12 light). */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-full bg-[linear-gradient(180deg,rgba(20,71,230,0.24)_0%,rgba(20,71,230,0.08)_42%,transparent_78%)] dark:bg-[linear-gradient(180deg,rgba(20,71,230,0.5)_0%,rgba(20,71,230,0.16)_42%,transparent_78%)]"
+      />
+      <div className="max-w-cv relative z-10 mx-auto px-5 sm:px-6 lg:px-8">
         <p className="text-center text-sm text-cv-muted mb-12 tracking-wide">
           The teams trusting us with their cloud and AI spend
         </p>

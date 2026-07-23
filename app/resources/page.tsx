@@ -4,6 +4,7 @@ import { ArrowRight } from "@/lib/solar-icons";
 import { GUIDES, DOCS, FAQS, BLOG_POSTS } from "@/lib/resources";
 import { PageHero } from "@/components/PageHero";
 import { FaqBlock } from "@/components/FaqBlock";
+import { Eyebrow } from "@/components/Eyebrow";
 import { DEMO_URL } from "@/lib/links";
 
 export const metadata: Metadata = {
@@ -39,10 +40,19 @@ export default function ResourcesPage() {
     <>
       {/* HERO */}
       <PageHero
+        centered
         eyebrow={<>CloudVerse&trade; Resources</>}
         accent="blue"
-        title="Guides and Documentation for Infrastructure Economics"
+        title={
+          <>
+            Guides and Documentation
+            <br />
+            for <span className="text-cv-blue dark:text-cv-blue-light">Infrastructure Economics</span>
+          </>
+        }
         subtitle="Practical guidance on visibility, allocation, anomalies, and automation across cloud, data, and AI platforms."
+        titleClassName="text-[length:clamp(34px,4.8vw,72px)]"
+        subtitleClassName="text-[length:clamp(17px,1.4vw,20px)]"
         actions={
           <>
             <a href="#guides" className="cv-btn-primary" data-testid="button-browse-guides">Browse guides</a>
@@ -54,10 +64,21 @@ export default function ResourcesPage() {
       />
 
       {/* FEATURED GUIDES */}
-      <section id="guides" className="cv-section bg-cv-surface border-t border-cv-line">
-        <div className="cv-container">
+      <section id="guides" className="relative overflow-hidden bg-cv-surface cv-section">
+        {/* Continue the hero's blue down over the top of this section and fade
+            it to transparent, so the hero and this section read as one
+            continuous blue band settling into the page base (same treatment
+            as the home hero → CustomerLogos). */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-[34rem] bg-[linear-gradient(180deg,rgba(20,71,230,0.24)_0%,rgba(20,71,230,0.08)_42%,transparent_78%)] dark:bg-[linear-gradient(180deg,rgba(20,71,230,0.5)_0%,rgba(20,71,230,0.16)_42%,transparent_78%)]"
+        />
+        <div className="cv-container relative z-10">
           <div className="flex items-end justify-between mb-8 flex-wrap gap-3">
-            <h2 className="cv-h2 text-cv-ink">Featured guides</h2>
+            <div>
+              <Eyebrow>Guides</Eyebrow>
+              <h2 className="cv-h2 text-cv-ink">Featured guides</h2>
+            </div>
             <span className="text-sm text-cv-muted">{GUIDES.length} guides total</span>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -82,6 +103,7 @@ export default function ResourcesPage() {
       {/* DOCS */}
       <section id="docs" className="cv-section bg-cv-surface2 border-t border-cv-line">
         <div className="cv-container">
+          <Eyebrow>Docs</Eyebrow>
           <h2 className="cv-h2 text-cv-ink mb-8 max-w-2xl text-left">Documentation</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {DOCS.map((d) => (
@@ -110,6 +132,7 @@ export default function ResourcesPage() {
       {/* BLOG */}
       <section id="blog" className="cv-section bg-cv-surface border-t border-cv-line">
         <div className="cv-container">
+          <Eyebrow>Blog</Eyebrow>
           <h2 className="cv-h2 text-cv-ink mb-8 max-w-2xl text-left">Featured blog</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredBlog.map((post) => (
@@ -133,6 +156,9 @@ export default function ResourcesPage() {
       {/* FAQ */}
       <section id="faq" className="cv-section bg-cv-surface2 border-t border-cv-line">
         <div className="cv-container max-w-4xl">
+          <div className="text-center mb-2">
+            <Eyebrow>FAQ</Eyebrow>
+          </div>
           <FaqBlock
             title="Frequently asked"
             items={FAQS.slice(0, 6).map((faq) => ({ q: faq.question, a: faq.answer }))}

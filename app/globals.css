@@ -161,9 +161,39 @@
     content: none;
   }
 
-  /* Light mode */
+  /* Light mode — gentler than dark (a 50% blue on white kills text contrast),
+     but strong enough at the bottom to read as a clear blue wash. */
   :root:not(.dark) .cv-hero-bg {
-    background: linear-gradient(180deg, rgba(20, 71, 230, 0.00) 0%, rgba(20, 71, 230, 0.50) 100%), #FFF;
+    background: linear-gradient(180deg, rgba(20, 71, 230, 0.00) 0%, rgba(20, 71, 230, 0.24) 100%), #FFF;
+  }
+
+  /* Home hero variant — instead of ending bright at the bottom (which peaks at
+     the seam with the next section and reads as a hard line), fade the blue
+     back down to the base so the hero is a smooth hump: black → blue → black.
+     The bottom edge is now the base colour, so the transition into the logos
+     section is seamless and just as gradual as the black → blue fade up top.
+     Soft plateau + eased stops avoid a sharp brightness peak (Mach band). */
+  .cv-hero-bg.cv-hero-blend {
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(20, 71, 230, 0.10) 24%,
+      rgba(20, 71, 230, 0.46) 50%,
+      rgba(20, 71, 230, 0.46) 70%,
+      rgba(20, 71, 230, 0.26) 88%,
+      transparent 100%
+    );
+  }
+  :root:not(.dark) .cv-hero-bg.cv-hero-blend {
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(20, 71, 230, 0.03) 24%,
+      rgba(20, 71, 230, 0.12) 50%,
+      rgba(20, 71, 230, 0.12) 70%,
+      rgba(20, 71, 230, 0.07) 88%,
+      transparent 100%
+    );
   }
 
   /* All content sits above background */
@@ -189,12 +219,24 @@
   }
 
   /* Buttons */
+  /* Shiny gradient sweep — same brand blue (#1447E6), just a moving highlight
+     instead of a flat fill. A lighter in-family tint (#6CA0FF) forms the
+     sheen band; background-size 280% gives room for the sweep to travel.
+     Hover slides the sheen across (bg-position) rather than swapping color. */
   .cv-btn-primary {
-    @apply inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full font-medium text-sm whitespace-nowrap transition-colors;
-    background: #1447E6;
+    @apply inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full font-medium text-sm whitespace-nowrap;
+    background-image: linear-gradient(325deg, #1447E6 0%, #6CA0FF 55%, #1447E6 90%);
+    background-size: 280% auto;
+    background-position: bottom left;
     color: #fff;
+    box-shadow:
+      0 0 20px rgba(71, 140, 255, 0.45),
+      0 5px 5px -1px rgba(20, 71, 230, 0.25),
+      inset 4px 4px 8px rgba(175, 210, 255, 0.45),
+      inset -4px -4px 8px rgba(20, 71, 230, 0.35);
+    transition: background-position 700ms ease, box-shadow 300ms ease;
   }
-  .cv-btn-primary:hover { background: #2E5CF0; }
+  .cv-btn-primary:hover { background-position: top right; }
 
   .cv-btn-ghost {
     @apply inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full font-medium text-sm whitespace-nowrap transition-colors text-cv-ink;

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "@/lib/solar-icons";
+import { Eyebrow } from "@/components/Eyebrow";
 
 const GUIDES = [
   {
@@ -26,11 +27,14 @@ export function GuidesResources() {
   return (
     <section className="cv-section bg-cv-surface">
       <div className="cv-container">
-        <div className="mb-10 flex max-w-2xl flex-col items-start gap-4 text-left">
-          <h2 className="cv-h2 text-cv-ink">Latest guides and resources</h2>
+        <div className="mb-10 flex flex-col items-start gap-4 text-left sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <Eyebrow>Resources</Eyebrow>
+            <h2 className="cv-h2 text-cv-ink">Latest guides and resources</h2>
+          </div>
           <Link
             href="/resources"
-            className="inline-flex items-center gap-1 text-sm font-medium text-[#1664C0] dark:text-[#7CB8F8] hover:opacity-80 transition-opacity"
+            className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-[#1664C0] dark:text-[#7CB8F8] hover:opacity-80 transition-opacity"
           >
             View all <ArrowRight weight="Linear" size={14} />
           </Link>

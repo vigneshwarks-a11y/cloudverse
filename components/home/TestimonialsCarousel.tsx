@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { BranchingPathsUp, DollarMinimalistic, Eye, Heart, Shield } from "@/lib/solar-icons";
+import { Eyebrow } from "@/components/Eyebrow";
 
 const CYCLE_MS = 6000;
 const EXPAND_MS = 420; // parallel expand/collapse duration
@@ -224,9 +225,7 @@ export function TestimonialsCarousel() {
     <section className="cv-section bg-cv-surface" ref={sectionRef}>
       <div className="cv-container">
         <div className="mx-auto mb-10 max-w-2xl text-center">
-          <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#1664C0]/15 dark:bg-[#7CB8F8]/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#1664C0] dark:text-[#7CB8F8]">
-            Customer Stories
-          </span>
+          <Eyebrow>Customer Stories</Eyebrow>
           <h2 className="cv-h2 text-cv-ink">
             Trusted by teams running AI in production.
           </h2>

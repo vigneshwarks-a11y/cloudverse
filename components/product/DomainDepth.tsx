@@ -101,7 +101,7 @@ function GlassCard({
         </span>
         <span className="text-[11px] font-semibold uppercase tracking-[0.16em]">{eyebrow}</span>
         {tag && (
-          <span className="ml-1 rounded-full border border-cv-line/70 px-2 py-0.5 text-[9.5px] font-medium uppercase tracking-wide text-cv-ink/55 dark:border-white/15">
+          <span className="ml-1 rounded-lg border border-cv-line/70 px-2.5 py-1 text-[9.5px] font-medium uppercase tracking-wide text-cv-ink/55 dark:border-white/15">
             {tag}
           </span>
         )}

@@ -5,6 +5,7 @@ import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import { PlatformHeroMockup } from "@/components/product/PlatformHeroMockup";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
+import { Eyebrow } from "@/components/Eyebrow";
 import type { Metadata } from "next";
 import { DEMO_URL } from "@/lib/links";
 import WhoTorbFor from "@/components/product/WhoTorbFor";
@@ -127,6 +128,7 @@ export default function TorbPage() {
       <section className="cv-section">
         <div className="cv-container">
           <div className="text-center mb-10">
+            <Eyebrow>FAQ</Eyebrow>
             <h2 className="cv-h2 text-cv-ink">Frequently Asked Questions</h2>
           </div>
           <FaqBlock items={FAQ.map(([q, a]) => ({ q, a }))} accent="#1664C0" />

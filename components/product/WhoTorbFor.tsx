@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type ComponentType } from "react";
 import { Code, FileText, Tuning2 } from "@/lib/solar-icons";
 import type { IconProps } from "@solar-icons/react";
+import { Eyebrow } from "@/components/Eyebrow";
 
 type Icon = ComponentType<IconProps>;
 
@@ -57,6 +58,7 @@ export default function WhoTorbFor() {
   return (
     <section className="cv-section bg-cv-surface2 dark:bg-black">
       <div className="cv-container">
+        <Eyebrow>Who it's for</Eyebrow>
         <h2 className="cv-h2 text-cv-ink mb-10 max-w-3xl text-left">Who Torb is for</h2>
         <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
           {PERSONAS.map(({ title, body, Icon, color }, i) => (

@@ -1,5 +1,6 @@
 import { CheckCircle } from "@/lib/solar-icons";
 import { FeatureCard, Panel, StatusPill, BLUE } from "@/components/product/BentoChrome";
+import { Eyebrow } from "@/components/Eyebrow";
 
 /* "Cost review, in the workflow engineers already use" — a bento of product
    screenshot mocks on the shared Agentry chrome (FeatureCard + Panel). */
@@ -98,6 +99,7 @@ export default function CostGates() {
     <section className="cv-section">
       <div className="cv-container">
         <div className="mb-10 max-w-3xl text-left">
+          <Eyebrow>Cost review</Eyebrow>
           <h2 className="cv-h2 text-cv-ink lg:whitespace-nowrap">Cost review, in the workflow engineers already use.</h2>
         </div>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
