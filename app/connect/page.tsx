@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SpeedometerMax, Bolt, Layers, Wallet } from "@/lib/solar-icons";
+import { SpeedometerMax, Bolt, Layers } from "@/lib/solar-icons";
 import { HeroEyebrow } from "@/components/PageHero";
 import { ConnectForm } from "@/components/ConnectForm";
 
@@ -21,7 +21,6 @@ const PROOF: { icon: React.ComponentType<{ weight?: "Linear"; size?: number; cla
   { icon: SpeedometerMax, text: "Connect in under 30 minutes, read-only by default" },
   { icon: Bolt, text: "Your first non-obvious finding the same day" },
   { icon: Layers, text: "Multi-cloud, AI/GPU, data warehouses, and CI on day one" },
-  { icon: Wallet, text: "Berkshire Hathaway: $738,983 annualised savings tracked" },
 ];
 
 export default function ConnectPage() {
