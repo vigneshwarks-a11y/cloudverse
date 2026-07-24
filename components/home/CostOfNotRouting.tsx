@@ -66,7 +66,8 @@ export function CostOfNotRouting() {
           model, often costs a fraction, at the same or better quality.
         </SectionHeading>
 
-        <div data-fit-visual className="mt-10 grid gap-5 lg:grid-cols-[1.25fr_1fr] lg:gap-6">
+        <div data-fit-visual className="mt-10">
+        <div className="grid gap-5 lg:grid-cols-[1.25fr_1fr] lg:gap-6">
           {/* At-scale monthly savings table */}
           <div className="overflow-hidden rounded-2xl border border-cv-line/50 bg-cv-surface dark:border-white/10 dark:bg-[#0D0D0D]">
             <div className="border-b border-cv-line/50 px-5 py-3 text-xs font-semibold uppercase tracking-widest text-cv-muted dark:border-white/10">
@@ -101,7 +102,7 @@ export function CostOfNotRouting() {
           </div>
 
           {/* Single-request Without / With comparison */}
-          <div className="flex flex-col gap-10 lg:gap-12">
+          <div className="flex flex-col gap-5 lg:gap-6">
             <CompareCard
               label="Example · without Agentry"
               tone="without"
@@ -123,10 +124,14 @@ export function CostOfNotRouting() {
           </div>
         </div>
 
-        {/* Result banner */}
+        {/* Result banner — kept inside the data-fit-visual wrapper so it scales
+            with the cards/table as one unit. Left outside, the fit layer's
+            (negative, when shrinking) margin compensation pulls it up against
+            the cards and swallows this gap. */}
         <div className="mt-6 flex flex-col items-center gap-1 rounded-2xl border border-cv-teal/30 bg-cv-teal/[0.06] px-6 py-6 text-center sm:flex-row sm:justify-center sm:gap-3">
           <span className="font-mono text-lg font-bold text-cv-teal">40&ndash;90% lower cost, depending on workload mix.</span>
           <span className="text-sm text-cv-ink/70">The example above is one workload; the audit measures yours.</span>
+        </div>
         </div>
       </div>
     </section>

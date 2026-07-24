@@ -261,7 +261,10 @@ function CapabilityPanel({ cap }: { cap: Capability }) {
       <div aria-hidden className="pointer-events-none absolute inset-0 z-10 rounded-2xl">
         <CardLightEdge />
       </div>
-      <div className="relative h-full w-full overflow-hidden rounded-xl">
+      <div
+        className="relative h-full w-full overflow-hidden rounded-xl border"
+        style={{ borderColor: "rgba(255,255,255,0.10)" }}
+      >
         <Image
           src={encodeURI(PANEL_IMAGE[cap.key])}
           alt={PANEL_TITLE[cap.key]}
