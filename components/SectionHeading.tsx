@@ -39,17 +39,23 @@ export function SectionHeading({
       {eyebrow && <Eyebrow accent={accent}>{eyebrow}</Eyebrow>}
       {children ? (
         // Header + intro grouped in one row: heading left, intro right,
-        // top-aligned; stacks to a single column below lg.
+        // top-aligned; stacks to a single column below lg. The docs link (when
+        // present) sits directly under the heading, in the left column.
         <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-16">
-          <h2 className="cv-h2 text-balance text-cv-ink lg:flex-1">{title}</h2>
+          <div className="lg:flex-1">
+            <h2 className="cv-h2 text-balance text-cv-ink">{title}</h2>
+            {docsHref && <DocsLink href={docsHref} label={docsLabel} className="mt-3" />}
+          </div>
           <div className={(lead ? "cv-body-lg" : "cv-body") + " text-pretty text-cv-ink/70 lg:w-full lg:max-w-xl lg:shrink-0 lg:pt-1"}>
             {children}
           </div>
         </div>
       ) : (
-        <h2 className="cv-h2 max-w-3xl text-balance text-cv-ink">{title}</h2>
+        <>
+          <h2 className="cv-h2 max-w-3xl text-balance text-cv-ink">{title}</h2>
+          {docsHref && <DocsLink href={docsHref} label={docsLabel} className="mt-3" />}
+        </>
       )}
-      {docsHref && <DocsLink href={docsHref} label={docsLabel} className="mt-5" />}
     </div>
   );
 }

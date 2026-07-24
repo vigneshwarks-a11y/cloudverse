@@ -130,7 +130,7 @@ export default function AIEngineeringPage() {
       {/* HOW IT WORKS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionHeading className="mb-12" eyebrow="How it works" title={<>How Agentry controls<br />every AI request.</>} lead docsHref={DOCS.aiEconomics}>
+          <SectionHeading className="mb-8" eyebrow="How it works" title={<>How Agentry controls<br />every AI request.</>} lead docsHref={DOCS.aiEconomics}>
             Agentry sits between your app and every AI provider. On each request it scores the routes against your team's rules and returns the best one, with a fallback and a full decision log.
             <span className="mt-4 block">
               A gateway runs the rule you wrote. Agentry works out whether that rule is still right.

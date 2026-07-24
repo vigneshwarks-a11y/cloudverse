@@ -139,7 +139,7 @@ export default function PlatformEngPage() {
       {/* HOW IT WORKS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionHeading lead eyebrow="How it works" title={<>How Torb controls<br />every infra change.</>} className="mb-12" docsHref={DOCS.infrastructure}>
+          <SectionHeading lead eyebrow="How it works" title={<>How Torb controls<br />every infra change.</>} className="mb-8" docsHref={DOCS.infrastructure}>
             <div className="space-y-4">
               <p className="cv-body-lg text-cv-muted">
                 Torb sits in your CI pipeline. On each infra change it estimates the cost delta against your team's policy and posts it inline, with a fallback and a decision log.

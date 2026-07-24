@@ -141,7 +141,7 @@ export default function DataTeamsPage() {
       {/* HOW IT WORKS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionHeading lead eyebrow="How it works" title={<>How DataX controls<br />every warehouse dollar.</>} className="mb-12" docsHref={DOCS.dataPlatform}>
+          <SectionHeading lead eyebrow="How it works" title={<>How DataX controls<br />every warehouse dollar.</>} className="mb-8" docsHref={DOCS.dataPlatform}>
             <div className="space-y-4">
               <p className="cv-body-lg text-cv-muted">
                 DataX sits alongside your warehouses read-only, attributes every query's cost to an owner through the dbt DAG, and applies the fix once you approve it.

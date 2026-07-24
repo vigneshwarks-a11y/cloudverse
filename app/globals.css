@@ -548,7 +548,7 @@
   --wf-line-active: #0fc27b;      /* completed path — green, matches reference */
   --wf-node-stroke-idle: #4f8dff;
   --wf-node-stroke-active: #0fc27b;
-  --wf-dot: rgba(16, 42, 92, 0.08); /* desktop dotted-grid background */
+  --wf-dot: rgba(16, 42, 92, 0.16); /* desktop dotted-grid background */
   --wf-run-border: #d3dcea;
   --wf-run-bg: #f2f5fa;
   --wf-run-text: #5c6a82;
@@ -594,7 +594,7 @@
   --wf-chip3-bg: rgba(99, 108, 255, 0.16); --wf-chip3-border: rgba(99, 108, 255, 0.3); --wf-chip3-text: #a9b0ff;
   --wf-chip4-bg: rgba(34, 168, 255, 0.16); --wf-chip4-border: rgba(34, 168, 255, 0.3); --wf-chip4-text: #7cc8f8;
   --wf-tag-bg: rgba(79, 141, 255, 0.16); --wf-tag-border: rgba(79, 141, 255, 0.3); --wf-tag-text: #93b8ff;
-  --wf-dot: rgba(255, 255, 255, 0.06);
+  --wf-dot: rgba(255, 255, 255, 0.22);
 }
 
 /* Fit wrapper — transparent on mobile (hero is the flex stack); on desktop it
@@ -711,7 +711,7 @@
     width: 100%;
     height: 100%;
     max-width: none;
-    background-image: radial-gradient(circle, var(--wf-dot) 1px, transparent 1px);
+    background-image: radial-gradient(circle, var(--wf-dot) 1.4px, transparent 1.4px);
     background-size: 2.24% 7.33%;
   }
   .wf-hero > .wf-conn { display: none; }   /* hide mobile rails */

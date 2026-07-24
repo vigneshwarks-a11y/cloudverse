@@ -142,7 +142,7 @@ export default function EnterprisePage() {
       {/* HOW IT WORKS */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="cv-container">
-          <SectionHeading lead eyebrow="How it works" title={<>How the control plane<br />runs the estate.</>} className="mb-12" docsHref={DOCS.governance}>
+          <SectionHeading lead eyebrow="How it works" title={<>How the control plane<br />runs the estate.</>} className="mb-8" docsHref={DOCS.governance}>
             <div className="space-y-4">
               <p className="cv-body-lg text-cv-muted">
                 CloudVerse connects every cloud, AI provider, and warehouse read-only, then governs access, policy, and residency, and reconciles chargeback across business units.

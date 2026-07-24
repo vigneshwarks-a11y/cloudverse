@@ -139,7 +139,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/integrations"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-4 transition-colors"
+              className="cv-btn-ghost"
               data-testid="link-integrations"
             >
               View all integrations <ArrowRight weight="Linear" size={14} />
