@@ -179,8 +179,9 @@ export default function DataXPage() {
             DataX applies approved optimisations within the policies you define.
           </SectionHeading>
           <p className="text-cv-ink/70 italic mb-10 max-w-3xl text-left">The automation model is about DataX behaviour, not your pipelines.</p>
-          <div className="flex flex-col items-start gap-10">
-            <div className="mx-auto w-full max-w-2xl grid gap-8 sm:grid-cols-2 text-center">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+            {/* LEFT: control + mode lists */}
+            <div className="grid gap-8 sm:grid-cols-2 text-left">
               <div>
                 <div className="cv-label mb-3">Controls</div>
                 <ul className="space-y-2 text-cv-ink/85">
@@ -200,11 +201,11 @@ export default function DataXPage() {
                 </ul>
               </div>
             </div>
-            <div className="mx-auto w-full max-w-3xl">
+            {/* RIGHT: automation mock */}
+            <div className="w-full">
               <DataxAutomationMock />
             </div>
           </div>
-          <p className="text-cv-ink font-medium mt-10 italic">If it was not logged, it did not happen.</p>
         </div>
       </section>
 
@@ -279,7 +280,6 @@ export default function DataXPage() {
           <FaqBlock
             items={FAQ.map(([q, a]) => ({ q, a }))}
             accent={ACCENT}
-            eyebrow="FAQ"
             title="Frequently Asked Questions"
             subtitle="Common questions we get asked the most"
           />

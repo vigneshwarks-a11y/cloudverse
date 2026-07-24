@@ -79,8 +79,8 @@ import { gsap, ScrollTrigger } from "@/lib/gsap";
 //   MOVE_PX  — the next panel slides up and lands (the transition itself).
 // Total pin distance = n holds + (n-1) moves. Tuned so most of the scroll is
 // spent holding-still on readable content, not mid-animation.
-const HOLD_PX = 700;
-const MOVE_PX = 480;
+const HOLD_PX = 440;
+const MOVE_PX = 300;
 
 // Debug: flip true to see ScrollTrigger's start/end/pin markers while tuning.
 const SHOW_MARKERS = false;

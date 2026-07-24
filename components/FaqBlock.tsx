@@ -98,7 +98,7 @@ export function FaqBlock({
             full 24px into the gutter as designed. */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-3 -bottom-3 rounded-[18px] bg-[#0059FF] sm:-inset-x-[24px] sm:top-[24px] sm:-bottom-[24px] sm:rounded-[24px]"
+          className="pointer-events-none absolute inset-x-0 top-3 -bottom-3 rounded-[30px] bg-[#0059FF] sm:-inset-x-[24px] sm:top-[24px] sm:-bottom-[24px] sm:rounded-[48px]"
         />
 
         {/* Main content card */}

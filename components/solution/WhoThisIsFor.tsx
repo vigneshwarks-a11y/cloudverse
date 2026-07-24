@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { UserRounded } from "@/lib/solar-icons";
+import { SectionHeading } from "@/components/SectionHeading";
 
 export type Persona = { role: string; quote: string; category?: string };
 
@@ -13,29 +14,20 @@ const COLLAPSED_W = 60;
 // carries its own colour). Cycled by index.
 const PALETTE = ["#1664C0", "#6954D4", "#0E9E7A", "#D97706", "#2278E0"];
 
-// ── Ambient glow behind the active card ───────────────────────────────────────
-// Tied to the active persona's accent (so an amber card doesn't get a blue
-// wash) and kept subtle: a soft tint pooled toward the corners rather than a
-// heavy gradient fill, so text stays the hero.
-function AmbientGlow({ accent }: { accent: string }) {
+// ── Blue gradient behind the active card ──────────────────────────────────────
+// A brand-blue wash on the active testimonial card, tuned per theme so text
+// contrast holds: gentle in light mode (pale blue on white, dark text stays
+// legible), richer in dark mode (blue → indigo over near-black, white text
+// pops). A soft blue corner bloom adds depth without washing out the copy.
+function AmbientGlow() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div
-        className="absolute"
-        style={{
-          left: "-16%", top: "-10%", width: "64%", height: "78%",
-          borderRadius: 240, filter: "blur(100px)", opacity: 0.14,
-          background: `radial-gradient(circle, ${accent} 0%, transparent 72%)`,
-        }}
-      />
-      <div
-        className="absolute"
-        style={{
-          right: "-14%", bottom: "-12%", width: "48%", height: "64%",
-          borderRadius: 200, filter: "blur(96px)", opacity: 0.09,
-          background: `radial-gradient(circle, ${accent} 0%, transparent 72%)`,
-        }}
-      />
+      {/* base blue gradient wash */}
+      <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(20,71,230,0.20)_0%,rgba(34,120,224,0.11)_38%,transparent_74%)] dark:bg-[linear-gradient(135deg,rgba(34,120,224,0.34)_0%,rgba(20,71,230,0.14)_44%,transparent_78%)]" />
+      {/* top-left blue bloom */}
+      <div className="absolute -left-[14%] -top-[12%] h-[72%] w-[58%] rounded-full blur-[90px] bg-[#1664C0]/24 dark:bg-[#2278E0]/25" />
+      {/* bottom-right indigo bloom for a subtle two-tone gradient */}
+      <div className="absolute -right-[12%] -bottom-[14%] h-[60%] w-[46%] rounded-full blur-[88px] bg-[#2278E0]/16 dark:bg-[#1664C0]/16" />
     </div>
   );
 }
@@ -176,7 +168,7 @@ function PersonaCarousel({ personas }: { personas: Persona[] }) {
 
               {/* active glow */}
               <div className="absolute inset-0 transition-opacity duration-500" style={{ opacity: isActive ? 1 : 0 }} aria-hidden>
-                <AmbientGlow accent={accent} />
+                <AmbientGlow />
               </div>
 
               {/* collapsed strip */}
@@ -285,10 +277,16 @@ export function WhoThisIsFor({
         style={{ background: `radial-gradient(circle, ${accent}22, transparent 70%)` }}
       />
       <div className="cv-container relative z-10">
-        <div className="mb-10 flex max-w-3xl items-baseline gap-3 text-left">
-          <h2 className="cv-h2 text-cv-ink">{heading}</h2>
-          {subhead && <span className="hidden text-sm text-cv-muted sm:inline">{subhead}</span>}
-        </div>
+        {/* Use the shared SectionHeading so this section's lead-in matches the
+            rest of the site (eyebrow pill + statement title): the "Who this is
+            for" label becomes the eyebrow, the supporting line becomes the
+            title, mirroring the "The situation" / "How it works" sections. */}
+        <SectionHeading
+          lead
+          eyebrow={heading.replace(/\.\s*$/, "")}
+          title={subhead ?? heading}
+          className="mb-10"
+        />
 
         {personas?.length ? (
           <PersonaCarousel personas={personas} />

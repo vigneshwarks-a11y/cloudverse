@@ -160,7 +160,6 @@ export default function HomePage() {
           <FaqBlock
             items={HOME_FAQS}
             accent="#1664C0"
-            eyebrow="FAQ"
             title="Frequently Asked Questions"
             subtitle="Common questions we get asked the most"
           />

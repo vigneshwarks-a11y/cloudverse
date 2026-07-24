@@ -6,6 +6,7 @@ import { RelatedSolutions } from "@/components/solution/RelatedSolutions";
 import { SituationConnectorMock, type SituationPickItem } from "@/components/solution/SituationConnectorMock";
 import { FinopsShips } from "@/components/solution/FinopsShips";
 import { WorkflowHero } from "@/components/solution/WorkflowHero";
+import { SectionGlow } from "@/components/solution/SectionGlow";
 import { FinopsClusterMock } from "@/components/solution/FinopsClusterMock";
 import { WhoThisIsFor } from "@/components/solution/WhoThisIsFor";
 import { FaqBlock } from "@/components/FaqBlock";
@@ -139,8 +140,9 @@ export default function FinOpsTeamsPage() {
       </section>
 
       {/* HOW IT WORKS — flow diagram (FinOps allocation, not AI routing) */}
-      <section className="cv-section bg-cv-surface2 dark:bg-black">
-        <div className="cv-container">
+      <section className="cv-section relative overflow-hidden bg-cv-surface2 dark:bg-black">
+        <SectionGlow />
+        <div className="cv-container relative z-10">
           <SectionHeading lead eyebrow="How it works" title={<>How allocation and chargeback<br />actually run.</>} className="mb-8" docsHref={DOCS.chargeback}>
             <div className="space-y-4">
               <p className="cv-body-lg text-cv-muted">
@@ -151,7 +153,7 @@ export default function FinOpsTeamsPage() {
               </p>
             </div>
           </SectionHeading>
-          <WorkflowHero />
+          <WorkflowHero className="mt-12 lg:mt-16" />
         </div>
       </section>
 
@@ -272,7 +274,6 @@ export default function FinOpsTeamsPage() {
         <div className="cv-container">
           <FaqBlock
             items={FAQ.map(([q, a]) => ({ q, a }))}
-            eyebrow="FAQ"
             title="FinOps questions, answered."
             subtitle="What finance and FinOps leads ask first."
           />

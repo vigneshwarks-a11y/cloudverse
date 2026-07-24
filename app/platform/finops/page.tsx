@@ -178,7 +178,6 @@ export default function FinOpsPage() {
           <FaqBlock
             items={FAQ.map(([q, a]) => ({ q, a }))}
             accent="#0E9E7A"
-            eyebrow="FAQ"
             title="Frequently Asked Questions"
             subtitle="Common questions we get asked the most"
           />

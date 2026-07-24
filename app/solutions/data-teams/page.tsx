@@ -5,6 +5,7 @@ import { PlatformCards } from "@/components/solution/PlatformCards";
 import { RelatedSolutions } from "@/components/solution/RelatedSolutions";
 import { DataXUnlocks } from "@/components/solution/DataXUnlocks";
 import { WorkflowHero } from "@/components/solution/WorkflowHero";
+import { SectionGlow } from "@/components/solution/SectionGlow";
 import { DataXAttributionMock } from "@/components/solution/DataXAttributionMock";
 import { SituationConnectorMock, type SituationPickItem } from "@/components/solution/SituationConnectorMock";
 import { SolutionHero } from "@/components/solution/SolutionHero";
@@ -139,8 +140,9 @@ export default function DataTeamsPage() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section className="cv-section bg-cv-surface2 dark:bg-black">
-        <div className="cv-container">
+      <section className="cv-section relative overflow-hidden bg-cv-surface2 dark:bg-black">
+        <SectionGlow />
+        <div className="cv-container relative z-10">
           <SectionHeading lead eyebrow="How it works" title={<>How DataX controls<br />every warehouse dollar.</>} className="mb-8" docsHref={DOCS.dataPlatform}>
             <div className="space-y-4">
               <p className="cv-body-lg text-cv-muted">
@@ -151,7 +153,7 @@ export default function DataTeamsPage() {
               </p>
             </div>
           </SectionHeading>
-          <WorkflowHero />
+          <WorkflowHero className="mt-12 lg:mt-16" />
         </div>
       </section>
 
@@ -246,7 +248,6 @@ export default function DataTeamsPage() {
         <div className="cv-container">
           <FaqBlock
             items={FAQ.map(([q, a]) => ({ q, a }))}
-            eyebrow="FAQ"
             title="Data team questions, answered."
             subtitle="What data and analytics leads ask first."
           />

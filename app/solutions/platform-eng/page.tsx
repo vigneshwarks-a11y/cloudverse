@@ -6,6 +6,7 @@ import { RelatedSolutions } from "@/components/solution/RelatedSolutions";
 import { Panel, CheckBadge, VIZ_AMBER, VIZ_OK } from "@/components/solution/CardChrome";
 import { SituationConnectorMock, type SituationPickItem } from "@/components/solution/SituationConnectorMock";
 import { WorkflowHero } from "@/components/solution/WorkflowHero";
+import { SectionGlow } from "@/components/solution/SectionGlow";
 import { PlatformShips } from "@/components/solution/PlatformShips";
 import { SolutionHero } from "@/components/solution/SolutionHero";
 import { HeroBlend } from "@/components/solution/HeroBlend";
@@ -137,8 +138,9 @@ export default function PlatformEngPage() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section className="cv-section bg-cv-surface2 dark:bg-black">
-        <div className="cv-container">
+      <section className="cv-section relative overflow-hidden bg-cv-surface2 dark:bg-black">
+        <SectionGlow />
+        <div className="cv-container relative z-10">
           <SectionHeading lead eyebrow="How it works" title={<>How Torb controls<br />every infra change.</>} className="mb-8" docsHref={DOCS.infrastructure}>
             <div className="space-y-4">
               <p className="cv-body-lg text-cv-muted">
@@ -149,7 +151,7 @@ export default function PlatformEngPage() {
               </p>
             </div>
           </SectionHeading>
-          <WorkflowHero />
+          <WorkflowHero className="mt-12 lg:mt-16" />
         </div>
       </section>
 
@@ -240,7 +242,6 @@ export default function PlatformEngPage() {
         <div className="cv-container">
           <FaqBlock
             items={FAQ.map(([q, a]) => ({ q, a }))}
-            eyebrow="FAQ"
             title="Platform engineering questions, answered."
             subtitle="What platform and DevOps leads ask first."
           />

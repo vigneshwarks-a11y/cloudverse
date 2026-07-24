@@ -129,7 +129,6 @@ export default function TorbPage() {
           <FaqBlock
             items={FAQ.map(([q, a]) => ({ q, a }))}
             accent="#1664C0"
-            eyebrow="FAQ"
             title="Frequently Asked Questions"
             subtitle="Common questions we get asked the most"
           />

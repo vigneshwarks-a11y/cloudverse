@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle, ShieldCheck, Cloud, Database, Cpu, CodeSquare, ChartSquare, UsersGroupRounded, ServerSquare, Server } from "@/lib/solar-icons";
+import { ArrowRight, CheckCircle, Cloud, Database, Cpu, CodeSquare, ChartSquare, UsersGroupRounded, ServerSquare, Server } from "@/lib/solar-icons";
 import type { Metadata } from "next";
 import type { ComponentType } from "react";
 import type { IconProps } from "@solar-icons/react";
 import { DEMO_URL } from "@/lib/links";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
+import { CardLightEdge } from "@/components/product/BentoChrome";
 import AgentryProvidersMarquee from "@/components/product/AgentryProvidersMarquee";
 import IntegrationSteps from "@/components/product/IntegrationSteps";
 import IntegrationsCatalog from "@/components/product/IntegrationsCatalog";
@@ -176,23 +177,22 @@ export default function IntegrationsPage() {
               </Link>
             </SectionHeading>
 
-            <div className="mx-auto w-full max-w-2xl rounded-2xl border border-cv-line/60 bg-cv-surface2 dark:bg-[#0D0D0D] p-6 lg:p-8">
-              <div className="mb-5 flex items-center gap-2.5">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#1664C0]/12 text-[#1664C0] dark:bg-[#7CB8F8]/15 dark:text-[#7CB8F8]">
-                  <ShieldCheck weight="Bold" size={18} />
-                </div>
-                <span className="font-display font-semibold text-cv-ink">Permissions model</span>
-              </div>
-              <ul className="divide-y divide-cv-line/60">
+            <div className="relative w-full overflow-hidden rounded-2xl border border-cv-line/60 bg-cv-surface2 dark:border-white/10 dark:bg-[#0D0D0D] p-6 lg:p-8">
+              <CardLightEdge />
+              <div className="relative grid gap-6 sm:grid-cols-3 sm:divide-x sm:divide-cv-line/50 sm:dark:divide-white/10">
                 {PERMISSIONS.map(([t, b]) => (
-                  <li key={t} className="flex items-start gap-3 py-4 first:pt-0 last:pb-0">
-                    <CheckCircle weight="Linear" size={18} className="mt-0.5 shrink-0 text-cv-teal" />
-                    <span className="text-sm leading-relaxed text-cv-ink/80">
-                      <strong className="font-semibold text-cv-ink">{t}:</strong> {b}
-                    </span>
-                  </li>
+                  <div key={t} className="sm:px-5 sm:first:pl-0 sm:last:pr-0">
+                    <div
+                      className="mb-3 flex h-8 w-8 items-center justify-center rounded-lg"
+                      style={{ color: "#0E9E7A", background: "#0E9E7A1A" }}
+                    >
+                      <CheckCircle weight="Bold" size={16} />
+                    </div>
+                    <div className="font-display font-semibold text-cv-ink">{t}</div>
+                    <p className="mt-1.5 text-sm leading-relaxed text-cv-ink/70">{b}</p>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -256,7 +256,6 @@ export default function IntegrationsPage() {
           <FaqBlock
             items={FAQ.map(([q, a]) => ({ q, a }))}
             accent="#1664C0"
-            eyebrow="FAQ"
             title="Frequently Asked Questions"
             subtitle="Common questions we get asked the most"
           />

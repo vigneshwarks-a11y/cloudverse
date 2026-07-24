@@ -31,36 +31,31 @@ const CAPABILITIES: Capability[] = [
     key: "visibility",
     name: "See every asset in one system of record",
     accent: "#1664C0",
-    record:
-      "One view of models, tokens, teams, projects, agents, subscriptions, and APIs, instead of a spreadsheet per provider.",
+    record: "One view of every model, agent, and API, not a spreadsheet per provider.",
   },
   {
     key: "lifecycle",
     name: "Observe the entire lifecycle of an agent run",
     accent: "#6954D4",
-    record:
-      "Trace every agent action and tool call to debug and optimize complex autonomous workflows.",
+    record: "Trace every agent action and tool call to debug complex workflows.",
   },
   {
     key: "routing",
     name: "Route each request to the best-fit model",
     accent: "#0E9E7A",
-    record:
-      "Every request is scored live on cost, latency, quality, and compliance, and the best-fit model wins automatically.",
+    record: "Every request scored live on cost, latency, and quality. The best-fit model wins.",
   },
   {
     key: "unit",
     name: "Give AI its own unit economics",
     accent: "#D97706",
-    record:
-      "Every run lands against a team, a feature, and a use case: cost-per-request, per-feature, and per-tenant, not numbers borrowed from infra.",
+    record: "Every run tied to a team, feature, and use case, with cost per request.",
   },
   {
     key: "resilience",
     name: "Identify performance gaps with filtered views",
     accent: "#E05A2B",
-    record:
-      "Slice runs by model, team, or route to surface the oversized model, the wasteful prompt, and the provider that just went down.",
+    record: "Slice runs by model, team, or route to surface waste and outages.",
   },
 ];
 
@@ -123,8 +118,12 @@ export function AgentryOrchestration() {
         if (fill) tl.to(fill, { scaleY: 1, ease: "none", duration: n - 1 }, 0);
 
         // Crossfade each panel into the next as the scrollbar scrubs through.
+        // The active bullet flips at scroll-time i-0.5 (Math.round in paint), so
+        // center each 0.5-long crossfade on that flip point (start at i-0.75) —
+        // otherwise the panel reaches the next image half a step before the
+        // bullet highlights it, and the image looks out of sync with the text.
         for (let i = 1; i < n; i++) {
-          tl.to(panels[i - 1], { autoAlpha: 0, scale: 0.98, duration: 0.5 }, i - 1)
+          tl.to(panels[i - 1], { autoAlpha: 0, scale: 0.98, duration: 0.5 }, i - 0.75)
             .to(panels[i], { autoAlpha: 1, scale: 1, duration: 0.5 }, "<");
         }
       });
@@ -161,25 +160,30 @@ export function AgentryOrchestration() {
       className="cv-section bg-cv-surface2 [@media(max-height:900px)]:py-14 [@media(max-height:800px)]:py-10"
       data-testid="section-agentry-orchestration"
     >
-      <div className="cv-container">
+      {/* clip at the layout box so the pinned visual can't bleed past the
+          container's right edge — it stays aligned with the intro paragraph. */}
+      <div className="cv-container overflow-x-clip">
         <SectionHeading eyebrow="One system of record" title="Enterprise AI is fragmented. Agentry makes it one system of record.">
           Not a gateway that runs your routing rules. Not observability that tells you what a request
           cost after it ran. Agentry gives every asset (agent, app, RAG system, model) an identity, a
           contract, an operational record, and measurable economics.
         </SectionHeading>
 
-        <div className="mt-12 grid grid-cols-1 items-center gap-12 [@media(max-height:900px)]:mt-8 [@media(max-height:800px)]:mt-6 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-14">
+        <div className="mt-12 grid grid-cols-1 items-center gap-12 [@media(max-height:900px)]:mt-8 [@media(max-height:800px)]:mt-6 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:items-stretch lg:gap-14">
           {/* LEFT — capability list. Every record is always rendered (dimmed
-              when inactive) so the pinned section never changes height. */}
-          <div className="relative">
+              when inactive) so the pinned section never changes height. On lg
+              the column stretches to the row height (set by the image) and the
+              list distributes across it, so both sides end level without
+              cropping the screenshot. */}
+          <div className="relative lg:flex lg:h-full lg:flex-col">
             {/* vertical progress rail (desktop, animated) */}
             <span aria-hidden className="pointer-events-none absolute left-0 top-1 hidden h-[calc(100%-0.5rem)] w-px bg-cv-line lg:block">
               <span data-progress-fill className="absolute inset-0 block bg-[#1664C0]" />
             </span>
 
-            <ul className="lg:pl-6">
+            <ul className="lg:flex lg:flex-1 lg:flex-col lg:justify-between lg:pl-6">
               {CAPABILITIES.map((c, i) => (
-                <li key={c.key} data-bullet className="py-4 transition-opacity duration-300 [@media(max-height:900px)]:py-2.5 [@media(max-height:800px)]:py-1.5 lg:opacity-100">
+                <li key={c.key} data-bullet className="py-3 transition-opacity duration-300 [@media(max-height:900px)]:py-2.5 [@media(max-height:800px)]:py-1.5 lg:opacity-100">
                   <button
                     type="button"
                     onClick={() => goTo(i)}
@@ -214,7 +218,7 @@ export function AgentryOrchestration() {
               so the image fills its frame edge-to-edge with no letterbox band
               top/bottom, and is vertically centered against the left column
               (items-center on the grid). */}
-          <div className="relative lg:aspect-[2565/1562]">
+          <div className="relative lg:aspect-[1920/1024]">
             {CAPABILITIES.map((c) => (
               <div
                 key={c.key}
@@ -258,7 +262,7 @@ function CapabilityPanel({ cap }: { cap: Capability }) {
     // object-cover, so the image fills edge-to-edge with no letterbox band (at
     // a matched ratio cover crops effectively nothing).
     <div
-      className="relative aspect-[2565/1562] w-full overflow-hidden rounded-2xl bg-white/[0.06] p-2"
+      className="relative aspect-[1920/1024] w-full overflow-hidden rounded-2xl bg-white/[0.06] p-2"
       style={{ boxShadow: "0 24px 60px -30px rgba(0,0,0,0.7)" }}
     >
       {/* Light-edge border overlay on the shell container */}
@@ -275,6 +279,15 @@ function CapabilityPanel({ cap }: { cap: Capability }) {
           fill
           sizes="(min-width: 1024px) 60vw, 100vw"
           className="rounded-xl object-cover"
+        />
+        {/* Black fade on the right edge so the screenshot dissolves into the
+            page instead of ending on a hard vertical line. Wide, and solid
+            black across the last stretch, so the clipped right edge is fully
+            masked. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-y-0 right-0 w-2/5 rounded-r-xl"
+          style={{ background: "linear-gradient(to left, #000 0%, #000 30%, rgba(0,0,0,0) 100%)" }}
         />
       </div>
     </div>

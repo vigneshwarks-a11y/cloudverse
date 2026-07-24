@@ -15,6 +15,9 @@ export type MockupTab = {
   label: string;
   copy: string;
   icon: ComponentType<IconProps>;
+  /** Optional screenshot to fill the frame. When omitted, the "Video coming
+      soon" placeholder is shown instead. */
+  image?: string;
 };
 
 export function PlatformHeroMockup({
@@ -33,6 +36,11 @@ export function PlatformHeroMockup({
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [highlight, setHighlight] = useState<{ left: number; width: number } | null>(null);
+  // Each screenshot may have a slightly different aspect ratio, so the frame
+  // adopts the active image's own natural ratio (read on load) — that way every
+  // tab fills the frame exactly with no crop and no letterbox bars.
+  const [ratios, setRatios] = useState<Record<string, number>>({});
+  const frameRatio = tab.image ? ratios[tab.id] ?? 1920 / 1024 : 16 / 9;
 
   const restartTimer = () => {
     if (timerRef.current) clearInterval(timerRef.current);
@@ -94,36 +102,57 @@ export function PlatformHeroMockup({
             boxShadow: "0 40px 80px -32px rgba(0,0,0,0.75), 0 0 60px -20px rgba(22,100,192,0.5)",
           }}
         >
-          {/* Placeholder frame */}
+          {/* Screenshot frame — shows the tab's image when provided, otherwise
+              the "Video coming soon" placeholder. */}
           <div
             className="relative flex items-center justify-center overflow-hidden rounded-[16px] border bg-black sm:rounded-[23px]"
-            style={{ aspectRatio: "16 / 9", borderColor: "rgba(255,255,255,0.08)" }}
+            style={{ aspectRatio: String(frameRatio), borderColor: "rgba(255,255,255,0.08)" }}
           >
-            <div
-              aria-hidden
-              className="absolute inset-0"
-              style={{ background: "radial-gradient(ellipse 70% 60% at 50% 40%, rgba(22,100,192,0.18), transparent 70%)" }}
-            />
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-y-0 left-0 w-1/4"
-              style={{ background: "linear-gradient(to right, rgba(0,0,0,0.85), transparent)" }}
-            />
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-y-0 right-0 w-1/4"
-              style={{ background: "linear-gradient(to left, rgba(0,0,0,0.85), transparent)" }}
-            />
-            <div key={tab.id} className="cv-hero-fade relative flex flex-col items-center gap-3 px-6 text-center">
-              <div
-                className="flex h-14 w-14 items-center justify-center rounded-2xl border"
-                style={{ borderColor: "rgba(255,255,255,0.12)", background: "rgba(255,255,255,0.04)" }}
-              >
-                <Icon size={26} weight="Linear" style={{ color: ACCENT }} />
-              </div>
-              <p className="text-sm font-medium text-white/50">{tab.label} preview</p>
-              <p className="text-xs text-white/30">Video coming soon</p>
-            </div>
+            {tab.image ? (
+              <img
+                key={tab.id}
+                src={encodeURI(tab.image)}
+                alt={`${tab.label} preview`}
+                loading="lazy"
+                onLoad={(e) => {
+                  const el = e.currentTarget;
+                  if (el.naturalWidth && el.naturalHeight) {
+                    setRatios((r) =>
+                      r[tab.id] ? r : { ...r, [tab.id]: el.naturalWidth / el.naturalHeight },
+                    );
+                  }
+                }}
+                className="cv-hero-fade absolute inset-0 h-full w-full object-cover"
+              />
+            ) : (
+              <>
+                <div
+                  aria-hidden
+                  className="absolute inset-0"
+                  style={{ background: "radial-gradient(ellipse 70% 60% at 50% 40%, rgba(22,100,192,0.18), transparent 70%)" }}
+                />
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-y-0 left-0 w-1/4"
+                  style={{ background: "linear-gradient(to right, rgba(0,0,0,0.85), transparent)" }}
+                />
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-y-0 right-0 w-1/4"
+                  style={{ background: "linear-gradient(to left, rgba(0,0,0,0.85), transparent)" }}
+                />
+                <div key={tab.id} className="cv-hero-fade relative flex flex-col items-center gap-3 px-6 text-center">
+                  <div
+                    className="flex h-14 w-14 items-center justify-center rounded-2xl border"
+                    style={{ borderColor: "rgba(255,255,255,0.12)", background: "rgba(255,255,255,0.04)" }}
+                  >
+                    <Icon size={26} weight="Linear" style={{ color: ACCENT }} />
+                  </div>
+                  <p className="text-sm font-medium text-white/50">{tab.label} preview</p>
+                  <p className="text-xs text-white/30">Video coming soon</p>
+                </div>
+              </>
+            )}
           </div>
 
           {/* White light beam travelling around the frame border */}

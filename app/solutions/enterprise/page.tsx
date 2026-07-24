@@ -3,6 +3,7 @@ import { DOCS } from "@/lib/links";
 import { Server2, Cpu, Database, ListCheck } from "@/lib/solar-icons";
 import { EnterpriseDayOne } from "@/components/solution/EnterpriseDayOne";
 import { WorkflowHero } from "@/components/solution/WorkflowHero";
+import { SectionGlow } from "@/components/solution/SectionGlow";
 import { Panel, VIZ_OK } from "@/components/solution/CardChrome";
 import { SituationConnectorMock, type SituationPickItem } from "@/components/solution/SituationConnectorMock";
 import { PlatformCards } from "@/components/solution/PlatformCards";
@@ -140,8 +141,9 @@ export default function EnterprisePage() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section className="cv-section bg-cv-surface2 dark:bg-black">
-        <div className="cv-container">
+      <section className="cv-section relative overflow-hidden bg-cv-surface2 dark:bg-black">
+        <SectionGlow />
+        <div className="cv-container relative z-10">
           <SectionHeading lead eyebrow="How it works" title={<>How the control plane<br />runs the estate.</>} className="mb-8" docsHref={DOCS.governance}>
             <div className="space-y-4">
               <p className="cv-body-lg text-cv-muted">
@@ -152,7 +154,7 @@ export default function EnterprisePage() {
               </p>
             </div>
           </SectionHeading>
-          <WorkflowHero />
+          <WorkflowHero className="mt-12 lg:mt-16" />
         </div>
       </section>
 
@@ -168,25 +170,11 @@ export default function EnterprisePage() {
               <p className="leading-relaxed text-cv-ink/80">
                 A growing multi-cloud estate, fragmented tagging, and no owner of the total. On one control plane, spend tied back to teams, the anomalies that mattered surfaced, and finance got a number that held up in front of the board.
               </p>
-              <div className="mt-8 flex flex-wrap gap-6">
-                <div>
-                  <div className="font-mono text-2xl font-bold tracking-tight text-cv-ink">$738,983</div>
-                  <p className="mt-1 text-xs text-cv-muted">realized in total</p>
-                </div>
-                <div className="hidden sm:block w-px self-stretch bg-cv-line/50" />
-                <div>
-                  <div className="font-mono text-2xl font-bold tracking-tight text-cv-ink">$101,736</div>
-                  <p className="mt-1 text-xs text-cv-muted">recurring, per year</p>
-                </div>
-                <div className="hidden sm:block w-px self-stretch bg-cv-line/50" />
-                <div>
-                  <div className="font-mono text-2xl font-bold tracking-tight text-cv-ink">$61,582</div>
-                  <p className="mt-1 text-xs text-cv-muted">in a single month</p>
-                </div>
-              </div>
             </div>
           </div>
-          <div className="mt-12 w-full">
+
+          {/* Visual left, headline numbers right — one horizontal container */}
+          <div className="mt-12 grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-16">
             <Panel className="justify-between p-6" chrome="enterprise.app/estate">
               <span className="text-[10px] uppercase tracking-wide text-cv-muted">One reconciled total</span>
               <div className="grid grid-cols-2 gap-3">
@@ -207,6 +195,21 @@ export default function EnterprisePage() {
                 <span className="shrink-0 whitespace-nowrap font-mono font-semibold" style={{ color: VIZ_OK }}>Owned</span>
               </div>
             </Panel>
+
+            <div className="flex flex-col gap-6 sm:flex-row sm:flex-wrap lg:flex-col lg:gap-8">
+              <div>
+                <div className="font-mono text-3xl font-bold tracking-tight text-cv-ink lg:text-4xl">$738,983</div>
+                <p className="mt-1 text-sm text-cv-muted">realized in total</p>
+              </div>
+              <div>
+                <div className="font-mono text-3xl font-bold tracking-tight text-cv-ink lg:text-4xl">$101,736</div>
+                <p className="mt-1 text-sm text-cv-muted">recurring, per year</p>
+              </div>
+              <div>
+                <div className="font-mono text-3xl font-bold tracking-tight text-cv-ink lg:text-4xl">$61,582</div>
+                <p className="mt-1 text-sm text-cv-muted">in a single month</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -272,7 +275,6 @@ export default function EnterprisePage() {
         <div className="cv-container">
           <FaqBlock
             items={FAQ.map(([q, a]) => ({ q, a }))}
-            eyebrow="FAQ"
             title="Enterprise questions, answered."
             subtitle="What the office of the CIO asks before rollout."
           />

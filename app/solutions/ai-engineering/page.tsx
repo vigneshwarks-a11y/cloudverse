@@ -4,6 +4,7 @@ import { Cpu } from "@/lib/solar-icons";
 import { AgentryUnlocks } from "@/components/solution/AgentryUnlocks";
 import { SituationConnectorMock, type SituationPickItem } from "@/components/solution/SituationConnectorMock";
 import { WorkflowHero } from "@/components/solution/WorkflowHero";
+import { SectionGlow } from "@/components/solution/SectionGlow";
 import { PlatformCards } from "@/components/solution/PlatformCards";
 import { RelatedSolutions } from "@/components/solution/RelatedSolutions";
 import { SolutionHero } from "@/components/solution/SolutionHero";
@@ -128,15 +129,16 @@ export default function AIEngineeringPage() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section className="cv-section bg-cv-surface2 dark:bg-black">
-        <div className="cv-container">
+      <section className="cv-section relative overflow-hidden bg-cv-surface2 dark:bg-black">
+        <SectionGlow />
+        <div className="cv-container relative z-10">
           <SectionHeading className="mb-8" eyebrow="How it works" title={<>How Agentry controls<br />every AI request.</>} lead docsHref={DOCS.aiEconomics}>
             Agentry sits between your app and every AI provider. On each request it scores the routes against your team's rules and returns the best one, with a fallback and a full decision log.
             <span className="mt-4 block">
               A gateway runs the rule you wrote. Agentry works out whether that rule is still right.
             </span>
           </SectionHeading>
-          <WorkflowHero />
+          <WorkflowHero className="mt-12 lg:mt-16" />
         </div>
       </section>
 
@@ -228,7 +230,6 @@ export default function AIEngineeringPage() {
         <div className="cv-container">
           <FaqBlock
             items={FAQ.map(([q, a]) => ({ q, a }))}
-            eyebrow="FAQ"
             title="AI engineering questions, answered."
             subtitle="What Heads of AI and MLOps leads ask first."
           />

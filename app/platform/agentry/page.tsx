@@ -41,10 +41,10 @@ export const metadata: Metadata = {
 };
 
 const AGENTRY_TABS: MockupTab[] = [
-  { id: "routing", label: "Routing", copy: "Every request scored live on cost, latency, and quality. The best-fit route wins, with a fallback attached.", icon: Route },
-  { id: "governance", label: "Governance", copy: "Policy, access, residency, and provider trust enforced before a request runs.", icon: ShieldCheck },
-  { id: "attribution", label: "Cost Attribution", copy: "Every run lands against a team, feature, and tenant. Automatically.", icon: DollarMinimalistic },
-  { id: "audit", label: "Audit Trail", copy: "Every routing decision logged with the constraints, the candidates, and why one won.", icon: FileText },
+  { id: "routing", label: "Model Routing", copy: "Every request scored live on cost, latency, and quality. The best-fit route wins, with a fallback attached.", icon: Route, image: "/ui-assets/one system record section/Model Routing.webp" },
+  { id: "governance", label: "Fleet Management", copy: "Policy, access, residency, and provider trust enforced before a request runs.", icon: ShieldCheck, image: "/ui-assets/one system record section/Fleet Management.webp" },
+  { id: "attribution", label: "AI Spend", copy: "Every run lands against a team, feature, and tenant. Automatically.", icon: DollarMinimalistic, image: "/ui-assets/one system record section/AI Spend.webp" },
+  { id: "audit", label: "Runs and Traces", copy: "Every routing decision logged with the constraints, the candidates, and why one won.", icon: FileText, image: "/ui-assets/one system record section/Runs and Traces.webp" },
 ];
 
 const STATS = [
@@ -253,11 +253,25 @@ export default function AgentryPage() {
 
       {/* WHAT AGENTRY DOES */}
       <section className="cv-section relative overflow-hidden bg-cv-surface">
-        {/* Top-center brand radial gradient */}
+        {/* Ambient blue gradient wash across the top, matching the home "Day one"
+            section — two stacked top-anchored radials, theme-specific. */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-[28rem]"
-          style={{ background: "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(34,120,224,0.16), transparent 70%)" }}
+          className="pointer-events-none absolute inset-x-0 top-0 z-0 hidden h-[460px] dark:block"
+          style={{
+            background:
+              "radial-gradient(58% 105% at 32% -8%, rgba(46,107,214,0.58) 0%, rgba(22,100,192,0.26) 40%, transparent 74%), radial-gradient(46% 95% at 66% -6%, rgba(77,154,239,0.36) 0%, transparent 70%)",
+            filter: "blur(8px)",
+          }}
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 z-0 block h-[460px] dark:hidden"
+          style={{
+            background:
+              "radial-gradient(58% 105% at 32% -8%, rgba(120,170,255,0.30) 0%, rgba(150,190,255,0.12) 42%, transparent 74%), radial-gradient(46% 95% at 66% -6%, rgba(160,200,255,0.20) 0%, transparent 70%)",
+            filter: "blur(8px)",
+          }}
         />
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8 relative">
           <SectionHeading title="How Agentry controls every AI request." className="mb-12" docsHref={DOCS.aiEconomics}>
@@ -350,7 +364,6 @@ export default function AgentryPage() {
           <FaqBlock
             items={AGENTRY_FAQS}
             accent="#1664C0"
-            eyebrow="FAQ"
             title="Frequently Asked Questions"
             subtitle="Common questions we get asked the most"
           />
