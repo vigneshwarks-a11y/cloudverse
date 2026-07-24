@@ -13,12 +13,20 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 // site-wide font-feature-settings (single-story 'a' via cv11, etc.) only take
 // effect with this full build. Variable file covers weights 100–900.
 const inter = localFont({
-  src: [
-    { path: "./fonts/InterVariable.woff2", weight: "100 900", style: "normal" },
-    { path: "./fonts/InterVariable-Italic.woff2", weight: "100 900", style: "italic" },
-  ],
+  src: [{ path: "./fonts/InterVariable.woff2", weight: "100 900", style: "normal" }],
   variable: "--font-inter",
   display: "swap",
+});
+
+// Italic is only used in a handful of pull-quotes across a few pages (see
+// the ".italic" font-family override in globals.css) — split out of the
+// primary font and NOT preloaded, so its ~340KB isn't downloaded on every
+// single page visit, just the pages that actually render italic text.
+const interItalic = localFont({
+  src: [{ path: "./fonts/InterVariable-Italic.woff2", weight: "100 900", style: "italic" }],
+  variable: "--font-inter-italic",
+  display: "swap",
+  preload: false,
 });
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://cloudverse.ai";
@@ -67,7 +75,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={inter.variable} suppressHydrationWarning data-scroll-behavior="smooth">
+    <html
+      lang="en"
+      className={`${inter.variable} ${interItalic.variable}`}
+      suppressHydrationWarning
+      data-scroll-behavior="smooth"
+    >
       <body suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           <Nav />

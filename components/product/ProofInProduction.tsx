@@ -227,7 +227,7 @@ export function ProofInProduction() {
   return (
     <section className="cv-section bg-cv-surface2 dark:bg-black" data-testid="section-proof-in-production">
       <div className="cv-container">
-        <SectionHeading className="max-w-5xl" eyebrow="Proof in production" accent="teal" title="Real numbers from a live cloud deployment.">
+        <SectionHeading eyebrow="Proof in production" accent="teal" title="Real numbers from a live cloud deployment.">
           A leading Southeast Asian telecommunications group, running full cloud spend management across a
           100+ application estate.
         </SectionHeading>

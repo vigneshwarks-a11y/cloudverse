@@ -8,6 +8,7 @@ import { HardcodeCost } from "@/components/home/HardcodeCost";
 import { BeforeAfterAgentry } from "@/components/home/BeforeAfterAgentry";
 import { HowAgentryWorks } from "@/components/home/HowAgentryWorks";
 import { CostOfNotRouting } from "@/components/home/CostOfNotRouting";
+import { PinnedLoopCarousel } from "@/components/home/PinnedLoopCarousel";
 import { NotAGateway } from "@/components/home/NotAGateway";
 import { AgentryGovernance } from "@/components/home/AgentryGovernance";
 import { IntegrationsMarquee } from "@/components/home/IntegrationsMarquee";
@@ -77,17 +78,20 @@ export default function HomePage() {
       {/* CUSTOMER LOGOS */}
       <CustomerLogos />
 
-      {/* THE PROBLEM — AI COMPUTE IS TOO EXPENSIVE TO HARDCODE */}
-      <HardcodeCost />
-
-      {/* BEFORE / AFTER AGENTRY */}
-      <BeforeAfterAgentry />
-
-      {/* THE COST OF NOT ROUTING — the money story, consolidated with the before/after */}
-      <CostOfNotRouting />
-
-      {/* HOW AGENTRY WORKS — DISCOVER · GOVERN · PROVE */}
-      <HowAgentryWorks />
+      {/* PROBLEM · ECONOMICS · HOW IT WORKS — pinned, infinite-loop scroll
+          carousel on desktop (see PinnedLoopCarousel); plain stacked sections
+          on mobile/reduced-motion/no-JS. */}
+      <PinnedLoopCarousel>
+        <div>
+          {/* THE PROBLEM — AI COMPUTE IS TOO EXPENSIVE TO HARDCODE, + BEFORE/AFTER */}
+          <HardcodeCost />
+          <BeforeAfterAgentry />
+        </div>
+        {/* THE COST OF NOT ROUTING — the money story */}
+        <CostOfNotRouting />
+        {/* HOW AGENTRY WORKS — DISCOVER · GOVERN · PROVE */}
+        <HowAgentryWorks />
+      </PinnedLoopCarousel>
 
       {/* WHAT IT DOES FOR YOU ON DAY ONE */}
       <AgentryGovernance />

@@ -59,9 +59,9 @@ const MASK = {
 } as const;
 
 function Logo({ item, dup }: { item: LogoItem; dup?: boolean }) {
-  const imgClass = "h-9 w-auto max-w-[110px] object-contain";
+  const imgClass = "h-14 w-auto max-w-[170px] object-contain sm:h-16 sm:max-w-[190px]";
   return (
-    <div className="flex h-9 shrink-0 items-center justify-center">
+    <div className="flex h-14 shrink-0 items-center justify-center sm:h-16">
       {item.srcDark ? (
         <>
           <img src={item.src} alt={dup ? "" : item.name} loading="lazy" className={`dark:hidden ${imgClass}`} />
@@ -124,7 +124,7 @@ export function CustomerLogos() {
   const row2 = LOGOS.slice(mid);
 
   return (
-    <section className="relative overflow-hidden bg-cv-surface py-20 lg:py-28" data-testid="section-customer-logos">
+    <section className="relative overflow-hidden bg-cv-surface pt-10 pb-20 lg:pt-14 lg:pb-28" data-testid="section-customer-logos">
       {/* Continue the hero's blue down over the top of this section and fade it
           to transparent, so the hero (which ends solid blue) and this section
           read as one continuous blue band settling into the page base — the
@@ -138,7 +138,7 @@ export function CustomerLogos() {
         <p className="text-center text-sm text-cv-muted mb-12 tracking-wide">
           The teams trusting us with their cloud and AI spend
         </p>
-        <div className="space-y-6">
+        <div className="space-y-12">
           <Row items={row1} />
           <Row items={row2} reverse />
         </div>

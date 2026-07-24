@@ -51,8 +51,8 @@ const FAQ = [
 const FINOPS_TABS: MockupTab[] = [
   { id: "allocation", label: "Cost Allocation", copy: "Every dollar of cloud, AI, data, and SaaS spend mapped to a team, a product, and an owner.", icon: ChartSquare },
   { id: "anomaly", label: "Anomaly Detection", copy: "Spend spikes traced to a driver and an owner as they happen, not at month-end close.", icon: DangerTriangle },
-  { id: "budgets", label: "Budgets & Forecasts", copy: "Budgets that forecast where spend lands and flag the overrun before it arrives.", icon: Graph },
-  { id: "chargeback", label: "Chargeback", copy: "Audit-ready showback and chargeback every team can reconcile against the bill.", icon: BillList },
+  { id: "budgets", label: "Platform AI", copy: "Budgets that forecast where spend lands and flag the overrun before it arrives.", icon: Graph },
+  { id: "chargeback", label: "Recommendations", copy: "Audit-ready showback and chargeback every team can reconcile against the bill.", icon: BillList },
 ];
 
 export default function FinOpsPage() {
@@ -125,6 +125,9 @@ export default function FinOpsPage() {
         </div>
       </section>
 
+      {/* DOMAIN DEPTH */}
+      <DomainDepth />
+
       {/* LIFECYCLE — heading band over a flat 2×2 grid of the four lifecycle
           stages, each framing one real instrument on a cinematic dark field */}
       <section className="cv-section relative overflow-hidden bg-cv-surface2 dark:bg-black">
@@ -142,9 +145,6 @@ export default function FinOpsPage() {
           </div>
         </div>
       </section>
-
-      {/* DOMAIN DEPTH */}
-      <DomainDepth />
 
       {/* MID-PAGE CTA */}
       <InlineCta label="Request a technology spend assessment" href="/contact" testid="section-inline-cta-assessment" />

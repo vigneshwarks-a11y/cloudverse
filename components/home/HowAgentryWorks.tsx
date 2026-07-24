@@ -1,15 +1,13 @@
-"use client";
-
 /* "How Agentry works — Discover, Govern, Prove" — the three things that have to be
    true before you can trust AI spend, as three numbered capability cards with an
    accent per step. Matches the home card design language: cv-* tokens,
    pill chip, rounded-2xl bordered cards.
 
-   Motion: the three cards stagger in (fade + slide up) once the section enters
-   the viewport (plays once; reduced-motion shows them in place). */
+   Renders statically — this is panel content inside PinnedLoopCarousel, which
+   owns all scroll-driven animation for the group. See that component's header
+   comment for why panel content must not carry its own ScrollTrigger. Server
+   component. */
 
-import { useRef } from "react";
-import { gsap, useGSAP } from "@/lib/gsap";
 import { IconFileSearch, IconShield, IconReceipt } from "nucleo-isometric";
 import { SectionHeading } from "@/components/SectionHeading";
 import { DOCS } from "@/lib/links";
@@ -47,49 +45,19 @@ const STEPS: Step[] = [
 ];
 
 export function HowAgentryWorks() {
-  const scope = useRef<HTMLElement | null>(null);
-
-  useGSAP(
-    () => {
-      // Scope the query to THIS section — [data-reveal] is also used by other
-      // sections, and an unscoped toArray would grab (and prematurely reveal)
-      // their cards too.
-      const cards = gsap.utils.toArray<HTMLElement>("[data-reveal]", scope.current!);
-      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (reduce) {
-        gsap.set(cards, { autoAlpha: 1, y: 0 });
-        return;
-      }
-      gsap.from(cards, {
-        autoAlpha: 0,
-        y: 40,
-        duration: 0.7,
-        ease: "power3.out",
-        stagger: 0.15,
-        scrollTrigger: {
-          trigger: scope.current,
-          start: "top 78%",
-          toggleActions: "play none none none", // one-time reveal
-        },
-      });
-    },
-    { scope },
-  );
-
   return (
-    <section ref={scope} className="cv-section bg-cv-surface" data-testid="section-how-agentry-works">
+    <section className="cv-section bg-cv-surface" data-testid="section-how-agentry-works">
       <div className="cv-container">
         <SectionHeading eyebrow="How Agentry works" title="Three things have to be true before you can trust AI spend." docsHref={DOCS.aiEconomics}>
           Agentry does all three: discover what&apos;s running, govern it in the execution path, and
           prove the economics after.
         </SectionHeading>
 
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
+        <div data-fit-visual className="mt-14 grid gap-6 md:grid-cols-3">
           {STEPS.map((s) => (
             <div
               key={s.title}
-              data-reveal
-              className="relative flex flex-col overflow-hidden rounded-2xl border border-cv-line/60 bg-cv-surface2 p-7 dark:border-white/10 dark:bg-[#0D0D0D]"
+              className="relative flex flex-col overflow-hidden rounded-2xl border border-cv-line/60 bg-cv-surface2 p-8 dark:border-white/10 dark:bg-[#0D0D0D]"
             >
               <div
                 aria-hidden
@@ -107,8 +75,8 @@ export function HowAgentryWorks() {
                   {s.n}
                 </span>
               </div>
-              <h3 className="relative mt-5 text-xl font-semibold text-cv-ink">{s.title}</h3>
-              <p className="relative mt-3 cv-body text-cv-ink/65">{s.body}</p>
+              <h3 className="relative mt-6 text-xl font-semibold text-cv-ink">{s.title}</h3>
+              <p className="relative mt-4 cv-body text-cv-ink/65">{s.body}</p>
             </div>
           ))}
         </div>

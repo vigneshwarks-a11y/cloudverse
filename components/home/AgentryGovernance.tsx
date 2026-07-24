@@ -137,7 +137,7 @@ function PolicyRow({ status, route, date, expanded }: (typeof POLICY_ROWS)[numbe
 function MockRBACVisual() {
   return (
     <div className="mt-6 h-[430px]">
-      <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-cv-line bg-white p-4 shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)] dark:border-white/10 dark:bg-black" style={EDGE_FADE}>
+      <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-cv-line bg-white p-4 shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)] dark:border-white/10 dark:bg-[#141418]" style={EDGE_FADE}>
         <CardLightEdge />
         <div className="px-1 pb-3 text-base font-semibold text-cv-ink">Policy Evaluations</div>
         <div className="flex flex-1 flex-col justify-between gap-2.5">
@@ -176,7 +176,7 @@ function MockCostVisual() {
     <div className="relative mt-6 h-[430px]">
       {/* CARD 1 - Tokens Used (back, upper-left) */}
       <div
-        className="absolute left-0 top-0 w-[82%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-4 shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:shadow-[0_12px_30px_-12px_rgba(0,0,0,0.6)]"
+        className="absolute left-0 top-0 w-[82%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-[#141418] p-4 shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:shadow-[0_12px_30px_-12px_rgba(0,0,0,0.6)]"
         style={EDGE_FADE}
       >
         <CardLightEdge />
@@ -215,7 +215,7 @@ function MockCostVisual() {
 
       {/* CARD 2 - Latency (front, lower-right) */}
       <div
-        className="absolute bottom-3 right-0 z-20 w-[60%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-black p-4 shadow-[0_14px_34px_-16px_rgba(16,24,40,0.12)] dark:shadow-[0_24px_50px_-12px_rgba(0,0,0,0.75)]"
+        className="absolute bottom-3 right-0 z-20 w-[60%] overflow-hidden rounded-[14px] border border-cv-line dark:border-white/10 bg-white dark:bg-[#141418] p-4 shadow-[0_14px_34px_-16px_rgba(16,24,40,0.12)] dark:shadow-[0_24px_50px_-12px_rgba(0,0,0,0.75)]"
         style={EDGE_FADE}
       >
         <CardLightEdge />
@@ -272,7 +272,7 @@ const TENANTS: { name: string; meta: string; policy: string; gpu: number; cap: s
 function MockTenantVisual() {
   return (
     <div className="mt-6 h-[430px]">
-      <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-cv-line bg-white p-4 shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)] dark:border-white/10 dark:bg-black" style={EDGE_FADE}>
+      <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-cv-line bg-white p-4 shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)] dark:border-white/10 dark:bg-[#141418]" style={EDGE_FADE}>
         <CardLightEdge />
         <div className="flex items-baseline justify-between px-1.5 pb-2.5">
           <span className="text-base font-semibold text-cv-ink">Workspaces</span>
@@ -335,7 +335,7 @@ const BUDGETS: { team: string; spent: number; limit: number; pct: number; flag?:
 function MockBudgetVisual() {
   return (
     <div className="mt-6 h-[430px]">
-      <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-cv-line bg-white p-5 shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)] dark:border-white/10 dark:bg-black" style={EDGE_FADE}>
+      <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-cv-line bg-white p-5 shadow-[0_10px_28px_-14px_rgba(16,24,40,0.10)] dark:shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)] dark:border-white/10 dark:bg-[#141418]" style={EDGE_FADE}>
         <CardLightEdge />
         <div className="flex items-center justify-between px-1.5 pb-2.5">
           <span className="text-base font-semibold text-cv-ink">Budget Caps</span>

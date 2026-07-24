@@ -1,15 +1,13 @@
-"use client";
-
 /* "Before / After Agentry" — two comparison cards: a static, hardcoded setup
    (faint node pattern, muted CloseCircle rows) versus a dynamic, per-request
    setup (blue grid + glow, CheckCircle rows). Design ported from the Agentry
    platform page. cv-* tokens, theme-aware.
 
-   Motion: a one-time fade/slide-in reveal as the section enters the viewport
-   (scrub:false, plays once — toggleActions play/none/none/none). */
+   Renders statically — this is panel content inside PinnedLoopCarousel, which
+   owns all scroll-driven animation for the group. See that component's header
+   comment for why panel content must not carry its own ScrollTrigger. Server
+   component. */
 
-import { useRef } from "react";
-import { gsap, useGSAP } from "@/lib/gsap";
 import { TrashBin2, Bolt, CloseCircle, CheckCircle } from "@/lib/solar-icons";
 
 const ROWS: { k: string; before: string; after: string }[] = [
@@ -21,40 +19,12 @@ const ROWS: { k: string; before: string; after: string }[] = [
 ];
 
 export function BeforeAfterAgentry() {
-  const scope = useRef<HTMLElement | null>(null);
-
-  useGSAP(
-    () => {
-      // Scope to THIS section — [data-reveal] is shared with other sections;
-      // an unscoped query would animate their cards too.
-      const cards = gsap.utils.toArray<HTMLElement>("[data-reveal]", scope.current!);
-      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (reduce) {
-        gsap.set(cards, { autoAlpha: 1, y: 0 });
-        return;
-      }
-      gsap.from(cards, {
-        autoAlpha: 0,
-        y: 40,
-        duration: 0.8,
-        ease: "power3.out",
-        stagger: 0.15,
-        scrollTrigger: {
-          trigger: scope.current,
-          start: "top 80%",
-          toggleActions: "play none none none", // one-time reveal
-        },
-      });
-    },
-    { scope },
-  );
-
   return (
-    <section ref={scope} className="pt-8 lg:pt-10 pb-16 sm:pb-20 lg:pb-28 bg-cv-surface2 dark:bg-black" data-testid="section-before-after-agentry">
+    <section className="pt-12 lg:pt-16 pb-16 sm:pb-20 lg:pb-28 bg-cv-surface2 dark:bg-black" data-testid="section-before-after-agentry">
       <div className="cv-container">
-        <div className="grid gap-5 md:grid-cols-2 items-stretch">
+        <div data-fit-visual className="grid gap-6 lg:gap-8 md:grid-cols-2 items-stretch">
           {/* Before - legacy / static */}
-          <div data-reveal className="relative overflow-hidden rounded-2xl border border-cv-line/50 bg-cv-card dark:bg-[#0D0D0D]">
+          <div className="relative overflow-hidden rounded-2xl border border-cv-line/50 bg-cv-card dark:bg-[#0D0D0D]">
             {/* Faint static node pattern */}
             <div
               aria-hidden
@@ -65,7 +35,7 @@ export function BeforeAfterAgentry() {
               }}
             />
             {/* Header */}
-            <div className="relative flex items-center gap-2.5 border-b border-cv-line/50 px-5 py-4">
+            <div className="relative flex items-center gap-2.5 border-b border-cv-line/50 px-5 py-5">
               <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-cv-ink/[0.06] text-cv-muted dark:bg-white/[0.06]">
                 <TrashBin2 weight="Linear" size={18} />
               </span>
@@ -77,7 +47,7 @@ export function BeforeAfterAgentry() {
             {/* Rows */}
             <ul className="relative divide-y divide-cv-line/40">
               {ROWS.map((r) => (
-                <li key={r.k} className="flex items-start gap-3 px-5 py-3.5">
+                <li key={r.k} className="flex items-start gap-3 px-5 py-5">
                   <span className="w-16 shrink-0 pt-0.5 text-[11px] font-semibold uppercase tracking-wider text-cv-muted/70">
                     {r.k}
                   </span>
@@ -91,7 +61,7 @@ export function BeforeAfterAgentry() {
           </div>
 
           {/* After - dynamic / active */}
-          <div data-reveal className="relative overflow-hidden rounded-2xl border border-[#2278E0]/25 bg-cv-card dark:bg-[#0D0D0D] shadow-[0_0_50px_-24px_rgba(34,120,224,0.5)]">
+          <div className="relative overflow-hidden rounded-2xl border border-[#2278E0]/25 bg-cv-card dark:bg-[#0D0D0D] shadow-[0_0_50px_-24px_rgba(34,120,224,0.5)]">
             {/* Dynamic blue grid pattern */}
             <div
               aria-hidden
@@ -111,7 +81,7 @@ export function BeforeAfterAgentry() {
               style={{ background: "radial-gradient(circle, rgba(34,120,224,0.28), transparent 70%)" }}
             />
             {/* Header */}
-            <div className="relative flex items-center gap-2.5 border-b border-[#2278E0]/20 px-5 py-4">
+            <div className="relative flex items-center gap-2.5 border-b border-[#2278E0]/20 px-5 py-5">
               <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#2278E0]/15 text-[#1664C0] dark:text-[#7CB8F8]">
                 <Bolt weight="Bold" size={18} />
               </span>
@@ -123,7 +93,7 @@ export function BeforeAfterAgentry() {
             {/* Rows */}
             <ul className="relative divide-y divide-cv-line/40">
               {ROWS.map((r) => (
-                <li key={r.k} className="flex items-start gap-3 px-5 py-3.5">
+                <li key={r.k} className="flex items-start gap-3 px-5 py-5">
                   <span className="w-16 shrink-0 pt-0.5 text-[11px] font-semibold uppercase tracking-wider text-cv-muted">
                     {r.k}
                   </span>

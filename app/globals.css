@@ -83,6 +83,16 @@
     letter-spacing: -0.02em;
   }
 
+  /* Italic Inter is a separate, non-preloaded font (see app/layout.tsx) so
+     its ~340KB only loads on pages that actually render italic text, instead
+     of on every page site-wide. Tailwind's `italic` utility only sets
+     font-style; this pairs it with the real italic face instead of the
+     browser's synthetic (slanted-roman) fallback that font-style:italic
+     alone would produce once the two styles are split into separate fonts. */
+  .italic {
+    font-family: var(--font-inter-italic), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  }
+
   ::selection {
     background: rgba(22, 100, 192, 0.35);
     color: #fff;
@@ -758,8 +768,20 @@
   will-change: transform, opacity;
 }
 
+/* SplitHeading (see components/SplitHeading.tsx): hidden from the very first
+   paint via CSS, same reasoning as .hero-anim above — GSAP only ever REVEALS
+   this element, it never hides it after the fact. Hiding via JS instead (e.g.
+   inside a mounted effect) leaves a real window, between the server-rendered
+   HTML painting and JS finishing hydration, where the full heading is
+   visible; then JS finally runs, yanks it invisible, and replays the reveal —
+   a visible "flash, then re-animate" glitch, worse the slower JS is to load. */
+.split-heading-init {
+  opacity: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-anim { opacity: 1; transform: none; }
+  .split-heading-init { opacity: 1; }
   .cv-video-ring { animation: none; }
   .cv-ring-blue { animation: none; }
   .cv-video-rise { animation: none; opacity: 1; transform: none; }

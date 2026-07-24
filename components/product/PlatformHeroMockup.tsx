@@ -67,11 +67,12 @@ export function PlatformHeroMockup({
   return (
     <div className="relative">
       {/* Continues the hero's blue gradient down over the mockup so it reads as
-          one band with the hero above (blue at top → fades to the page base). */}
+          one band with the hero above (blue at top → fades to the page base).
+          Theme-aware: the top stop matches the hero's end value per theme
+          (0.24 light / 0.50 dark), so it blends the same way in both. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-full"
-        style={{ background: "linear-gradient(180deg, rgba(20,71,230,0.50) 0%, rgba(20,71,230,0.16) 42%, transparent 78%)" }}
+        className="pointer-events-none absolute inset-x-0 top-0 h-full bg-[linear-gradient(180deg,rgba(20,71,230,0.24)_0%,rgba(20,71,230,0.08)_42%,transparent_78%)] dark:bg-[linear-gradient(180deg,rgba(20,71,230,0.5)_0%,rgba(20,71,230,0.16)_42%,transparent_78%)]"
       />
       <div className="cv-container relative pb-10 lg:pb-16">
       <div className="relative mx-auto w-full">

@@ -6,10 +6,14 @@
    hero headers. The split is reverted once the reveal finishes, restoring the
    original DOM (so text stays selectable and reflows normally on resize).
 
-   The heading text is server-rendered as children, so no-JS and reduced-motion
-   visitors just see it in place. Splitting waits for document.fonts.ready so
-   line breaks are measured against the real (self-hosted) font, not the
-   fallback. */
+   Hidden from the very first paint via the `.split-heading-init` CSS class
+   (see globals.css), NOT via JS after mount — GSAP only ever reveals this
+   element. Hiding it in JS instead would leave a real window between the
+   server-rendered HTML painting and JS finishing hydration where the full
+   heading sits visible, then suddenly disappears and replays the reveal once
+   JS catches up: a "flash, then re-animate" glitch that gets worse the
+   slower JS is to load. The reduced-motion override in that same CSS class
+   keeps this element visible for no-JS/reduced-motion visitors. */
 
 import { useRef, useState, type ElementType, type ReactNode } from "react";
 import { gsap, SplitText, useGSAP } from "@/lib/gsap";
@@ -48,10 +52,8 @@ export function SplitHeading({
         return;
       }
 
-      // Hide before first paint (useGSAP runs in a layout effect) so the full
-      // heading never flashes before the split is ready.
-      gsap.set(el, { autoAlpha: 0 });
-
+      // Already hidden via the .split-heading-init CSS class (see globals.css)
+      // — nothing to hide here, just reveal once the split is ready.
       let split: SplitText | null = null;
       let cancelled = false;
 
@@ -82,12 +84,16 @@ export function SplitHeading({
     { scope: ref, dependencies: [html] },
   );
 
+  // .split-heading-init hides this element from the very first paint (see
+  // globals.css) so JS only ever reveals it, never hides it after the fact.
+  const combinedClassName = className ? `${className} split-heading-init` : "split-heading-init";
+
   return html === null ? (
-    <Tag ref={ref} className={className}>
+    <Tag ref={ref} className={combinedClassName}>
       {children}
     </Tag>
   ) : (
-    <Tag ref={ref} className={className} dangerouslySetInnerHTML={{ __html: html }} />
+    <Tag ref={ref} className={combinedClassName} dangerouslySetInnerHTML={{ __html: html }} />
   );
 }
 

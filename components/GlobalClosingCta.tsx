@@ -5,7 +5,7 @@ import ClosingCtaBand from "@/components/ClosingCtaBand";
 
 // Routes that render their own conversion surface (or are the conversion
 // destination), so the global closing band is suppressed to avoid a duplicate.
-const HIDE_ON = ["/integrations", "/connect"];
+const HIDE_ON = ["/integrations", "/connect", "/contact"];
 
 type BandCopy = {
   heading: string;

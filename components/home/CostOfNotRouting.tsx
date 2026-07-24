@@ -1,16 +1,13 @@
-"use client";
-
-import { useRef } from "react";
-import { gsap, useGSAP } from "@/lib/gsap";
 import { SectionHeading } from "@/components/SectionHeading";
 /* "The cost of not routing" — quantifies hardcoded spend versus Agentry-routed
    spend: a monthly at-scale savings table beside a single-request Without/With
    comparison, closed by a result banner. cv-* tokens, theme-aware.
 
-   Motion: the cards (table, both examples, result banner) fade + slide in with
-   a stagger as the section enters the viewport, and the at-scale dollar figures
-   count up from 0 to their target (both play once). SSR renders the final
-   values, so no-JS / reduced-motion always shows the real content. */
+   Renders statically — this is panel content inside PinnedLoopCarousel, which
+   owns all scroll-driven animation for the group (see that component's header
+   comment for why panel content must not carry its own ScrollTrigger, e.g. a
+   count-up or fade-in keyed to this element's own scroll position). Server
+   component. */
 
 // [label, hardcoded, withAgentry, monthlySaving] — raw dollars; formatted below.
 const SCALE_ROWS: [string, number, number, number][] = [
@@ -21,16 +18,6 @@ const SCALE_ROWS: [string, number, number, number][] = [
 ];
 
 const money = (n: number) => "$" + Math.round(n).toLocaleString("en-US");
-
-/* A dollar figure that counts up on scroll-in. Renders the final value for SSR
-   (data-count-value drives the client animation). */
-function Money({ value, className }: { value: number; className?: string }) {
-  return (
-    <span data-count data-count-value={value} className={className}>
-      {money(value)}
-    </span>
-  );
-}
 
 function CompareCard({
   label,
@@ -44,8 +31,7 @@ function CompareCard({
   const withAgentry = tone === "with";
   return (
     <div
-      data-reveal
-      className={`rounded-2xl border p-5 ${
+      className={`rounded-2xl border p-6 ${
         withAgentry
           ? "border-[#1664C0]/40 bg-[#1664C0]/[0.05] dark:border-[#7CB8F8]/25 dark:bg-[#1664C0]/[0.10]"
           : "border-cv-line/50 bg-cv-card/60 dark:border-white/10 dark:bg-[#0D0D0D]"
@@ -54,7 +40,7 @@ function CompareCard({
       <div className={`text-xs font-semibold uppercase tracking-widest ${withAgentry ? "text-[#1664C0] dark:text-[#7CB8F8]" : "text-cv-muted"}`}>
         {label}
       </div>
-      <dl className="mt-4 space-y-3">
+      <dl className="mt-5 space-y-4">
         {rows.map((r) => (
           <div key={r.k} className="flex items-baseline justify-between gap-3">
             <dt className="text-sm text-cv-muted">{r.k}</dt>
@@ -72,60 +58,17 @@ function CompareCard({
 }
 
 export function CostOfNotRouting() {
-  const scope = useRef<HTMLElement | null>(null);
-
-  useGSAP(
-    () => {
-      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (reduce) return; // SSR already rendered the final content
-
-      // Cards fade + slide in on scroll-in (scoped to this section).
-      gsap.from(gsap.utils.toArray<HTMLElement>("[data-reveal]", scope.current!), {
-        autoAlpha: 0,
-        y: 40,
-        duration: 0.7,
-        ease: "power3.out",
-        stagger: 0.12,
-        scrollTrigger: {
-          trigger: scope.current,
-          start: "top 85%",
-          toggleActions: "play none none none",
-        },
-      });
-
-      gsap.utils.toArray<HTMLElement>("[data-count]").forEach((el) => {
-        const target = parseFloat(el.dataset.countValue || "0");
-        const obj = { v: 0 };
-        el.textContent = money(0); // start at zero before the trigger fires
-        gsap.to(obj, {
-          v: target,
-          duration: 1.4,
-          ease: "power2.out",
-          onUpdate: () => {
-            el.textContent = money(obj.v);
-          },
-          scrollTrigger: {
-            trigger: scope.current,
-            start: "top 80%",
-            toggleActions: "play none none none", // count up once, on first entry
-          },
-        });
-      });
-    },
-    { scope },
-  );
-
   return (
-    <section ref={scope} className="cv-section bg-cv-surface2 dark:bg-black" data-testid="section-cost-of-not-routing">
+    <section className="cv-section bg-cv-surface2 dark:bg-black" data-testid="section-cost-of-not-routing">
       <div className="cv-container">
         <SectionHeading eyebrow="Economics" title="The cost of not routing.">
           Every hardcoded endpoint spends money without making a decision. The same work, on the right
           model, often costs a fraction, at the same or better quality.
         </SectionHeading>
 
-        <div className="mt-10 grid gap-4 lg:grid-cols-[1.25fr_1fr] lg:gap-5">
+        <div data-fit-visual className="mt-10 grid gap-5 lg:grid-cols-[1.25fr_1fr] lg:gap-6">
           {/* At-scale monthly savings table */}
-          <div data-reveal className="overflow-hidden rounded-2xl border border-cv-line/50 bg-cv-surface dark:border-white/10 dark:bg-[#0D0D0D]">
+          <div className="overflow-hidden rounded-2xl border border-cv-line/50 bg-cv-surface dark:border-white/10 dark:bg-[#0D0D0D]">
             <div className="border-b border-cv-line/50 px-5 py-3 text-xs font-semibold uppercase tracking-widest text-cv-muted dark:border-white/10">
               At scale (monthly)
             </div>
@@ -142,10 +85,10 @@ export function CostOfNotRouting() {
                 <tbody>
                   {SCALE_ROWS.map(([vol, hard, agentry, save]) => (
                     <tr key={vol} className="border-b border-cv-line/30 last:border-0 dark:border-white/[0.06]">
-                      <td className="px-5 py-3.5 text-cv-ink/80">{vol}</td>
-                      <td className="px-5 py-3.5 text-right font-mono text-cv-ink/70"><Money value={hard} /></td>
-                      <td className="px-5 py-3.5 text-right font-mono text-cv-ink"><Money value={agentry} /></td>
-                      <td className="px-5 py-3.5 text-right font-mono font-semibold text-cv-teal"><Money value={save} /></td>
+                      <td className="px-5 py-4 text-cv-ink/80">{vol}</td>
+                      <td className="px-5 py-4 text-right font-mono text-cv-ink/70">{money(hard)}</td>
+                      <td className="px-5 py-4 text-right font-mono text-cv-ink">{money(agentry)}</td>
+                      <td className="px-5 py-4 text-right font-mono font-semibold text-cv-teal">{money(save)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -158,7 +101,7 @@ export function CostOfNotRouting() {
           </div>
 
           {/* Single-request Without / With comparison */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-10 lg:gap-12">
             <CompareCard
               label="Example · without Agentry"
               tone="without"
@@ -181,7 +124,7 @@ export function CostOfNotRouting() {
         </div>
 
         {/* Result banner */}
-        <div data-reveal className="mt-5 flex flex-col items-center gap-1 rounded-2xl border border-cv-teal/30 bg-cv-teal/[0.06] px-6 py-5 text-center sm:flex-row sm:justify-center sm:gap-3">
+        <div className="mt-6 flex flex-col items-center gap-1 rounded-2xl border border-cv-teal/30 bg-cv-teal/[0.06] px-6 py-6 text-center sm:flex-row sm:justify-center sm:gap-3">
           <span className="font-mono text-lg font-bold text-cv-teal">40&ndash;90% lower cost, depending on workload mix.</span>
           <span className="text-sm text-cv-ink/70">The example above is one workload; the audit measures yours.</span>
         </div>

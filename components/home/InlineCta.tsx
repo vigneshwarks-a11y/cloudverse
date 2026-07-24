@@ -52,7 +52,7 @@ export function InlineCta({
   }
 
   return (
-    <section className="bg-cv-surface py-10 sm:py-12" data-testid={testid ?? "section-inline-cta"}>
+    <section className="bg-cv-surface pt-6 sm:pt-8 pb-10 sm:pb-12" data-testid={testid ?? "section-inline-cta"}>
       <div className="cv-container flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-center sm:gap-6">
         {sub && <p className="cv-body text-cv-ink/70">{sub}</p>}
         <Link href={href} className="cv-btn-primary shrink-0">

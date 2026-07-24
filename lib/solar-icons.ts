@@ -42,6 +42,7 @@ export { default as Export } from "@solar-icons/react/arrows-action/Export";
 export { default as Eye } from "@solar-icons/react/security/Eye";
 export { default as FileText } from "@solar-icons/react/files/FileText";
 export { default as Filter } from "@solar-icons/react/ui/Filter";
+export { default as Global } from "@solar-icons/react/map/Global";
 export { default as Graph } from "@solar-icons/react/business/Graph";
 export { default as HamburgerMenu } from "@solar-icons/react/ui/HamburgerMenu";
 export { default as Heart } from "@solar-icons/react/like/Heart";

@@ -205,8 +205,12 @@ export function AgentryOrchestration() {
           </div>
 
           {/* RIGHT — visual stack. Panels overlay (absolute) on lg and crossfade;
-              on mobile they flow as a plain stack (all visible, no GSAP). */}
-          <div className="relative lg:aspect-video">
+              on mobile they flow as a plain stack (all visible, no GSAP). The
+              column matches the screenshots' native 2565/1562 ratio (not 8/5),
+              so the image fills its frame edge-to-edge with no letterbox band
+              top/bottom, and is vertically centered against the left column
+              (items-center on the grid). */}
+          <div className="relative lg:aspect-[2565/1562]">
             {CAPABILITIES.map((c) => (
               <div
                 key={c.key}
@@ -243,191 +247,50 @@ function paintBullets(bullets: HTMLElement[], active: number) {
 
 function CapabilityPanel({ cap }: { cap: Capability }) {
   return (
-    <div className="aspect-video w-full rounded-2xl shadow-[0_16px_40px_-24px_rgba(16,24,40,0.18)] dark:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.5)]">
-      <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-cv-line bg-white text-[#1d1d1f] dark:border-white/10 dark:bg-[#0c0c0f] dark:text-[#e5e5e7]">
-        <div aria-hidden className="pointer-events-none absolute inset-0 z-30 rounded-2xl">
-          <CardLightEdge />
-        </div>
-        {/* window top bar with capability tab */}
-        <div className="flex items-center gap-3 border-b border-black/[0.07] px-3 py-2 text-xs dark:border-white/[0.08]">
-          <span className="flex items-center gap-1.5 font-semibold">
-            <Image src="/cv-logo.png" alt="" width={16} height={16} className="h-4 w-4 object-contain" />
-            Cloudverse
-          </span>
-          <span className="font-semibold text-[#1d1d1f] dark:text-white">{PANEL_TITLE[cap.key]}</span>
-        </div>
-        <div className="min-h-0 flex-1 p-3.5">{PANEL_BODY[cap.key](cap.accent)}</div>
+    // Low-opacity white "shell" mat around the screenshot. The shell (outer
+    // container) carries the shared top-left light edge (CardLightEdge) as its
+    // border treatment, matching the other product wells on the home page. The
+    // frame matches the screenshots' native 2565/1562 ratio and uses
+    // object-cover, so the image fills edge-to-edge with no letterbox band (at
+    // a matched ratio cover crops effectively nothing).
+    <div
+      className="relative aspect-[2565/1562] w-full overflow-hidden rounded-2xl bg-white/[0.06] p-2"
+      style={{ boxShadow: "0 24px 60px -30px rgba(0,0,0,0.7)" }}
+    >
+      {/* Light-edge border overlay on the shell container */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-10 rounded-2xl">
+        <CardLightEdge />
+      </div>
+      <div className="relative h-full w-full overflow-hidden rounded-xl">
+        <Image
+          src={encodeURI(PANEL_IMAGE[cap.key])}
+          alt={PANEL_TITLE[cap.key]}
+          fill
+          sizes="(min-width: 1024px) 60vw, 100vw"
+          className="rounded-xl object-cover"
+        />
       </div>
     </div>
   );
 }
 
 const PANEL_TITLE: Record<string, string> = {
-  visibility: "System of record",
-  lifecycle: "Trace · agent run",
-  routing: "Routing decision",
-  unit: "Unit economics",
-  resilience: "Filtered views",
+  visibility: "Fleet management — every agent and app in one inventory",
+  lifecycle: "Runs and traces — every governed execution",
+  routing: "Model routing — what routed where, why, and on what evidence",
+  unit: "AI spend — where spend goes, by team",
+  resilience: "Quality — dimension scores and filtered evaluations",
 };
 
-/* Small shared bits */
-function Dot({ color }: { color: string }) {
-  return <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: color }} />;
-}
-function Bar({ pct, color }: { pct: number; color: string }) {
-  return (
-    <span className="block h-1.5 w-full overflow-hidden rounded-full bg-black/[0.06] dark:bg-white/[0.08]">
-      <span className="block h-full rounded-full" style={{ width: `${pct}%`, background: color }} />
-    </span>
-  );
-}
-
-const PANEL_BODY: Record<string, (accent: string) => React.ReactNode> = {
-  // 1 · Visibility — asset inventory (system of record)
-  visibility: (accent) => {
-    const rows: [string, string][] = [
-      ["Agents", "128"],
-      ["Models", "42"],
-      ["RAG systems", "9"],
-      ["APIs", "311"],
-      ["Subscriptions", "17"],
-    ];
-    return (
-      <div className="flex h-full flex-col">
-        <div className="mb-2 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-wider text-[#a1a1a6] dark:text-[#6f6f76]">
-          <Dot color={accent} /> Every asset · one record
-        </div>
-        <div className="grid flex-1 grid-cols-1 gap-1.5">
-          {rows.map(([k, v]) => (
-            <div key={k} className="flex items-center justify-between rounded-md border border-black/[0.05] bg-black/[0.015] px-3 py-2 text-[11px] dark:border-white/[0.06] dark:bg-white/[0.02]">
-              <span className="flex items-center gap-2 text-[#57575c] dark:text-[#c7c7cc]"><Dot color={accent} />{k}</span>
-              <span className="flex items-center gap-2">
-                <span className="font-mono font-semibold text-[#1d1d1f] dark:text-white">{v}</span>
-                <span className="rounded-sm bg-black/[0.05] px-1.5 py-0.5 text-[9px] text-[#86868b] dark:bg-white/[0.08] dark:text-[#8a8a90]">identity · contract</span>
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  },
-
-  // 2 · Lifecycle — trace timeline of one agent run
-  lifecycle: (accent) => {
-    const spans: [string, string, number][] = [
-      ["Crew.kickoff", "1.51 s", 0],
-      ["Crew Created", "0.31 ms", 1],
-      ["Task.execute_sync", "1.1 s", 1],
-      ["Agent.execute", "1.1 s", 2],
-      ["Completions.create", "1.08 s", 3],
-      ["Task.execute", "399.97 ms", 1],
-      ["Agent.execute", "396.66 ms", 2],
-    ];
-    return (
-      <div className="flex h-full flex-col">
-        <div className="mb-2 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-wider text-[#a1a1a6] dark:text-[#6f6f76]">
-          <Dot color={accent} /> Timeline · trace 9480ca99
-        </div>
-        <div className="flex-1 space-y-1">
-          {spans.map(([label, dur, indent], i) => (
-            <div key={i} className="flex items-center justify-between text-[11px]" style={{ paddingLeft: indent * 12 }}>
-              <span className="flex items-center gap-1.5 truncate text-[#57575c] dark:text-[#a1a1a6]"><Dot color={accent} />{label}</span>
-              <span className="shrink-0 font-mono text-[#a1a1a6] dark:text-[#6f6f76]">{dur}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  },
-
-  // 3 · Routing — live scoring, best-fit model wins
-  routing: (accent) => {
-    const dims: [string, number][] = [
-      ["Cost", 96],
-      ["Latency", 72],
-      ["Quality", 88],
-      ["Compliance", 100],
-    ];
-    return (
-      <div className="flex h-full flex-col">
-        <div className="mb-2 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-wider text-[#a1a1a6] dark:text-[#6f6f76]">
-          <Dot color={accent} /> Scored live · this request
-        </div>
-        <div className="grid flex-1 grid-cols-2 gap-x-4 gap-y-2.5 content-center">
-          {dims.map(([k, pct]) => (
-            <div key={k}>
-              <div className="mb-1 flex items-center justify-between text-[10px] text-[#57575c] dark:text-[#a1a1a6]"><span>{k}</span><span className="font-mono">{pct}</span></div>
-              <Bar pct={pct} color={accent} />
-            </div>
-          ))}
-        </div>
-        <div className="mt-2 flex items-center justify-between rounded-md px-3 py-2 text-[11px]" style={{ background: `${accent}14` }}>
-          <span className="text-[#57575c] dark:text-[#c7c7cc]">Best fit</span>
-          <span className="font-mono font-semibold" style={{ color: accent }}>GPT-4o-mini →</span>
-        </div>
-      </div>
-    );
-  },
-
-  // 4 · Unit economics — cost attributed per request / feature / tenant
-  unit: (accent) => {
-    const rows: [string, string, string][] = [
-      ["Per request", "$0.00010", "Support bot"],
-      ["Per feature", "$1,240 / mo", "Onboarding"],
-      ["Per tenant", "$318 / mo", "Acme Corp"],
-      ["Per team", "$4,902 / mo", "Growth"],
-    ];
-    return (
-      <div className="flex h-full flex-col">
-        <div className="mb-2 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-wider text-[#a1a1a6] dark:text-[#6f6f76]">
-          <Dot color={accent} /> Attributed cost · not infra averages
-        </div>
-        <div className="flex-1 space-y-1.5">
-          {rows.map(([k, v, tag]) => (
-            <div key={k} className="flex items-center justify-between rounded-md border border-black/[0.05] bg-black/[0.015] px-3 py-2 text-[11px] dark:border-white/[0.06] dark:bg-white/[0.02]">
-              <span className="text-[#57575c] dark:text-[#c7c7cc]">{k}</span>
-              <span className="flex items-center gap-2">
-                <span className="rounded-sm bg-black/[0.05] px-1.5 py-0.5 text-[9px] text-[#86868b] dark:bg-white/[0.08] dark:text-[#8a8a90]">{tag}</span>
-                <span className="font-mono font-semibold" style={{ color: accent }}>{v}</span>
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  },
-
-  // 5 · Resilience — filtered views surface the problems
-  resilience: (accent) => {
-    const findings: [string, string, string][] = [
-      ["Oversized model", "GPT-4o on classify", "high"],
-      ["Wasteful prompt", "12k tokens · summarise", "med"],
-      ["Provider down", "Anthropic · rerouted", "live"],
-    ];
-    const sev: Record<string, string> = { high: "#E05A2B", med: "#D97706", live: "#0E9E7A" };
-    return (
-      <div className="flex h-full flex-col">
-        <div className="mb-2 flex items-center gap-1.5 text-[10px]">
-          {["model", "team", "route"].map((f) => (
-            <span key={f} className="rounded-full border border-black/[0.08] px-2 py-0.5 text-[#86868b] dark:border-white/10 dark:text-[#8a8a90]">{f}</span>
-          ))}
-          <span className="ml-auto flex items-center gap-1 font-semibold uppercase tracking-wider text-[#a1a1a6] dark:text-[#6f6f76]"><Dot color={accent} />filtered</span>
-        </div>
-        <div className="flex-1 space-y-1.5">
-          {findings.map(([title, detail, s]) => (
-            <div key={title} className="flex items-center justify-between rounded-md border border-black/[0.05] bg-black/[0.015] px-3 py-2.5 text-[11px] dark:border-white/[0.06] dark:bg-white/[0.02]">
-              <span className="flex items-center gap-2">
-                <Dot color={sev[s]} />
-                <span className="font-medium text-[#1d1d1f] dark:text-white">{title}</span>
-                <span className="text-[#86868b] dark:text-[#8a8a90]">{detail}</span>
-              </span>
-              <span className="font-mono text-[9px] uppercase" style={{ color: sev[s] }}>{s}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  },
+// Real product screenshots, dropped in from public/ui-assets/one system
+// record section — one per capability, replacing the earlier hand-built
+// CSS mockups.
+const PANEL_IMAGE: Record<string, string> = {
+  visibility: "/ui-assets/one system record section/Fleet Management.webp",
+  lifecycle: "/ui-assets/one system record section/Runs and Traces.webp",
+  routing: "/ui-assets/one system record section/Model Routing.webp",
+  unit: "/ui-assets/one system record section/AI Spend.webp",
+  resilience: "/ui-assets/one system record section/Quality.webp",
 };
 
 /* ------------------------------------------------------------------ *

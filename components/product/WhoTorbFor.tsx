@@ -56,7 +56,7 @@ export default function WhoTorbFor() {
   }, []);
 
   return (
-    <section className="cv-section bg-cv-surface2 dark:bg-black">
+    <section className="pt-16 sm:pt-20 lg:pt-28 pb-6 sm:pb-8 bg-cv-surface2 dark:bg-black">
       <div className="cv-container">
         <Eyebrow>Who it's for</Eyebrow>
         <h2 className="cv-h2 text-cv-ink mb-10 max-w-3xl text-left">Who Torb is for</h2>
