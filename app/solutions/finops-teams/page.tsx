@@ -272,6 +272,7 @@ export default function FinOpsTeamsPage() {
         <div className="cv-container">
           <FaqBlock
             items={FAQ.map(([q, a]) => ({ q, a }))}
+            eyebrow="FAQ"
             title="FinOps questions, answered."
             subtitle="What finance and FinOps leads ask first."
           />

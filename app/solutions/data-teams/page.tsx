@@ -246,6 +246,7 @@ export default function DataTeamsPage() {
         <div className="cv-container">
           <FaqBlock
             items={FAQ.map(([q, a]) => ({ q, a }))}
+            eyebrow="FAQ"
             title="Data team questions, answered."
             subtitle="What data and analytics leads ask first."
           />

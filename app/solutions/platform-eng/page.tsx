@@ -240,6 +240,7 @@ export default function PlatformEngPage() {
         <div className="cv-container">
           <FaqBlock
             items={FAQ.map(([q, a]) => ({ q, a }))}
+            eyebrow="FAQ"
             title="Platform engineering questions, answered."
             subtitle="What platform and DevOps leads ask first."
           />

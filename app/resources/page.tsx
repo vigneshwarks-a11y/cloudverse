@@ -156,11 +156,10 @@ export default function ResourcesPage() {
       {/* FAQ */}
       <section id="faq" className="cv-section bg-cv-surface2 border-t border-cv-line">
         <div className="cv-container max-w-4xl">
-          <div className="text-center mb-2">
-            <Eyebrow>FAQ</Eyebrow>
-          </div>
           <FaqBlock
+            eyebrow="FAQ"
             title="Frequently asked"
+            subtitle="Common questions we get asked the most"
             items={FAQS.slice(0, 6).map((faq) => ({ q: faq.question, a: faq.answer }))}
           />
         </div>

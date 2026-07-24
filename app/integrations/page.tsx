@@ -6,7 +6,6 @@ import type { IconProps } from "@solar-icons/react";
 import { DEMO_URL } from "@/lib/links";
 import { PageHero } from "@/components/PageHero";
 import { SectionHeading } from "@/components/SectionHeading";
-import { Eyebrow } from "@/components/Eyebrow";
 import AgentryProvidersMarquee from "@/components/product/AgentryProvidersMarquee";
 import IntegrationSteps from "@/components/product/IntegrationSteps";
 import IntegrationsCatalog from "@/components/product/IntegrationsCatalog";
@@ -254,13 +253,13 @@ export default function IntegrationsPage() {
       {/* FAQ */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="text-center mb-10">
-            <div className="mb-4 flex justify-center">
-              <Eyebrow>FAQ</Eyebrow>
-            </div>
-            <h2 className="cv-h2 text-cv-ink">Frequently Asked Questions</h2>
-          </div>
-          <FaqBlock items={FAQ.map(([q, a]) => ({ q, a }))} accent="#1664C0" />
+          <FaqBlock
+            items={FAQ.map(([q, a]) => ({ q, a }))}
+            accent="#1664C0"
+            eyebrow="FAQ"
+            title="Frequently Asked Questions"
+            subtitle="Common questions we get asked the most"
+          />
         </div>
       </section>
 

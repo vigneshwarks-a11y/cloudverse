@@ -17,7 +17,6 @@ import { TestimonialsCarousel } from "@/components/home/TestimonialsCarousel";
 import { FeatureShowcase } from "@/components/home/FeatureShowcase";
 import { InlineCta } from "@/components/home/InlineCta";
 import { SectionHeading } from "@/components/SectionHeading";
-import { Eyebrow } from "@/components/Eyebrow";
 import { GuidesResources } from "@/components/home/GuidesResources";
 
 export const metadata: Metadata = {
@@ -158,12 +157,10 @@ export default function HomePage() {
       {/* FAQ */}
       <section className="cv-section bg-cv-surface overflow-hidden">
         <div className="cv-container">
-          <div className="text-center">
-            <Eyebrow>FAQ</Eyebrow>
-          </div>
           <FaqBlock
             items={HOME_FAQS}
             accent="#1664C0"
+            eyebrow="FAQ"
             title="Frequently Asked Questions"
             subtitle="Common questions we get asked the most"
           />

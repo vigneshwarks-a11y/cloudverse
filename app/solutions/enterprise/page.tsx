@@ -272,6 +272,7 @@ export default function EnterprisePage() {
         <div className="cv-container">
           <FaqBlock
             items={FAQ.map(([q, a]) => ({ q, a }))}
+            eyebrow="FAQ"
             title="Enterprise questions, answered."
             subtitle="What the office of the CIO asks before rollout."
           />

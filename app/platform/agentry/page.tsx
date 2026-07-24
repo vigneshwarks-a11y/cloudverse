@@ -350,6 +350,7 @@ export default function AgentryPage() {
           <FaqBlock
             items={AGENTRY_FAQS}
             accent="#1664C0"
+            eyebrow="FAQ"
             title="Frequently Asked Questions"
             subtitle="Common questions we get asked the most"
           />

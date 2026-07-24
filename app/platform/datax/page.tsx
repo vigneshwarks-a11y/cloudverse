@@ -276,11 +276,13 @@ export default function DataXPage() {
       {/* FAQ */}
       <section className="cv-section">
         <div className="cv-container">
-          <div className="text-center mb-10">
-            <Eyebrow accent="amber">FAQ</Eyebrow>
-            <h2 className="cv-h2 text-cv-ink">Frequently Asked Questions</h2>
-          </div>
-          <FaqBlock items={FAQ.map(([q, a]) => ({ q, a }))} accent={ACCENT} />
+          <FaqBlock
+            items={FAQ.map(([q, a]) => ({ q, a }))}
+            accent={ACCENT}
+            eyebrow="FAQ"
+            title="Frequently Asked Questions"
+            subtitle="Common questions we get asked the most"
+          />
         </div>
       </section>
 

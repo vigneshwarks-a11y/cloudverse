@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Eyebrow, type EyebrowAccent } from "@/components/Eyebrow";
 
 export type FaqItem = { q: string; a: string };
 
@@ -61,12 +62,17 @@ function FaqRow({ item, isOpen, onToggle, index }: {
 
 export function FaqBlock({
   items,
+  eyebrow,
+  eyebrowAccent,
   title,
   subtitle,
   previewCount,
 }: {
   items: FaqItem[];
   accent?: string;
+  /** Optional eyebrow pill rendered inside the card, above the title. */
+  eyebrow?: string;
+  eyebrowAccent?: EyebrowAccent;
   title?: string;
   subtitle?: string;
   /** Show only the first N rows behind a "Show all" button. Omit to show all. */
@@ -97,8 +103,9 @@ export function FaqBlock({
 
         {/* Main content card */}
         <div className="relative mx-3 rounded-[18px] border-[1.5px] border-cv-ink/20 bg-white p-6 dark:border-white/10 dark:bg-black sm:mx-0 sm:rounded-[24px] sm:p-10">
-          {(title || subtitle) && (
+          {(eyebrow || title || subtitle) && (
             <div className="mb-8 flex flex-col items-center gap-4 text-center">
+              {eyebrow && <Eyebrow accent={eyebrowAccent}>{eyebrow}</Eyebrow>}
               {title && <h2 className="cv-h2 text-cv-ink">{title}</h2>}
               {subtitle && <p className="cv-body max-w-xl text-cv-muted">{subtitle}</p>}
             </div>

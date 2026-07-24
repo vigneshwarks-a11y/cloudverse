@@ -228,6 +228,7 @@ export default function AIEngineeringPage() {
         <div className="cv-container">
           <FaqBlock
             items={FAQ.map(([q, a]) => ({ q, a }))}
+            eyebrow="FAQ"
             title="AI engineering questions, answered."
             subtitle="What Heads of AI and MLOps leads ask first."
           />

@@ -156,7 +156,11 @@ export function AgentryOrchestration() {
   };
 
   return (
-    <section ref={rootRef} className="cv-section bg-cv-surface2" data-testid="section-agentry-orchestration">
+    <section
+      ref={rootRef}
+      className="cv-section bg-cv-surface2 [@media(max-height:900px)]:py-14 [@media(max-height:800px)]:py-10"
+      data-testid="section-agentry-orchestration"
+    >
       <div className="cv-container">
         <SectionHeading eyebrow="One system of record" title="Enterprise AI is fragmented. Agentry makes it one system of record.">
           Not a gateway that runs your routing rules. Not observability that tells you what a request
@@ -164,7 +168,7 @@ export function AgentryOrchestration() {
           contract, an operational record, and measurable economics.
         </SectionHeading>
 
-        <div className="mt-12 grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-14">
+        <div className="mt-12 grid grid-cols-1 items-center gap-12 [@media(max-height:900px)]:mt-8 [@media(max-height:800px)]:mt-6 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:gap-14">
           {/* LEFT — capability list. Every record is always rendered (dimmed
               when inactive) so the pinned section never changes height. */}
           <div className="relative">
@@ -175,7 +179,7 @@ export function AgentryOrchestration() {
 
             <ul className="lg:pl-6">
               {CAPABILITIES.map((c, i) => (
-                <li key={c.key} data-bullet className="py-4 transition-opacity duration-300 lg:opacity-100">
+                <li key={c.key} data-bullet className="py-4 transition-opacity duration-300 [@media(max-height:900px)]:py-2.5 [@media(max-height:800px)]:py-1.5 lg:opacity-100">
                   <button
                     type="button"
                     onClick={() => goTo(i)}
