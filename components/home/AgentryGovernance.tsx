@@ -459,7 +459,7 @@ export function AgentryGovernance() {
               {row.map(({ title, body, Visual }) => (
                 <div key={title} className={CELL}>
                   <h3 className="text-lg font-semibold text-cv-ink">{title}</h3>
-                  <p className="mt-2 text-base text-cv-ink/55 leading-relaxed">{body}</p>
+                  <p className="mt-2 text-base text-cv-subtle leading-relaxed">{body}</p>
                   <Link href="/platform/agentry" className="mt-3 inline-flex items-center gap-1 text-xs text-[#1664C0] hover:text-[#0e4fa0] dark:text-[#7CB8F8] dark:hover:text-[#A9C8F8] transition-colors font-medium">
                     Learn More <ArrowRight weight="Linear" size={12} />
                   </Link>

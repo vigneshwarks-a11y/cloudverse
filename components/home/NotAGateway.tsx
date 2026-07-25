@@ -51,7 +51,7 @@ function CompCell({ value }: { value: string }) {
   if (value === "—") {
     return (
       <span
-        className="inline-flex h-5 items-center gap-1.5 rounded-md bg-cv-ink/[0.06] px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide text-cv-ink/55 dark:bg-white/[0.07] dark:text-white/55"
+        className="inline-flex h-5 items-center gap-1.5 rounded-md bg-cv-ink/[0.06] px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide text-cv-subtle dark:bg-white/[0.07]"
         aria-label="Not covered"
       >
         <span className="h-[1.5px] w-2.5 rounded-full bg-current" />
@@ -82,7 +82,7 @@ export function NotAGateway() {
               <tr>
                 <th
                   scope="col"
-                  className="sticky left-0 z-10 border-b border-cv-line/70 bg-cv-surface2 px-5 pb-4 pt-5 align-bottom text-[11px] font-semibold uppercase tracking-[0.12em] text-cv-ink/60 dark:border-white/10 dark:bg-[#0D0D0D] dark:text-white/55"
+                  className="sticky left-0 z-10 border-b border-cv-line/70 bg-cv-surface2 px-5 pb-4 pt-5 align-bottom text-[11px] font-semibold uppercase tracking-[0.12em] text-cv-subtle dark:border-white/10 dark:bg-[#0D0D0D]"
                 >
                   Capability
                 </th>
@@ -93,7 +93,7 @@ export function NotAGateway() {
                     className="border-b border-l border-cv-line/70 bg-cv-surface2 px-4 pb-4 pt-5 align-bottom dark:border-white/10 dark:bg-[#0D0D0D]"
                   >
                     <span className="block text-[12px] font-semibold leading-snug text-cv-ink/85">{c.name}</span>
-                    <span className="mt-1 block text-[11px] font-normal leading-snug text-cv-ink/45 dark:text-white/45">
+                    <span className="mt-1 block text-[11px] font-normal leading-snug text-cv-subtle">
                       {c.examples}
                     </span>
                   </th>

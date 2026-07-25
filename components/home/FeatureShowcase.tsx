@@ -466,7 +466,7 @@ function CloudState() {
             { color: SUCCESS, pts: "0,92 85,90 170,88 255,90 340,84 425,86 510,82 600,80" },
           ]}
         />
-        <div className="mt-3 flex justify-between text-xs text-cv-muted/60">
+        <div className="mt-3 flex justify-between text-xs text-cv-subtle">
           {times.map((t) => (
             <span key={t}>{t}</span>
           ))}
@@ -489,7 +489,7 @@ function CloudState() {
             { color: DANGER, pts: "0,90 85,88 170,92 255,86 340,88 425,90 510,86 600,88" },
           ]}
         />
-        <div className="mt-3 flex justify-between text-xs text-cv-muted/60">
+        <div className="mt-3 flex justify-between text-xs text-cv-subtle">
           {times.map((t) => (
             <span key={t}>{t}</span>
           ))}

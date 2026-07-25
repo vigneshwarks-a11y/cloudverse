@@ -7,6 +7,7 @@
   :root {
     --cv-ink:      240 3% 12%;   /* #1d1d1f */
     --cv-muted:    240 2% 46%;   /* #86868b */
+    --cv-subtle:   240 3% 38%;   /* #5e5e63 - de-emphasized text, AA-safe on surface (≥4.5:1). Use instead of stacking opacity on ink/muted. */
     --cv-line:     240 5% 90%;   /* #e5e5e5 */
     --cv-surface:  0 0% 100%;    /* #ffffff */
     --cv-surface2: 240 4% 98%;   /* #fbfbfd */
@@ -19,6 +20,7 @@
   .dark {
     --cv-ink:      0 0% 98%;     /* #f5f5f7 */
     --cv-muted:    240 2% 63%;   /* #a1a1a6 */
+    --cv-subtle:   240 4% 64%;   /* #a0a0a6 - de-emphasized text, AA-safe on dark surface (≥4.5:1). */
     --cv-line:     240 5% 26%;   /* #38383a */
     --cv-surface:  0 0% 0%;      /* #000000 - pure black */
     --cv-surface2: 0 0% 0%;      /* #000000 - pure black (matches surface) */

@@ -18,6 +18,7 @@ const config: Config = {
         cv: {
           ink: "hsl(var(--cv-ink))",
           muted: "hsl(var(--cv-muted))",
+          subtle: "hsl(var(--cv-subtle))",
           line: "hsl(var(--cv-line))",
           surface: "hsl(var(--cv-surface))",
           surface2: "hsl(var(--cv-surface2))",

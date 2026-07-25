@@ -48,10 +48,10 @@ export function BeforeAfterAgentry() {
             <ul className="relative divide-y divide-cv-line/40">
               {ROWS.map((r) => (
                 <li key={r.k} className="flex items-start gap-3 px-5 py-5">
-                  <span className="w-16 shrink-0 pt-0.5 text-[11px] font-semibold uppercase tracking-wider text-cv-muted/70">
+                  <span className="w-16 shrink-0 pt-0.5 text-[11px] font-semibold uppercase tracking-wider text-cv-subtle">
                     {r.k}
                   </span>
-                  <span className="flex flex-1 items-start gap-2 text-[15px] text-cv-ink/55">
+                  <span className="flex flex-1 items-start gap-2 text-[15px] text-cv-subtle">
                     <CloseCircle weight="Linear" size={15} className="mt-0.5 shrink-0 text-cv-muted/60" />
                     <span>{r.before}</span>
                   </span>
