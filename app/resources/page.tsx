@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "@/lib/solar-icons";
-import { GUIDES, DOCS, FAQS, BLOG_POSTS } from "@/lib/resources";
+import { getGuides, getDocs, getFaqs, getBlogPosts } from "@/lib/resources";
 import { PageHero } from "@/components/PageHero";
 import { FaqBlock } from "@/components/FaqBlock";
 import { Eyebrow } from "@/components/Eyebrow";
@@ -30,7 +30,8 @@ const CATEGORY_COLORS: Record<string, string> = {
   Security: "#D97706",
 };
 
-export default function ResourcesPage() {
+export default async function ResourcesPage() {
+  const [GUIDES, DOCS, FAQS, BLOG_POSTS] = await Promise.all([getGuides(), getDocs(), getFaqs(), getBlogPosts()]);
   const featuredGuides = GUIDES.filter((g) => g.featured).slice(0, 3);
   const moreGuides = GUIDES.filter((g) => !g.featured).slice(0, 6);
   const featuredBlog = BLOG_POSTS.slice(0, 3);

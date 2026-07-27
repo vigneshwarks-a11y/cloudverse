@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { RESOURCES } from "@/lib/resources";
+import { getResources } from "@/lib/resources";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://cloudverse.ai";
 
@@ -27,7 +27,7 @@ const STATIC_ROUTES: RouteConfig[] = [
   { path: "/legal",                   priority: 0.3,  changeFreq: "monthly" },
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
   const staticEntries = STATIC_ROUTES.map(({ path, priority, changeFreq }) => ({
     url: `${SITE_URL}${path}`,
@@ -35,7 +35,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: changeFreq,
     priority,
   }));
-  const resourceEntries = RESOURCES.map((r) => ({
+  const resources = await getResources();
+  const resourceEntries = resources.map((r) => ({
     url: `${SITE_URL}/resources/${r.slug}`,
     lastModified: now,
     changeFrequency: "monthly" as const,
