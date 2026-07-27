@@ -11,6 +11,22 @@ const nextConfig = {
     // dev-server crashes (segment-explorer-node.js#SegmentViewNode not found).
     devtoolSegmentExplorer: false,
   },
+  // Keystatic's local reader does dynamic fs.readdir/readFile calls against
+  // content/ (computed paths, not static imports), so Next's output file
+  // tracing can't detect that the /keystatic admin UI and its API route
+  // depend on that directory — without this, content/ is missing from
+  // those two routes' Vercel serverless function bundles, and the CMS
+  // shows every collection as empty even though the data is really in the
+  // repo (confirmed working at build time via the statically-generated
+  // /resources pages, which don't hit this gap).
+  // Glob keys are matched with picomatch — "[" / "]" are character-class
+  // syntax there, not literal brackets, so a key spelled with the literal
+  // "[...params]" segment name never matches. "**" sidesteps that.
+  outputFileTracingIncludes: {
+    "/api/keystatic/**": ["./content/**/*"],
+    "/keystatic/**": ["./content/**/*"],
+    "/keystatic": ["./content/**/*"],
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     dangerouslyAllowSVG: true,
