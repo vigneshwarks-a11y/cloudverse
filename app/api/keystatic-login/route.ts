@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-
-export const KEYSTATIC_SESSION_COOKIE = "keystatic_session";
+import { KEYSTATIC_SESSION_COOKIE } from "@/lib/keystaticAuth";
 
 export async function POST(request: NextRequest) {
   const configured = process.env.KEYSTATIC_ADMIN_PASSWORD?.trim();

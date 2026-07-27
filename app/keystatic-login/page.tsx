@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Eye, EyeClosed } from "@/lib/solar-icons";
 
@@ -88,5 +88,9 @@ function KeystaticLoginForm() {
 }
 
 export default function KeystaticLoginPage() {
-  return <KeystaticLoginForm />;
+  return (
+    <Suspense fallback={null}>
+      <KeystaticLoginForm />
+    </Suspense>
+  );
 }

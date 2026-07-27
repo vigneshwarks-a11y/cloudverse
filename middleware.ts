@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { KEYSTATIC_SESSION_COOKIE } from "@/app/api/keystatic-login/route";
+import { KEYSTATIC_SESSION_COOKIE } from "@/lib/keystaticAuth";
 
 /* Password-gates /keystatic and its API route (/api/keystatic) via a
    session cookie set at /keystatic-login (see that page + its API route).
