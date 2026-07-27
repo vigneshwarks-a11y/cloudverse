@@ -55,10 +55,10 @@ export default function ResourcesPage() {
         subtitleClassName="text-[length:clamp(17px,1.4vw,20px)]"
         actions={
           <>
-            <a href="#guides" className="cv-btn-primary" data-testid="button-browse-guides">Browse guides</a>
-            <a href="#docs" className="cv-btn-ghost" data-testid="button-browse-docs">Documentation</a>
-            <a href="#faq" className="cv-btn-ghost" data-testid="button-browse-faq">FAQ</a>
-            <a href="#blog" className="cv-btn-ghost" data-testid="button-browse-blog">Blog</a>
+            <a href="#guides" className="cv-btn-primary px-5 py-3 sm:px-7 sm:py-4" data-testid="button-browse-guides">Browse guides</a>
+            <a href="#docs" className="cv-btn-ghost px-5 py-3 sm:px-7 sm:py-4" data-testid="button-browse-docs">Documentation</a>
+            <a href="#faq" className="cv-btn-ghost px-5 py-3 sm:px-7 sm:py-4" data-testid="button-browse-faq">FAQ</a>
+            <a href="#blog" className="cv-btn-ghost px-5 py-3 sm:px-7 sm:py-4" data-testid="button-browse-blog">Blog</a>
           </>
         }
       />
@@ -172,9 +172,9 @@ export default function ResourcesPage() {
             <p className="cv-body-lg text-cv-ink/75 mt-5 max-w-2xl mx-auto">
               We work with practitioners on customer stories, joint research, and guest pieces.
             </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
-              <Link href="/contact" className="cv-btn-ghost">Talk to Us</Link>
+            <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center">
+              <Link href={DEMO_URL} className="cv-btn-primary px-5 py-3 sm:px-7 sm:py-4"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
+              <Link href="/contact" className="cv-btn-ghost px-5 py-3 sm:px-7 sm:py-4">Talk to Us</Link>
             </div>
           </div>
         </div>

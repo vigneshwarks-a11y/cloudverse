@@ -107,9 +107,9 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         <div className="cv-container">
           <div className="rounded-3xl border border-cv-line/40 bg-cv-surface2 dark:bg-[#0D0D0D] p-10 lg:p-16 text-center">
             <h2 className="cv-h2 text-cv-ink max-w-3xl mx-auto">See cloudverse in your environment.</h2>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
-              <Link href="/resources" className="cv-btn-ghost">More resources</Link>
+            <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center">
+              <Link href={DEMO_URL} className="cv-btn-primary px-5 py-3 sm:px-7 sm:py-4"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
+              <Link href="/resources" className="cv-btn-ghost px-5 py-3 sm:px-7 sm:py-4">More resources</Link>
             </div>
           </div>
         </div>

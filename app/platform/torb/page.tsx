@@ -79,8 +79,8 @@ export default function TorbPage() {
         subtitle="Cost context lands in the pull request, for infrastructure, application code, and AI calls. Velocity stays high. Governance finally keeps up."
         actions={
           <>
-            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
-            <Link href="#pr-example" className="cv-btn-ghost">See a real PR example</Link>
+            <Link href={DEMO_URL} className="cv-btn-primary px-5 py-3 sm:px-7 sm:py-4"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
+            <Link href="#pr-example" className="cv-btn-ghost px-5 py-3 sm:px-7 sm:py-4">See a real PR example</Link>
           </>
         }
       />

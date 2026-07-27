@@ -70,7 +70,8 @@ export function NotAGateway() {
           Adjacent tools see pieces. Agentry governs the whole.
         </SectionHeading>
 
-        <div className="mt-10 overflow-x-auto overflow-y-hidden rounded-2xl border border-cv-line/70 dark:border-white/10">
+        {/* Tablet+: full matrix, horizontally scrollable, first column sticky. */}
+        <div className="mt-10 hidden overflow-x-auto overflow-y-hidden rounded-2xl border border-cv-line/70 dark:border-white/10 sm:block">
           <table className="w-full min-w-[880px] border-collapse text-left">
             <colgroup>
               <col className="w-[26%]" />
@@ -162,6 +163,41 @@ export function NotAGateway() {
               })}
             </tbody>
           </table>
+        </div>
+
+        {/* Mobile (<sm): one stacked card per capability row, competitor answers as
+            label:value lines, Agentry's answer highlighted with the module accent. */}
+        <div className="mt-10 space-y-4 sm:hidden">
+          {ROWS.map((row) => {
+            const [cap, ...cells] = row;
+            const agentryValue = cells[cells.length - 1];
+            const competitorCells = cells.slice(0, -1);
+            return (
+              <div
+                key={cap}
+                className="rounded-2xl border border-cv-line/60 bg-cv-surface p-5 dark:border-white/[0.07] dark:bg-[#101014]"
+              >
+                <h3 className="text-lg font-semibold leading-snug text-cv-ink">{cap}</h3>
+                <dl className="mt-4 space-y-2.5 border-t border-cv-line/50 pt-4 dark:border-white/[0.08]">
+                  {COLS.map((c, i) => (
+                    <div key={c.name} className="flex items-baseline justify-between gap-3 text-[13px]">
+                      <dt className="text-cv-ink/60">{c.name}</dt>
+                      <dd className="text-right">
+                        <CompCell value={competitorCells[i]} />
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+                <div className="mt-3 flex items-baseline justify-between gap-3 rounded-lg bg-[#1664C0]/[0.07] px-3 py-2.5 dark:bg-[#1664C0]/[0.16]">
+                  <dt className="text-[13px] font-semibold text-[#1664C0] dark:text-[#7CB8F8]">CloudVerse Agentry</dt>
+                  <dd className="flex items-center gap-1.5 text-right text-[13px] font-semibold text-[#1664C0] dark:text-[#7CB8F8]">
+                    <Check />
+                    {agentryValue}
+                  </dd>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         <p className="mt-5 text-[14px] leading-relaxed text-cv-ink/70 lg:whitespace-nowrap">

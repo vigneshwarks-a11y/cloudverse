@@ -200,3 +200,49 @@ product UI," and the design linter should treat them as accepted here (they matc
 - Re-introduce the blue-gradient `cv-hero-bg` wash on new heroes.
 - Put a literal font-size on ordinary page copy (mockup micro-type is the only exception).
 - Nest cards inside cards inside cards, or fill a card with a solid module color.
+
+---
+
+## 9. Tables (comparison / data matrices)
+
+The reference pattern is **[components/home/NotAGateway.tsx](../components/home/NotAGateway.tsx)**
+("How Agentry compares") and **[components/product/NamedCustomers.tsx](../components/product/NamedCustomers.tsx)**.
+A real `<table>` down to `sm` (640px), a stacked card per row below it — never a
+table squeezed to illegibility, and never a bespoke card shell reinvented per page.
+
+- **Tablet+ (`sm` and up): keep the table.** Wrap it in its own
+  `overflow-x-auto overflow-y-hidden` container (never let the page body scroll
+  sideways — same rule as §7). The first column (row header) is `sticky left-0
+  z-10` with an opaque background (`bg-cv-surface2 dark:bg-[#0D0D0D]` for the
+  header cell, `bg-cv-surface dark:bg-black` / `bg-cv-surface2 dark:bg-white/[0.02]`
+  for zebra'd row cells) so it doesn't go transparent under the scrolling body.
+- **Row striping:** alternate rows via `bg-cv-surface2 dark:bg-white/[0.02]` (sticky
+  column) and a faint `bg-cv-ink/[0.012] dark:bg-white/[0.015]` wash on the other
+  cells — never a hardcoded gray.
+- **Mobile (`<sm`): convert to stacked cards**, one per row, same chrome as the
+  floating card grid (§5): `rounded-2xl border border-cv-line/60 bg-cv-surface
+  p-5 dark:border-white/[0.07] dark:bg-[#101014]`. Do **not** reach for the
+  mockup kit's `GlassCard` here — that primitive carries `cv-visual-well`, which
+  §5 reserves for substantial visual/mockup wells, not plain data rows.
+  - Row/entity name as the card title: `text-lg font-semibold text-cv-ink`.
+  - Each remaining column as a `dt`/`dd` label:value line, label in
+    `text-cv-ink/60`, value using the same cell content/formatting as the table
+    (reuse the table's own cell-rendering helper, e.g. `CompCell` — don't
+    re-derive the "not covered" mark or tag chips separately).
+  - If one column is the "featured" / own-product answer (e.g. the Agentry
+    column), highlight its row with the page's module accent color
+    (`text-[#1664C0] dark:text-[#7CB8F8]` for Torb/Agentry-blue, or the current
+    module hue) on a faint tinted background — the same accent treatment the
+    table's own featured column already uses, not a new color.
+  - Toggle table vs. cards with `hidden sm:block` / `sm:hidden` on the two
+    containers — don't conditionally render based on JS viewport checks.
+- **Numeric-only tables** (e.g. the ROI "at scale" savings tables in
+  `CostOfNotRouting.tsx` / `AgentryRoiSplit.tsx`) are exempt from the
+  stacked-card conversion: they're narrow (`min-w-[440px]`), already scroll
+  inside their own container per §7, and stacking 3–4 numbers per row into a
+  card reduces scanability rather than improving it. Reserve the card
+  conversion for tables with substantial per-cell text (capability names,
+  descriptions, tags).
+- Table micro-type (`text-[11px]`/`text-[13px]`/`text-[14px]` for headers/cells)
+  sits off the main type ramp, same accepted exception as the mockup kit's
+  micro-type (§6) — don't flag it, don't use it outside tables.

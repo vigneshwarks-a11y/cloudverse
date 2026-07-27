@@ -50,18 +50,28 @@ export default function ClosingCtaBand({
         </h2>
         {subtext && <p className="mt-4 max-w-3xl text-pretty text-lg text-[#A8EFFF]">{subtext}</p>}
 
-        <div className="mt-10 flex flex-row flex-wrap justify-start gap-6 font-medium">
+        {/* Full-width stacked pills on mobile, reverting to the standard
+            hug-content/inline row from sm up — same convention as the shared
+            cv-btn-primary/cv-btn-ghost buttons site-wide (HomeHero, BookADemo,
+            FinOpsHero, PageHero), so this closing band (rendered on nearly
+            every page via GlobalClosingCta) matches every other CTA's mobile
+            size instead of rendering its own larger, non-stacking pair.
+            w-full is explicit because the parent stack above is itself
+            items-start — without it this row just shrink-wraps to its
+            widest child instead of stretching full width, so items-stretch
+            has nothing to stretch the pills to (same fix as PageHero). */}
+        <div className="mt-10 w-full flex flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:justify-start sm:gap-4 font-medium">
           <Link
             href={primaryHref}
             aria-label={primaryLabel}
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-sm font-medium whitespace-nowrap text-[#1447E6] transition-colors duration-100 hover:bg-neutral-100"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 sm:px-7 sm:py-4 text-sm font-medium whitespace-nowrap text-[#1447E6] transition-colors duration-100 hover:bg-neutral-100"
           >
             {primaryLabel}
           </Link>
           <Link
             href={secondaryHref}
             aria-label={secondaryLabel}
-            className="inline-flex items-center justify-center gap-1.5 rounded-full bg-neutral-900/90 px-7 py-4 text-sm font-medium whitespace-nowrap text-white transition-colors duration-100 hover:bg-neutral-900/80"
+            className="inline-flex items-center justify-center gap-1.5 rounded-full bg-neutral-900/90 px-5 py-3 sm:px-7 sm:py-4 text-sm font-medium whitespace-nowrap text-white transition-colors duration-100 hover:bg-neutral-900/80"
           >
             <span>{secondaryLabel}</span>
             <svg className="-mr-1 size-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">

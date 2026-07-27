@@ -6,36 +6,13 @@
    final-position content before GSAP runs; reduced-motion just reveals them. */
 
 import Link from "next/link";
-import { useRef } from "react";
-import { gsap, useGSAP } from "@/lib/gsap";
 import { HeroEyebrow } from "@/components/PageHero";
 import { SplitHeading } from "@/components/SplitHeading";
+import { useHeroReveal } from "@/lib/useHeroReveal";
 import { DEMO_URL } from "@/lib/links";
 
 export function HomeHero() {
-  const scope = useRef<HTMLElement | null>(null);
-
-  useGSAP(
-    () => {
-      const targets = gsap.utils.toArray<HTMLElement>(".hero-anim");
-      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      if (reduce) {
-        gsap.set(targets, { autoAlpha: 1, y: 0 });
-        return;
-      }
-
-      gsap.to(targets, {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.7,
-        ease: "power3.out",
-        stagger: 0.12,
-        delay: 0.1,
-      });
-    },
-    { scope },
-  );
+  const scope = useHeroReveal<HTMLElement>();
 
   return (
     <section ref={scope} className="relative pt-44 pb-28 sm:pt-56 sm:pb-32 lg:pt-72 lg:pb-40">
@@ -50,11 +27,27 @@ export function HomeHero() {
         <p className="hero-anim cv-body mt-6 max-w-[60ch] text-pretty text-cv-ink/70 text-[length:clamp(17px,1.4vw,20px)]">
           One system of record for every agent, model route, prompt, and dollar of AI spend, with governance enforced in the execution path, not a report after the fact.
         </p>
-        <div className="hero-anim mt-10 flex flex-col items-center gap-3 sm:mt-12 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4">
-          <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-hero-demo">
+        {/* Full-width stacked pills on mobile (filled, not hugging their own
+            text) via items-stretch; reverts to the hug-content/inline row
+            from sm up via sm:items-center. Padding trimmed on mobile only —
+            the shared cv-btn-primary/cv-btn-ghost classes (used site-wide)
+            keep their default px-7 py-4 at sm+. w-full is explicit here
+            because the parent stack above is itself `items-center` (for the
+            centered eyebrow/heading/paragraph) — without it, this row would
+            just shrink-wrap to its widest child instead of the page edge. */}
+        <div className="hero-anim mt-10 w-full flex flex-col items-stretch gap-3 sm:mt-12 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4">
+          <Link
+            href={DEMO_URL}
+            className="cv-btn-primary px-5 py-3 sm:px-7 sm:py-4"
+            data-testid="link-hero-demo"
+          >
             Book a demo
           </Link>
-          <Link href="/contact" className="cv-btn-ghost" data-testid="link-hero-audit">
+          <Link
+            href="/contact"
+            className="cv-btn-ghost px-5 py-3 sm:px-7 sm:py-4"
+            data-testid="link-hero-audit"
+          >
             Request a free AI cost &amp; risk audit
           </Link>
         </div>

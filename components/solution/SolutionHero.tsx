@@ -38,11 +38,11 @@ export function SolutionHero({
       subtitleClassName="text-[length:clamp(17px,1.4vw,20px)]"
       actions={
         <>
-          <Link href={primaryHref} className="cv-btn-primary">
+          <Link href={primaryHref} className="cv-btn-primary px-5 py-3 sm:px-7 sm:py-4">
             <span>{primaryLabel}</span>
             <ArrowRight weight="Linear" size={16} />
           </Link>
-          <Link href={platformHref} className="cv-btn-ghost">
+          <Link href={platformHref} className="cv-btn-ghost px-5 py-3 sm:px-7 sm:py-4">
             {platformLabel}
           </Link>
         </>

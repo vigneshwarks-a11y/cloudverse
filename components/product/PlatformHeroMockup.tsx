@@ -15,9 +15,13 @@ export type MockupTab = {
   label: string;
   copy: string;
   icon: ComponentType<IconProps>;
-  /** Optional screenshot to fill the frame. When omitted, the "Video coming
-      soon" placeholder is shown instead. */
+  /** Optional screenshot to fill the frame. When omitted (and no `video`),
+      the "Video coming soon" placeholder is shown instead. */
   image?: string;
+  /** Optional clip to fill the frame. Takes priority over `image`. Plays
+      once per tab activation, then holds on the last frame until the tab
+      advances (manually or once the clip ends). */
+  video?: string;
 };
 
 export function PlatformHeroMockup({
@@ -33,34 +37,27 @@ export function PlatformHeroMockup({
   const [active, setActive] = useState(0);
   const tab = tabs[active];
   const Icon = tab.icon;
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [highlight, setHighlight] = useState<{ left: number; width: number } | null>(null);
-  // Each screenshot may have a slightly different aspect ratio, so the frame
-  // adopts the active image's own natural ratio (read on load) — that way every
-  // tab fills the frame exactly with no crop and no letterbox bars.
+  // Each screenshot/clip may have a slightly different aspect ratio, so the
+  // frame adopts the active media's own natural ratio (read on load) — that
+  // way every tab fills the frame exactly with no crop and no letterbox bars.
   const [ratios, setRatios] = useState<Record<string, number>>({});
-  const frameRatio = tab.image ? ratios[tab.id] ?? 1920 / 1024 : 16 / 9;
+  const [videoDurations, setVideoDurations] = useState<Record<string, number>>({});
+  const frameRatio = tab.video || tab.image ? ratios[tab.id] ?? 1920 / 1024 : 16 / 9;
 
-  const restartTimer = () => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = setInterval(() => {
-      setActive((i) => (i + 1) % tabs.length);
-    }, AUTO_ADVANCE_MS);
-  };
+  const advance = () => setActive((i) => (i + 1) % tabs.length);
 
+  // Video tabs advance when their clip finishes playing; other tabs fall
+  // back to the fixed-interval carousel.
   useEffect(() => {
-    restartTimer();
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
+    if (tab.video) return;
+    const id = setInterval(advance, AUTO_ADVANCE_MS);
+    return () => clearInterval(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tabs.length]);
+  }, [active, tab.video, tabs.length]);
 
-  const selectTab = (i: number) => {
-    setActive(i);
-    restartTimer();
-  };
+  const selectTab = (i: number) => setActive(i);
 
   useLayoutEffect(() => {
     const measure = () => {
@@ -102,13 +99,36 @@ export function PlatformHeroMockup({
             boxShadow: "0 40px 80px -32px rgba(0,0,0,0.75), 0 0 60px -20px rgba(22,100,192,0.5)",
           }}
         >
-          {/* Screenshot frame — shows the tab's image when provided, otherwise
-              the "Video coming soon" placeholder. */}
+          {/* Screenshot frame — shows the tab's video/image when provided,
+              otherwise the "Video coming soon" placeholder. */}
           <div
             className="relative flex items-center justify-center overflow-hidden rounded-[16px] border bg-black sm:rounded-[23px]"
             style={{ aspectRatio: String(frameRatio), borderColor: "rgba(255,255,255,0.08)" }}
           >
-            {tab.image ? (
+            {tab.video ? (
+              <video
+                key={tab.id}
+                src={encodeURI(tab.video)}
+                autoPlay
+                muted
+                playsInline
+                preload="auto"
+                onLoadedMetadata={(e) => {
+                  const el = e.currentTarget;
+                  if (el.videoWidth && el.videoHeight) {
+                    setRatios((r) =>
+                      r[tab.id] ? r : { ...r, [tab.id]: el.videoWidth / el.videoHeight },
+                    );
+                  }
+                  if (Number.isFinite(el.duration)) {
+                    setVideoDurations((d) => ({ ...d, [tab.id]: el.duration }));
+                  }
+                }}
+                onEnded={advance}
+                onError={advance}
+                className="cv-hero-fade absolute inset-0 h-full w-full object-cover"
+              />
+            ) : tab.image ? (
               <img
                 key={tab.id}
                 src={encodeURI(tab.image)}
@@ -155,8 +175,23 @@ export function PlatformHeroMockup({
             )}
           </div>
 
-          {/* White light beam travelling around the frame border */}
-          <BorderBeam duration={8} size={140} colorFrom="#ffffff" colorTo="#ffffff" />
+          {/* White light beam travelling around the frame border. For video
+              tabs it remounts per clip (key includes the clip's own
+              duration) and runs a single lap synced to the clip's length
+              instead of looping continuously. Held back until the clip's
+              metadata loads so it never mounts with the 8s fallback and
+              gets stuck there — once mounted, changing `duration` alone
+              doesn't restart an in-flight Framer Motion tween. */}
+          {(!tab.video || videoDurations[tab.id] !== undefined) && (
+            <BorderBeam
+              key={tab.video ? `${tab.id}-${videoDurations[tab.id]}` : "beam"}
+              duration={tab.video ? videoDurations[tab.id] : 8}
+              size={140}
+              colorFrom="#ffffff"
+              colorTo="#ffffff"
+              {...(tab.video ? { transition: { repeat: 0, ease: "linear" as const } } : {})}
+            />
+          )}
         </div>
 
         {/* Mobile carousel nav */}

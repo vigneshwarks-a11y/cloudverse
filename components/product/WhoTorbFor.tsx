@@ -38,6 +38,11 @@ const PERSONAS: Persona[] = [
 export default function WhoTorbFor() {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  useEffect(() => {
+    setReduceMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }, []);
 
   useEffect(() => {
     const el = ref.current;
@@ -67,9 +72,9 @@ export default function WhoTorbFor() {
               className="relative rounded-3xl border border-cv-line/40 p-8 lg:p-10 text-left transition-all duration-700 ease-out"
               style={{
                 background: `linear-gradient(160deg, hsl(var(--cv-card)) 0%, ${color}14 100%)`,
-                opacity: visible ? 1 : 0,
-                transform: visible ? "translateY(0)" : "translateY(24px)",
-                transitionDelay: `${i * 120}ms`,
+                opacity: visible || reduceMotion ? 1 : 0,
+                transform: reduceMotion || visible ? "translateY(0)" : "translateY(24px)",
+                transitionDelay: reduceMotion ? "0ms" : `${i * 120}ms`,
               }}
             >
               <div

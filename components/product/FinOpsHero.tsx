@@ -13,11 +13,11 @@ export function FinOpsHero({ children }: { children?: ReactNode }) {
       subtitle="Manage cloud, AI, data-platform, and SaaS spend through one intelligent control plane. CloudVerse connects billing, usage, contracts, and ownership into one data model, no disconnected cost-management tools."
       actions={
         <>
-          <Link href={DEMO_URL} className="cv-btn-primary">
+          <Link href={DEMO_URL} className="cv-btn-primary px-5 py-3 sm:px-7 sm:py-4">
             <span>Book a demo</span>
             <ArrowRight weight="Linear" size={16} />
           </Link>
-          <Link href="/contact" className="cv-btn-ghost">Request a technology spend assessment</Link>
+          <Link href="/contact" className="cv-btn-ghost px-5 py-3 sm:px-7 sm:py-4">Request a technology spend assessment</Link>
         </>
       }
     >

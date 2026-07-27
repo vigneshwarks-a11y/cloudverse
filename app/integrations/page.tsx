@@ -87,11 +87,11 @@ export default function IntegrationsPage() {
         subtitleClassName="text-[length:clamp(17px,1.4vw,20px)]"
         actions={
           <>
-            <Link href={DEMO_URL} className="cv-btn-primary">
+            <Link href={DEMO_URL} className="cv-btn-primary px-5 py-3 sm:px-7 sm:py-4">
               <span>Set up your integrations</span>
               <ArrowRight weight="Linear" size={16} />
             </Link>
-            <Link href="/contact" className="cv-btn-ghost">
+            <Link href="/contact" className="cv-btn-ghost px-5 py-3 sm:px-7 sm:py-4">
               Request a connector
             </Link>
           </>

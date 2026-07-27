@@ -64,6 +64,19 @@
     html { scroll-behavior: smooth; }
   }
 
+  /* No section is ever meant to scroll horizontally, so any leftover width
+     (a marquee track, a full-bleed glow with a negative inset) should just be
+     clipped, not open up a horizontal scroll range. Also kills a common
+     trackpad artifact: a vertical scroll gesture with the slightest diagonal
+     component has nowhere to go on X, so the browser rubber-bands the whole
+     fixed ScrollSmoother wrapper left/right — reads as the entire page
+     jittering. overscroll-behavior-x: none stops that bounce; the vertical
+     axis is left alone so the normal overscroll feel is unchanged. */
+  html, body {
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
+  }
+
   a { text-decoration: none; }
   a:hover { text-decoration: none; }
 

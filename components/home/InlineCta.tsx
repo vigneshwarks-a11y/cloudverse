@@ -27,7 +27,7 @@ export function InlineCta({
       <section className="bg-cv-surface py-10 sm:py-14" data-testid={testid ?? "section-inline-cta"}>
         <div className="cv-container">
           <div
-            className="relative overflow-hidden rounded-3xl px-6 py-10 sm:px-12 sm:py-12"
+            className="relative overflow-hidden rounded-3xl px-6 py-6 sm:px-12 sm:py-12"
             style={{ background: `linear-gradient(120deg, ${BASE_BLUE}, #2E5CF0)` }}
           >
             {/* Soft corner glow for depth */}
@@ -36,11 +36,11 @@ export function InlineCta({
               className="pointer-events-none absolute -right-16 -top-20 h-56 w-56 rounded-full blur-3xl"
               style={{ background: "rgba(255,255,255,0.18)" }}
             />
-            <div className="relative flex flex-col items-center gap-6 text-center sm:flex-row sm:justify-between sm:gap-10 sm:text-left">
+            <div className="relative flex flex-col items-center gap-5 text-center sm:flex-row sm:justify-between sm:gap-10 sm:text-left">
               {sub && <p className="text-lg font-medium leading-snug text-white lg:whitespace-nowrap">{sub}</p>}
               <Link
                 href={href}
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-[#1447E6] transition-colors duration-150 hover:bg-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1447E6]"
+                className="inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-full bg-white px-5 py-3 sm:px-7 sm:py-4 text-sm font-medium text-[#1447E6] transition-colors duration-150 hover:bg-white/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#1447E6] sm:w-auto"
               >
                 <span>{label}</span> <ArrowRight weight="Linear" size={16} />
               </Link>
@@ -53,9 +53,9 @@ export function InlineCta({
 
   return (
     <section className="bg-cv-surface pt-6 sm:pt-8 pb-10 sm:pb-12" data-testid={testid ?? "section-inline-cta"}>
-      <div className="cv-container flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-center sm:gap-6">
+      <div className="cv-container flex flex-col items-stretch gap-4 text-center sm:flex-row sm:items-center sm:justify-center sm:gap-6">
         {sub && <p className="cv-body text-cv-ink/70">{sub}</p>}
-        <Link href={href} className="cv-btn-primary shrink-0">
+        <Link href={href} className="cv-btn-primary shrink-0 px-5 py-3 sm:px-7 sm:py-4">
           <span>{label}</span> <ArrowRight weight="Linear" size={16} />
         </Link>
       </div>

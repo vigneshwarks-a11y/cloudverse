@@ -49,10 +49,10 @@ const FAQ = [
 ];
 
 const FINOPS_TABS: MockupTab[] = [
-  { id: "allocation", label: "Cost Allocation", copy: "Every dollar of cloud, AI, data, and SaaS spend mapped to a team, a product, and an owner.", icon: ChartSquare },
-  { id: "anomaly", label: "Anomaly Detection", copy: "Spend spikes traced to a driver and an owner as they happen, not at month-end close.", icon: DangerTriangle },
-  { id: "budgets", label: "Platform AI", copy: "Budgets that forecast where spend lands and flag the overrun before it arrives.", icon: Graph },
-  { id: "chargeback", label: "Recommendations", copy: "Audit-ready showback and chargeback every team can reconcile against the bill.", icon: BillList },
+  { id: "allocation", label: "Cost Allocation", copy: "Every dollar of cloud, AI, data, and SaaS spend mapped to a team, a product, and an owner.", icon: ChartSquare, video: "/finops/allocation.mp4" },
+  { id: "anomaly", label: "Anomaly Detection", copy: "Spend spikes traced to a driver and an owner as they happen, not at month-end close.", icon: DangerTriangle, video: "/finops/anomalies.mp4" },
+  { id: "budgets", label: "Platform AI", copy: "Budgets that forecast where spend lands and flag the overrun before it arrives.", icon: Graph, video: "/finops/platform-ai.mp4" },
+  { id: "chargeback", label: "Recommendations", copy: "Audit-ready showback and chargeback every team can reconcile against the bill.", icon: BillList, video: "/finops/recommendations.mp4" },
 ];
 
 export default function FinOpsPage() {
@@ -88,14 +88,14 @@ export default function FinOpsPage() {
           </div>
 
           {/* Trust line + CTA */}
-          <div className="mt-16 flex flex-col items-center gap-4">
+          <div className="mt-16 flex w-full flex-col items-center gap-4 sm:w-auto">
             <div className="inline-flex items-center gap-2 text-xs text-cv-muted">
               <CheckCircle weight="Linear" size={13} className="text-cv-teal shrink-0" />
               Read-only by default. Automation is opt-in, scoped, and logged.
             </div>
             <Link
               href="/integrations"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-4 transition-colors"
+              className="cv-btn-ghost w-full justify-center px-5 py-3 sm:w-auto sm:px-7 sm:py-4"
               data-testid="link-integrations"
             >
               View all integrations <ArrowRight weight="Linear" size={14} />

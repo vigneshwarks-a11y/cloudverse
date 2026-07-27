@@ -9,7 +9,7 @@ export function IntegrationsStrip({ color, items }: { color: string; items: stri
             <div className="cv-label mb-3" style={{ color }}>Integrations</div>
             <h2 className="cv-h2 text-cv-ink">Connects to the stack your teams already use.</h2>
           </div>
-          <Link href="/integrations" className="cv-btn-secondary shrink-0">
+          <Link href="/integrations" className="cv-btn-ghost shrink-0 px-5 py-3 sm:px-7 sm:py-4">
             See all integrations
           </Link>
         </div>

@@ -11,7 +11,7 @@ export function ExpandInto({ current }: { current: ModuleKey }) {
           <div className="cv-label mb-3">Expand into</div>
           <h2 className="cv-h2 text-cv-ink">One control plane. Add modules as you scale.</h2>
         </div>
-        <div className="grid sm:grid-cols-3 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {items.map((m) => (
             <Link
               key={m.key}

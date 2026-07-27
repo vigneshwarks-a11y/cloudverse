@@ -61,6 +61,11 @@ const CAPABILITIES: Capability[] = [
 
 export function AgentryOrchestration() {
   const rootRef = useRef<HTMLElement | null>(null);
+  // Below lg (where the GSAP pin never mounts, see matchMedia below) each
+  // bullet is a collapsed accordion row instead of an always-visible image
+  // stack — tapping it reveals that capability's screenshot inline, so
+  // mobile/tablet isn't a long scroll of five full screenshots up front.
+  const [openMobile, setOpenMobile] = useState<number | null>(null);
 
   // useLayoutEffect (not useEffect) so the cleanup runs synchronously in
   // React's mutation phase — before the DOM node is detached on navigation.
@@ -182,23 +187,58 @@ export function AgentryOrchestration() {
             </span>
 
             <ul className="lg:flex lg:flex-1 lg:flex-col lg:justify-between lg:pl-6">
-              {CAPABILITIES.map((c, i) => (
-                <li key={c.key} data-bullet className="py-3 transition-opacity duration-300 [@media(max-height:900px)]:py-2.5 [@media(max-height:800px)]:py-1.5 lg:opacity-100">
-                  <button
-                    type="button"
-                    onClick={() => goTo(i)}
-                    className="block w-full text-left lg:cursor-pointer"
-                  >
-                    <span
-                      data-bullet-name
-                      className="text-lg font-semibold leading-snug text-cv-ink transition-colors duration-300"
+              {CAPABILITIES.map((c, i) => {
+                const isOpen = openMobile === i;
+                return (
+                  <li key={c.key} data-bullet className="py-3 transition-opacity duration-300 [@media(max-height:900px)]:py-2.5 [@media(max-height:800px)]:py-1.5 lg:opacity-100">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        goTo(i);
+                        setOpenMobile((cur) => (cur === i ? null : i));
+                      }}
+                      aria-expanded={isOpen}
+                      className="flex w-full items-start justify-between gap-3 text-left lg:cursor-pointer"
                     >
-                      {c.name}
-                    </span>
-                    <p className="mt-2 max-w-md text-sm leading-relaxed text-cv-muted">{c.record}</p>
-                  </button>
-                </li>
-              ))}
+                      <span>
+                        <span
+                          data-bullet-name
+                          className="text-lg font-semibold leading-snug text-cv-ink transition-colors duration-300"
+                        >
+                          {c.name}
+                        </span>
+                        <p className="mt-2 max-w-md text-sm leading-relaxed text-cv-muted">{c.record}</p>
+                      </span>
+                      <svg
+                        viewBox="0 0 24 24"
+                        className={`mt-1 h-4 w-4 shrink-0 text-cv-muted transition-transform duration-300 motion-reduce:transition-none lg:hidden ${isOpen ? "rotate-180" : ""}`}
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden
+                      >
+                        <path d="M6 9l6 6 6-6" />
+                      </svg>
+                    </button>
+
+                    {/* Mobile/tablet only (<lg): tapping the bullet reveals its
+                        screenshot inline instead of every capability's image
+                        being stacked up front — desktop keeps the crossfading
+                        panel stack on the right instead (see below). */}
+                    <div
+                      className={`grid transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none lg:hidden ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+                    >
+                      <div className="overflow-hidden">
+                        <div className="pt-4">
+                          <CapabilityPanel cap={c} />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
 
             <Link
@@ -212,19 +252,18 @@ export function AgentryOrchestration() {
             </Link>
           </div>
 
-          {/* RIGHT — visual stack. Panels overlay (absolute) on lg and crossfade;
-              on mobile they flow as a plain stack (all visible, no GSAP). The
-              column matches the screenshots' native 2565/1562 ratio (not 8/5),
-              so the image fills its frame edge-to-edge with no letterbox band
-              top/bottom, and is vertically centered against the left column
-              (items-center on the grid). */}
-          <div className="relative lg:aspect-[1920/1024]">
+          {/* RIGHT — desktop-only (lg+) visual stack. Panels overlay (absolute)
+              and crossfade, driven by the pinned GSAP timeline above. Below lg
+              the pin never mounts, so this column is hidden entirely — each
+              capability's screenshot instead renders inline inside its own
+              bullet (see the accordion in the LEFT column). The column matches
+              the screenshots' native 2565/1562 ratio (not 8/5), so the image
+              fills its frame edge-to-edge with no letterbox band top/bottom,
+              and is vertically centered against the left column (items-center
+              on the grid). */}
+          <div className="relative hidden lg:block lg:aspect-[1920/1024]">
             {CAPABILITIES.map((c) => (
-              <div
-                key={c.key}
-                data-panel
-                className="[&:not(:first-child)]:mt-6 lg:mt-0 lg:absolute lg:inset-0"
-              >
+              <div key={c.key} data-panel className="lg:absolute lg:inset-0">
                 <CapabilityPanel cap={c} />
               </div>
             ))}

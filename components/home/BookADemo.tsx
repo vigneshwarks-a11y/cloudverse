@@ -79,12 +79,24 @@ export function BookADemo() {
               Connect your first account in under 30 minutes. Most teams find something they didn&apos;t expect the same day.
             </p>
 
-            {/* CTA */}
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link href={DEMO_URL} className="cv-btn-primary" data-testid="link-demo-cta">
+            {/* CTA — full-width stacked pills on mobile (filled, not hugging
+                their own text), reverting to the standard hug-content/inline
+                row from sm up. Padding is trimmed on mobile only; the shared
+                cv-btn-primary/cv-btn-ghost classes (used site-wide) keep their
+                default px-7 py-4 at sm+. */}
+            <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center">
+              <Link
+                href={DEMO_URL}
+                className="cv-btn-primary px-5 py-3 sm:px-7 sm:py-4"
+                data-testid="link-demo-cta"
+              >
                 Book a Demo <ArrowRight weight="Linear" size={16} />
               </Link>
-              <Link href="/sign-up" className="cv-btn-ghost" data-testid="link-signup-cta">
+              <Link
+                href="/sign-up"
+                className="cv-btn-ghost px-5 py-3 sm:px-7 sm:py-4"
+                data-testid="link-signup-cta"
+              >
                 Get started free
               </Link>
             </div>

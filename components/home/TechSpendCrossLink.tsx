@@ -28,7 +28,7 @@ export function TechSpendCrossLink() {
                 Technology Spend Platform.
               </p>
             </div>
-            <Link href="/platform/finops" className="cv-btn-primary shrink-0" data-testid="link-tech-spend">
+            <Link href="/platform/finops" className="cv-btn-primary shrink-0 px-5 py-3 sm:px-7 sm:py-4" data-testid="link-tech-spend">
               <span>See the Technology Spend Platform</span>
               <ArrowRight weight="Linear" size={16} />
             </Link>

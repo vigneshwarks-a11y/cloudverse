@@ -72,8 +72,8 @@ export default function DataXPage() {
         subtitle="Trace warehouse and pipeline cost to the query, the dashboard, the dbt model, and the team that ran it, across Snowflake, Databricks, BigQuery, Fabric, and Synapse."
         actions={
           <>
-            <Link href={DEMO_URL} className="cv-btn-primary"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
-            <Link href="/integrations" className="cv-btn-ghost">Explore the platform</Link>
+            <Link href={DEMO_URL} className="cv-btn-primary px-5 py-3 sm:px-7 sm:py-4"><span>Book a Demo</span><ArrowRight weight="Linear" size={16} /></Link>
+            <Link href="/integrations" className="cv-btn-ghost px-5 py-3 sm:px-7 sm:py-4">Explore the platform</Link>
           </>
         }
       />
@@ -255,14 +255,14 @@ export default function DataXPage() {
           <IntegrationsMarquee />
 
           {/* Trust line + CTA */}
-          <div className="mt-16 flex flex-col items-center gap-4">
+          <div className="mt-16 flex w-full flex-col items-center gap-4 sm:w-auto">
             <div className="inline-flex items-center gap-2 text-xs text-cv-muted">
               <CheckCircle weight="Linear" size={13} className="text-cv-teal shrink-0" />
               Read-only by default. Automation is opt-in, scoped, and logged.
             </div>
             <Link
               href="/integrations"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-cv-blue dark:text-cv-blue-light hover:text-cv-blue-bright hover:underline underline-offset-4 transition-colors"
+              className="cv-btn-ghost w-full justify-center px-5 py-3 sm:w-auto sm:px-7 sm:py-4"
               data-testid="link-integrations"
             >
               View all integrations <ArrowRight weight="Linear" size={14} />

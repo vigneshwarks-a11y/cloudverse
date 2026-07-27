@@ -64,7 +64,8 @@ export function NamedCustomers() {
           </p>
         </div>
 
-        <div className="mt-10 overflow-x-auto overflow-y-hidden rounded-2xl border border-cv-line dark:border-white/15 bg-cv-surface2 dark:bg-white/[0.03] shadow-[0_24px_60px_-32px_rgba(0,0,0,0.5)] dark:shadow-[0_28px_70px_-30px_rgba(0,0,0,0.85)]">
+        {/* Tablet+: full table, horizontally scrollable, first column sticky. */}
+        <div className="mt-10 hidden overflow-x-auto overflow-y-hidden rounded-2xl border border-cv-line dark:border-white/15 bg-cv-surface2 dark:bg-white/[0.03] shadow-[0_24px_60px_-32px_rgba(0,0,0,0.5)] dark:shadow-[0_28px_70px_-30px_rgba(0,0,0,0.85)] sm:block">
           <table className="w-full min-w-[760px] border-collapse text-left">
             <colgroup>
               <col className="w-[24%]" />
@@ -75,7 +76,7 @@ export function NamedCustomers() {
               <tr className="bg-cv-ink/[0.04] dark:bg-white/[0.06]">
                 <th
                   scope="col"
-                  className="border-b border-cv-line/70 px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.12em] text-cv-ink/60 dark:border-white/10 dark:text-white/55"
+                  className="sticky left-0 z-10 border-b border-cv-line/70 bg-cv-surface2 px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.12em] text-cv-ink/60 dark:border-white/10 dark:bg-[#0D0D0D] dark:text-white/55"
                 >
                   Customer
                 </th>
@@ -94,27 +95,66 @@ export function NamedCustomers() {
               </tr>
             </thead>
             <tbody>
-              {ROWS.map((r) => (
-                <tr
-                  key={r.customer}
-                  className="group border-t border-cv-line/70 dark:border-white/[0.12]"
-                >
-                  <th
-                    scope="row"
-                    className="px-6 py-6 align-top text-[15px] font-semibold leading-snug text-cv-ink transition-colors group-hover:bg-cv-ink/[0.03] dark:group-hover:bg-white/[0.04]"
+              {ROWS.map((r, ri) => {
+                const zebra = ri % 2 === 1;
+                return (
+                  <tr
+                    key={r.customer}
+                    className="group border-t border-cv-line/70 dark:border-white/[0.12]"
                   >
-                    {r.customer}
-                  </th>
-                  <td className="border-l border-cv-line/40 px-6 py-6 align-top transition-colors dark:border-white/[0.06] group-hover:bg-cv-ink/[0.03] dark:group-hover:bg-white/[0.04]">
-                    <Tags platforms={r.platforms} />
-                  </td>
-                  <td className="border-l border-cv-line/40 px-6 py-6 align-top text-[14px] leading-relaxed text-cv-ink/85 transition-colors dark:border-white/[0.06] group-hover:bg-cv-ink/[0.03] dark:group-hover:bg-white/[0.04]">
-                    {r.governs}
-                  </td>
-                </tr>
-              ))}
+                    <th
+                      scope="row"
+                      className={`sticky left-0 z-10 px-6 py-6 align-top text-[15px] font-semibold leading-snug text-cv-ink transition-colors group-hover:bg-cv-ink/[0.03] dark:group-hover:bg-white/[0.04] ${
+                        zebra ? "bg-cv-surface2 dark:bg-white/[0.02]" : "bg-cv-surface dark:bg-black"
+                      }`}
+                    >
+                      {r.customer}
+                    </th>
+                    <td
+                      className={`border-l border-cv-line/40 px-6 py-6 align-top transition-colors dark:border-white/[0.06] group-hover:bg-cv-ink/[0.03] dark:group-hover:bg-white/[0.04] ${
+                        zebra ? "bg-cv-ink/[0.012] dark:bg-white/[0.015]" : ""
+                      }`}
+                    >
+                      <Tags platforms={r.platforms} />
+                    </td>
+                    <td
+                      className={`border-l border-cv-line/40 px-6 py-6 align-top text-[14px] leading-relaxed text-cv-ink/85 transition-colors dark:border-white/[0.06] group-hover:bg-cv-ink/[0.03] dark:group-hover:bg-white/[0.04] ${
+                        zebra ? "bg-cv-ink/[0.012] dark:bg-white/[0.015]" : ""
+                      }`}
+                    >
+                      {r.governs}
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
+        </div>
+
+        {/* Mobile (<sm): one stacked card per customer. */}
+        <div className="mt-10 space-y-4 sm:hidden">
+          {ROWS.map((r) => (
+            <div
+              key={r.customer}
+              className="rounded-2xl border border-cv-line/60 bg-cv-surface p-5 dark:border-white/[0.07] dark:bg-[#101014]"
+            >
+              <h3 className="text-lg font-semibold leading-snug text-cv-ink">{r.customer}</h3>
+              <div className="mt-4">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-cv-ink/60">
+                  Platforms in scope
+                </div>
+                <div className="mt-2">
+                  <Tags platforms={r.platforms} />
+                </div>
+              </div>
+              <div className="mt-4 border-t border-cv-line/50 pt-4 dark:border-white/[0.08]">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-cv-ink/60">
+                  What CloudVerse governs
+                </div>
+                <p className="mt-2 text-[14px] leading-relaxed text-cv-ink/85">{r.governs}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

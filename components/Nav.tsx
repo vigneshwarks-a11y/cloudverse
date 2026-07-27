@@ -27,12 +27,16 @@ const SOLUTION_ICONS: Record<string, React.ReactNode> = {
 export function Nav() {
   const [open, setOpen] = useState(false);
   const [openDrop, setOpenDrop] = useState<string | null>(null);
+  // Mobile accordion — shared across both sections (like openDrop above) so
+  // opening one closes the other instead of letting both stay open.
+  const [openMobileSection, setOpenMobileSection] = useState<string | null>("platform");
   const [scrolled, setScrolled] = useState(false);
   const headerRef = useRef<HTMLElement | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    if (open) setOpenMobileSection("platform");
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
@@ -194,7 +198,11 @@ export function Nav() {
       {open && (
         <div className="lg:hidden fixed inset-0 top-[84px] z-40 bg-cv-surface overflow-y-auto">
           <div className="cv-container py-3 flex flex-col">
-            <MobileSection label="Platform" defaultOpen>
+            <MobileSection
+              label="Platform"
+              open={openMobileSection === "platform"}
+              onToggle={() => setOpenMobileSection((cur) => (cur === "platform" ? null : "platform"))}
+            >
               {NAV.platform.map((it) => (
                 <Link
                   key={it.href}
@@ -216,7 +224,11 @@ export function Nav() {
               ))}
             </MobileSection>
 
-            <MobileSection label="Solutions">
+            <MobileSection
+              label="Solutions"
+              open={openMobileSection === "solutions"}
+              onToggle={() => setOpenMobileSection((cur) => (cur === "solutions" ? null : "solutions"))}
+            >
               {NAV.solutions.map((it) => (
                 <Link
                   key={it.href}
@@ -261,21 +273,21 @@ export function Nav() {
 
 function MobileSection({
   label,
-  defaultOpen = false,
+  open,
+  onToggle,
   children,
 }: {
   label: string;
-  defaultOpen?: boolean;
+  open: boolean;
+  onToggle: () => void;
   children: React.ReactNode;
 }) {
-  const [open, setOpen] = useState(defaultOpen);
-
   return (
     <div className="border-b border-cv-line py-1">
       <button
         type="button"
         className="w-full flex items-center justify-between py-3 text-cv-ink text-[15px] font-medium"
-        onClick={() => setOpen((v) => !v)}
+        onClick={onToggle}
         aria-expanded={open}
       >
         {label}

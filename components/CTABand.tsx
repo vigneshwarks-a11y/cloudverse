@@ -15,11 +15,11 @@ export function CTABand({
         <div className="max-w-3xl">
           <h2 className="cv-h2 text-cv-ink">{heading}</h2>
           <p className="cv-body-lg mt-5 text-cv-ink/70">{sub}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={DEMO_URL} className="cv-btn-primary">
+          <div className="flex flex-col items-stretch gap-3 mt-8 sm:flex-row sm:flex-wrap sm:items-center">
+            <Link href={DEMO_URL} className="cv-btn-primary px-5 py-3 sm:px-7 sm:py-4">
               Get a Demo <ArrowRight weight="Linear" size={16} />
             </Link>
-            <Link href="/contact" className="cv-btn-ghost">
+            <Link href="/contact" className="cv-btn-ghost px-5 py-3 sm:px-7 sm:py-4">
               Talk to Sales
             </Link>
           </div>

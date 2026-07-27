@@ -29,11 +29,11 @@ export function ProductHero({
         </div>
         <h1 className="cv-h1 mt-5 text-cv-ink max-w-4xl">{h1}</h1>
         <p className="cv-body mt-6 text-cv-ink/75 max-w-2xl">{sub}</p>
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link href={DEMO_URL} className="cv-btn-primary" style={{ background: color }}>
+        <div className="flex flex-col items-stretch gap-3 mt-8 sm:flex-row sm:flex-wrap sm:items-center">
+          <Link href={DEMO_URL} className="cv-btn-primary px-5 py-3 sm:px-7 sm:py-4" style={{ background: color }}>
             Book a Demo <ArrowRight weight="Linear" size={16} />
           </Link>
-          <Link href="#features" className="cv-btn-ghost">
+          <Link href="#features" className="cv-btn-ghost px-5 py-3 sm:px-7 sm:py-4">
             See it in action
           </Link>
         </div>

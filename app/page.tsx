@@ -135,14 +135,14 @@ export default function HomePage() {
           <IntegrationsMarquee />
 
           {/* Trust line + CTA */}
-          <div className="mt-16 flex flex-col items-center gap-4">
+          <div className="mt-16 flex w-full flex-col items-center gap-4 sm:w-auto">
             <div className="inline-flex items-center gap-2 text-xs text-cv-muted">
               <CheckCircle weight="Linear" size={13} className="text-cv-teal shrink-0" />
               Read-only by default. Automation is opt-in, scoped, and logged.
             </div>
             <Link
               href="/integrations"
-              className="cv-btn-ghost"
+              className="cv-btn-ghost w-full justify-center px-5 py-3 sm:w-auto sm:px-7 sm:py-4"
               data-testid="link-integrations"
             >
               View all integrations <ArrowRight weight="Linear" size={14} />
