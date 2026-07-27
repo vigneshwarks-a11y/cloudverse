@@ -23,20 +23,20 @@ import { DomainDepth } from "@/components/product/DomainDepth";
 import { DOCS } from "@/lib/links";
 
 export const metadata: Metadata = {
-  title: "CloudVerse: Own Every Dollar. Govern Every AI Execution.",
+  title: "CloudVerse: Own Every Technology Dollar. Govern Every Workload.",
   description:
     "One ledger for every dollar of cloud, AI, data, SaaS, and engineering spend, each entry tied to the team, the workload, and the decision that caused it. Governance before the request runs. Evidence after it does.",
   keywords: ["technology spend management", "cloud cost management", "FinOps platform", "cost allocation and chargeback", "enterprise AI governance", "AI control plane", "AI cost optimization", "LLM routing", "execution ledger"],
   alternates: { canonical: "/" },
   openGraph: {
-    title: "CloudVerse: Own Every Dollar. Govern Every AI Execution.",
+    title: "CloudVerse: Own Every Technology Dollar. Govern Every Workload.",
     description: "One ledger for every dollar of cloud, AI, data, SaaS, and engineering spend, tied to the team, the workload, and the decision that caused it.",
     url: "/",
-    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse: own every dollar, govern every AI execution" }],
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse: own every technology dollar, govern every workload that spends it" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "CloudVerse: Own Every Dollar. Govern Every AI Execution.",
+    title: "CloudVerse: Own Every Technology Dollar. Govern Every Workload.",
     description: "One ledger across cloud, AI, data, SaaS, and engineering spend. Governance before the request runs. Evidence after it does.",
   },
 };

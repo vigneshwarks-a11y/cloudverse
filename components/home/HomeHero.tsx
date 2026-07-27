@@ -18,15 +18,16 @@ export function HomeHero() {
     <section ref={scope} className="relative pt-44 pb-28 sm:pt-56 sm:pb-32 lg:pt-72 lg:pb-40">
       <div className="max-w-cv relative z-10 mx-auto flex flex-col items-center px-5 text-center sm:px-6 lg:px-8">
         <div className="hero-anim">
-          <HeroEyebrow accent="blue">The control plane for enterprise AI and compute</HeroEyebrow>
+          <HeroEyebrow accent="blue">The control plane for enterprise technology spend</HeroEyebrow>
         </div>
         {/* Explicit break so the two promises land on their own lines (ink =
-            the spend half, blue = the AI half) instead of text-balance
-            splitting mid-sentence. */}
-        <SplitHeading className="cv-h1 mt-6 text-balance leading-[1.08] text-cv-ink text-[length:clamp(34px,4.8vw,72px)]">
-          Own every dollar.
+            owning the spend, blue = governing what spends it). No text-balance:
+            the breaks are set here, and balance on a shrink-to-fit flex item
+            collapses these longer lines into a narrow six-line stack. */}
+        <SplitHeading className="cv-h1 mt-6 leading-[1.08] text-cv-ink text-[length:clamp(34px,4.8vw,72px)]">
+          Own every technology dollar.
           <br />
-          <span className="text-cv-blue dark:text-cv-blue-light">Govern every AI execution.</span>
+          <span className="text-cv-blue dark:text-cv-blue-light">Govern every workload that spends it.</span>
         </SplitHeading>
         <p className="hero-anim cv-body mt-6 max-w-[60ch] text-pretty text-cv-ink/70 text-[length:clamp(17px,1.4vw,20px)]">
           One ledger for every dollar of cloud, AI, data, SaaS, and engineering spend, each entry tied to the team, the workload, and the decision that caused it. Governance before the request runs. Evidence after it does.
