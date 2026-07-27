@@ -54,8 +54,12 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   return (
     <>
       <article className="pt-[120px] sm:pt-[160px] pb-12 lg:pt-[240px] lg:pb-16">
-        <div className="cv-container max-w-3xl">
-          <Link href="/resources" className="inline-flex items-center gap-1.5 text-sm text-cv-ink/65 hover:text-cv-ink mb-6" data-testid="link-back-resources">
+        <div className="cv-container max-w-4xl">
+          <Link
+            href="/resources"
+            className="inline-flex items-center gap-1.5 rounded-full border border-cv-line bg-cv-surface2 dark:bg-white/[0.03] px-3.5 py-1.5 text-sm text-cv-ink/70 hover:text-cv-ink hover:border-cv-blue/40 transition-colors mb-6"
+            data-testid="link-back-resources"
+          >
             <ArrowLeft weight="Linear" size={14} /> Resources
           </Link>
           <div className="flex items-center gap-3 text-[12px] text-cv-ink/55 mb-5 flex-wrap">
@@ -75,7 +79,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
       {renderedContent && (
         <section className="pb-16 lg:pb-24">
-          <div className="cv-container max-w-3xl">
+          <div className="cv-container max-w-4xl">
             <div
               className="text-cv-ink/85 text-[17px] leading-relaxed
                 [&_h2]:font-sans [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:text-2xl [&_h2]:text-cv-ink [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:first:mt-0
