@@ -1,0 +1,5 @@
+{
+  "question": "How does multi cloud cost management impact AI platform scalability?",
+  "answer": "AI platforms often distribute workloads across multiple clouds to optimize performance and cost. Without structured oversight, scalability leads to cost volatility.\nEffective multi cloud cost management ensures AI workload placement decisions consider economic tradeoffs in addition to performance. This is particularly important for GPU-intensive training and inference.\nCloudVerse models cross-cloud AI routing economics, helping organizations scale AI responsibly without sacrificing cost control.",
+  "order": 36
+}

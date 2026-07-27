@@ -1,0 +1,5 @@
+{
+  "question": "What are the hidden risks of relying only on AWS billing dashboards?",
+  "answer": "AWS billing dashboards provide aggregated visibility but lack workload-level causality.\nRelying solely on dashboards creates blind spots around engineering ownership, AI cost drivers, and configuration-level inefficiencies. They show totals but not the architectural reasoning behind them.\nCloudVerse augments AWS-native views with cross-workload economic intelligence, transforming raw billing data into decision-ready insight.",
+  "order": 18
+}

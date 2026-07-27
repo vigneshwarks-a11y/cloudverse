@@ -1,0 +1,5 @@
+{
+  "question": "What are common blind spots in data platform cost optimization?",
+  "answer": "Blind spots include shared compute overhead, inefficient ETL pipelines, unnecessary data replication, and AI preprocessing jobs.\nTraditional cloud cost optimization efforts focus on rightsizing infrastructure but overlook execution-level inefficiencies within queries and transformations.\nCloudVerse surfaces non-obvious cost drivers at workload level, enabling structural optimization instead of surface-level adjustments.",
+  "order": 69
+}

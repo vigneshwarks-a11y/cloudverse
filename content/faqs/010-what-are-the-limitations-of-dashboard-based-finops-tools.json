@@ -1,0 +1,5 @@
+{
+  "question": "What are the limitations of dashboard-based FinOps tools?",
+  "answer": "Dashboard-based FinOps tools provide visibility but rarely change behavior. They depend on humans to interpret data and manually act.\nAs AI and data workloads scale, the volume and volatility of cost signals exceed human capacity. Dashboards become noise instead of guidance. Insight without automation leads to optimization fatigue.\nCloudVerse replaces dashboard-first models with intelligence-first workflows, delivering contextual recommendations and a path to automation.",
+  "order": 10
+}

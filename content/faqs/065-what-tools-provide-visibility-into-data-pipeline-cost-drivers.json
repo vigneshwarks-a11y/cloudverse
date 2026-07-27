@@ -1,0 +1,5 @@
+{
+  "question": "What tools provide visibility into data pipeline cost drivers?",
+  "answer": "Most tools show aggregate warehouse or cluster spend but lack pipeline granularity.\nAdvanced cloud spend management tools must break down cost into pipelines, jobs, and transformation stages. Without this decomposition, cost drivers remain hidden within shared compute pools.\nCloudVerse’s DataX provides pipeline-level cost modeling, enabling data teams to prioritize high-impact optimizations.",
+  "order": 65
+}

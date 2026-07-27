@@ -1,0 +1,5 @@
+{
+  "question": "Why do AI-driven enterprises need more than traditional FinOps tools?",
+  "answer": "AI-driven enterprises operate with GPU volatility, dynamic inference routing, and evolving data pipelines. Traditional FinOps tools were not built for this level of complexity.\nThey focus on retrospective visibility rather than real-time influence. AI environments require economic modeling tied to workload behavior and automation readiness.\nCloudVerse provides an AI-native economic control plane that aligns engineering, finance, and leadership, delivering structured intelligence instead of static dashboards.",
+  "order": 100
+}

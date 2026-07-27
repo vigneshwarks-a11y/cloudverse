@@ -1,0 +1,5 @@
+{
+  "question": "Why is AWS cost optimization difficult for AI workloads?",
+  "answer": "AI workloads introduce non-linear scaling, especially with GPU instances, distributed training, and inference routing. Costs fluctuate based on model size, usage bursts, and experiment frequency.\nTraditional AWS cost optimization assumes predictable compute patterns. AI breaks those assumptions. Without workload-level economic modeling, teams rely on guesswork when selecting instance types, autoscaling parameters, or model strategies.\nCloudVerse’s AI-native intelligence models cost per model run and GPU utilization, enabling structured decision-making in complex AWS AI environments.",
+  "order": 13
+}

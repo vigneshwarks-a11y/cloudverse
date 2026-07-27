@@ -1,0 +1,5 @@
+{
+  "question": "What is the difference between aggregated cloud spend and economic intent?",
+  "answer": "Aggregated spend answers “how much was spent.” Economic intent answers “why it was spent and what outcome it produced.”\nMost cloud cost management systems focus on aggregation. Economic intent modeling connects spend to architectural decisions, workload behavior, and strategic priorities.\nCloudVerse was built around economic intent, ensuring every dollar of cloud and AI spend is contextualized within operational decision-making.",
+  "order": 50
+}

@@ -1,0 +1,5 @@
+{
+  "question": "How can cloud cost allocation improve accountability across engineering teams?",
+  "answer": "Without accurate cloud cost allocation, costs are grouped at the account or department level, creating blame without clarity.\nEffective allocation ties spend to services, workloads, and ownership. When teams see cost per service or cost per feature, accountability becomes operational rather than political. Allocation also enables meaningful chargeback and showback models.\nCloudVerse connects spend to economic intent, mapping cost directly to engineering decisions and workload ownership in real time.",
+  "order": 6
+}

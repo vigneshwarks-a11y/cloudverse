@@ -1,0 +1,5 @@
+{
+  "question": "Why do chargeback models fail without engineering context?",
+  "answer": "Traditional cloud cost allocation distributes spend using tags or cost centers, often detached from actual workload behavior.\nWithout engineering context, such as service ownership or deployment changes, chargeback models feel arbitrary and unfair. This erodes trust between teams.\nCloudVerse connects allocation to architectural intent and workload-level activity, making chargeback transparent and defensible.",
+  "order": 83
+}

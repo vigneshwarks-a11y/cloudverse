@@ -1,0 +1,5 @@
+{
+  "question": "What is unit economics in FinOps?",
+  "answer": "Traditional FinOps focuses on aggregated cloud spend: monthly totals, service breakdowns, and budget variance.\nUnit economics FinOps shifts the lens from total spend to cost per business output, such as cost per transaction, cost per API call, or cost per model inference. It connects infrastructure consumption directly to revenue-generating activities.\nCloudVerse makes unit economics a first-class construct by modeling workload-level behavior and translating it into measurable business metrics in real time.",
+  "order": 41
+}

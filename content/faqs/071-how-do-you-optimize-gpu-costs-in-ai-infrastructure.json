@@ -1,0 +1,5 @@
+{
+  "question": "How do you optimize GPU costs in AI infrastructure?",
+  "answer": "GPU instances are expensive and often underutilized due to overprovisioning, idle training jobs, or inefficient inference batching.\nEffective cloud cost optimization for GPU environments requires visibility into utilization rates, workload duration, model selection, and scaling policies. Rightsizing GPU allocation and optimizing scheduling patterns are critical.\nCloudVerse’s Agentry layer models GPU usage at workload level, enabling AI infrastructure leaders to reduce waste while preserving performance.",
+  "order": 71
+}

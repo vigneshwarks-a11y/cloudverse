@@ -18,8 +18,11 @@ source_code.zip
 *.zip
 
 *.env
+.env*.local
 *.tsbuildinfo
 
 # Local Netlify folder
 .netlify
 deno.lock
+.vercel
+.env*

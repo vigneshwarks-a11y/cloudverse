@@ -1,0 +1,5 @@
+{
+  "question": "What is the difference between traditional FinOps tools and AI-native cloud cost management platforms?",
+  "answer": "Traditional cloud cost management platforms focus on billing aggregation, allocation, and reporting. They explain what happened.\nAI-native platforms, however, are designed to influence what happens next. They model economic intent, capture workload-level context, and provide insights tied to architectural decisions. This is critical when AI and GPU workloads introduce volatility that spreadsheets and dashboards cannot govern.\nCloudVerse is AI-native by design, modeling cost per model run, per workload, and per transaction, turning visibility into actionable intelligence.",
+  "order": 3
+}

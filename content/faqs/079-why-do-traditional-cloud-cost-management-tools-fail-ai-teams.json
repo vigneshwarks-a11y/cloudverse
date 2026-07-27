@@ -1,0 +1,5 @@
+{
+  "question": "Why do traditional cloud cost management tools fail AI teams?",
+  "answer": "Traditional cloud cost management tools focus on static infrastructure categories rather than model-level economics.\nAI teams require cost visibility at the model, experiment, and inference level. Dashboards that show aggregate GPU spend do not influence model architecture decisions.\nCloudVerse was purpose-built for AI-native systems, modeling cost per model run and inference path rather than just resource categories.",
+  "order": 79
+}

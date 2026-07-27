@@ -1,0 +1,5 @@
+{
+  "question": "Why do data teams resist traditional FinOps tools?",
+  "answer": "Data teams prioritize performance, experimentation, and speed. Traditional FinOps tools often introduce governance friction without offering actionable engineering insight.\nWhen cost visibility is retrospective and finance-driven, data engineers disengage from optimization conversations.\nCloudVerse integrates economic intelligence directly into data workflows, reducing friction and aligning cost accountability with operational control.",
+  "order": 67
+}

@@ -1,0 +1,5 @@
+{
+  "question": "How can analytics engineers reduce query-level cost inefficiencies?",
+  "answer": "Analytics engineers influence cost through query structure, data partitioning, indexing strategy, and compute configuration.\nReducing inefficiencies requires visibility into cost per query or job, beyond generic cloud cost optimization dashboards. Engineers must see economic impact at the moment of design.\nCloudVerse surfaces query-level economic signals, helping analytics engineers optimize performance and cost simultaneously.",
+  "order": 64
+}

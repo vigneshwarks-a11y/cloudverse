@@ -1,0 +1,5 @@
+{
+  "question": "Why are Snowflake and Databricks costs difficult to optimize?",
+  "answer": "Snowflake and Databricks costs scale dynamically based on query volume, compute warehouse size, concurrency, and pipeline design. Small architectural inefficiencies compound rapidly.\nTraditional cloud cost monitoring tools aggregate spend at account level but fail to expose workload-level drivers such as inefficient queries or over-provisioned clusters.\nCloudVerse’s DataX layer decomposes data platform activity into workload-level economics, enabling precise optimization rooted in actual usage behavior.",
+  "order": 61
+}

@@ -1,0 +1,5 @@
+{
+  "question": "How do GPU workloads impact Kubernetes cost optimization?",
+  "answer": "GPU workloads are expensive and often underutilized. A single misconfigured training job can significantly inflate costs.\nEffective Kubernetes cost optimization in GPU clusters requires granular visibility into GPU allocation, utilization, and workload duration. Without this, clusters scale based on performance requirements without economic safeguards.\nCloudVerse integrates AI workload intelligence into Kubernetes cost modeling, allowing teams to optimize GPU allocation based on cost-quality tradeoffs.",
+  "order": 29
+}

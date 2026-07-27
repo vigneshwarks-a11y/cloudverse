@@ -1,0 +1,5 @@
+{
+  "question": "What are the common mistakes in Kubernetes cost optimization?",
+  "answer": "Common mistakes include focusing only on cluster-level savings, ignoring workload-level granularity, relying on static thresholds, and treating cost as a finance-only concern.\nEffective cloud cost optimization in Kubernetes environments requires collaboration between platform engineering, DevOps, and product teams. Without shared economic visibility, optimization efforts stall.\nCloudVerse aligns engineering and finance around workload economics, ensuring optimization is embedded into operational decisions, not isolated cleanup exercises.",
+  "order": 25
+}

@@ -1,0 +1,5 @@
+{
+  "question": "How can AI infrastructure leaders justify GPU ROI?",
+  "answer": "GPU investments are significant capital commitments. Leaders must demonstrate that compute intensity translates into measurable business value.\nJustifying ROI requires cost per service cloud or cost per model inference metrics aligned to revenue or product performance. Without unit economics, AI funding conversations become speculative.\nCloudVerse provides structured economic modeling that ties GPU usage directly to business outcomes, enabling confident executive reporting.",
+  "order": 80
+}

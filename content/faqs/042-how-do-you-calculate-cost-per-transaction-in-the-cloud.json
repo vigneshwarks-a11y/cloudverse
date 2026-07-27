@@ -1,0 +1,5 @@
+{
+  "question": "How do you calculate cost per transaction in the cloud?",
+  "answer": "Calculating cost per transaction cloud requires mapping infrastructure usage to business events. This includes compute, storage, networking, and third-party services consumed per transaction.\nThe challenge lies in attribution accuracy. Shared infrastructure, autoscaling, and burst workloads make simplistic division methods unreliable. Accurate modeling requires workload-level telemetry and economic normalization.\nCloudVerse correlates workload behavior with transaction metrics, enabling precise cost per transaction visibility without manual reconciliation.",
+  "order": 42
+}

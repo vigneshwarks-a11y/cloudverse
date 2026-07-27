@@ -1,0 +1,5 @@
+{
+  "question": "Why does traditional cost allocation fail to capture unit economics?",
+  "answer": "Traditional cloud cost allocation distributes infrastructure spend across departments or tags. It does not account for workload intensity or business output.\nAllocation without economic context produces fairness but not insight. Unit economics requires linking cost to measurable outcomes like transactions or services.\nCloudVerse moves beyond allocation by modeling economic intent, connecting infrastructure activity directly to business drivers.",
+  "order": 48
+}

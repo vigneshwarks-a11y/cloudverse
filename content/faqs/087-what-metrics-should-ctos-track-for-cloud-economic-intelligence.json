@@ -1,0 +1,5 @@
+{
+  "question": "What metrics should CTOs track for cloud economic intelligence?",
+  "answer": "CTOs should track cost per service, cost per transaction, GPU utilization rates, workload growth patterns, and forecast variance, not just total cloud spend.\nTraditional cloud cost monitoring tools emphasize aggregated dashboards rather than strategic metrics tied to architecture.\nCloudVerse equips CTOs with real-time unit economics and decision-time intelligence that aligns technical scale with financial sustainability.",
+  "order": 87
+}

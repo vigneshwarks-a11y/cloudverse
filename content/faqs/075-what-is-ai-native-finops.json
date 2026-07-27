@@ -1,0 +1,5 @@
+{
+  "question": "What is AI-native FinOps?",
+  "answer": "Traditional FinOps was built around VM, storage, and network optimization. AI-native environments introduce GPU economics, model routing, and non-linear scaling.\nFinOps cloud cost management in AI-native environments requires workload-aware modeling, cost-quality tradeoff evaluation, and inference economics.\nCloudVerse extends FinOps into AI systems through Agentry, embedding economic intelligence into model selection and GPU utilization decisions.",
+  "order": 75
+}

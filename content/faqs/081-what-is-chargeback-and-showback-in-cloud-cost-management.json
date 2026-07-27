@@ -1,0 +1,5 @@
+{
+  "question": "What is chargeback and showback in cloud cost management?",
+  "answer": "Chargeback showback cloud models allocate infrastructure costs back to departments or product teams. Showback provides visibility without financial transfer; chargeback enforces direct budget accountability.\nWithout accurate workload-level attribution, these models create disputes rather than clarity. Aggregated allocation leads to teams questioning fairness instead of optimizing behavior.\nCloudVerse strengthens chargeback and showback by grounding allocation in workload economics and engineering ownership, reducing political friction.",
+  "order": 81
+}

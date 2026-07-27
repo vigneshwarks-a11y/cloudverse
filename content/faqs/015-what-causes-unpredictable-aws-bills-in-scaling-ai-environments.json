@@ -1,0 +1,5 @@
+{
+  "question": "What causes unpredictable AWS bills in scaling AI environments?",
+  "answer": "Unpredictable AWS bills typically stem from GPU overprovisioning, inefficient model routing, poorly tuned autoscaling policies, and unmonitored data pipelines.\nIn AI environments, even small configuration changes can multiply cost due to exponential scaling behavior. Without contextual cloud cost monitoring, spikes appear disconnected from root causes.\nCloudVerse continuously correlates AWS activity with economic impact, making cost drivers transparent before they spiral.",
+  "order": 15
+}

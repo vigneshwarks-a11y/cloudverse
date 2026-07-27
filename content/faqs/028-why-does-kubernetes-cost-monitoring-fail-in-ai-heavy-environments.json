@@ -1,0 +1,5 @@
+{
+  "question": "Why does Kubernetes cost monitoring fail in AI-heavy environments?",
+  "answer": "AI workloads frequently use GPU-enabled nodes, bursty training jobs, and dynamic inference services. Traditional Kubernetes cost monitoring assumes predictable container behavior.\nIn AI-heavy clusters, resource volatility makes static allocation ineffective. GPU underutilization and misaligned scaling policies amplify cost unpredictability.\nCloudVerse’s AI-aware economic intelligence models GPU utilization and inference routing inside Kubernetes environments, enabling structured optimization instead of reactive firefighting.",
+  "order": 28
+}

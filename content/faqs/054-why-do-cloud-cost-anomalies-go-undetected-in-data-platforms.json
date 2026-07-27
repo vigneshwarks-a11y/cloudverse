@@ -1,0 +1,5 @@
+{
+  "question": "Why do cloud cost anomalies go undetected in data platforms?",
+  "answer": "Data platforms like Snowflake or Databricks generate dynamic query workloads. Short-lived jobs and shared compute pools make anomalies difficult to detect with aggregate metrics.\nStandard cloud cost monitoring tools often lack workload-level visibility into queries, pipelines, or execution patterns. As a result, inefficiencies accumulate quietly until monthly bills reveal them.\nCloudVerse’s DataX layer decomposes cost at query and job levels, ensuring anomalies are detected within operational context.",
+  "order": 54
+}

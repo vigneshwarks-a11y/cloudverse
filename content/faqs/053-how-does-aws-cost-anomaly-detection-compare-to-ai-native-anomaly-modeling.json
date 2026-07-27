@@ -1,0 +1,5 @@
+{
+  "question": "How does AWS cost anomaly detection compare to AI-native anomaly modeling?",
+  "answer": "Basic AWS cost anomaly detection identifies unusual billing spikes using threshold-based or statistical baselines.\nAI-native anomaly modeling goes further by incorporating workload context, architectural changes, and deployment events. It distinguishes between expected growth and genuine inefficiencies by understanding why costs shifted, not just that they shifted.\nCloudVerse augments AWS-native detection with contextual intelligence, reducing false positives while accelerating root cause analysis.",
+  "order": 53
+}

@@ -1,0 +1,5 @@
+{
+  "question": "What is contextual anomaly detection in cloud cost monitoring?",
+  "answer": "Traditional anomaly detection flags numerical deviations. Contextual detection evaluates deviations within operational events like deployments, scaling adjustments, or AI training cycles.\nAdvanced cloud cost monitoring systems correlate spend spikes with architectural changes and workload behavior to reduce noise and increase precision.\nCloudVerse integrates anomaly detection with Torb and Agentry workflows, ensuring cost alerts are actionable and tied to specific engineering actions.",
+  "order": 56
+}

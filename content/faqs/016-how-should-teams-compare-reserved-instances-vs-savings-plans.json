@@ -1,0 +1,5 @@
+{
+  "question": "How should teams compare reserved instances vs savings plans?",
+  "answer": "Choosing between reserved instances vs savings plans depends on workload predictability and flexibility requirements.\nReserved Instances offer deeper discounts but require commitment to specific instance families and regions. Savings Plans provide more flexibility across compute types but may offer slightly lower discount depth. The challenge is forecasting usage accurately enough to avoid overcommitment.\nCloudVerse models workload behavior and unit economics to guide commitment strategy decisions based on real usage patterns, not static assumptions.",
+  "order": 16
+}

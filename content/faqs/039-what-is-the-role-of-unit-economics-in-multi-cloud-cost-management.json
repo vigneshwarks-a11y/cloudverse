@@ -1,0 +1,5 @@
+{
+  "question": "What is the role of unit economics in multi cloud cost management?",
+  "answer": "In multi-cloud environments, total spend is less informative than economic performance per workload.\nUnit economics FinOps enables organizations to compare cost per transaction, cost per service, or cost per model inference across providers. This allows rational workload placement decisions based on measurable ROI.\nCloudVerse makes unit economics a first-class construct across clouds, transforming multi-cloud from a cost liability into a strategic advantage.",
+  "order": 39
+}

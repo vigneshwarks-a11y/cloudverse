@@ -1,0 +1,5 @@
+{
+  "question": "How do AI workloads complicate multi cloud cost optimization?",
+  "answer": "AI workloads introduce GPU variability, dynamic scaling, and routing decisions that differ by provider pricing and availability.\nTraditional cloud cost optimization tools assume relatively stable infrastructure patterns. AI breaks those assumptions, making optimization far more complex across multiple clouds.\nCloudVerse models AI workload behavior across providers, enabling proactive optimization grounded in cost-quality tradeoffs rather than static rules.",
+  "order": 40
+}

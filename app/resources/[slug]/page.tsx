@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import * as React from "react";
+import Markdoc from "@markdoc/markdoc";
 import { ArrowLeft, ArrowRight } from "@/lib/solar-icons";
-import { RESOURCES, getResource } from "@/lib/resources";
+import { getResources, getResource, type Resource } from "@/lib/resources";
 import { DEMO_URL } from "@/lib/links";
 
-export function generateStaticParams() {
-  return RESOURCES.map((r) => ({ slug: r.slug }));
+export async function generateStaticParams() {
+  const resources = await getResources();
+  return resources.map((r) => ({ slug: r.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const r = getResource(slug);
+  const r = await getResource(slug);
   if (!r) return { title: "Not found" };
   return {
     title: r.seo?.title || `${r.title}: CloudVerse Resources`,
@@ -19,8 +22,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     keywords: r.seo?.keywords,
     alternates: { canonical: `/resources/${r.slug}` },
     openGraph: {
-      title: r.seo?.ogTitle || r.title,
-      description: r.seo?.ogDescription || r.seo?.description,
+      title: r.seo?.title || r.title,
+      description: r.seo?.description,
     },
   };
 }
@@ -38,11 +41,15 @@ const CATEGORY_COLORS: Record<string, string> = {
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const r = getResource(slug);
+  const r = await getResource(slug);
   if (!r) notFound();
 
   const color = CATEGORY_COLORS[r.category] || "#1664C0";
-  const related = RESOURCES.filter((x) => x.slug !== r.slug && x.type === r.type && x.category === r.category).slice(0, 3);
+  const allResources = await getResources();
+  const related = allResources
+    .filter((x) => x.slug !== r.slug && x.type === r.type && x.category === r.category)
+    .slice(0, 3);
+  const renderedContent = r.contentNode ? Markdoc.renderers.react(Markdoc.transform(r.contentNode), React) : null;
 
   return (
     <>
@@ -66,19 +73,20 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         </div>
       </article>
 
-      <section className="pb-16 lg:pb-24">
-        <div className="cv-container max-w-3xl">
-          <div className="space-y-6">
-            {(r.content || []).map((block, i) => (
-              <div
-                key={i}
-                className="text-cv-ink/85 text-[17px] leading-relaxed [&_b]:font-semibold [&_b]:text-cv-ink [&_br]:mb-2"
-                dangerouslySetInnerHTML={{ __html: block }}
-              />
-            ))}
+      {renderedContent && (
+        <section className="pb-16 lg:pb-24">
+          <div className="cv-container max-w-3xl">
+            <div
+              className="text-cv-ink/85 text-[17px] leading-relaxed
+                [&_h2]:font-sans [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:text-2xl [&_h2]:text-cv-ink [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:first:mt-0
+                [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:pl-5 [&_ul]:list-disc [&_ol]:mb-4 [&_ol]:pl-5 [&_ol]:list-decimal [&_li]:mb-1.5
+                [&_strong]:font-semibold [&_strong]:text-cv-ink"
+            >
+              {renderedContent}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {related.length > 0 && (
         <section className="cv-section bg-cv-surface2 border-t border-cv-line">
@@ -118,16 +126,14 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            r.schema ?? {
-              "@context": "https://schema.org",
-              "@type": "Article",
-              headline: r.title,
-              description: r.seo?.description,
-              datePublished: r.date,
-              author: { "@type": "Organization", name: "cloudverse" },
-            },
-          ),
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: r.title,
+            description: r.seo?.description,
+            datePublished: r.date,
+            author: { "@type": "Organization", name: "cloudverse" },
+          }),
         }}
       />
     </>

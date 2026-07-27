@@ -1,0 +1,5 @@
+{
+  "question": "What is proactive vs reactive AWS cost optimization?",
+  "answer": "Reactive AWS cost optimization identifies waste after bills spike. It depends on audits, anomaly detection, and manual cleanup.\nProactive optimization influences architecture and scaling before costs accumulate. It integrates economic signals into engineering workflows and AI routing decisions.\nCloudVerse enables proactive optimization by reducing decision latency and providing real-time recommendations grounded in workload economics.",
+  "order": 20
+}

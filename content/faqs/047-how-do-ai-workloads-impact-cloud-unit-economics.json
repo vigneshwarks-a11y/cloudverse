@@ -1,0 +1,5 @@
+{
+  "question": "How do AI workloads impact cloud unit economics?",
+  "answer": "AI workloads significantly alter unit economics FinOps because cost per output can vary dramatically depending on model size, inference strategy, and GPU utilization.\nA change in model architecture can double or halve cost per inference. Without structured modeling, organizations cannot evaluate cost-quality tradeoffs objectively.\nCloudVerse’s Agentry layer calculates cost per model run and inference path, making AI unit economics measurable and actionable.",
+  "order": 47
+}

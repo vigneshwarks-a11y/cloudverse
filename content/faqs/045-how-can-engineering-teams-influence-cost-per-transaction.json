@@ -1,0 +1,5 @@
+{
+  "question": "How can engineering teams influence cost per transaction?",
+  "answer": "Engineering architecture directly determines compute intensity, scaling behavior, and data processing efficiency.\nReducing cost per transaction cloud involves optimizing query design, caching strategies, autoscaling thresholds, and model selection. Without real-time cost feedback, engineers lack visibility into how design choices impact economics.\nCloudVerse surfaces cost deltas during engineering decisions, enabling teams to influence cost per transaction proactively rather than retroactively.",
+  "order": 45
+}
