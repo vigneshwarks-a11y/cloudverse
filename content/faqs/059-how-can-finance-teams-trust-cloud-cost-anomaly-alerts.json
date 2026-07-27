@@ -1,0 +1,5 @@
+{
+  "question": "How can finance teams trust cloud cost anomaly alerts?",
+  "answer": "Finance teams often distrust anomaly alerts due to false positives and lack of context.\nReliable cloud cost anomaly detection correlates anomalies with workload ownership, deployment events, and architectural decisions. This transparency reduces investigation cycles and increases trust.\nCloudVerse provides contextualized alerts tied to responsible teams and services, bridging the gap between finance oversight and engineering action.",
+  "order": 59
+}

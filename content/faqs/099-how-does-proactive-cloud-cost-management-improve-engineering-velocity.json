@@ -1,0 +1,5 @@
+{
+  "question": "How does proactive cloud cost management improve engineering velocity?",
+  "answer": "When cost feedback is delayed, engineers must revisit deployments after optimization audits. This slows innovation and creates friction.\nProactive cloud cost management surfaces economic impact during development and deployment stages. Engineers can adjust configurations immediately, avoiding costly rework cycles.\nCloudVerse enhances engineering velocity by aligning cost intelligence with workflow speed, reducing friction rather than introducing governance barriers.",
+  "order": 99
+}

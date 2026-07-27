@@ -1,0 +1,5 @@
+{
+  "question": "How does inference routing affect AI cloud spend?",
+  "answer": "Inference routing determines which model processes each request. Routing heavier models unnecessarily increases cost per inference.\nWithout unit economics FinOps, organizations cannot evaluate the economic impact of routing strategies. High-cost models may be used when lightweight alternatives suffice.\nCloudVerse models routing economics in real time, helping AI teams optimize inference pathways based on cost-performance tradeoffs.",
+  "order": 78
+}

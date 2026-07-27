@@ -1,0 +1,5 @@
+{
+  "question": "How does cloud cost monitoring differ from cloud cost optimization?",
+  "answer": "Cloud cost monitoring focuses on visibility, tracking spend across services, accounts, and resources. It answers the question: “Where did the money go?”\nCloud cost optimization, however, focuses on action. It identifies inefficiencies, suggests architectural improvements, and in advanced systems, automates corrective measures. Monitoring without optimization results in dashboards without impact.\nCloudVerse moves organizations from passive monitoring to continuous optimization by linking cost signals to engineering and AI workflows.",
+  "order": 4
+}

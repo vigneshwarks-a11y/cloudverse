@@ -1,0 +1,5 @@
+{
+  "question": "How does cost per query impact data platform ROI?",
+  "answer": "Understanding cost per service cloud at the query level enables organizations to evaluate which analytics workloads deliver measurable business value.\nHigh-cost, low-impact queries erode ROI silently. Without workload-level visibility, data teams cannot prioritize optimizations effectively.\nCloudVerse translates query execution behavior into service-level economic metrics, aligning data platform cost with business outcomes.",
+  "order": 66
+}

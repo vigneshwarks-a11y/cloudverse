@@ -1,0 +1,5 @@
+{
+  "question": "Why is Kubernetes cost allocation often inaccurate?",
+  "answer": "Kubernetes environments are dynamic. Pods spin up and down rapidly, and shared resources like networking and storage are difficult to allocate precisely.\nWithout strong tagging discipline and workload attribution logic, Kubernetes cost allocation becomes fragmented or misleading. Shared cluster overhead further complicates attribution, leading to disputes between teams.\nCloudVerse improves allocation accuracy by modeling workload intent and ownership rather than relying solely on infrastructure tags.",
+  "order": 23
+}

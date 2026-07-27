@@ -1,0 +1,5 @@
+{
+  "question": "How do you achieve workload-level cost allocation in data platforms?",
+  "answer": "Data platforms share compute resources across multiple teams and pipelines, making attribution complex.\nAccurate cloud cost allocation requires mapping queries, jobs, and pipelines to business owners and services rather than relying solely on account-level tags. Without workload attribution, optimization efforts lack accountability.\nCloudVerse models data workloads at execution level, assigning cost based on operational behavior instead of static tagging assumptions.",
+  "order": 62
+}

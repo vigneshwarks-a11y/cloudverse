@@ -1,0 +1,5 @@
+{
+  "question": "How do you normalize cost allocation across AWS, Azure, and GCP?",
+  "answer": "Each cloud provider uses different billing constructs, discount mechanisms, and tagging standards. Without normalization, cross-provider comparisons are unreliable.\nAccurate cloud cost allocation across AWS, Azure, and GCP requires consistent workload attribution, standardized tagging frameworks, and unified economic modeling. Aggregated reporting alone does not solve allocation inconsistencies.\nCloudVerse standardizes cost modeling at the workload and service level, enabling cross-cloud accountability grounded in operational reality.",
+  "order": 33
+}

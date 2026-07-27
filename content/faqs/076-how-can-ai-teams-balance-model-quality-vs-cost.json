@@ -1,0 +1,5 @@
+{
+  "question": "How can AI teams balance model quality vs cost?",
+  "answer": "Higher-performing models often require larger architectures and greater compute intensity. Without economic visibility, quality improvements can silently double infrastructure costs.\nBalancing performance and spend requires real-time cloud cost monitoring tied to model evaluation metrics. Teams must understand cost per inference relative to accuracy gains.\nCloudVerse surfaces cost-quality tradeoffs at the model level, enabling rational decision-making rather than intuition-driven experimentation.",
+  "order": 76
+}

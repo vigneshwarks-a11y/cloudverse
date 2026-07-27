@@ -1,0 +1,5 @@
+{
+  "question": "How do AI workloads distort traditional cost forecasting models?",
+  "answer": "AI workloads often include experimental iterations, dynamic inference scaling, and GPU provisioning bursts. These patterns disrupt historical averages used in traditional models.\nWithout integrating unit economics FinOps, forecasting becomes detached from cost per model run or cost per inference trends.\nCloudVerse models AI workload intensity directly, allowing forecasts to adjust based on model routing, training frequency, and GPU allocation behavior.",
+  "order": 57
+}

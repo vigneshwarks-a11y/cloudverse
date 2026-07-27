@@ -1,0 +1,5 @@
+{
+  "question": "What drives unpredictable data platform cloud costs?",
+  "answer": "Unpredictable data platform spend often stems from poorly optimized queries, excessive concurrency scaling, inefficient transformations, and AI-driven data experiments.\nWithout structured cloud cost forecasting, data leaders struggle to anticipate how query growth or new workloads will impact spend.\nCloudVerse correlates query patterns and execution trends with economic impact, enabling proactive adjustments before volatility escalates.",
+  "order": 63
+}

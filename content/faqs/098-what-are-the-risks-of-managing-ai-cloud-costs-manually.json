@@ -1,0 +1,5 @@
+{
+  "question": "What are the risks of managing AI cloud costs manually?",
+  "answer": "Manual management of AI infrastructure relies on spreadsheets, periodic reviews, and static reports.\nIn AI-native environments, cost behavior changes rapidly due to experimentation and scaling patterns. Without structured cloud cost forecasting and workload-level insight, manual governance leads to delayed detection and budget overruns.\nCloudVerse replaces manual oversight with continuous AI-aware economic intelligence.",
+  "order": 98
+}

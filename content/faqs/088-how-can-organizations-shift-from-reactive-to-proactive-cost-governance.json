@@ -1,0 +1,5 @@
+{
+  "question": "How can organizations shift from reactive to proactive cost governance?",
+  "answer": "Reactive governance responds to monthly billing surprises. Proactive governance influences decisions before cost accumulates.\nShifting requires embedding cloud cost optimization signals into engineering workflows and aligning economic metrics with deployment processes.\nCloudVerse reduces decision latency by providing economic feedback at build and deployment stages, enabling governance that operates at engineering speed.",
+  "order": 88
+}

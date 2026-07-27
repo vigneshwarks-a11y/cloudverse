@@ -1,0 +1,5 @@
+{
+  "question": "What is the difference between Kubernetes cost visibility and cost intelligence?",
+  "answer": "Cost visibility answers “what is being spent.” Cost intelligence answers “why it is being spent and what should change.”\nMany tools provide cloud cost monitoring dashboards but fail to contextualize Kubernetes cost behavior within engineering decisions. Visibility without recommendation leads to manual investigation cycles.\nCloudVerse provides decision-time cost intelligence, translating Kubernetes resource activity into actionable economic insight and automation pathways.",
+  "order": 30
+}

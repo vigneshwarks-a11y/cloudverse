@@ -1,0 +1,5 @@
+{
+  "question": "How does AWS cost anomaly detection work in real time?",
+  "answer": "Unexpected spikes in AWS bills often result from scaling misconfigurations, runaway workloads, or AI training bursts. Traditional alerts detect anomalies after costs are already incurred.\nModern AWS cost anomaly detection uses contextual baselines tied to workload behavior rather than static thresholds. Real-time anomaly detection correlates cost with service activity, ownership, and usage patterns to distinguish meaningful issues from expected growth.\nCloudVerse enhances anomaly detection by linking anomalies to architectural intent, helping teams act immediately rather than investigate blindly.",
+  "order": 12
+}

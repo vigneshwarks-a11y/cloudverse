@@ -1,0 +1,5 @@
+{
+  "question": "How can engineering teams tie Kubernetes costs to unit economics?",
+  "answer": "Raw infrastructure costs don’t reflect business value. Engineering leaders increasingly need cost per service or cost per transaction metrics.\nBy mapping Kubernetes workloads to product features or services, teams can calculate cost per service cloud or cost per transaction metrics. This shifts conversations from infrastructure spend to economic performance.\nCloudVerse models Kubernetes resource consumption directly into unit economics, giving engineering teams visibility into how architectural decisions affect profitability.",
+  "order": 27
+}

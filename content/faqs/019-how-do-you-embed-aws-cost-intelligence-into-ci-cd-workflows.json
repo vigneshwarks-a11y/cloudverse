@@ -1,0 +1,5 @@
+{
+  "question": "How do you embed AWS cost intelligence into CI/CD workflows?",
+  "answer": "To influence cost effectively, intelligence must appear where decisions are made inside CI/CD pipelines and pull requests.\nEmbedding AWS cost optimization into CI/CD means calculating cost deltas for infrastructure changes, flagging high-risk configurations, and recommending alternatives before deployment.\nCloudVerse integrates economic feedback into engineering workflows, allowing teams to adjust configurations without slowing delivery velocity.",
+  "order": 19
+}

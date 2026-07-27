@@ -1,0 +1,5 @@
+{
+  "question": "How can engineering teams reduce AWS compute costs before deployment?",
+  "answer": "Most AWS compute waste originates in architecture and configuration decisions made before deployment. Once deployed, rollback is expensive and politically sensitive.\nEngineering teams can reduce costs by evaluating instance types, autoscaling thresholds, storage classes, and networking design during development. Embedding AWS cost optimization tools into CI/CD workflows ensures cost deltas are visible before changes go live.\nCloudVerse shifts cost awareness left, allowing teams to see cost impact at decision time rather than during monthly reviews.",
+  "order": 14
+}

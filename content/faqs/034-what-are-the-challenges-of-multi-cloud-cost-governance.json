@@ -1,0 +1,5 @@
+{
+  "question": "What are the challenges of multi cloud cost governance?",
+  "answer": "Governance across multiple clouds is difficult because policies are often implemented separately in each environment. This creates blind spots and inconsistent enforcement.\nEffective cloud cost governance requires centralized intelligence with decentralized execution where policies align with engineering workflows rather than external audits. Multi-cloud environments amplify the risk of misalignment between finance and engineering.\nCloudVerse establishes a single intelligence plane for governance, aligning policy with real-time workload behavior across providers.",
+  "order": 34
+}

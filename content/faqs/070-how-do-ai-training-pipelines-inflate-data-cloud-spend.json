@@ -1,0 +1,5 @@
+{
+  "question": "How do AI training pipelines inflate data cloud spend?",
+  "answer": "AI training pipelines require large-scale data preparation, feature engineering, and preprocessing. These steps often run repeatedly and consume substantial compute.\nWithout integrating unit economics FinOps, organizations struggle to measure cost per model training cycle or data processing stage.\nCloudVerse models data pipeline cost within the broader AI economic framework, ensuring training investments are transparent and optimized.",
+  "order": 70
+}

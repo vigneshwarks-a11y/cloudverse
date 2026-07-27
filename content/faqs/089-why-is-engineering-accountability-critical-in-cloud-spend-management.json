@@ -1,0 +1,5 @@
+{
+  "question": "Why is engineering accountability critical in cloud spend management?",
+  "answer": "Engineering teams directly control infrastructure configuration, scaling policies, and AI routing strategies.\nWithout accountability at this layer, cloud cost management becomes a finance-driven exercise disconnected from operational control.\nCloudVerse embeds cost intelligence directly into Torb workflows, ensuring accountability exists where cost decisions originate.",
+  "order": 89
+}

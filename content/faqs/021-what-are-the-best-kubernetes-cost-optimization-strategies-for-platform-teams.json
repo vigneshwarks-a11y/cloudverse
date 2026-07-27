@@ -1,0 +1,5 @@
+{
+  "question": "What are the best Kubernetes cost optimization strategies for platform teams?",
+  "answer": "Platform teams often discover Kubernetes cost issues after clusters scale inefficiently. Overprovisioned nodes, idle workloads, and misconfigured autoscaling silently increase spend.\nThe best Kubernetes cost optimization strategies include rightsizing requests and limits, improving autoscaler tuning, workload-level visibility, and aligning resource allocation with actual usage patterns. Optimization must operate at the pod, namespace, and service level, not just cluster aggregates.\nCloudVerse goes beyond surface-level Kubernetes visibility by modeling economic impact at workload and service levels, enabling platform teams to optimize proactively rather than reactively.",
+  "order": 21
+}

@@ -1,0 +1,5 @@
+{
+  "question": "What causes GPU underutilization in cloud environments?",
+  "answer": "GPU underutilization typically results from idle training windows, inefficient job scheduling, suboptimal batch sizes, or fragmented cluster allocation.\nWithout structured cloud cost optimization, idle GPUs accumulate cost rapidly while appearing operationally “healthy.”\nCloudVerse tracks GPU utilization patterns in context, enabling AI infrastructure teams to adjust scheduling and scaling strategies proactively.",
+  "order": 77
+}

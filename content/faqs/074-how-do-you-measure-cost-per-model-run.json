@@ -1,0 +1,5 @@
+{
+  "question": "How do you measure cost per model run?",
+  "answer": "Measuring cost per model run requires aggregating compute time, GPU allocation, storage, and preprocessing resources consumed during training or inference.\nWithout structured unit economics FinOps, organizations struggle to isolate model-level costs from shared infrastructure.\nCloudVerse’s Agentry layer calculates cost per model run and links it directly to engineering ownership, enabling clear ROI evaluation.",
+  "order": 74
+}

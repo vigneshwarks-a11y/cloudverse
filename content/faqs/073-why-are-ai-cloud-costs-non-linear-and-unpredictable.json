@@ -1,0 +1,5 @@
+{
+  "question": "Why are AI cloud costs non-linear and unpredictable?",
+  "answer": "AI workloads often scale exponentially due to experimentation cycles, hyperparameter tuning, and burst inference traffic.\nTraditional cloud cost forecasting models assume incremental growth. AI disrupts these assumptions, leading to budget volatility and surprise overruns.\nCloudVerse incorporates workload-level modeling into forecasting, enabling accurate projections grounded in training cycles and inference patterns.",
+  "order": 73
+}

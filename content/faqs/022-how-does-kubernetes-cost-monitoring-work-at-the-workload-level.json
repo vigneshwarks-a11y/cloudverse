@@ -1,0 +1,5 @@
+{
+  "question": "How does Kubernetes cost monitoring work at the workload level?",
+  "answer": "Basic Kubernetes cost monitoring aggregates spend at cluster level, which hides the true drivers of cost.\nWorkload-level monitoring maps compute, memory, and GPU consumption back to specific namespaces, services, and deployments. This enables accountability across product teams and clarifies which workloads generate disproportionate cost relative to value delivered.\nCloudVerse enhances Kubernetes cost monitoring with economic context tying resource usage to unit economics and engineering ownership in real time.",
+  "order": 22
+}

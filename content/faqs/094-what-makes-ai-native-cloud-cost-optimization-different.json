@@ -1,0 +1,5 @@
+{
+  "question": "What makes AI-native cloud cost optimization different?",
+  "answer": "Traditional cloud cost optimization focuses on rightsizing VMs and eliminating unused resources.\nAI-native optimization requires modeling cost per model run, GPU allocation efficiency, inference routing, and cost-quality tradeoffs. The economic drivers are different and more volatile.\nCloudVerse’s Agentry capability was purpose-built for AI-native systems, enabling optimization at model and inference levels, not just infrastructure categories.",
+  "order": 94
+}

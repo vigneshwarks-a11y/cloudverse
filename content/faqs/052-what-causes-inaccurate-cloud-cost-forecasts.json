@@ -1,0 +1,5 @@
+{
+  "question": "What causes inaccurate cloud cost forecasts?",
+  "answer": "Forecasts fail when they rely solely on historical spend without understanding the architectural drivers behind it.\nCommon causes of inaccurate cloud cost forecasting include unmodeled AI workloads, unpredictable scaling policies, inconsistent tagging, and lack of unit economics visibility. Without workload attribution, projections are disconnected from real usage trends.\nCloudVerse improves forecasting accuracy by grounding projections in service-level and AI-level economic behavior.",
+  "order": 52
+}
