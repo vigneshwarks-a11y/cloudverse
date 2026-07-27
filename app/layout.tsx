@@ -2,10 +2,7 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";
-import { Nav } from "@/components/Nav";
-import { SmoothScroll } from "@/components/SmoothScroll";
-import { Footer } from "@/components/Footer";
-import GlobalClosingCta from "@/components/GlobalClosingCta";
+import { SiteChrome } from "@/components/SiteChrome";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 // Self-hosted OFFICIAL Inter (variable) from rsms.me. The Google Fonts build
@@ -83,12 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
-          <Nav />
-          <SmoothScroll>
-            <main>{children}</main>
-            <GlobalClosingCta />
-            <Footer />
-          </SmoothScroll>
+          <SiteChrome>{children}</SiteChrome>
         </ThemeProvider>
         <Script
           id="org-jsonld"
