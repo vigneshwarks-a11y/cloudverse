@@ -232,7 +232,7 @@ export function AgentryOrchestration() {
                     >
                       <div className="overflow-hidden">
                         <div className="pt-4">
-                          <CapabilityPanel cap={c} />
+                          <CapabilityPanel cap={c} bare />
                         </div>
                       </div>
                     </div>
@@ -292,7 +292,26 @@ function paintBullets(bullets: HTMLElement[], active: number) {
  * chrome, each accented in its capability hue, crossfaded on scroll.
  * ------------------------------------------------------------------ */
 
-function CapabilityPanel({ cap }: { cap: Capability }) {
+function CapabilityPanel({ cap, bare = false }: { cap: Capability; bare?: boolean }) {
+  // `bare`: the mobile accordion's inline screenshot — just the image, no
+  // shell mat / light edge / right-edge fade. Those all exist to make the
+  // desktop crossfade panel bleed into the page past the container's clipped
+  // edge; there's no such bleed here, so they'd just look like an arbitrary
+  // border and a stray dark wash on a plain in-card screenshot.
+  if (bare) {
+    return (
+      <div className="relative aspect-[1920/1024] w-full overflow-hidden rounded-2xl">
+        <Image
+          src={encodeURI(PANEL_IMAGE[cap.key])}
+          alt={PANEL_TITLE[cap.key]}
+          fill
+          sizes="100vw"
+          className="rounded-2xl object-cover"
+        />
+      </div>
+    );
+  }
+
   return (
     // Low-opacity white "shell" mat around the screenshot. The shell (outer
     // container) carries the shared top-left light edge (CardLightEdge) as its

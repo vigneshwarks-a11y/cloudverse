@@ -128,7 +128,19 @@ export function PinnedLoopCarousel({ children }: { children: ReactNode }) {
       // gsap.matchMedia automatically runs the function this callback
       // returns, which kills the trigger and flips `ready` back off — panels
       // fall back to plain stacked flow with no extra code needed.
-      mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
+      //
+      // `pointer: fine` is load-bearing, not decorative: `min-width` alone
+      // can be spoofed on an actual phone via "Request Desktop Site" (a
+      // common, sometimes-accidental mobile browser toggle), which reports a
+      // desktop-sized `window.innerWidth` on real touch hardware. This pin +
+      // per-panel opacity/visibility mechanism is fragile on touch scrolling,
+      // and a phone that slips into this branch can end up with panel 1/2
+      // stuck at the `paint(0)` resting state — opacity 0, visibility hidden
+      // — forever, i.e. a real section rendering as a blank black gap.
+      // `pointer: fine` reflects the primary input's actual hardware
+      // capability and ignores the desktop-site viewport spoof, so a
+      // touchscreen never engages this path regardless of reported width.
+      mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference) and (pointer: fine)", () => {
         setReady(true);
 
         // Total pin length: every panel gets a HOLD (reading dwell); each
@@ -197,6 +209,19 @@ export function PinnedLoopCarousel({ children }: { children: ReactNode }) {
         return () => {
           setReady(false);
           st.kill();
+          // paint() mutates each panel's opacity/visibility/transform via
+          // direct DOM writes, outside React's control — reverting `ready`
+          // only changes the wrapper's className, so without this, a panel
+          // that was off-stage (opacity 0, visibility hidden) the moment
+          // this branch stops matching would stay invisible forever even
+          // after falling back to normal static flow.
+          panelRefs.current.forEach((el) => {
+            if (!el) return;
+            el.style.transform = "";
+            el.style.opacity = "";
+            el.style.visibility = "";
+            el.style.zIndex = "";
+          });
         };
       });
     }, rootRef);
