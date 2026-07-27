@@ -17,10 +17,12 @@ type BandCopy = {
 
 // Per-route closing-band copy. Any route not listed falls back to the default band.
 const CUSTOM: Record<string, BandCopy> = {
-  // Homepage (Agentry root) closes on its own agent-governance CTA.
+  // Homepage closes on both halves of the promise: what's running, and what it
+  // costs. Subtext deliberately differs from the mid-page InlineCta's line so
+  // the same sentence doesn't fire twice on one page.
   "/": {
-    heading: "See what's already running that you don't know about.",
-    subtext: "Most teams find at least one ungoverned agent in the first onboarding call.",
+    heading: "See what's already running, and what it costs you.",
+    subtext: "Most teams find their first concrete savings opportunity within the first onboarding call.",
     primaryLabel: "Book a demo",
     secondaryLabel: "Start a 3-week private pilot",
     secondaryHref: "/connect",
