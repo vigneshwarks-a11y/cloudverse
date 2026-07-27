@@ -33,7 +33,7 @@ const CATEGORY_COLORS: Record<string, string> = {
 export default async function ResourcesPage() {
   const [GUIDES, DOCS, FAQS, BLOG_POSTS] = await Promise.all([getGuides(), getDocs(), getFaqs(), getBlogPosts()]);
   const featuredGuides = GUIDES.filter((g) => g.featured).slice(0, 3);
-  const moreGuides = GUIDES.filter((g) => !g.featured).slice(0, 6);
+  const moreGuides = GUIDES.filter((g) => !g.featured);
   const featuredBlog = BLOG_POSTS.slice(0, 3);
   const recentBlog = BLOG_POSTS.slice(3, 9);
 
@@ -194,8 +194,8 @@ function ResourceCard({ r, accent }: { r: import("@/lib/resources").Resource; ac
     >
       <div className="flex items-center gap-3 text-[11px] text-cv-muted mb-4">
         <span
-          className="inline-flex items-center px-2 py-0.5 rounded-full border text-[10px] uppercase tracking-wider"
-          style={{ borderColor: `${color}66`, color }}
+          className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] uppercase tracking-wider"
+          style={{ background: `${color}1a`, color }}
         >
           {r.category}
         </span>
