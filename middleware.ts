@@ -11,16 +11,22 @@ import type { NextRequest } from "next/server";
 const REALM = 'Basic realm="Keystatic Admin"';
 
 export function middleware(request: NextRequest) {
-  const password = process.env.KEYSTATIC_ADMIN_PASSWORD;
+  const password = process.env.KEYSTATIC_ADMIN_PASSWORD?.trim();
   if (!password) {
     return new NextResponse("Keystatic admin is not configured: set KEYSTATIC_ADMIN_PASSWORD.", { status: 503 });
   }
 
-  const expected = "Basic " + Buffer.from(`admin:${password}`).toString("base64");
-  const provided = request.headers.get("authorization");
-
-  if (provided === expected) {
-    return NextResponse.next();
+  const authHeader = request.headers.get("authorization");
+  if (authHeader?.startsWith("Basic ")) {
+    // Only the password matters — the username field is ignored (it isn't
+    // shown to the browser, and different browsers/autofill send different
+    // things there), so extract just the part after the first ":" rather
+    // than requiring an exact "admin:<password>" match.
+    const decoded = Buffer.from(authHeader.slice(6), "base64").toString("utf-8");
+    const providedPassword = decoded.slice(decoded.indexOf(":") + 1);
+    if (providedPassword === password) {
+      return NextResponse.next();
+    }
   }
 
   return new NextResponse("Authentication required", {
