@@ -18,14 +18,18 @@ export function HomeHero() {
     <section ref={scope} className="relative pt-44 pb-28 sm:pt-56 sm:pb-32 lg:pt-72 lg:pb-40">
       <div className="max-w-cv relative z-10 mx-auto flex flex-col items-center px-5 text-center sm:px-6 lg:px-8">
         <div className="hero-anim">
-          <HeroEyebrow accent="blue">The Enterprise AI Control Plane</HeroEyebrow>
+          <HeroEyebrow accent="blue">The control plane for enterprise AI and compute</HeroEyebrow>
         </div>
+        {/* Explicit break so the two promises land on their own lines (ink =
+            the spend half, blue = the AI half) instead of text-balance
+            splitting mid-sentence. */}
         <SplitHeading className="cv-h1 mt-6 text-balance leading-[1.08] text-cv-ink text-[length:clamp(34px,4.8vw,72px)]">
-          Govern every AI execution.{" "}
-          <span className="text-cv-blue dark:text-cv-blue-light">Prove the economics behind it.</span>
+          Own every dollar.
+          <br />
+          <span className="text-cv-blue dark:text-cv-blue-light">Govern every AI execution.</span>
         </SplitHeading>
         <p className="hero-anim cv-body mt-6 max-w-[60ch] text-pretty text-cv-ink/70 text-[length:clamp(17px,1.4vw,20px)]">
-          One system of record for every agent, model route, prompt, and dollar of AI spend, with governance enforced in the execution path, not a report after the fact.
+          One ledger for every dollar of cloud, AI, data, SaaS, and engineering spend, each entry tied to the team, the workload, and the decision that caused it. Governance before the request runs. Evidence after it does.
         </p>
         {/* Full-width stacked pills on mobile (filled, not hugging their own
             text) via items-stretch; reverts to the hug-content/inline row

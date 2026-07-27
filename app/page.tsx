@@ -18,23 +18,26 @@ import { FeatureShowcase } from "@/components/home/FeatureShowcase";
 import { InlineCta } from "@/components/home/InlineCta";
 import { SectionHeading } from "@/components/SectionHeading";
 import { GuidesResources } from "@/components/home/GuidesResources";
+import { FinopsVarianceMock } from "@/components/product/FinopsVarianceMock";
+import { DomainDepth } from "@/components/product/DomainDepth";
+import { DOCS } from "@/lib/links";
 
 export const metadata: Metadata = {
-  title: "CloudVerse: The Enterprise AI Control Plane",
+  title: "CloudVerse: Own Every Dollar. Govern Every AI Execution.",
   description:
-    "Govern every AI execution and prove the economics behind it. One system of record for every agent, model route, prompt, and dollar of AI spend, with governance enforced in the execution path, deployed in your environment.",
-  keywords: ["enterprise AI governance", "AI control plane", "AI agent governance", "AI cost optimization", "LLM routing", "AI spend", "execution ledger"],
+    "One ledger for every dollar of cloud, AI, data, SaaS, and engineering spend, each entry tied to the team, the workload, and the decision that caused it. Governance before the request runs. Evidence after it does.",
+  keywords: ["technology spend management", "cloud cost management", "FinOps platform", "cost allocation and chargeback", "enterprise AI governance", "AI control plane", "AI cost optimization", "LLM routing", "execution ledger"],
   alternates: { canonical: "/" },
   openGraph: {
-    title: "CloudVerse: The Enterprise AI Control Plane",
-    description: "Govern every AI execution. Prove the economics behind it. One system of record for every agent, model route, prompt, and dollar of AI spend.",
+    title: "CloudVerse: Own Every Dollar. Govern Every AI Execution.",
+    description: "One ledger for every dollar of cloud, AI, data, SaaS, and engineering spend, tied to the team, the workload, and the decision that caused it.",
     url: "/",
-    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse: The Enterprise AI Control Plane" }],
+    images: [{ url: "/og/default.png", width: 1200, height: 630, alt: "CloudVerse: own every dollar, govern every AI execution" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "CloudVerse: The Enterprise AI Control Plane",
-    description: "Govern every AI execution. Prove the economics behind it. Governance enforced in the execution path, not a report after the fact.",
+    title: "CloudVerse: Own Every Dollar. Govern Every AI Execution.",
+    description: "One ledger across cloud, AI, data, SaaS, and engineering spend. Governance before the request runs. Evidence after it does.",
   },
 };
 
@@ -42,6 +45,10 @@ const HOME_FAQS = [
   {
     q: "What is an AI control plane?",
     a: "The system that discovers every AI agent and model in use, governs execution in real time (budgets, policy, routing, kill switch), and records every call as evidence. It sets policy before a request runs and proves cost and outcome after.",
+  },
+  {
+    q: "Is CloudVerse a cloud-cost management platform?",
+    a: "Cloud cost management is one part of CloudVerse. CloudVerse is a technology spend platform covering cloud infrastructure, AI workloads, data platforms, and SaaS applications through one shared economic and governance model.",
   },
   {
     q: "How is Agentry different from an AI gateway?",
@@ -58,6 +65,10 @@ const HOME_FAQS = [
   {
     q: "Can Agentry run entirely inside our own environment?",
     a: "Yes. Agentry deploys into your cloud tenancy or on-premises; the data plane stays inside your boundary, and prompt capture is a per-workload policy: full capture, redacted, or metadata-only.",
+  },
+  {
+    q: "Can we start with only one spend category?",
+    a: "Yes. Organizations can begin with cloud, AI, data, or SaaS and expand through the same ownership, allocation, reporting, and workflow model.",
   },
   {
     q: "How fast can we see this on real workloads?",
@@ -110,8 +121,27 @@ export default function HomePage() {
         testid="section-inline-cta-pilot"
       />
 
+      {/* THE ESTATE PROBLEM — lead-in to the platform router: the same four
+          questions across cloud, AI, data, and SaaS. Shares the section with
+          /platform/finops; carries a contrasting surface so the router and
+          domain-depth bands below don't read as one flat block. */}
+      <section className="cv-section bg-cv-surface2 dark:bg-black">
+        <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
+          <SectionHeading title="Spend is visible. Decisions are still hard." className="mb-12" docsHref={DOCS.anomalies}>
+            Across cloud, AI, data, and SaaS, every team gets stuck on the same four questions, and today they get asked in four different tools, by four different owners, with no shared answer.
+            <span className="mt-4 block">
+              What changed, who owns it, whether the spend is justified, and what to do next, answered once, on one record, prioritized by impact across your whole technology budget.
+            </span>
+          </SectionHeading>
+          <FinopsVarianceMock />
+        </div>
+      </section>
+
       {/* PLATFORM ROUTER — one platform, every module (replaces the Tech-Spend banner) */}
       <FeatureShowcase withLinks />
+
+      {/* DOMAIN DEPTH — the follow-through: what each domain actually gets */}
+      <DomainDepth />
 
       {/* GUIDES & RESOURCES */}
       <GuidesResources />

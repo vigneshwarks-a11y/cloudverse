@@ -227,7 +227,7 @@ export function TestimonialsCarousel() {
         <div className="mx-auto mb-10 max-w-2xl text-center">
           <Eyebrow>Customer Stories</Eyebrow>
           <h2 className="cv-h2 text-cv-ink">
-            Trusted by teams running AI in production.
+            Trusted by teams running cloud and AI in production.
           </h2>
         </div>
 
