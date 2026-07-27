@@ -127,7 +127,17 @@ export default function HomePage() {
           domain-depth bands below don't read as one flat block. */}
       <section className="cv-section bg-cv-surface2 dark:bg-black">
         <div className="max-w-cv mx-auto px-5 sm:px-6 lg:px-8">
-          <SectionHeading title="Spend is visible. Decisions are still hard." className="mb-12" docsHref={DOCS.anomalies}>
+          <SectionHeading
+            title={
+              <>
+                Spend is visible.
+                <br />
+                <span className="text-cv-blue dark:text-cv-blue-light">Decisions are still hard.</span>
+              </>
+            }
+            className="mb-12"
+            docsHref={DOCS.anomalies}
+          >
             Across cloud, AI, data, and SaaS, every team gets stuck on the same four questions, and today they get asked in four different tools, by four different owners, with no shared answer.
             <span className="mt-4 block">
               What changed, who owns it, whether the spend is justified, and what to do next, answered once, on one record, prioritized by impact across your whole technology budget.
