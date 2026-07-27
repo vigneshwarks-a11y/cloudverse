@@ -40,6 +40,7 @@ export { default as DocumentText } from "@solar-icons/react/notes/DocumentText";
 export { default as DollarMinimalistic } from "@solar-icons/react/money/DollarMinimalistic";
 export { default as Export } from "@solar-icons/react/arrows-action/Export";
 export { default as Eye } from "@solar-icons/react/security/Eye";
+export { default as EyeClosed } from "@solar-icons/react/security/EyeClosed";
 export { default as FileText } from "@solar-icons/react/files/FileText";
 export { default as Filter } from "@solar-icons/react/ui/Filter";
 export { default as Global } from "@solar-icons/react/map/Global";

@@ -16,6 +16,7 @@ import GlobalClosingCta from "@/components/GlobalClosingCta";
 
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  // Matches /keystatic-login too — "startsWith" is intentional, not a typo.
   const isAdmin = pathname?.startsWith("/keystatic");
 
   if (isAdmin) return <>{children}</>;
