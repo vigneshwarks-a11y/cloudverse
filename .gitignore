@@ -24,3 +24,5 @@ source_code.zip
 # Local Netlify folder
 .netlify
 deno.lock
+.vercel
+.env*
